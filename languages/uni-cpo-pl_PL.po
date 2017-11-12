@@ -1,0 +1,3975 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Uni CPO 2.1.13\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-10 22:00+0200\n"
+"PO-Revision-Date: 2017-11-10 22:00+0200\n"
+"Last-Translator: \n"
+"Language-Team: MooMoo Web Stdio <sales@moomoo.com.ua>\n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.4\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;esc_html__;esc_html_e;esc_attr__;esc_attr_e\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: class-uni-cpo.php:61 class-uni-cpo.php:71
+msgid "Cheatin&#8217; huh?"
+msgstr ""
+
+#: includes/abstracts/abstract-uni-cpo-setting.php:486
+msgid "Add/Change attachment"
+msgstr ""
+
+#: includes/abstracts/abstract-uni-cpo-setting.php:492
+#, fuzzy
+#| msgid "Cart item/order attachment"
+msgid "Remove attachment"
+msgstr "Załącznik przedmiotu w koszyku"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:50
+#: includes/admin/class-uni-cpo-plugin-settings.php:51
+msgid "Uni CPO Settings"
+msgstr "Ustawienia Uni CPO"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:97
+#: includes/class-uni-cpo-frontend-scripts.php:410
+msgid "Settings"
+msgstr "Ustawienia"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:110
+#, fuzzy
+#| msgid "Standard (hr)"
+msgid "Standard"
+msgstr "Standard (hr)"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:115
+msgid "Custom selector (id/class) for a product price html tag"
+msgstr ""
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:116
+msgid ""
+"By default, the selector for a product price html tag is \".summary.entry-"
+"summary .price > .amount, .summary.entry-summary .price ins .amount\". "
+"However, the actual html markup of this block depends on the theme and you "
+"may need to define yours custom selector."
+msgstr ""
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:119
+#: includes/admin/class-uni-cpo-plugin-settings.php:127
+#, fuzzy
+msgid "CSS selector"
+msgstr "Wybierz opcję"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:123
+msgid "Custom selector (id/class) for a product image wrapper html tag"
+msgstr ""
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:124
+#, fuzzy
+msgid ""
+"By default, the selector for a product image wrapper html tag on a single "
+"product page is \"figure.woocommerce-product-gallery__wrapper\". However, "
+"the actual html markup of the image block depends on the theme and you may "
+"need to define yours custom selector. Reminder: this selector is for element "
+"that wraps the main image, not the image (\"img\" tag) itself!"
+msgstr ""
+"Domyślnie selektor kontenera grafiki produktu wygląda następująco: \"."
+"woocommerce-main-image img\", jakkolwiek zapis HTML tego bloku może różnić "
+"się w zależności od zastosowanego szablonu WP. W takim przypadku koniecznym "
+"będzie wprowadzenie nowej definicji."
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:293
+#, fuzzy
+#| msgid "Uploaded file"
+msgid "Upload an image"
+msgstr "Przesłano plik"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:293
+#: includes/old/uni-cpo-legacy.php:568
+msgid "Use image"
+msgstr ""
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:293
+#, fuzzy
+#| msgid "Uploaded file"
+msgid "Upload new image"
+msgstr "Przesłano plik"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:294
+#: includes/old/admin/uni-cpo-admin-functions.php:700
+#: includes/old/admin/uni-cpo-admin-functions.php:741
+#: includes/old/admin/uni-cpo-admin-functions.php:778
+#: includes/old/admin/uni-cpo-admin-functions.php:882
+#: includes/old/admin/uni-cpo-admin-functions.php:931
+#: includes/old/admin/uni-cpo-admin-functions.php:976
+#: includes/old/admin/uni-cpo-admin-functions.php:1081
+#: includes/old/admin/uni-cpo-admin-functions.php:1131
+#: includes/old/admin/uni-cpo-admin-functions.php:1176
+#: includes/old/admin/uni-cpo-admin-functions.php:1461
+#: includes/old/admin/uni-cpo-admin-functions.php:1506
+#: includes/old/admin/uni-cpo-admin-functions.php:1547
+#, fuzzy
+msgid "Remove image"
+msgstr "Usuń wszystko"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:349
+msgid "Uni CPO Plugin Settings"
+msgstr "Ustawienia Wtyczki Uni CPO."
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:354
+msgid "All"
+msgstr ""
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:371
+#, fuzzy
+#| msgid "Settings"
+msgid "Save Settings"
+msgstr "Ustawienia"
+
+#: includes/admin/uni-cpo-admin-functions.php:22
+#, fuzzy
+#| msgid "CPO Price Formula"
+msgid "CPO Form Builder"
+msgstr "CPO Formuła kalkulacji ceny"
+
+#: includes/admin/uni-cpo-admin-functions.php:38
+msgid "go to the builder"
+msgstr ""
+
+#: includes/class-uni-cpo-ajax.php:172
+#, fuzzy
+#| msgid "Divider type"
+msgid "Invalid model type"
+msgstr "Typ rozdzielacza"
+
+#: includes/class-uni-cpo-ajax.php:176
+msgid "Invalid builder model object type"
+msgstr ""
+
+#: includes/class-uni-cpo-ajax.php:186
+msgid "Invalid model"
+msgstr ""
+
+#: includes/class-uni-cpo-ajax.php:211
+#, fuzzy
+#| msgid "Smth went wrong."
+msgid "Something went srong"
+msgstr "Coś poszło nie tak."
+
+#: includes/class-uni-cpo-ajax.php:261 includes/class-uni-cpo-ajax.php:530
+msgid "Type is not specified"
+msgstr ""
+
+#: includes/class-uni-cpo-ajax.php:316 includes/class-uni-cpo-ajax.php:354
+#, fuzzy
+#| msgid "Product ID is not set!"
+msgid "Product ID is not specified"
+msgstr "Nie ustawiono ID produktu!"
+
+#: includes/class-uni-cpo-ajax.php:358
+#, fuzzy
+#| msgid "Product ID is not set!"
+msgid "Target product ID is not specified"
+msgstr "Nie ustawiono ID produktu!"
+
+#: includes/class-uni-cpo-ajax.php:365
+#, php-format
+msgid "Product creation failed, could not find original product: %s"
+msgstr ""
+
+#: includes/class-uni-cpo-ajax.php:372
+#, php-format
+msgid "Product creation failed, could not find targeted product: %s"
+msgstr ""
+
+#: includes/class-uni-cpo-ajax.php:482
+msgid "No files added"
+msgstr ""
+
+#: includes/class-uni-cpo-ajax.php:499
+msgid "Only CSV files are allowed"
+msgstr ""
+
+#: includes/class-uni-cpo-ajax.php:534
+msgid "Target post is not chosen"
+msgstr ""
+
+#: includes/class-uni-cpo-ajax.php:538
+msgid "Sync method is not chosen"
+msgstr ""
+
+#: includes/class-uni-cpo-ajax.php:564
+#, fuzzy
+#| msgid "Product ID is not set!"
+msgid "Product ID is not set"
+msgstr "Nie ustawiono ID produktu!"
+
+#: includes/class-uni-cpo-ajax.php:765
+msgid "Price calculation has been disabled during the calculation"
+msgstr ""
+
+#: includes/class-uni-cpo-ajax.php:769
+#, fuzzy
+#| msgid "Price calculation for this product is disabled!"
+msgid "Price calculation is disabled in settings"
+msgstr "Kalkulacja ceny dla tego produktu jest wyłączona!"
+
+#: includes/class-uni-cpo-frontend-scripts.php:365
+msgid "Smart Search"
+msgstr ""
+
+#: includes/class-uni-cpo-frontend-scripts.php:368
+msgid "Basic Modules"
+msgstr ""
+
+#: includes/class-uni-cpo-frontend-scripts.php:369
+msgid "Options"
+msgstr "Opcje"
+
+#: includes/class-uni-cpo-frontend-scripts.php:374
+#, fuzzy
+#| msgid "General settings"
+msgid "General"
+msgstr "Ustawienia główne"
+
+#: includes/class-uni-cpo-frontend-scripts.php:378
+msgid "Style"
+msgstr ""
+
+#: includes/class-uni-cpo-frontend-scripts.php:382
+msgid "Advanced"
+msgstr ""
+
+#: includes/class-uni-cpo-frontend-scripts.php:386
+msgid "Main"
+msgstr ""
+
+#: includes/class-uni-cpo-frontend-scripts.php:390
+#, fuzzy
+#| msgid "Sub options"
+msgid "Suboptions"
+msgstr "Sub-opcje"
+
+#: includes/class-uni-cpo-frontend-scripts.php:394
+#, fuzzy
+#| msgid "Conditional logic"
+msgid "Conditional"
+msgstr "Warunki logiczne"
+
+#: includes/class-uni-cpo-frontend-scripts.php:399
+#, fuzzy
+#| msgid "Delete rules"
+msgid "Delete"
+msgstr "Usuń regułę"
+
+#: includes/class-uni-cpo-frontend-scripts.php:400
+#: includes/old/admin/uni-cpo-admin-functions.php:29
+#: includes/old/admin/uni-cpo-admin-functions.php:47
+#: includes/old/admin/uni-cpo-admin-functions.php:67
+#: includes/old/admin/uni-cpo-admin-functions.php:87
+#: includes/old/admin/uni-cpo-admin-functions.php:106
+#: includes/old/admin/uni-cpo-admin-functions.php:157
+msgid "Save"
+msgstr "Zapisz"
+
+#: includes/class-uni-cpo-frontend-scripts.php:401
+#: includes/settings/class-uni-cpo-setting-sync.php:21
+msgid "Sync"
+msgstr ""
+
+#: includes/class-uni-cpo-frontend-scripts.php:402
+#: includes/class-uni-cpo-templates.php:480
+#: includes/class-uni-cpo-templates.php:644
+#: includes/class-uni-cpo-templates.php:828
+#: includes/old/admin/uni-cpo-admin-functions.php:127
+#: includes/old/class-uni-cpo-options-list.php:430
+msgid "Cancel"
+msgstr "Anuluj"
+
+#: includes/class-uni-cpo-frontend-scripts.php:403
+msgid "Suggestion"
+msgstr ""
+
+#: includes/class-uni-cpo-frontend-scripts.php:406
+#: includes/modules/class-uni-cpo-module-row.php:29
+msgid "Row"
+msgstr ""
+
+#: includes/class-uni-cpo-frontend-scripts.php:407
+#: includes/modules/class-uni-cpo-module-column.php:29
+msgid "Column"
+msgstr ""
+
+#: includes/class-uni-cpo-frontend-scripts.php:408
+msgid "Module"
+msgstr ""
+
+#: includes/class-uni-cpo-frontend-scripts.php:409
+msgid "Move Row"
+msgstr ""
+
+#: includes/class-uni-cpo-frontend-scripts.php:411
+#: includes/class-uni-cpo-templates.php:422
+#: includes/class-uni-cpo-templates.php:423
+#: includes/old/class-uni-cpo-options-list.php:82
+#: includes/settings/class-uni-cpo-setting-sync.php:61
+msgid "Duplicate"
+msgstr ""
+
+#: includes/class-uni-cpo-frontend-scripts.php:412
+#: includes/old/uni-cpo-legacy.php:563
+msgid "Remove"
+msgstr "Usuń"
+
+#: includes/class-uni-cpo-frontend-scripts.php:435
+#: includes/old/uni-cpo-legacy.php:473
+msgid "Clear"
+msgstr ""
+
+#: includes/class-uni-cpo-frontend-scripts.php:436
+#: includes/old/uni-cpo-legacy.php:473
+#: includes/settings/class-uni-cpo-setting-font-family.php:24
+#: includes/settings/class-uni-cpo-setting-font-style.php:24
+#, fuzzy
+msgid "Default"
+msgstr "Wartość domyślna."
+
+#: includes/class-uni-cpo-frontend-scripts.php:437
+#: includes/old/uni-cpo-legacy.php:473
+#, fuzzy
+msgid "Select Color"
+msgstr "Wybierz opcję"
+
+#: includes/class-uni-cpo-frontend-scripts.php:438
+#, fuzzy
+msgid "Current Color"
+msgstr "Wybierz opcję"
+
+#: includes/class-uni-cpo-frontend-scripts.php:523
+#: includes/old/uni-cpo-legacy.php:389
+msgid "Calculating"
+msgstr "Obliczam"
+
+#: includes/class-uni-cpo-post-types.php:57
+#: includes/class-uni-cpo-post-types.php:58
+msgid "Builderius Module"
+msgstr ""
+
+#: includes/class-uni-cpo-post-types.php:59
+msgid "New Builderius Module"
+msgstr ""
+
+#: includes/class-uni-cpo-post-types.php:60
+msgid "Add Builderius Module"
+msgstr ""
+
+#: includes/class-uni-cpo-post-types.php:61
+msgid "Edit Builderius Module"
+msgstr ""
+
+#: includes/class-uni-cpo-post-types.php:62
+msgid "All Builderius Modules"
+msgstr ""
+
+#: includes/class-uni-cpo-post-types.php:63
+msgid "View Builderius Module"
+msgstr ""
+
+#: includes/class-uni-cpo-post-types.php:64
+msgid "Search Builderius Modules"
+msgstr ""
+
+#: includes/class-uni-cpo-post-types.php:65
+msgid "Builderius Modules not found"
+msgstr ""
+
+#: includes/class-uni-cpo-post-types.php:66
+#, fuzzy
+#| msgid "CPO options not found in cart"
+msgid "Builderius Modules not found in cart"
+msgstr "Opcji CPO nie znaleziono w koszyku"
+
+#: includes/class-uni-cpo-post-types.php:67
+msgid "Parent Builderius Module"
+msgstr ""
+
+#: includes/class-uni-cpo-post-types.php:68
+msgid "Builderius Modules"
+msgstr ""
+
+#: includes/class-uni-cpo-post-types.php:101
+#: includes/class-uni-cpo-post-types.php:102
+msgid "CPO option"
+msgstr "Opcje CPO"
+
+#: includes/class-uni-cpo-post-types.php:103
+msgid "New CPO option"
+msgstr "Nowa opcja CPO"
+
+#: includes/class-uni-cpo-post-types.php:104
+msgid "Add CPO option"
+msgstr "Dodaj opcję CPO"
+
+#: includes/class-uni-cpo-post-types.php:105
+msgid "Edit CPO option"
+msgstr "Edytuj opcję CPO"
+
+#: includes/class-uni-cpo-post-types.php:106
+msgid "All CPO options"
+msgstr "Wszystkie opcje CPO"
+
+#: includes/class-uni-cpo-post-types.php:107
+msgid "View CPO option"
+msgstr "Zobacz opcje CPO"
+
+#: includes/class-uni-cpo-post-types.php:108
+msgid "Search CPO options"
+msgstr "Szukaj opcji CPO"
+
+#: includes/class-uni-cpo-post-types.php:109
+msgid "CPO options not found"
+msgstr "Nie znaleziono opcji CPO"
+
+#: includes/class-uni-cpo-post-types.php:110
+msgid "CPO options not found in cart"
+msgstr "Opcji CPO nie znaleziono w koszyku"
+
+#: includes/class-uni-cpo-post-types.php:111
+msgid "Parent CPO option"
+msgstr "Opcja CPO typu „rodzic”"
+
+#: includes/class-uni-cpo-post-types.php:112
+msgid "CPO options"
+msgstr "Opcje CPO"
+
+#: includes/class-uni-cpo-product.php:47
+msgid "CPO builder"
+msgstr ""
+
+#: includes/class-uni-cpo-product.php:81
+msgid "Go to CPO builder"
+msgstr ""
+
+#: includes/class-uni-cpo-product.php:82
+msgid "CPO Builder"
+msgstr ""
+
+#: includes/class-uni-cpo-product.php:467
+#, fuzzy
+#| msgid "Product ID is not set!"
+msgid "Product does not exist or not chosen"
+msgstr "Nie ustawiono ID produktu!"
+
+#: includes/class-uni-cpo-product.php:527
+#, fuzzy
+#| msgid "Error!"
+msgid "Error"
+msgstr "Błąd!"
+
+#: includes/class-uni-cpo-templates.php:51
+#, fuzzy
+msgid "Day/night mode"
+msgstr "Ustawienia wyświetlania"
+
+#: includes/class-uni-cpo-templates.php:57
+msgid "View saved content"
+msgstr ""
+
+#: includes/class-uni-cpo-templates.php:62
+msgid "History of saved content"
+msgstr ""
+
+#: includes/class-uni-cpo-templates.php:85
+#, fuzzy
+#| msgid "General settings"
+msgid "Product general settings"
+msgstr "Ustawienia główne"
+
+#: includes/class-uni-cpo-templates.php:90
+#, fuzzy
+#| msgid "Non-option variables"
+msgid "Non option variables"
+msgstr "zmienna nie będąca opcją"
+
+#: includes/class-uni-cpo-templates.php:94
+#, fuzzy
+#| msgid "Conditional logic"
+msgid "Weight conditional logic"
+msgstr "Warunki logiczne"
+
+#: includes/class-uni-cpo-templates.php:98
+#, fuzzy
+#| msgid "Formula conditional rules"
+msgid "Formula and conditional logic"
+msgstr "Warunki logiczne dla formuły kalkulacji ceny"
+
+#: includes/class-uni-cpo-templates.php:103
+#, fuzzy
+#| msgid "Delete rules"
+msgid "Delete content"
+msgstr "Usuń regułę"
+
+#: includes/class-uni-cpo-templates.php:107
+msgid "Save content"
+msgstr ""
+
+#: includes/class-uni-cpo-templates.php:158
+msgid "Autosave"
+msgstr ""
+
+#: includes/class-uni-cpo-templates.php:241
+msgid "Saving updates the builder content. Check this to save to DB as well."
+msgstr ""
+
+#: includes/class-uni-cpo-templates.php:245
+msgid "Save to DB?"
+msgstr ""
+
+#: includes/class-uni-cpo-templates.php:269
+#: includes/class-uni-cpo-templates.php:277
+#, fuzzy
+#| msgid "General settings"
+msgid "General Settings"
+msgstr "Ustawienia główne"
+
+#: includes/class-uni-cpo-templates.php:283
+msgid "Import/Export"
+msgstr ""
+
+#: includes/class-uni-cpo-templates.php:300
+#: includes/class-uni-cpo-templates.php:321
+#: includes/class-uni-cpo-templates.php:345
+#: includes/class-uni-cpo-templates.php:525
+#: includes/class-uni-cpo-templates.php:685
+#: includes/class-uni-cpo-templates.php:706
+#: includes/class-uni-cpo-templates.php:867
+#: includes/class-uni-cpo-templates.php:887
+msgid "on"
+msgstr ""
+
+#: includes/class-uni-cpo-templates.php:301
+#: includes/class-uni-cpo-templates.php:322
+#: includes/class-uni-cpo-templates.php:346
+#: includes/class-uni-cpo-templates.php:526
+#: includes/class-uni-cpo-templates.php:686
+#: includes/class-uni-cpo-templates.php:707
+#: includes/class-uni-cpo-templates.php:868
+#: includes/class-uni-cpo-templates.php:888
+msgid "off"
+msgstr ""
+
+#: includes/class-uni-cpo-templates.php:304
+#: includes/old/admin/uni-cpo-product-options.php:56
+#: includes/old/admin/view/html-quick-edit-cpo-prod-settings.php:32
+msgid "Display custom options on the product page?"
+msgstr "Wyświetlić własne opcje na stronie produktu?"
+
+#: includes/class-uni-cpo-templates.php:306
+#, fuzzy
+#| msgid ""
+#| "This is the main option of the plugin. By choosing \"off\" you are "
+#| "entirely disabling the work of the plugin for this product.\n"
+#| "                The plugin still may work for other your products, "
+#| "however."
+msgid ""
+"This is the main option of the plugin. By choosing \"off\" you are entirely "
+"disabling the work of the plugin for this product. The plugin still may work "
+"for other your products, however."
+msgstr ""
+"To jest główny aktywator wtyczki. Gdy ją wyłączysz, wtyczka nie będzie "
+"obsługiwała tego produktu,\n"
+" jakkolwiek może działać z innymi produktami, dla których jest aktywna."
+
+#: includes/class-uni-cpo-templates.php:325
+#: includes/old/admin/uni-cpo-product-options.php:70
+#: includes/old/admin/view/html-quick-edit-cpo-prod-settings.php:37
+msgid "Enable price calculation based on custom options?"
+msgstr "Włączyć kalkulację cen z użyciem własnych opcji?"
+
+#: includes/class-uni-cpo-templates.php:327
+#, fuzzy
+#| msgid ""
+#| "Sometimes you just need to display custom options without using their "
+#| "values in a math formula as well as calculate the product price.\n"
+#| "                Then just disable this option and the product price will "
+#| "be its regular (or sale) price and the custom options added to this "
+#| "product will be used only as an additional\n"
+#| "                information in an order meta."
+msgid ""
+"Sometimes you just need to display custom options without using their values "
+"in a math formula as well as calculate the product price. Then just the "
+"custom options added to this product will be used only as an additional "
+"information in an order meta."
+msgstr ""
+"Czasami potrzebujesz wyświetlić własne opcje w celu uzyskania dodatkowych "
+"informacji, bez wykorzystywania ich wartości do kalkulacji ceny.\n"
+" W takim przypadku wyłącz ten przełącznik."
+
+#: includes/class-uni-cpo-templates.php:329
+#: includes/old/admin/uni-cpo-product-options.php:74
+msgid ""
+"Important: this option will work only if you enable displaying of custom "
+"options!"
+msgstr ""
+"Ważne: ta opcja będzie działała jedynie gdy aktywujesz wyświetlanie własnych "
+"opcji na stronach produktu"
+
+#: includes/class-uni-cpo-templates.php:350
+#: includes/old/admin/uni-cpo-product-options.php:86
+msgid ""
+"Use a special \"calculate\" button instead of instant price calculation?"
+msgstr ""
+
+#: includes/class-uni-cpo-templates.php:353
+msgid ""
+"Enable this option if you want to use \"calculate\" button and perform "
+"calculation on click on this button instead of instant price calculation "
+"after any options chosen/value defined."
+msgstr ""
+
+#: includes/class-uni-cpo-templates.php:359
+#: includes/old/admin/uni-cpo-product-options.php:121
+#: includes/old/admin/view/html-quick-edit-cpo-prod-settings.php:41
+#: includes/old/admin/view/html-quick-edit-cpo-prod-settings.php:43
+msgid "Minimal price"
+msgstr "Cena minimalna"
+
+#: includes/class-uni-cpo-templates.php:362
+#, fuzzy
+#| msgid ""
+#| "Calculated product price will not be lower then the value of min. price. "
+#| "Consider this as the lowest possible price for\n"
+#| "                ordering this product regardless the calculated value by "
+#| "using the product custom formula. Additionally, prices of products will "
+#| "be displayed\n"
+#| "                as \"from XX\" on archive pages, where XX is the minimal "
+#| "price value of a particular product."
+msgid ""
+"Calculated product price will not be lower then the value of min. price. "
+"Consider this as the lowest possible price for ordering this product "
+"regardless the calculated value by using the product custom formula. "
+"Additionally, prices of products will be displayed as \"from XX\" on archive "
+"pages, where XX is the minimal price value of a particular product."
+msgstr ""
+"Obliczona cena produktu nie będzie niższa niż wartość „cena minimalna”. "
+"Możesz wykorzystać to ustawienie\n"
+" jako najniższa możliwa cena niezależnie od wyniku obliczeń"
+
+#: includes/class-uni-cpo-templates.php:364
+#, fuzzy
+#| msgid ""
+#| "Important: you still have to define a regular product price under General "
+#| "tab!\n"
+#| "                Otherwise, this product will be considered as free."
+msgid ""
+" Important: you still have to define a regular product price under General "
+"tab! Otherwise, this product will be considered as free."
+msgstr ""
+"Ważne: Zawsze musisz zdefiniować podstawową cenę produktu zakładce "
+"„Ustawienia główne”.\n"
+" W przeciwnym przypadku produkt zostanie uznany jako darmowy."
+
+#: includes/class-uni-cpo-templates.php:378
+#, fuzzy
+msgid "Maximum price"
+msgstr "Cena minimalna"
+
+#: includes/class-uni-cpo-templates.php:381
+msgid ""
+"It is possible to set a max possible price for the product. The calculated "
+"price will be compared with this value and ordering of the product will be "
+"disabled if the calculated price is bigger than this value. The text from "
+"\"Text to display when ordering is disabled\" setting could be displayed in "
+"this case."
+msgstr ""
+
+#: includes/class-uni-cpo-templates.php:394
+#: includes/old/admin/uni-cpo-product-options.php:178
+msgid "Text to display when ordering is disabled"
+msgstr ""
+
+#: includes/class-uni-cpo-templates.php:397
+#: includes/old/admin/uni-cpo-product-options.php:179
+msgid ""
+"Every time you use a special word \"disable\" instead of actual formula, the "
+"product becomes disabled for ordering and the text below is displayed just "
+"under the product price. Leave it empty if you do not want to display this "
+"message at all."
+msgstr ""
+
+#: includes/class-uni-cpo-templates.php:408
+msgid "Duplicate from another product"
+msgstr ""
+
+#: includes/class-uni-cpo-templates.php:414
+#: includes/settings/class-uni-cpo-setting-sync.php:72
+msgid "Fetch data"
+msgstr ""
+
+#: includes/class-uni-cpo-templates.php:417
+msgid "-None-"
+msgstr ""
+
+#: includes/class-uni-cpo-templates.php:427
+#: includes/class-uni-cpo-templates.php:450
+#: includes/class-uni-cpo-templates.php:1055
+#: includes/class-uni-cpo-templates.php:1256
+#: includes/old/admin/uni-cpo-admin-functions.php:1895
+msgid "Import"
+msgstr ""
+
+#: includes/class-uni-cpo-templates.php:438
+msgid "remove pid attribute values from all the modules"
+msgstr ""
+
+#: includes/class-uni-cpo-templates.php:454
+#: includes/class-uni-cpo-templates.php:472
+#: includes/old/admin/uni-cpo-admin-functions.php:1892
+msgid "Export"
+msgstr ""
+
+#: includes/class-uni-cpo-templates.php:459
+msgid "Email"
+msgstr ""
+
+#: includes/class-uni-cpo-templates.php:482
+#: includes/class-uni-cpo-templates.php:646
+#: includes/class-uni-cpo-templates.php:830
+#: includes/old/admin/uni-cpo-admin-functions.php:1903
+#: includes/settings/class-uni-cpo-setting-sync.php:89
+msgid "Submit"
+msgstr ""
+
+#: includes/class-uni-cpo-templates.php:503
+#, fuzzy
+#| msgid "Formula Conditional Rules"
+msgid "Main Formula & Formulas Conditional Logic"
+msgstr "Warunki Logiczne formuły kalkulatora cen"
+
+#: includes/class-uni-cpo-templates.php:509
+#: includes/old/admin/uni-cpo-product-options.php:137
+#: includes/old/admin/view/html-quick-edit-cpo-prod-settings.php:49
+#: includes/old/class-uni-cpo-ajax.php:1182
+#: includes/old/class-uni-cpo-ajax.php:1206
+#: includes/old/class-uni-cpo-ajax.php:1244
+#: includes/old/class-uni-cpo-ajax.php:1270
+msgid "Formula"
+msgstr "Formuła"
+
+#: includes/class-uni-cpo-templates.php:511
+#, fuzzy
+#| msgid ""
+#| "This is a simple formula for your product. It will be applied if no "
+#| "conditions are added in \"Formula conditions settings\" section"
+msgid ""
+"This is a simple formula for your product. It will be applied if no rules "
+"are added or none of them are match."
+msgstr ""
+"To jest prosta formuła dla produktu. Zostanie wykorzystana, jeśli nie "
+"zostanie zdefiniowany warunek w warunkach logicznych formuły wyliczania ceny."
+
+#: includes/class-uni-cpo-templates.php:529
+#: includes/class-uni-cpo-templates.php:710
+#, fuzzy
+#| msgid "Conditional logic"
+msgid "Conditional Logic"
+msgstr "Warunki logiczne"
+
+#: includes/class-uni-cpo-templates.php:531
+msgid ""
+"It is also possible to use Formula Conditional Rules feature. First, enable "
+"it here and add some rules then."
+msgstr ""
+
+#: includes/class-uni-cpo-templates.php:537
+#, fuzzy
+msgid "Main formula"
+msgstr "Dodaj obraz"
+
+#: includes/class-uni-cpo-templates.php:538
+#: includes/class-uni-cpo-templates.php:719
+#, fuzzy
+#| msgid "Notice text"
+msgid "Some text"
+msgstr "Tekst notatki"
+
+#: includes/class-uni-cpo-templates.php:547
+#: includes/class-uni-cpo-templates.php:729
+#: includes/class-uni-cpo-templates.php:896
+#, fuzzy
+#| msgid "Available variables"
+msgid "Available variables:"
+msgstr "Dostępne zmienne"
+
+#: includes/class-uni-cpo-templates.php:561
+msgid "Controls:"
+msgstr ""
+
+#: includes/class-uni-cpo-templates.php:565
+#: includes/class-uni-cpo-templates.php:915
+#, fuzzy
+#| msgid "Rule"
+msgid "Add Rule"
+msgstr "Warunek logiczny"
+
+#: includes/class-uni-cpo-templates.php:566
+#: includes/class-uni-cpo-templates.php:916
+#, fuzzy
+#| msgid "Remove all"
+msgid "Remove All"
+msgstr "Usuń wszystko"
+
+#: includes/class-uni-cpo-templates.php:582
+#: includes/class-uni-cpo-templates.php:615
+#: includes/settings/class-uni-cpo-setting-cpo-fc-scheme.php:42
+#, fuzzy
+#| msgid "Fetch the formatted rule"
+msgid "Fetch the rule"
+msgstr "Dodaj zdefiniowany warunek logiczny"
+
+#: includes/class-uni-cpo-templates.php:668
+#: includes/class-uni-cpo-templates.php:689
+#, fuzzy
+#| msgid "Calculating"
+msgid "Weight Calculation"
+msgstr "Obliczam"
+
+#: includes/class-uni-cpo-templates.php:691
+msgid ""
+"It is possible to calculate the weight of the ordered product item based on "
+"the values of custom options and a custom maths formula."
+msgstr ""
+
+#: includes/class-uni-cpo-templates.php:712
+#, fuzzy
+#| msgid ""
+#| "You cannot use comparison operators in a math formula! Please, use "
+#| "Formula Conditional Rules feature for this."
+msgid "It is also possible to use Weight Formula Conditional Rules feature."
+msgstr ""
+"Nie możesz używać w formule operacji porównywania! W tym celu użyj warunków "
+"logicznych dla formuły."
+
+#: includes/class-uni-cpo-templates.php:718
+msgid "Main formula for weight"
+msgstr ""
+
+#: includes/class-uni-cpo-templates.php:852
+#: includes/class-uni-cpo-templates.php:871
+#, fuzzy
+#| msgid "Non-option variables"
+msgid "Non Option Variables"
+msgstr "zmienna nie będąca opcją"
+
+#: includes/class-uni-cpo-templates.php:872
+msgid "NOVs are variables without direct connection to any options."
+msgstr ""
+
+#: includes/class-uni-cpo-templates.php:891
+msgid "Wholesale"
+msgstr ""
+
+#: includes/class-uni-cpo-templates.php:892
+#: includes/old/admin/uni-cpo-product-options.php:211
+msgid ""
+"Enabling this functionality will make it possible to set different value/"
+"formula on per user role basis"
+msgstr ""
+
+#: includes/class-uni-cpo-templates.php:910
+msgid "Controls"
+msgstr ""
+
+#: includes/class-uni-cpo-templates.php:939
+#: includes/class-uni-cpo-templates.php:1101
+msgid "Matrix?"
+msgstr ""
+
+#: includes/class-uni-cpo-templates.php:1040
+#: includes/class-uni-cpo-templates.php:1241
+msgid "Generate"
+msgstr ""
+
+#: includes/class-uni-cpo-templates.php:1050
+#: includes/class-uni-cpo-templates.php:1251
+#, fuzzy
+msgid "Choose a file"
+msgstr "Wybierz file&hellip;"
+
+#: includes/data-stores/class-uni-cpo-data-store.php:54
+#: includes/data-stores/class-uni-cpo-data-store.php:60
+#: includes/data-stores/class-uni-cpo-data-store.php:66
+msgid "Invalid data store."
+msgstr ""
+
+#: includes/data-stores/class-uni-cpo-option-data-store-cpt.php:84
+#, fuzzy
+#| msgid "Edit option"
+msgid "Invalid option."
+msgstr "Edytuj opcję"
+
+#: includes/modules/class-uni-cpo-module-button.php:29
+#: includes/old/options/class-uni-cpo-module-button.php:21
+msgid "Button"
+msgstr ""
+
+#: includes/modules/class-uni-cpo-module-button.php:42
+#: includes/old/options/class-uni-cpo-module-button.php:37
+msgid "Click here"
+msgstr ""
+
+#: includes/modules/class-uni-cpo-module-image.php:29
+#: includes/old/admin/uni-suboptions-csv-exporter.php:59
+#: includes/settings/class-uni-cpo-setting-background-image.php:40
+#: includes/settings/class-uni-cpo-setting-background-type.php:28
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:130
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:246
+#: includes/settings/class-uni-cpo-setting-cpo-select-options.php:132
+#: includes/settings/class-uni-cpo-setting-cpo-select-options.php:248
+#: includes/settings/class-uni-cpo-setting-image.php:21
+msgid "Image"
+msgstr ""
+
+#: includes/modules/class-uni-cpo-module-text.php:29
+msgid "Paragraph"
+msgstr ""
+
+#: includes/modules/class-uni-cpo-module-text.php:42
+msgid "Some text here"
+msgstr ""
+
+#: includes/old/admin/uni-cpo-admin-functions.php:23
+msgid "Edit settings"
+msgstr "Edycja ustawień"
+
+#: includes/old/admin/uni-cpo-admin-functions.php:30
+#: includes/old/admin/uni-cpo-admin-functions.php:48
+#: includes/old/admin/uni-cpo-admin-functions.php:68
+#: includes/old/admin/uni-cpo-admin-functions.php:88
+#: includes/old/admin/uni-cpo-admin-functions.php:107
+#: includes/old/admin/uni-cpo-admin-functions.php:158
+msgid "Close"
+msgstr "Zamknij"
+
+#: includes/old/admin/uni-cpo-admin-functions.php:120
+msgid "Confirm the operation"
+msgstr "Zatwierdź operację"
+
+#: includes/old/admin/uni-cpo-admin-functions.php:126
+msgid "Confirm"
+msgstr "Zatwierdź"
+
+#: includes/old/admin/uni-cpo-admin-functions.php:151
+#, fuzzy
+msgid "Add/Edit option(s)"
+msgstr "Edytuj opcję"
+
+#: includes/old/admin/uni-cpo-admin-functions.php:653
+#: includes/old/admin/uni-cpo-admin-functions.php:828
+#: includes/old/admin/uni-cpo-admin-functions.php:1027
+#: includes/old/admin/uni-cpo-admin-functions.php:1227
+#: includes/old/admin/uni-cpo-admin-functions.php:1411
+#: includes/old/admin/uni-cpo-admin-functions.php:1598
+#: includes/old/admin/uni-cpo-admin-functions.php:1780
+#: includes/old/admin/uni-cpo-admin-functions.php:1961
+#: includes/old/admin/uni-cpo-admin-functions.php:2020
+#: includes/old/class-uni-cpo-ajax.php:811
+#: includes/old/class-uni-cpo-ajax.php:899
+#: includes/old/class-uni-cpo-ajax.php:1162
+#: includes/old/class-uni-cpo-ajax.php:1224
+#: includes/old/class-uni-cpo-ajax.php:1530
+#: includes/old/class-uni-cpo-ajax.php:1592
+#: includes/old/class-uni-cpo-ajax.php:1890
+#: includes/old/class-uni-cpo-ajax.php:1968
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:46
+#: includes/settings/class-uni-cpo-setting-cpo-select-options.php:48
+msgid "Add"
+msgstr "Dodaj"
+
+#: includes/old/admin/uni-cpo-admin-functions.php:685
+#: includes/old/admin/uni-cpo-admin-functions.php:726
+#: includes/old/admin/uni-cpo-admin-functions.php:763
+#: includes/old/admin/uni-cpo-admin-functions.php:861
+#: includes/old/admin/uni-cpo-admin-functions.php:910
+#: includes/old/admin/uni-cpo-admin-functions.php:955
+#: includes/old/admin/uni-cpo-admin-functions.php:1060
+#: includes/old/admin/uni-cpo-admin-functions.php:1110
+#: includes/old/admin/uni-cpo-admin-functions.php:1155
+#: includes/old/admin/uni-cpo-admin-functions.php:1260
+#: includes/old/admin/uni-cpo-admin-functions.php:1305
+#: includes/old/admin/uni-cpo-admin-functions.php:1345
+#: includes/old/admin/uni-cpo-admin-functions.php:1444
+#: includes/old/admin/uni-cpo-admin-functions.php:1489
+#: includes/old/admin/uni-cpo-admin-functions.php:1530
+#: includes/old/admin/uni-cpo-admin-functions.php:1631
+#: includes/old/admin/uni-cpo-admin-functions.php:1675
+#: includes/old/admin/uni-cpo-admin-functions.php:1714
+#: includes/old/admin/uni-cpo-admin-functions.php:1808
+#: includes/old/admin/uni-cpo-admin-functions.php:1837
+#: includes/old/admin/uni-cpo-admin-functions.php:1862
+#: includes/old/admin/uni-suboptions-csv-exporter.php:55
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:75
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:191
+msgid "Label"
+msgstr "Etykieta"
+
+#: includes/old/admin/uni-cpo-admin-functions.php:689
+#: includes/old/admin/uni-suboptions-csv-exporter.php:56
+msgid "Slug"
+msgstr "Nazwa komponentu"
+
+#: includes/old/admin/uni-cpo-admin-functions.php:693
+#: includes/old/admin/uni-cpo-admin-functions.php:734
+#: includes/old/admin/uni-cpo-admin-functions.php:771
+#: includes/old/admin/uni-cpo-admin-functions.php:869
+#: includes/old/admin/uni-cpo-admin-functions.php:918
+#: includes/old/admin/uni-cpo-admin-functions.php:963
+#: includes/old/admin/uni-cpo-admin-functions.php:1068
+#: includes/old/admin/uni-cpo-admin-functions.php:1118
+#: includes/old/admin/uni-cpo-admin-functions.php:1163
+#: includes/old/admin/uni-cpo-admin-functions.php:1268
+#: includes/old/admin/uni-cpo-admin-functions.php:1313
+#: includes/old/admin/uni-cpo-admin-functions.php:1353
+#: includes/old/admin/uni-cpo-admin-functions.php:1452
+#: includes/old/admin/uni-cpo-admin-functions.php:1497
+#: includes/old/admin/uni-cpo-admin-functions.php:1538
+#: includes/old/admin/uni-cpo-admin-functions.php:1639
+#: includes/old/admin/uni-cpo-admin-functions.php:1683
+#: includes/old/admin/uni-cpo-admin-functions.php:1722
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:112
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:228
+#: includes/settings/class-uni-cpo-setting-cpo-rate.php:21
+#: includes/settings/class-uni-cpo-setting-cpo-select-options.php:114
+#: includes/settings/class-uni-cpo-setting-cpo-select-options.php:230
+msgid "Price / Rate"
+msgstr "Cena / Mnożnik"
+
+#: includes/old/admin/uni-cpo-admin-functions.php:697
+#: includes/old/admin/uni-cpo-admin-functions.php:738
+#: includes/old/admin/uni-cpo-admin-functions.php:775
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:131
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:247
+#: includes/settings/class-uni-cpo-setting-cpo-select-options.php:133
+#: includes/settings/class-uni-cpo-setting-cpo-select-options.php:249
+msgid "The main product image can be changed with this one"
+msgstr ""
+
+#: includes/old/admin/uni-cpo-admin-functions.php:697
+#: includes/old/admin/uni-cpo-admin-functions.php:738
+#: includes/old/admin/uni-cpo-admin-functions.php:775
+#, fuzzy
+msgid "Product image"
+msgstr "Cena produktu"
+
+#: includes/old/admin/uni-cpo-admin-functions.php:699
+#: includes/old/admin/uni-cpo-admin-functions.php:740
+#: includes/old/admin/uni-cpo-admin-functions.php:777
+#: includes/old/admin/uni-cpo-admin-functions.php:881
+#: includes/old/admin/uni-cpo-admin-functions.php:930
+#: includes/old/admin/uni-cpo-admin-functions.php:975
+#: includes/old/admin/uni-cpo-admin-functions.php:1080
+#: includes/old/admin/uni-cpo-admin-functions.php:1130
+#: includes/old/admin/uni-cpo-admin-functions.php:1175
+#: includes/old/admin/uni-cpo-admin-functions.php:1460
+#: includes/old/admin/uni-cpo-admin-functions.php:1505
+#: includes/old/admin/uni-cpo-admin-functions.php:1546
+#, fuzzy
+msgid "Add/Edit image"
+msgstr "Dodaj obraz"
+
+#: includes/old/admin/uni-cpo-admin-functions.php:730
+#: includes/old/admin/uni-cpo-admin-functions.php:767
+#: includes/old/admin/uni-cpo-admin-functions.php:865
+#: includes/old/admin/uni-cpo-admin-functions.php:914
+#: includes/old/admin/uni-cpo-admin-functions.php:959
+#: includes/old/admin/uni-cpo-admin-functions.php:1064
+#: includes/old/admin/uni-cpo-admin-functions.php:1114
+#: includes/old/admin/uni-cpo-admin-functions.php:1159
+#: includes/old/admin/uni-cpo-admin-functions.php:1264
+#: includes/old/admin/uni-cpo-admin-functions.php:1309
+#: includes/old/admin/uni-cpo-admin-functions.php:1349
+#: includes/old/admin/uni-cpo-admin-functions.php:1448
+#: includes/old/admin/uni-cpo-admin-functions.php:1493
+#: includes/old/admin/uni-cpo-admin-functions.php:1534
+#: includes/old/admin/uni-cpo-admin-functions.php:1635
+#: includes/old/admin/uni-cpo-admin-functions.php:1679
+#: includes/old/admin/uni-cpo-admin-functions.php:1718
+msgid "Option slug"
+msgstr "Nazwa opcji komponentu"
+
+#: includes/old/admin/uni-cpo-admin-functions.php:875
+#: includes/old/admin/uni-cpo-admin-functions.php:924
+#: includes/old/admin/uni-cpo-admin-functions.php:969
+#: includes/old/admin/uni-cpo-admin-functions.php:1074
+#: includes/old/admin/uni-cpo-admin-functions.php:1124
+#: includes/old/admin/uni-cpo-admin-functions.php:1169
+#: includes/old/admin/uni-cpo-admin-functions.php:1645
+#: includes/old/admin/uni-cpo-admin-functions.php:1689
+#: includes/old/admin/uni-cpo-admin-functions.php:1728
+#, fuzzy
+msgid "Tooltip text"
+msgstr "Tekst notatki"
+
+#: includes/old/admin/uni-cpo-admin-functions.php:879
+#: includes/old/admin/uni-cpo-admin-functions.php:928
+#: includes/old/admin/uni-cpo-admin-functions.php:973
+#: includes/old/admin/uni-cpo-admin-functions.php:1078
+#: includes/old/admin/uni-cpo-admin-functions.php:1128
+#: includes/old/admin/uni-cpo-admin-functions.php:1173
+msgid "This image will be shown next to this suboption"
+msgstr ""
+
+#: includes/old/admin/uni-cpo-admin-functions.php:879
+#: includes/old/admin/uni-cpo-admin-functions.php:928
+#: includes/old/admin/uni-cpo-admin-functions.php:973
+#: includes/old/admin/uni-cpo-admin-functions.php:1078
+#: includes/old/admin/uni-cpo-admin-functions.php:1128
+#: includes/old/admin/uni-cpo-admin-functions.php:1173
+msgid "Suboption image"
+msgstr ""
+
+#: includes/old/admin/uni-cpo-admin-functions.php:1274
+#: includes/old/admin/uni-cpo-admin-functions.php:1320
+#: includes/old/admin/uni-cpo-admin-functions.php:1359
+msgid "Choose a colour"
+msgstr "Wybierz kolor"
+
+#: includes/old/admin/uni-cpo-admin-functions.php:1458
+#: includes/old/admin/uni-cpo-admin-functions.php:1503
+#: includes/old/admin/uni-cpo-admin-functions.php:1544
+msgid "This image will be used as an image of suboption"
+msgstr ""
+
+#: includes/old/admin/uni-cpo-admin-functions.php:1458
+#: includes/old/admin/uni-cpo-admin-functions.php:1503
+#: includes/old/admin/uni-cpo-admin-functions.php:1544
+#, fuzzy
+msgid "Main image"
+msgstr "Dodaj obraz"
+
+#: includes/old/admin/uni-cpo-admin-functions.php:1812
+#: includes/old/admin/uni-cpo-admin-functions.php:1841
+#: includes/old/admin/uni-cpo-admin-functions.php:1866
+#: includes/old/admin/uni-suboptions-csv-exporter.php:61
+msgid "File"
+msgstr ""
+
+#: includes/old/admin/uni-cpo-admin-functions.php:1814
+#: includes/old/admin/uni-cpo-admin-functions.php:1843
+#: includes/old/admin/uni-cpo-admin-functions.php:1868
+#, fuzzy
+msgid "Choose file"
+msgstr "Wybierz file&hellip;"
+
+#: includes/old/admin/uni-cpo-admin-functions.php:1815
+#: includes/old/admin/uni-cpo-admin-functions.php:1844
+#: includes/old/admin/uni-cpo-admin-functions.php:1869
+#, fuzzy
+msgid "Remove file"
+msgstr "Usuń wszystko"
+
+#: includes/old/admin/uni-cpo-admin-functions.php:1929
+msgid "Fetch formatted rule(s)"
+msgstr "Dodaj zdefiniowany/e warunek/i logiczny/e"
+
+#: includes/old/admin/uni-cpo-admin-functions.php:1971
+#: includes/old/admin/uni-cpo-admin-functions.php:1994
+#: includes/old/admin/uni-cpo-admin-functions.php:2030
+#: includes/old/admin/uni-cpo-admin-functions.php:2055
+#: includes/old/class-uni-cpo-ajax.php:1173
+#: includes/old/class-uni-cpo-ajax.php:1197
+#: includes/old/class-uni-cpo-ajax.php:1235
+#: includes/old/class-uni-cpo-ajax.php:1261
+#: includes/old/class-uni-cpo-ajax.php:1541
+#: includes/old/class-uni-cpo-ajax.php:1565
+#: includes/old/class-uni-cpo-ajax.php:1603
+#: includes/old/class-uni-cpo-ajax.php:1629
+msgid "Rule"
+msgstr "Warunek logiczny"
+
+#: includes/old/admin/uni-cpo-admin-functions.php:1975
+#: includes/old/admin/uni-cpo-admin-functions.php:1998
+#: includes/old/admin/uni-cpo-admin-functions.php:2034
+#: includes/old/admin/uni-cpo-admin-functions.php:2059
+#: includes/old/class-uni-cpo-ajax.php:1177
+#: includes/old/class-uni-cpo-ajax.php:1201
+#: includes/old/class-uni-cpo-ajax.php:1239
+#: includes/old/class-uni-cpo-ajax.php:1265
+#: includes/old/class-uni-cpo-ajax.php:1545
+#: includes/old/class-uni-cpo-ajax.php:1569
+#: includes/old/class-uni-cpo-ajax.php:1607
+#: includes/old/class-uni-cpo-ajax.php:1633
+msgid "Fetch the formatted rule"
+msgstr "Dodaj zdefiniowany warunek logiczny"
+
+#: includes/old/admin/uni-cpo-admin-functions.php:2297
+msgid "copy"
+msgstr ""
+
+#: includes/old/admin/uni-cpo-admin-functions.php:2468
+#: includes/old/admin/uni-cpo-product-options.php:380
+msgid "Go to the documentation and read more about this feature"
+msgstr "Dowiedz się więcej o tej funkcji z dokumentacji"
+
+#: includes/old/admin/uni-cpo-admin-functions.php:2496
+msgid "Monday"
+msgstr ""
+
+#: includes/old/admin/uni-cpo-admin-functions.php:2497
+msgid "Tuesday"
+msgstr ""
+
+#: includes/old/admin/uni-cpo-admin-functions.php:2498
+msgid "Wednesday"
+msgstr ""
+
+#: includes/old/admin/uni-cpo-admin-functions.php:2499
+msgid "Thursday"
+msgstr ""
+
+#: includes/old/admin/uni-cpo-admin-functions.php:2500
+msgid "Friday"
+msgstr ""
+
+#: includes/old/admin/uni-cpo-admin-functions.php:2501
+msgid "Saturday"
+msgstr ""
+
+#: includes/old/admin/uni-cpo-admin-functions.php:2502
+msgid "Sunday"
+msgstr ""
+
+#: includes/old/admin/uni-cpo-admin-functions.php:2509
+msgid "Current month"
+msgstr ""
+
+#: includes/old/admin/uni-cpo-admin-functions.php:2510
+msgid "January"
+msgstr ""
+
+#: includes/old/admin/uni-cpo-admin-functions.php:2511
+msgid "February"
+msgstr ""
+
+#: includes/old/admin/uni-cpo-admin-functions.php:2512
+msgid "March"
+msgstr ""
+
+#: includes/old/admin/uni-cpo-admin-functions.php:2513
+msgid "April"
+msgstr ""
+
+#: includes/old/admin/uni-cpo-admin-functions.php:2514
+msgid "May"
+msgstr ""
+
+#: includes/old/admin/uni-cpo-admin-functions.php:2515
+msgid "June"
+msgstr ""
+
+#: includes/old/admin/uni-cpo-admin-functions.php:2516
+msgid "July"
+msgstr ""
+
+#: includes/old/admin/uni-cpo-admin-functions.php:2517
+msgid "August"
+msgstr ""
+
+#: includes/old/admin/uni-cpo-admin-functions.php:2518
+msgid "September"
+msgstr ""
+
+#: includes/old/admin/uni-cpo-admin-functions.php:2519
+msgid "October"
+msgstr ""
+
+#: includes/old/admin/uni-cpo-admin-functions.php:2520
+msgid "November"
+msgstr ""
+
+#: includes/old/admin/uni-cpo-admin-functions.php:2521
+msgid "December"
+msgstr ""
+
+#: includes/old/admin/uni-cpo-admin-functions.php:2537
+#, fuzzy
+msgid "Add/Edit CPO option(s)"
+msgstr "Edytuj opcję CPO"
+
+#: includes/old/admin/uni-cpo-product-options.php:12
+msgid "CPO Price Formula"
+msgstr "CPO Formuła kalkulacji ceny"
+
+#: includes/old/admin/uni-cpo-product-options.php:18
+msgid "CPO Product Options"
+msgstr "CPO Opcje produktu"
+
+#: includes/old/admin/uni-cpo-product-options.php:24
+msgid "CPO Cart Discounts"
+msgstr "CPO Zniżki dla koszyka"
+
+#: includes/old/admin/uni-cpo-product-options.php:57
+msgid ""
+"This is the main option of the plugin. By choosing \"off\" you are entirely "
+"disabling the work of the plugin for this product.\n"
+"                The plugin still may work for other your products, however."
+msgstr ""
+"To jest główny aktywator wtyczki. Gdy ją wyłączysz, wtyczka nie będzie "
+"obsługiwała tego produktu,\n"
+" jakkolwiek może działać z innymi produktami, dla których jest aktywna."
+
+#: includes/old/admin/uni-cpo-product-options.php:71
+msgid ""
+"Sometimes you just need to display custom options without using their values "
+"in a math formula as well as calculate the product price.\n"
+"                Then just disable this option and the product price will be "
+"its regular (or sale) price and the custom options added to this product "
+"will be used only as an additional\n"
+"                information in an order meta."
+msgstr ""
+"Czasami potrzebujesz wyświetlić własne opcje w celu uzyskania dodatkowych "
+"informacji, bez wykorzystywania ich wartości do kalkulacji ceny.\n"
+" W takim przypadku wyłącz ten przełącznik."
+
+#: includes/old/admin/uni-cpo-product-options.php:87
+msgid ""
+"Enable this option if you want to use \"calculate\" button and perform "
+"calculation on click on this button\n"
+"                    instead of instant price calculation on options defining/"
+"chosing."
+msgstr ""
+
+#: includes/old/admin/uni-cpo-product-options.php:101
+msgid "Enable layered image functionality?"
+msgstr ""
+
+#: includes/old/admin/uni-cpo-product-options.php:102
+msgid ""
+"Enabling this option adds a special slide at the end of WC main product "
+"slider and make it possible to add layers-like\n"
+"                    images for each \"palette_select\" option as well as "
+"change the color of each layer upon selection any color from connected "
+"\"palette_select\" option."
+msgstr ""
+
+#: includes/old/admin/uni-cpo-product-options.php:108
+msgid "Product price"
+msgstr "Cena produktu"
+
+#: includes/old/admin/uni-cpo-product-options.php:110
+#, php-format
+msgid ""
+"You have set regular (and/or sale) product price, so you are able to use "
+"{uni_cpo_price} variable. The value of its variable\n"
+"                    is %s (equal to the product price)."
+msgstr ""
+"Ustawiłeś podstawową (oraz/lub wyprzedażową) cenę produktu, zatem możesz "
+"użyć zmiennej {uni_cpo_price}. Wartość tej zmiennej\n"
+"jest %s (równa wartości ceny produktu)."
+
+#: includes/old/admin/uni-cpo-product-options.php:115
+msgid ""
+"Important: you have not set regular product price yet! Please, set the price "
+"on General tab or this\n"
+"                    product will be free and it will not be possible to sell "
+"it as well as use custom product options!"
+msgstr ""
+"Ważne: nie ustawiłeś jeszcze podstawowej ceny produktu! Proszę, ustaw tą "
+"cenę w zakładce „Ustawienia główne”\n"
+"albo ten produkt będzie darmowy i nie będzie możliwości jego sprzedaży jak "
+"również zdefiniowania dla niego jakichkolwiek opcji!"
+
+#: includes/old/admin/uni-cpo-product-options.php:122
+msgid ""
+"Calculated product price will not be lower then the value of min. price. "
+"Consider this as the lowest possible price for\n"
+"                ordering this product regardless the calculated value by "
+"using the product custom formula. Additionally, prices of products will be "
+"displayed\n"
+"                as \"from XX\" on archive pages, where XX is the minimal "
+"price value of a particular product."
+msgstr ""
+"Obliczona cena produktu nie będzie niższa niż wartość „cena minimalna”. "
+"Możesz wykorzystać to ustawienie\n"
+" jako najniższa możliwa cena niezależnie od wyniku obliczeń"
+
+#: includes/old/admin/uni-cpo-product-options.php:125
+msgid ""
+"Important: you still have to define a regular product price under General "
+"tab!\n"
+"                Otherwise, this product will be considered as free."
+msgstr ""
+"Ważne: Zawsze musisz zdefiniować podstawową cenę produktu zakładce "
+"„Ustawienia główne”.\n"
+" W przeciwnym przypadku produkt zostanie uznany jako darmowy."
+
+#: includes/old/admin/uni-cpo-product-options.php:130
+#, fuzzy
+msgid "Max price"
+msgstr "Cena minimalna"
+
+#: includes/old/admin/uni-cpo-product-options.php:131
+msgid ""
+"It is possible to set a max possible price for the product. The calculated "
+"price will be compared with this value and\n"
+"                ordering of the product will be disabled if calculated price "
+"is bigger than this value. The text from \"Text to display when ordering is "
+"disabled\" setting\n"
+"                could be displayed in this case."
+msgstr ""
+
+#: includes/old/admin/uni-cpo-product-options.php:138
+msgid ""
+"This is a simple formula for your product. It will be applied if no "
+"conditions are added in \"Formula conditions settings\" section"
+msgstr ""
+"To jest prosta formuła dla produktu. Zostanie wykorzystana, jeśli nie "
+"zostanie zdefiniowany warunek w warunkach logicznych formuły wyliczania ceny."
+
+#: includes/old/admin/uni-cpo-product-options.php:142
+msgid "Available variables"
+msgstr "Dostępne zmienne"
+
+#: includes/old/admin/uni-cpo-product-options.php:152
+msgid ""
+"These variables are added automatically based on options added on \"CPO "
+"Product Options\" tab. You can click on certain variable and it will be "
+"added to the textarea above."
+msgstr ""
+"Zmienne są dodawane automatycznie na podstawie opcji zdefiniowanych w "
+"zakładce „CPO Opcje Produktu”. Aby dodać zmienną do formuły wystarczy ją "
+"kliknąć."
+
+#: includes/old/admin/uni-cpo-product-options.php:155
+#, php-format
+msgid ""
+"Typical math operators: *, +, -, /. You can also use \"(\" and \")\" in the "
+"formula. Additionally, these functions are available: %s, %s, %s, %s, %s, "
+"%s, %s. %s"
+msgstr ""
+"Podstawowe operacje matematyczne: * , + , - , / . Możesz używać nawiasów (). "
+"Dodatkowo mogą być wykorzystane także funkcje: %s, %s, %s, %s, %s, %s, %s. %s"
+
+#: includes/old/admin/uni-cpo-product-options.php:156
+msgid "Syntax: floor(variable)"
+msgstr ""
+
+#: includes/old/admin/uni-cpo-product-options.php:157
+msgid "Syntax: ceil(variable)"
+msgstr ""
+
+#: includes/old/admin/uni-cpo-product-options.php:158
+msgid "Syntax: round(variable, precision)"
+msgstr ""
+
+#: includes/old/admin/uni-cpo-product-options.php:159
+msgid "Syntax: min(var1, var2, ...)"
+msgstr ""
+
+#: includes/old/admin/uni-cpo-product-options.php:160
+msgid "Syntax: max(var1, var2, ...)"
+msgstr ""
+
+#: includes/old/admin/uni-cpo-product-options.php:161
+msgid "Syntax: average(var1, var2, ...)"
+msgstr ""
+
+#: includes/old/admin/uni-cpo-product-options.php:162
+msgid "Syntax: sum(var1, var2, ...)"
+msgstr ""
+
+#: includes/old/admin/uni-cpo-product-options.php:163
+msgid ""
+"You cannot use equality symbol (\"=\" sign) in a maths formula! Please, use "
+"Formula Conditional Rules feature if you want to apply different formulas\n"
+"                        based on user's input or options chosen by user."
+msgstr ""
+"NIe możesz używać symbolu równości (=) w formułach matematycznych! Proszę "
+"użyć warunków logicznych jeżeli chcesz zastosować różne formuły\n"
+"zależne od wyboru opcji przez użytkownika."
+
+#: includes/old/admin/uni-cpo-product-options.php:165
+msgid ""
+"Every option has its unique name that consists of \"uni_cpo_\" prefix, "
+"option slug and the brackets (\"{}\") from the both sides. For example: "
+"\"{uni_cpo_width}\" or\n"
+"                    \"{uni_cpo_glass_thickness}\". The formula example:  "
+"{uni_cpo_width}*{uni_cpo_height}+{uni_cpo_glass_thickness}\". These special "
+"formatted names are variables in a formula and will be\n"
+"                    changed to the values of \"Price / Rate\" this option "
+"setting during the formula calculation."
+msgstr ""
+"Każda opcja ma unikalną nazwę zawierającą przedrostek „uni_cpo_” nazwę "
+"komponentu opcji oraz nawiasy sześcienne „{}” otwierający i zamykający. Dla "
+"przykładu „{uni_cpo_szerokosc}”. Tak sformatowane nazwy są jednocześnie "
+"zmiennymi w formule matematycznej, które zmieniaja wartości w zalezności od "
+"wyborów użytkownika i wpływają na kalkulację ceny przez całą formułę, np: "
+"„{uni_cpo_szerokosc}*{uni_cpo_wysokosc}+{uni_cpo_grubosc}”."
+
+#: includes/old/admin/uni-cpo-product-options.php:172
+msgid "Additional settings for WC quantity field"
+msgstr "Dodatkowe ustawienia pola ilości WC"
+
+#: includes/old/admin/uni-cpo-product-options.php:173
+msgid ""
+"You can set min., max., starting values and step for a quantity field of the "
+"product."
+msgstr ""
+"Możesz ustawić wartości min i max, wartość początkową oraz skok zmiany "
+"wartości dla opcji. "
+
+#: includes/old/admin/uni-cpo-product-options.php:174
+msgid "Min. quantity value"
+msgstr "Minimalna wartość"
+
+#: includes/old/admin/uni-cpo-product-options.php:175
+msgid "Max. quantity value"
+msgstr "Maksymalna wartość"
+
+#: includes/old/admin/uni-cpo-product-options.php:197
+msgid "Enable using of non-option variables?"
+msgstr "Włączyć możliwość użycia zmiennych nie będących opcjami?"
+
+#: includes/old/admin/uni-cpo-product-options.php:198
+msgid "Enable/disable using of created non option variables."
+msgstr "Włącz/wyłącz używanie utworzonych zmiennych nie będących opcjami."
+
+#: includes/old/admin/uni-cpo-product-options.php:210
+#, fuzzy
+msgid "Enable wholesale like fuctionality for non-option variables?"
+msgstr "Włączyć możliwość użycia zmiennych nie będących opcjami?"
+
+#: includes/old/admin/uni-cpo-product-options.php:215
+msgid "Which roles will be used in the wholesale like fuctionality?"
+msgstr ""
+
+#: includes/old/admin/uni-cpo-product-options.php:232
+msgid "Add/edit non-option variables"
+msgstr "Dodaj/edytuj zmienną nie będąca opcją"
+
+#: includes/old/admin/uni-cpo-product-options.php:236
+#: includes/old/uni-cpo-legacy.php:558
+msgid "Delete non-option variables"
+msgstr "Usuń zmienną nie będącą opcją"
+
+#: includes/old/admin/uni-cpo-product-options.php:256
+msgid "Enable using of formula conditional rules?"
+msgstr "Włączyć użycie warunków logicznych?"
+
+#: includes/old/admin/uni-cpo-product-options.php:257
+msgid "Enable/disable using of created formula conditional rules."
+msgstr "Włącz/wyłącz użycie warunków logicznych dla formuły kalkulatora cen."
+
+#: includes/old/admin/uni-cpo-product-options.php:262
+msgid "Formula conditional rules"
+msgstr "Warunki logiczne dla formuły kalkulacji ceny"
+
+#: includes/old/admin/uni-cpo-product-options.php:262
+msgid "Add/edit formula conditional rules"
+msgstr "Dodaj/edytuj warunki logiczne"
+
+#: includes/old/admin/uni-cpo-product-options.php:263
+msgid "Import/export formula conditional rules"
+msgstr ""
+
+#: includes/old/admin/uni-cpo-product-options.php:263
+msgid "Export/import formula conditional rules"
+msgstr ""
+
+#: includes/old/admin/uni-cpo-product-options.php:267
+#: includes/old/uni-cpo-legacy.php:559
+msgid "Delete formula conditional rules"
+msgstr "Skasuj warunki logiczne"
+
+#: includes/old/admin/uni-cpo-product-options.php:287
+#, fuzzy
+msgid "Enable using of weight conditional rules?"
+msgstr "Włączyć użycie warunków logicznych?"
+
+#: includes/old/admin/uni-cpo-product-options.php:288
+#, fuzzy
+msgid "Enable/disable using of created weight conditional rules."
+msgstr "Włącz/wyłącz użycie warunków logicznych dla formuły kalkulatora cen."
+
+#: includes/old/admin/uni-cpo-product-options.php:293
+#, fuzzy
+msgid "Product weight conditional rules"
+msgstr "Warunki logiczne dla formuły kalkulacji ceny"
+
+#: includes/old/admin/uni-cpo-product-options.php:293
+#, fuzzy
+msgid "Add/edit weight conditional rules"
+msgstr "Dodaj/edytuj warunki logiczne"
+
+#: includes/old/admin/uni-cpo-product-options.php:294
+#, fuzzy
+msgid "Import/export of product weight conditional rules"
+msgstr "Dodaj/edytuj warunki logiczne"
+
+#: includes/old/admin/uni-cpo-product-options.php:294
+#, fuzzy
+msgid "Export/import weight conditional rules"
+msgstr "Warunki logiczne dla formuły kalkulacji ceny"
+
+#: includes/old/admin/uni-cpo-product-options.php:298
+#, fuzzy
+msgid "Delete weight conditional rules"
+msgstr "Skasuj warunki logiczne"
+
+#: includes/old/admin/uni-cpo-product-options.php:374
+msgid "You have not created any CPO options yet"
+msgstr "Nie utworzyłeś jeszcze żadnej opcji CPO"
+
+#: includes/old/admin/uni-cpo-product-options.php:375
+msgid "Create options"
+msgstr "Utwórz opcje"
+
+#: includes/old/admin/uni-cpo-product-options.php:379
+msgid ""
+"...or select one of the previously created sets and attach it to this product"
+msgstr "…lub wybierz dla danego produktu wcześniej utworzony zestaw opcji"
+
+#: includes/old/admin/uni-cpo-product-options.php:390
+msgid "Attach"
+msgstr "Dołącz"
+
+#: includes/old/admin/uni-cpo-product-options.php:398
+msgid "Add option"
+msgstr ""
+
+#: includes/old/admin/uni-cpo-product-options.php:411
+msgid "Remove all"
+msgstr "Usuń wszystko"
+
+#: includes/old/admin/uni-cpo-product-options.php:444
+msgid "Enable cart discounts?"
+msgstr "Włączyć zniżki dla koszyka?"
+
+#: includes/old/admin/uni-cpo-product-options.php:445
+msgid "Enable/disable cart discounts for this product."
+msgstr "Włącz/wyłącz zniżki dla koszyka dla tego produktu."
+
+#: includes/old/admin/uni-cpo-product-options.php:450
+msgid "Quantity based discount"
+msgstr "Upust ilościowy"
+
+#: includes/old/admin/uni-cpo-product-options.php:451
+msgid "Add/modify rules for discount based on quantity"
+msgstr "Dodaj/modyfikuj reguły upustów ilościowych"
+
+#: includes/old/admin/uni-cpo-product-options.php:455
+#: includes/old/uni-cpo-legacy.php:560
+msgid "Delete rules"
+msgstr "Usuń regułę"
+
+#: includes/old/admin/uni-suboptions-csv-exporter.php:54
+msgid "Default?"
+msgstr ""
+
+#: includes/old/admin/uni-suboptions-csv-exporter.php:57
+msgid "Price/Rate"
+msgstr ""
+
+#: includes/old/admin/uni-suboptions-csv-exporter.php:58
+msgid "Tooltip"
+msgstr ""
+
+#: includes/old/admin/uni-suboptions-csv-exporter.php:60
+#: includes/settings/class-uni-cpo-setting-background-color.php:21
+#: includes/settings/class-uni-cpo-setting-background-type.php:27
+#: includes/settings/class-uni-cpo-setting-color.php:21
+msgid "Color"
+msgstr ""
+
+#: includes/old/admin/view/html-quick-edit-cpo-prod-settings.php:14
+msgid "Uni CPO Quick Settings"
+msgstr ""
+
+#: includes/old/admin/view/html-quick-edit-cpo-prod-settings.php:17
+msgid "Options set"
+msgstr ""
+
+#: includes/old/admin/view/html-quick-edit-cpo-prod-settings.php:20
+msgid "Choose..."
+msgstr ""
+
+#: includes/old/class-uni-cpo-ajax.php:141
+#, fuzzy
+#| msgid "Edit option"
+msgid "Invalid option"
+msgstr "Edytuj opcję"
+
+#: includes/old/class-uni-cpo-ajax.php:174
+msgid "A new options set is successfully attached!"
+msgstr "Nowy zestaw opcji został pomyślnie dołączony!"
+
+#: includes/old/class-uni-cpo-ajax.php:177
+msgid "Product ID and/or Options ID are not set!"
+msgstr "ID produktu i/lub ID opcji nie zostały ustawione! "
+
+#: includes/old/class-uni-cpo-ajax.php:200
+msgid ""
+"Are you sure you want to remove all the options from this product? These "
+"options will not be\n"
+"            deleted, however. And you will be able to re-attach them."
+msgstr ""
+"Czy na pewno chcesz odłączyć wszystkie opcje tego produktu? Opcje nie "
+"zostaną skasowane.\n"
+" W przyszłości będziesz mógł je dołączyć ponownie."
+
+#: includes/old/class-uni-cpo-ajax.php:207
+#: includes/old/class-uni-cpo-ajax.php:332
+#: includes/old/class-uni-cpo-ajax.php:658
+#: includes/old/class-uni-cpo-ajax.php:1059
+#: includes/old/class-uni-cpo-ajax.php:1093
+#: includes/old/class-uni-cpo-ajax.php:1343
+#: includes/old/class-uni-cpo-ajax.php:1374
+#: includes/old/class-uni-cpo-ajax.php:1711
+#: includes/old/class-uni-cpo-ajax.php:1742
+#: includes/old/class-uni-cpo-ajax.php:2270
+#: includes/old/class-uni-cpo-ajax.php:2301
+msgid "Success!"
+msgstr "Powodzenie!"
+
+#: includes/old/class-uni-cpo-ajax.php:210
+#: includes/old/class-uni-cpo-ajax.php:246
+#: includes/old/class-uni-cpo-ajax.php:992
+#: includes/old/class-uni-cpo-ajax.php:1062
+#: includes/old/class-uni-cpo-ajax.php:1096
+#: includes/old/class-uni-cpo-ajax.php:1300
+#: includes/old/class-uni-cpo-ajax.php:1346
+#: includes/old/class-uni-cpo-ajax.php:1377
+#: includes/old/class-uni-cpo-ajax.php:1421
+#: includes/old/class-uni-cpo-ajax.php:1463
+#: includes/old/class-uni-cpo-ajax.php:1668
+#: includes/old/class-uni-cpo-ajax.php:1714
+#: includes/old/class-uni-cpo-ajax.php:1745
+#: includes/old/class-uni-cpo-ajax.php:1789
+#: includes/old/class-uni-cpo-ajax.php:1831
+#: includes/old/class-uni-cpo-ajax.php:2221
+#: includes/old/class-uni-cpo-ajax.php:2273
+#: includes/old/class-uni-cpo-ajax.php:2304
+#: includes/old/class-uni-cpo-ajax.php:2814
+msgid "Product ID is not set!"
+msgstr "Nie ustawiono ID produktu!"
+
+#: includes/old/class-uni-cpo-ajax.php:243
+msgid "Options set is successfully removed!"
+msgstr "Zestaw opcji został pomyślnie odłączony!"
+
+#: includes/old/class-uni-cpo-ajax.php:294
+msgid "A new option element is successfully created!"
+msgstr "Pomyślnie utworzono nowy element opcji!"
+
+#: includes/old/class-uni-cpo-ajax.php:297
+msgid "Smth went wrong."
+msgstr "Coś poszło nie tak."
+
+#: includes/old/class-uni-cpo-ajax.php:301
+#: includes/old/class-uni-cpo-ajax.php:416
+msgid "Options Post ID is not set!"
+msgstr "Nie ustawiono ID pozycji tej opcji!"
+
+#: includes/old/class-uni-cpo-ajax.php:324
+msgid ""
+"Are you sure you want to delete this option? This operation cannot be "
+"undone! The\n"
+"            option will be deleted from this list as well as from this set "
+"of options. It means that the option will disappear from options lists of\n"
+"            all products which use the same set of options! Important: all "
+"nested options will be also deleted!"
+msgstr ""
+"Czy jesteś pewien, że chcesz skasować tą opcję? Tej operacji nie można "
+"cofnąć!\n"
+"Opcja zostanie usunięta z tej listy, jak również z całego zestawu opcji. To "
+"znaczy, że opcja zniknie z list opcji wszystkich produktów,\n"
+"które wykorzystują ten zestaw opcji. WAŻNE wszystkie zagnieżdżone opcje "
+"również zostaną skasowane!"
+
+#: includes/old/class-uni-cpo-ajax.php:335
+msgid "Option ID is not set!"
+msgstr "Nie ustawiono ID opcji!"
+
+#: includes/old/class-uni-cpo-ajax.php:374
+msgid "The option/options is/are successfully deleted!"
+msgstr "Opcja/e została/y pomyślnie usunięta/e!"
+
+#: includes/old/class-uni-cpo-ajax.php:377
+msgid "Option Post ID is not set!"
+msgstr "Nie ustawiono ID pozycji tej opcji!"
+
+#: includes/old/class-uni-cpo-ajax.php:413
+msgid "Saved!"
+msgstr "Zapisano!"
+
+#: includes/old/class-uni-cpo-ajax.php:480
+msgid "Sorry, this function does not exist"
+msgstr "Funkcja nie istnieje!"
+
+#: includes/old/class-uni-cpo-ajax.php:486
+msgid "There are no settings of this type."
+msgstr "Brak ustawień tego typu."
+
+#: includes/old/class-uni-cpo-ajax.php:518
+#: includes/old/class-uni-cpo-ajax.php:672
+msgid "Type of the field and/or option post ID are not set!"
+msgstr "Rodzaj pola i/lub ID pozycji tej opcji nie został ustawiony!"
+
+#: includes/old/class-uni-cpo-ajax.php:664
+msgid "Option post object is not found!"
+msgstr "Opcja dla obiektu nie została znaleziona!"
+
+#: includes/old/class-uni-cpo-ajax.php:668
+msgid "Post slug is not set!"
+msgstr "Nazwa komponentu pozycji nie została ustawiona!"
+
+#: includes/old/class-uni-cpo-ajax.php:785
+msgid "Non-option variables"
+msgstr "zmienna nie będąca opcją"
+
+#: includes/old/class-uni-cpo-ajax.php:787
+msgid ""
+"It is possible to create an additional variable that is not based on option "
+"and\n"
+"            assign any maths formula for it. It is also possible to use any "
+"existed option based variable in formula for\n"
+"            non-option variable."
+msgstr ""
+"Możesz zdefiniować dodatkową zmienną, która nie jest elementem opcji i\n"
+"przypisać do niej dowolną formułę matematyczną. Możesz także użyć dowolnej "
+"istniejącej zmiennej pochodzącej z istniejącej opcji w formule\n"
+"aby zdefiniować zmienną nie będącą opcją."
+
+#: includes/old/class-uni-cpo-ajax.php:793
+msgid "Available option based variables"
+msgstr "Dostępne zmienne pochodzące z istniejących opcji"
+
+#: includes/old/class-uni-cpo-ajax.php:828
+#: includes/old/class-uni-cpo-ajax.php:864
+#: includes/old/class-uni-cpo-ajax.php:916
+#: includes/old/class-uni-cpo-ajax.php:955
+#, fuzzy
+msgid "Value / Formula by user roles"
+msgstr "Wartość / Formuła"
+
+#: includes/old/class-uni-cpo-ajax.php:833
+#: includes/old/class-uni-cpo-ajax.php:869
+#: includes/old/class-uni-cpo-ajax.php:921
+#: includes/old/class-uni-cpo-ajax.php:960
+msgid "Role:"
+msgstr ""
+
+#: includes/old/class-uni-cpo-ajax.php:840
+#: includes/old/class-uni-cpo-ajax.php:876
+#: includes/old/class-uni-cpo-ajax.php:928
+#: includes/old/class-uni-cpo-ajax.php:967
+msgid "Value / Formula"
+msgstr "Wartość / Formuła"
+
+#: includes/old/class-uni-cpo-ajax.php:1296
+#: includes/old/class-uni-cpo-ajax.php:1664
+msgid "No options created/added yet"
+msgstr ""
+
+#: includes/old/class-uni-cpo-ajax.php:1408
+msgid ""
+"Warning! Do not change the structure of the json object. This may be "
+"resulted in an error and unaccessability of the formula conditional rules "
+"builder."
+msgstr ""
+
+#: includes/old/class-uni-cpo-ajax.php:1550
+#: includes/old/class-uni-cpo-ajax.php:1574
+#: includes/old/class-uni-cpo-ajax.php:1612
+#: includes/old/class-uni-cpo-ajax.php:1638
+msgid "Formula for the product weight calculation"
+msgstr ""
+
+#: includes/old/class-uni-cpo-ajax.php:1776
+msgid ""
+"Warning! Do not change the structure of the json object. This may be "
+"resulted in an error and unaccessability of the weight conditional rules "
+"builder."
+msgstr ""
+
+#: includes/old/class-uni-cpo-ajax.php:1866
+msgid "Quantity discount"
+msgstr "Zniżka z tytułu ilości"
+
+#: includes/old/class-uni-cpo-ajax.php:1868
+msgid ""
+"It is possible to use a maths formula in the \"value\" field. It is also "
+"possible to use special\n"
+"                variables: {uni_cpo_quantity} and {uni_cpo_calc_price}. The "
+"first one holds the value of WC quantity field chosen on the product page.\n"
+"                The latter one holds the value about the price calculated on "
+"the product page with the help of custom options."
+msgstr ""
+
+#: includes/old/class-uni-cpo-ajax.php:1901
+#: includes/old/class-uni-cpo-ajax.php:1932
+#: includes/old/class-uni-cpo-ajax.php:1979
+#: includes/old/class-uni-cpo-ajax.php:2013
+msgid "Min. qty"
+msgstr "Min. ilość"
+
+#: includes/old/class-uni-cpo-ajax.php:1905
+#: includes/old/class-uni-cpo-ajax.php:1936
+#: includes/old/class-uni-cpo-ajax.php:1983
+#: includes/old/class-uni-cpo-ajax.php:2017
+msgid "Max. qty"
+msgstr "Max. ilość"
+
+#: includes/old/class-uni-cpo-ajax.php:1909
+#: includes/old/class-uni-cpo-ajax.php:1940
+#: includes/old/class-uni-cpo-ajax.php:1987
+#: includes/old/class-uni-cpo-ajax.php:2021
+#: includes/old/options/class-uni-cpo-option-google_maps.php:97
+#: includes/settings/class-uni-cpo-setting-background-type.php:21
+#: includes/settings/class-uni-cpo-setting-divider-style.php:21
+msgid "Type"
+msgstr "Rodzaj"
+
+#: includes/old/class-uni-cpo-ajax.php:1911
+#: includes/old/class-uni-cpo-ajax.php:1942
+#: includes/old/class-uni-cpo-ajax.php:1989
+#: includes/old/class-uni-cpo-ajax.php:2023
+msgid "Percentage"
+msgstr "Procent"
+
+#: includes/old/class-uni-cpo-ajax.php:1912
+#: includes/old/class-uni-cpo-ajax.php:1943
+#: includes/old/class-uni-cpo-ajax.php:1990
+#: includes/old/class-uni-cpo-ajax.php:2024
+msgid "Fixed amount"
+msgstr "Stała ilość"
+
+#: includes/old/class-uni-cpo-ajax.php:1913
+#: includes/old/class-uni-cpo-ajax.php:1944
+#: includes/old/class-uni-cpo-ajax.php:1991
+#: includes/old/class-uni-cpo-ajax.php:2025
+msgid "Fixed price"
+msgstr "Stała cena"
+
+#: includes/old/class-uni-cpo-ajax.php:1917
+#: includes/old/class-uni-cpo-ajax.php:1948
+#: includes/old/class-uni-cpo-ajax.php:1995
+#: includes/old/class-uni-cpo-ajax.php:2029
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:94
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:210
+#: includes/settings/class-uni-cpo-setting-cpo-select-options.php:96
+#: includes/settings/class-uni-cpo-setting-cpo-select-options.php:212
+msgid "Value"
+msgstr "Wartość"
+
+#: includes/old/class-uni-cpo-ajax.php:2369
+#, fuzzy
+msgid "Quantity"
+msgstr "Zniżka z tytułu ilości"
+
+#: includes/old/class-uni-cpo-ajax.php:2371
+#: includes/uni-cpo-core-functions.php:728
+msgid "Calculate"
+msgstr ""
+
+#: includes/old/class-uni-cpo-ajax.php:2810
+msgid "Price calculation for this product is disabled!"
+msgstr "Kalkulacja ceny dla tego produktu jest wyłączona!"
+
+#: includes/old/class-uni-cpo-ajax.php:2840
+msgid "You are not allowed to edit this page."
+msgstr ""
+
+#: includes/old/class-uni-cpo-ajax.php:2843
+msgid "You are not allowed to edit this post."
+msgstr ""
+
+#: includes/old/class-uni-cpo-ajax.php:2848
+msgid "Someone"
+msgstr ""
+
+#: includes/old/class-uni-cpo-ajax.php:2849
+#, php-format
+msgid "Saving is disabled: %s is currently editing this page."
+msgstr ""
+
+#: includes/old/class-uni-cpo-ajax.php:2849
+#, php-format
+msgid "Saving is disabled: %s is currently editing this post."
+msgstr ""
+
+#: includes/old/class-uni-cpo-ajax.php:2918
+msgid "Error!"
+msgstr "Błąd!"
+
+#: includes/old/class-uni-cpo-options-list.php:19
+msgid "Options Set"
+msgstr ""
+
+#: includes/old/class-uni-cpo-options-list.php:20
+msgid "Options Sets"
+msgstr ""
+
+#: includes/old/class-uni-cpo-options-list.php:31
+#: includes/old/class-uni-cpo-options-list.php:400
+#: includes/settings/class-uni-cpo-setting-cpo-select-options.php:77
+#: includes/settings/class-uni-cpo-setting-cpo-select-options.php:193
+msgid "Title"
+msgstr ""
+
+#: includes/old/class-uni-cpo-options-list.php:32
+msgid "Date"
+msgstr ""
+
+#: includes/old/class-uni-cpo-options-list.php:49
+msgid "No Options Sets."
+msgstr ""
+
+#: includes/old/class-uni-cpo-options-list.php:80
+#: includes/old/class-uni-cpo-options-list.php:387
+msgid "Quick Edit"
+msgstr ""
+
+#: includes/old/class-uni-cpo-options-list.php:102
+msgid "Unpublished"
+msgstr ""
+
+#: includes/old/class-uni-cpo-options-list.php:105
+msgid "Y/m/d g:i:s a"
+msgstr ""
+
+#: includes/old/class-uni-cpo-options-list.php:112
+#, php-format
+msgid "%s ago"
+msgstr ""
+
+#: includes/old/class-uni-cpo-options-list.php:114
+msgid "Y/m/d"
+msgstr ""
+
+#: includes/old/class-uni-cpo-options-list.php:119
+msgid "Published"
+msgstr ""
+
+#: includes/old/class-uni-cpo-options-list.php:122
+msgid "Missed schedule"
+msgstr ""
+
+#: includes/old/class-uni-cpo-options-list.php:124
+msgid "Scheduled"
+msgstr ""
+
+#: includes/old/class-uni-cpo-options-list.php:127
+msgid "Last Modified"
+msgstr ""
+
+#: includes/old/class-uni-cpo-options-list.php:145
+msgid "Restore"
+msgstr ""
+
+#: includes/old/class-uni-cpo-options-list.php:146
+msgid "Delete Permanently"
+msgstr ""
+
+#: includes/old/class-uni-cpo-options-list.php:387
+msgid "Bulk Edit"
+msgstr ""
+
+#: includes/old/class-uni-cpo-options-list.php:434
+#: includes/old/class-uni-cpo-options-list.php:437
+msgid "Update"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-module-text.php:21
+msgid "Text Editor"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-module-text.php:37
+#, fuzzy
+#| msgid "Notice text"
+msgid "Some text..."
+msgstr "Tekst notatki"
+
+#: includes/old/options/class-uni-cpo-option-checkboxes.php:48
+msgid "Checkboxes"
+msgstr "Pola wyboru"
+
+#: includes/old/options/class-uni-cpo-option-checkboxes.php:51
+#: includes/old/options/class-uni-cpo-option-color_picker.php:51
+#: includes/old/options/class-uni-cpo-option-custom_js.php:51
+#: includes/old/options/class-uni-cpo-option-date_picker.php:51
+#: includes/old/options/class-uni-cpo-option-divider.php:49
+#: includes/old/options/class-uni-cpo-option-download.php:51
+#: includes/old/options/class-uni-cpo-option-file_upload.php:51
+#: includes/old/options/class-uni-cpo-option-google_maps.php:51
+#: includes/old/options/class-uni-cpo-option-heading.php:49
+#: includes/old/options/class-uni-cpo-option-image_select.php:51
+#: includes/old/options/class-uni-cpo-option-notice.php:49
+#: includes/old/options/class-uni-cpo-option-notice_nonoptionvar.php:49
+#: includes/old/options/class-uni-cpo-option-palette_select.php:51
+#: includes/old/options/class-uni-cpo-option-radio.php:51
+#: includes/old/options/class-uni-cpo-option-range_slider.php:52
+#: includes/old/options/class-uni-cpo-option-text_area.php:51
+#: includes/old/options/class-uni-cpo-option-text_select.php:51
+msgid "General settings"
+msgstr "Ustawienia główne"
+
+#: includes/old/options/class-uni-cpo-option-checkboxes.php:57
+#: includes/old/options/class-uni-cpo-option-color_picker.php:62
+#: includes/old/options/class-uni-cpo-option-custom_js.php:55
+#: includes/old/options/class-uni-cpo-option-date_picker.php:65
+#: includes/old/options/class-uni-cpo-option-divider.php:53
+#: includes/old/options/class-uni-cpo-option-download.php:56
+#: includes/old/options/class-uni-cpo-option-file_upload.php:56
+#: includes/old/options/class-uni-cpo-option-google_maps.php:69
+#: includes/old/options/class-uni-cpo-option-heading.php:53
+#: includes/old/options/class-uni-cpo-option-image_select.php:59
+#: includes/old/options/class-uni-cpo-option-notice.php:53
+#: includes/old/options/class-uni-cpo-option-notice_nonoptionvar.php:53
+#: includes/old/options/class-uni-cpo-option-palette_select.php:59
+#: includes/old/options/class-uni-cpo-option-radio.php:56
+#: includes/old/options/class-uni-cpo-option-range_slider.php:70
+#: includes/old/options/class-uni-cpo-option-text_area.php:56
+#: includes/old/options/class-uni-cpo-option-text_select.php:61
+msgid "Display settings"
+msgstr "Ustawienia wyświetlania"
+
+#: includes/old/options/class-uni-cpo-option-checkboxes.php:63
+#: includes/old/options/class-uni-cpo-option-color_picker.php:75
+#: includes/old/options/class-uni-cpo-option-date_picker.php:71
+#: includes/old/options/class-uni-cpo-option-divider.php:57
+#: includes/old/options/class-uni-cpo-option-download.php:62
+#: includes/old/options/class-uni-cpo-option-file_upload.php:62
+#: includes/old/options/class-uni-cpo-option-google_maps.php:82
+#: includes/old/options/class-uni-cpo-option-heading.php:57
+#: includes/old/options/class-uni-cpo-option-image_select.php:65
+#: includes/old/options/class-uni-cpo-option-notice.php:58
+#: includes/old/options/class-uni-cpo-option-notice_nonoptionvar.php:58
+#: includes/old/options/class-uni-cpo-option-palette_select.php:65
+#: includes/old/options/class-uni-cpo-option-radio.php:62
+#: includes/old/options/class-uni-cpo-option-range_slider.php:83
+#: includes/old/options/class-uni-cpo-option-text_area.php:62
+#: includes/old/options/class-uni-cpo-option-text_select.php:67
+msgid "Conditional logic"
+msgstr "Warunki logiczne"
+
+#: includes/old/options/class-uni-cpo-option-color_picker.php:48
+#, fuzzy
+msgid "Color picker"
+msgstr "Wybór daty"
+
+#: includes/old/options/class-uni-cpo-option-custom_js.php:48
+msgid "Custom JS"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-custom_js.php:64
+msgid "Custom JS code"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-custom_js.php:65
+msgid "Add some custom JS code"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:48
+#: includes/old/options/class-uni-cpo-option-date_picker.php:83
+msgid "Date picker"
+msgstr "Wybór daty"
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:80
+msgid "Datetime picker mode"
+msgstr "Określ rodzaj picker’a."
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:81
+#: includes/old/options/class-uni-cpo-option-date_picker.php:96
+msgid ""
+"Switch between only date, only time, both, period picker or period picker "
+"with dates only"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:84
+msgid "Time picker"
+msgstr "Wybór czasu"
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:85
+msgid "Date and time"
+msgstr "Data i czas"
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:86
+msgid "Period picker (dates and time)"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:87
+msgid "Period picker (dates only)"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:95
+msgid "Display picker in inline mode?"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:98
+msgid "Display in modal"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:99
+msgid "Display inline"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:107
+msgid "Number of months to display in picker"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:108
+msgid "Choose a number of months to display in the picker"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:123
+msgid "Day for start week"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:124
+msgid "Default is \"Sunday\""
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:132
+msgid "The days of the week, which will be designated as weekend"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:133
+msgid ""
+"Default are Saturday and Sunday. The same will be applied when none is "
+"checked."
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:141
+msgid "Start month"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:142
+msgid ""
+"The date picker will display this month instead of the current by default"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:150
+msgid "Custom format for dates"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:151
+msgid "Must be defined in moment.js format. Default is \"DD.MM.YYYY\"."
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:161
+msgid "Custom format for dates and time"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:162
+msgid "Must be defined in moment.js format. Default is \"HH:mm DD.MM.YYYY\"."
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:172
+msgid "Custom format for time"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:173
+msgid "Must be defined in moment.js format. Default is \"H:m\"."
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:183
+msgid "Min date that can be chosen"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:184
+msgid ""
+"Must be defined in the same format as format for dates setting. Example: if "
+"the format is \"DD.MM.YYYY\", the valid date is \"11.06.2016\". No min date "
+"by default."
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:194
+msgid "Disable specific dates"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:195
+msgid ""
+"Comma separated dates. These days you can not select. Must be defined in the "
+"same format as format for dates setting."
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:205
+msgid "The days of the week, which will be disabled"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:206
+msgid ""
+"Checked days of the week will be disabled for a certain period of time "
+"starting from today and up to max date defined. Max date setting MUST be "
+"specified!"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:214
+msgid "Max date that can be chosen"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:215
+msgid ""
+"Must be defined in the same format as format for dates setting. Example: if "
+"the format is \"DD.MM.YYYY\", the valid date is \"11.06.2016\". No max date "
+"by default."
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:225
+msgid "Enable hours in time picker?"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:228
+#: includes/old/options/class-uni-cpo-option-date_picker.php:240
+#: includes/old/options/class-uni-cpo-option-date_picker.php:252
+msgid "Enable"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:229
+#: includes/old/options/class-uni-cpo-option-date_picker.php:241
+#: includes/old/options/class-uni-cpo-option-date_picker.php:253
+msgid "Disable"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:237
+msgid "Enable minutes in time picker?"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:249
+msgid "Enable seconds in time picker?"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:261
+msgid "Switch between 12 and 24 hours format"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:264
+msgid "12 hours"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:265
+msgid "24 hours"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:273
+msgid "Step for hours for time picker"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:274
+msgid "Add the step value for hours for time picker. Default is \"1\"."
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:283
+msgid "Step for minutes for time picker"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:284
+msgid "Add the step value for minutes for time picker. Default is \"1\"."
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:293
+msgid "Step for seconds for time picker"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:294
+msgid "Add the step value for seconds for time picker. Default is \"1\"."
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:303
+msgid "Set min time (in format \"H:mm\")"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-date_picker.php:313
+msgid "Set max time (in format \"H:mm\")"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-divider.php:46
+msgid "Divider"
+msgstr "Rozdzielacz"
+
+#: includes/old/options/class-uni-cpo-option-download.php:48
+#, fuzzy
+msgid "Download file(s)"
+msgstr "Przesłano pliki"
+
+#: includes/old/options/class-uni-cpo-option-download.php:71
+msgid "List of files"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-download.php:72
+msgid ""
+"This is the list of the files available for download. Every file is an "
+"attachment."
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-download.php:80
+#, fuzzy
+msgid "Display mode"
+msgstr "Ustawienia wyświetlania"
+
+#: includes/old/options/class-uni-cpo-option-download.php:83
+msgid "List of links"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-download.php:84
+msgid "Links only (\"a\" tags)"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-file_upload.php:48
+msgid "File upload"
+msgstr "Wyślij plik"
+
+#: includes/old/options/class-uni-cpo-option-file_upload.php:71
+msgid "Max. file size (MB)"
+msgstr "Maksymalna wielkość pliku (MB)"
+
+#: includes/old/options/class-uni-cpo-option-file_upload.php:72
+msgid ""
+"Define max file size allowed in MB. Default is \"1\". Also you can define a "
+"decimal value like this \"0.5\"."
+msgstr ""
+"Zdefiniuj maksymalną dopuszczalną wielkość przesyłanego pliku w MB (Wartość "
+"domyślna to „1”). Możesz także użyć ułamka dziesiętnego np. „0,5”."
+
+#: includes/old/options/class-uni-cpo-option-file_upload.php:73
+#, php-format
+msgid ""
+"Important: maximum upload file size set on your hosting is %d MB. You must "
+"not set a bigger value than this!"
+msgstr ""
+"Ważne: Maksymalna wielkość przesyłanego pliku ustawiona na serwerze to %d "
+"MB. Nie możesz ustawić wyższej wartości!"
+
+#: includes/old/options/class-uni-cpo-option-file_upload.php:83
+msgid "Allowed mime types of files"
+msgstr "Dopuszczalne typy plików w standardzie MIME."
+
+#: includes/old/options/class-uni-cpo-option-file_upload.php:84
+msgid ""
+"Define allowed mime types of files. Add comma separated values. Example: "
+"\"image/jpeg,image/png\" (these are also default types)"
+msgstr ""
+"Zdefiniuj dopuszczalne typy plików w standardzie MIME, rozdzielając je "
+"przecinkiem. Przykład: „image/jpeg,image/png”. Wartości domyślne to „image/"
+"jpeg,image/png”."
+
+#: includes/old/options/class-uni-cpo-option-file_upload.php:85
+msgid "You may find helpful this"
+msgstr "To może być pomocne."
+
+#: includes/old/options/class-uni-cpo-option-file_upload.php:85
+msgid "list of WP default allowed mime types"
+msgstr "lista domyślnych typów plików WP w standardzie MIME."
+
+#: includes/old/options/class-uni-cpo-option-file_upload.php:156
+#: includes/old/options/class-uni-cpo-option-file_upload.php:159
+msgid "Choose a file&hellip;"
+msgstr "Wybierz file&hellip;"
+
+#: includes/old/options/class-uni-cpo-option-google_maps.php:48
+msgid "Google Map"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-google_maps.php:98
+msgid "Choose among three modes of using this option"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-google_maps.php:100
+msgid "Customer's address"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-google_maps.php:101
+msgid "Customer's start and end adresses (with distance)"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-google_maps.php:102
+msgid "Cargo calculator (\"from\", \"to\" and distance)"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-google_maps.php:103
+msgid "Customer's address and distance to the base"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-google_maps.php:111
+msgid "Base location"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-google_maps.php:121
+msgid "Label for Initial Location input"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-google_maps.php:131
+msgid "Label for Address input"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-google_maps.php:141
+msgid "Label for Distance input"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-google_maps.php:151
+msgid "Coordinates of the map center"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-google_maps.php:161
+msgid "Zoom"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-google_maps.php:170
+msgid "Travel mode"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-google_maps.php:171
+msgid "Google Map travel mode"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-google_maps.php:173
+msgid "DRIVING"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-google_maps.php:174
+msgid "WALKING"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-google_maps.php:175
+msgid "BICYCLING"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-google_maps.php:176
+msgid "TRANSIT"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-google_maps.php:184
+#, fuzzy
+msgid "Type of the map"
+msgstr "Typ „input” tagu HTML."
+
+#: includes/old/options/class-uni-cpo-option-google_maps.php:185
+msgid "Google Map map mode"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-google_maps.php:187
+msgid "Roadmap"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-google_maps.php:188
+msgid "Satellite"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-google_maps.php:189
+msgid "Hybrid"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-google_maps.php:190
+msgid "Terrain"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-google_maps.php:198
+msgid "Disable the default map UI"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-heading.php:46
+msgid "Heading"
+msgstr "Nagłówek"
+
+#: includes/old/options/class-uni-cpo-option-image_select.php:48
+msgid "Image select"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-image_select.php:74
+#: includes/old/options/class-uni-cpo-option-palette_select.php:74
+#: includes/old/options/class-uni-cpo-option-radio.php:71
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:21
+#: includes/settings/class-uni-cpo-setting-cpo-select-options.php:21
+msgid "Sub options"
+msgstr "Sub-opcje"
+
+#: includes/old/options/class-uni-cpo-option-image_select.php:75
+#: includes/old/options/class-uni-cpo-option-palette_select.php:75
+msgid ""
+"Add some options for select and, please, keep unique slugs for them. These "
+"slugs might be used in a formula conditional rules (e.g. when you use "
+"operators \"equal\", \"not equal\" etc)."
+msgstr ""
+"Dodaj jakiekolwiek sub-opcje, zachowując unikalne nazwy komponentów. "
+"Komponenty mogą zostać następnie użyte do budowy warunków logicznych (np.: "
+"przy użyciu operatorów równa się, nie równa się, etc.)"
+
+#: includes/old/options/class-uni-cpo-option-image_select.php:264
+#: includes/old/options/class-uni-cpo-option-palette_select.php:250
+#: includes/old/options/class-uni-cpo-option-radio.php:263
+#: includes/old/options/class-uni-cpo-option-text_select.php:206
+#: includes/options/class-uni-cpo-option-select.php:276
+#: includes/options/class-uni-cpo-option-select.php:362
+msgid "Please select..."
+msgstr "Proszę wybrać…"
+
+#: includes/old/options/class-uni-cpo-option-notice.php:46
+msgid "Notice"
+msgstr "Uwaga"
+
+#: includes/old/options/class-uni-cpo-option-notice_nonoptionvar.php:46
+#, fuzzy
+msgid "Dynamic Notice"
+msgstr "Uwaga"
+
+#: includes/old/options/class-uni-cpo-option-palette_select.php:48
+msgid "Palette select"
+msgstr "Wybór palety"
+
+#: includes/old/options/class-uni-cpo-option-palette_select.php:83
+msgid "Image encoded in base64"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-palette_select.php:84
+msgid ""
+"Paste here a code of the encoded image. You can use b64.io web service to "
+"perform encoding."
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-radio.php:48
+msgid "Radio buttons"
+msgstr "Klawisz „radio”"
+
+#: includes/old/options/class-uni-cpo-option-radio.php:72
+msgid ""
+"Add some sub options for radio and, please, keep unique slugs for them. "
+"These slugs might be used in a formula conditional rules (e.g. when you use "
+"operators \"equal\", \"not equal\" etc)."
+msgstr ""
+"Dodaj jakiekolwiek sub-opcje, zachowując unikalne nazwy komponentów. "
+"Komponenty mogą zostać następnie użyte do budowy warunków logicznych (np.: "
+"przy użyciu operatorów równa się, nie równa się, etc.)"
+
+#: includes/old/options/class-uni-cpo-option-range_slider.php:48
+msgid "Range slider"
+msgstr "Suwak zakresu"
+
+#: includes/old/options/class-uni-cpo-option-range_slider.php:98
+msgid "Show input"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-range_slider.php:100
+#: includes/old/options/class-uni-cpo-option-range_slider.php:126
+#: includes/settings/class-uni-cpo-setting-cpo-is-fc.php:25
+#: includes/settings/class-uni-cpo-setting-cpo-is-required.php:25
+#: includes/settings/class-uni-cpo-setting-cpo-is-tooltip.php:25
+#: includes/settings/class-uni-cpo-setting-rel.php:24
+msgid "No"
+msgstr "Nie"
+
+#: includes/old/options/class-uni-cpo-option-range_slider.php:101
+#: includes/old/options/class-uni-cpo-option-range_slider.php:127
+#: includes/settings/class-uni-cpo-setting-cpo-is-fc.php:26
+#: includes/settings/class-uni-cpo-setting-cpo-is-required.php:26
+#: includes/settings/class-uni-cpo-setting-cpo-is-tooltip.php:26
+#: includes/settings/class-uni-cpo-setting-rel.php:25
+msgid "Yes"
+msgstr "Tak"
+
+#: includes/old/options/class-uni-cpo-option-range_slider.php:103
+msgid "Show/hide text input"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-range_slider.php:111
+msgid "Type range"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-range_slider.php:113
+msgid "Single"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-range_slider.php:114
+#: includes/settings/class-uni-cpo-setting-border-bottom.php:49
+#: includes/settings/class-uni-cpo-setting-border-left.php:49
+#: includes/settings/class-uni-cpo-setting-border-right.php:49
+#: includes/settings/class-uni-cpo-setting-border-top.php:49
+#: includes/settings/class-uni-cpo-setting-divider-style.php:27
+msgid "Double"
+msgstr "Double - liczba zmiennoprzecinkowa."
+
+#: includes/old/options/class-uni-cpo-option-range_slider.php:116
+msgid "Change type range input"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-range_slider.php:124
+msgid "Enable grid"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-range_slider.php:129
+msgid "Enable/disable numbered grid"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-range_slider.php:137
+msgid "Default from"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-range_slider.php:147
+msgid "Default end"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-range_slider.php:157
+msgid "Max interval"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-range_slider.php:159
+msgid "Add the maximum interval for this field. Only integer or float number."
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-range_slider.php:169
+msgid "Min interval"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-range_slider.php:171
+msgid "Add the minimum interval for this field. Only integer or float number."
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-select.php:30
+#: includes/options/class-uni-cpo-option-select.php:38
+#, fuzzy
+#| msgid "Select field"
+msgid "Select"
+msgstr "Pole wyboru"
+
+#: includes/old/options/class-uni-cpo-option-text-input.php:29
+#: includes/options/class-uni-cpo-option-text-input.php:36
+msgid "Text Input"
+msgstr ""
+
+#: includes/old/options/class-uni-cpo-option-text_area.php:48
+msgid "Textarea"
+msgstr "Obszar tekstowy"
+
+#: includes/old/options/class-uni-cpo-option-text_select.php:48
+msgid "Text Select"
+msgstr ""
+
+#: includes/old/uni-cpo-legacy.php:8
+#, fuzzy
+msgid "This plugin requires WordPress 4.6+!"
+msgstr "Plugin wymaga WordPress 4.4+!"
+
+#: includes/old/uni-cpo-legacy.php:224
+msgid "Cart item/order attachment"
+msgstr "Załącznik przedmiotu w koszyku"
+
+#: includes/old/uni-cpo-legacy.php:391
+msgid "(fill in all required fields to calculate the price)"
+msgstr "(Proszę wypełnić pola wymagane aby obliczyć cenę)"
+
+#: includes/old/uni-cpo-legacy.php:392
+msgid "Total for"
+msgstr "SUMA DLA"
+
+#: includes/old/uni-cpo-legacy.php:393
+msgid "is:"
+msgstr "WYNOSI:"
+
+#: includes/old/uni-cpo-legacy.php:394
+msgid "Price with discount:"
+msgstr "Cena z upustem"
+
+#: includes/old/uni-cpo-legacy.php:427 includes/old/uni-cpo-legacy.php:436
+#: includes/old/uni-cpo-legacy.php:584 includes/old/uni-cpo-legacy.php:593
+msgid "This value seems to be invalid."
+msgstr "Ta wartość wydaje niepoprawna."
+
+#: includes/old/uni-cpo-legacy.php:428 includes/old/uni-cpo-legacy.php:585
+msgid "This value should be a valid email."
+msgstr "Ta wartość powinna być poprawnym adresem email."
+
+#: includes/old/uni-cpo-legacy.php:429 includes/old/uni-cpo-legacy.php:586
+msgid "This value should be a valid url."
+msgstr "Ta wartość powinna być poprawnym adresem url."
+
+#: includes/old/uni-cpo-legacy.php:430 includes/old/uni-cpo-legacy.php:587
+msgid "This value should be a valid number."
+msgstr "Ta wartość powinna być liczbą."
+
+#: includes/old/uni-cpo-legacy.php:431 includes/old/uni-cpo-legacy.php:588
+msgid "This value should be digits."
+msgstr "Ta wartość powinna składać się z cyfr."
+
+#: includes/old/uni-cpo-legacy.php:432 includes/old/uni-cpo-legacy.php:589
+msgid "This value should be alphanumeric."
+msgstr "Ta wartość powinna być alfanumerycznym ciągiem znaków."
+
+#: includes/old/uni-cpo-legacy.php:433 includes/old/uni-cpo-legacy.php:590
+msgid "This value should be a valid integer."
+msgstr "Ta wartość powinna być liczbą całkowitą."
+
+#: includes/old/uni-cpo-legacy.php:434 includes/old/uni-cpo-legacy.php:591
+msgid "This value should not be blank."
+msgstr "Ta wartość nie może pozostać pusta."
+
+#: includes/old/uni-cpo-legacy.php:435 includes/old/uni-cpo-legacy.php:592
+msgid "This value is required."
+msgstr "Ta wartość jest wymagana."
+
+#: includes/old/uni-cpo-legacy.php:437 includes/old/uni-cpo-legacy.php:594
+#, php-format
+msgid "This value should be greater than or equal to %s."
+msgstr "Ta wartość powinna być większa, lub równa %s."
+
+#: includes/old/uni-cpo-legacy.php:438 includes/old/uni-cpo-legacy.php:595
+#, php-format
+msgid "This value should be lower than or equal to %s."
+msgstr "Ta wartość powinna być mniejsza, lub równa %s."
+
+#: includes/old/uni-cpo-legacy.php:439 includes/old/uni-cpo-legacy.php:596
+#, php-format
+msgid "This value should be between %s and %s."
+msgstr "Ta wartość powinna być z przedziału od %s do %s."
+
+#: includes/old/uni-cpo-legacy.php:440 includes/old/uni-cpo-legacy.php:597
+#, php-format
+msgid "This value is too short. It should have %s characters or more."
+msgstr ""
+"Ta wartość jest zbyt krótka. Wartość powinna składać się z co najmniej %s "
+"znaków."
+
+#: includes/old/uni-cpo-legacy.php:441 includes/old/uni-cpo-legacy.php:598
+#, php-format
+msgid "This value is too long. It should have %s characters or fewer."
+msgstr ""
+"Ta wartość jest zbyt długa. Wartość powinna składać się z co najwyżej %s "
+"znaków."
+
+#: includes/old/uni-cpo-legacy.php:442 includes/old/uni-cpo-legacy.php:599
+#, php-format
+msgid ""
+"This value length is invalid. It should be between %s and %s characters long."
+msgstr ""
+"Ta wartość ma niepoprawną długość. Jej długość powinna być z przedziału od "
+"%s do %s znaków."
+
+#: includes/old/uni-cpo-legacy.php:443 includes/old/uni-cpo-legacy.php:600
+#, php-format
+msgid "You must select at least %s choices."
+msgstr "Musisz wybrać co najmniej %s pozycji wyboru."
+
+#: includes/old/uni-cpo-legacy.php:444 includes/old/uni-cpo-legacy.php:601
+#, php-format
+msgid "You must select %s choices or fewer."
+msgstr "Musisz wybrać %s lub mniej pozycji wyboru."
+
+#: includes/old/uni-cpo-legacy.php:445 includes/old/uni-cpo-legacy.php:602
+#, php-format
+msgid "You must select between %s and %s choices."
+msgstr "Musisz wybrać od %s do %s pozycji wyboru."
+
+#: includes/old/uni-cpo-legacy.php:446 includes/old/uni-cpo-legacy.php:603
+msgid "This value should be the same."
+msgstr "Ta wartość powinna być taka sama."
+
+#: includes/old/uni-cpo-legacy.php:447 includes/old/uni-cpo-legacy.php:604
+msgid "This value should be a valid date (YYYY-MM-DD)."
+msgstr "Ta wartość powinna być datą (RRRR-MM-DD)."
+
+#: includes/old/uni-cpo-legacy.php:448 includes/old/uni-cpo-legacy.php:605
+#, php-format
+msgid "This value is too short. It should have %s words or more."
+msgstr ""
+"Ta wartość jest zbyt krótka. Wartość powinna składać się z co najmniej %s "
+"słów."
+
+#: includes/old/uni-cpo-legacy.php:449 includes/old/uni-cpo-legacy.php:606
+#, php-format
+msgid "This value is too long. It should have %s words or fewer."
+msgstr ""
+"Ta wartość jest zbyt długa. Wartość powinna składać się z co najwyżej %s "
+"słów."
+
+#: includes/old/uni-cpo-legacy.php:450 includes/old/uni-cpo-legacy.php:607
+#, php-format
+msgid ""
+"This value length is invalid. It should be between %s and %s words long."
+msgstr ""
+"Ta wartość ma niepoprawną długość. Jej długość powinna być z przedziału od "
+"%s do %s słów."
+
+#: includes/old/uni-cpo-legacy.php:451 includes/old/uni-cpo-legacy.php:608
+msgid "This value should be greater."
+msgstr "Ta wartość powinna być większa."
+
+#: includes/old/uni-cpo-legacy.php:452 includes/old/uni-cpo-legacy.php:609
+msgid "This value should be greater or equal."
+msgstr "Ta wartość powinna być większa lub równa."
+
+#: includes/old/uni-cpo-legacy.php:453 includes/old/uni-cpo-legacy.php:610
+msgid "This value should be less."
+msgstr "Ta wartość powinna być mniejsza."
+
+#: includes/old/uni-cpo-legacy.php:454 includes/old/uni-cpo-legacy.php:611
+msgid "This value should be less or equal."
+msgstr "Ta wartość powinna być mniejsza lub równa."
+
+#: includes/old/uni-cpo-legacy.php:455 includes/old/uni-cpo-legacy.php:612
+msgid "This value should be different."
+msgstr "Ta wartość powinna mieć inną wartość."
+
+#: includes/old/uni-cpo-legacy.php:561
+msgid "Edit"
+msgstr "Edytuj"
+
+#: includes/old/uni-cpo-legacy.php:562
+msgid "Copy"
+msgstr "Kopiuj"
+
+#: includes/old/uni-cpo-legacy.php:564
+msgid "Edit option"
+msgstr "Edytuj opcję"
+
+#: includes/old/uni-cpo-legacy.php:565
+msgid "Copy option"
+msgstr "Kopiuj opcję"
+
+#: includes/old/uni-cpo-legacy.php:566
+msgid "Remove option"
+msgstr "Usuń opcję"
+
+#: includes/old/uni-cpo-legacy.php:567
+msgid "Choose an image"
+msgstr ""
+
+#: includes/old/uni-cpo-legacy.php:574
+msgid "Error while saving the changes."
+msgstr ""
+
+#: includes/old/uni-cpo-legacy.php:575
+msgid "Remove From Bulk Edit"
+msgstr ""
+
+#: includes/old/uni-cpo-legacy.php:576
+msgid "(no title)"
+msgstr ""
+
+#: includes/old/uni-cpo-legacy.php:577
+msgid "Changes saved."
+msgstr ""
+
+#: includes/options/class-uni-cpo-option-radio.php:38
+#, fuzzy
+#| msgid "Radio buttons"
+msgid "Radio Inputs"
+msgstr "Klawisz „radio”"
+
+#: includes/options/class-uni-cpo-option-text-area.php:36
+#, fuzzy
+#| msgid "Textarea"
+msgid "Text Area"
+msgstr "Obszar tekstowy"
+
+#: includes/settings/class-uni-cpo-setting-align.php:21
+msgid "Align"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-background-hover-color.php:21
+#: includes/settings/class-uni-cpo-setting-hover-color.php:21
+#, fuzzy
+msgid "Hover Color"
+msgstr "Wybierz opcję"
+
+#: includes/settings/class-uni-cpo-setting-background-image.php:72
+#: includes/settings/class-uni-cpo-setting-background-image.php:83
+msgid "Repeat"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-background-image.php:82
+#: includes/settings/class-uni-cpo-setting-background-image.php:163
+#: includes/settings/class-uni-cpo-setting-background-type.php:26
+#: includes/settings/class-uni-cpo-setting-border-bottom.php:45
+#: includes/settings/class-uni-cpo-setting-border-left.php:45
+#: includes/settings/class-uni-cpo-setting-border-right.php:45
+#: includes/settings/class-uni-cpo-setting-border-top.php:45
+#: includes/settings/class-uni-cpo-setting-float.php:25
+#: includes/settings/class-uni-cpo-setting-font-weight.php:24
+#: includes/settings/class-uni-cpo-setting-sync.php:59
+msgid "None"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-background-image.php:84
+msgid "Repeat-X"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-background-image.php:85
+msgid "Repeat-Y"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-background-image.php:98
+#, fuzzy
+#| msgid "CPO option"
+msgid "Position"
+msgstr "Opcje CPO"
+
+#: includes/settings/class-uni-cpo-setting-background-image.php:108
+msgid "Center Top"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-background-image.php:109
+msgid "Center Center"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-background-image.php:110
+msgid "Center Bottom"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-background-image.php:111
+msgid "Left Top"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-background-image.php:112
+msgid "Left Center"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-background-image.php:113
+msgid "Left Bottom"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-background-image.php:114
+msgid "Right Top"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-background-image.php:115
+msgid "Right Center"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-background-image.php:116
+msgid "Right Bottom"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-background-image.php:129
+#, fuzzy
+#| msgid "Attach"
+msgid "Attachment"
+msgstr "Dołącz"
+
+#: includes/settings/class-uni-cpo-setting-background-image.php:139
+msgid "Scroll"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-background-image.php:140
+#: includes/settings/class-uni-cpo-setting-content-width.php:24
+#, fuzzy
+#| msgid "Fixed price"
+msgid "Fixed"
+msgstr "Stała cena"
+
+#: includes/settings/class-uni-cpo-setting-background-image.php:153
+msgid "Size"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-background-image.php:164
+msgid "Contain"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-background-image.php:165
+msgid "Cover"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-border-bottom.php:21
+#: includes/settings/class-uni-cpo-setting-vertical-align.php:26
+msgid "Bottom"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-border-bottom.php:46
+#: includes/settings/class-uni-cpo-setting-border-left.php:46
+#: includes/settings/class-uni-cpo-setting-border-right.php:46
+#: includes/settings/class-uni-cpo-setting-border-top.php:46
+#: includes/settings/class-uni-cpo-setting-divider-style.php:24
+msgid "Solid"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-border-bottom.php:47
+#: includes/settings/class-uni-cpo-setting-border-left.php:47
+#: includes/settings/class-uni-cpo-setting-border-right.php:47
+#: includes/settings/class-uni-cpo-setting-border-top.php:47
+#: includes/settings/class-uni-cpo-setting-divider-style.php:25
+msgid "Dashed"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-border-bottom.php:48
+#: includes/settings/class-uni-cpo-setting-border-left.php:48
+#: includes/settings/class-uni-cpo-setting-border-right.php:48
+#: includes/settings/class-uni-cpo-setting-border-top.php:48
+#: includes/settings/class-uni-cpo-setting-divider-style.php:26
+msgid "Dotted"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-border-left.php:21
+#: includes/settings/class-uni-cpo-setting-float.php:23
+msgid "Left"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-border-right.php:21
+#: includes/settings/class-uni-cpo-setting-float.php:24
+msgid "Right"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-border-top.php:21
+#: includes/settings/class-uni-cpo-setting-vertical-align.php:24
+msgid "Top"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-class-name.php:21
+#, fuzzy
+#| msgid "Class name"
+msgid "Class"
+msgstr "Nazwa klasy „Class”"
+
+#: includes/settings/class-uni-cpo-setting-content-width.php:21
+msgid "Content Width"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-content-width.php:25
+msgid "Full Width"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-content.php:21
+msgid "Content"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-cpo-def-val.php:21
+#, fuzzy
+#| msgid "Default value"
+msgid "Default (initial) value"
+msgstr "Wartość domyślna."
+
+#: includes/settings/class-uni-cpo-setting-cpo-def-val.php:23
+msgid "Add the default value for this field"
+msgstr "Wprowadź wartość domyślną tego pola."
+
+#: includes/settings/class-uni-cpo-setting-cpo-fc-default.php:21
+msgid "Show or hide by default?"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-cpo-fc-default.php:23
+msgid ""
+"Choose whether this option should be shown or hidden at the beggining, \n"
+"                so its state will be changed to the opposite once the "
+"condition is met."
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-cpo-fc-default.php:26
+msgid "Hide"
+msgstr "Ukryj"
+
+#: includes/settings/class-uni-cpo-setting-cpo-fc-default.php:27
+msgid "Show"
+msgstr "Pokaż"
+
+#: includes/settings/class-uni-cpo-setting-cpo-fc-scheme.php:21
+#, fuzzy
+msgid "Field conditional logic builder"
+msgstr "Włączyć warunki logiczne?"
+
+#: includes/settings/class-uni-cpo-setting-cpo-is-fc.php:21
+msgid "Enable conditional logic?"
+msgstr "Włączyć warunki logiczne?"
+
+#: includes/settings/class-uni-cpo-setting-cpo-is-fc.php:23
+#, fuzzy
+msgid "Enables conditional logic for showing or hiding this element."
+msgstr "Włącz warunki logiczne aby pokazać lub ukryć ten element."
+
+#: includes/settings/class-uni-cpo-setting-cpo-is-required.php:21
+msgid "Required?"
+msgstr "Wymagane?"
+
+#: includes/settings/class-uni-cpo-setting-cpo-is-required.php:23
+msgid "Choose whether the user must fill out this field or not."
+msgstr "Wybierz, czy użytkownik musi wypełnić to pole, czy nie."
+
+#: includes/settings/class-uni-cpo-setting-cpo-is-tooltip.php:21
+#, fuzzy
+#| msgid "Enable conditional logic?"
+msgid "Enable tooltip?"
+msgstr "Włączyć warunki logiczne?"
+
+#: includes/settings/class-uni-cpo-setting-cpo-is-tooltip.php:23
+#, fuzzy
+#| msgid "Enable/disable displaying of price(s)"
+msgid "Enables/disables displaying of the tooltip"
+msgstr "Włącz/wyłącz wyświetlanie cen"
+
+#: includes/settings/class-uni-cpo-setting-cpo-label-tag.php:21
+#, fuzzy
+msgid "Type of tag for label"
+msgstr "Typ „input” tagu HTML."
+
+#: includes/settings/class-uni-cpo-setting-cpo-label.php:21
+#, fuzzy
+#| msgid "Label"
+msgid "Label text"
+msgstr "Etykieta"
+
+#: includes/settings/class-uni-cpo-setting-cpo-label.php:23
+#, fuzzy
+#| msgid ""
+#| "Custom text that will be used for this field as its title on the product "
+#| "page and as the cart/order\n"
+#| "                            item's option's title. Leave it blank and "
+#| "there will not be a title for this field and the option's slug will be "
+#| "used\n"
+#| "                             as a title for cart/order item"
+msgid ""
+"Custom text that will be used for this field as its title on the product "
+"page and \n"
+"                as the cart/order item's option's title. Leave it blank and "
+"there will not be a title for \n"
+"                this field and the option's slug will be used as a title for "
+"cart / order item"
+msgstr ""
+"Własny tekst, który będzie użyty jako tytuł pola na stronach produktu i "
+"koszyka.\n"
+" Jeżeli pole zostanie pozostawione puste użyta zostanie automatycznie nazwa "
+"komponentu."
+
+#: includes/settings/class-uni-cpo-setting-cpo-max-chars.php:21
+msgid "Max. number of characters"
+msgstr "Maksymalna liczba znaków"
+
+#: includes/settings/class-uni-cpo-setting-cpo-max-chars.php:23
+msgid "Add the maximum allowed number of characters for this field."
+msgstr "Dodaj maksymalną dopuszczalną liczbę znaków dla tego pola."
+
+#: includes/settings/class-uni-cpo-setting-cpo-max-val.php:21
+#, fuzzy
+#| msgid "Max value"
+msgid "Maximum value"
+msgstr "Wartość maksymalna"
+
+#: includes/settings/class-uni-cpo-setting-cpo-max-val.php:23
+msgid ""
+"Add the maximum allowed value for this field. Only integer or float number."
+msgstr ""
+"Wprowadź najwyższą dopuszczalną wartość tego pola (tylko dla integer i "
+"float)."
+
+#: includes/settings/class-uni-cpo-setting-cpo-min-chars.php:21
+msgid "Min. number of characters"
+msgstr "Minimalna liczba znaków"
+
+#: includes/settings/class-uni-cpo-setting-cpo-min-chars.php:23
+msgid "Add the minimum allowed number of characters for this field."
+msgstr "Dodaj minimalną dopuszczalną liczbę znaków dla tego pola."
+
+#: includes/settings/class-uni-cpo-setting-cpo-min-val.php:21
+#, fuzzy
+#| msgid "Min value"
+msgid "Minimum value"
+msgstr "Wartość minimalna"
+
+#: includes/settings/class-uni-cpo-setting-cpo-min-val.php:23
+msgid ""
+"Add the minimum allowed value for this field. Only integer or float number."
+msgstr ""
+"Wprowadź najniższą dopuszczalną wartość tego pola (tylko dla integer i "
+"float)."
+
+#: includes/settings/class-uni-cpo-setting-cpo-order-label.php:21
+#, fuzzy
+#| msgid "Header for cart/order meta"
+msgid "Label text in cart/order meta"
+msgstr "Nagłówek dla koszyka/ zamówienia"
+
+#: includes/settings/class-uni-cpo-setting-cpo-order-label.php:24
+msgid ""
+"Custom text that will be used as a title for this option in cart/order item "
+"meta"
+msgstr ""
+"Własny tekst, który zostanie użyty jako tytuł elementu tej opcji w  koszyku/"
+"zamówieniu"
+
+#: includes/settings/class-uni-cpo-setting-cpo-order-label.php:25
+#: includes/settings/class-uni-cpo-setting-cpo-rate.php:26
+#: includes/settings/class-uni-cpo-setting-cpo-slug.php:28
+msgid "Important to save to DB if modified"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:23
+#, fuzzy
+#| msgid ""
+#| "Add some sub options for radio and, please, keep unique slugs for them. "
+#| "These slugs might be used in a formula conditional rules (e.g. when you "
+#| "use operators \"equal\", \"not equal\" etc)."
+msgid ""
+"Add some sub options for this option and, please, keep unique slugs for "
+"them. \n"
+"                These slugs might be used in a formula conditional rules (e."
+"g. when you use operators \n"
+"                \"equal\", \"not equal\" etc)."
+msgstr ""
+"Dodaj jakiekolwiek sub-opcje, zachowując unikalne nazwy komponentów. "
+"Komponenty mogą zostać następnie użyte do budowy warunków logicznych (np.: "
+"przy użyciu operatorów równa się, nie równa się, etc.)"
+
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:64
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:180
+#: includes/settings/class-uni-cpo-setting-cpo-select-options.php:66
+#: includes/settings/class-uni-cpo-setting-cpo-select-options.php:182
+#, fuzzy
+msgid "Make default?"
+msgstr "Wartość domyślna."
+
+#: includes/settings/class-uni-cpo-setting-cpo-rate.php:24
+#, fuzzy
+#| msgid ""
+#| "Enter the price (or rate) for this field. This value can be used in a "
+#| "formula. Or leave it blank if you need just an information added by the "
+#| "user."
+msgid ""
+"Enter the price (or rate) for this field. This value can be used in a "
+"formula. \n"
+"                Or leave it blank if you need just an information added by "
+"the user."
+msgstr ""
+"Wprowadź cenę lub mnożnik dla tego pola. Pozostaw pole puste, jeżeli ta "
+"opcja służy jedynie w celu uzyskania dodatkowych informacji od użytkownika."
+
+#: includes/settings/class-uni-cpo-setting-cpo-select-options.php:23
+#, fuzzy
+#| msgid ""
+#| "Add some sub options for select and, please, keep unique slugs for them. "
+#| "These slugs might be used in a formula conditional rules (e.g. when you "
+#| "use operators \"equal\", \"not equal\" etc)."
+msgid ""
+"Add some sub options for select and, please, keep unique slugs for them. \n"
+"                These slugs might be used in a formula conditional rules (e."
+"g. when you use operators \n"
+"                \"equal\", \"not equal\" etc)."
+msgstr ""
+"Dodaj jakiekolwiek sub-opcje, zachowując unikalne nazwy komponentów. "
+"Komponenty mogą zostać następnie użyte do budowy warunków logicznych (np.: "
+"przy użyciu operatorów równa się, nie równa się, etc.)"
+
+#: includes/settings/class-uni-cpo-setting-cpo-slug.php:21
+msgid "Field slug"
+msgstr "Pole komponentu (nazwa)"
+
+#: includes/settings/class-uni-cpo-setting-cpo-slug.php:25
+#, fuzzy
+#| msgid ""
+#| "Enter a unique slug name for this field (only lowercase latin letters, "
+#| "digits and underscore!). This will be used as a name of the formula "
+#| "variable connected with this field!"
+msgid ""
+"Enter a unique slug name for this field (only lowercase latin letters, "
+"digits and \n"
+"                underscore!). This will be used as a name of the formula "
+"variable connected with this \n"
+"                field!"
+msgstr ""
+"Wprowadź unikalną nazwę, która będzie używana jako zmienna w formule "
+"kalkulatora cen (dozwolone są cyfry, małe litery bez znaków diakrytycznych "
+"oraz podkreślnik)."
+
+#: includes/settings/class-uni-cpo-setting-cpo-step-val.php:21
+msgid "Step value"
+msgstr "Wartość skoku"
+
+#: includes/settings/class-uni-cpo-setting-cpo-step-val.php:23
+msgid "Add the step value for this field. Only integer or float number."
+msgstr "Wprowadź wartość skoku wartości tego pola (tylko dla integer i float)."
+
+#: includes/settings/class-uni-cpo-setting-cpo-tooltip-type.php:21
+#, fuzzy
+msgid "Type of tooltip"
+msgstr "Typ „input” tagu HTML."
+
+#: includes/settings/class-uni-cpo-setting-cpo-tooltip-type.php:23
+msgid "Classic"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-cpo-tooltip.php:21
+msgid "Text for tooltip"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-cpo-tooltip.php:23
+msgid "Custom text that will be used in tooltip."
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-cpo-type.php:21
+#, fuzzy
+#| msgid "Text field"
+msgid "Type of field"
+msgstr "Pole tekstowe"
+
+#: includes/settings/class-uni-cpo-setting-cpo-type.php:23
+#, fuzzy
+#| msgid ""
+#| "Choose the type based on type of data you are expecting from users. For "
+#| "instance, if you expect some text or\n"
+#| "                             don't mind about type of data, choose type "
+#| "\"string\". It is an universal format. In the case you want numbers only, "
+#| "choose type \"integer\"."
+msgid ""
+"Choose the type based on type of data you are expecting from users. For "
+"instance, \n"
+"                if you expect some text or don't mind about type of data at "
+"all, choose type \"string\"."
+msgstr ""
+"Wybierz typ bazując na rodzaju danych które chcesz uzyskać od użytkownika."
+
+#: includes/settings/class-uni-cpo-setting-cpo-type.php:26
+msgid "String"
+msgstr "String - ciąg znaków."
+
+#: includes/settings/class-uni-cpo-setting-cpo-type.php:27
+msgid "Integer"
+msgstr "Integer - liczba całkowita."
+
+#: includes/settings/class-uni-cpo-setting-cpo-type.php:28
+msgid "Decimals"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-float.php:21
+msgid "Float"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-font-family.php:21
+msgid "Font Family"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-font-family.php:25
+msgid "Helvetica"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-font-family.php:26
+msgid "Verdana"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-font-family.php:27
+msgid "Arial"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-font-family.php:28
+msgid "Georgia"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-font-family.php:29
+msgid "Courier"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-font-size.php:21
+msgid "Font Size"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-font-style.php:21
+#, fuzzy
+#| msgid "Notice style"
+msgid "Font Style"
+msgstr "Styl notatki"
+
+#: includes/settings/class-uni-cpo-setting-font-style.php:25
+msgid "Normal"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-font-style.php:26
+msgid "Italic"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-font-weight.php:21
+msgid "Font Weight"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-font-weight.php:25
+msgid "Light 300"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-font-weight.php:26
+msgid "Normal 400"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-font-weight.php:27
+msgid "Semi-Bold 600"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-font-weight.php:28
+msgid "Bold 700"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-font-weight.php:29
+msgid "Extra-Bold 800"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-height-type.php:21
+msgid "Height Type"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-height-type.php:26
+#: includes/settings/class-uni-cpo-setting-width-type.php:27
+msgid "Auto"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-height-type.php:27
+msgid "Full Height"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-height-type.php:28
+#: includes/settings/class-uni-cpo-setting-width-type.php:28
+msgid "Custom"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-height.php:21
+msgid "Height"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-href.php:21
+msgid "URL"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-id-name.php:21
+msgid "ID"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-letter-spacing.php:21
+msgid "Letter Spacing"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-line-height.php:21
+msgid "Line Height"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-margin.php:22
+msgid "Margins"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-padding.php:22
+#, fuzzy
+#| msgid "Heading"
+msgid "Paddings"
+msgstr "Nagłówek"
+
+#: includes/settings/class-uni-cpo-setting-radius.php:21
+#, fuzzy
+#| msgid "Radio buttons"
+msgid "Radius"
+msgstr "Klawisz „radio”"
+
+#: includes/settings/class-uni-cpo-setting-rel.php:21
+msgid "Link No Follow"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-sync.php:43
+msgid "Synced, ID#{{- data.pid }}"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-sync.php:47
+msgid "Unsync"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-sync.php:51
+msgid "Not synced"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-sync.php:60
+msgid "Connect"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-sync.php:79
+msgid "- None -"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-sync.php:88
+#, fuzzy
+#| msgid "Saved!"
+msgid "Save data"
+msgstr "Zapisano!"
+
+#: includes/settings/class-uni-cpo-setting-target.php:21
+msgid "Link Target"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-target.php:24
+msgid "New Window"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-target.php:25
+msgid "Same Window"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-text-align.php:21
+#, fuzzy
+#| msgid "Text field"
+msgid "Text Align"
+msgstr "Pole tekstowe"
+
+#: includes/settings/class-uni-cpo-setting-vertical-align.php:21
+msgid "Vertical Align"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-vertical-align.php:25
+msgid "Center"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-width-type.php:21
+msgid "Width Type"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-width.php:21
+msgid "Width"
+msgstr ""
+
+#: includes/uni-cpo-core-functions.php:710
+msgid "Select options"
+msgstr "Wybierz opcję"
+
+#: includes/uni-cpo-core-functions.php:784
+#, php-format
+msgid "from %s"
+msgstr "od %s"
+
+#: uni-cpo.php:73
+#, php-format
+msgid "UniCpo requires PHP version %s+. It is NOT ACTIVATED!"
+msgstr ""
+
+#: uni-cpo.php:83
+#, php-format
+msgid "UniCpo requires WordPress version %s+. It is NOT ACTIVATED!"
+msgstr ""
+
+#~ msgid "A new options set is successfully created!"
+#~ msgstr "Nowy zestaw opcji został pomyślnie utworzony!"
+
+#, fuzzy
+#~ msgid "Validation logic"
+#~ msgstr "Warunki logiczne"
+
+#, fuzzy
+#~ msgid "Max. value"
+#~ msgstr "Wartość maksymalna"
+
+#, fuzzy
+#~ msgid "Min. value"
+#~ msgstr "Wartość minimalna"
+
+#~ msgid "You save %d%s!"
+#~ msgstr "Oszczędzasz %d%s!"
+
+#~ msgid "You save %s!"
+#~ msgstr "Oszczędzasz %s!"
+
+#~ msgid "Promo price!"
+#~ msgstr "Cena promocyjna!"
+
+#~ msgid "Uploaded files"
+#~ msgstr "Przesłano pliki"
+
+#~ msgid "Header type"
+#~ msgstr "Typ nagłówka"
+
+#~ msgid "Choose type of HTML tag to be used for this field title"
+#~ msgstr "Wybierz typ tagu HTML do wykorzystania w tytule pola"
+
+#~ msgid "Header text"
+#~ msgstr "Tekst nagłówka"
+
+#~ msgid "Notice heading"
+#~ msgstr "Nagłówek notatki"
+
+#~ msgid "Just a piece of text that will be displayed on top and in bold."
+#~ msgstr "Krótki tekst wyświetlany na górze pogrubioną czcionką."
+
+#~ msgid "Custom text for this field. Simple HTML tags can be used here."
+#~ msgstr "Własny tekst dla tego pola. Możesz używać prostych tagów HTML."
+
+#~ msgid "Shortcode"
+#~ msgstr "Skrót typu „Shortcode”."
+
+#~ msgid ""
+#~ "It is possible to add any WP shortcode. It will be executed and displayed "
+#~ "below notice text."
+#~ msgstr ""
+#~ "Możesz dodawać dowolny Shortcode WP. Zostanie on uruchomiony i "
+#~ "wyświetlony poniżej tekstu notatki."
+
+#~ msgid "Choose a style of the notice to be used"
+#~ msgstr "Wybierz styl"
+
+#, fuzzy
+#~ msgid "Enable validation conditional logic?"
+#~ msgstr "Włączyć warunki logiczne?"
+
+#, fuzzy
+#~ msgid "Enables validation conditional logic for this element."
+#~ msgstr "Włącz warunki logiczne aby pokazać lub ukryć ten element."
+
+#, fuzzy
+#~ msgid "Validation conditional logic builder"
+#~ msgstr "Włączyć warunki logiczne?"
+
+#~ msgid "Type of \"input\" html tag"
+#~ msgstr "Typ „input” tagu HTML."
+
+#~ msgid "Choose a type of HTML tag / style of the divider to be used"
+#~ msgstr "Wybierz typ tagu HTML / stylu rozdielacza"
+
+#~ msgid ""
+#~ "Enable/disable displaying of price(s) in front of option(s) on the "
+#~ "product page"
+#~ msgstr "Włącz/wyłącz wyświetlanie cen opcji na stronie produktu."
+
+#~ msgid "Custom text for \"Display price(s)\" option"
+#~ msgstr "Własny tekst opcji „Wyświetl cenę/y”"
+
+#~ msgid ""
+#~ "Add custom text instead of default \"+{sPriceValue}\". You can use "
+#~ "\"{sPriceValue}\" variable and this var will be replaced with actual "
+#~ "price of the option defined in \"Options\" table located below."
+#~ msgstr ""
+#~ "Wprowadź własny tekst zamiast domyślnego \"+{sPriceValue}\". Możesz "
+#~ "używać zmiennej ”+{sPriceValue}”, która reprezentuje aktualną cenę opcji."
+
+#~ msgid ""
+#~ "Add some sub options for checkboxes and, please, keep unique slugs for "
+#~ "them. These slugs might be used in a formula conditional rules (e.g. when "
+#~ "you use operators \"equal\", \"not equal\" etc)."
+#~ msgstr ""
+#~ "Dodaj jakiekolwiek sub-opcje, zachowując unikalne nazwy komponentów. "
+#~ "Komponenty mogą zostać następnie użyte do budowy warunków logicznych "
+#~ "(np.: przy użyciu operatorów równa się, nie równa się, etc.)"
+
+#~ msgid "Choose an image size"
+#~ msgstr "Wybierz rozmiar obrazu"
+
+#, fuzzy
+#~ msgid "Choose a size for thumbnails for this option."
+#~ msgstr "Wybierz rozmiar miniatury dla tej opcji."
+
+#~ msgid ""
+#~ "Add the minimum allowed value for this field. Only integer or float "
+#~ "number. Default is \"1\"."
+#~ msgstr ""
+#~ "Wprowadź najniższą dopuszczalną wartość tego pola (tylko dla integer i "
+#~ "float). Wartość domyślna to „1”."
+
+#~ msgid ""
+#~ "Add the maximum allowed value for this field. Only integer or float "
+#~ "number. Default is \"100\"."
+#~ msgstr ""
+#~ "Wprowadź najwyższą dopuszczalną wartość tego pola (tylko dla integer i "
+#~ "float). Wartość domyślna to „100”."
+
+#~ msgid ""
+#~ "Add the step value for this field. Only integer or float number. Default "
+#~ "is \"1\"."
+#~ msgstr ""
+#~ "Wprowadź wartość skoku wartości tego pola (tylko dla integer i float). "
+#~ "Wartość domyślna to „1”."
+
+#~ msgid "Thin line (div)"
+#~ msgstr "Cienka linia (div)"
+
+#~ msgid "Notice style #1"
+#~ msgstr "Styl notatki #1"
+
+#~ msgid "Welcome to Uni CPO"
+#~ msgstr "Witamy w Uni CPO"
+
+#~ msgid "About Uni CPO"
+#~ msgstr "O Uni CPO"
+
+#~ msgid "Image size that is used for single product main image"
+#~ msgstr "Rozmiar zdjęcia użytego na głównej stronie produktu prostego."
+
+#~ msgid "Hide/show \"Total for...\" text"
+#~ msgstr "Pokaż/Ukryj tekst „SUMA DLA”."
+
+#~ msgid "These are the main settings of the plugin."
+#~ msgstr "To są główne ustawienia wtyczki Uni CPO."
+
+#~ msgid "Welcome to Uni CPO %s"
+#~ msgstr "Witamy w Uni CPO %s"
+
+#~ msgid "Version %s"
+#~ msgstr "Wersja %s"
+
+#~ msgid "Plugin settings"
+#~ msgstr "Ustawienia wtyczki"
+
+#~ msgid "Documentation"
+#~ msgstr "Dokumentacja"
+
+#, fuzzy
+#~ msgid "Google Map option"
+#~ msgstr "Kopiuj opcję"
+
+#~ msgid "Docs"
+#~ msgstr "Dokumenty"
+
+#, fuzzy
+#~| msgid "Choose a colour"
+#~ msgid "Choose border color"
+#~ msgstr "Wybierz kolor"
+
+#~ msgid "Variable name"
+#~ msgstr "Nazwa zmiennej"
+
+#~ msgid "Starting quantity value"
+#~ msgstr "Wartość początkowa"
+
+#~ msgid "Increment step value"
+#~ msgstr "Skok przyrostu wartości"
+
+#, fuzzy
+#~| msgid "Enable conditional logic?"
+#~ msgid "Improved fields conditional logic!"
+#~ msgstr "Włączyć warunki logiczne?"
+
+#~ msgid "This plugin requires WooCommerce to be installed and activated"
+#~ msgstr "Plugin wymaga zainstalowania i aktywacji WooCommerce"
+
+#~ msgid ""
+#~ "For a children option only its parent option can be used in conditional "
+#~ "rules."
+#~ msgstr ""
+#~ "Dla opcji typu „dziecko” tylko jej opcja typu „rodzic” może być użyta "
+#~ "jako warunek logiczny."
+
+#~ msgid "Important: always fetch formatted rules before save them!"
+#~ msgstr ""
+#~ "Ważne: zawsze dodaj zdefiniowany warunek logiczny zanim go zachowasz!"
+
+#~ msgid ""
+#~ "Displaying conditional logic is disabled because either this option is "
+#~ "not a child to any other option or the parent option cannot be modified "
+#~ "in any way in the front end."
+#~ msgstr ""
+#~ "Wyświetlanie warunków logicznych jest niemożliwe ponieważ albo ta opcja "
+#~ "nie jest opcją typu „dziecko” dla żadnej innej opcji, albo opcja typu "
+#~ "„rodzic” dla tej opcji nie może zostać w żaden sposób modyfikowana."
+
+#~ msgid "Add an additional css class name for this field"
+#~ msgstr "Dodaj dodatkową nazwę klasy css dla tego pola"
+
+#~ msgid "Custom selector (id/class) for a product price container"
+#~ msgstr "Własny selektor (id/class) dla kontenera cen produktu. "
+
+#~ msgid ""
+#~ "By default, the selector for a product price container is \".summary."
+#~ "entry-summary .price > .amount, .summary.entry-summary .price ins .amount"
+#~ "\". However html markup of this block may differ from the default in your "
+#~ "theme, so you have to define a new one."
+#~ msgstr ""
+#~ "Domyślnie selektor kontenera ceny produktu wygląda następująco: \"."
+#~ "summary.entry-summary .price > .amount, .summary.entry-summary .price "
+#~ "ins .amount”, jakkolwiek zapis HTML tego bloku może różnić się w "
+#~ "zależności od zastosowanego szablonu WP. W takim przypadku koniecznym "
+#~ "będzie wprowadzenie nowej definicji."
+
+#~ msgid "Custom selector (id/class) for a product image container"
+#~ msgstr "Własny selektor (id/class) dla kontenera obrazów produktu. "
+
+#~ msgid ""
+#~ "By default, this is \"shop_single\". However the actual thumbnail size "
+#~ "may differ from theme to theme, so you have to choose the correct one."
+#~ msgstr ""
+#~ "Domyślnie, to \"shop_single”, jakkolwiek aktualna wielkość miniaturki "
+#~ "może różnić się w zależności od zastosowanego szablonu WP. W takim "
+#~ "przypadku koniecznym będzie wprowadzenie poprawnej wartości."
+
+#~ msgid "Hide/show \"Total for...\" text on a single product page"
+#~ msgstr "Pokaż/Ukryj tekst „SUMA DLA” na stronie produktu."
+
+#~ msgid "Add section"
+#~ msgstr "Dodaj sekcję"
+
+#~ msgid "Switch between only date, only time or both."
+#~ msgstr "Przełącznik pomiędzy tylko datą, tylko czasem lub datą i czasem."
+
+#~ msgid "Step for time picker"
+#~ msgstr "Krok dla „time picker”"
+
+#~ msgid "Add the step value for time picker. Default is \"60\"."
+#~ msgstr "Dodaj wartość kroku dla „time picker”. Domyślna wartość to „60”."
+
+#~ msgid "Please, choose..."
+#~ msgstr "Proszę wybrać…"
+
+#~ msgid "Uni CPO Plugin Options"
+#~ msgstr "Uni CPO Opcje wtyczki"
+
+#~ msgid ""
+#~ "For children options only its parent option can be used in conditional "
+#~ "rule."
+#~ msgstr ""
+#~ "Dla opcji typu „dziecko” tylko jej opcja typu „rodzic” może być użyta "
+#~ "jako warunek logiczny."
+
+#~ msgid ""
+#~ "Important: previously saved rules will be deleted automatically if you "
+#~ "change the slug of the parent option!"
+#~ msgstr ""
+#~ "Ważne: wcześniej zachowane warunki logiczne zostaną automatycznie "
+#~ "skasowane jeżeli zmienisz nazwę komponentu opcji typu „rodzic”!"
+
+#~ msgid ""
+#~ "Cannot apply conditional rules on this element since there are no other "
+#~ "parent options or a parent option specifically for this option."
+#~ msgstr ""
+#~ "Nie mozna zastosować warunków logicznych dla tego elementu, ponieważ nie "
+#~ "posiada on opcji typu „rodzic”"
+
+#~ msgid ""
+#~ "The name of each field is a slug for this attribute prefixed with "
+#~ "\"uni_cpo_\" and the brackets (\"{}\") from the both sides of the "
+#~ "variable. For example: \"{uni_cpo_width}\" or\n"
+#~ "                    \"{uni_cpo_pa_thickness}\". The formula example:  "
+#~ "{uni_cpo_width}*{uni_cpo_height}+{uni_cpo_pa_glazing-thickness}\". These "
+#~ "special formatted names will be\n"
+#~ "                    changed to the values of the price of the attribute "
+#~ "during the price calculation. Add {uni_cpo_price} special variable to use "
+#~ "price value of the product in the formula."
+#~ msgstr ""
+#~ "Każda opcja jest prezentowana jako nazwa komponentu z prefiksem „uni_cpo” "
+#~ "i ujęta w nawiasy {}. Tak zapisane zmienne zawierają wartości jakie "
+#~ "przyjmuje dana opcja\n"
+#~ " i mogą być wykorzystane w budowaniu algorytmu formuły kalkulacji ceny, "
+#~ "np.: {uni_cpo_X}*{uni_cpo_Y}*{uni_cpo_price} będzie ceną jaką należy "
+#~ "zapłacić za powierzchnię X*Y po podstawowej cenie\n"
+#~ " z zakładki „Ustawienia główne” za jednostkę miary."
+
+#~ msgid ""
+#~ "{uni_cpo_price} holds value of regular price defined under General tab!"
+#~ msgstr ""
+#~ "{uni_cpo_price} to zmienna gdzie przechowywana jest cena podstawowa z "
+#~ "zakładki „Ustawienia główne”!"
+
+#~ msgid "Additional settings for a quantity field"
+#~ msgstr "Dodatkowe ustawania pola ilości"
+
+#~ msgid "Custom text for this field."
+#~ msgstr "Własny tekst tego pola."
+
+#~ msgid ""
+#~ "Add some options for select. Please, keep unique slug of options. Slugs "
+#~ "are used in a formula when you use operators \"equal\" and \"not equal\"."
+#~ msgstr ""
+#~ "Wprowadź opcje dla komponentu „select”. Używaj unikalnych nazw opcji. Są "
+#~ "one wykorzystywane z operatorami „równa się” oraz „nie równa się„ w "
+#~ "warunkach logicznych."
+
+#~ msgid ""
+#~ "Add some options for checkboxes. Please, keep unique slug of options. "
+#~ "Slugs are used in a formula when you use operators \"equal\" and \"not "
+#~ "equal\"."
+#~ msgstr ""
+#~ "Wprowadź opcje dla komponentu „checkbox”. Używaj unikalnych nazw opcji. "
+#~ "Są one wykorzystywane z operatorami „równa się” oraz „nie równa się„ w "
+#~ "warunkach logicznych."
+
+#~ msgid ""
+#~ "Add some options for radio. Please, keep unique slug of options. Slugs "
+#~ "are used in a formula when you use operators \"equal\" and \"not equal\"."
+#~ msgstr ""
+#~ "Wprowadź opcje dla komponentu „radio”. Używaj unikalnych nazw opcji. Są "
+#~ "one wykorzystywane z operatorami „równa się” oraz „nie równa się„ w "
+#~ "warunkach logicznych."
