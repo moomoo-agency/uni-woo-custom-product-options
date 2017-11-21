@@ -15,8 +15,8 @@ class Uni_Cpo_Plugin_Settings {
 	public function __construct( $file ) {
 		$this->file          = $file;
 		$this->dir           = dirname( $this->file );
-		$this->assets_dir    = trailingslashit( $this->dir ) . 'assets-dev';
-		$this->assets_url    = esc_url( trailingslashit( plugins_url( '/assets-dev/', $this->file ) ) );
+		$this->assets_dir    = trailingslashit( $this->dir ) . 'assets';
+		$this->assets_url    = esc_url( trailingslashit( plugins_url( '/assets/', $this->file ) ) );
 		$this->settings_base = 'uni_cpo_settings_general';
 
 		// Initialise settings

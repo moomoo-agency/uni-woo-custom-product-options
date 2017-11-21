@@ -1,9 +1,9 @@
 <?php
 /**
- * Plugin Name: Uni CPO - WooCommerce Options and Price Calculation Formulas
+ * Plugin Name: WooCommerce Product Options and Price Calculation Formulas Lite - Uni CPO
  * Plugin URI: http://cpo.builderius.io
- * Description: Creates an opportunity to add custom options for products with the possibility to calculate product price based on the chosen options and using custom maths formula!
- * Version: 4.0.0
+ * Description: Provides an opportunity to add custom options for products with the possibility to calculate product price based on the chosen options and using custom maths formula!
+ * Version: 4.0.2
  * Author: MooMoo Agency
  * Author URI: http://moomoo.agency
  * Domain Path: /languages/
@@ -52,7 +52,7 @@ if ( ! version_compare( PHP_VERSION, '7.0', '>=' ) ) {
 	 *
 	 * Returns the main instance of Uni_Cpo to prevent the need to use globals.
 	 *
-	 * @since  4.0.0
+	 * @since  4.0.2
 	 * @return Uni_Cpo
 	 */
 	function UniCpo() {
@@ -66,7 +66,7 @@ if ( ! version_compare( PHP_VERSION, '7.0', '>=' ) ) {
 /**
  * PHP version check notice
  *
- * @since 4.0.0
+ * @since 4.0.2
  * @return void
  */
 function uni_cpo_fail_php_version() {
@@ -76,7 +76,7 @@ function uni_cpo_fail_php_version() {
 /**
  * WP version check notice
  *
- * @since 4.0.0
+ * @since 4.0.2
  * @return void
  */
 function uni_cpo_fail_wp_version() {
@@ -86,7 +86,7 @@ function uni_cpo_fail_wp_version() {
 /**
  * Fail notices wrapper. Returns sanitized string.
  *
- * @since 4.0.0
+ * @since 4.0.2
  * @param string
  * @return string
  */

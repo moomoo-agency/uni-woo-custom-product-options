@@ -14,7 +14,7 @@ final class Uni_Cpo {
 	 *
 	 * @var string
 	 */
-	public $version = '4.0.0';
+	public $version = '4.0.2';
 
 	/**
 	 * The single instance of the class.
@@ -352,7 +352,7 @@ final class Uni_Cpo {
 		) {
 			wp_enqueue_style(
 				'uni-cpo-styles-admin',
-				$this->plugin_url() . '/assets-dev/css/uni-cpo-styles-backend.css',
+				$this->plugin_url() . '/assets/css/uni-cpo-styles-backend.css',
 				false,
 				UNI_CPO_VERSION,
 				'all'

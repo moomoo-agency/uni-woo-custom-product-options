@@ -1,8 +1,8 @@
-=== Uni CPO - WooCommerce Options and Price Calculation Formulas ===
-Contributors: moomooagency, mrpsiho
-Tags: custom options, woocommerce, woocommerce plugins, price calculation, maths formula, conditional logic, wholesale
+=== WooCommerce Product Options and Price Calculation Formulas Lite - Uni CPO ===
+Contributors: moomooagency, mrpsiho, andriimatenka
+Tags: custom options, extra options, product visual builder, woocommerce plugins, price calculation, maths formula, conditional logic, wholesale
 Requires at least: 4.8
-Tested up to: 4.8
+Tested up to: 4.9
 Requires PHP: 7.0
 WC requires at least: 3.0.0
 WC tested up to: 3.2.0
@@ -10,24 +10,21 @@ Stable tag: trunk
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Creates an opportunity to add custom options for products with the possibility to calculate product price based
-on the chosen options and using custom maths formula!
+Provides an opportunity to add custom options for products with the possibility to calculate product price based on the chosen options and using custom maths formula!
 
 == Description ==
 
 === Overview ===
 
-**Uni CPO - WooCommerce Options and Price Calculation Formulas** is a fully featured plugin that creates an opportunity
-to add custom options to your WooCommerce products as well as enables custom price calculation based on any maths
-formula. The lite version of the plugin includes these types of options: text input, text area, radio inputs and
-dropdown (select).
+**Uni CPO - WooCommerce Options and Price Calculation Formulas** is a fully featured plugin that creates an opportunity to add custom options to your WooCommerce products as well as enables custom price calculation based on any maths formula. This version of the plugin includes these types of options: text input, text area, radio inputs and dropdown (select).
 
 It supports products type 'simple' only! But why you ever need any variable product after this plugin, right? :)
 
 https://www.youtube.com/watch?v=dX7-T4gVJ_I
 
-A fully featured visual form builder is used to add custom options. Would like to place the options in two/three/more
-columns? Easy! Would like to set custom color, margins, add custom text and so on? Yes, it is possible!!)
+A fully featured visual form builder is used to add custom options. Would like to place the options in two/three/more columns? Easy! Would like to set custom color, margins, add custom text and so on? Yes, it's possible!!)
+
+Add custom fields to your products, display them conditionally, give a possibility for your customers to customize products, to personalize them by adding highly dynamic info like dimensions, custom labels, comments. Moreover, create a unique scheme for price calculation based on custom options added!
 
 === Main features ===
 
@@ -41,6 +38,8 @@ maths formula as its value
 * A possibility to create fields conditional logic - display/hide certain custom options based on the values of
 other custom options and/or NOVs
 
+**Pro version of the plugin will be available a little bit later. Please, like/follow our [fb page](https://facebook.com/moomoo.agency) to stay tuned for all the future announcements and updates. Thanks!**
+
 == Installation ==
 
 === Minimum Requirements ===
@@ -52,13 +51,17 @@ other custom options and/or NOVs
 === Installation ===
 
 1. Upload the plugin files to the `/wp-content/plugins/uni-woo-custom-product-options` directory, or install the plugin through the WordPress plugins screen directly.
-1. Activate the plugin through the 'Plugins' screen in WordPress
+1. Activate the plugin through the `Plugins` screen in WordPress
 1. Use the WooCommerce->Uni CPO Settings screen to configure the plugin
 
 
 == Frequently Asked Questions ==
 
-Soon..
+** Q: Do I need to back up before update? **
+A: Yes, always and ever! Back up your files as well as database. Always test new versions of the plugin on test/stage server first!
+
+** Q: I'm using Uni CPO 3.1.8 or below purchased on codecanyon.net. Do I need to update immediately? **
+A: We wouldn't recommend to do this yet. First, this version is so called 'lite' version and will always have less features than future 'pro' version. Also, **version 4 is incompatible with the previous versions of the plugin**. The migration script isn't ready yet.
 
 == Screenshots ==
 
@@ -71,6 +74,12 @@ Soon..
 7. screenshot-7.png
 
 == Changelog ==
+
+= 4.0.2 =
+* Fixed a bug "Inconsistency of view in builder and in the frontend"
+
+= 4.0.1 =
+* Fixed a bug with displaying prices which are higher than one thousand
 
 = 4.0 =
 * The release of the plugin

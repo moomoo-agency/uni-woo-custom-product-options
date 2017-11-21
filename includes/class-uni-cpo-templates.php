@@ -128,7 +128,7 @@ final class Uni_Cpo_Templates {
         <script id="js-builderius-panel-autosave-item-tmpl" type="text/template">
             <div id="js-autosave-item" class="uni-revision-item">
                 {{ if (data.timestamp) { }}
-                <img class="uni-user-icon" src="<?php echo UniCpo()->plugin_url().'/assets-dev/images/autosave.png'; ?>" alt="">
+                <img class="uni-user-icon" src="<?php echo UniCpo()->plugin_url().'/assets/images/autosave.png'; ?>" alt="">
                 <div class="uni-revision-desc">
                     {{ const momentObj = moment.unix(data.timestamp); }}
                     {{ const date = momentObj.format('YYYY/MM/DD h:m a'); }}

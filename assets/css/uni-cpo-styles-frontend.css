@@ -1,5 +1,4 @@
-.uni-node-content {clear: none!important;}
-.uni-node-content:after, .uni-node-content:before {content: " ";display: table;}
+.uni-node-content:after, .uni-node-content:before, .uni-module:after, .uni-module:before {display: table;clear: both;content: "";}
 .uni-row-content-wrap {margin-left: auto;margin-right: auto;}
 
 /* Module */
@@ -21,7 +20,7 @@
 .uni-module-select select {padding: 0 30px 0px 6px;background: url(../images/arrow-gray.svg) no-repeat right center #fff; -webkit-appearance:none;-moz-appearance: none;appearance: none;}
 
 /* Module: button */
-.uni-link-button {display: inline-block;}
+.uni-module-button {display: inline-block;}
 
 /* Validation */
 .uni-builderius-container .parsley-errors-list {position: absolute!important;left: 0px!important;bottom: -18px!important;min-width: 100%!important;margin: 0px!important;list-style: none!important;color: #fff!important;font-size: 13px!important;z-index: 2;}

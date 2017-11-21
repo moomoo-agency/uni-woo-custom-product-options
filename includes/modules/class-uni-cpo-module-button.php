@@ -183,13 +183,15 @@ class Uni_Cpo_Module_Button extends Uni_Cpo_Module implements Uni_Cpo_Module_Int
 
 	public static function template( $data ) {
 		$id        = $data['id'];
+        $type        = $data['type'];
 		$content   = $data['settings']['general']['main']['content'];
 		$link      = $data['settings']['general']['link'];
 		$selectors = $data['settings']['advanced']['selectors'];
 
 		$css_id    = array();
 		$css_class = array(
-			'uni-node-' . $id
+			'uni-module-' . $type,
+            'uni-node-' . $id
 		);
 		if ( ! empty( $selectors['id_name'] ) ) {
 			array_push( $css_id, $selectors['id_name'] );

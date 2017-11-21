@@ -620,38 +620,6 @@ function uni_cpo_price( $price, $args = array() ) {
 
 }
 
-/**
- * Raw price (float)
- *
- * @param $price
- *
- * @return float
- */
-function uni_cpo_price_raw( $price ) {
-
-	$decimal_separator  = wc_get_price_decimal_separator();
-	$thousand_separator = wc_get_price_thousand_separator();
-	$decimals           = wc_get_price_decimals();
-
-	$negative = $price < 0;
-	$price    = apply_filters( 'raw_uni_cpo_price', floatval( $negative ? $price * - 1 : $price ) );
-	$price    = apply_filters(
-		'formatted_uni_cpo_price',
-		number_format(
-			$price,
-			$decimals,
-			$decimal_separator,
-			$thousand_separator
-		),
-		$price,
-		$decimals,
-		$decimal_separator,
-		$thousand_separator
-	);
-
-	return (float) $price;
-}
-
 // customers try to add a product to the cart from an archive page? let's check if it is possible to do!
 add_filter( 'woocommerce_loop_add_to_cart_link', 'uni_cpo_add_to_cart_button', 10, 2 );
 function uni_cpo_add_to_cart_button( $link, $product ) {
@@ -900,7 +868,7 @@ function uni_cpo_add_cart_item_data( $cart_item_data, $product_id ) {
 				$product = wc_get_product( $product_id );
 				$price   = $product->get_price();
 			}
-			$price                            = uni_cpo_price_raw( $price );
+			$price                            = wc_format_decimal( $price );
 			$cart_item_data['_uni_cpo_price'] = $price;
 
 		}
@@ -947,7 +915,7 @@ function uni_cpo_add_cart_item( $cart_item_data ) {
 	// price calc
 	if ( true === $is_calc_enabled && isset( $cart_item_data['_uni_cpo_data'] ) ) {
 		$price                            = uni_cpo_calculate_price_in_cart( $cart_item_data, $product_id );
-		$price                            = uni_cpo_price_raw( $price );
+		$price                            = wc_format_decimal( $price );
 		$cart_item_data['_uni_cpo_price'] = $price;
 		$cart_item_data['data']->set_price( $cart_item_data['_uni_cpo_price'] );
 	}
