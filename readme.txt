@@ -38,7 +38,10 @@ maths formula as its value
 * A possibility to create fields conditional logic - display/hide certain custom options based on the values of
 other custom options and/or NOVs
 
-**Pro version of the plugin will be available a little bit later. Please, like/follow our [fb page](https://facebook.com/moomoo.agency) to stay tuned for all the future announcements and updates. Thanks!**
+[Documentation](https://moomoo-agency.gitbooks.io/uni-cpo-4-documentation/)
+[DEMO (PRO version)](https://cpo.builderius.io)
+
+**Pro version of the plugin is [available here](https://builderius.io/cpo).**
 
 == Installation ==
 
