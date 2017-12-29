@@ -52,8 +52,6 @@ abstract class Uni_Cpo_Setting {
 		return implode( ' ', $custom_attributes );
 	}
 
-
-
 	/**
 	 * Generate Text Input HTML.
 	 *
@@ -140,10 +138,74 @@ abstract class Uni_Cpo_Setting {
 		if ( $data['is_required'] ) {
 			$data['class'][] = 'builderius-field-required';
 		}
+		$data['class'][] = 'builderius-setting-colorpick';
 
 		ob_start();
 		?>
-		<input class="builderius-setting-field builderius-setting-colorpick <?php echo implode( ' ', array_map( function($el){ return esc_attr( $el ); }, $data['class'] ) ); ?>" type="text" name="<?php echo esc_attr( $key ); ?>" id="builderius-setting-<?php echo esc_attr( $key ); ?>" style="<?php echo esc_attr( $data['css'] ); ?>" value="" placeholder="<?php echo esc_attr( $data['placeholder'] ); ?>" <?php disabled( $data['disabled'], true ); ?> <?php echo $this->get_custom_attribute_html( $data ); ?> />
+		<input
+		    class="<?php echo implode( ' ', array_map( function($el){ return esc_attr( $el ); }, $data['class'] ) ); ?>"
+		    type="text"
+		    name="<?php echo esc_attr( $key ); ?>"
+		    id="builderius-setting-<?php echo esc_attr( $key ); ?>"
+		    style="<?php echo esc_attr( $data['css'] ); ?>"
+		    value=""
+		    placeholder="<?php echo esc_attr( $data['placeholder'] ); ?>"
+		    <?php disabled( $data['disabled'], true ); ?>
+		    <?php echo $this->get_custom_attribute_html( $data ); ?> />
+		<?php
+
+		return ob_get_clean();
+	}
+
+	/**
+	 * Generate Datepicker HTML.
+	 *
+	 * @param  mixed $key
+	 * @param  mixed $data
+	 * @since  4.0.0
+	 * @return string
+	 */
+	public function generate_datepicker_html( $key = '', $data = array() ) {
+        if ( empty( $key ) ) {
+            $key = $this->setting_key;
+        }
+        if ( empty( $data ) ) {
+	        $data = $this->setting_data;
+        }
+		$defaults  = array(
+			'disabled'          => false,
+			'class'             => array(),
+			'css'               => '',
+			'placeholder'       => '',
+			'type'              => 'single',
+			'custom_attributes' => array(),
+            'value'             => '',
+			'is_required'       => false,
+            'no_init_class'     => false
+		);
+
+		$data = wp_parse_args( $data, $defaults );
+
+		if ( true !== $data['no_init_class'] ) {
+		    $data['class'][] = 'builderius-setting-field';
+		}
+		if ( $data['is_required'] ) {
+			$data['class'][] = 'builderius-field-required';
+		}
+		$data['class'][] = 'builderius-setting-datepicker';
+		$data['class'][] = 'datepicker-mode-' . $data['type'];
+		ob_start();
+		?>
+		<input
+                class="<?php echo implode( ' ', array_map( function($el){ return esc_attr( $el ); }, $data['class'] ) ); ?>"
+                type="text"
+                name="<?php echo esc_attr( $key ); ?>"
+                id="builderius-setting-<?php echo esc_attr( $key ); ?>"
+                style="<?php echo esc_attr( $data['css'] ); ?>"
+                value="<?php echo esc_attr( $data['value'] ); ?>"
+                placeholder="<?php echo esc_attr( $data['placeholder'] ); ?>"
+                <?php disabled( $data['disabled'], true ); ?>
+                <?php echo $this->get_custom_attribute_html( $data ); ?> />
 		<?php
 
 		return ob_get_clean();
@@ -252,8 +314,10 @@ abstract class Uni_Cpo_Setting {
                 id="builderius-setting-<?php echo esc_attr( $key ); ?>"
                 style="<?php echo esc_attr( $data['css'] ); ?>"
                 value="<?php echo ( ! empty( $data['value'] ) ) ? esc_attr( $data['value'] ) : '1' ?>"
-                <?php if ( ! empty( $data['js_var'] ) ) { ?>
-                {{ if ('<?php echo esc_attr( $data['value'] ); ?>' === <?php echo esc_attr( $data['js_var'] ); ?>) { print(' checked') } }}>
+                <?php if ( ! empty( $data['js_var'] ) ) {
+                    $js_var = esc_attr( $data['js_var'] );
+                    ?>
+                    {{ if (typeof <?php echo $js_var; ?> !== 'undefined' && <?php echo $js_var; ?>.constructor === Array && <?php echo $js_var; ?>.length > 0) { print(' checked') } }}
                 <?php } ?>
 			    <?php disabled( $data['disabled'], true ); ?>
                 <?php echo $this->get_custom_attribute_html( $data ); ?> />
@@ -340,7 +404,7 @@ abstract class Uni_Cpo_Setting {
                             name="<?php echo esc_attr( $key ); ?>"
                             value="<?php echo esc_attr( $option_key ); ?>"
 	                        <?php echo $this->get_custom_attribute_html( $data ); ?>
-                            {{ if ('<?php echo esc_attr( $option_key ); ?>' === <?php echo esc_attr( $data['js_var'] ); ?>) { print(' checked') } }}>
+                            {{ if (typeof <?php echo esc_attr( $data['js_var'] ); ?> !== 'undefined' && '<?php echo esc_attr( $option_key ); ?>' === <?php echo esc_attr( $data['js_var'] ); ?>) { print(' checked') } }}>
                     <label for="uni-setting-<?php echo esc_attr( $key ); ?>-<?php echo esc_attr( $option_key ); ?>"><?php echo esc_attr( $option_value ); ?></label>
                 </div>
 	        <?php endforeach; ?>
@@ -489,6 +553,9 @@ abstract class Uni_Cpo_Setting {
         <button
             type="button"
             class="cpo-remove-attachment"
+            <?php if ( ! empty( $data['js_var'] ) ) { ?>
+            {{ if (<?php echo esc_attr( $data['js_var'] ); ?>) { print(' style="display:block;"') } }}
+            <?php } ?>
             data-tip="<?php esc_attr_e('Remove attachment', 'uni-cpo') ?>">
             <i class="fa fa-times"></i>
         </button>

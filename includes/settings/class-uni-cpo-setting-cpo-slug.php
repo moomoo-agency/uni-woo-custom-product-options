@@ -22,9 +22,7 @@ class Uni_Cpo_Setting_Cpo_Slug extends Uni_Cpo_Setting implements Uni_Cpo_Settin
 			'is_required'        => true,
 			'is_tooltip_warning' => true,
 			'is_tooltip'         => true,
-			'desc_tip'           => __( 'Enter a unique slug name for this field (only lowercase latin letters, digits and 
-                underscore!). This will be used as a name of the formula variable connected with this 
-                field!', 'uni-cpo' ),
+			'desc_tip'           => __( 'Enter a unique slug name for this field (only lowercase latin letters, digits and underscore!). This will be used as a name of the formula variable connected with this field!', 'uni-cpo' ),
 			'desc_tip_warning'   => __( 'Important to save to DB if modified', 'uni-cpo' ),
 			'custom_attributes'  => array(
 				'data-parsley-pattern' => '/^[a-z0-9]+(?:_[a-z0-9]+)*$/'

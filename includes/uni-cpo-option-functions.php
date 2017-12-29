@@ -38,7 +38,11 @@ function uni_cpo_get_option_types() {
 		'text_input',
 		'text_area',
 		'select',
-		'radio'
+		'radio',
+		'checkbox',
+		'datepicker',
+		'file_upload'
+
 	);
 
 	// make it possible for third-party plugins to add new option types
@@ -110,17 +114,21 @@ function uni_cpo_get_setting_types() {
 	$setting_types = array(
 		'width_type',
 		'width',
+		'width_px',
 		'content_width',
 		'height_type',
 		'height',
+		'height_px',
 		'vertical_align',
 		'color',
-		'hover_color',
+		'color_active',
+		'color_hover',
 		'text_align',
 		'font_family',
 		'font_style',
 		'font_weight',
 		'font_size',
+		'font_size_px',
 		'letter_spacing',
 		'line_height',
 		'background_type',
@@ -134,6 +142,8 @@ function uni_cpo_get_setting_types() {
 		'border_unit',
 		'margin',
 		'padding',
+		'offset_px',
+		'gap_px',
 		'id_name',
 		'class_name',
 		'float',
@@ -149,10 +159,13 @@ function uni_cpo_get_setting_types() {
 		'cpo_slug',
 		'cpo_is_required',
 		'cpo_type',
+		'cpo_date_type',
+		'cpo_day_night',
 		'cpo_min_val',
 		'cpo_max_val',
 		'cpo_step_val',
 		'cpo_def_val',
+		'cpo_disabled_dates',
 		'cpo_min_chars',
 		'cpo_max_chars',
 		'cpo_rate',
@@ -162,11 +175,25 @@ function uni_cpo_get_setting_types() {
 		'cpo_is_tooltip',
 		'cpo_tooltip',
 		'cpo_tooltip_type',
+		'cpo_enable_cartedit',
 		'cpo_is_fc',
 		'cpo_fc_default',
 		'cpo_fc_scheme',
 		'cpo_select_options',
-		'cpo_radio_options'
+		'cpo_radio_options',
+		'cpo_date_rules',
+		'cpo_mode_radio',
+		'cpo_geom_radio',
+		'cpo_upload_mode',
+		'cpo_max_filesize',
+		'cpo_mime_types',
+		'cpo_mode_checkbox',
+		'cpo_geom_checkbox',
+		'cpo_is_changeimage',
+		'cpo_validation_msg',
+		'cpo_vc_extra',
+		'cpo_is_vc',
+		'cpo_vc_scheme'
 	);
 
 	// make it possible for third-party plugins to add new module types

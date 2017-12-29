@@ -20,9 +20,7 @@ class Uni_Cpo_Setting_Cpo_Select_Options extends Uni_Cpo_Setting implements Uni_
 		$this->setting_data = array(
 			'title'      => __( 'Sub options', 'uni-cpo' ),
 			'is_tooltip' => true,
-			'desc_tip'   => __( 'Add some sub options for select and, please, keep unique slugs for them. 
-                These slugs might be used in a formula conditional rules (e.g. when you use operators 
-                "equal", "not equal" etc).', 'uni-cpo' ),
+			'desc_tip'   => __( 'Add some sub options for select and, please, keep unique slugs for them. These slugs might be used in a formula conditional rules (e.g. when you use operators "equal", "not equal" etc).', 'uni-cpo' ),
 			'js_var'     => 'data'
 		);
 		add_action( 'wp_footer', array( $this, 'js_template' ), 10 );
@@ -72,6 +70,18 @@ class Uni_Cpo_Setting_Cpo_Select_Options extends Uni_Cpo_Setting implements Uni_
 										?>
                                     </div>
                                     <div class="uni-select-option-content-field-wrapper uni-clear">
+		                                <?php
+		                                echo $this->generate_checkbox_html(
+			                                $this->setting_key . '[<%row-count%>][excl]',
+			                                array(
+				                                'no_init_class' => true,
+				                                'label'         => __( 'Exclude?', 'uni-cpo' ),
+				                                'js_var'        => '[]'
+			                                )
+		                                );
+		                                ?>
+                                    </div>
+                                    <div class="uni-select-option-content-field-wrapper uni-clear">
                                         <div class="uni-select-option-content-field-wrapper-item uni-clear">
                                             <label>
 												<?php echo esc_html__( 'Title', 'uni-cpo' ) ?>
@@ -118,37 +128,9 @@ class Uni_Cpo_Setting_Cpo_Select_Options extends Uni_Cpo_Setting implements Uni_
 												array(
 													'no_init_class'     => true,
 													'custom_attributes' => array(
-														'data-parsley-pattern' => '/^(\d+(?:[\.]\d{0,4})?)$/',
+														'data-parsley-pattern' => '/^[\-]{0,1}(\d+(?:[\.]\d{0,4})?)$/',
 													),
 													'class'             => array( 'js-cpo-rate-field' )
-												)
-											);
-											?>
-                                        </div>
-                                    </div>
-                                    <div class="uni-select-option-content-field-wrapper uni-clear">
-                                        <div class="uni-select-option-content-field-wrapper-item uni-select-option-content-field-wrapper-image uni-clear">
-                                            <label>
-												<?php echo esc_html__( 'Image', 'uni-cpo' ) ?>
-												<?php uni_cpo_help_tip( __( 'The main product image can be changed with this one', 'uni-cpo' ) ); ?>
-                                            </label>
-											<?php
-											echo $this->generate_media_upload_html(
-												$this->setting_key . '[<%row-count%>][attach_id]',
-												array(
-													'additional_fields' => array(
-														$this->setting_key . '[<%row-count%>][attach_uri]'  => array(
-															'class' => 'cpo_suboption_attach_uri',
-															'value' => ''
-														),
-														$this->setting_key . '[<%row-count%>][attach_name]' => array(
-															'class' => 'cpo_suboption_attach_name',
-															'value' => ''
-														)
-													),
-													'preview'           => '',
-													'no_init_class'     => true,
-													'value'             => ''
 												)
 											);
 											?>
@@ -186,6 +168,17 @@ class Uni_Cpo_Setting_Cpo_Select_Options extends Uni_Cpo_Setting implements Uni_
 											)
 										);
 										?>
+                                    </div>
+                                    <div class="uni-select-option-content-field-wrapper uni-clear">
+		                                <?php
+		                                echo $this->generate_checkbox_html(
+			                                $this->setting_key . '[{{- i }}][excl]',
+			                                array(
+				                                'label' => __( 'Exclude?', 'uni-cpo' ),
+				                                'js_var'  => 'obj.excl'
+			                                )
+		                                );
+		                                ?>
                                     </div>
                                     <div class="uni-select-option-content-field-wrapper uni-clear">
                                         <div class="uni-select-option-content-field-wrapper-item uni-clear">
@@ -234,36 +227,9 @@ class Uni_Cpo_Setting_Cpo_Select_Options extends Uni_Cpo_Setting implements Uni_
 												array(
 													'value'             => '{{- obj.rate }}',
 													'custom_attributes' => array(
-														'data-parsley-pattern' => '/^(\d+(?:[\.]\d{0,4})?)$/',
+														'data-parsley-pattern' => '/^[\-]{0,1}(\d+(?:[\.]\d{0,4})?)$/',
 													),
 													'class'             => array( 'js-cpo-rate-field' )
-												)
-											);
-											?>
-                                        </div>
-                                    </div>
-                                    <div class="uni-select-option-content-field-wrapper">
-                                        <div class="uni-select-option-content-field-wrapper-item uni-select-option-content-field-wrapper-image uni-clear">
-                                            <label>
-												<?php echo esc_html__( 'Image', 'uni-cpo' ) ?>
-												<?php uni_cpo_help_tip( __( 'The main product image can be changed with this one', 'uni-cpo' ) ); ?>
-                                            </label>
-											<?php
-											echo $this->generate_media_upload_html(
-												$this->setting_key . '[{{- i }}][attach_id]',
-												array(
-													'additional_fields' => array(
-														$this->setting_key . '[{{- i }}][attach_uri]'  => array(
-															'class' => 'cpo_suboption_attach_uri',
-															'value' => '{{- obj.attach_uri }}'
-														),
-														$this->setting_key . '[{{- i }}][attach_name]' => array(
-															'class' => 'cpo_suboption_attach_name',
-															'value' => '{{- obj.attach_name }}'
-														)
-													),
-													'preview'           => '{{- obj.attach_uri }}',
-													'value'             => '{{- obj.attach_id }}'
 												)
 											);
 											?>

@@ -64,82 +64,98 @@ class Uni_Cpo_Frontend_Scripts {
 	 */
 	public static function get_styles() {
 		return apply_filters( 'uni_cpo_enqueue_styles', array(
-			'editablegrid'            => array(
-				'used_in' => 'builder',
+			'editablegrid'                 => array(
+				'used_in' => array( 'builder' ),
 				'src'     => str_replace( array( 'http:', 'https:' ), '', UniCpo()->plugin_url() )
-				             . '/assets/css/vendors/editablegrid.css',
+				             . '/includes/vendors/editablegrid/editablegrid.css',
 				'deps'    => '',
 				'version' => '2.0.1',
 				'media'   => 'all'
 			),
-			'font-awesome'            => array(
-				'used_in' => 'builder',
+			'font-awesome'                 => array(
+				'used_in' => array( 'builder', 'cart' ),
 				'src'     => str_replace( array( 'http:', 'https:' ), '', UniCpo()->plugin_url() )
-				             . '/assets/css/vendors/font-awesome.min.css',
+				             . '/includes/vendors/font-awesome/font-awesome.min.css',
 				'deps'    => '',
 				'version' => '4.7.0',
 				'media'   => 'all'
 			),
-			'chosen'                  => array(
-				'used_in' => 'builder',
+			'chosen'                       => array(
+				'used_in' => array( 'builder' ),
 				'src'     => str_replace( array( 'http:', 'https:' ), '', UniCpo()->plugin_url() )
-				             . '/assets/css/vendors/chosen.css',
+				             . '/includes/vendors/chosen/chosen.css',
 				'deps'    => '',
 				'version' => '1.0.0',
 				'media'   => 'all'
 			),
-			'imageselect'             => array(
-				'used_in' => 'builder',
+			'imageselect'                  => array(
+				'used_in' => array( 'builder' ),
 				'src'     => str_replace( array( 'http:', 'https:' ), '', UniCpo()->plugin_url() )
-				             . '/assets/css/vendors/ImageSelect.css',
+				             . '/includes/vendors/chosen/ImageSelect.css',
 				'deps'    => '',
 				'version' => '1.8.0',
 				'media'   => 'all'
 			),
-			'jquery-jscrollpane'      => array(
-				'used_in' => 'builder',
+			'jquery-jscrollpane'           => array(
+				'used_in' => array( 'builder' ),
 				'src'     => str_replace( array( 'http:', 'https:' ), '', UniCpo()->plugin_url() )
-				             . '/assets/css/vendors/jquery.jscrollpane.css',
+				             . '/includes/vendors/jscrollpane/jquery.jscrollpane.css',
 				'deps'    => '',
 				'version' => '2.0.16',
 				'media'   => 'all'
 			),
-			'query-builder'           => array(
-				'used_in' => 'builder',
+			'query-builder'                => array(
+				'used_in' => array( 'builder' ),
 				'src'     => str_replace( array( 'http:', 'https:' ), '', UniCpo()->plugin_url() )
-				             . '/assets/css/vendors/query-builder.default.min.css',
+				             . '/includes/vendors/query-builder/query-builder.default.min.css',
 				'deps'    => '',
-				'version' => '2.4.3',
+				'version' => '2.4.5',
 				'media'   => 'all'
 			),
-			'jquery-ui-structure'     => array(
-				'used_in' => 'builder',
+			'jquery-ui-structure'          => array(
+				'used_in' => array( 'builder' ),
 				'src'     => str_replace( array( 'http:', 'https:' ), '', UniCpo()->plugin_url() )
-				             . '/assets/css/vendors/jquery-ui.structure.min.css',
+				             . '/includes/vendors/jquery-ui/jquery-ui.structure.min.css',
 				'deps'    => '',
 				'version' => '1.11.4',
 				'media'   => 'all'
 			),
-			'uni-cpo-styles-builder'  => array(
-				'used_in' => 'builder',
+			'uni-cpo-styles-builder'       => array(
+				'used_in' => array( 'builder' ),
 				'src'     => str_replace( array( 'http:', 'https:' ), '', UniCpo()->plugin_url() )
-				             . '/assets/css/uni-cpo-styles-builder.css',
+				             . '/assets/css/builder.css',
 				'deps'    => '',
 				'version' => UNI_CPO_VERSION,
 				'media'   => 'all'
 			),
-			'jquery-ui-structure-frontend'     => array(
-				'used_in' => 'frontend',
+			'jquery-ui-structure-frontend' => array(
+				'used_in' => array( 'frontend' ),
 				'src'     => str_replace( array( 'http:', 'https:' ), '', UniCpo()->plugin_url() )
-				             . '/assets/css/vendors/jquery-ui.structure.min.css',
+				             . '/includes/vendors/jquery-ui/jquery-ui.structure.min.css',
 				'deps'    => '',
 				'version' => '1.11.4',
 				'media'   => 'all'
 			),
-			'uni-cpo-styles-frontend' => array(
-				'used_in' => 'frontend',
+			'flatpickr'                    => array(
+				'used_in' => array( 'builder', 'frontend' ),
 				'src'     => str_replace( array( 'http:', 'https:' ), '', UniCpo()->plugin_url() )
-				             . '/assets/css/uni-cpo-styles-frontend.css',
+				             . '/includes/vendors/flatpickr/flatpickr.css',
+				'deps'    => '',
+				'version' => '4.1.4',
+				'media'   => 'all'
+			),
+			'uni-cpo-styles-frontend'      => array(
+				'used_in' => array( 'frontend' ),
+				'src'     => str_replace( array( 'http:', 'https:' ), '', UniCpo()->plugin_url() )
+				             . '/assets/css/frontend.css',
+				'deps'    => '',
+				'version' => UNI_CPO_VERSION,
+				'media'   => 'all'
+			),
+			'uni-cpo-styles-cart'          => array(
+				'used_in' => array( 'cart' ),
+				'src'     => str_replace( array( 'http:', 'https:' ), '', UniCpo()->plugin_url() )
+				             . '/assets/css/cart.css',
 				'deps'    => '',
 				'version' => UNI_CPO_VERSION,
 				'media'   => 'all'
@@ -232,19 +248,27 @@ class Uni_Cpo_Frontend_Scripts {
 		$locale_array = explode( '_', $locale );
 		$lang_code    = $locale_array[0];
 
-		$assets_path = str_replace( array( 'http:', 'https:' ), '', UniCpo()->plugin_url() ) . '/assets/';
+		$assets_path  = str_replace( array( 'http:', 'https:' ), '', UniCpo()->plugin_url() ) . '/assets/';
+		$vendors_path = str_replace( array( 'http:', 'https:' ), '', UniCpo()->plugin_url() ) . '/includes/vendors/';
 
 		// Register any scripts for later use, or used as dependencies
-		self::register_script( 'sortable', $assets_path . 'js/vendors/Sortable.min.js', array( 'jquery' ), '1.6.1' );
-		self::register_script( 'repeatable-fields', $assets_path . 'js/vendors/repeatable-fields.js', array( 'jquery' ), '1.4.8' );
-		self::register_script( 'query-builder', $assets_path . 'js/vendors/query-builder.standalone.min.js', array( 'jquery' ), '2.4.3' );
-		self::register_script( 'chosen', $assets_path . 'js/vendors/chosen.jquery.js', array( 'jquery' ), '1.0.0' );
-		self::register_script( 'imageselect', $assets_path . 'js/vendors/ImageSelect.jquery.js', array( 'jquery' ), '1.8.0' );
-		self::register_script( 'jscrollpane', $assets_path . 'js/vendors/jquery.jscrollpane.min.js', array( 'jquery' ), '2.0.16' );
-		self::register_script( 'mousewheel', $assets_path . 'js/vendors/jquery.mousewheel.js', array( 'jquery' ), '3.1.3' );
-		self::register_script( 'parsley', $assets_path . 'js/vendors/parsley.min.js', array( 'jquery' ), '2.8.0' );
-		self::register_script( 'moment', $assets_path . 'js/vendors/moment.min.js', array( 'jquery' ), '2.19.1' );
-		self::register_script( 'uni-cpo-utils', $assets_path . 'js/unicpo-utils.js', array( 'jquery' ) );
+		self::register_script( 'editablegrid', $vendors_path . 'editablegrid/editablegrid.js', array(), '2.0.1' );
+		self::register_script( 'editablegrid_charts', $vendors_path . 'editablegrid/editablegrid_charts.js', array(), '2.0.1' );
+		self::register_script( 'editablegrid_editors', $vendors_path . 'editablegrid/editablegrid_editors.js', array(), '2.0.1' );
+		self::register_script( 'editablegrid_renderers', $vendors_path . 'editablegrid/editablegrid_renderers.js', array(), '2.0.1' );
+		self::register_script( 'editablegrid_utils', $vendors_path . 'editablegrid/editablegrid_utils.js', array(), '2.0.1' );
+		self::register_script( 'editablegrid_validators', $vendors_path . 'editablegrid/editablegrid_validators.js', array(), '2.0.1' );
+		self::register_script( 'repeatable-fields', $vendors_path . 'repeatable-fields/repeatable-fields.js', array( 'jquery' ), '1.4.8' );
+		self::register_script( 'query-builder', $vendors_path . 'query-builder/query-builder.standalone.min.js', array( 'jquery' ), '2.4.5' );
+		self::register_script( 'chosen', $vendors_path . 'chosen/chosen.jquery.js', array( 'jquery' ), '1.0.0' );
+		self::register_script( 'imageselect', $vendors_path . 'chosen/ImageSelect.jquery.js', array( 'jquery' ), '1.8.0' );
+		self::register_script( 'jscrollpane', $vendors_path . 'jscrollpane/jquery.jscrollpane.min.js', array( 'jquery' ), '2.0.16' );
+		self::register_script( 'mousewheel', $vendors_path . 'mousewheel/jquery.mousewheel.js', array( 'jquery' ), '3.1.3' );
+		self::register_script( 'parsleyjs', $vendors_path . 'parsleyjs/parsley.min.js', array( 'jquery' ), '2.8.0' );
+		self::register_script( 'parsley-localization', $vendors_path . 'parsleyjs/i18n/en.js', array( 'parsleyjs' ), '2.8.0' );
+		self::register_script( 'moment', $vendors_path . 'moment/moment.min.js', array( 'jquery' ), '2.19.1' );
+		self::register_script( 'flatpickr', $vendors_path . 'flatpickr/flatpickr.js', array( 'jquery' ), '4.1.4' );
+		self::register_script( 'uni-cpo-utils', $assets_path . 'js/utils.js', array( 'jquery' ), UNI_CPO_VERSION );
 
 		self::register_script( 'uni-cpo-builder', $assets_path . 'js/builder.js',
 			array(
@@ -254,33 +278,154 @@ class Uni_Cpo_Frontend_Scripts {
 				'jquery-ui-core',
 				'jquery-ui-widget',
 				'jquery-ui-position',
+				'jquery-ui-mouse',
 				'jquery-ui-tabs',
 				'jquery-ui-tooltip',
 				'jquery-touch-punch',
-				'sortable',
+				'jquery-ui-sortable',
 				'mousewheel',
 				'jscrollpane',
 				'chosen',
 				'imageselect',
 				'query-builder',
 				'repeatable-fields',
-				'parsley',
+				'editablegrid',
+				'editablegrid_charts',
+				'editablegrid_editors',
+				'editablegrid_renderers',
+				'editablegrid_utils',
+				'editablegrid_validators',
+				'parsleyjs',
+				'parsley-localization',
 				'moment',
+				'flatpickr',
 				'uni-cpo-utils'
-			)
+			),
+			UNI_CPO_VERSION
 		);
 
-		self::register_script( 'uni-cpo-frontend', $assets_path . 'js/unicpo-frontend.js',
+		self::register_script( 'uni-cpo-frontend', $assets_path . 'js/frontend.js',
 			array(
 				'jquery',
 				'underscore',
-				'parsley',
+				'parsleyjs',
+				'parsley-localization',
 				'jquery-blockui',
 				'jquery-ui-core',
 				'jquery-ui-widget',
 				'jquery-ui-position',
 				'jquery-ui-tooltip',
+				'plupload',
+				'moment',
+				'flatpickr',
+				'woocommerce',
+				'wc-add-to-cart'
+			),
+			UNI_CPO_VERSION
+		);
+
+		self::register_script( 'uni-cpo-cart', $assets_path . 'js/cart.js',
+			array(
+				'jquery',
+				'jquery-ui-core',
+				'jquery-ui-widget',
+				'jquery-ui-position',
+				'parsleyjs',
+				'parsley-localization',
+				'jquery-blockui',
+				'moment',
+				'flatpickr',
+			),
+			UNI_CPO_VERSION
+		);
+
+		// parsley localization
+		$parsley_loc = apply_filters( 'uni_cpo_parsley_strings_filter', array(
+				'defaultMessage' => __( "This value seems to be invalid.", 'uni-cpo' ),
+				'type_email'     => __( "This value should be a valid email.", 'uni-cpo' ),
+				'type_url'       => __( "This value should be a valid url.", 'uni-cpo' ),
+				'type_number'    => __( "This value should be a valid number.", 'uni-cpo' ),
+				'type_digits'    => __( "This value should be digits.", 'uni-cpo' ),
+				'type_alphanum'  => __( "This value should be alphanumeric.", 'uni-cpo' ),
+				'type_integer'   => __( "This value should be a valid integer.", 'uni-cpo' ),
+				'notblank'       => __( "This value should not be blank.", 'uni-cpo' ),
+				'required'       => __( "This value is required.", 'uni-cpo' ),
+				'pattern'        => __( "This value seems to be invalid.", 'uni-cpo' ),
+				'min'            => __( "This value should be greater than or equal to %s.", 'uni-cpo' ),
+				'max'            => __( "This value should be lower than or equal to %s.", 'uni-cpo' ),
+				'range'          => __( "This value should be between %s and %s.", 'uni-cpo' ),
+				'minlength'      => __( "This value is too short. It should have %s characters or more.", 'uni-cpo' ),
+				'maxlength'      => __( "This value is too long. It should have %s characters or fewer.", 'uni-cpo' ),
+				'length'         => __( "This value length is invalid. It should be between %s and %s characters long.", 'uni-cpo' ),
+				'mincheck'       => __( "You must select at least %s choices.", 'uni-cpo' ),
+				'maxcheck'       => __( "You must select %s choices or fewer.", 'uni-cpo' ),
+				'check'          => __( "You must select between %s and %s choices.", 'uni-cpo' ),
+				'equalto'        => __( "This value should be the same.", 'uni-cpo' ),
+				'dateiso'        => __( "This value should be a valid date (YYYY-MM-DD).", 'uni-cpo' ),
+				'minwords'       => __( "This value is too short. It should have %s words or more.", 'uni-cpo' ),
+				'maxwords'       => __( "This value is too long. It should have %s words or fewer.", 'uni-cpo' ),
+				'words'          => __( "This value length is invalid. It should be between %s and %s words long.", 'uni-cpo' ),
+				'gt'             => __( "This value should be greater.", 'uni-cpo' ),
+				'gte'            => __( "This value should be greater or equal.", 'uni-cpo' ),
+				'lt'             => __( "This value should be less.", 'uni-cpo' ),
+				'lte'            => __( "This value should be less or equal.", 'uni-cpo' ),
+				'notequalto'     => __( "This value should be different.", 'uni-cpo' )
 			)
+		);
+
+		$flatpickr_loc = array(
+			'weekdays'    => array(
+				'shorthand' => array(
+					__( 'Sun', 'uni-cpo' ),
+					__( 'Mon', 'uni-cpo' ),
+					__( 'Tue', 'uni-cpo' ),
+					__( 'Wed', 'uni-cpo' ),
+					__( 'Thu', 'uni-cpo' ),
+					__( 'Fri', 'uni-cpo' ),
+					__( 'Sat', 'uni-cpo' )
+				),
+				'longhand'  => array(
+					__( 'Sunday', 'uni-cpo' ),
+					__( 'Monday', 'uni-cpo' ),
+					__( 'Tuesday', 'uni-cpo' ),
+					__( 'Wednesday', 'uni-cpo' ),
+					__( 'Thursday', 'uni-cpo' ),
+					__( 'Friday', 'uni-cpo' ),
+					__( 'Saturday', 'uni-cpo' )
+				),
+			),
+			'months'      => array(
+				'shorthand' => array(
+					__( 'Jan', 'uni-cpo' ),
+					__( 'Feb', 'uni-cpo' ),
+					__( 'Mar', 'uni-cpo' ),
+					__( 'Apr', 'uni-cpo' ),
+					__( 'May', 'uni-cpo' ),
+					__( 'Jun', 'uni-cpo' ),
+					__( 'Jul', 'uni-cpo' ),
+					__( 'Aug', 'uni-cpo' ),
+					__( 'Sep', 'uni-cpo' ),
+					__( 'Oct', 'uni-cpo' ),
+					__( 'Nov', 'uni-cpo' ),
+					__( 'Dec', 'uni-cpo' )
+				),
+				'longhand'  => array(
+					__( 'January', 'uni-cpo' ),
+					__( 'February', 'uni-cpo' ),
+					__( 'March', 'uni-cpo' ),
+					__( 'April', 'uni-cpo' ),
+					__( 'May', 'uni-cpo' ),
+					__( 'June', 'uni-cpo' ),
+					__( 'July', 'uni-cpo' ),
+					__( 'August', 'uni-cpo' ),
+					__( 'September', 'uni-cpo' ),
+					__( 'October', 'uni-cpo' ),
+					__( 'November', 'uni-cpo' ),
+					__( 'December', 'uni-cpo' )
+				),
+			),
+			'scrollTitle' => __( 'Scroll to increment', 'uni-cpo' ),
+			'toggleTitle' => __( 'Click to toggle', 'uni-cpo' ),
 		);
 
 		// for builder
@@ -299,18 +444,20 @@ class Uni_Cpo_Frontend_Scripts {
 				'builderId' => UniCpo()->get_builder_id(),
 				'product'   => Uni_Cpo_Product::get_product_data(),
 				'cpo_data'  => array(
-					'var_slug' => UniCpo()->get_var_slug(),
-					'nov_slug' => UniCpo()->get_nov_slug(),
+					'var_slug'      => UniCpo()->get_var_slug(),
+					'nov_slug'      => UniCpo()->get_nov_slug(),
 					'border_images' => array(
-						'solid' => $assets_path . 'images/border-solid.png',
+						'solid'  => $assets_path . 'images/border-solid.png',
 						'dashed' => $assets_path . 'images/border-dashed.png',
 						'dotted' => $assets_path . 'images/border-dotted.png',
 						'double' => $assets_path . 'images/border-double.png'
 					)
 				),
-				'wholesale' => $all_role_names = uni_cpo_get_all_roles()
+				'wholesale' => uni_cpo_get_all_roles()
 			);
 			wp_localize_script( 'uni-cpo-builder', 'builderiusCfg', $uni_cpo_cfg );
+
+			wp_localize_script( 'parsleyjs', 'uni_cpo_parsley_loc', $parsley_loc );
 
 			$uni_cpo_modules = [];
 			// build an array of modules based on registered modules
@@ -378,9 +525,17 @@ class Uni_Cpo_Frontend_Scripts {
 							'title' => __( 'Suboptions', 'uni-cpo' ),
 							'icon'  => 'cpo-suboptions',
 						),
+						'cpo_rules'       => array(
+							'title' => __( 'Rules', 'uni-cpo' ),
+							'icon'  => 'cpo-suboptions',
+						),
 						'cpo_conditional' => array(
 							'title' => __( 'Conditional', 'uni-cpo' ),
 							'icon'  => 'cpo-conditional',
+						),
+						'cpo_validation'  => array(
+							'title' => __( 'Validation', 'uni-cpo' ),
+							'icon'  => 'cpo-main',
 						),
 					),
 					'modal'           => array(
@@ -398,7 +553,14 @@ class Uni_Cpo_Frontend_Scripts {
 						'settings'  => __( 'Settings', 'uni-cpo' ),
 						'duplicate' => __( 'Duplicate', 'uni-cpo' ),
 						'remove'    => __( 'Remove', 'uni-cpo' )
-					)
+					),
+					'upload_btn'      => __( 'Upload', 'uni-cpo' ),
+					'select_file'     => __( 'Select file', 'uni-cpo' ),
+					'radio_empty'     => __( 'Please add suboptions', 'uni-cpo' ),
+					'matrix_head'     => __( '2nd var/1st var', 'uni-cpo' ),
+					'none'            => __( '- None -', 'uni-cpo' ),
+					'flatpickr'       => $flatpickr_loc,
+					'pro'      		  => __( 'Pro Version Feature', 'uni-cpo' ),
 				)
 			);
 			wp_localize_script( 'uni-cpo-builder', 'builderius_i18n', $uni_cpo_i18n );
@@ -457,7 +619,7 @@ class Uni_Cpo_Frontend_Scripts {
 			// CSS Styles to be used in builder
 			if ( $enqueue_styles = self::get_styles() ) {
 				foreach ( $enqueue_styles as $handle => $args ) {
-					if ( in_array( $args['used_in'], array( 'builder', 'both' ) ) ) {
+					if ( count( array_intersect( $args['used_in'], array( 'builder' ) ) ) > 0 ) {
 						self::enqueue_style( $handle, $args['src'], $args['deps'], $args['version'], $args['media'] );
 					}
 				}
@@ -468,29 +630,35 @@ class Uni_Cpo_Frontend_Scripts {
 		// for frontend
 		if ( ! Uni_Cpo_Product::is_builder_active() && Uni_Cpo_Product::is_single_product() ) {
 
-			$plugin_settings = get_option( 'uni_cpo_settings_general', UniCpo()->default_settings() );
+			$plugin_settings = UniCpo()->get_settings();
 			$product_data    = Uni_Cpo_Product::get_product_data();
 			$zero_price      = uni_cpo_price( '0.00' );
 
 			// main config
 			$uni_cpo_cfg = array(
-				'ajax_url'         => UniCpo()->ajax_url(),
-				'security'         => wp_create_nonce( 'uni_cpo_frontend' ),
-				'version'          => UNI_CPO_VERSION,
-				'cpo_on'           => ( isset( $product_data['settings_data']['cpo_enable'] )
-				                        && 'off' !== $product_data['settings_data']['cpo_enable'] )
+				'ajax_url'                => UniCpo()->ajax_url(),
+				'security'                => wp_create_nonce( 'uni_cpo_frontend' ),
+				'version'                 => UNI_CPO_VERSION,
+				'cpo_on'                  => ( isset( $product_data['settings_data']['cpo_enable'] )
+				                               && 'off' !== $product_data['settings_data']['cpo_enable'] )
 					? true : false,
-				'calc_on'          => ( isset( $product_data['settings_data']['calc_enable'] )
-				                        && 'off' !== $product_data['settings_data']['calc_enable'] )
+				'calc_on'                 => ( isset( $product_data['settings_data']['calc_enable'] )
+				                               && 'off' !== $product_data['settings_data']['calc_enable'] )
 					? true : false,
-				'calc_btn_on'      => ( isset( $product_data['settings_data']['calc_btn_enable'] )
-				                        && 'off' !== $product_data['settings_data']['calc_btn_enable'] )
+				'calc_btn_on'             => ( isset( $product_data['settings_data']['calc_btn_enable'] )
+				                               && 'off' !== $product_data['settings_data']['calc_btn_enable'] )
 					? true : false,
-				'price_selector'   => $plugin_settings['product_price_container'],
-				'image_selector'   => $plugin_settings['product_image_container'],
-				'options_selector' => '.js-uni-cpo-field',
-				'formatted_vars'   => array(),
-				'price_vars'       => array(
+				'pid'                     => $product_data['id'],
+				'product_image_id'        => $product_data['post_thumb_id'],
+				'ajax_add_to_cart'        => $plugin_settings['ajax_add_to_cart'],
+				'price_selector'          => $plugin_settings['product_price_container'],
+				'image_selector'          => $plugin_settings['product_image_container'],
+				'max_file_size'           => $plugin_settings['max_file_size'],
+				'mime_types'              => $plugin_settings['mime_type'],
+				'options_selector_change' => apply_filters( 'uni_cpo_options_selector_change', '.js-uni-cpo-field:not(.js-uni-cpo-field-datepicker-range)' ),
+				'options_selector'        => apply_filters( 'uni_cpo_options_selector', '.js-uni-cpo-field' ),
+				'formatted_vars'          => array(),
+				'price_vars'              => array(
 					'raw_price'         => 0,
 					'raw_price_tax_rev' => 0,
 					'price'             => $zero_price,
@@ -502,16 +670,22 @@ class Uni_Cpo_Frontend_Scripts {
 					'total_tax_rev'     => $zero_price,
 					'total_suffix'      => '',
 				),
-				'extra_data'       => array( 'order_product' => 'enabled' ),
+				'extra_data'              => array( 'order_product' => 'enabled' ),
 			);
 			wp_localize_script( 'uni-cpo-frontend', 'unicpo', $uni_cpo_cfg );
 
 			$uni_cpo_i18n = apply_filters( 'uni_cpo_i18n_frontend_strings',
 				array(
-					'calc_text' => esc_html__('Calculating', 'uni-cpo')
+					'calc_text'     => __( 'Calculating', 'uni-cpo' ),
+					'max_file_size' => __( 'This file should not be larger than %s Kb', 'uni-cpo' ),
+					'mime_type'     => __( 'File of this type is not allowed', 'uni-cpo' ),
+					'added_to_cart' => __( 'The product has been added successfully!', 'uni-cpo' ),
+					'flatpickr'     => $flatpickr_loc
 				)
 			);
 			wp_localize_script( 'uni-cpo-frontend', 'unicpo_i18n', $uni_cpo_i18n );
+
+			wp_localize_script( 'parsleyjs', 'uni_cpo_parsley_loc', $parsley_loc );
 
 			self::enqueue_script( 'uni-cpo-frontend' );
 
@@ -520,7 +694,21 @@ class Uni_Cpo_Frontend_Scripts {
 			// static permanent file with css styles
 			if ( $enqueue_styles = self::get_styles() ) {
 				foreach ( $enqueue_styles as $handle => $args ) {
-					if ( in_array( $args['used_in'], array( 'frontend', 'both' ) ) ) {
+					if ( count( array_intersect( $args['used_in'], array( 'frontend' ) ) ) > 0 ) {
+						self::enqueue_style( $handle, $args['src'], $args['deps'], $args['version'], $args['media'] );
+					}
+				}
+			}
+		}
+
+		if ( is_cart() ) {
+			wp_localize_script( 'parsleyjs', 'uni_cpo_parsley_loc', $parsley_loc );
+
+			self::enqueue_script( 'uni-cpo-cart' );
+
+			if ( $enqueue_styles = self::get_styles() ) {
+				foreach ( $enqueue_styles as $handle => $args ) {
+					if ( count( array_intersect( $args['used_in'], array( 'cart' ) ) ) > 0 ) {
 						self::enqueue_style( $handle, $args['src'], $args['deps'], $args['version'], $args['media'] );
 					}
 				}
@@ -629,7 +817,7 @@ class Uni_Cpo_Frontend_Scripts {
 		global $wp_filesystem;
 		WP_Filesystem();
 
-		$chmod_file = ( 0644 & ~ umask() );
+		$chmod_file = ( 0644 & ~umask() );
 		if ( defined( 'FS_CHMOD_FILE' ) ) {
 			$chmod_file = FS_CHMOD_FILE;
 		}

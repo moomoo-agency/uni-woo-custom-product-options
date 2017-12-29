@@ -59,7 +59,7 @@ class Uni_Cpo_Module_Button extends Uni_Cpo_Module implements Uni_Cpo_Module_Int
                 'style' => array(
                     'text' => array(
                         'color' => '#ffffff',
-                        'hover_color' => '',
+                        'color_hover' => '',
                         'text_align' => 'center',
                     ),
                     'font' => array(
@@ -134,10 +134,14 @@ class Uni_Cpo_Module_Button extends Uni_Cpo_Module implements Uni_Cpo_Module_Int
 		?>
         <script id="js-builderius-module-<?php echo self::get_type(); ?>-tmpl" type="text/template">
             {{ const { id, type } = data; }}
+            {{ const { general, style, advanced, cpo_general, cpo_suboptions, cpo_conditional } = data.settings; }}
             {{ const { id_name, class_name } = data.settings.advanced.selectors; }}
             {{ const { content, width_type, width, height } = data.settings.general.main; }}
             {{ const { href, target, rel } = data.settings.general.link; }}
-            {{ const { color, hover_color, text_align } = data.settings.style.text; }}
+            {{ const { color, text_align } = data.settings.style.text; }}
+            
+            {{ const color_hover = uniGet(style, 'text.color_hover', ''); }}
+
             {{ const { font_family, font_style, font_weight, font_size, letter_spacing, line_height } = data.settings.style.font; }}
             {{ const { background_color, background_hover_color } = data.settings.style.background; }}
             {{ const { border_top, border_bottom, border_left, border_right, radius } = data.settings.style.border; }}
@@ -169,8 +173,8 @@ class Uni_Cpo_Module_Button extends Uni_Cpo_Module implements Uni_Cpo_Module_Int
                         {{ if ( padding.left !== '' ) { }} padding-left: {{= padding.left + padding.unit }}; {{ } }}
                         {{ if ( padding.right !== '' ) { }} padding-right: {{= padding.right + padding.unit }}; {{ } }}
                     }
-                    {{ if ( hover_color !== '' || background_hover_color !== '' ) { }}
-                        .uni-node-{{= id }}:hover { color: {{= hover_color }}!important; background-color: {{= background_hover_color }}; }
+                    {{ if ( color_hover !== '' || background_hover_color !== '' ) { }}
+                        .uni-node-{{= id }}:hover { color: {{= color_hover }}!important; background-color: {{= background_hover_color }}; }
                     {{ } }}
                 </style>
                 <a {{ if ( id_name !== '' ) { }} id="{{- id_name }}" {{ } }} class="uni-link-button uni-node-{{- id }} {{ if ( class_name !== '' ) { }}{{- class_name }}{{ } }}" target="{{= target }}" href="{{= href }}" rel="{{= rel }}">
@@ -183,15 +187,15 @@ class Uni_Cpo_Module_Button extends Uni_Cpo_Module implements Uni_Cpo_Module_Int
 
 	public static function template( $data ) {
 		$id        = $data['id'];
-        $type        = $data['type'];
+        $type      = $data['type'];
 		$content   = $data['settings']['general']['main']['content'];
 		$link      = $data['settings']['general']['link'];
 		$selectors = $data['settings']['advanced']['selectors'];
 
 		$css_id    = array();
 		$css_class = array(
-			'uni-module-' . $type,
-            'uni-node-' . $id
+            'uni-module-' . $type,
+			'uni-node-' . $id
 		);
 		if ( ! empty( $selectors['id_name'] ) ) {
 			array_push( $css_id, $selectors['id_name'] );
@@ -261,9 +265,9 @@ class Uni_Cpo_Module_Button extends Uni_Cpo_Module implements Uni_Cpo_Module_Int
         }
 
 		<?php
-		if ( $text['hover_color'] !== '' || $background['background_hover_color'] ) { ?>
+		if ( $text['color_hover'] !== '' || $background['background_hover_color'] ) { ?>
             .uni-node-<?php esc_attr_e( $id ); ?>:hover {
-            color: <?php esc_attr_e( $text['hover_color'] ); ?>!important;
+            color: <?php esc_attr_e( $text['color_hover'] ); ?>!important;
             background-color: <?php esc_attr_e( $background['background_hover_color'] ); ?>;
             }
 		<?php } ?>

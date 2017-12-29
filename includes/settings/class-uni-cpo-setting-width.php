@@ -34,7 +34,7 @@ class Uni_Cpo_Setting_Width extends Uni_Cpo_Setting implements Uni_Cpo_Setting_I
 		?>
         <script id="js-builderius-setting-<?php echo $this->setting_key; ?>-tmpl" type="text/template">
             <div class="uni-modal-row uni-clear" data-uni-constrained="select[name=width_type]"
-                 data-uni-constvalue="custom">
+                data-uni-constvalue="custom">
 				<?php echo $this->generate_field_label_html() ?>
                 <div class="uni-modal-row-second uni-clear">
                     <div class="uni-setting-fields-wrap-2 uni-clear">

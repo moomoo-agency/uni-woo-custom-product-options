@@ -20,7 +20,7 @@ class Uni_Cpo_Setting_Cpo_Is_Fc extends Uni_Cpo_Setting implements Uni_Cpo_Setti
 		$this->setting_data = array(
 			'title'      => __( 'Enable conditional logic?', 'uni-cpo' ),
 			'is_tooltip' => true,
-			'desc_tip'   => __( 'Enables conditional logic for showing or hiding this element.', 'uni-cpo' ),
+			'desc_tip'   => __( 'Enables conditional logic for displaying or hiding this module.', 'uni-cpo' ),
 			'options'    => array(
 				'no'  => __( 'No', 'uni-cpo' ),
 				'yes' => __( 'Yes', 'uni-cpo' )

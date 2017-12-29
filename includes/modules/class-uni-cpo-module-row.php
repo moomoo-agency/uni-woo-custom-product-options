@@ -71,7 +71,7 @@ class Uni_Cpo_Module_Row extends Uni_Cpo_Module implements Uni_Cpo_Module_Interf
                     ),
                     'links' => array(
                         'color' => '',
-                        'hover_color' => ''
+                        'color_hover' => ''
                     ),
                     'background' => array(
                         'background_type' => '',
@@ -139,27 +139,31 @@ class Uni_Cpo_Module_Row extends Uni_Cpo_Module implements Uni_Cpo_Module_Interf
 		?>
 		<script id="js-builderius-row-tmpl" type="text/template">
             {{ const { id_name, class_name } = settings.advanced.selectors; }}
-            {{ const { width_type, width, content_width } = settings.general.main; }}
-            {{ const { font_family, font_style, font_weight, font_size, letter_spacing, line_height } = settings.style.font; }}
-            {{ const { color, text_align } = settings.style.text; }}
-            {{ const { background_type, background_color, background_image } = settings.style.background; }}
-            {{ const { border_top, border_bottom, border_left, border_right } = settings.style.border; }}
-            {{ const { margin, padding } = settings.advanced.layout; }}
+            {{ const { general, style, advanced, cpo_general, cpo_suboptions, cpo_conditional } = settings; }}
+            {{ const { width_type, width, content_width } = general.main; }}
+            {{ const { font_family, font_style, font_weight, font_size, letter_spacing, line_height } = style.font; }}
+            {{ const { color, text_align } = style.text; }}
+            
+            {{ const color_hover = uniGet(style, 'links.color_hover', ''); }}
+
+            {{ const { background_type, background_color, background_image } = style.background; }}
+            {{ const { border_top, border_bottom, border_left, border_right } = style.border; }}
+            {{ const { margin, padding } = advanced.layout; }}
             <div id="{{- id_name }}" class="uni-row uni-node-{{= id }} {{- class_name }}" data-node="{{= id }}" data-type="{{= type }}">
                 <style>
                     .uni-node-{{= id }} .uni-row-content-wrap {
                         {{ if ( width_type == 'custom' ) { }} width: {{= width.value+width.unit }}; {{ } }}
-                        {{ if ( color !== '' ) { }} color: {{= color }}; {{ } }}
-                        {{ if ( text_align !== '' ) { }} text-align: {{= text_align }}; {{ } }}
+                        {{ if ( color ) { }} color: {{= color }}; {{ } }}
+                        {{ if ( text_align ) { }} text-align: {{= text_align }}; {{ } }}
                         {{ if ( font_family !== 'inherit' ) { }} font-family: {{= font_family }}; {{ } }}
                         {{ if ( font_style !== 'inherit' ) { }} font-style: {{= font_style }}; {{ } }}
-                        {{ if ( font_size.value !== '' ) { }} font-size: {{= font_size.value+font_size.unit }}; {{ } }}
-                        {{ if ( font_weight !== '' ) { }} font-weight: {{= font_weight }}; {{ } }}
-                        {{ if ( letter_spacing !== '' ) { }} letter-spacing: {{= letter_spacing+'em' }}; {{ } }}
-                        {{ if ( line_height !== '' ) { }} line-height: {{= line_height+'px' }}; {{ } }} 
+                        {{ if ( font_size.value ) { }} font-size: {{= font_size.value+font_size.unit }}; {{ } }}
+                        {{ if ( font_weight ) { }} font-weight: {{= font_weight }}; {{ } }}
+                        {{ if ( letter_spacing ) { }} letter-spacing: {{= letter_spacing+'em' }}; {{ } }}
+                        {{ if ( line_height ) { }} line-height: {{= line_height+'px' }}; {{ } }} 
 
-                        {{ if ( background_type == 'color' && background_color !== '' ) { }} background-color: {{= background_color }}; {{ } }} 
-                        {{ if ( background_type == 'image' && background_image.url !== '' ) { }} 
+                        {{ if ( background_type == 'color' && background_color ) { }} background-color: {{= background_color }}; {{ } }} 
+                        {{ if ( background_type == 'image' && background_image.url ) { }} 
                             background-image: url({{= background_image.url }}); 
                             background-repeat: {{= background_image.repeat }}; 
                             background-position: {{= background_image.position }}; 
@@ -167,25 +171,25 @@ class Uni_Cpo_Module_Row extends Uni_Cpo_Module implements Uni_Cpo_Module_Interf
                             background-size: {{= background_image.size }};
                         {{ } }} 
 
-                        {{ if ( border_top.style !== 'none' && border_top.color !== '' ) { }} border-top: {{= border_top.width + 'px '+ border_top.style +' '+ border_top.color }}; {{ } }}
-                        {{ if ( border_bottom.style !== 'none' && border_bottom.color !== '' ) { }} border-bottom: {{= border_bottom.width + 'px '+ border_bottom.style +' '+ border_bottom.color }}; {{ } }}
-                        {{ if ( border_left.style !== 'none' && border_left.color !== '' ) { }} border-left: {{= border_left.width + 'px '+ border_left.style +' '+ border_left.color }}; {{ } }}
-                        {{ if ( border_right.style !== 'none' && border_right.color !== '' ) { }} border-right: {{= border_right.width + 'px '+ border_right.style +' '+ border_right.color }}; {{ } }}
-                        {{ if ( margin.top !== '' ) { }} margin-top: {{= margin.top + margin.unit }}; {{ } }}
-                        {{ if ( margin.bottom !== '' ) { }} margin-bottom: {{= margin.bottom + margin.unit }}; {{ } }}
-                        {{ if ( margin.left !== '' ) { }} margin-left: {{= margin.left + margin.unit }}; {{ } }}
-                        {{ if ( margin.right !== '' ) { }} margin-right: {{= margin.right + margin.unit }}; {{ } }}
+                        {{ if ( border_top.style !== 'none' && border_top.color ) { }} border-top: {{= border_top.width + 'px '+ border_top.style +' '+ border_top.color }}; {{ } }}
+                        {{ if ( border_bottom.style !== 'none' && border_bottom.color ) { }} border-bottom: {{= border_bottom.width + 'px '+ border_bottom.style +' '+ border_bottom.color }}; {{ } }}
+                        {{ if ( border_left.style !== 'none' && border_left.color ) { }} border-left: {{= border_left.width + 'px '+ border_left.style +' '+ border_left.color }}; {{ } }}
+                        {{ if ( border_right.style !== 'none' && border_right.color ) { }} border-right: {{= border_right.width + 'px '+ border_right.style +' '+ border_right.color }}; {{ } }}
+                        {{ if ( margin.top ) { }} margin-top: {{= margin.top + margin.unit }}; {{ } }}
+                        {{ if ( margin.bottom ) { }} margin-bottom: {{= margin.bottom + margin.unit }}; {{ } }}
+                        {{ if ( margin.left ) { }} margin-left: {{= margin.left + margin.unit }}; {{ } }}
+                        {{ if ( margin.right ) { }} margin-right: {{= margin.right + margin.unit }}; {{ } }}
 
-                        {{ if ( padding.top !== '' ) { }} padding-top: {{= padding.top + padding.unit }}; {{ } }}
-                        {{ if ( padding.bottom !== '' ) { }} padding-bottom: {{= padding.bottom + padding.unit }}; {{ } }}
-                        {{ if ( padding.left !== '' ) { }} padding-left: {{= padding.left + padding.unit }}; {{ } }}
-                        {{ if ( padding.right !== '' ) { }} padding-right: {{= padding.right + padding.unit }}; {{ } }}
+                        {{ if ( padding.top ) { }} padding-top: {{= padding.top + padding.unit }}; {{ } }}
+                        {{ if ( padding.bottom ) { }} padding-bottom: {{= padding.bottom + padding.unit }}; {{ } }}
+                        {{ if ( padding.left ) { }} padding-left: {{= padding.left + padding.unit }}; {{ } }}
+                        {{ if ( padding.right ) { }} padding-right: {{= padding.right + padding.unit }}; {{ } }}
                     }
-                    {{ if ( settings.style.links.color !== '' ) { }}
+                    {{ if ( settings.style.links.color ) { }}
                         .uni-node-{{= id }} .uni-row-content-wrap a, .uni-node-{{= id }} .uni-row-content-wrap a:focus, .uni-node-{{= id }} .uni-row-content-wrap a:active { color: {{= settings.style.links.color }}; }
                     {{ } }}
-                    {{ if ( settings.style.links.hover_color !== '' ) { }}
-                        .uni-node-{{= id }} .uni-row-content-wrap a:hover { color: {{= settings.style.links.hover_color }}; }
+                    {{ if ( color_hover ) { }}
+                        .uni-node-{{= id }} .uni-row-content-wrap a:hover { color: {{= color_hover }}; }
                     {{ } }}
                 </style>
                 <div class="uni-row-content-wrap">
@@ -196,7 +200,7 @@ class Uni_Cpo_Module_Row extends Uni_Cpo_Module implements Uni_Cpo_Module_Interf
 		<?php
 	}
 
-	public static function template( $data ) {
+	public static function template( $data, $post_data = array() ) {
 		$id        = $data['id'];
 		$selectors = $data['settings']['advanced']['selectors'];
 		$main      = $data['settings']['general']['main'];
@@ -226,7 +230,7 @@ class Uni_Cpo_Module_Row extends Uni_Cpo_Module implements Uni_Cpo_Module_Interf
 					if ( ! empty( $data['columns'] ) ) {
 						foreach ( $data['columns'] as $column_key => $column_data ) {
 							$column_class = UniCpo()->module_factory::get_classname_from_module_type( $column_data['type'] );
-							call_user_func( $column_class . '::template', $column_data );
+							call_user_func( $column_class . '::template', $column_data, $post_data );
 						}
 					}
 					?>
@@ -254,43 +258,43 @@ class Uni_Cpo_Module_Row extends Uni_Cpo_Module implements Uni_Cpo_Module_Interf
 		?>
         .uni-node-<?php esc_attr_e( $id ); ?> .uni-row-content-wrap {
 		<?php if ( $main['width_type'] === 'custom' ) { ?> width: <?php esc_attr_e( "{$main['width']['value']}{$main['width']['unit']}" ) ?>; <?php } ?>
-		<?php if ( $text['color'] !== '' ) { ?> color: <?php esc_attr_e( $text['color'] ); ?>;<?php } ?>
-		<?php if ( $text['text_align'] !== '' ) { ?> text-align: <?php esc_attr_e( $text['text_align'] ); ?>;<?php } ?>
+		<?php if ( $text['color'] ) { ?> color: <?php esc_attr_e( $text['color'] ); ?>;<?php } ?>
+		<?php if ( $text['text_align'] ) { ?> text-align: <?php esc_attr_e( $text['text_align'] ); ?>;<?php } ?>
 		<?php if ( $font['font_family'] !== 'inherit' ) { ?> font-family: <?php esc_attr_e( $font['font_family'] ); ?>;<?php } ?>
 		<?php if ( $font['font_style'] !== 'inherit' ) { ?> font-style: <?php esc_attr_e( $font['font_style'] ); ?>;<?php } ?>
-		<?php if ( $font['font_weight'] !== '' ) { ?> font-weight: <?php esc_attr_e( $font['font_weight'] ); ?>;<?php } ?>
-		<?php if ( $font['font_size']['value'] !== '' ) { ?> font-size: <?php echo "{$font['font_size']['value']}{$font['font_size']['unit']}" ?>; <?php } ?>
-		<?php if ( $font['letter_spacing'] !== '' ) { ?> letter-spacing: <?php esc_attr_e( $font['letter_spacing'] ); ?>em;<?php } ?>
-		<?php if ( $font['line_height'] !== '' ) { ?> line-height: <?php esc_attr_e( $font['line_height'] ); ?>px;<?php } ?>
-		<?php if ( $background['background_type'] === 'color' && $background['background_color'] !== '' ) { ?> background-color: <?php esc_attr_e( $background['background_color'] ); ?>; <?php } ?>
-		<?php if ( $background['background_type'] === 'image' && $background['background_image']['url'] !== '' ) { ?>
+		<?php if ( $font['font_weight'] ) { ?> font-weight: <?php esc_attr_e( $font['font_weight'] ); ?>;<?php } ?>
+		<?php if ( $font['font_size']['value'] ) { ?> font-size: <?php echo "{$font['font_size']['value']}{$font['font_size']['unit']}" ?>; <?php } ?>
+		<?php if ( $font['letter_spacing'] ) { ?> letter-spacing: <?php esc_attr_e( $font['letter_spacing'] ); ?>em;<?php } ?>
+		<?php if ( $font['line_height'] ) { ?> line-height: <?php esc_attr_e( $font['line_height'] ); ?>px;<?php } ?>
+		<?php if ( $background['background_type'] === 'color' && $background['background_color'] ) { ?> background-color: <?php esc_attr_e( $background['background_color'] ); ?>; <?php } ?>
+		<?php if ( $background['background_type'] === 'image' && $background['background_image']['url'] ) { ?>
             background-image:url( <?php esc_attr_e( $background['background_image']['url'] ); ?> );
             background-repeat: <?php esc_attr_e( $background['background_image']['repeat'] ); ?>;
             background-position: <?php esc_attr_e( $background['background_image']['position'] ); ?>;
             background-attachment: <?php esc_attr_e( $background['background_image']['attachment'] ); ?>;
             background-size: <?php esc_attr_e( $background['background_image']['size'] ); ?>;
 		<?php } ?>
-		<?php if ( $border_top['style'] !== 'none' && $border_top['color'] !== '' ) { ?> border-top: <?php esc_attr_e( "{$border_top['width']}px {$border_top['style']} {$border_top['color']}" ) ?>; <?php } ?>
-		<?php if ( $border_bottom['style'] !== 'none' && $border_bottom['color'] !== '' ) { ?> border-bottom: <?php esc_attr_e( "{$border_bottom['width']}px {$border_bottom['style']} {$border_bottom['color']}" ) ?>; <?php } ?>
-		<?php if ( $border_left['style'] !== 'none' && $border_left['color'] !== '' ) { ?> border-left: <?php esc_attr_e( "{$border_left['width']}px {$border_left['style']} {$border_left['color']}" ) ?>; <?php } ?>
-		<?php if ( $border_right['style'] !== 'none' && $border_right['color'] !== '' ) { ?> border-right: <?php esc_attr_e( "{$border_right['width']}px {$border_right['style']} {$border_right['color']}" ) ?>; <?php } ?>
-		<?php if ( $margin['top'] !== '' ) { ?> margin-top: <?php esc_attr_e( "{$margin['top']}{$margin['unit']}" ) ?>; <?php } ?>
-		<?php if ( $margin['bottom'] !== '' ) { ?> margin-bottom: <?php esc_attr_e( "{$margin['bottom']}{$margin['unit']}" ) ?>; <?php } ?>
-		<?php if ( $margin['left'] !== '' ) { ?> margin-left: <?php esc_attr_e( "{$margin['left']}{$margin['unit']}" ) ?>; <?php } ?>
-		<?php if ( $margin['right'] !== '' ) { ?> margin-right: <?php esc_attr_e( "{$margin['right']}{$margin['unit']}" ) ?>; <?php } ?>
-		<?php if ( $padding['top'] !== '' ) { ?> padding-top: <?php esc_attr_e( "{$padding['top']}{$padding['unit']}" ) ?>; <?php } ?>
-		<?php if ( $padding['bottom'] !== '' ) { ?> padding-bottom: <?php esc_attr_e( "{$padding['bottom']}{$padding['unit']}" ) ?>; <?php } ?>
-		<?php if ( $padding['left'] !== '' ) { ?> padding-left: <?php esc_attr_e( "{$padding['left']}{$padding['unit']}" ) ?>; <?php } ?>
-		<?php if ( $padding['right'] !== '' ) { ?> padding-right: <?php esc_attr_e( "{$padding['right']}{$padding['unit']}" ) ?>; <?php } ?>
+		<?php if ( $border_top['style'] !== 'none' && $border_top['color'] ) { ?> border-top: <?php esc_attr_e( "{$border_top['width']}px {$border_top['style']} {$border_top['color']}" ) ?>; <?php } ?>
+		<?php if ( $border_bottom['style'] !== 'none' && $border_bottom['color'] ) { ?> border-bottom: <?php esc_attr_e( "{$border_bottom['width']}px {$border_bottom['style']} {$border_bottom['color']}" ) ?>; <?php } ?>
+		<?php if ( $border_left['style'] !== 'none' && $border_left['color'] ) { ?> border-left: <?php esc_attr_e( "{$border_left['width']}px {$border_left['style']} {$border_left['color']}" ) ?>; <?php } ?>
+		<?php if ( $border_right['style'] !== 'none' && $border_right['color'] ) { ?> border-right: <?php esc_attr_e( "{$border_right['width']}px {$border_right['style']} {$border_right['color']}" ) ?>; <?php } ?>
+		<?php if ( $margin['top'] ) { ?> margin-top: <?php esc_attr_e( "{$margin['top']}{$margin['unit']}" ) ?>; <?php } ?>
+		<?php if ( $margin['bottom'] ) { ?> margin-bottom: <?php esc_attr_e( "{$margin['bottom']}{$margin['unit']}" ) ?>; <?php } ?>
+		<?php if ( $margin['left'] ) { ?> margin-left: <?php esc_attr_e( "{$margin['left']}{$margin['unit']}" ) ?>; <?php } ?>
+		<?php if ( $margin['right'] ) { ?> margin-right: <?php esc_attr_e( "{$margin['right']}{$margin['unit']}" ) ?>; <?php } ?>
+		<?php if ( $padding['top'] ) { ?> padding-top: <?php esc_attr_e( "{$padding['top']}{$padding['unit']}" ) ?>; <?php } ?>
+		<?php if ( $padding['bottom'] ) { ?> padding-bottom: <?php esc_attr_e( "{$padding['bottom']}{$padding['unit']}" ) ?>; <?php } ?>
+		<?php if ( $padding['left'] ) { ?> padding-left: <?php esc_attr_e( "{$padding['left']}{$padding['unit']}" ) ?>; <?php } ?>
+		<?php if ( $padding['right'] ) { ?> padding-right: <?php esc_attr_e( "{$padding['right']}{$padding['unit']}" ) ?>; <?php } ?>
         }
-		<?php if ( $links['color'] !== '' ) { ?>
+		<?php if ( $links['color'] ) { ?>
             .uni-node-<?php esc_attr_e( $id ); ?> .uni-row-content-wrap a, .uni-node-<?php esc_attr_e( $id ); ?> .uni-row-content-wrap a:focus, .uni-node-<?php esc_attr_e( $id ); ?> .uni-row-content-wrap a:active {
             color:<?php esc_attr_e( $links['color'] ); ?>;
             }
 		<?php } ?>
-		<?php if ( $links['hover_color'] !== '' ) { ?>
+		<?php if ( isset( $links['color_hover'] ) ) { ?>
             .uni-node-<?php esc_attr_e( $id ); ?> .uni-row-content-wrap a:hover {
-            color:<?php esc_attr_e( $links['hover_color'] ); ?>;
+            color:<?php esc_attr_e( $links['color_hover'] ); ?>;
             }
 		<?php } ?>
 

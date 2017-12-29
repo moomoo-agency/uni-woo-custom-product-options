@@ -43,7 +43,8 @@ class Uni_Cpo_Option extends Uni_Cpo_Data {
 		'style' => array(),
 		'advanced' => array(),
 		'cpo_general' => array(),
-		'cpo_conditional' => array()
+		'cpo_conditional' => array(),
+		'cpo_validation' => array()
 	);
 
 	/**
@@ -151,6 +152,9 @@ class Uni_Cpo_Option extends Uni_Cpo_Data {
 	public function get_cpo_conditional( $context = 'view' ) {
 		return $this->get_prop( 'cpo_conditional', $context );
 	}
+	public function get_cpo_validation( $context = 'view' ) {
+		return $this->get_prop( 'cpo_validation', $context );
+	}
 
 	public function get_slug_ending() {
 		return preg_replace('/'.UniCpo()->get_var_slug().'/', '', $this->get_slug() );
@@ -209,6 +213,9 @@ class Uni_Cpo_Option extends Uni_Cpo_Data {
 	public function set_cpo_conditional( $value ) {
 		$this->set_prop( 'cpo_conditional', $value );
 	}
+	public function set_cpo_validation( $value ) {
+		$this->set_prop( 'cpo_validation', $value );
+	}
 
 	/*
 	|--------------------------------------------------------------------------
@@ -256,7 +263,9 @@ class Uni_Cpo_Option extends Uni_Cpo_Data {
 
 	public function formatted_model_data() {}
 
-	public static function template( $data ){}
+	public function get_edit_field( $data, $value ) {}
+
+	public static function template( $data, $post_data ){}
 
 	public static function get_css( $data ){}
 
@@ -285,8 +294,8 @@ class Uni_Cpo_Option extends Uni_Cpo_Data {
 		if ( is_array( $scheme ) && ! empty( $scheme ) ) {
 			$condition = uni_cpo_option_js_condition_prepare( $scheme );
 
-			$slide_down = '$' . $slug . '.slideDown(400).addClass("cpo-visible-field");' . "\n";
-			$slide_up = '$' . $slug . '.slideUp(400).removeClass("cpo-visible-field");' . "\n";
+			$slide_down = '$' . $slug . '.slideDown(300, function(){ window.UniCpo.position($' . $slug . '); }).addClass("cpo-visible-field");' . "\n";
+			$slide_up = '$' . $slug . '.slideUp(300).removeClass("cpo-visible-field");' . "\n";
 			$add_class = '$' . esc_attr( $slug ) . '_fields.each(function( index ) {' . "\n";
 			$add_class .= '$(this).addClass( extraClass );' . "\n";
 			$add_class .= '});' . "\n";
@@ -317,11 +326,9 @@ class Uni_Cpo_Option extends Uni_Cpo_Data {
 				 'use strict';
 
 				 $(document.body).on( 'cpo_calc_data_ajax_success', function(){
-                     //console.log(unicpo.formatted_vars);
                      <?php echo esc_attr( $slug ) ?>_func(unicpo.formatted_vars);
 				 });
                  $(document.body).on( 'cpo_options_data_for_conditional', function(e, fields){
-                     //console.log(fields);
 					 <?php echo esc_attr( $slug ) ?>_func(fields);
                  });
 
@@ -349,8 +356,114 @@ class Uni_Cpo_Option extends Uni_Cpo_Data {
 
 	}
 
+	public static function validation_rules( $data, $attributes = array() ) {
+
+		$rules_data = ( isset( $data['settings']['cpo_validation']['logic'] ) )
+			? $data['settings']['cpo_validation']['logic']
+			: array();
+
+		$is_enabled = ( isset( $rules_data['cpo_is_vc'] ) && 'yes' === $rules_data['cpo_is_vc'] ) ? true : false;
+
+		if ( ! $is_enabled ) {
+			return;
+		}
+
+        $rules = $rules_data['cpo_vc_scheme'];
+		$slug = UniCpo()->get_var_slug() . $data['settings']['cpo_general']['main']['cpo_slug'];
+
+		if ( ! empty( $data['pid'] ) ) {
+			$option = uni_cpo_get_option( $data['pid'] );
+			if ( is_object( $option ) ) {
+				$slug = $option->get_slug();
+			}
+		}
+
+		if ( is_array( $rules ) && ! empty( $rules ) ) {
+		    $i = 1;
+		    $count = count( $rules );
+			$final_statement = '';
+		    foreach ( $rules as $rule ) {
+			    $scheme = json_decode( $rule['rule'], true );
+			    $formula = $rule['formula'];
+
+			    $scheme_attrs = $attributes;
+			    if ( ! empty( $formula ) ) {
+				    $formula_attrs = preg_split( '/\R/', $formula );
+				    $scheme_attrs = uni_cpo_field_attributes_modifier( $formula_attrs, $scheme_attrs );
+				    $scheme_attrs = uni_cpo_add_slashes( $scheme_attrs );
+			    }
+			    $condition = uni_cpo_option_js_condition_prepare( $scheme );
+
+			    if ( $i === 1 ) {
+				    $final_statement = 'if ' . $condition . ' {' . "\n";
+				    if ( ! empty( $scheme_attrs ) ) {
+				        foreach ( $scheme_attrs as $k => $v ) {
+				            if ( ! empty ( $v ) ) {
+					            $final_statement .= '$' . $slug . '.attr("' . esc_attr( $k ) . '", "' . esc_attr( $v ) . '");' . "\n";
+				            } else {
+					            $final_statement .= '$' . $slug . '.removeAttr("' . esc_attr( $k ) . '");' . "\n";
+                            }
+				        }
+                    }
+				    $final_statement .= '}';
+			    } elseif ( $i <= $count ) {
+				    $final_statement .= ' else if ' . $condition . ' {' . "\n";
+				    if ( ! empty( $scheme_attrs ) ) {
+					    foreach ( $scheme_attrs as $k => $v ) {
+						    if ( ! empty ( $v ) ) {
+							    $final_statement .= '$' . $slug . '.attr("' . esc_attr( $k ) . '", "' . esc_attr( $v ) . '");' . "\n";
+						    } else {
+							    $final_statement .= '$' . $slug . '.removeAttr("' . esc_attr( $k ) . '");' . "\n";
+						    }
+					    }
+				    }
+				    $final_statement .= '}';
+                }
+
+			    $i++;
+            }
+
+			$final_statement .= ' else {' . "\n";
+			if ( ! empty( $attributes ) ) {
+				$attributes = uni_cpo_add_slashes( $attributes );
+				foreach ( $attributes as $k => $v ) {
+					if ( ! empty ( $v ) ) {
+						$final_statement .= '$' . $slug . '.attr("' . esc_attr( $k ) . '", "' . esc_attr( $v ) . '");' . "\n";
+					} else {
+						$final_statement .= '$' . $slug . '.removeAttr("' . esc_attr( $k ) . '");' . "\n";
+					}
+				}
+			}
+			$final_statement .= '}' . "\n";
+
+			?><script>
+                jQuery( document ).ready( function( $ ) {
+                    'use strict';
+
+                    $(document.body).on( 'cpo_calc_data_ajax_success', function(){
+						<?php echo esc_attr( $slug ) ?>_validation_func(unicpo.formatted_vars);
+                    });
+                    $(document.body).on( 'cpo_options_data_for_conditional', function(e, fields){
+						<?php echo esc_attr( $slug ) ?>_validation_func(fields);
+                    });
+
+                    function <?php echo esc_attr( $slug ) ?>_validation_func(formData){
+                        const $<?php echo esc_attr( $slug ) ?> = $('#<?php echo esc_attr( $slug ) ?>-field');
+
+						<?php echo $final_statement; ?>
+
+                        $<?php echo esc_attr( $slug ) ?>.parsley().validate();
+                    }
+                });
+            </script>
+			<?php
+		}
+
+	}
+
 	public static function get_custom_attribute_html( $attributes = array() ) {
 		$custom_attributes = array();
+
 		if ( ! empty( $attributes ) && is_array( $attributes ) ) {
 			foreach ( $attributes as $attribute => $attribute_value ) {
 				$custom_attributes[] = esc_attr( $attribute ) . '="' . esc_attr( $attribute_value ) . '"';

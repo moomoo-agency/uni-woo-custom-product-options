@@ -81,7 +81,7 @@ class Uni_Cpo_Module_Image extends Uni_Cpo_Module implements Uni_Cpo_Module_Inte
             {{ const { url, alt } = data.settings.general.main.image; }}
             {{ const { radius } = data.settings.style.border; }}
             {{ const { margin } = data.settings.advanced.layout; }}
-            <div class="uni-module uni-module-{{- type }}" data-node="{{- id }}" data-type="{{- type }}">
+            <div class="uni-module uni-module-{{- type }} {{ if ( url === '' ) { }} uni-module-empty {{ } }}" data-node="{{- id }}" data-type="{{- type }}">
             	<style>
                     .uni-node-{{= id }} {
                     	{{ if ( margin.top !== '' ) { }} margin-top: {{= margin.top + margin.unit }}; {{ } }}
@@ -91,11 +91,13 @@ class Uni_Cpo_Module_Image extends Uni_Cpo_Module implements Uni_Cpo_Module_Inte
                         {{ if ( radius.value !== '' ) { }} border-radius: {{= radius.value + radius.unit }}; {{ } }}
                     }
                 </style>
-                <img
-                    {{ if ( id_name !== '' ) { }} id="{{- id_name }}" {{ } }} 
-                    class="uni-node-{{- id }} {{- class_name }}"
-                    src="{{- url }}"
-                    {{ if ( alt !== '' ) { }} alt="{{- alt }}" {{ } }} />
+                {{ if ( url !== '' ) { }}
+                	<img
+	                    {{ if ( id_name !== '' ) { }} id="{{- id_name }}" {{ } }} 
+	                    class="uni-node-{{- id }} {{- class_name }}"
+	                    src="{{- url }}"
+	                    {{ if ( alt !== '' ) { }} alt="{{- alt }}" {{ } }} />
+                {{ } }}
             </div>
         </script>
 		<?php
@@ -108,6 +110,7 @@ class Uni_Cpo_Module_Image extends Uni_Cpo_Module implements Uni_Cpo_Module_Inte
 
 		$css_id    = array();
 		$css_class = array(
+			'uni-module',
 			'uni-node-' . $id
 		);
 		if ( ! empty( $selectors['id_name'] ) ) {
@@ -116,19 +119,32 @@ class Uni_Cpo_Module_Image extends Uni_Cpo_Module implements Uni_Cpo_Module_Inte
 		if ( ! empty( $selectors['class_name'] ) ) {
 			array_push( $css_class, $selectors['class_name'] );
 		}
+		if ( empty( $image['url'] ) ) {
+			array_push( $css_class, 'uni-module-empty' );
+		}
 		?>
+		
+		<?php if ( ! empty( $image['url'] ) ) { ?>
         <img
-                id="<?php echo implode( ' ', array_map( function ( $el ) {
-					return esc_attr( $el );
-				}, $css_id ) ); ?>"
-                class="<?php echo implode( ' ', array_map( function ( $el ) {
-					return esc_attr( $el );
-				}, $css_class ) ); ?>"
-                src="<?php echo esc_attr( $image['url'] ) ?>"
+            id="<?php echo implode( ' ', array_map( function ( $el ) {
+				return esc_attr( $el );
+			}, $css_id ) ); ?>"
+            class="<?php echo implode( ' ', array_map( function ( $el ) {
+				return esc_attr( $el );
+			}, $css_class ) ); ?>"
+            src="<?php echo esc_attr( $image['url'] ) ?>"
 			<?php if ( $image['alt'] !== '' ) { ?>
                 alt="<?php echo esc_attr( $image['alt'] ) ?>"
 			<?php } ?>>
 		<?php
+		} else { ?>
+			<div
+				data-tip="<?php esc_attr_e('Please add image to this module!', 'uni-cpo') ?>"
+				class="<?php echo implode( ' ', array_map( function ( $el ) {
+					return esc_attr( $el );
+				}, $css_class ) ); ?>">
+				</div>
+		<?php }
 	}
 
 	public static function get_css( $data ) {

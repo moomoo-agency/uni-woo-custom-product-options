@@ -114,8 +114,133 @@ class Uni_Cpo_Option_Text_Input extends Uni_Cpo_Option implements Uni_Cpo_Option
 		$model['settings']['cpo_general']                     = $this->get_cpo_general();
 		$model['settings']['cpo_general']['main']['cpo_slug'] = $this->get_slug_ending();
 		$model['settings']['cpo_conditional']                 = $this->get_cpo_conditional();
+		$model['settings']['cpo_validation']                  = $this->get_cpo_validation();
 
-		return $model;
+		return stripslashes_deep( $model );
+	}
+
+	public function get_edit_field( $data, $value ) {
+		$id                   = $data['id'];
+		$main            	  = $data['settings']['general']['main'];
+		$cpo_general_main     = $data['settings']['cpo_general']['main'];
+		$cpo_general_advanced = $data['settings']['cpo_general']['advanced'];
+		$cpo_validation_main  = ( isset( $data['settings']['cpo_validation']['main'] ) )
+			? $data['settings']['cpo_validation']['main']
+			: array();
+		$cpo_validation_logic = ( isset( $data['settings']['cpo_validation']['logic'] ) )
+			? $data['settings']['cpo_validation']['logic']
+			: array();
+		$is_cart_edit         = ( isset( $cpo_general_advanced['cpo_enable_cartedit'] ) && 'yes' === $cpo_general_advanced['cpo_enable_cartedit'] )
+			? true
+			: false;
+		$attributes           = array( 'data-parsley-trigger' => 'change focusout submit' );
+		$input_type           = 'text';
+		$is_required          = ( 'yes' === $cpo_general_main['cpo_is_required'] ) ? true : false;
+
+		$slug              = $this->get_slug();
+		$input_css_class[] = $slug . '-field';
+		$input_css_class[] = 'cpo-cart-item-option';
+
+		if ( $is_required ) {
+			$attributes['data-parsley-required'] = 'true';
+		}
+		if ( 'integer' === $cpo_general_main['cpo_type'] ) {
+			$input_type                      = 'number';
+			$attributes['data-parsley-type'] = 'integer';
+		}
+		if ( 'double' === $cpo_general_main['cpo_type'] ) {
+			$input_type                      = 'number';
+			$attributes['data-parsley-type-step'] = '0.1';
+			$attributes['data-parsley-type']      = 'number';
+			$attributes['data-parsley-pattern']   = '/^(\d+(?:[\.]\d{0,1})?)$/';
+		}
+		if ( in_array( $cpo_general_main['cpo_type'], array( 'integer', 'double' ) ) ) {
+			if ( ! empty( $cpo_general_main['cpo_min_val'] ) ) {
+				$attributes['data-parsley-min'] = $cpo_general_main['cpo_min_val'];
+			}
+			if ( ! empty( $cpo_general_main['cpo_max_val'] ) ) {
+				$attributes['data-parsley-max'] = $cpo_general_main['cpo_max_val'];
+			}
+		}
+		if ( 'string' === $cpo_general_main['cpo_type'] ) {
+			if ( ! empty( $cpo_general_main['cpo_min_chars'] ) ) {
+				$attributes['data-parsley-minlength'] = $cpo_general_main['cpo_min_chars'];
+			}
+			if ( ! empty( $cpo_general_main['cpo_max_chars'] ) ) {
+				$attributes['data-parsley-maxlength'] = $cpo_general_main['cpo_max_chars'];
+			}
+		}
+		if ( empty( $main['width']['value'] ) ) {
+			$attributes['size'] = 2;
+		}
+		if ( ! empty( $cpo_general_main['cpo_step_val'] )
+		     && in_array( $cpo_general_main['cpo_type'], array( 'integer', 'double' ) ) ) {
+			$attributes['data-parsley-type-step'] = $cpo_general_main['cpo_step_val'];
+			if ( 'double' === $cpo_general_main['cpo_type'] ) {
+				$decimals_count                     = uni_cpo_get_decimals_count( $cpo_general_main['cpo_step_val'] );
+				$attributes['data-parsley-pattern'] = '/^(\d+(?:[\.]\d{0,' . $decimals_count . '})?)$/';
+			}
+		}
+
+		if ( ! empty( $cpo_validation_main ) && isset( $cpo_validation_main['cpo_validation_msg'] )
+		     && is_array( $cpo_validation_main['cpo_validation_msg'] ) ) {
+			foreach ( $cpo_validation_main['cpo_validation_msg'] as $k => $v ) {
+				if ( empty($v) ) {
+					continue;
+				}
+				switch ( $k ) {
+					case 'req':
+						$attributes['data-parsley-required-message'] = $v;
+						break;
+					case 'type' :
+						$attributes['data-parsley-type-message'] = $v;
+						break;
+					case 'custom' :
+						$extra_validation_msgs = preg_split( '/\R/', $v );
+						$attributes = uni_cpo_field_attributes_modifier( $extra_validation_msgs, $attributes );
+					default :
+						break;
+				}
+			}
+		}
+
+		if ( ! empty( $cpo_validation_logic['cpo_vc_extra'] ) ) {
+			$extra_validation = preg_split( '/\R/', $cpo_validation_logic['cpo_vc_extra'] );
+			$attributes = uni_cpo_field_attributes_modifier( $extra_validation, $attributes );
+		}
+
+		ob_start();
+		?>
+        <div class="cpo-cart-item-option-wrapper uni-node-<?php esc_attr_e($id) ?>">
+            <label><?php echo uni_cpo_sanitize_label( $this->cpo_order_label() ) ?></label>
+            <?php if ( $is_cart_edit ) { ?>
+                <input
+                        class="<?php echo implode( ' ', array_map( function ( $el ) {
+                            return esc_attr( $el );
+                        }, $input_css_class ) ); ?>"
+                        name="<?php esc_attr_e( $slug ) ?>"
+                        value="<?php esc_attr_e( $value ) ?>"
+                        type="<?php esc_attr_e( $input_type ); ?>"
+                        <?php echo $this::get_custom_attribute_html( $attributes ); ?> />
+            <?php } else { ?>
+                <input
+                        class="<?php echo implode( ' ', array_map( function ( $el ) {
+				            return esc_attr( $el );
+			            }, $input_css_class ) ); ?>"
+                        name="<?php esc_attr_e( $slug ) ?>"
+                        value="<?php esc_attr_e( $value ) ?>"
+                        type="<?php esc_attr_e( $input_type ); ?>"
+                        disabled />
+                <input
+                        class="cpo-cart-item-option"
+                        name="<?php esc_attr_e( $slug ) ?>"
+                        value="<?php esc_attr_e( $value ) ?>"
+                        type="hidden" />
+            <?php } ?>
+        </div>
+		<?php
+
+        return ob_get_clean();
 	}
 
 	public static function get_settings() {
@@ -178,6 +303,15 @@ class Uni_Cpo_Option_Text_Input extends Uni_Cpo_Option implements Uni_Cpo_Option
 							'value' => 5,
 							'unit'  => 'px'
 						),
+					),
+					'text_input'    => array(
+						'padding' => array(
+							'top'    => '',
+							'right'  => 14,
+							'bottom' => '',
+							'left'   => 14,
+							'unit'   => 'px'
+						)
 					)
 				),
 				'advanced'        => array(
@@ -187,13 +321,6 @@ class Uni_Cpo_Option_Text_Input extends Uni_Cpo_Option implements Uni_Cpo_Option
 							'right'  => '',
 							'bottom' => '',
 							'left'   => '',
-							'unit'   => 'px'
-						),
-						'padding' => array(
-							'top'    => '',
-							'right'  => 14,
-							'bottom' => '',
-							'left'   => 14,
 							'unit'   => 'px'
 						)
 					),
@@ -222,6 +349,7 @@ class Uni_Cpo_Option_Text_Input extends Uni_Cpo_Option implements Uni_Cpo_Option
 						'cpo_is_tooltip'   => 'no',
 						'cpo_tooltip'      => '',
 						//'cpo_tooltip_type' => 'classic'
+						'cpo_enable_cartedit' => 'no'
 					)
 				),
 				'cpo_conditional' => array(
@@ -229,6 +357,20 @@ class Uni_Cpo_Option_Text_Input extends Uni_Cpo_Option implements Uni_Cpo_Option
 						'cpo_is_fc'      => 'no',
 						'cpo_fc_default' => 'hide',
 						'cpo_fc_scheme'  => ''
+					)
+				),
+				'cpo_validation' => array(
+					'main' => array(
+						'cpo_validation_msg' => array(
+                            'req' => '',
+                            'type' => '',
+                            'custom' => ''
+                        )
+					),
+					'logic' => array(
+						'cpo_vc_extra'   => '',
+						'cpo_is_vc'      => 'no',
+						'cpo_vc_scheme'  => array()
 					)
 				)
 			)
@@ -243,8 +385,11 @@ class Uni_Cpo_Option_Text_Input extends Uni_Cpo_Option implements Uni_Cpo_Option
             {{ const { width, height } = data.settings.general.main; }}
             {{ const { color, text_align, font_family, font_style, font_weight, font_size, letter_spacing, line_height } = data.settings.style.font; }}
             {{ const { border_unit, border_top, border_bottom, border_left, border_right, radius } = data.settings.style.border; }}
-            {{ const { margin, padding } = data.settings.advanced.layout; }}
-            {{ const { cpo_slug, cpo_is_required, cpo_type, cpo_def_val } = data.settings.cpo_general.main; }}
+            {{ const { margin } = data.settings.advanced.layout; }}
+            {{ const padding = uniGet( data.settings.style, 'text_input.padding', {top:'',right:14,bottom:'',left:14,unit:'px'} ); }}
+            
+            {{ const { cpo_slug, cpo_is_required, cpo_def_val, cpo_max_chars } = data.settings.cpo_general.main; }}
+            {{ let cpo_type = data.settings.cpo_general.main.cpo_type; if ( cpo_type === 'string' ) { cpo_type = 'text'; } else { cpo_type = 'number'; } }}
             {{ const { cpo_label_tag, cpo_label, cpo_is_tooltip, cpo_tooltip } = data.settings.cpo_general.advanced; }}
             <div
                 id="{{- id_name }}"
@@ -258,7 +403,7 @@ class Uni_Cpo_Option_Text_Input extends Uni_Cpo_Option implements Uni_Cpo_Option
                     {{ if ( margin.left !== '' ) { }} margin-left: {{= margin.left + margin.unit }}; {{ } }}
                     {{ if ( margin.right !== '' ) { }} margin-right: {{= margin.right + margin.unit }}; {{ } }}
             	}
-        		.uni-node-{{= id }} input {
+        		.uni-node-{{= id }} input[type="text"], .uni-node-{{= id }} input[type="number"] {
         			{{ if ( width.value !== '' ) { }} width: {{= width.value+width.unit }}!important; {{ } }}
         			{{ if ( height.value !== '' ) { }} height: {{= height.value+height.unit }}; {{ } }}
                     {{ if ( border_top.style !== 'none' && border_top.color !== '' ) { }} border-top: {{= border_top.width + 'px '+ border_top.style +' '+ border_top.color }}; {{ } }}
@@ -280,7 +425,7 @@ class Uni_Cpo_Option_Text_Input extends Uni_Cpo_Option implements Uni_Cpo_Option
         		}
         	</style>
             {{ if ( cpo_label_tag && cpo_label !== '' ) { }}
-                <{{- cpo_label_tag }}{{ if ( cpo_is_required === 'yes' ) { }} class="uni_cpo_field_required"{{ } }}>
+                <{{- cpo_label_tag }} class="uni-cpo-module-{{- type }}-label {{ if ( cpo_is_required === 'yes' ) { }} uni_cpo_field_required {{ } }}">
                 	{{- cpo_label }}
                 	{{ if ( cpo_is_tooltip === 'yes' && cpo_tooltip !== '' ) { }} <span class="uni-cpo-tooltip" data-tip="{{- cpo_tooltip }}"></span> {{ } }}
             	</{{- cpo_label_tag }}>
@@ -290,23 +435,31 @@ class Uni_Cpo_Option_Text_Input extends Uni_Cpo_Option implements Uni_Cpo_Option
                 id="{{- cpo_slug }}-field"
                 name="{{- cpo_slug }}"
                 type="{{- cpo_type }}"
+                {{ if ( width.value === '' ) { }} size="2" {{ } }}
                 value="{{- cpo_def_val }}"/>
             </div>
         </script>
 		<?php
 	}
 
-	public static function template( $data ) {
+	public static function template( $data, $post_data = array() ) {
 		$id                   = $data['id'];
 		$type                 = $data['type'];
 		$selectors            = $data['settings']['advanced']['selectors'];
+		$main            	  = $data['settings']['general']['main'];
 		$cpo_general_main     = $data['settings']['cpo_general']['main'];
 		$cpo_general_advanced = $data['settings']['cpo_general']['advanced'];
+		$cpo_validation_main  = ( isset( $data['settings']['cpo_validation']['main'] ) )
+            ? $data['settings']['cpo_validation']['main']
+            : array();
+		$cpo_validation_logic = ( isset( $data['settings']['cpo_validation']['logic'] ) )
+			? $data['settings']['cpo_validation']['logic']
+			: array();
 		$cpo_label_tag        = $cpo_general_advanced['cpo_label_tag'];
 		$attributes           = array( 'data-parsley-trigger' => 'change focusout submit' );
 		$wrapper_attributes   = array();
 		$option               = false;
-		$input_type           = 'string';
+		$input_type           = 'text';
 		$rules_data           = $data['settings']['cpo_conditional']['main'];
 		$is_required          = ( 'yes' === $cpo_general_main['cpo_is_required'] ) ? true : false;
 		$is_tooltip           = ( 'yes' === $cpo_general_advanced['cpo_is_tooltip'] ) ? true : false;
@@ -334,7 +487,7 @@ class Uni_Cpo_Option_Text_Input extends Uni_Cpo_Option implements Uni_Cpo_Option
 			array_push( $css_class, $selectors['class_name'] );
 		}
 
-		if ( 'yes' === $cpo_general_main['cpo_is_required'] ) {
+		if ( $is_required ) {
 			$attributes['data-parsley-required'] = 'true';
 		}
 		if ( 'integer' === $cpo_general_main['cpo_type'] ) {
@@ -342,6 +495,7 @@ class Uni_Cpo_Option_Text_Input extends Uni_Cpo_Option implements Uni_Cpo_Option
 			$attributes['data-parsley-type'] = 'integer';
 		}
 		if ( 'double' === $cpo_general_main['cpo_type'] ) {
+			$input_type                      = 'number';
 			$attributes['data-parsley-type-step'] = '0.1';
 			$attributes['data-parsley-type']      = 'number';
 			$attributes['data-parsley-pattern']   = '/^(\d+(?:[\.]\d{0,1})?)$/';
@@ -362,8 +516,11 @@ class Uni_Cpo_Option_Text_Input extends Uni_Cpo_Option implements Uni_Cpo_Option
 				$attributes['data-parsley-maxlength'] = $cpo_general_main['cpo_max_chars'];
 			}
 		}
+		if ( empty( $main['width']['value'] ) ) {
+			$attributes['size'] = 2;
+		}
 		if ( ! empty( $cpo_general_main['cpo_step_val'] )
-		     && in_array( $cpo_general_main['cpo_type'], array( 'integer', 'double' ) ) ) {
+		      && in_array( $cpo_general_main['cpo_type'], array( 'integer', 'double' ) ) ) {
 			$attributes['data-parsley-type-step'] = $cpo_general_main['cpo_step_val'];
 			if ( 'double' === $cpo_general_main['cpo_type'] ) {
 				$decimals_count                     = uni_cpo_get_decimals_count( $cpo_general_main['cpo_step_val'] );
@@ -371,10 +528,41 @@ class Uni_Cpo_Option_Text_Input extends Uni_Cpo_Option implements Uni_Cpo_Option
 			}
 		}
 
+		if ( ! empty( $cpo_validation_main ) && isset( $cpo_validation_main['cpo_validation_msg'] )
+                && is_array( $cpo_validation_main['cpo_validation_msg'] ) ) {
+		    foreach ( $cpo_validation_main['cpo_validation_msg'] as $k => $v ) {
+		        if ( empty($v) ) {
+		            continue;
+                }
+		        switch ( $k ) {
+			        case 'req':
+				        $attributes['data-parsley-required-message'] = $v;
+				        break;
+                    case 'type' :
+	                    $attributes['data-parsley-type-message'] = $v;
+	                    break;
+                    case 'custom' :
+	                    $extra_validation_msgs = preg_split( '/\R/', $v );
+	                    $attributes = uni_cpo_field_attributes_modifier( $extra_validation_msgs, $attributes );
+			        default :
+	                    break;
+		        }
+            }
+		}
+
+		if ( ! empty( $cpo_validation_logic['cpo_vc_extra'] ) ) {
+			$extra_validation = preg_split( '/\R/', $cpo_validation_logic['cpo_vc_extra'] );
+			$attributes = uni_cpo_field_attributes_modifier( $extra_validation, $attributes );
+		}
+
 		if ( $is_enabled && $is_hidden ) {
 			$wrapper_attributes['style'] = 'display:none;';
 			$input_css_class[]           = 'uni-cpo-excluded-field';
 		}
+
+		$default_value = ( ! empty( $post_data ) && ! empty( $slug ) && ! empty( $post_data[$slug] ) )
+			? $post_data[$slug]
+            : $cpo_general_main['cpo_def_val'];
 		?>
     <div
             id="<?php echo implode( ' ', array_map( function ( $el ) {
@@ -386,11 +574,11 @@ class Uni_Cpo_Option_Text_Input extends Uni_Cpo_Option implements Uni_Cpo_Option
 		<?php echo self::get_custom_attribute_html( $wrapper_attributes ); ?>>
 		<?php
 		if ( ! empty( $cpo_general_advanced['cpo_label'] ) ) { ?>
-            <<?php esc_attr_e( $cpo_label_tag ); ?><?php if ( $is_required ) { ?> class="uni_cpo_field_required" <?php } ?>>
+            <<?php esc_attr_e( $cpo_label_tag ); ?> class="uni-cpo-module-<?php esc_attr_e( $type ); ?>-label <?php if ( $is_required ) { ?> uni_cpo_field_required <?php } ?>">
 			<?php esc_html_e( $cpo_general_advanced['cpo_label'] ); ?>
 			<?php if ( $is_tooltip && $cpo_general_advanced['cpo_tooltip'] !== '' ) { ?>
                 <span class="uni-cpo-tooltip"
-                      data-tip="<?php esc_html_e( $cpo_general_advanced['cpo_tooltip'] ); ?>"></span>
+                      data-tip="<?php echo uni_cpo_sanitize_tooltip( $cpo_general_advanced['cpo_tooltip'] ); ?>"></span>
 			<?php } ?>
             </<?php esc_attr_e( $cpo_label_tag ); ?>>
 		<?php } ?>
@@ -401,54 +589,56 @@ class Uni_Cpo_Option_Text_Input extends Uni_Cpo_Option implements Uni_Cpo_Option
                 id="<?php esc_attr_e( $slug ); ?>-field"
                 name="<?php esc_attr_e( $slug ); ?>"
                 type="<?php esc_attr_e( $input_type ); ?>"
-                value="<?php esc_attr_e( $cpo_general_main['cpo_def_val'] ); ?>"
-			<?php echo self::get_custom_attribute_html( $attributes ); ?> />
+                value="<?php esc_attr_e( $default_value ); ?>"
+			    <?php echo self::get_custom_attribute_html( $attributes ); ?> />
         </div>
 		<?php
 
 		self::conditional_rules( $data );
+		self::validation_rules( $data, $attributes );
 	}
 
 	public static function get_css( $data ) {
 		$id            = $data['id'];
 		$main          = $data['settings']['general']['main'];
 		$font          = $data['settings']['style']['font'];
-		$border_unit   = $data['settings']['style']['border']['border_unit'];
 		$border_top    = $data['settings']['style']['border']['border_top'];
 		$border_bottom = $data['settings']['style']['border']['border_bottom'];
 		$border_left   = $data['settings']['style']['border']['border_left'];
 		$border_right  = $data['settings']['style']['border']['border_right'];
 		$radius        = $data['settings']['style']['border']['radius'];
+		$padding = ( isset( $data['settings']['style']['text_input'] ) && isset( $data['settings']['style']['text_input']['padding'] ) )
+			? $data['settings']['style']['text_input']['padding']
+			: array();
 		$margin        = $data['settings']['advanced']['layout']['margin'];
-		$padding       = $data['settings']['advanced']['layout']['padding'];
 
 		ob_start();
 		?>
         .uni-node-<?php esc_attr_e( $id ); ?> {
-		<?php if ( $margin['top'] !== '' ) { ?> margin-top: <?php esc_attr_e( "{$margin['top']}{$margin['unit']}" ) ?>; <?php } ?>
-		<?php if ( $margin['bottom'] !== '' ) { ?> margin-bottom: <?php esc_attr_e( "{$margin['bottom']}{$margin['unit']}" ) ?>; <?php } ?>
-		<?php if ( $margin['left'] !== '' ) { ?> margin-left: <?php esc_attr_e( "{$margin['left']}{$margin['unit']}" ) ?>; <?php } ?>
-		<?php if ( $margin['right'] !== '' ) { ?> margin-right: <?php esc_attr_e( "{$margin['right']}{$margin['unit']}" ) ?>; <?php } ?>
+		<?php if ( ! empty( $margin['top'] ) ) { ?> margin-top: <?php esc_attr_e( "{$margin['top']}{$margin['unit']}" ) ?>; <?php } ?>
+		<?php if ( ! empty( $margin['bottom'] ) ) { ?> margin-bottom: <?php esc_attr_e( "{$margin['bottom']}{$margin['unit']}" ) ?>; <?php } ?>
+		<?php if ( ! empty( $margin['left'] ) ) { ?> margin-left: <?php esc_attr_e( "{$margin['left']}{$margin['unit']}" ) ?>; <?php } ?>
+		<?php if ( ! empty( $margin['right'] ) ) { ?> margin-right: <?php esc_attr_e( "{$margin['right']}{$margin['unit']}" ) ?>; <?php } ?>
         }
-        .uni-node-<?php esc_attr_e( $id ); ?> input {
-		<?php if ( $main['width']['value'] !== '' ) { ?> width: <?php esc_attr_e( "{$main['width']['value']}{$main['width']['unit']}" ) ?>!important;<?php } ?>
-		<?php if ( $main['height']['value'] !== '' ) { ?> height: <?php esc_attr_e( "{$main['height']['value']}{$main['height']['unit']}" ) ?>;<?php } ?>
-		<?php if ( $font['color'] !== '' ) { ?> color: <?php esc_attr_e( $font['color'] ); ?>;<?php } ?>
-		<?php if ( $font['text_align'] !== '' ) { ?> text-align: <?php esc_attr_e( $font['text_align'] ); ?>;<?php } ?>
+        .uni-node-<?php esc_attr_e( $id ); ?> input[type="text"], .uni-node-<?php esc_attr_e( $id ); ?> input[type="number"] {
+		<?php if ( ! empty( $main['width']['value'] ) ) { ?> width: <?php esc_attr_e( "{$main['width']['value']}{$main['width']['unit']}" ) ?>!important;<?php } ?>
+		<?php if ( ! empty( $main['height']['value'] ) ) { ?> height: <?php esc_attr_e( "{$main['height']['value']}{$main['height']['unit']}" ) ?>;<?php } ?>
+		<?php if ( ! empty( $font['color'] ) ) { ?> color: <?php esc_attr_e( $font['color'] ); ?>;<?php } ?>
+		<?php if ( ! empty( $font['text_align'] ) ) { ?> text-align: <?php esc_attr_e( $font['text_align'] ); ?>;<?php } ?>
 		<?php if ( $font['font_family'] !== 'inherit' ) { ?> font-family: <?php esc_attr_e( $font['font_family'] ); ?>;<?php } ?>
 		<?php if ( $font['font_style'] !== 'inherit' ) { ?> font-style: <?php esc_attr_e( $font['font_style'] ); ?>;<?php } ?>
-		<?php if ( $font['font_weight'] !== '' ) { ?> font-weight: <?php esc_attr_e( $font['font_weight'] ); ?>;<?php } ?>
-		<?php if ( $font['font_size']['value'] !== '' ) { ?> font-size: <?php esc_attr_e( "{$font['font_size']['value']}{$font['font_size']['unit']}" ) ?>; <?php } ?>
-		<?php if ( $font['letter_spacing'] !== '' ) { ?> letter-spacing: <?php esc_attr_e( $font['letter_spacing'] ); ?>em;<?php } ?>
-		<?php if ( $border_top['style'] !== 'none' && $border_top['color'] !== '' ) { ?> border-top: <?php esc_attr_e( "{$border_top['width']}px {$border_top['style']} {$border_top['color']}" ) ?>; <?php } ?>
-		<?php if ( $border_bottom['style'] !== 'none' && $border_bottom['color'] !== '' ) { ?> border-bottom: <?php esc_attr_e( "{$border_bottom['width']}px {$border_bottom['style']} {$border_bottom['color']}" ) ?>; <?php } ?>
-		<?php if ( $border_left['style'] !== 'none' && $border_left['color'] !== '' ) { ?> border-left: <?php esc_attr_e( "{$border_left['width']}px {$border_left['style']} {$border_left['color']}" ) ?>; <?php } ?>
-		<?php if ( $border_right['style'] !== 'none' && $border_right['color'] !== '' ) { ?> border-right: <?php esc_attr_e( "{$border_right['width']}px {$border_right['style']} {$border_right['color']}" ) ?>; <?php } ?>
-		<?php if ( $radius['value'] !== '' ) { ?> border-radius: <?php esc_attr_e( "{$radius['value']}{$radius['unit']}" ) ?>; <?php } ?>
-		<?php if ( $padding['top'] !== '' ) { ?> padding-top: <?php esc_attr_e( "{$padding['top']}{$padding['unit']}" ) ?>; <?php } ?>
-		<?php if ( $padding['bottom'] !== '' ) { ?> padding-bottom: <?php esc_attr_e( "{$padding['bottom']}{$padding['unit']}" ) ?>; <?php } ?>
-		<?php if ( $padding['left'] !== '' ) { ?> padding-left: <?php esc_attr_e( "{$padding['left']}{$padding['unit']}" ) ?>; <?php } ?>
-		<?php if ( $padding['right'] !== '' ) { ?> padding-right: <?php esc_attr_e( "{$padding['right']}{$padding['unit']}" ) ?>; <?php } ?>
+		<?php if ( ! empty( $font['font_weight'] ) ) { ?> font-weight: <?php esc_attr_e( $font['font_weight'] ); ?>;<?php } ?>
+		<?php if ( ! empty( $font['font_size']['value'] ) ) { ?> font-size: <?php esc_attr_e( "{$font['font_size']['value']}{$font['font_size']['unit']}" ) ?>; <?php } ?>
+		<?php if ( ! empty( $font['letter_spacing'] ) ) { ?> letter-spacing: <?php esc_attr_e( $font['letter_spacing'] ); ?>em;<?php } ?>
+		<?php if ( $border_top['style'] !== 'none' && ! empty( $border_top['color'] ) ) { ?> border-top: <?php esc_attr_e( "{$border_top['width']}px {$border_top['style']} {$border_top['color']}" ) ?>; <?php } ?>
+		<?php if ( $border_bottom['style'] !== 'none' && ! empty( $border_bottom['color'] ) ) { ?> border-bottom: <?php esc_attr_e( "{$border_bottom['width']}px {$border_bottom['style']} {$border_bottom['color']}" ) ?>; <?php } ?>
+		<?php if ( $border_left['style'] !== 'none' && ! empty( $border_left['color'] ) ) { ?> border-left: <?php esc_attr_e( "{$border_left['width']}px {$border_left['style']} {$border_left['color']}" ) ?>; <?php } ?>
+		<?php if ( $border_right['style'] !== 'none' && ! empty( $border_right['color'] ) ) { ?> border-right: <?php esc_attr_e( "{$border_right['width']}px {$border_right['style']} {$border_right['color']}" ) ?>; <?php } ?>
+		<?php if ( ! empty( $radius['value'] ) ) { ?> border-radius: <?php esc_attr_e( "{$radius['value']}{$radius['unit']}" ) ?>; <?php } ?>
+		<?php if ( ! empty( $padding['top'] ) ) { ?> padding-top: <?php esc_attr_e( "{$padding['top']}{$padding['unit']}" ) ?>; <?php } ?>
+		<?php if ( ! empty( $padding['bottom'] ) ) { ?> padding-bottom: <?php esc_attr_e( "{$padding['bottom']}{$padding['unit']}" ) ?>; <?php } ?>
+		<?php if ( ! empty( $padding['left'] ) ) { ?> padding-left: <?php esc_attr_e( "{$padding['left']}{$padding['unit']}" ) ?>; <?php } ?>
+		<?php if ( ! empty( $padding['right'] ) ) { ?> padding-right: <?php esc_attr_e( "{$padding['right']}{$padding['unit']}" ) ?>; <?php } ?>
         }
 
 		<?php
@@ -460,6 +650,8 @@ class Uni_Cpo_Option_Text_Input extends Uni_Cpo_Option implements Uni_Cpo_Option
 
 		if ( ! empty( $form_data[ $post_name ] ) ) {
 			$price = $this->get_cpo_rate();
+			$count = mb_strlen( $form_data[ $post_name ] );
+			$count_no_spaces = mb_strlen( preg_replace('/\s+/', '', $form_data[ $post_name ] ) );
 			if ( ! empty( $price ) ) {
 				return array(
 					$post_name                   => array(
@@ -468,14 +660,14 @@ class Uni_Cpo_Option_Text_Input extends Uni_Cpo_Option implements Uni_Cpo_Option
 						'order_meta' => $form_data[ $post_name ]
 					),
 					$post_name . '_count'        => array(
-						'calc'       => intval( $form_data[ $post_name ] ),
-						'cart_meta'  => intval( $form_data[ $post_name ] ),
-						'order_meta' => intval( $form_data[ $post_name ] )
+						'calc'       => $count,
+						'cart_meta'  => $count,
+						'order_meta' => $count
 					),
 					$post_name . '_count_spaces' => array(
-						'calc'       => intval( $form_data[ $post_name ] ),
-						'cart_meta'  => intval( $form_data[ $post_name ] ),
-						'order_meta' => intval( $form_data[ $post_name ] )
+						'calc'       => $count_no_spaces,
+						'cart_meta'  => $count_no_spaces,
+						'order_meta' => $count_no_spaces
 					)
 				);
 			} else {
@@ -486,14 +678,14 @@ class Uni_Cpo_Option_Text_Input extends Uni_Cpo_Option implements Uni_Cpo_Option
 						'order_meta' => $form_data[ $post_name ]
 					),
 					$post_name . '_count'        => array(
-						'calc'       => intval( $form_data[ $post_name ] ),
-						'cart_meta'  => intval( $form_data[ $post_name ] ),
-						'order_meta' => intval( $form_data[ $post_name ] )
+						'calc'       => $count,
+						'cart_meta'  => $count,
+						'order_meta' => $count
 					),
 					$post_name . '_count_spaces' => array(
-						'calc'       => intval( $form_data[ $post_name ] ),
-						'cart_meta'  => intval( $form_data[ $post_name ] ),
-						'order_meta' => intval( $form_data[ $post_name ] )
+						'calc'       => $count_no_spaces,
+						'cart_meta'  => $count_no_spaces,
+						'order_meta' => $count_no_spaces
 					)
 				);
 			}
@@ -506,13 +698,13 @@ class Uni_Cpo_Option_Text_Input extends Uni_Cpo_Option implements Uni_Cpo_Option
 				),
 				$post_name . '_count'        => array(
 					'calc'       => 0,
-					'cart_meta'  => '',
-					'order_meta' => ''
+					'cart_meta'  => 0,
+					'order_meta' => 0
 				),
 				$post_name . '_count_spaces' => array(
 					'calc'       => 0,
-					'cart_meta'  => '',
-					'order_meta' => ''
+					'cart_meta'  => 0,
+					'order_meta' => 0
 				)
 			);
 		}
