@@ -18,6 +18,12 @@ class Uni_Cpo_Plugin_Settings {
 		$this->assets_dir    = trailingslashit( $this->dir ) . 'assets';
 		$this->assets_url    = esc_url( trailingslashit( plugins_url( '/assets/', $this->file ) ) );
 		$this->settings_base = 'uni_cpo_settings_general';
+		$this->exclude_from_free = array(
+			'ajax_add_to_cart',
+			'product_image_size',
+			'display_weight_in_cart',
+			'file_upload'
+		);
 
 		// Initialise settings
 		add_action( 'admin_init', array( $this, 'init' ) );
@@ -54,7 +60,6 @@ class Uni_Cpo_Plugin_Settings {
 			array( $this, 'settings_page' )
 		);
 		add_action( 'admin_print_styles-' . $page, array( $this, 'settings_assets' ) );
-
 	}
 
 	/**
@@ -66,12 +71,12 @@ class Uni_Cpo_Plugin_Settings {
 		wp_enqueue_script( 'farbtastic' );
 		wp_enqueue_media();
 		wp_register_script(
-			'uni-cpo-admin-js',
-			$this->assets_url . 'js/uni-cpo-admin.js',
+			'unicpo-admin-js',
+			$this->assets_url . 'js/admin.js',
 			array( 'farbtastic', 'jquery' ),
-			'1.0.0'
+			UNI_CPO_VERSION
 		);
-		wp_enqueue_script( 'uni-cpo-admin-js' );
+		wp_enqueue_script( 'unicpo-admin' );
 	}
 
 	/**
@@ -99,6 +104,13 @@ class Uni_Cpo_Plugin_Settings {
 			'description' => '',
 			'fields'      => array(
 				array(
+					'id'          => 'ajax_add_to_cart',
+					'label'       => __( 'Using AJAX for adding to the cart', 'uni-cpo' ),
+					'description' => __( 'This option enables adding to cart via AJAX for all the products which use custom options and price calculation.', 'uni-cpo' ),
+					'type'        => 'checkbox',
+					'default'     => ''
+				),
+				array(
 					'id'          => 'product_price_container',
 					'label'       => __( 'Custom selector (id/class) for a product price html tag', 'uni-cpo' ),
 					'description' => __( 'By default, the selector for a product price html tag is ".summary.entry-summary .price > .amount, .summary.entry-summary .price ins .amount". However, the actual html markup of this block depends on the theme and you may need to define yours custom selector.', 'uni-cpo' ),
@@ -113,6 +125,69 @@ class Uni_Cpo_Plugin_Settings {
 					'type'        => 'text',
 					'default'     => '',
 					'placeholder' => __( 'CSS selector', 'uni-cpo' )
+				),
+				array(
+					'id'          => 'product_image_size',
+					'label'       => __( 'Image size that is used for single product main image', 'uni-cpo' ),
+					'description' => __( 'By default, this is "shop_single". However the actual thumbnail size used depends on the theme and you may need to choose the correct one. This setting works in conjuction with the previous one and it is important to choose proper image size, so it will be used whenever a customer selects new option in a dropdown option or image select option with an image added to this chosen option.', 'uni-cpo' ),
+					'type'        => 'select',
+					'options'     => uni_cpo_get_image_sizes_list(),
+					'default'     => 'shop_single'
+				),
+				array(
+					'id'          => 'display_weight_in_cart',
+					'label'       => __( 'Display weight in the cart', 'uni-cpo' ),
+					'description' => __( 'This option enables displaying weight in the cart.', 'uni-cpo' ),
+					'type'        => 'checkbox',
+					'default'     => ''
+				),
+			)
+		);
+
+		$settings['file_upload'] = array(
+			'title'       => __( 'File upload settings', 'uni-cpo' ),
+			'description' => '',
+			'fields'      => array(
+				array(
+					'id'          => 'max_file_size',
+					'label'       => __( 'Upload max file size (Mb)', 'uni-cpo' ),
+					'description' => __( 'Global option: max file size that is allowed to be uploaded through File Upload option. Default is 2Mb.', 'uni-cpo' ),
+					'type'        => 'text',
+					'default'     => '',
+					'placeholder' => __( '2', 'uni-cpo' )
+				),
+				array(
+					'id'          => 'mime_type',
+					'label'       => __( 'Allowed mime types', 'uni-cpo' ),
+					'description' => __( 'Global option: a comma separated list of allowed mime types as extension names. Default is: "jpg,zip". Important: file types defined here still must comply with allowed MIME types by WP itself. More info here: https://codex.wordpress.org/Function_Reference/get_allowed_mime_types', 'uni-cpo' ),
+					'type'        => 'text',
+					'default'     => '',
+					'placeholder' => __( 'jpg,zip', 'uni-cpo' )
+				),
+				array(
+					'id'          => 'file_storage',
+					'label'       => __( 'Files storage', 'uni-cpo' ),
+					'description' => __( 'Local is a default value', 'uni-cpo' ),
+					'type'        => 'select',
+					'options'     => array(
+						'local' => __( 'Local', 'uni-cpo' )
+					),
+					'default'     => 'local'
+				),
+				array(
+					'id'          => 'custom_path_enable',
+					'label'       => __( 'Enables custom local folder for file uploads', 'uni-cpo' ),
+					'description' => __( 'By default, all the files are handled by the standard WP functions and are stored in the same as any regular attachments. This setting is called to separate file uploads via the plugin\'s File Upload option from regular attachments and store them in different folder with custom folders structure.', 'uni-cpo' ),
+					'type'        => 'checkbox',
+					'default'     => ''
+				),
+				array(
+					'id'          => 'custom_path',
+					'label'       => __( 'Define custom folders structure for file uploads', 'uni-cpo' ),
+					'description' => __( 'This setting works only if a custom local folder is enabled. The path always starts in the standard "uploads" folder. {{{POST_ID}}} and {{{DATE}}} variables may be used folders structure scheme.', 'uni-cpo' ),
+					'type'        => 'text',
+					'default'     => '',
+					'placeholder' => __( 'cpo-uploads/{{{POST_ID}}}/{{{DATE}}}', 'uni-cpo' )
 				)
 			)
 		);
@@ -128,7 +203,14 @@ class Uni_Cpo_Plugin_Settings {
 	 */
 	public function register_settings() {
 		if ( is_array( $this->settings ) ) {
+
 			foreach ( $this->settings as $section => $data ) {
+
+				if ( unicpo_fs()->is_not_paying() ) {
+					if ( in_array( $section, $this->exclude_from_free ) ) {
+						continue;
+					}
+				}
 
 				// Add section to page
 				add_settings_section(
@@ -139,6 +221,12 @@ class Uni_Cpo_Plugin_Settings {
 				);
 
 				foreach ( $data['fields'] as $field ) {
+
+					if ( unicpo_fs()->is_not_paying() ) {
+						if ( in_array( $field['id'], $this->exclude_from_free ) ) {
+							continue;
+						}
+					}
 
 					// Validation callback for field
 					$validation = '';
@@ -181,7 +269,7 @@ class Uni_Cpo_Plugin_Settings {
 
 		$html = '';
 
-		$option = get_option( 'uni_cpo_settings_general', UniCpo()->default_settings() );
+		$option = UniCpo()->get_settings();
 
 		$option_name = $this->settings_base . '[' . $field['id'] . ']';
 		$data        = '';
@@ -210,7 +298,7 @@ class Uni_Cpo_Plugin_Settings {
 
 			case 'checkbox':
 				$checked = '';
-				if ( $option && 'on' == $option ) {
+				if ( $data && 'on' == $data ) {
 					$checked = 'checked="checked"';
 				}
 				$html .= '<input id="' . esc_attr( $field['id'] ) . '" type="' . $field['type'] . '" name="' . esc_attr( $option_name ) . '" ' . $checked . '/>' . "\n";
@@ -274,9 +362,10 @@ class Uni_Cpo_Plugin_Settings {
 			case 'color':
 				?>
                 <div class="color-picker" style="position:relative;">
-                <input type="text" name="<?php esc_attr_e( $option_name ); ?>" class="color"
-                       value="<?php esc_attr_e( $data ); ?>"/>
-                <div style="position:absolute;background:#FFF;z-index:99;border-radius:100%;" class="colorpicker"></div>
+                    <input type="text" name="<?php esc_attr_e( $option_name ); ?>" class="color"
+                           value="<?php esc_attr_e( $data ); ?>"/>
+                    <div style="position:absolute;background:#FFF;z-index:99;border-radius:100%;"
+                         class="colorpicker"></div>
                 </div>
 				<?php
 				break;
@@ -330,6 +419,11 @@ class Uni_Cpo_Plugin_Settings {
 		$html .= '<li><a class="tab all current" href="#all">' . __( 'All', 'uni-cpo' ) . '</a></li>' . "\n";
 
 		foreach ( $this->settings as $section => $data ) {
+			if ( unicpo_fs()->is_not_paying() ) {
+				if ( in_array( $section, $this->exclude_from_free ) ) {
+					continue;
+				}
+			}
 			$html .= '<li>| <a class="tab" href="#' . $section . '">' . $data['title'] . '</a></li>' . "\n";
 		}
 

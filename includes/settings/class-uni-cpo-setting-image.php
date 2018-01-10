@@ -51,7 +51,8 @@ class Uni_Cpo_Setting_Image extends Uni_Cpo_Setting implements Uni_Cpo_Setting_I
 			                ),
 			                'preview'           => '{{- data.url }}',
 			                'alt'               => '{{- data.alt }}',
-			                'value'             => '{{- data.id }}'
+			                'value'             => '{{- data.id }}',
+			                'js_var'            => 'data.url'
 		                )
 	                );
 	                ?>

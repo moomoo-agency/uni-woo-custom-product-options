@@ -4,9 +4,9 @@
  *
  * Functions for formatting data.
  *
- * @author 		MooMoo
- * @category 	Core
- * @package 	UniCpo/Functions
+ * @author        MooMoo
+ * @category    Core
+ * @package    UniCpo/Functions
  * @version     4.0.0
  */
 
@@ -17,7 +17,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Clean variables using sanitize_text_field. Arrays are cleaned recursively.
  * Non-scalar values are ignored.
+ *
  * @param string|array $var
+ *
  * @return string|array
  */
 function uni_cpo_clean( $var ) {
@@ -31,7 +33,9 @@ function uni_cpo_clean( $var ) {
 /**
  * Run uni_cpo_clean over posted textarea but maintain line breaks.
  * @since  4.0.0
+ *
  * @param string $var
+ *
  * @return string
  */
 function uni_cpo_sanitize_textarea( $var ) {
@@ -57,274 +61,281 @@ function uni_cpo_get_allowed_tags() {
 			'ol'     => array(),
 			'p'      => array(),
 			'img'    => array(
-				'src' => array(),
-				'width' => array(),
-				'height' => array()
+				'alt'      => true,
+				'align'    => false,
+				'border'   => false,
+				'height'   => true,
+				'hspace'   => false,
+				'longdesc' => false,
+				'vspace'   => false,
+				'src'      => true,
+				'usemap'   => false,
+				'width'    => true,
 			)
 		),
-		'text' => array(
-			'address' => array(),
-			'a' => array(
-				'href' => true,
-				'rel' => true,
-				'rev' => true,
-				'name' => true,
+		'text'    => array(
+			'address'    => array(),
+			'a'          => array(
+				'href'   => true,
+				'rel'    => true,
+				'rev'    => true,
+				'name'   => true,
 				'target' => true,
 			),
-			'abbr' => array(),
-			'acronym' => array(),
-			'audio' => array(
+			'abbr'       => array(),
+			'acronym'    => array(),
+			'audio'      => array(
 				'autoplay' => true,
 				'controls' => true,
-				'loop' => true,
-				'muted' => true,
-				'preload' => true,
-				'src' => true,
+				'loop'     => true,
+				'muted'    => true,
+				'preload'  => true,
+				'src'      => true,
 			),
-			'b' => array(),
-			'bdo' => array(
+			'b'          => array(),
+			'bdo'        => array(
 				'dir' => true,
 			),
-			'big' => array(),
+			'big'        => array(),
 			'blockquote' => array(
-				'cite' => true,
-				'lang' => true,
+				'cite'     => true,
+				'lang'     => true,
 				'xml:lang' => true,
 			),
-			'br' => array(),
-			'button' => array(
+			'br'         => array(),
+			'button'     => array(
 				'disabled' => true,
-				'name' => true,
-				'type' => true,
-				'value' => true,
+				'name'     => true,
+				'type'     => true,
+				'value'    => true,
 			),
-			'caption' => array(
+			'caption'    => array(
 				'align' => true,
 			),
-			'cite' => array(
-				'dir' => true,
+			'cite'       => array(
+				'dir'  => true,
 				'lang' => true,
 			),
-			'code' => array(),
-			'col' => array(
-				'align' => true,
-				'char' => true,
+			'code'       => array(),
+			'col'        => array(
+				'align'   => true,
+				'char'    => true,
 				'charoff' => true,
-				'span' => true,
-				'dir' => true,
-				'valign' => true,
-				'width' => true,
+				'span'    => true,
+				'dir'     => true,
+				'valign'  => true,
+				'width'   => true,
 			),
-			'colgroup' => array(
-				'align' => true,
-				'char' => true,
+			'colgroup'   => array(
+				'align'   => true,
+				'char'    => true,
 				'charoff' => true,
-				'span' => true,
-				'valign' => true,
-				'width' => true,
+				'span'    => true,
+				'valign'  => true,
+				'width'   => true,
 			),
-			'del' => array(
+			'del'        => array(
 				'datetime' => true,
 			),
-			'dd' => array(),
-			'dfn' => array(),
-			'details' => array(
-				'align' => true,
-				'dir' => true,
-				'lang' => true,
-				'open' => true,
+			'dd'         => array(),
+			'dfn'        => array(),
+			'details'    => array(
+				'align'    => true,
+				'dir'      => true,
+				'lang'     => true,
+				'open'     => true,
 				'xml:lang' => true,
 			),
-			'dl' => array(),
-			'dt' => array(),
-			'em' => array(),
-			'figure' => array(
-				'align' => true,
-				'dir' => true,
-				'lang' => true,
+			'dl'         => array(),
+			'dt'         => array(),
+			'em'         => array(),
+			'figure'     => array(
+				'align'    => true,
+				'dir'      => true,
+				'lang'     => true,
 				'xml:lang' => true,
 			),
 			'figcaption' => array(
-				'align' => true,
-				'dir' => true,
-				'lang' => true,
+				'align'    => true,
+				'dir'      => true,
+				'lang'     => true,
 				'xml:lang' => true,
 			),
-			'font' => array(
+			'font'       => array(
 				'color' => true,
-				'face' => true,
-				'size' => true,
+				'face'  => true,
+				'size'  => true,
 			),
-			'h1' => array(
+			'h1'         => array(
 				'align' => true,
 			),
-			'h2' => array(
+			'h2'         => array(
 				'align' => true,
 			),
-			'h3' => array(
+			'h3'         => array(
 				'align' => true,
 			),
-			'h4' => array(
+			'h4'         => array(
 				'align' => true,
 			),
-			'h5' => array(
+			'h5'         => array(
 				'align' => true,
 			),
-			'h6' => array(
+			'h6'         => array(
 				'align' => true,
 			),
-			'hr' => array(
-				'align' => true,
+			'hr'         => array(
+				'align'   => true,
 				'noshade' => true,
-				'size' => true,
-				'width' => true,
+				'size'    => true,
+				'width'   => true,
 			),
-			'i' => array(),
-			'img' => array(
-				'alt' => true,
-				'align' => true,
-				'border' => true,
-				'height' => true,
-				'hspace' => true,
+			'i'          => array(),
+			'img'        => array(
+				'alt'      => true,
+				'align'    => true,
+				'border'   => true,
+				'height'   => true,
+				'hspace'   => true,
 				'longdesc' => true,
-				'vspace' => true,
-				'src' => true,
-				'usemap' => true,
-				'width' => true,
+				'vspace'   => true,
+				'src'      => true,
+				'usemap'   => true,
+				'width'    => true,
 			),
-			'ins' => array(
+			'ins'        => array(
 				'datetime' => true,
-				'cite' => true,
+				'cite'     => true,
 			),
-			'kbd' => array(),
-			'li' => array(
+			'kbd'        => array(),
+			'li'         => array(
 				'align' => true,
 				'value' => true,
 			),
-			'mark' => array(),
-			'q' => array(
+			'mark'       => array(),
+			'q'          => array(
 				'cite' => true,
 			),
-			'p' => array(
+			'p'          => array(
 				'class' => array()
 			),
-			's' => array(),
-			'samp' => array(),
-			'span' => array(
-				'dir' => true,
-				'align' => true,
-				'lang' => true,
+			's'          => array(),
+			'samp'       => array(),
+			'span'       => array(
+				'dir'      => true,
+				'align'    => true,
+				'lang'     => true,
 				'xml:lang' => true,
 			),
-			'small' => array(),
-			'strike' => array(),
-			'strong' => array(),
-			'sub' => array(),
-			'summary' => array(
-				'align' => true,
-				'dir' => true,
-				'lang' => true,
+			'small'      => array(),
+			'strike'     => array(),
+			'strong'     => array(),
+			'sub'        => array(),
+			'summary'    => array(
+				'align'    => true,
+				'dir'      => true,
+				'lang'     => true,
 				'xml:lang' => true,
 			),
-			'sup' => array(),
-			'table' => array(
-				'align' => true,
-				'bgcolor' => true,
-				'border' => true,
+			'sup'        => array(),
+			'table'      => array(
+				'align'       => true,
+				'bgcolor'     => true,
+				'border'      => true,
 				'cellpadding' => true,
 				'cellspacing' => true,
-				'dir' => true,
-				'rules' => true,
-				'summary' => true,
-				'width' => true,
+				'dir'         => true,
+				'rules'       => true,
+				'summary'     => true,
+				'width'       => true,
 			),
-			'tbody' => array(
-				'align' => true,
-				'char' => true,
+			'tbody'      => array(
+				'align'   => true,
+				'char'    => true,
 				'charoff' => true,
-				'valign' => true,
+				'valign'  => true,
 			),
-			'td' => array(
-				'abbr' => true,
-				'align' => true,
-				'axis' => true,
+			'td'         => array(
+				'abbr'    => true,
+				'align'   => true,
+				'axis'    => true,
 				'bgcolor' => true,
-				'char' => true,
+				'char'    => true,
 				'charoff' => true,
 				'colspan' => true,
-				'dir' => true,
+				'dir'     => true,
 				'headers' => true,
-				'height' => true,
-				'nowrap' => true,
+				'height'  => true,
+				'nowrap'  => true,
 				'rowspan' => true,
-				'scope' => true,
-				'valign' => true,
-				'width' => true,
+				'scope'   => true,
+				'valign'  => true,
+				'width'   => true,
 			),
-			'tfoot' => array(
-				'align' => true,
-				'char' => true,
+			'tfoot'      => array(
+				'align'   => true,
+				'char'    => true,
 				'charoff' => true,
-				'valign' => true,
+				'valign'  => true,
 			),
-			'th' => array(
-				'abbr' => true,
-				'align' => true,
-				'axis' => true,
+			'th'         => array(
+				'abbr'    => true,
+				'align'   => true,
+				'axis'    => true,
 				'bgcolor' => true,
-				'char' => true,
+				'char'    => true,
 				'charoff' => true,
 				'colspan' => true,
 				'headers' => true,
-				'height' => true,
-				'nowrap' => true,
+				'height'  => true,
+				'nowrap'  => true,
 				'rowspan' => true,
-				'scope' => true,
-				'valign' => true,
-				'width' => true,
+				'scope'   => true,
+				'valign'  => true,
+				'width'   => true,
 			),
-			'thead' => array(
-				'align' => true,
-				'char' => true,
+			'thead'      => array(
+				'align'   => true,
+				'char'    => true,
 				'charoff' => true,
-				'valign' => true,
+				'valign'  => true,
 			),
-			'title' => array(),
-			'tr' => array(
-				'align' => true,
+			'title'      => array(),
+			'tr'         => array(
+				'align'   => true,
 				'bgcolor' => true,
-				'char' => true,
+				'char'    => true,
 				'charoff' => true,
-				'valign' => true,
+				'valign'  => true,
 			),
-			'track' => array(
+			'track'      => array(
 				'default' => true,
-				'kind' => true,
-				'label' => true,
-				'src' => true,
+				'kind'    => true,
+				'label'   => true,
+				'src'     => true,
 				'srclang' => true,
 			),
-			'tt' => array(),
-			'u' => array(),
-			'ul' => array(
+			'tt'         => array(),
+			'u'          => array(),
+			'ul'         => array(
 				'type' => true,
 			),
-			'ol' => array(
-				'start' => true,
-				'type' => true,
+			'ol'         => array(
+				'start'    => true,
+				'type'     => true,
 				'reversed' => true,
 			),
-			'var' => array(),
-			'video' => array(
+			'var'        => array(),
+			'video'      => array(
 				'autoplay' => true,
 				'controls' => true,
-				'height' => true,
-				'loop' => true,
-				'muted' => true,
-				'poster' => true,
-				'preload' => true,
-				'src' => true,
-				'width' => true,
+				'height'   => true,
+				'loop'     => true,
+				'muted'    => true,
+				'poster'   => true,
+				'preload'  => true,
+				'src'      => true,
+				'width'    => true,
 			)
 		)
 	);
@@ -334,23 +345,29 @@ function uni_cpo_get_allowed_tags() {
  * Sanitize a string destined to be a tooltip.
  *
  * @since 4.0.0 Tooltips are encoded with htmlspecialchars to prevent XSS. Should not be used in conjunction with esc_attr()
+ *
  * @param string $var
+ *
  * @return string
  */
 function uni_cpo_sanitize_tooltip( $var ) {
 	$allowed_tags = uni_cpo_get_allowed_tags();
-	return htmlspecialchars( wp_kses( html_entity_decode( $var ), $allowed_tags['tooltip'] ) );
+	$var = str_replace('"', "'", $var);
+	return wp_kses( html_entity_decode( $var ), $allowed_tags['tooltip'] );
 }
 
 /**
  * Sanitize a text destined to be outputted from Text module.
  *
  * @since 4.0.0
+ *
  * @param string $var
+ *
  * @return string
  */
 function uni_cpo_sanitize_text( $var ) {
 	$allowed_tags = uni_cpo_get_allowed_tags();
+
 	return wp_kses( html_entity_decode( $var ), $allowed_tags['text'] );
 }
 
@@ -358,7 +375,9 @@ function uni_cpo_sanitize_text( $var ) {
  * Sanitize a cart label.
  *
  * @since 4.0.0
+ *
  * @param string $var
+ *
  * @return string
  */
 function uni_cpo_sanitize_label( $var ) {

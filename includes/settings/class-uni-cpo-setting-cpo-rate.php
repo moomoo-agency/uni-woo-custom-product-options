@@ -25,7 +25,7 @@ class Uni_Cpo_Setting_Cpo_Rate extends Uni_Cpo_Setting implements Uni_Cpo_Settin
                 Or leave it blank if you need just an information added by the user.', 'uni-cpo' ),
 			'desc_tip_warning'   => __( 'Important to save to DB if modified', 'uni-cpo' ),
 			'custom_attributes'  => array(
-				'data-parsley-pattern' => '/^(\d+(?:[\.]\d{0,4})?)$/',
+				'data-parsley-pattern' => '/^[\-]{0,1}(\d+(?:[\.]\d{0,4})?)$/',
 			),
 			'class'              => array( 'js-cpo-rate-field' ),
 			'value'              => '{{- data }}'

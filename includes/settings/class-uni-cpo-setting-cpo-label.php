@@ -20,9 +20,7 @@ class Uni_Cpo_Setting_Cpo_Label extends Uni_Cpo_Setting implements Uni_Cpo_Setti
 		$this->setting_data = array(
 			'title'      => __( 'Label text', 'uni-cpo' ),
 			'is_tooltip' => true,
-			'desc_tip'   => __( 'Custom text that will be used for this field as its title on the product page and 
-                as the cart/order item\'s option\'s title. Leave it blank and there will not be a title for 
-                this field and the option\'s slug will be used as a title for cart / order item', 'uni-cpo' ),
+			'desc_tip'   => __( 'Custom text that will be used for this field as its title on the product page and as the cart/order item\'s option\'s title. Leave it blank and there will not be a title for this field and the option\'s slug will be used as a title for cart / order item', 'uni-cpo' ),
 			'value'      => '{{- data }}'
 		);
 		add_action( 'wp_footer', array( $this, 'js_template' ), 10 );

@@ -14,7 +14,7 @@ class Uni_Cpo_Option_Data_Store_CPT extends Uni_Cpo_Data_Store_WP
 	/**
 	 * Data stored in meta keys, but not considered "meta".
 	 *
-	 * @since 3.0.0
+	 * @since 4.0.0
 	 * @var array
 	 */
 	protected $internal_meta_keys = array();
@@ -225,6 +225,7 @@ class Uni_Cpo_Option_Data_Store_CPT extends Uni_Cpo_Data_Store_WP
 			'advanced'        => get_post_meta( $id, '_advanced', true ),
 			'cpo_general'     => get_post_meta( $id, '_cpo_general', true ),
 			'cpo_conditional' => get_post_meta( $id, '_cpo_conditional', true ),
+			'cpo_validation'  => get_post_meta( $id, '_cpo_validation', true ),
 		) );
 	}
 
@@ -255,6 +256,7 @@ class Uni_Cpo_Option_Data_Store_CPT extends Uni_Cpo_Data_Store_WP
 			'_advanced'        => 'advanced',
 			'_cpo_general'     => 'cpo_general',
 			'_cpo_conditional' => 'cpo_conditional',
+			'_cpo_validation'  => 'cpo_validation',
 		);
 
 		// Make sure to take extra data (like product url or text for external products) into account.

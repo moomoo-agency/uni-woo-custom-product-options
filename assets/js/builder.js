@@ -132,14 +132,15 @@
             Builderius._initClasses();
             Builderius._resetListOfVars();
 
-            const builderMod      = new Builderius.Models.BuilderModel({
-                autosaveData: Builderius._autosaveGetData(),
-                formulaData:  builderiusCfg.product.formula_data,
-                id:           builderiusCfg.product.id,
-                novData:      builderiusCfg.product.nov_data,
-                settingsData: builderiusCfg.product.settings_data,
-                weightData:   builderiusCfg.product.weight_data,
-                uri:          builderiusCfg.product.uri,
+            const builderMod = new Builderius.Models.BuilderModel({
+                autosaveData:  Builderius._autosaveGetData(),
+                discountsData: builderiusCfg.product.discounts_data,
+                formulaData:   builderiusCfg.product.formula_data,
+                id:            builderiusCfg.product.id,
+                novData:       builderiusCfg.product.nov_data,
+                settingsData:  builderiusCfg.product.settings_data,
+                weightData:    builderiusCfg.product.weight_data,
+                uri:           builderiusCfg.product.uri,
             });
             Builderius.builderCol = new Builderius.Collections.BuilderCollection();
             Builderius.builderCol.add(builderMod);
@@ -159,7 +160,11 @@
             }
 
             Builderius._initSortables();
-            Builderius._initTooltip( $('#uni-builder-panel'), 'left bottom', 'left top-10' );
+            if ( $('#uni-builder-panel').hasClass('uni-panel-left') ) {
+                Builderius._initTooltip( $('#uni-builder-panel'), 'left bottom', 'left top-10' );
+            } else {
+                Builderius._initTooltip( $('#uni-builder-panel'), 'right bottom', 'right top-10' );
+            }
             Builderius._showRevHistory();
         },
 
@@ -182,86 +187,64 @@
          * @since 4.0.0
          * @access private
          * @method _initSortables
-         */
-        _initSortables: function () {
+         */        
+        _initSortables: function(){
             const defaults = {
-                ghostClass:  'builderius-drop-zone',
-                chosenClass: 'uni-sortable-item-chosen',
-                onStart:     Builderius._itemDragStart
+                appendTo: document.body,
+                cursor: 'move',
+                cursorAt: {
+                    left: 0,
+                    top: 20
+                },
+                scrollSensitivity: 100,
+                placeholder: "uni-builder-drop-zone",
+                over: Builderius._itemOver,
+                out: Builderius._itemOut,
+                beforeStop: Builderius._itemBeforeStop,
+                start : Builderius._itemDragStart,
+                stop: Builderius._itemDragStop,
+                helper: Builderius._itemDragHelper
             };
-            Sortable.create(Builderius.getElById('uni-builder-panel-module'), $.extend({}, defaults, {
-                group:     {
-                    name: 'panelRowsGroup',
-                    pull: 'clone',
-                    put:  false
-                },
-                sort:      false,
-                draggable: '.js-panel-block-type-row',
-                onEnd:     Builderius._itemDragStop
-            }));
-            Sortable.create(Builderius.getElById('uni-builder-panel-module'), $.extend({}, defaults, {
-                group:     {
-                    name: 'panelColumnsGroup',
-                    pull: 'clone',
-                    put:  false
-                },
-                sort:      false,
-                draggable: '.js-panel-block-type-column',
-                onEnd:     Builderius._itemDragStop
-            }));
-            Sortable.create(Builderius.getElById('uni-builder-panel-module'), $.extend({}, defaults, {
-                group:     {
-                    name: 'panelModulesGroup',
-                    pull: 'clone',
-                    put:  false
-                },
-                sort:      false,
-                draggable: '.js-panel-block-type-module',
-                onEnd:     Builderius._itemDragStop
-            }));
-            Sortable.create(Builderius.getElById('uni-builder-panel-option'), $.extend({}, defaults, {
-                group:     {
-                    name: 'panelOptionsGroup',
-                    pull: 'clone',
-                    put:  false
-                },
-                sort:      false,
-                draggable: '.js-panel-block-type-option',
-                onEnd:     Builderius._itemDragStop
-            }));
 
-            // Main wrapper
-            Sortable.create(Builderius.getElById(Builderius._builderId.substring(1)), $.extend({}, defaults, {
-                group:  {
-                    name: 'rowsGroup',
-                    pull: true,
-                    put:  ['panelRowsGroup']
-                },
-                handle: '.js-uni-row-move',
-                onEnd:  Builderius._itemDragStop
+            // Panel row
+            $('.uni-builder-panel-row-items').sortable($.extend({}, defaults, {
+                connectWith: $(Builderius._builderId),
+                items: '.js-panel-block-type-row'
             }));
-            [].forEach.call(Builderius.getElById(Builderius._builderId.substring(1)).getElementsByClassName('uni-row-content'), (el) => {
-                Sortable.create(el, $.extend({}, defaults, {
-                    group:  {
-                        name: 'colsGroup',
-                        pull: true,
-                        put:  ['panelColumnsGroup', 'colsGroup']
-                    },
-                    handle: '.js-uni-col-move',
-                    onEnd:  Builderius._itemDragStop
-                }));
-            });
-            [].forEach.call(Builderius.getElById(Builderius._builderId.substring(1)).getElementsByClassName('uni-col-content'), (el) => {
-                Sortable.create(el, $.extend({}, defaults, {
-                    group:  {
-                        name: 'modulesGroup',
-                        pull: true,
-                        put:  ['panelModulesGroup', 'panelOptionsGroup', 'modulesGroup']
-                    },
-                    handle: '.js-uni-module-move',
-                    onEnd:  Builderius._itemDragStop
-                }));
-            });
+            // Panel column
+            $('.uni-builder-panel-column-items').sortable($.extend({}, defaults, {
+                connectWith: '.uni-row-content',
+                items: '.js-panel-block-type-column'
+            }));
+            // Panel modules
+            $('.uni-builder-panel-module-items').sortable($.extend({}, defaults, {
+                connectWith: '.uni-col-content',
+                items: '.js-panel-block-type-module'
+            }));
+            // Panel options
+            $('.uni-builder-panel-option-items').sortable($.extend({}, defaults, {
+                connectWith: '.uni-col-content',
+                items: '.js-panel-block-type-option'
+            }));
+            
+            // Builder container
+            $(Builderius._builderId).sortable($.extend({}, defaults, {
+                connectWith: $(Builderius._builderId),
+                items: '.uni-row',
+                handle: '.js-uni-row-move'
+            }));
+            // Builder row content
+            $('.uni-row-content').sortable($.extend({}, defaults, {
+                connectWith: '.uni-row-content',
+                items: '.uni-col',
+                handle: '.js-uni-col-move'
+            }));
+            // Builder col content
+            $('.uni-col-content').sortable($.extend({}, defaults, {
+                connectWith: '.uni-col-content',
+                items: '.uni-module',
+                handle: '.js-uni-module-move'
+            }));
         },
 
         /**
@@ -273,6 +256,7 @@
          */
         _initTooltip: function (wrap, my, at) {
             let position = {
+                collision: 'none',
                 using: function(position, feedback) {
                     $(this).css(position);
                     $(this).addClass('vertical-' + feedback.vertical).addClass('horizontal-' + feedback.horizontal);
@@ -317,28 +301,56 @@
          * @method _itemDragStart
          * @param {Object} e The event object.
          */
-        _itemDragStart: function (e) {
+        _itemDragStart: function(e, ui){
             Builderius._dragging = true;
-            $(Builderius._builderId).addClass('drag_started');
+            $(Builderius._builderId).addClass('uni-builder-drag-started');
+            const qty = $(this).children('.uni-row, .uni-col, .uni-module').length;
+            
+            if ( qty === 1 ) {
+                if ( $(this).hasClass('uni-row-content') ) {
+                    $(this).closest('.uni-row').addClass('uni-row-highlight');
+                } else {
+                    $(this).closest('.uni-col').addClass('uni-col-highlight');
+                }
+            }
 
-            const type = e.item.getAttribute('data-type');
+            Builderius.parentRowId = $(this).closest('.uni-row').data('node');
+            Builderius.parentColId = $(this).closest('.uni-col').data('node');
+
+            const $item   = ui.item;
+            const type   = $item.data('type').replace('_', ' ');
+
+            ui.placeholder.text(type);
 
             switch (type) {
                 case 'row':
-                    $(Builderius._builderId).addClass('row_drag_started');
+                    $(Builderius._builderId).addClass('uni-builder-row-drag-started');
                     break;
                 case 'column':
-                    $(Builderius._builderId).addClass('column_drag_started');
+                    $(Builderius._builderId).addClass('uni-builder-column-drag-started');
                     break;
                 default:
-                    $(Builderius._builderId).addClass('module_drag_started');
+                    $(Builderius._builderId).addClass('uni-builder-module-drag-started');
                     break;
             }
-            $('.uni-row-highlight').each(function () {
-                $(this).removeClass('uni-row-highlight');
-            });
 
             Builderius.closePanel();
+        },
+
+        /**
+         * A function that will return a DOMElement to use while dragging.
+         *
+         * @since 4.0.0
+         * @access private
+         * @method _itemDragHelper
+         * @param {Object} e The event object.
+         */
+        _itemDragHelper: function(e, el){
+            if ( el.hasClass('uni-builder-panel-block') ) {
+                el.clone().insertAfter( el );
+            }
+            const type = el.data('type').replace('_', ' ');
+            return $('<div class="uni-builder-block-drag-helper">'+type+'</div>');
         },
 
         /**
@@ -349,76 +361,76 @@
          * @method _itemDragStop
          * @param {Object} e The event object.
          */
-        _itemDragStop: function (e) {
-
+        _itemDragStop: function (e, ui) {
             Builderius._dragging = false;
-            $(Builderius._builderId).removeClass('drag_started row_drag_started column_drag_started module_drag_started');
 
-            const rows     = Array.prototype.slice.call(e.to.children);
-            const id       = e.item.getAttribute('data-node');
-            const type     = e.item.getAttribute('data-type');
-            const obj_type = e.item.getAttribute('data-obj_type');
+            $(Builderius._builderId).removeClass('uni-builder-drag-started uni-builder-row-drag-started uni-builder-column-drag-started uni-builder-module-drag-started');
+
+            const $item    = ui.item;
+            const $parent  = $item.parent();
+            const id       = $item.data('node');
+            const order    = $item.index();
+            const type     = $item.data('type');
+            const obj_type = $item.data('obj_type');
             const args     = {
                 id,
-                order: rows.indexOf(e.item),
-                obj_type,
-                type
+                order,
+                type,
+                obj_type
             };
 
-            if (e.to.classList.contains('uni-builder-panel-items')) {
+            if ( $item.closest('.uni-builder-panel-items').hasClass('uni-builder-panel-items') || !Builderius.dropIn ) {
                 // An element was dropped back into the panel.
+                $item.remove();
                 return;
             } else {
                 switch (type) {
                     case 'row':
-                        if (id === null) {
+                        if ( typeof id === 'undefined' ) {
                             Builderius.BuilderView.createRowAndCol(args);
-                            e.item.remove();
+                            $item.remove();
                         } else {
                             Builderius._setRowsOrder();
                         }
                         break;
                     case 'column':
-                        if (id === null) {
-                            args.parentRowId = e.to.id.substring(13);
+                        if ( typeof id === 'undefined' ) {
+                            args.parentRowId = $parent.closest('.uni-row').data('node');
                             Builderius.BuilderView.createCol(args);
-                            e.item.remove();
-                        } else if (id !== null) {
-                            // 'target' is the row which we move the column from
-                            // 'to' is the row which we move the column to
-                            const rowId    = e.target.id.substring(13);
-                            const newRowId = e.to.id.substring(13);
+                            $item.remove();
+                        } else {
+                            const rowId    = Builderius.parentRowId;
+                            const newRowId = $parent.closest('.uni-row').data('node');
+                            
                             if (rowId !== newRowId) { // means that the column was moved to the new row
                                 args.parentRowId    = rowId;
                                 args.newParentRowId = newRowId;
                                 Builderius.BuilderView.moveCol(args);
-                                e.item.remove();
+                                $item.remove();
                             } else {
                                 Builderius._setColsOrder(newRowId);
                             }
                         }
                         break;
                     default:
-                        if (id === null) {
-                            args.parentRowId    = $('#' + e.to.id).closest('.uni-row').data('node');
-                            args.parentColumnId = e.to.id.substring(13);
+                        if ( typeof id === 'undefined' ) {
+                            args.parentRowId    = $parent.closest('.uni-row').data('node');
+                            args.parentColumnId = $parent.closest('.uni-col').data('node');
                             Builderius.BuilderView.createModule(args);
-                            e.item.remove();
+                            $item.remove();
                         } else {
-                            // 'target' is the col which we move the module from
-                            // 'to' is the col which we move the module to
-                            args.parentRowId    = $('#' + e.target.id).closest('.uni-row').data('node');
-                            const newRowId      = $('#' + e.to.id).closest('.uni-row').data('node');
+                            args.parentRowId    = Builderius.parentRowId;
+                            const newRowId      = $parent.closest('.uni-row').data('node');
                             args.newParentRowId = newRowId;
 
-                            const colId    = e.target.id.substring(13);
-                            const newColId = e.to.id.substring(13);
+                            const colId    = Builderius.parentColId;
+                            const newColId = $parent.closest('.uni-col').data('node');
 
                             if (colId !== newColId) {
                                 args.parentColumnId    = colId;
                                 args.newParentColumnId = newColId;
                                 Builderius.BuilderView.moveModule(args);
-                                e.item.remove();
+                                $item.remove();
                             } else {
                                 Builderius._setModulesOrder(newRowId, newColId);
                             }
@@ -429,6 +441,44 @@
             }
             Builderius._initSortables();
             Builderius._ifEmptyItem();
+        },
+
+        /**
+         * This event is triggered when a sortable item is moved into a sortable list.
+         *
+         * @since 4.0.0
+         * @access private
+         * @method _itemOver
+         * @param {Object} e The event object.
+         */
+        _itemOver: function (e, ui) {
+            Builderius.sortableIn = true;
+            $(Builderius._builderId).find('.uni-builder-drop-zone').show();
+        },
+
+        /**
+         * This event is triggered when a sortable item is moved away from a sortable list.
+         *
+         * @since 4.0.0
+         * @access private
+         * @method _itemOver
+         * @param {Object} e The event object.
+         */
+        _itemOut: function (e, ui) {
+            Builderius.sortableIn = false;
+            $(Builderius._builderId).find('.uni-builder-drop-zone').hide();
+        },
+
+        /**
+         * This event is triggered when sorting stops, but when the placeholder/helper is still available.
+         *
+         * @since 4.0.0
+         * @access private
+         * @method _itemBeforeStop
+         * @param {Object} e The event object.
+         */
+        _itemBeforeStop: function (e, ui) {
+            Builderius.dropIn = Builderius.sortableIn;
         },
 
         /**
@@ -464,6 +514,7 @@
                 i++;
             });
             Builderius.rowsCol.sort();
+            Builderius._addWarningClass();
         },
 
         /**
@@ -485,6 +536,7 @@
                     }
                 });
             Builderius.rowsCol.sort();
+            Builderius._addWarningClass();
         },
 
         /**
@@ -502,13 +554,14 @@
                 .find('.uni-module')
                 .each(function () {
                     const id = $(this).data('node');
-                    if (typeof Builderius.rowsCol.get(rowId).columns.get(id) !== 'undefined'
+                    if (typeof Builderius.rowsCol.get(rowId).columns.get(columnId) !== 'undefined'
                         && typeof Builderius.rowsCol.get(rowId).columns.get(columnId).modules.get(id) !== 'undefined') {
                         Builderius.rowsCol.get(rowId).columns.get(columnId).modules.get(id).set({'order': i});
                         i++;
                     }
                 });
             Builderius.rowsCol.get(rowId).columns.get(columnId).modules.sort();
+            Builderius._addWarningClass();
         },
 
         /* Panel
@@ -519,7 +572,7 @@
          */
         closePanel: function () {
             Builderius._panel_on = false;
-            $('body.builderius-panel-on').removeClass('builderius-panel-on');
+            $('body.uni-builder-panel-on').removeClass('uni-builder-panel-on');
             $('.uni-builder-panel-switch.uni-active').removeClass('uni-active');
         },
 
@@ -528,7 +581,7 @@
          */
         showPanel: function () {
             Builderius._panel_on = true;
-            $('body').addClass('builderius-panel-on');
+            $('body').addClass('uni-builder-panel-on');
             $('.uni-builder-panel-switch').addClass('uni-active');
         },
 
@@ -597,6 +650,20 @@
             });
         },
 
+        /**
+         *
+         */
+        _addWarningClass: function () {
+            $('#uni-builder-panel').addClass('uni-builder-panel-warning');
+        },
+
+        /**
+         *
+         */
+        _removeWarningClass: function () {
+            $('#uni-builder-panel').removeClass('uni-builder-panel-warning');
+        },
+
         /* Utils
         ----------------------------------------------------------*/
 
@@ -619,6 +686,9 @@
                 if ('read' === method) {
                     return Backbone.sync(method, object, options);
                 }
+                if ('delete' === method) {
+                    return;
+                }
 
                 const json          = this.toJSON();
                 const formattedJSON = {};
@@ -638,17 +708,23 @@
          *  auto saves to localStorage
          */
         _autosave: function () {
-            const timestamp = moment().unix();
-            const content   = JSON.stringify(Builderius.rowsCol.toJSON());
-            const productId = builderiusCfg.product.id;
+        	try {
+                const timestamp = moment().unix();
+	            const content   = JSON.stringify(Builderius.rowsCol.toJSON());
+	            const productId = builderiusCfg.product.id;
 
-            if (window.localStorage) {
-                localStorage.setItem('_cpo_autosave_time_' + productId, timestamp);
-                localStorage.setItem('_cpo_autosave_data_' + productId, content);
-                const builderMod = Builderius.builderCol.get(builderiusCfg.product.id);
-                builderMod.set({autosaveData: {timestamp, content}});
-            } else {
-                console.log('Your browser does not support LocalStorage');
+	            if (window.localStorage) {
+	                localStorage.setItem('_cpo_autosave_time_' + productId, timestamp);
+	                localStorage.setItem('_cpo_autosave_data_' + productId, content);
+	                const builderMod = Builderius.builderCol.get(builderiusCfg.product.id);
+	                builderMod.set({autosaveData: {timestamp, content}});
+	            } else {
+	                console.log('Your browser does not support LocalStorage');
+	            }
+            }
+            catch (e) {
+                console.warn('It looks like there is a problem with localStorage of your browser. Read below the full error message:');
+                console.error(e);
             }
         },
 
@@ -1018,6 +1094,7 @@
                             modalFieldValues.data[parsedData.name][parsedData.matches[0]][parsedData.matches[1]][parsedData.matches[2]] = {};
                         }
                     }
+
                     if ('checkbox' === type) {
                         if ($el.hasClass('builderius-single-checkbox')) { // exception
                             if ($el.is(':checked')) {
@@ -1097,7 +1174,7 @@
         _unblockForm: function (el, type) {
             Builderius._ajax_sent = false;
             $(document).find('.blockMsg > div[data-loader="circle"]').remove();
-            $(document).find('.blockMsg').prepend('<div class="uni-ajax-' + type + '"><div>');
+            $(document).find('.blockMsg').html('<div class="uni-ajax-' + type + '"><div>');
             $('.uni-ajax-' + type + '').fadeIn(500);
             setTimeout(function () {
                 $(el).unblock();
@@ -1110,7 +1187,7 @@
         /**
          *
          */
-        _getQueryBuilderFilter: function (mod = '') {
+        _getQueryBuilderFilter: function (mod = '', context = '') {
             let filter   = Builderius._queryBuilderFilter;
             const prefix = builderiusCfg.cpo_data.var_slug;
             if (mod) {
@@ -1121,15 +1198,44 @@
                     return;
                 }
 
-                filter = _.reject(filter, function (obj) {
-                    return obj.id === prefix + mod.get('settings').cpo_general.main.cpo_slug;
-                });
-                if (!_.isEmpty(modSettings.special_vars)) {
-                    modSettings.special_vars.forEach((slug) => {
-                        filter = _.reject(filter, function (obj) {
-                            return obj.id === prefix + mod.get('settings').cpo_general.main.cpo_slug + '_' + slug;
-                        });
+                if ('self' === context) {
+                    self = _.reject(filter, function (obj) {
+                        return obj.id !== prefix + mod.get('settings').cpo_general.main.cpo_slug;
                     });
+
+                    let newFilter           = [];
+                    let specialVarsIncluded = [];
+                    if (!_.isEmpty(modSettings.special_vars)) {
+                        modSettings.special_vars.forEach((slug) => {
+                            specialVarsIncluded = _.filter(filter, function (obj) {
+                                return obj.id === prefix + mod.get('settings').cpo_general.main.cpo_slug + '_' + slug;
+                            });
+                            newFilter           = newFilter.concat(specialVarsIncluded);
+                        });
+                    }
+                    filter = self.concat(newFilter);
+                } else if ('date_rules' === context) {
+                        if (!_.isEmpty(modSettings.special_vars)) {
+                            modSettings.special_vars.forEach((slug) => {
+                                if ('start' === slug) {
+                                    filter = _.filter(filter, function (obj) {
+                                        return obj.id === prefix + mod.get('settings').cpo_general.main.cpo_slug + '_' + slug;
+                                    });
+                                }
+                            });
+                        }
+                } else {
+                    filter = _.reject(filter, function (obj) {
+                        return obj.id === prefix + mod.get('settings').cpo_general.main.cpo_slug;
+                    });
+
+                    if (!_.isEmpty(modSettings.special_vars)) {
+                        modSettings.special_vars.forEach((slug) => {
+                            filter = _.reject(filter, function (obj) {
+                                return obj.id === prefix + mod.get('settings').cpo_general.main.cpo_slug + '_' + slug;
+                            });
+                        });
+                    }
                 }
                 return filter;
             } else {
@@ -1195,6 +1301,7 @@
                                     input:     typeForInput,
                                     operators: modCfgSettings.filter_data.operators
                                 };
+                                // TODO make extendable
                                 if (_.indexOf(['select', 'radio'], typeForInput) !== -1
                                     && modSettings.cpo_suboptions
                                     && typeof modSettings.cpo_suboptions.data !== 'undefined')
@@ -1227,6 +1334,15 @@
                                             input:     modCfgSettings.filter_data.special_vars[slug].input,
                                             operators: modCfgSettings.filter_data.special_vars[slug].operators
                                         };
+                                        if (typeof modCfgSettings.filter_data.special_vars[slug].validation !== 'undefined') {
+                                            filter.validation = modCfgSettings.filter_data.special_vars[slug].validation;
+                                        }
+                                        if (typeof modCfgSettings.filter_data.special_vars[slug].plugin !== 'undefined') {
+                                            filter.plugin = modCfgSettings.filter_data.special_vars[slug].plugin;
+                                        }
+                                        if (typeof modCfgSettings.filter_data.special_vars[slug].plugin_config !== 'undefined') {
+                                            filter.plugin_config = modCfgSettings.filter_data.special_vars[slug].plugin_config;
+                                        }
                                         if (typeof _.findWhere(Builderius._queryBuilderFilter, filter) === 'undefined') {
                                             Builderius._queryBuilderFilter.push(filter);
                                         }
@@ -1240,6 +1356,7 @@
                     });
                 });
             });
+            Builderius._queryBuilderFilter = _.unique(Builderius._queryBuilderFilter, 'id');
             Builderius._optionVars.regular = _.uniq(Builderius._optionVars.regular);
             Builderius._optionVars.special = _.uniq(Builderius._optionVars.special);
             const novData                  = Builderius.builderCol.at(0).get('novData');
@@ -1281,13 +1398,14 @@
      */
     Builderius.Models.BuilderModel = Backbone.Model.extend({
         defaults:   {
-            autosaveData: {},
-            formulaData:  {},
-            id:           null,
-            novData:      {},
-            settingsData: {},
-            weightData:   {},
-            uri:          null,
+            autosaveData:  {},
+            discountsData: {},
+            formulaData:   {},
+            id:            null,
+            novData:       {},
+            settingsData:  {},
+            weightData:    {},
+            uri:           null,
         },
         url:        Builderius.adminAjaxSyncableMixin.url,
         sync:       Builderius.adminAjaxSyncableMixin.sync,
@@ -1494,18 +1612,21 @@
         template:            _.template($('#js-builderius-panel-tmpl').html()),
         autosaveTmpl:        _.template($('#js-builderius-panel-autosave-item-tmpl').html()),
         confirmTmpl:         _.template($('#js-builderius-confirm-action-tmpl').html()),
-        events:              {
+        events: {
             'click .uni-builder-panel-switch':               'togglePanel',
             'click .uni-builder-panel-blocks-section-title': 'togglePanelBlocks',
             'click #js-panel-style-switch':                  'styleSwitch',
+            'click #js-panel-position-switch':               'positionSwitch',
             'click #js-panel-save-changes':                  'saveContent',
             'click #js-panel-delete-changes':                'deleteContent',
             'click #js-restore-autosaved':                   'autosaveRestore',
             'click #js-panel-general-settings':              'renderSettingsModal',
             'click #js-panel-cpo-nov':                       'renderNovModal',
-            'click #js-panel-cpo-formula':                   'renderFormulaModal'
+            'click #js-panel-cpo-weight':                    'renderWeightModal',
+            'click #js-panel-cpo-formula':                   'renderFormulaModal',
+            'click #js-panel-cpo-cart-discounts':            'renderDiscountsModal'
         },
-        autosaveRestore:     function () {
+        autosaveRestore: function () {
             const data = Builderius._autosaveGetData();
             if (data) {
                 // deletes
@@ -1519,7 +1640,11 @@
                 Builderius._ifEmptyItem();
             }
         },
-        deleteContent:       function () {
+        deleteContent: function () {
+            if (Builderius._ajax_sent) {
+                return;
+            }
+
             const confirmData = {
                 type:    'error',
                 message: 'Are you sure?'
@@ -1527,9 +1652,12 @@
             const html        = this.confirmTmpl({data: confirmData});
             this.$el.append(html);
             const $wrap = $('#js-confirm-action-wrapper');
+            $wrap.fadeIn(200);
 
             $(document).on('click', '#js-modal-cancel-btn', function () {
-                $wrap.remove();
+                $wrap.fadeOut(200,function(){
+                    $(this).remove();
+                }); 
             });
             $(document).on('click', '#js-modal-delete-btn', function () {
                 const data = {
@@ -1543,12 +1671,19 @@
                     data,
                     dataType:   'json',
                     method:     'POST',
-                    beforeSend: function () {},
-                    error:      function () {
-                        $wrap.find('p').html('Something went wrong. <br> Please try again later!');
+                    beforeSend: function () {
+                        Builderius._ajax_sent = true;
+                        Builderius._blockForm($wrap);
+                    },
+                    error:      function (r) {
+                        Builderius._unblockForm($wrap, 'error');
                         setTimeout(function () {
-                            $wrap.remove();
-                        }, 3000);
+                            $wrap.fadeOut(200,function(){
+                                $(this).remove();
+                            }); 
+                        }, 2000);
+                        console.info(r.status, r.statusText);
+                        Builderius._ajax_sent = false;
                     },
                     success:    function () {
                         Builderius.rowsCol.reset();
@@ -1556,23 +1691,33 @@
                         Builderius._updateListOfVars();
                         Builderius._initSortables();
                         Builderius._ifEmptyItem();
-                        $wrap.find('.uni-modal-btns-wrap').remove();
-                        $wrap
-                            .removeClass('uni-confirm-action-wrapper__error')
-                            .addClass('uni-confirm-action-wrapper__success')
-                            .find('p')
-                            .text('All content deleted!');
+                        
+                        Builderius._unblockForm($wrap, 'success');
                         setTimeout(function () {
-                            $wrap.remove();
-                        }, 2500);
+                            $wrap.fadeOut(200,function(){
+                                $(this).remove();
+                            }); 
+                        }, 2000);
+                        Builderius._ajax_sent = false;
                     }
                 });
             });
         },
-        initialize:          function () {
+        initialize: function () {
             this.listenTo(this.collection, 'change:autosaveData', this.renderAutosaveHtml);
         },
-        render:              function () {
+        positionSwitch: function () {
+            const $panel = $('#uni-builder-panel');
+            if ($panel.hasClass('uni-panel-left')) {
+                $panel.removeClass('uni-panel-left').addClass('uni-panel-right');
+                Builderius._initTooltip( $('#uni-builder-panel'), 'right bottom', 'right top-10' );
+                
+            } else {
+                $panel.removeClass('uni-panel-right').addClass('uni-panel-left');
+                Builderius._initTooltip( $('#uni-builder-panel'), 'left bottom', 'left top-10' );
+            }
+        },
+        render: function () {
             const html = this.template({
                 autosaveData:     this.model.get('autosaveData'),
                 autosaveItemTmpl: this.autosaveTmpl,
@@ -1587,6 +1732,10 @@
             const autosaveItemNew  = this.autosaveTmpl({data: autosaveData});
             $autosaveItemOld.replaceWith(autosaveItemNew);
         },
+        renderDiscountsModal:  function () {
+            const discountsModalView = new Builderius.Views.CartDiscountsModal({model: this.model});
+            discountsModalView.render();
+        },
         renderFormulaModal:  function () {
             const formulaModalView = new Builderius.Views.MainFormulaModal({model: this.model});
             formulaModalView.render();
@@ -1599,9 +1748,17 @@
             const settingsModalView = new Builderius.Views.GeneralSettingsModal({model: this.model});
             settingsModalView.render();
         },
+        renderWeightModal:   function () {
+            const weightModalView = new Builderius.Views.WeightModal({model: this.model});
+            weightModalView.render();
+        },
         saveContent:         function () {
             const collection     = Builderius.rowsCol;
             const builderContent = JSON.stringify(collection.toJSON());
+
+            if (!collection.toJSON().length || Builderius._ajax_sent) {
+                return;
+            }
 
             const data = {
                 action:     'uni_cpo_save_content',
@@ -1616,14 +1773,18 @@
                 dataType:   'json',
                 method:     'POST',
                 beforeSend: function () {
+                    Builderius._ajax_sent = true;
                     Builderius._blockForm('.uni-builderius-container');
                 },
-                error:      function () {
+                error:      function (r) {
+                    Builderius._ajax_sent = false;
                     Builderius._unblockForm('.uni-builderius-container', 'error');
-                    console.log('Something went wrong. Please try again later!');
+                    console.info(r.status, r.statusText);
                 },
                 success:    function () {
+                    Builderius._ajax_sent = false;
                     Builderius._unblockForm('.uni-builderius-container', 'success');
+                    Builderius._removeWarningClass();
                 }
             });
         },
@@ -1643,22 +1804,25 @@
             }
         },
         togglePanelBlocks:   function (e) {
-            if ($(e.target)
-                    .closest('.uni-builder-panel-blocks-section')
-                    .hasClass('active')) {
-                $(e.target)
-                    .closest('.uni-builder-panel-blocks-section.active')
+            const $section = $(e.target).closest('.uni-builder-panel-blocks-section');
+
+            if ($section.hasClass('active')) {
+                $section
                     .removeClass('active')
                     .find('.fa-chevron-up')
                     .removeClass('fa-chevron-up')
                     .addClass('fa-chevron-down');
+                    $section.find('.uni-builder-panel-items').jScrollPane().data().jsp.destroy();
             } else {
-                $(e.target)
-                    .closest('.uni-builder-panel-blocks-section')
+                $section
                     .addClass('active')
                     .find('.fa-chevron-down')
                     .removeClass('fa-chevron-down')
                     .addClass('fa-chevron-up');
+
+                $section.find('.uni-builder-panel-items').jScrollPane({
+                    mouseWheelSpeed: 40
+                });
             }
         }
     });
@@ -1697,8 +1861,6 @@
             row.columns.add(newCol, {at: order});
             this.updateOrder(row.columns);
             Builderius._autosave();
-
-            //console.log('---- collection', this.collection.toJSON())
         },
         createModule:    function (args) {
             const {order, obj_type, parentColumnId, parentRowId, pid, type} = args;
@@ -1719,8 +1881,6 @@
             column.modules.add(newModule, {at: order});
             this.updateOrder(column.modules);
             Builderius._autosave();
-
-            //console.log('---- collection', this.collection.toJSON())
         },
         createRowAndCol: function (args) {
             const {order, obj_type, pid, type} = args;
@@ -1753,8 +1913,6 @@
             this.collection.add(newRow, {at: order});
             this.updateOrder(this.collection);
             Builderius._autosave();
-
-            //console.log('---- collection', this.collection.toJSON())
         },
         hideActionsBtns: function (e) {
             if (false === Builderius._dragging) {
@@ -1765,23 +1923,20 @@
                 } else if ( $target.parent().hasClass('uni-col-overlay') ) {
                     $target.parent().css({'z-index': 999991});
                 }
-
             }
         },
         hideOverlay: function (e) {
-            if (false === Builderius._dragging) {
-                const $target = $(e.currentTarget);
-                const type = $target.attr('data-type');
+            const $target = $(e.currentTarget);
+            const type = $target.data('type');
 
-                if ( type === 'row' ) {
-                    $target.removeClass('uni-row-overlay-active uni-row-small uni-row-overlay-muted').find('.uni-row-overlay').remove();
-                } else if ( type === 'column' ) {
-                    $target.removeClass('uni-col-overlay-active uni-column-small uni-column-has-modules').find('.uni-col-overlay').remove();
-                    $target.closest('.uni-row').removeClass('uni-row-overlay-muted');
-                } else {
-                    $target.removeClass('uni-module-overlay-active uni-module-small').find('.uni-module-overlay').remove();
-                    $target.closest('.uni-col').removeClass('uni-col-overlay-muted');
-                }
+            if ( type === 'row' ) {
+                $target.removeClass('uni-row-overlay-active uni-row-small uni-row-overlay-muted').find('.uni-row-overlay').remove();
+            } else if ( type === 'column' ) {
+                $target.removeClass('uni-col-overlay-active uni-column-small uni-column-has-modules').find('.uni-col-overlay').remove();
+                $target.closest('.uni-row').removeClass('uni-row-overlay-muted');
+            } else {
+                $target.removeClass('uni-module-overlay-active uni-module-small').find('.uni-module-overlay').remove();
+                $target.closest('.uni-col').removeClass('uni-col-overlay-muted');
             }
         },
         initialize:      function () {
@@ -1823,8 +1978,6 @@
             oldRow.columns.remove(id);
             this.updateOrder(oldRow.columns);
             Builderius._autosave();
-
-            //console.log('---- collection', this.collection.toJSON())
         },
         moveModule:      function (args) {
             const {id, newParentColumnId, newParentRowId, order, parentColumnId, parentRowId} = args;
@@ -1852,8 +2005,6 @@
             oldCol.modules.remove(id);
             this.updateOrder(oldCol.modules);
             Builderius._autosave();
-
-            //console.log('---- collection', this.collection.toJSON())
         },
         render:          function () {
             this.$el.html(this.rowsView.render().$el);
@@ -1902,7 +2053,6 @@
         },
         showActionsBtns: function (e) {
             if (false === Builderius._dragging) {
-                const view = this;
                 const $target = $(e.currentTarget);
                 if ( $target.parent().hasClass('uni-row-overlay') ) {
                     $target.parent().css({'z-index': 999993});
@@ -2389,14 +2539,13 @@
         template_tab_close:       _.template($('#js-builderius-modal-tab-close-tmpl').html()),
         template_group_open:      _.template($('#js-builderius-modal-group-open-tmpl').html()),
         template_group_close:     _.template($('#js-builderius-modal-group-close-tmpl').html()),
-        ajaxError:                function (r, s) {
-            //console.log(r);
-            console.log(s);
-            // restore original settings
+        ajaxError:                function (r) {
+            const view = this;
             view.model.set({settings: view.originalModelSettings});
             Builderius._unblockForm('#js-block-settings-modal', 'error');
+            console.info(r.status, r.statusText);
         },
-        ajaxSent:                 function (model, xhr, options) {
+        ajaxSent:                 function () {
             Builderius._blockForm('#js-block-settings-modal');
             const $slugField = $('#js-cpo-field-slug-wrapper');
             $slugField.removeClass('uni-error-label');
@@ -2408,6 +2557,7 @@
                 view.model.set(r.data);
                 Builderius._updateListOfVars();
                 Builderius._autosave();
+                $('.ui-tabs .ui-tabs-nav li.uni-warning').removeClass('uni-warning');
                 $('#js-modal-save-btn').removeClass('uni-active');
                 Builderius._unblockForm('#js-block-settings-modal', 'success');
             } else {
@@ -2470,9 +2620,9 @@
                     $('.uni-fetch-wrap').removeClass('uni-active');
                     $syncBtn.hide();
                 },
-                error:      function () {
+                error:      function (r) {
                     Builderius._unblockForm('#js-block-settings-modal', 'error');
-                    console.log('error');
+                    console.info(r.status, r.statusText);
                 },
                 success:    function (r) {
                     if (r.success) {
@@ -2698,6 +2848,7 @@
             if (modalFieldValues.valid && !Builderius._ajax_sent) {
                 const finalSettings      = $.extend(true, {}, originalSettings, modalFieldValues.data);
                 const moduleSettingsData = builderiusModules[obj_type][type];
+
                 _.each(view.model.get('settings'), function (v, k) {
                     if (( _.isEmpty(modalFieldValues.data[k])
                             || (
@@ -2708,7 +2859,18 @@
                         finalSettings[k] = window[moduleSettingsData.cfg].settings[k];
                     }
                 });
+
+                // exceptions
                 finalSettings.cpo_suboptions = modalFieldValues.data.cpo_suboptions;
+                if (typeof modalFieldValues.data.cpo_rules !== 'undefined') {
+                    finalSettings.cpo_rules = modalFieldValues.data.cpo_rules;
+                }
+                if (typeof modalFieldValues.data.cpo_validation !== 'undefined'
+                    && typeof modalFieldValues.data.cpo_validation.logic !== 'undefined'
+                    && typeof modalFieldValues.data.cpo_validation.logic.cpo_vc_scheme !== 'undefined') {
+                    finalSettings.cpo_validation.logic.cpo_vc_scheme = modalFieldValues.data.cpo_validation.logic.cpo_vc_scheme;
+                }
+
                 if (shouldSync) {
                     const data = {
                         action:     'uni_cpo_save_model',
@@ -2717,8 +2879,8 @@
                         success:    function (r) {
                             view.ajaxSynced(r);
                         },
-                        error:      function (r, s) {
-                            view.ajaxError(r, s);
+                        error:      function (r) {
+                            view.ajaxError(r);
                         },
                     };
 
@@ -2730,6 +2892,7 @@
                     Builderius._autosave();
                 }
                 //console.log(view.model.toJSON());
+                Builderius._addWarningClass();
                 $('#js-modal-save-btn').removeClass('uni-active');
             }
         },
@@ -2785,9 +2948,9 @@
                 beforeSend: function () {
                     Builderius._blockForm('#js-block-settings-modal');
                 },
-                error:      function () {
+                error:      function (r) {
                     Builderius._unblockForm('#js-block-settings-modal', 'error');
-                    console.log('error');
+                    console.info(r.status, r.statusText);
                 },
                 success:    function (r) {
                     if (r.success) {
@@ -2827,22 +2990,23 @@
             'click .uni-close-modal':           'closeModal',
             'click #js-modal-main-cancel-btn':  'closeModal',
             'click #js-duplicate-product-btn':  'duplicateProductSettings',
+            'click #js-modal-main-import-btn':  'importProductSettings',
+            'click #js-modal-main-export-btn':  'exportProductSettings',
             'click #js-fetch-similar-products': 'fetchProducts',
             'click #js-modal-main-save-btn':    'saveSettings'
         },
         template:                 _.template($('#js-builderius-modal-general-settings-tmpl').html()),
-        ajaxError:                function (r, s) {
-            //console.log(r);
-            console.log(s);
+        ajaxError:                function (r) {
             Builderius._unblockForm('#uni-modal-general-settings-wrapper', 'error');
+            console.info(r.status, r.statusText);
         },
-        ajaxSent:                 function (model, xhr, options) {
+        ajaxSent:                 function () {
             Builderius._blockForm('#uni-modal-general-settings-wrapper');
         },
         ajaxSynced:               function (r) {
             const view = this;
             if (r.success) {
-                $('#js-modal-save-btn').removeClass('uni-active');
+                $('#js-modal-main-save-btn').removeClass('uni-active');
                 Builderius._unblockForm('#uni-modal-general-settings-wrapper', 'success');
             } else {
                 // restore original settings
@@ -2874,13 +3038,49 @@
                 beforeSend: function () {
                     Builderius._blockForm('#uni-modal-general-settings-wrapper');
                 },
-                error:      function () {
+                error:      function (r) {
                     Builderius._unblockForm('#uni-modal-general-settings-wrapper', 'error');
-                    console.log('error');
+                    console.info(r.status, r.statusText);
                 },
                 success:    function (r) {
                     if (r.success) {
                         location.reload();
+                    } else {
+                        Builderius._unblockForm('#uni-modal-general-settings-wrapper', 'error');
+                    }
+                }
+            });
+        },
+        exportProductSettings: function () {
+            const view      = this;
+            const email     = $('#js-cpo-export-email').val();
+
+            if (!email) {
+                return false;
+            }
+
+            const data      = {
+                action:    'uni_cpo_product_settings_export',
+                security:  builderiusCfg.security,
+                pid:       view.model.get('id'),
+                email
+            };
+
+            $.ajax({
+                url:        builderiusCfg.ajax_url,
+                data,
+                dataType:   'json',
+                method:     'POST',
+                beforeSend: function () {
+                    Builderius._blockForm('#uni-modal-general-settings-wrapper');
+                },
+                error:      function (r) {
+                    Builderius._unblockForm('#uni-modal-general-settings-wrapper', 'error');
+                    console.info(r.status, r.statusText);
+                },
+                success:    function (r) {
+                    if (r.success) {
+                        Builderius._unblockForm('#uni-modal-general-settings-wrapper', 'success');
                     } else {
                         Builderius._unblockForm('#uni-modal-general-settings-wrapper', 'error');
                     }
@@ -2904,13 +3104,13 @@
                 method:     'POST',
                 beforeSend: function () {
                     Builderius._blockForm('#uni-modal-general-settings-wrapper');
-                    const $option = $('<option value="0">- None -</option>');
+                    const $option = $('<option value="0">'+builderius_i18n.none+'</option>');
                     $dropdown.empty().append($option);
                     $syncBtn.hide();
                 },
-                error:      function () {
+                error:      function (r) {
                     Builderius._unblockForm('#uni-modal-general-settings-wrapper', 'error');
-                    console.log('error');
+                    console.info(r.status, r.statusText);
                 },
                 success:    function (r) {
                     if (r.success) {
@@ -2923,6 +3123,51 @@
                         Builderius._unblockForm('#uni-modal-general-settings-wrapper', 'success');
                     } else {
                         $syncBtn.hide();
+                        Builderius._unblockForm('#uni-modal-general-settings-wrapper', 'error');
+                    }
+                }
+            });
+        },
+        importProductSettings: function () {
+            const view      = this;
+            const $file     = $('#js-cpo-import-file');
+            const is_remove_pid = $('#js-cpo-import-preference-checkbox').is(':checked');
+            const file      = $file[0].files[0];
+            const formData  = new FormData();
+
+            if (typeof file === 'undefined') {
+                return false;
+            }
+
+            const data      = {
+                action:    'uni_cpo_product_settings_import',
+                security:  builderiusCfg.security,
+                is_remove_pid,
+                pid:       view.model.get('id')
+            };
+
+            formData.append('file', file);
+            $.each(data, function(key, value){
+                formData.append(key, value);
+            });
+
+            $.ajax({
+                url:        builderiusCfg.ajax_url,
+                data:       formData,
+                processData: false,
+                contentType: false,
+                method:     'POST',
+                beforeSend: function () {
+                    Builderius._blockForm('#uni-modal-general-settings-wrapper');
+                },
+                error:      function (r) {
+                    Builderius._unblockForm('#uni-modal-general-settings-wrapper', 'error');
+                    console.info(r.status, r.statusText);
+                },
+                success:    function (r) {
+                    if (r.success) {
+                        location.reload();
+                    } else {
                         Builderius._unblockForm('#uni-modal-general-settings-wrapper', 'error');
                     }
                 }
@@ -2953,7 +3198,6 @@
             const originalSettings = JSON.parse(JSON.stringify(view.model.get('settingsData')));
 
             if (modalFieldValues.valid && !Builderius._ajax_sent) {
-                //const finalSettings = $.extend(true, {}, originalSettings, modalFieldValues.data);
                 const finalSettings = modalFieldValues.data;
                 const data          = {
                     action:   'uni_cpo_save_settings_data',
@@ -2961,13 +3205,91 @@
                     success:  function (r) {
                         view.ajaxSynced(r);
                     },
-                    error:    function (r, s) {
-                        view.ajaxError(r, s);
+                    error:    function (r) {
+                        view.ajaxError(r);
                     },
                 };
 
                 view.originalModelSettings = originalSettings;
                 view.model.set({settingsData: finalSettings});
+                view.model.sync('create', view.model, data);
+            }
+        },
+
+    });
+
+    // cart discounts
+    Builderius.Views.CartDiscountsModal = Backbone.View.extend({
+        el:                       'body',
+        events:                   {
+            'click .uni-close-modal':           'closeModal',
+            'click #js-modal-main-cancel-btn':  'closeModal',
+            'click #js-modal-main-save-btn':    'saveSettings'
+        },
+        template:                 _.template($('#js-builderius-modal-cart-discounts-tmpl').html()),
+        ajaxError:                function (r) {
+            Builderius._unblockForm('#uni-modal-cart-discounts-wrapper', 'error');
+            console.info(r.status, r.statusText);
+        },
+        ajaxSent:                 function () {
+            Builderius._blockForm('#uni-modal-cart-discounts-wrapper');
+        },
+        ajaxSynced:               function (r) {
+            const view = this;
+            if (r.success) {
+                $('#js-modal-main-save-btn').removeClass('uni-active');
+                Builderius._unblockForm('#uni-modal-cart-discounts-wrapper', 'success');
+            } else {
+                // restore original settings
+                view.model.set({discountsData: view.originalModelSettings});
+                Builderius._unblockForm('#uni-modal-cart-discounts-wrapper', 'error');
+            }
+        },
+        closeModal:               function () {
+            this.$el.find('#uni-modal-wrapper').remove();
+            this.undelegateEvents(); // tip: use undelegateEvents() if 'setElement' was used before
+            this.stopListening();
+            Builderius._modal_on = false;
+        },
+        initialize:               function () {
+            this.originalModelSettings = {};
+            this.listenTo(this.model, 'request', this.ajaxSent);
+        },
+        render:                   function () {
+            const view           = this;
+            Builderius._modal_on = true;
+
+            const modal = view.template({
+                data: view.model.get('discountsData'),
+                vars: Builderius._optionVars
+            });
+            this.$el.append(modal);
+
+            // trigger
+            $(document.body).trigger('builderius_cart_discounts_modal_opening', [view]);
+
+            return this;
+        },
+        saveSettings:             function () {
+            const view             = this;
+            const modalFieldValues = Builderius._readSettingsModal(view);
+            const originalSettings = JSON.parse(JSON.stringify(view.model.get('discountsData')));
+
+            if (modalFieldValues.valid && !Builderius._ajax_sent) {
+                const finalSettings = modalFieldValues.data;
+                const data          = {
+                    action:   'uni_cpo_save_discounts_data',
+                    security: builderiusCfg.security,
+                    success:  function (r) {
+                        view.ajaxSynced(r);
+                    },
+                    error:    function (r) {
+                        view.ajaxError(r);
+                    },
+                };
+
+                view.originalModelSettings = originalSettings;
+                view.model.set({discountsData: finalSettings});
                 view.model.sync('create', view.model, data);
             }
         },
@@ -2980,14 +3302,14 @@
         events:       {
             'click .uni-close-modal':                         'closeModal',
             'click #js-modal-main-cancel-btn':                'closeModal',
+            'click .uni-rules-remove-all':                    'removeAllRules',
             'click #js-modal-main-save-btn':                  'saveSettings',
             'focus #uni-modal-main-formula-wrapper textarea': 'getFocused',
         },
         template:     _.template($('#js-builderius-modal-main-tmpl').html()),
-        ajaxError:    function (r, s) {
-            //console.log(r);
-            console.log(s);
+        ajaxError:    function (r) {
             Builderius._unblockForm('#uni-modal-wrap', 'error');
+            console.info(r.status, r.statusText);
         },
         ajaxSent:     function (model, xhr, options) {
             Builderius._blockForm('#uni-modal-wrap');
@@ -2995,7 +3317,7 @@
         ajaxSynced:   function (r) {
             const view = this;
             if (r.success) {
-                $('#js-modal-save-btn').removeClass('uni-active');
+                $('#js-modal-main-save-btn').removeClass('uni-active');
                 Builderius._unblockForm('#uni-modal-wrap', 'success');
             } else {
                 // restore original settings
@@ -3018,6 +3340,11 @@
         initialize:   function () {
             this.originalModelSettings = {};
             this.listenTo(this.model, 'request', this.ajaxSent);
+        },
+        removeAllRules: function () {
+            const $rows = $('.uni-formula-conditional-rules-options-row').not('.uni-formula-conditional-rules-options-template');
+            $rows.remove();
+            $('.uni_formula_conditional_rule_add').click();
         },
         render:       function () {
             const view           = this;
@@ -3048,13 +3375,105 @@
                     success:  function (r) {
                         view.ajaxSynced(r);
                     },
-                    error:    function (r, s) {
-                        view.ajaxError(r, s);
+                    error:    function (r) {
+                        view.ajaxError(r);
                     },
                 };
 
                 view.originalModelSettings = originalSettings;
                 view.model.set({formulaData: finalSettings});
+                view.model.sync('create', view.model, data);
+            }
+        }
+    });
+
+    // WeightModalView
+    Builderius.Views.WeightModal = Backbone.View.extend({
+        el:           'body',
+        events:       {
+            'click .uni-close-modal':                         'closeModal',
+            'click #js-modal-main-cancel-btn':                'closeModal',
+            'click .uni-rules-remove-all':                    'removeAllRules',
+            'click #js-modal-main-save-btn':                  'saveSettings',
+            'focus #uni-modal-weight-wrapper textarea': 'getFocused',
+        },
+        template:     _.template($('#js-builderius-modal-weight-tmpl').html()),
+        ajaxError:    function (r) {
+            Builderius._unblockForm('#uni-modal-wrap', 'error');
+            console.info(r.status, r.statusText);
+        },
+        ajaxSent:     function (model, xhr, options) {
+            Builderius._blockForm('#uni-modal-wrap');
+        },
+        ajaxSynced:   function (r) {
+            const view = this;
+            if (r.success) {
+                $('#js-modal-main-save-btn').removeClass('uni-active');
+                Builderius._unblockForm('#uni-modal-wrap', 'success');
+                //console.log(view.model.toJSON());
+            } else {
+                // restore original settings
+                view.model.set({weightData: view.originalModelSettings});
+                Builderius._unblockForm('#uni-modal-wrap', 'error');
+            }
+        },
+        closeModal:   function () {
+            this.$el.find('#uni-modal-weight-wrapper').remove();
+            this.undelegateEvents(); // tip: use undelegateEvents() if 'setElement' was used before
+            this.stopListening();
+            Builderius._modal_on = false;
+        },
+        getFocused:   function () {
+            const view = this;
+            $(document).find('textarea.builderius-setting-field').on('focus', function () {
+                view.textarea = $(this);
+            });
+        },
+        initialize:   function () {
+            this.originalModelSettings = {};
+            this.listenTo(this.model, 'request', this.ajaxSent);
+        },
+        removeAllRules: function () {
+            const $rows = $('.uni-formula-conditional-rules-options-row').not('.uni-formula-conditional-rules-options-template');
+            $rows.remove();
+            $('.uni_formula_conditional_rule_add').click();
+        },
+        render:       function () {
+            const view           = this;
+            Builderius._modal_on = true;
+
+            const modal = view.template({
+                data: view.model.get('weightData'),
+                vars: Builderius._optionVars
+            });
+            this.$el.append(modal);
+
+            // trigger
+            $(document.body).trigger('builderius_weight_modal_opening', [view]);
+
+            return this;
+        },
+        saveSettings: function () {
+            const view             = this;
+            const modalFieldValues = Builderius._readSettingsModal(view);
+            const originalSettings = JSON.parse(JSON.stringify(view.model.get('weightData')));
+
+            if (modalFieldValues.valid && !Builderius._ajax_sent) {
+                //const finalSettings = $.extend(true, {}, originalSettings, modalFieldValues.data);
+                const finalSettings = modalFieldValues.data;
+                const data          = {
+                    action:   'uni_cpo_save_weight_data',
+                    security: builderiusCfg.security,
+                    success:  function (r) {
+                        view.ajaxSynced(r);
+                    },
+                    error:    function (r) {
+                        view.ajaxError(r);
+                    },
+                };
+
+                view.originalModelSettings = originalSettings;
+                view.model.set({weightData: finalSettings});
                 view.model.sync('create', view.model, data);
             }
         }
@@ -3067,15 +3486,15 @@
             'click .uni-close-modal':                              'closeModal',
             'click #js-modal-nov-cancel-btn':                      'closeModal',
             'click #js-modal-nov-save-btn':                        'saveSettings',
-            'click .uni_formula_conditional_rule_remove_all':      'removeAllRules',
+            'click .uni-rules-remove-all':      'removeAllRules',
             'focus .uni-cpo-non-option-vars-options-row textarea': 'getFocused',
-            'change [data-uni-constrainer="yes"]':                 'updateConstrained'
+            'change [data-uni-constrainer="yes"]':                 'updateConstrained',
+            'click .uni-matrix-import-btn':                        'importMatrixCsv'
         },
         template:          _.template($('#js-builderius-modal-nov-tmpl').html()),
-        ajaxError:         function (r, s) {
-            //console.log(r);
-            console.log(s);
+        ajaxError:         function (r) {
             Builderius._unblockForm('#uni-modal-wrap', 'error');
+            console.info(r.status, r.statusText);
         },
         ajaxSent:          function (model, xhr, options) {
             Builderius._blockForm('#uni-modal-wrap');
@@ -3083,7 +3502,7 @@
         ajaxSynced:        function (r) {
             const view = this;
             if (r.success) {
-                $('#js-modal-save-btn').removeClass('uni-active');
+                $('#js-modal-nov-save-btn').removeClass('uni-active');
                 Builderius._unblockForm('#uni-modal-wrap', 'success');
                 Builderius._updateListOfVars();
             } else {
@@ -3098,11 +3517,188 @@
             this.stopListening();
             Builderius._modal_on = false;
         },
+        generateTable: function (wrapper, array) {
+            const row       = wrapper.find('.uni-matrix-table-container').data('row');
+            const container = wrapper.find('.uni-matrix-table-container').attr('id');
+            const $json     = wrapper.find('.uni-matrix-json');
+            const metadata  = [];
+            const data      = [];
+
+            if ( array === undefined ) {
+                const val       = wrapper.find('.uni-matrix-data').val().split('|');
+                const empty     = [];
+
+                metadata.push({
+                    name:     'rows',
+                    label:    builderius_i18n.matrix_head,
+                    datatype: 'double(, 4, dot, comma, , )',
+                    editable: true
+                });
+
+                val.forEach(function (item, i) {
+                    metadata.push({
+                        name:     item,
+                        label:    item,
+                        datatype: 'double(, 4, dot, comma, , )',
+                        editable: true
+                    });
+                    empty.push(0);
+                });
+                metadata.push({
+                    name:     'action',
+                    label:    'Action',
+                    datatype: 'html',
+                    editable: false,
+                    values:   null
+                });
+                empty.unshift('');
+
+                if ($json.val() !== '') {
+                    const rows = JSON.parse($json.val());
+                    rows.forEach(function (row) {
+                        data.push({
+                            id:     row.id,
+                            values: row.columns
+                        });
+                    });
+                } else {
+                    data.push({
+                        id:     1,
+                        values: empty
+                    });
+                }
+            } else {
+                array.metadata.forEach(function (item, i) {
+                    metadata.push({
+                        name:     item,
+                        label:    item,
+                        datatype: 'double(4)',
+                        editable: true
+                    });
+                });
+                metadata.push({
+                    name:     'action',
+                    label:    'Action',
+                    datatype: 'html',
+                    editable: false,
+                    values:   null
+                });
+                array.data.forEach(function (row) {
+                    data.push({
+                        id:     row.id,
+                        values: row.columns
+                    });
+                });
+            }
+
+            this.table[row] = new EditableGrid('Matrix[' + row + ']', {
+                enableSort:    false, // true is the default, set it to false if you don't want sorting to be enabled
+                editmode:      'absolute', // change this to "fixed" to test out editorzone, and to "static" to get the old-school mode
+                duplicate:     function (rowIndex) {
+                    // copy values from given row
+                    const values   = this.getRowValues(rowIndex);
+                    values['name'] = values['name'] + ' (copy)';
+
+                    // get id for new row (max id + 1)
+                    var newRowId = 0;
+                    for (var r = 0; r < this.getRowCount(); r++) newRowId = Math.max(newRowId, parseInt(this.getRowId(r)) + 1);
+
+                    Builderius._destroyScroll( container );
+                    // add new row
+                    this.insertAfter(rowIndex, newRowId, values);
+                    Builderius._initScroll( container );
+                },
+                tableRendered: function (containerid, className, tableid) {
+                    const str = JSON.stringify(this.data);
+                    $json.val(str);
+                },
+                modelChanged:  function (rowIndex, columnIndex, oldValue, newValue, row) {
+                    const str = JSON.stringify(this.data);
+                    $json.val(str);
+                }
+            });
+
+            this.table[row].load({
+                'metadata': metadata,
+                'data':     data
+            });
+
+            // renderer for the action column
+            this.table[row].setCellRenderer(
+                'action', new CellRenderer({
+                    render: function (cell, value) {
+                        cell.innerHTML = '<a class="uni-generated-table-remove-row" data-row="' + cell.rowIndex + '" style="cursor:pointer">' +
+                            '<i class="fa fa-trash" alt="delete" title="Delete row"></i></a>';
+                        cell.innerHTML += '&nbsp;<a class="uni-generated-table-clone-row" data-row="' + cell.rowIndex + '" style="cursor:pointer">' +
+                            '<i class="fa fa-files-o" border="0" alt="duplicate" title="Duplicate row"></i></a>';
+                    }
+                })
+            );
+
+            this.table[row].renderGrid(container, 'uni-generated-table', 'js-generated-table');
+            Builderius._initScroll( container );
+        },
         getFocused: function () {
             const view = this;
             $('.uni-cpo-non-option-vars-options-row').find('textarea').on('focus', function () {
                 view.textarea = $(this);
             });
+        },
+        importMatrixCsv: function(e) {
+            e.preventDefault();
+            const view = this;
+            const $el = $(e.target);
+            const $wrap = $el.closest('.uni-cpo-matrix-options-wrap');
+            const wrapId = $wrap.find('.uni-matrix-table-container').attr('id');
+            const rowId = $el.data('row');
+            const $file = $el.prevAll('input[type=file]');
+            const file = $file[0].files[0];
+            const formData = new FormData();
+
+            if ( typeof file !== 'undefined' ) {
+                const data = {
+                    action:     'uni_cpo_import_matrix',
+                    security:   builderiusCfg.security
+                };
+
+                formData.append('file', file);
+
+                $.each(data, function(key, value){
+                    formData.append(key, value);
+                });
+
+                $.ajax({
+                    url:        builderiusCfg.ajax_url,
+                    data:       formData,
+                    method:     'POST',
+                    processData: false,
+                    contentType: false,
+                    beforeSend: function () {
+                        Builderius._blockForm('#uni-modal-wrap');
+                    },
+                    error:      function (r) {
+                        Builderius._unblockForm('#uni-modal-wrap', 'error');
+                        console.info(r.status, r.statusText);
+                    },
+                    success:    function (r) {
+                        if (r.success) {
+                            const $matrixDataEl = $wrap.find('.uni-matrix-data');
+                            let metadata = r.data.metadata;
+                            metadata.shift();
+                            metadata = metadata.join('|');
+                            $matrixDataEl.val(metadata);
+                            Builderius._destroyScroll( wrapId );
+                            view.generateTable($wrap,r.data);
+                            Builderius._unblockForm('#uni-modal-wrap', 'success');
+                        } else {
+                            Builderius._unblockForm('#uni-modal-wrap', 'error');
+                            if (typeof r.data.error !== 'undefined') {
+                                console.log(r.data.error);
+                            }
+                        }
+                    }
+                });
+            }
         },
         initialize: function () {
             this.originalModelSettings = {};
@@ -3146,8 +3742,8 @@
                     success:  function (r) {
                         view.ajaxSynced(r);
                     },
-                    error:    function (r, s) {
-                        view.ajaxError(r, s);
+                    error:    function (r) {
+                        view.ajaxError(r);
                     },
                 };
 
@@ -3171,24 +3767,65 @@
 (function ($) {
 
     $(document.body).on('builderius_module_settings_modal_opening', function (e, view) {
+        const $modal = $('#js-block-settings-modal');
+        const filter = Builderius._getQueryBuilderFilter(view.model);
+
         // init tabs
         $('#uni-modal-tabs').tabs({
             activate: function (event, ui) {}
         });
 
-        $('#uni-modal-tabs').find('input, select, textarea').on('change', function () {
-            $('#js-modal-save-btn').addClass('uni-active');
+        $premiumContent = $('.uni-premium-content');
+        if ($premiumContent.length > 0) {
+            $premiumContent.each(function(){
+                const html = '<div class="uni-premium-overlay"></div><div class="uni-premium-overlay-text">'+builderius_i18n.pro+'</div>'
+                $(this).append(html);
+            });
+        }
+
+        $modal.on('change', 'input, select, textarea', function (e) {
+            const $el = $( e.currentTarget );
+
+            if ( !$el.parents('.cpo-query-rule-builder').length > 0 && $el.attr('name') !== 'sync[pid]' && $el.attr('name') !== 'sync[type]' ) {
+                $('#js-modal-save-btn').addClass('uni-active');    
+            }
         });
-        $(document).on('change', 'input[name="cpo_slug"], input[name="cpo_rate"], input[name="cpo_order_label"], input[name^="cpo_radio_options"], input[name^="cpo_select_options"]', function () {
+
+        $modal.on('change', 'input[name="cpo_slug"], input[name="cpo_rate"], input[name="cpo_order_label"], input[name="cpo_day_night"], input[name^="cpo_radio_options"], input[name^="cpo_select_options"]', function () {
             $('#js-save-to-db').prop('checked', true);
         });
 
+        const $repeater = $('.uni-select-option-repeat');
+        if ($repeater.length > 0) {
+            $repeater.each(function () {
+                $(this).repeatable_fields({
+                    wrapper:               '.uni-select-option-repeat-wrapper',
+                    container:             '.uni-select-option-options-wrapper',
+                    row:                   '.uni-select-option-options-row',
+                    add:                   '.uni_select_option_add',
+                    remove:                '.uni-select-option-remove-wrapper',
+                    move:                  '.uni-select-option-move-wrapper',
+                    template:              '.uni-select-option-options-template',
+                    is_sortable:           true,
+                    before_add:            null,
+                    after_add:             function (container, newRow) {
+                        uni_after_add_suboption(container, newRow, '.uni-select-option-options-template');
+                    },
+                    before_remove:         null,
+                    after_remove:          function (container) {
+                        $('.uni-modal-btns-wrap .uni-btn-1.uni-modal-save-btn').addClass('uni-active');
+                        update_everything(container, '.uni-select-option-options-template');
+                    },
+                    sortable_options:      null,
+                    row_count_placeholder: '<%row-count%>',
+                });
+            });
+        }
+
         if (typeof view.model.get('settings').cpo_conditional !== 'undefined') {
-            const filter   = Builderius._getQueryBuilderFilter(view.model);
-            const rules    = (typeof view.model.get('settings').cpo_conditional.main.cpo_fc_scheme !== 'undefined' )
-                ? view.model.get('settings').cpo_conditional.main.cpo_fc_scheme
-                : {};
+            const rules = uniGet(view.model.get('settings'), 'cpo_conditional.main.cpo_fc_scheme', {});
             const $builder = $('#cpo-field-rule-builder');
+
             if ($builder.length > 0) {
                 $builder.empty();
                 if (filter.length > 0) {
@@ -3224,62 +3861,399 @@
             }
         }
 
-        const $repeater = $('.uni-select-option-repeat');
-        if ($repeater.length > 0) {
-            $repeater.each(function () {
-                $(this).repeatable_fields({
-                    wrapper:               '.uni-select-option-repeat-wrapper',
-                    container:             '.uni-select-option-options-wrapper',
-                    row:                   '.uni-select-option-options-row',
-                    add:                   '.uni_select_option_add',
-                    remove:                '.uni-select-option-remove-wrapper',
-                    move:                  '.uni-select-option-move-wrapper',
-                    template:              '.uni-select-option-options-template',
-                    is_sortable:           true,
-                    before_add:            null,
-                    after_add:             function (container, newRow) {
-                        uni_after_add_suboption(container, newRow, '.uni-select-option-options-template');
-                    },
-                    before_remove:         null,
-                    sortable_options:      null,
-                    row_count_placeholder: '<%row-count%>',
-                });
+        if (typeof view.model.get('settings').cpo_rules !== 'undefined') {
+            const filterSelfOnly = Builderius._getQueryBuilderFilter(view.model, 'date_rules');
+            // TODO make extendable
+            const rulesDate            = uniGet(view.model.get('settings'), 'cpo_rules.data.cpo_date_rules', {});
+            const repeaterDataForDateRules     = {
+                wrapper:   '.uni-formula-conditional-rules-repeat-wrapper',
+                container: '.uni-formula-conditional-rules-options-wrapper',
+                row:       '.uni-formula-conditional-rules-options-row',
+                add:       '.uni_formula_conditional_rule_add',
+                remove:    '.uni_formula_conditional_rule_remove',
+                move:      '.uni_formula_conditional_rule_move',
+                template:  '.uni-formula-conditional-rules-options-template',
+                filter:    filterSelfOnly,
+                rules:     rulesDate
+            };
+            const queryBuilderDataForDateRules = {
+                icons:        {
+                    add_group:    'fa fa-plus-circle',
+                    add_rule:     'fa fa-plus',
+                    remove_group: 'fa fa-times',
+                    remove_rule:  'fa fa-times',
+                    error:        'fa fa-exclamation-circle'
+                },
+                allow_groups: 1,
+                filters:      filterSelfOnly,
+                rules:        rulesDate
+            };
+
+            uni_repeater_init('.uni-formula-conditional-rules-repeat', repeaterDataForDateRules);
+            uni_query_builder_init('.cpo-query-rule-builder.query-builder-rcr', queryBuilderDataForDateRules);
+        }
+
+        if (typeof view.model.get('settings').cpo_validation !== 'undefined') {
+            const rulesForValidation            = uniGet(view.model.get('settings'), 'cpo_validation.logic.cpo_vc_scheme', {});
+            const repeaterDataForValidation     = {
+                wrapper:   '.uni-formula-conditional-rules-repeat-wrapper',
+                container: '.uni-formula-conditional-rules-options-wrapper',
+                row:       '.uni-formula-conditional-rules-options-row',
+                add:       '.uni_formula_conditional_rule_add',
+                remove:    '.uni_formula_conditional_rule_remove',
+                move:      '.uni_formula_conditional_rule_move',
+                template:  '.uni-formula-conditional-rules-options-template',
+                filter,
+                rules:     rulesForValidation
+            };
+            const queryBuilderDataForValidation = {
+                icons:        {
+                    add_group:    'fa fa-plus-circle',
+                    add_rule:     'fa fa-plus',
+                    remove_group: 'fa fa-times',
+                    remove_rule:  'fa fa-times',
+                    error:        'fa fa-exclamation-circle'
+                },
+                allow_groups: 1,
+                filters:      filter,
+                rules:        rulesForValidation
+            };
+
+            uni_repeater_init('.uni-formula-conditional-rules-repeat', repeaterDataForValidation);
+            uni_query_builder_init('.cpo-query-rule-builder.query-builder-vcr', queryBuilderDataForValidation);
+        }
+
+        $('.builderius-setting-colorpick').not('[name*="<%row-count%>"]').cs_wpColorPicker();
+        $modal.on('change', '[name="cpo_mode_radio"], [name="cpo_mode_checkbox"]', function(){
+            const val = $(this).val();
+            if ( val === 'image' || val === 'text' ) {
+                $('[data-group="border"] [name="color"]').val('#d7d7d7');
+                $('[data-group="border"] [name="color_active"]').val('#333333');
+                $('[data-group="main"] [name="width_px"]').val('');
+                $('[name="offset_px"]').val('');
+            } else {
+                $('[data-group="main"] [name="width_px"]').val('42');
+                $('[name="offset_px"]').val('2');
+            }
+        });
+
+        $datepickers = jQuery('.builderius-setting-datepicker');
+        if ($datepickers.length > 0) {
+            const {weekdays, months, scrollTitle, toggleTitle} = builderius_i18n.flatpickr;
+            const locale = {
+                      weekdays,
+                      months,
+                      daysInMonth:      [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
+                      firstDayOfWeek:   0,
+                      ordinal:          (nth) => {
+                          const s = nth % 100;
+                          if (s > 3 && s < 21) return "th";
+                          switch (s % 10) {
+                          case 1:
+                          return "st";
+                          case 2:
+                          return "nd";
+                          case 3:
+                          return "rd";
+                          default:
+                          return "th";
+                      }
+                  },
+                  rangeSeparator:   " - ",
+                  weekAbbreviation: "Wk",
+                  scrollTitle,
+                  toggleTitle,
+                  amPM:             ["AM", "PM"],
+            };
+            $.each($datepickers, function(i, el){
+                const $el = $(el);
+                const val = uniFindValueByKey(view.model.get('settings'), el.name);
+                const wrap = $el.closest('div')[ 0 ];
+
+                if ($el.hasClass('datepicker-mode-multiple')) {
+                    let defaultValue;
+                    if (typeof val !== 'undefined') {
+                        defaultValue = val.split(', ');
+                    }
+                    $el.flatpickr({
+                        locale,
+                        defaultValue,
+                        appendTo: wrap,
+                        mode: 'multiple'
+                    });
+                } else if ($el.hasClass('datepicker-mode-range')) {
+                    let defaultValue;
+                    if (typeof val !== 'undefined') {
+                        defaultValue = val.split(' - ');
+                    }
+                    $el.flatpickr({
+                        locale,
+                        defaultValue,
+                        appendTo: wrap,
+                        mode: 'range'
+                    });
+                } else {
+                    let defaultValue;
+                    if (typeof val !== 'undefined') {
+                        defaultValue = val;
+                    }
+                    $el.flatpickr({
+                        locale,
+                        defaultValue,
+                        appendTo: wrap,
+                    });
+                }
             });
         }
 
-        Builderius._initTooltip( $('#js-block-settings-modal'), 'center bottom', 'center top-10' );
+        Builderius._initTooltip( $modal, 'center bottom', 'center top-10' );
 
     });
 
     $(document.body).on('builderius_main_formula_modal_opening', function (e, view) {
-        $('#uni-modal-main-formula-wrapper').on('click', '.uni-variables-list li', function () {
+        const $modal = $('#uni-modal-main-formula-wrapper');
+
+        $modal.on('click', '.uni-variables-list li', function () {
             if (view.textarea !== undefined) {
                 view.textarea.insertAtCaret($(this).text().replace(/\s/g, ''));
             }
             return false;
         });
 
+        $modal.on('change', 'input, select, textarea', function (e) {
+            const $el = $( e.currentTarget );
+            if ( !$el.parents('.cpo-query-rule-builder').length ) {
+                $('#js-modal-main-save-btn').addClass('uni-active');    
+            }
+        });
+
         const filter    = Builderius._getQueryBuilderFilter();
-        const rules     = (typeof view.model.get('formulaData').formula_scheme !== 'undefined' )
+        /*const rules     = (typeof view.model.get('formulaData').formula_scheme !== 'undefined' )
             ? view.model.get('formulaData').formula_scheme
-            : {};
-        const $repeater = $('.uni-formula-conditional-rules-repeat');
+            : {};*/
+        const rules = uniGet(view.model.get('formulaData'), 'formula_scheme', {});
+        const repeaterData     = {
+            wrapper:   '.uni-formula-conditional-rules-repeat-wrapper',
+            container: '.uni-formula-conditional-rules-options-wrapper',
+            row:       '.uni-formula-conditional-rules-options-row',
+            add:       '.uni_formula_conditional_rule_add',
+            remove:    '.uni_formula_conditional_rule_remove',
+            move:      '.uni_formula_conditional_rule_move',
+            template:  '.uni-formula-conditional-rules-options-template',
+            filter,
+            rules
+        };
+        const queryBuilderData = {
+            icons:        {
+                add_group:    'fa fa-plus-circle',
+                add_rule:     'fa fa-plus',
+                remove_group: 'fa fa-times',
+                remove_rule:  'fa fa-times',
+                error:        'fa fa-exclamation-circle'
+            },
+            allow_groups: 1,
+            filters:      filter,
+            rules
+        };
+
+        uni_repeater_init('.uni-formula-conditional-rules-repeat', repeaterData);
+        uni_query_builder_init('.cpo-query-rule-builder', queryBuilderData);
+    });
+
+    $(document.body).on('builderius_weight_modal_opening', function (e, view) {
+        const $modal = $('#uni-modal-weight-wrapper');
+
+        $modal.on('click', '.uni-variables-list li', function () {
+            if (view.textarea !== undefined) {
+                view.textarea.insertAtCaret($(this).text().replace(/\s/g, ''));
+            }
+            return false;
+        });
+        $modal.on('change', 'input, select, textarea', function (e) {
+            const $el = $( e.currentTarget );
+            if ( !$el.parents('.cpo-query-rule-builder').length ) {
+                $('#js-modal-main-save-btn').addClass('uni-active');    
+            }
+        });
+
+        const filter           = Builderius._getQueryBuilderFilter();
+        /*const rules            = (typeof view.model.get('weightData').weight_scheme !== 'undefined')
+            ? view.model.get('weightData').weight_scheme
+            : {};*/
+        const rules = uniGet(view.model.get('weightData'), 'weight_scheme', {});
+        const repeaterData     = {
+            wrapper:   '.uni-formula-conditional-rules-repeat-wrapper',
+            container: '.uni-formula-conditional-rules-options-wrapper',
+            row:       '.uni-formula-conditional-rules-options-row',
+            add:       '.uni_formula_conditional_rule_add',
+            remove:    '.uni_formula_conditional_rule_remove',
+            move:      '.uni_formula_conditional_rule_move',
+            template:  '.uni-formula-conditional-rules-options-template',
+            filter,
+            rules
+        };
+        const queryBuilderData = {
+            icons:        {
+                add_group:    'fa fa-plus-circle',
+                add_rule:     'fa fa-plus',
+                remove_group: 'fa fa-times',
+                remove_rule:  'fa fa-times',
+                error:        'fa fa-exclamation-circle'
+            },
+            allow_groups: 1,
+            filters:      filter,
+            rules
+        };
+
+        uni_repeater_init('.uni-formula-conditional-rules-repeat', repeaterData);
+        uni_query_builder_init('.cpo-query-rule-builder', queryBuilderData);
+    });
+
+    $(document.body).on('builderius_nov_modal_opening', function (e, view) {
+        const wrap        = '.uni-cpo-matrix-options-wrap';
+        const $modal      = $('#uni-modal-nov-wrapper');
+        const container   = '.uni-matrix-table-container';
+        const $matrixJson = $('.uni-matrix-json');
+
+        if ($matrixJson.length > 0) {
+            $matrixJson.each(function () {
+                if ($(this).val() !== '') {
+                    const $wrapper = $(this).closest(wrap);
+                    view.generateTable($wrapper);
+                }
+            });
+        }
+
+        $modal.on('click', '.uni-variables-list li', function () {
+            view.textarea.insertAtCaret($(this).text().replace(/\s/g, ''));
+            return false;
+        });
+
+        $modal.on('click', '.uni-matrix-generate-btn', function () {
+            const $wrapper = $(this).closest(wrap);
+            view.generateTable($wrapper);
+        });
+
+        $modal.on('click', '.uni-generated-table-remove-row', function () {
+            const row = $(this).closest(wrap).find(container).data('row');
+            view.table[row].remove($(this).data('row'));
+        });
+
+        $modal.on('click', '.uni-generated-table-clone-row', function () {
+            const row = $(this).closest(wrap).find(container).data('row');
+            view.table[row].duplicate($(this).data('row'));
+        });
+
+        $modal.on('change', '.uni-matrix-import input[type="file"]', function () {
+            $(this).addClass('uni-chosen').closest('.uni-matrix-import').find('label').text('File chosen');
+        });
+        
+        $modal.on('change', 'input, select, textarea', function () {
+            $('#js-modal-nov-save-btn').addClass('uni-active');
+        });
+
+        // init non option variables
+        const $repeater = $('.uni-cpo-non-option-vars-options-repeat');
         if ($repeater.length > 0) {
             $repeater.each(function () {
                 $(this).repeatable_fields({
-                    wrapper:               '.uni-formula-conditional-rules-repeat-wrapper',
-                    container:             '.uni-formula-conditional-rules-options-wrapper',
-                    row:                   '.uni-formula-conditional-rules-options-row',
-                    add:                   '.uni_formula_conditional_rule_add',
-                    remove:                '.uni_formula_conditional_rule_remove',
-                    move:                  '.uni_formula_conditional_rule_move',
-                    template:              '.uni-formula-conditional-rules-options-template',
+                    wrapper:               '.uni-cpo-non-option-vars-options-repeat-wrapper',
+                    container:             '.uni-cpo-non-option-vars-options-wrapper',
+                    row:                   '.uni-cpo-non-option-vars-options-row',
+                    add:                   '.uni_cpo_non_option_vars_option_add',
+                    remove:                '.uni-cpo-non-option-vars-options-rules-remove-wrapper',
+                    move:                  '.uni-cpo-non-option-vars-options-move-wrapper',
+                    template:              '.uni-cpo-non-option-vars-options-template',
+                    is_sortable:           true,
+                    before_add:            null,
+                    after_add:             function (container, newRow) {
+                        uni_after_add_nov_item(container, newRow);
+                    },
+                    before_remove:         null,
+                    after_remove:          function (container) {
+                        $('#js-modal-nov-save-btn').addClass('uni-active');
+                        update_everything(container, '.uni-cpo-non-option-vars-options-template');
+                    },
+                    sortable_options:      null,
+                    row_count_placeholder: '<%row-count%>',
+                });
+            });
+        }
+
+    });
+
+    $(document.body).on('builderius_general_settings_modal_opening', function (e, view) {
+        const $modal = $('#uni-modal-general-settings-wrapper');
+        // init tabs
+        $('#uni-modal-tabs').tabs({
+            activate: function (event, ui) {}
+        });
+        $modal.on('change', 'input:not([type="file"]):not(#js-cpo-export-email):not(#js-cpo-import-preference-checkbox), select:not(.js-sync-products), textarea', function () {
+            $('#js-modal-main-save-btn').addClass('uni-active');
+        });
+
+        $modal.on('change', '.uni-import-file-wrap input[type="file"]', function () {
+            $(this).addClass('uni-chosen').closest('.uni-import-file-wrap').find('label').text('File chosen');
+        });
+    });
+
+    $(document.body).on('builderius_cart_discounts_modal_opening', function (e, view) {
+        const $modal = $('#uni-modal-cart-discounts-wrapper');
+        // init tabs
+        $('#uni-modal-tabs').tabs({
+            activate: function (event, ui) {}
+        });
+        $modal.on('change', 'input, select, textarea', function () {
+            $('#js-modal-main-save-btn').addClass('uni-active');
+        });
+    });
+
+    // uni_after_add_suboption
+    function uni_after_add_suboption (container, newRow, settingsTmpl) {
+        let count = $(container).attr('data-rf-row-count');
+        count++;
+
+        $('*', newRow).each(function () {
+            $.each(this.attributes, function (index, element) {
+                this.value = this.value.replace('<%row-count%>', count - 1);
+            });
+        });
+
+        $(newRow).find('textarea, input').not('.wp-picker-clear').addClass('builderius-setting-field');
+        $(container).attr('data-rf-row-count', count);
+
+        $(newRow).find('.builderius-setting-colorpick').cs_wpColorPicker();
+
+        $('.uni-modal-btns-wrap .uni-btn-1.uni-modal-save-btn').addClass('uni-active');
+        update_everything(container, settingsTmpl);
+    }
+
+    //
+    function uni_repeater_init (selector, data) {
+        const $repeater = $(selector);
+
+        if ($repeater.length > 0) {
+            const {wrapper, container, row, add, remove, move, template, filter, rules} = data;
+
+            $repeater.each(function () {
+                $(this).repeatable_fields({
+                    wrapper,
+                    container,
+                    row,
+                    add,
+                    remove,
+                    move,
+                    template,
                     is_sortable:           true,
                     before_add:            null,
                     after_add:             function (container, newRow) {
                         uni_after_conditional_add(container, newRow, filter, rules);
                     },
                     before_remove:         null,
+                    after_remove:          function (container) {
+                        $('.uni-modal-btns-wrap .uni-btn-1.uni-modal-save-btn').addClass('uni-active');
+                        update_everything(container, template);
+                    },
                     sortable_options:      {
                         stop: function () {
                             $('.js-uni-fetch-scheme').each(function () {
@@ -3287,29 +4261,30 @@
                             });
                         }
                     },
-                    row_count_placeholder: '<%row-count%>',
+                    row_count_placeholder: '<%row-count%>'
                 });
             });
         }
+    }
 
-        const $builder = $('.cpo-query-rule-builder');
+    //
+    function uni_query_builder_init(selector, data) {
+        const $builder = $(selector);
+
         if ($builder.length > 0) {
             $builder.empty();
-            if (filter.length > 0) {
+            const { filters } = data;
+            if (filters.length > 0) {
+                const { icons, allow_groups, rules } = data;
+
                 $builder.each(function (i) {
 
                     const $builderId = $('#cpo-formula-rule-builder-' + i);
                     if ($builderId.length > 0) {
                         $builderId.queryBuilder({
-                            icons:        {
-                                add_group:    'fa fa-plus-circle',
-                                add_rule:     'fa fa-plus',
-                                remove_group: 'fa fa-times',
-                                remove_rule:  'fa fa-times',
-                                error:        'fa fa-exclamation-circle'
-                            },
-                            allow_groups: 1,
-                            filters:      filter
+                            icons,
+                            allow_groups,
+                            filters
                         });
                         if (typeof rules[i] !== 'undefined' && !_.isEmpty(rules[i].rule)) {
                             finalRule = rules[i].rule.replace(/\\/g, '');
@@ -3333,79 +4308,6 @@
                 $builder.text('No options variables found');
             }
         }
-
-    });
-
-    $(document.body).on('builderius_nov_modal_opening', function (e, view) {
-        const wrap        = '.uni-cpo-matrix-options-wrap';
-        const $modal      = $('#uni-modal-nov-wrapper');
-        const container   = '.uni-matrix-table-container';
-        const $matrixJson = $('.uni-matrix-json');
-
-        if ($matrixJson.length > 0) {
-            $matrixJson.each(function () {
-                if ($(this).val() !== '') {
-                    const $wrapper = $(this).closest(wrap);
-                    view.generateTable($wrapper);
-                }
-            });
-        }
-
-        $modal.on('click', '.uni-variables-list li', function () {
-            view.textarea.insertAtCaret($(this).text().replace(/\s/g, ''));
-            return false;
-        });
-
-        // init non option variables
-        const $repeater = $('.uni-cpo-non-option-vars-options-repeat');
-        if ($repeater.length > 0) {
-            $repeater.each(function () {
-                $(this).repeatable_fields({
-                    wrapper:               '.uni-cpo-non-option-vars-options-repeat-wrapper',
-                    container:             '.uni-cpo-non-option-vars-options-wrapper',
-                    row:                   '.uni-cpo-non-option-vars-options-row',
-                    add:                   '.uni_cpo_non_option_vars_option_add',
-                    remove:                '.uni-cpo-non-option-vars-options-rules-remove-wrapper',
-                    move:                  '.uni-cpo-non-option-vars-options-move-wrapper',
-                    template:              '.uni-cpo-non-option-vars-options-template',
-                    is_sortable:           true,
-                    before_add:            null,
-                    after_add:             function (container, newRow) {
-                        uni_after_add_nov_item(container, newRow);
-                    },
-                    before_remove:         null,
-                    after_remove:          null,
-                    sortable_options:      null,
-                    row_count_placeholder: '<%row-count%>',
-                });
-            });
-        }
-
-    });
-
-    $(document.body).on('builderius_general_settings_modal_opening', function (e, view) {
-        // init tabs
-        $('#uni-modal-tabs').tabs({
-            activate: function (event, ui) {}
-        });
-
-    });
-
-    // uni_after_add_suboption
-    function uni_after_add_suboption (container, newRow, settingsTmpl) {
-        let count = $(container).attr('data-rf-row-count');
-        count++;
-
-        $('*', newRow).each(function () {
-            $.each(this.attributes, function (index, element) {
-                this.value = this.value.replace('<%row-count%>', count - 1);
-            });
-        });
-
-        $(newRow).find('textarea, input').addClass('builderius-setting-field');
-        $(container).attr('data-rf-row-count', count);
-
-        update_everything(container, settingsTmpl);
     }
 
     //
@@ -3413,15 +4315,17 @@
         let count = $(container).attr('data-rf-row-count');
         count++;
         const neededIndex = count - 1;
+
         $('*', newRow).each(function () {
             $.each(this.attributes, function () {
                 this.value = this.value.replace('<%row-count%>', neededIndex);
             });
         });
 
-        update_everything(container, '.template');
+        $('.uni-modal-btns-wrap .uni-btn-1.uni-modal-save-btn').addClass('uni-active');
+        update_everything(container, '.uni-formula-conditional-rules-options-template');
 
-        $(newRow).find('textarea, input[type="hidden"]').addClass('builderius-setting-field');
+        $(newRow).find('textarea, input[type="hidden"]').not('.wp-picker-clear').addClass('builderius-setting-field');
         $(container).attr('data-rf-row-count', count);
         const $builder = $('#cpo-formula-rule-builder-' + neededIndex);
         $builder.empty();
@@ -3459,9 +4363,9 @@
             });
         });
 
-        update_everything(container, '.template');
+        update_everything(container, '.uni-cpo-non-option-vars-options-template');
 
-        $(newRow).find('textarea, input').addClass('builderius-setting-field');
+        $(newRow).find('textarea, input').not('.wp-picker-clear').addClass('builderius-setting-field');
         const $roleWrapperOne = $(newRow).find('.uni-cpo-non-option-vars-role');
         $roleWrapperOne.attr('data-uni-constrained', 'input[name=wholesale_enable]');
         $roleWrapperOne.attr('data-uni-constvalue', 'on');
@@ -3469,6 +4373,7 @@
         $roleWrapperTwo.attr('data-uni-constrained', 'input[name=wholesale_enable]');
         $roleWrapperTwo.attr('data-uni-constvalue', 'on');
         $(container).attr('data-rf-row-count', count);
+        $('#js-modal-nov-save-btn').addClass('uni-active');
 
         Builderius._conditionalFields();
     }
@@ -3478,8 +4383,8 @@
 
         if (filter.length > 0) {
             const $link           = $(this);
-            const $nearestBuilder = $link.prev('.cpo-query-rule-builder');
-            const id              = $(this).data('id');
+            const $nearestBuilder = $link.prev('.cpo-query-rule-builder, .cpo-query-rule-builder-single');
+            const id              = $link.data('id');
             const rules           = $nearestBuilder.queryBuilder('getRules');
 
             if (rules) {
@@ -3488,12 +4393,38 @@
                 } else {
                     $('#uni_cpo_field_rule_scheme').empty().val(JSON.stringify(rules, undefined, 2));
                 }
-                //$( ".uni-cpo-modal-field" ).trigger( "change" );
                 //
                 $link.removeClass('uni-cpo-settings-unsaved').addClass('uni-cpo-settings-saved');
+                $('#js-modal-main-save-btn, #js-modal-save-btn, #js-modal-main-save-btn').addClass('uni-active');
             } else {
                 $link.removeClass('uni-cpo-settings-saved').addClass('uni-cpo-settings-unsaved');
+                $('#js-modal-main-save-btn, #js-modal-save-btn, #js-modal-main-save-btn').removeClass('uni-active');
             }
+        }
+    });
+
+    window.Parsley.on('field:error', function() {
+        const id = this.$element.data('parsley-id');
+        const width = this.$element.outerWidth();
+        const $list = $('#parsley-id-' + id );
+        $list.position({
+            of: this.$element,
+            my: 'left top',
+            at: 'left bottom',
+            collision: 'none'
+        });
+        $list.css({
+            'max-width': width,
+            'opacity': 1
+        });
+        
+        const wrapId = this.$element.closest('.uni-tab-content').attr('id');
+        $('[href="#'+wrapId+'"]').closest('li').addClass('uni-warning');
+    });
+    window.Parsley.on('field:success', function() {
+        if ( ! $('.parsley-error').length > 0 ) {
+            const wrapId = this.$element.closest('.uni-tab-content').attr('id');
+            $('[href="#'+wrapId+'"]').closest('li').removeClass('uni-warning');
         }
     });
 

@@ -562,8 +562,25 @@ abstract class Uni_Cpo_Data {
 	public function apply_changes() {
 		$this->data    = array_replace_recursive( $this->data, $this->changes );
 		// exception
-		if ( isset( $this->changes['cpo_suboptions'] ) ) {
-			$this->data['cpo_suboptions'] = $this->changes['cpo_suboptions'];
+		$exceptions = apply_filters(
+			'uni_cpo_option_apply_changes_filter',
+			array(
+				'cpo_suboptions' => array(
+					'data'
+				),
+				'cpo_validation' => array(
+					'logic' => array(
+						'cpo_vc_scheme'
+					)
+				)
+			)
+		);
+		if ( ! empty( $exceptions ) && is_array( $exceptions ) ) {
+			array_walk(
+				$exceptions,
+				'uni_cpo_option_apply_changes_walk',
+				array( &$this->data, $this->changes )
+			);
 		}
 		$this->changes = array();
 	}

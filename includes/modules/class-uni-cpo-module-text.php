@@ -115,9 +115,7 @@ class Uni_Cpo_Module_Text extends Uni_Cpo_Module implements Uni_Cpo_Module_Inter
                         {{ if ( padding.right !== '' ) { }} padding-right: {{= padding.right + padding.unit }}; {{ } }}
                     }
                 </style>
-                <p {{ if ( id_name !== '' ) { }} id="{{- id_name }}" {{ } }} class="uni-node-{{- id }} {{ if ( class_name !== '' ) { }}{{- class_name }}{{ } }}">
-                    {{= content }}
-                </p>
+                <div {{ if ( id_name !== '' ) { }} id="{{- id_name }}" {{ } }} class="uni-node-{{- id }} {{ if ( class_name !== '' ) { }}{{- class_name }}{{ } }}">{{= content }}</div>
             </div>
         </script>
 		<?php
@@ -125,11 +123,14 @@ class Uni_Cpo_Module_Text extends Uni_Cpo_Module implements Uni_Cpo_Module_Inter
 
 	public static function template( $data ) {
 		$id        = $data['id'];
+		$type      = $data['type'];
 		$content   = $data['settings']['general']['main']['content'];
 		$selectors = $data['settings']['advanced']['selectors'];
 
 		$css_id    = array();
-		$css_class = array(
+		$css_class         = array(
+			'uni-module',
+			'uni-module-' . $type,
 			'uni-node-' . $id
 		);
 		if ( ! empty( $selectors['id_name'] ) ) {
@@ -145,9 +146,7 @@ class Uni_Cpo_Module_Text extends Uni_Cpo_Module implements Uni_Cpo_Module_Inter
 				}, $css_id ) ); ?>"
                 class="<?php echo implode( ' ', array_map( function ( $el ) {
 					return esc_attr( $el );
-				}, $css_class ) ); ?>">
-			<?php echo uni_cpo_sanitize_text( $content ); ?>
-        </div>
+				}, $css_class ) ); ?>"><?php echo uni_cpo_sanitize_text( $content ); ?></div>
 		<?php
 	}
 

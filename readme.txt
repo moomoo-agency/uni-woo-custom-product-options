@@ -1,5 +1,5 @@
-=== WooCommerce Product Options and Price Calculation Formulas Lite - Uni CPO ===
-Contributors: moomooagency, mrpsiho, andriimatenka
+=== WooCommerce Product Options and Price Calculation Formulas Pro - Uni CPO ===
+Contributors: moomooagency, mrpsiho, andriimatenka, freemius
 Tags: custom options, extra options, product visual builder, woocommerce plugins, price calculation, maths formula, conditional logic, wholesale
 Requires at least: 4.8
 Tested up to: 4.9
@@ -38,7 +38,10 @@ maths formula as its value
 * A possibility to create fields conditional logic - display/hide certain custom options based on the values of
 other custom options and/or NOVs
 
-**Pro version of the plugin will be available a little bit later. Please, like/follow our [fb page](https://facebook.com/moomoo.agency) to stay tuned for all the future announcements and updates. Thanks!**
+[Documentation](https://moomoo-agency.gitbooks.io/uni-cpo-4-documentation/)
+[DEMO (PRO version)](https://cpo.builderius.io)
+
+**Pro version of the plugin is [available here](https://builderius.io/cpo).**
 
 == Installation ==
 
@@ -74,6 +77,9 @@ A: We wouldn't recommend to do this yet. First, this version is so called 'lite'
 7. screenshot-7.png
 
 == Changelog ==
+
+= 4.0.3 =
+* Enhaced and improved
 
 = 4.0.2 =
 * Fixed a bug "Inconsistency of view in builder and in the frontend"

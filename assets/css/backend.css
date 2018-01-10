@@ -1,0 +1,19 @@
+#uni_cpo_settings_data {text-align: center;}
+#uni_cpo_settings_data > a {
+    display: inline-block;
+    height: 36px;
+    line-height: 34px;
+    margin-top: 100px;
+    padding: 0 20px;
+    border: 0;
+    background-color: #3bc5b6;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    text-transform: uppercase;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}

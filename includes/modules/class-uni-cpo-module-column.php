@@ -156,7 +156,7 @@ class Uni_Cpo_Module_Column extends Uni_Cpo_Module implements Uni_Cpo_Module_Int
 		<?php
 	}
 
-	public static function template( $data ) {
+	public static function template( $data, $post_data = array() ) {
 		$id        = $data['id'];
 		$selectors = $data['settings']['advanced']['selectors'];
 
@@ -187,7 +187,7 @@ class Uni_Cpo_Module_Column extends Uni_Cpo_Module implements Uni_Cpo_Module_Int
 						if ( class_exists( $module_class ) ) {
 							call_user_func( $module_class . '::template', $module_data );
 						} elseif ( class_exists( $option_class ) ) {
-							call_user_func( $option_class . '::template', $module_data );
+							call_user_func( $option_class . '::template', $module_data, $post_data );
 						}
 					}
 				} ?>

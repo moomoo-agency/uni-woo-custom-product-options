@@ -1,0 +1,63 @@
+.uni-cpo-cart-action {
+    display: block;
+    width: 1.618em;
+    height: 1.618em;
+    line-height: 1.618;
+    font-weight: 400;
+    font-size: 1.41575em;
+    text-indent: -9999px;
+    float: none;
+    position: relative;
+    top: auto;
+    right: auto;
+    cursor: pointer;
+}
+.uni-cpo-cart-action:before {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    line-height: 1.618;
+    text-indent: 0;
+    text-align: center;
+}
+.uni-cpo-cart-action.uni-cpo-action-duplicate:before {
+    content: "\f24d";
+    color: #91d6f6;
+}
+.uni-cpo-cart-action.uni-cpo-action-edit:before {
+    content: "\f044";
+    color: #d491f6;
+}
+
+.cpo-cart-item-edit-form .cpo-cart-item-option-wrapper {
+    padding-bottom: 15px;
+}
+.cpo-cart-item-edit-form .cpo-cart-item-option-wrapper > label {
+    display:block;
+}
+.cpo-cart-item-edit-form .cpo-cart-item-option-wrapper span > label {
+    margin-right: 10px;
+}
+.cpo-cart-item-edit-form .cpo-cart-item-option-wrapper input {
+    padding: 0 0.5em;
+}
+.cpo-cart-item-edit-form .cpo-cart-item-option-wrapper input[type="text"] {
+    height: 1.5em;
+}
+.cpo-cart-item-edit-form .cpo-cart-item-option-wrapper select {
+    padding: .5em;
+}
+
+/* Parsley validation */
+.cpo-cart-item-edit-form .parsley-errors-list {position: absolute!important;display: block!important;right: 0!important;min-width: 100px; line-height: 18px!important;margin: 0px!important;padding: 0px!important;background-color: transparent!important; list-style: none!important;z-index: 2!important;clear: both!important;opacity: 0;}
+.cpo-cart-item-edit-form .parsley-errors-list li {margin: 0px!important;padding: 1px 6px 2px!important; line-height: 16px;background-color: #f75555!important;color: #fff!important;font-size: 12px!important;}
+.cpo-cart-item-edit-form .parsley-errors-list:empty {display: none!important;}
+input.parsley-error, textarea.parsley-error, select.parsley-error, div.parsley-error label span.uni-cpo-option-label__radio, div.parsley-error label span.uni-cpo-option-label__checkbox {border-color:#f75555;}
