@@ -78,6 +78,13 @@ A: We wouldn't recommend to do this yet. First, this version is so called 'lite'
 
 == Changelog ==
 
+= 4.0.4 =
+* Fixed an issue related to the order of cart/order meta
+* Fixed displaying 'Select options' instead of 'Add to cart' on product archives
+* Fixed an issue with using a wrong protocol during enqueueing some dynamically generated content on sites with SSL enabled
+* Improved styles for several option types
+* Added a scroll bar for the options list in the builder panel
+
 = 4.0.3 =
 * Enhaced and improved
 
