@@ -23,6 +23,7 @@ final class Uni_Cpo_Templates
         add_action( 'wp_footer', __CLASS__ . '::modal_cart_discounts', 10 );
         add_action( 'wp_footer', __CLASS__ . '::modal_main_formula', 10 );
         add_action( 'wp_footer', __CLASS__ . '::modal_weight_formula', 10 );
+        add_action( 'wp_footer', __CLASS__ . '::modal_dimensions', 10 );
         add_action( 'wp_footer', __CLASS__ . '::modal_nov', 10 );
         add_action( 'wp_footer', __CLASS__ . '::modal_tab_list', 10 );
         add_action( 'wp_footer', __CLASS__ . '::modal_tab_open', 10 );
@@ -103,6 +104,14 @@ final class Uni_Cpo_Templates
                         data-tip="<?php 
         esc_attr_e( 'Product general settings', 'uni-cpo' );
         ?>"></div>
+
+				<div
+                        id="js-panel-delete-changes"
+                        class="uni-panel-action-btn uni-panel-delete-all-btn"
+                        data-tip="<?php 
+        esc_attr_e( 'Delete content', 'uni-cpo' );
+        ?>"></div>
+						
                 <div class="uni-clear"></div>
                 <div
                         id="js-panel-cpo-nov"
@@ -120,12 +129,6 @@ final class Uni_Cpo_Templates
         ?>"></div>
                 <?php 
         ?>
-                <div
-                        id="js-panel-delete-changes"
-                        class="uni-panel-action-btn uni-panel-delete-all-btn"
-                        data-tip="<?php 
-        esc_attr_e( 'Delete content', 'uni-cpo' );
-        ?>"></div>
                 <div
                         id="js-panel-save-changes"
                         class="uni-panel-action-btn uni-panel-save-changes-btn"
@@ -166,7 +169,7 @@ final class Uni_Cpo_Templates
                                             <div class="uni-builder-panel-block js-panel-block-type-{{- key }}"
                                                  data-type="{{- key }}" data-title="{{- val.title }}" data-obj_type="{{- name }}">
                                                 <span class="uni-builder-panel-block-title">{{= val.title }}</span>
-                                            </div>    
+                                            </div>
                                         </div>
                                     {{ } else { }}
                                         {{ if ( i === 0 ) { }}
@@ -618,9 +621,6 @@ final class Uni_Cpo_Templates
 								<?php 
         esc_html_e( 'Main formula', 'uni-cpo' );
         ?>
-								<?php 
-        uni_cpo_help_tip( __( 'Some text', 'uni-cpo' ) );
-        ?>
                             </h3>
                             <textarea
                                     class="builderius-setting-field"
@@ -770,6 +770,22 @@ final class Uni_Cpo_Templates
     }
     
     /**
+     * A template for dimensions settings modal window
+     *
+     * @since 4.0.5
+     * @return string
+     */
+    public static function modal_dimensions()
+    {
+        ?>
+            <script id="js-builderius-modal-dimensions-tmpl" type="text/template">
+                <div id="uni-modal-dimensions-wrapper" class="uni-modal-wrapper">
+                </div>
+            </script>
+			<?php 
+    }
+    
+    /**
      * A template for the non option variables modal window
      *
      * @since 4.0.0
@@ -892,7 +908,8 @@ final class Uni_Cpo_Templates
                                                             value=""
                                                             class="uni-cpo-modal-field uni-cpo-non-option-slug-field"
                                                             data-parsley-required="true"
-                                                            data-parsley-trigger="change focusout submit"/>
+                                                            data-parsley-trigger="change focusout submit"
+                                                            data-parsley-notequalto=".uni-cpo-non-option-slug-field"/>
                                                     <span><code>}</code></span>
                                                 </div>
                                                 <?php 
@@ -961,6 +978,8 @@ final class Uni_Cpo_Templates
                                         {{ if (typeof obj.matrix === 'undefined') { }}
                                         {{ obj.matrix = { enable: 'off' }; }}
                                         {{ } }}
+                                        {{ convertEnable = uniGet(obj, 'convert.enable', 'off'); }}
+                                        {{ convertTo = uniGet(obj, 'convert.to', ''); }}
                                         <div class="uni-cpo-non-option-vars-options-row">
                                             <div class="uni-cpo-non-option-vars-options-move-wrapper">
                                                 <span class="uni_cpo_non_option_vars_option_move"><i
@@ -975,7 +994,8 @@ final class Uni_Cpo_Templates
                                                             value="{{- obj.slug }}"
                                                             class="uni-cpo-modal-field uni-cpo-non-option-slug-field builderius-setting-field"
                                                             data-parsley-required="true"
-                                                            data-parsley-trigger="change focusout submit"/>
+                                                            data-parsley-trigger="change focusout submit"
+                                                            data-parsley-notequalto=".uni-cpo-non-option-slug-field"/>
                                                     <span><code>}</code></span>
                                                 </div>
                                                 <?php 

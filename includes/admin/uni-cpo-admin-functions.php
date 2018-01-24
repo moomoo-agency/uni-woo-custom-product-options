@@ -58,18 +58,27 @@ function uni_cpo_order_formatted_meta_data( $formatted_meta, $item ) {
 					if ( $post ) {
 						$option = uni_cpo_get_option( $post->ID );
 						if ( is_object( $option ) ) {
-							$display_key   = uni_cpo_sanitize_label( $option->cpo_order_label() );
-							$calculate_result = $option->calculate( array( $slug => $meta_data['value'] ) );
-							if ( is_array( $meta_data['value'] ) ) {
-								$value = implode(', ', $meta_data['value']);
+							$display_key = uni_cpo_sanitize_label( $option->cpo_order_label() );
+
+							if ( 'checkbox' === $option::get_type() && ! is_array( $meta_data['value'] ) ) {
+								$form_data[ $slug ] = explode( ', ', $meta_data['value'] );
 							} else {
-								$value= $meta_data['value'];
+								$form_data[ $slug ] = $meta_data['value'];
 							}
+
+							$calculate_result = $option->calculate( $form_data );
+
+							if ( is_array( $meta_data['value'] ) ) {
+								$value = implode( ', ', $meta_data['value'] );
+							} else {
+								$value = $meta_data['value'];
+							}
+
 							$display_value = $value;
 							foreach ( $calculate_result as $k => $v ) {
 								if ( $slug === $k ) { // excluding special vars
 									if ( is_array( $v['order_meta'] ) ) {
-										$display_value = implode(', ', $v['order_meta']);
+										$display_value = implode( ', ', $v['order_meta'] );
 									} else {
 										$display_value = $v['order_meta'];
 									}
@@ -92,5 +101,51 @@ function uni_cpo_order_formatted_meta_data( $formatted_meta, $item ) {
 		return $formatted_meta;
 	} catch ( Exception $e ) {
 		return new WP_Error( 'cart-error', $e->getMessage() );
+	}
+}
+
+add_action( 'admin_footer', 'my_admin_footer_function' );
+function my_admin_footer_function() {
+	$screen = get_current_screen();
+	if ( 'shop_order' === $screen->post_type ) {
+		?>
+        <script type="text/template" id="tmpl-uni-cpo-modal-add-options">
+            <div class="wc-backbone-modal">
+                <div class="wc-backbone-modal-content">
+                    <section class="wc-backbone-modal-main" role="main">
+                        <header class="wc-backbone-modal-header">
+                            <h1><?php _e( 'Add/edit CPO options', 'uni-cpo' ); ?></h1>
+                            <button class="modal-close modal-close-link dashicons dashicons-no-alt">
+                                <span class="screen-reader-text">Close modal panel</span>
+                            </button>
+                        </header>
+                        <article id="cpo-order-edit-options-wrapper">
+                            <form action="" method="post">
+                                <input type="hidden" id="cpo-order-product-id" name="product_id"
+                                       value="{{{data.pid}}}"/>
+                                <input type="hidden" id="cpo-order-security" name="security"
+                                       value="{{{data.security}}}"/>
+                                <input type="hidden" name="action" value="uni_cpo_order_item_update"/>
+                                <input type="hidden" id="cpo-order-item-id" name="order_item_id"
+                                       value="{{{data.order_item_id}}}"/>
+                                <input type="hidden" name="order_id"
+                                       value="{{{woocommerce_admin_meta_boxes.post_id}}}"/>
+                            </form>
+
+                            <form id="cpo-item-options-form" action="" method="post">
+                            </form>
+                        </article>
+                        <footer>
+                            <div class="inner">
+                                <button id="btn-ok"
+                                        class="button button-primary button-large"><?php _e( 'Update', 'uni-cpo' ); ?></button>
+                            </div>
+                        </footer>
+                    </section>
+                </div>
+            </div>
+            <div class="wc-backbone-modal-backdrop modal-close"></div>
+        </script>
+		<?php
 	}
 }

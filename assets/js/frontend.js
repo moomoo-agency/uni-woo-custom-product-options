@@ -61,6 +61,7 @@ UniCpo = {
                 }
                 this.bindOnAddToCartClick();
                 this.initTooltip();
+                this.initRangeSlider();
                 this.bindOnFileUploadClick();
 
                 // initial calculation
@@ -113,6 +114,7 @@ UniCpo = {
                     }
                 };
 
+                this.bindOnRadioImageTap();
                 this.bindOnOptionSelected();
                 this.bindMainImageChange();
             }
@@ -160,6 +162,7 @@ UniCpo = {
                     cpoObj._unblockForm(form, 'success');
 
                     unicpo.formatted_vars = r.data.formatted_vars;
+                    unicpo.nice_names_vars = r.data.nice_names_vars;
                     jQuery.extend(unicpo.price_vars, r.data.price_vars);
                     jQuery.extend(unicpo.extra_data, r.data.extra_data);
 
@@ -296,6 +299,29 @@ UniCpo = {
             }
         });
     },
+    bindOnRadioImageTap: function bindOnRadioImageTap() {
+        jQuery('.uni-module-radio .uni-cpo-option-label__image-wrap').on('touchstart', function () {
+            var id = jQuery(this).closest('label').attr('for');
+            setTimeout(function () {
+                jQuery('#' + id).prop("checked", true).trigger("change");
+            }, 400);
+        });
+        jQuery('.uni-module-checkbox .uni-cpo-option-label__image-wrap').on('touchstart', function () {
+            var label = jQuery(this).closest('label');
+            var id = label.attr('for');
+
+            setTimeout(function () {
+                if (label.hasClass('uni-checked')) {
+                    jQuery('#' + id).prop('checked', false).trigger("change");
+                    jQuery('.ui-tooltip').remove();
+                    label.removeClass('uni-checked');
+                } else {
+                    jQuery('#' + id).prop('checked', true).trigger("change");
+                    label.addClass('uni-checked');
+                }
+            }, 400);
+        });
+    },
     calculate: function calculate(fields) {
         var data = {
             action: 'uni_cpo_price_calc',
@@ -344,81 +370,92 @@ UniCpo = {
                 return;
             }
 
-            var $el = jQuery(this);
-            var elType = this.type || this.tagName.toLowerCase();
+            var el = this;
+            var $el = jQuery(el);
+            var elType = el.type || el.tagName.toLowerCase();
 
             if ('checkbox' === elType) {
-                var checkboxes = [];
-                var name = this.name.slice(0, -2);
-
+                var name = el.name.replace('[]', '');
                 if (typeof fields[name] !== 'undefined') {
                     return;
                 }
+                fields[name] = jQuery.makeArray(fields[name]);
 
-                jQuery('input[name="' + this.name + '"]:checked').each(function () {
-                    checkboxes.push(jQuery(this).val());
+                jQuery('input[name="' + el.name + '"]:checked').each(function () {
+                    fields[name].push(this.value);
                 });
-                fields[name] = checkboxes;
                 fields[name + '_count'] = fields[name].length;
             } else if ('radio' === elType) {
-                if (jQuery('input[name="' + this.name + '"]:checked').length) {
+                if (jQuery('input[name="' + el.name + '"]:checked').length) {
                     if (true === $el.prop('checked')) {
-                        fields[this.name] = $el.val();
+                        fields[el.name] = $el.val();
                     }
                 } else {
-                    fields[this.name] = '';
+                    fields[el.name] = '';
                 }
             } else if ('select-one' === elType) {
-                fields[this.name] = $el.val();
+                fields[el.name] = $el.val();
             } else if ('number' === elType || 'text' === elType) {
                 if ($el.hasClass('js-uni-cpo-field-datepicker')) {
-                    var fp = document.getElementById(this.name + '-field')._flatpickr;
+                    var fp = document.getElementById(el.name + '-field')._flatpickr;
                     if (fp.selectedDates.length) {
                         var startDate = moment(fp.selectedDates[0]);
-                        fields[this.name] = startDate.format('Y-MM-DD');
-                        fields[this.name + '_start'] = startDate.format('Y-MM-DD');
+                        fields[el.name] = startDate.format('Y-MM-DD');
+                        fields[el.name + '_start'] = startDate.format('Y-MM-DD');
                         if (fp.selectedDates[1]) {
                             var endDate = moment(fp.selectedDates[1]);
-                            fields[this.name] = startDate.format('Y-MM-DD') + ' - ' + endDate.format('Y-MM-DD');
-                            fields[this.name + '_end'] = endDate.format('Y-MM-DD');
-                            fields[this.name + '_duration'] = endDate.diff(startDate, 'days');
+                            fields[el.name] = startDate.format('Y-MM-DD') + ' - ' + endDate.format('Y-MM-DD');
+                            fields[el.name + '_end'] = endDate.format('Y-MM-DD');
+                            fields[el.name + '_duration'] = endDate.diff(startDate, 'days');
                             if ($el.hasClass('js-datepicker-mode-days')) {
-                                fields[this.name + '_duration'] = fields[this.name + '_duration'] + 1;
+                                fields[el.name + '_duration'] = fields[el.name + '_duration'] + 1;
                             }
                         }
+                    }
+                } else if ($el.hasClass('js-uni-cpo-field-range_slider')) {
+                    var slider = $el.data('ionRangeSlider');
+                    if ('double' === slider.options.type) {
+                        var values = $el.val().split('-');
+                        fields[el.name] = $el.val();
+                        fields[el.name + '_from'] = values[0];
+                        fields[el.name + '_to'] = values[1];
+                    } else {
+                        fields[el.name] = $el.val();
+                        fields[el.name + '_from'] = $el.val();
+                        fields[el.name + '_to'] = $el.val();
                     }
                 } else {
                     if (!cpoObj.isNumber($el.val())) {
                         var val = $el.val().replace(/,/, '.');
                         $el.val(val);
-                        fields[this.name] = $el.val();
+                        fields[el.name] = $el.val();
                     } else {
-                        fields[this.name] = $el.val();
+                        fields[el.name] = $el.val();
                     }
-                    fields[this.name + '_count_spaces'] = fields[this.name].length;
+                    fields[el.name + '_count_spaces'] = fields[el.name].length;
                     var withoutSpaces = $el.val().replace(/ /g, '');
-                    fields[this.name + '_count'] = withoutSpaces.length;
+                    fields[el.name + '_count'] = withoutSpaces.length;
                 }
             } else if ('textarea' === elType) {
-                fields[this.name] = $el.val();
-                fields[this.name + '_count_spaces'] = fields[this.name].length;
+                fields[el.name] = $el.val();
+                fields[el.name + '_count_spaces'] = fields[el.name].length;
                 var _withoutSpaces = $el.val().replace(/ /g, '');
-                fields[this.name + '_count'] = _withoutSpaces.length;
+                fields[el.name + '_count'] = _withoutSpaces.length;
             } else if ('hidden' === elType) {
                 if ($el.hasClass('js-uni-cpo-field-file_upload')) {
                     var data = $el.data();
-                    fields[this.name] = $el.val();
+                    fields[el.name] = $el.val();
                     if (typeof data.imageWidth !== 'undefined') {
-                        fields[this.name + '_width'] = parseInt(data.imageWidth);
+                        fields[el.name + '_width'] = parseInt(data.imageWidth);
                     }
                     if (typeof data.imageHeight !== 'undefined') {
-                        fields[this.name + '_height'] = parseInt(data.imageHeight);
+                        fields[el.name + '_height'] = parseInt(data.imageHeight);
                     }
                 } else {
-                    fields[this.name] = $el.val();
+                    fields[el.name] = $el.val();
                 }
             } else {
-                fields[this.name] = $el.val();
+                fields[el.name] = $el.val();
             }
 
             // Triggers an event - for each field
@@ -464,12 +501,18 @@ UniCpo = {
             if (!cpoObj.addToCartAjax) {
                 cpoObj.productFormEl.submit();
             } else {
-                var formDataArray = cpoObj.productFormEl.serializeArray();
-                var formData = {};
-                for (var i = 0; i < formDataArray.length; i++) {
-                    formData[formDataArray[i]['name']] = formDataArray[i]['value'];
-                }
-                cpoObj.addToCart(formData);
+                var data = {};
+                jQuery.each(cpoObj.productFormEl.serializeArray(), function (index, item) {
+                    if (item.name.indexOf('[]') !== -1) {
+                        item.name = item.name.replace('[]', '');
+                        data[item.name] = jQuery.makeArray(data[item.name]);
+                        data[item.name].push(item.value);
+                    } else {
+                        data[item.name] = item.value;
+                    }
+                });
+                console.log(data);
+                cpoObj.addToCart(data);
             }
 
             $excludeFromFormSubmission.each(function () {
@@ -648,6 +691,30 @@ UniCpo = {
             $option.parsley().addError('file-upload', { message: resp.data.message });
             window.UniCpo.position($option, 0);
         }
+    },
+    initRangeSlider: function initRangeSlider() {
+        var cpoObj = this;
+        var sliders = jQuery('.js-uni-cpo-field-range_slider');
+
+        sliders.each(function () {
+            var $el = jQuery(this);
+            var options = {
+                force_edges: true,
+                input_values_separator: '-',
+                onFinish: function onFinish() {
+                    if (cpoObj._ajax_sent) {
+                        return false;
+                    }
+                    if (!cpoObj.calc || cpoObj.calc && !cpoObj.calcBtn) {
+                        cpoObj.processFormData();
+                    } else if (cpoObj.calc && cpoObj.calcBtn) {
+                        cpoObj.setBtnState(true);
+                        cpoObj.collectData(true);
+                    }
+                }
+            };
+            $el.ionRangeSlider(options);
+        });
     },
     initTooltip: function initTooltip() {
         jQuery('.uni-builderius-container').tooltip({
@@ -834,6 +901,20 @@ UniCpo = {
             slider_data.flexslider(0);
         }
     },
+    template: _.memoize(function (id) {
+        var compiled = void 0;
+        var options = {
+            evaluate: /\{#([\s\S]+?)#\}/g,
+            interpolate: /\{\{\{([\s\S]+?)\}\}\}/g,
+            escape: /\{\{([^\}]+?)\}\}(?!\})/g,
+            variable: 'data'
+        };
+
+        return function (data) {
+            compiled = compiled || _.template(jQuery('#cpo-tmpl-' + id).html(), options);
+            return compiled(data);
+        };
+    }),
     _blockForm: function _blockForm(el) {
         this._ajax_sent = true;
         jQuery(el).block({

@@ -13,7 +13,7 @@ final class Uni_Cpo
      *
      * @var string
      */
-    public  $version = '4.0.4' ;
+    public  $version = '4.0.5' ;
     /**
      * The single instance of the class.
      *
@@ -207,6 +207,10 @@ final class Uni_Cpo
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-height-px.php';
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-vertical-align.php';
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-color.php';
+            include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-color-from.php';
+            include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-color-to.php';
+            include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-color-top.php';
+            include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-color-bottom.php';
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-color-hover.php';
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-color-active.php';
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-text-align.php';
@@ -280,10 +284,15 @@ final class Uni_Cpo
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-vc-extra.php';
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-is-vc.php';
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-vc-scheme.php';
+            include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-range-type.php';
+            include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-range-grid.php';
+            include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-range-from.php';
+            include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-range-to.php';
+            include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-range-prefix.php';
+            include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-range-postfix.php';
+            include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-notice-text.php';
             // common js templates
             include_once UNI_CPO_ABSPATH . 'includes/class-uni-cpo-templates.php';
-            // frontend scripts and styles
-            include_once UNI_CPO_ABSPATH . 'includes/class-uni-cpo-frontend-scripts.php';
         }
         
         if ( $this->is_request( 'admin' ) || $this->is_request( 'ajax' ) ) {
@@ -291,6 +300,7 @@ final class Uni_Cpo
         if ( $this->is_request( 'ajax' ) ) {
             include_once UNI_CPO_ABSPATH . 'includes/class-uni-cpo-ajax.php';
         }
+        include_once UNI_CPO_ABSPATH . 'includes/class-uni-cpo-frontend-scripts.php';
         include_once UNI_CPO_ABSPATH . 'includes/admin/uni-cpo-admin-functions.php';
         include_once UNI_CPO_ABSPATH . 'includes/admin/class-uni-cpo-plugin-settings.php';
         include_once UNI_CPO_ABSPATH . 'includes/class-eval-math.php';
@@ -355,19 +365,85 @@ final class Uni_Cpo
      * Scripts and styles used in back end
      * @since  1.0.0
      */
-    function admin_scripts( $hook )
+    function admin_scripts()
     {
         $screen = get_current_screen();
         $screen_id = ( $screen ? $screen->id : '' );
-        if ( ($hook == 'post.php' || $hook == 'post-new.php') && in_array( get_post_type(), array( 'product', 'shop_order' ) ) ) {
+        $localizations = Uni_Cpo_Frontend_Scripts::get_localizations();
+        
+        if ( in_array( $screen_id, array( 'product', 'edit-product' ) ) ) {
             wp_enqueue_style(
-                'uni-cpo-styles-admin',
-                $this->plugin_url() . '/assets/css/backend.css',
+                'uni-cpo-styles-product',
+                $this->plugin_url() . '/assets/css/admin-product.css',
+                false,
+                UNI_CPO_VERSION,
+                'all'
+            );
+        } elseif ( in_array( str_replace( 'edit-', '', $screen_id ), wc_get_order_types( 'order-meta-boxes' ) ) ) {
+            wp_register_script(
+                'moment',
+                $this->plugin_url() . '/includes/vendors/moment/moment.min.js',
+                array(),
+                '2.19.1'
+            );
+            wp_register_script(
+                'flatpickr',
+                $this->plugin_url() . '/includes/vendors/flatpickr/flatpickr.js',
+                array(),
+                '4.1.4'
+            );
+            wp_register_script(
+                'parsleyjs',
+                $this->plugin_url() . '/includes/vendors/parsleyjs/parsley.min.js',
+                array( 'jquery' ),
+                '2.8.0'
+            );
+            wp_register_script(
+                'parsley-localization',
+                $this->plugin_url() . '/includes/vendors/parsleyjs/i18n/en.js',
+                array( 'parsleyjs' ),
+                '2.8.0'
+            );
+            wp_register_script(
+                'uni-cpo-scripts-order',
+                $this->plugin_url() . '/assets/js/admin-order.js',
+                array(
+                'wc-admin-order-meta-boxes',
+                'moment',
+                'flatpickr',
+                'parsleyjs'
+            ),
+                UNI_CPO_VERSION
+            );
+            wp_enqueue_script( 'uni-cpo-scripts-order' );
+            wp_localize_script( 'parsleyjs', 'uni_parsley_loc', $localizations['parsleyjs'] );
+            $uni_cpo_i18n = apply_filters( 'uni_cpo_i18n_admin_strings', array(
+                'flatpickr' => $localizations['flatpickr'],
+            ) );
+            wp_localize_script( 'uni-cpo-scripts-order', 'unicpo_i18n', $uni_cpo_i18n );
+            wp_enqueue_style(
+                'flatpickr',
+                $this->plugin_url() . '/includes/vendors/flatpickr/flatpickr.css',
+                false,
+                '4.1.4',
+                'all'
+            );
+            wp_enqueue_style(
+                'font-awesome',
+                $this->plugin_url() . '/includes/vendors/font-awesome/font-awesome.min.css',
+                false,
+                '4.1.4',
+                'all'
+            );
+            wp_enqueue_style(
+                'uni-cpo-styles-order',
+                $this->plugin_url() . '/assets/css/admin-order.css',
                 false,
                 UNI_CPO_VERSION,
                 'all'
             );
         }
+    
     }
     
     /**
@@ -407,9 +483,9 @@ final class Uni_Cpo
             'product_price_container' => '.summary.entry-summary .price > .amount, .summary.entry-summary .price ins .amount',
             'product_image_container' => 'figure.woocommerce-product-gallery__wrapper',
             'product_image_size'      => 'shop_single',
-            'product_hide_total'      => 'on',
             'gmap_api_key'            => '',
             'display_weight_in_cart'  => '',
+            'range_slider_style'      => 'html5',
             'max_file_size'           => 2,
             'mime_type'               => 'jpg,zip',
             'file_storage'            => 'local',

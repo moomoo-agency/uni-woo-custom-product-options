@@ -2,9 +2,9 @@
 
 /**
  * Plugin Name: Uni Woo Custom Product Options
- * Plugin URI: http://cpo.builderius.io
- * Description: Creates an opportunity to add custom options for products with the possibility to calculate product price based on the chosen options and using custom maths formula!
- * Version: 4.0.4
+ * Plugin URI: https://builderius.io/cpo
+ * Description: Provides an opportunity to add extra product options with the possibility to calculate the price based on the chosen options and using custom maths formula!
+ * Version: 4.0.5
  * Author: MooMoo Agency
  * Author URI: http://moomoo.agency
  * Domain Path: /languages/
@@ -14,7 +14,7 @@
  * WC tested up to: 3.2
  * License: GPL v3
  *
- * @fs_premium_only /includes/options/class-uni-cpo-option-checkbox.php, /includes/options/class-uni-cpo-option-datepicker.php, /includes/options/class-uni-cpo-option-file-upload.php
+ * @fs_premium_only /includes/options/class-uni-cpo-option-checkbox.php, /includes/options/class-uni-cpo-option-datepicker.php, /includes/options/class-uni-cpo-option-file-upload.php, /includes/options/class-uni-cpo-option-dynamic-notice.php
  */
 /**
  * Uni CPO Plugin

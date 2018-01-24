@@ -133,14 +133,15 @@
             Builderius._resetListOfVars();
 
             const builderMod = new Builderius.Models.BuilderModel({
-                autosaveData:  Builderius._autosaveGetData(),
-                discountsData: builderiusCfg.product.discounts_data,
-                formulaData:   builderiusCfg.product.formula_data,
-                id:            builderiusCfg.product.id,
-                novData:       builderiusCfg.product.nov_data,
-                settingsData:  builderiusCfg.product.settings_data,
-                weightData:    builderiusCfg.product.weight_data,
-                uri:           builderiusCfg.product.uri,
+                autosaveData:   Builderius._autosaveGetData(),
+                discountsData:  builderiusCfg.product.discounts_data,
+                formulaData:    builderiusCfg.product.formula_data,
+                id:             builderiusCfg.product.id,
+                novData:        builderiusCfg.product.nov_data,
+                settingsData:   builderiusCfg.product.settings_data,
+                weightData:     builderiusCfg.product.weight_data,
+                dimensionsData: builderiusCfg.product.dimensions_data,
+                uri:            builderiusCfg.product.uri,
             });
             Builderius.builderCol = new Builderius.Collections.BuilderCollection();
             Builderius.builderCol.add(builderMod);
@@ -187,7 +188,7 @@
          * @since 4.0.0
          * @access private
          * @method _initSortables
-         */        
+         */
         _initSortables: function(){
             const defaults = {
                 appendTo: document.body,
@@ -226,7 +227,7 @@
                 connectWith: '.uni-col-content',
                 items: '.js-panel-block-type-option'
             }));
-            
+
             // Builder container
             $(Builderius._builderId).sortable($.extend({}, defaults, {
                 connectWith: $(Builderius._builderId),
@@ -290,6 +291,27 @@
             });
         },
 
+        /**
+         *
+         */
+        _initRangeSlider: function (el) {
+            let grid;
+            el.data('slider-grid') === 'no' ? grid = false : grid = true;
+            const options = {
+                type: el.data('slider-type'),
+                min: el.data('slider-min'),
+                max: el.data('slider-max'),
+                step: el.data('slider-step'),
+                from: el.data('slider-from'),
+                to: el.data('slider-to'),
+                grid: grid,
+                prefix: el.data('slider-prefix'),
+                postfix: el.data('slider-postfix'),
+                force_edges: true
+            };
+            el.ionRangeSlider(options);
+        },
+
         /* Drag and Drop functionality
         ----------------------------------------------------------*/
 
@@ -305,7 +327,7 @@
             Builderius._dragging = true;
             $(Builderius._builderId).addClass('uni-builder-drag-started');
             const qty = $(this).children('.uni-row, .uni-col, .uni-module').length;
-            
+
             if ( qty === 1 ) {
                 if ( $(this).hasClass('uni-row-content') ) {
                     $(this).closest('.uni-row').addClass('uni-row-highlight');
@@ -401,7 +423,7 @@
                         } else {
                             const rowId    = Builderius.parentRowId;
                             const newRowId = $parent.closest('.uni-row').data('node');
-                            
+
                             if (rowId !== newRowId) { // means that the column was moved to the new row
                                 args.parentRowId    = rowId;
                                 args.newParentRowId = newRowId;
@@ -441,6 +463,7 @@
             }
             Builderius._initSortables();
             Builderius._ifEmptyItem();
+            Builderius._addWarningClass();
         },
 
         /**
@@ -514,7 +537,6 @@
                 i++;
             });
             Builderius.rowsCol.sort();
-            Builderius._addWarningClass();
         },
 
         /**
@@ -536,7 +558,6 @@
                     }
                 });
             Builderius.rowsCol.sort();
-            Builderius._addWarningClass();
         },
 
         /**
@@ -561,7 +582,6 @@
                     }
                 });
             Builderius.rowsCol.get(rowId).columns.get(columnId).modules.sort();
-            Builderius._addWarningClass();
         },
 
         /* Panel
@@ -1283,6 +1303,11 @@
                         const modCfgSettings = builderiusModules[objType][type];
                         const modSettings = mod.get('settings');
 
+                        // TODO make extendable
+                        if ('dynamic_notice' === type) {
+                            return true;
+                        }
+
                         if ('option' === objType) {
                             if (typeof modSettings.cpo_general !== 'undefined'
                                 && !_.isEmpty(modSettings.cpo_general.main.cpo_slug)) {
@@ -1398,14 +1423,15 @@
      */
     Builderius.Models.BuilderModel = Backbone.Model.extend({
         defaults:   {
-            autosaveData:  {},
-            discountsData: {},
-            formulaData:   {},
-            id:            null,
-            novData:       {},
-            settingsData:  {},
-            weightData:    {},
-            uri:           null,
+            autosaveData:   {},
+            discountsData:  {},
+            formulaData:    {},
+            id:             null,
+            novData:        {},
+            settingsData:   {},
+            weightData:     {},
+            dimensionsData: {},
+            uri:            null,
         },
         url:        Builderius.adminAjaxSyncableMixin.url,
         sync:       Builderius.adminAjaxSyncableMixin.sync,
@@ -1623,6 +1649,7 @@
             'click #js-panel-general-settings':              'renderSettingsModal',
             'click #js-panel-cpo-nov':                       'renderNovModal',
             'click #js-panel-cpo-weight':                    'renderWeightModal',
+            'click #js-panel-cpo-dimensions':                'renderDimensionsModal',
             'click #js-panel-cpo-formula':                   'renderFormulaModal',
             'click #js-panel-cpo-cart-discounts':            'renderDiscountsModal'
         },
@@ -1657,7 +1684,7 @@
             $(document).on('click', '#js-modal-cancel-btn', function () {
                 $wrap.fadeOut(200,function(){
                     $(this).remove();
-                }); 
+                });
             });
             $(document).on('click', '#js-modal-delete-btn', function () {
                 const data = {
@@ -1680,7 +1707,7 @@
                         setTimeout(function () {
                             $wrap.fadeOut(200,function(){
                                 $(this).remove();
-                            }); 
+                            });
                         }, 2000);
                         console.info(r.status, r.statusText);
                         Builderius._ajax_sent = false;
@@ -1691,12 +1718,13 @@
                         Builderius._updateListOfVars();
                         Builderius._initSortables();
                         Builderius._ifEmptyItem();
-                        
+                        Builderius._removeWarningClass();
+
                         Builderius._unblockForm($wrap, 'success');
                         setTimeout(function () {
                             $wrap.fadeOut(200,function(){
                                 $(this).remove();
-                            }); 
+                            });
                         }, 2000);
                         Builderius._ajax_sent = false;
                     }
@@ -1711,7 +1739,7 @@
             if ($panel.hasClass('uni-panel-left')) {
                 $panel.removeClass('uni-panel-left').addClass('uni-panel-right');
                 Builderius._initTooltip( $('#uni-builder-panel'), 'right bottom', 'right top-10' );
-                
+
             } else {
                 $panel.removeClass('uni-panel-right').addClass('uni-panel-left');
                 Builderius._initTooltip( $('#uni-builder-panel'), 'left bottom', 'left top-10' );
@@ -1751,6 +1779,10 @@
         renderWeightModal:   function () {
             const weightModalView = new Builderius.Views.WeightModal({model: this.model});
             weightModalView.render();
+        },
+        renderDimensionsModal:   function () {
+            const dimensionsModalView = new Builderius.Views.DimensionsModal({model: this.model});
+            dimensionsModalView.render();
         },
         saveContent:         function () {
             const collection     = Builderius.rowsCol;
@@ -2238,6 +2270,7 @@
             Builderius._updateListOfVars();
             Builderius._initSortables();
             Builderius._ifEmptyItem();
+            Builderius._addWarningClass();
         },
         render:            function () {
             const element = this.template(this.model.toJSON());
@@ -2389,6 +2422,7 @@
             Builderius._updateListOfVars();
             Builderius._initSortables();
             Builderius._ifEmptyItem();
+            Builderius._addWarningClass();
         },
         render:            function () {
             const element = this.template(this.model.toJSON());
@@ -2503,11 +2537,16 @@
             Builderius._updateListOfVars();
             Builderius._initSortables();
             Builderius._ifEmptyItem();
+            Builderius._addWarningClass();
         },
         render:            function () {
             const element = this.template(this.model.toJSON());
             const view    = this;
             this.setElement(element);
+            if ( this.model.get('type') === 'range_slider' ) {
+                const $el = this.$el.find('.js-uni-cpo-field-range_slider');
+                Builderius._initRangeSlider($el);
+            }
             return this;
         },
         updateOrder:       function (collection) {
@@ -2531,7 +2570,9 @@
             'change .js-sync-methods':             'settingSyncMethodChanged',
             'change .js-sync-posts':               'settingSyncPostChanged',
             'click #js-sync-module-btn':           'syncWithModule',
-            'click #js-unsync-module-btn':         'unSyncModule'
+            'click .uni-rules-remove-all':          'removeAllRules',
+            'click #js-unsync-module-btn':         'unSyncModule',
+            'focus #builderius-setting-cpo_notice_text': 'getFocused'
         },
         template:                 _.template($('#js-builderius-modal-tmpl').html()),
         template_tab_list:        _.template($('#js-builderius-modal-tab-list-tmpl').html()),
@@ -2643,6 +2684,9 @@
                     }
                 }
             });
+        },
+        getFocused: function (e) {
+            this.textarea = $(e.currentTarget);
         },
         initialize:               function () {
             const view                  = this;
@@ -2809,6 +2853,11 @@
             //console.log(modalFieldValues);
             return modalFieldValues;
         },
+        removeAllRules: function () {
+            const $rows = $('.uni-formula-conditional-rules-options-row').not('.uni-formula-conditional-rules-options-template');
+            $rows.remove();
+            $('.uni_formula_conditional_rule_add').click();
+        },
         render:                   function () {
             Builderius._modal_on = true;
             const view           = this;
@@ -2866,9 +2915,15 @@
                     finalSettings.cpo_rules = modalFieldValues.data.cpo_rules;
                 }
                 if (typeof modalFieldValues.data.cpo_validation !== 'undefined'
-                    && typeof modalFieldValues.data.cpo_validation.logic !== 'undefined'
-                    && typeof modalFieldValues.data.cpo_validation.logic.cpo_vc_scheme !== 'undefined') {
-                    finalSettings.cpo_validation.logic.cpo_vc_scheme = modalFieldValues.data.cpo_validation.logic.cpo_vc_scheme;
+                    && typeof modalFieldValues.data.cpo_validation.logic !== 'undefined') {
+                    if (typeof modalFieldValues.data.cpo_validation.logic.cpo_vc_scheme !== 'undefined') {
+                        finalSettings.cpo_validation.logic.cpo_vc_scheme = modalFieldValues.data.cpo_validation.logic.cpo_vc_scheme;
+                    } else {
+                        finalSettings.cpo_validation.logic.cpo_vc_scheme = [];
+                    }
+                } else if (typeof modalFieldValues.data.cpo_validation !== 'undefined'
+                    && typeof modalFieldValues.data.cpo_validation.logic === 'undefined') {
+                    finalSettings.cpo_validation.logic = {};
                 }
 
                 if (shouldSync) {
@@ -3395,7 +3450,7 @@
             'click #js-modal-main-cancel-btn':                'closeModal',
             'click .uni-rules-remove-all':                    'removeAllRules',
             'click #js-modal-main-save-btn':                  'saveSettings',
-            'focus #uni-modal-weight-wrapper textarea': 'getFocused',
+            'focus #uni-modal-weight-wrapper textarea':       'getFocused',
         },
         template:     _.template($('#js-builderius-modal-weight-tmpl').html()),
         ajaxError:    function (r) {
@@ -3474,6 +3529,84 @@
 
                 view.originalModelSettings = originalSettings;
                 view.model.set({weightData: finalSettings});
+                view.model.sync('create', view.model, data);
+            }
+        }
+    });
+
+    // DimensionsModalView
+    Builderius.Views.DimensionsModal = Backbone.View.extend({
+        el:           'body',
+        events:       {
+            'click .uni-close-modal':                         'closeModal',
+            'click #js-modal-main-cancel-btn':                'closeModal',
+            'click #js-modal-main-save-btn':                  'saveSettings',
+        },
+        template:     _.template($('#js-builderius-modal-dimensions-tmpl').html()),
+        ajaxError:    function (r) {
+            Builderius._unblockForm('#uni-modal-wrap', 'error');
+            console.info(r.status, r.statusText);
+        },
+        ajaxSent:     function (model, xhr, options) {
+            Builderius._blockForm('#uni-modal-wrap');
+        },
+        ajaxSynced:   function (r) {
+            const view = this;
+            if (r.success) {
+                $('#js-modal-main-save-btn').removeClass('uni-active');
+                Builderius._unblockForm('#uni-modal-wrap', 'success');
+                //console.log(view.model.toJSON());
+            } else {
+                // restore original settings
+                view.model.set({dimensionsData: view.originalModelSettings});
+                Builderius._unblockForm('#uni-modal-wrap', 'error');
+            }
+        },
+        closeModal:   function () {
+            this.$el.find('#uni-modal-dimensions-wrapper').remove();
+            this.undelegateEvents(); // tip: use undelegateEvents() if 'setElement' was used before
+            this.stopListening();
+            Builderius._modal_on = false;
+        },
+        initialize:   function () {
+            this.originalModelSettings = {};
+            this.listenTo(this.model, 'request', this.ajaxSent);
+        },
+        render:       function () {
+            const view           = this;
+            Builderius._modal_on = true;
+
+            const modal = view.template({
+                data: view.model.get('dimensionsData'),
+                vars: Builderius._optionVars
+            });
+            this.$el.append(modal);
+
+            // trigger
+            $(document.body).trigger('builderius_dimensions_modal_opening', [view]);
+
+            return this;
+        },
+        saveSettings: function () {
+            const view             = this;
+            const modalFieldValues = Builderius._readSettingsModal(view);
+            const originalSettings = JSON.parse(JSON.stringify(view.model.get('dimensionsData')));
+
+            if (modalFieldValues.valid && !Builderius._ajax_sent) {
+                const finalSettings = modalFieldValues.data;
+                const data          = {
+                    action:   'uni_cpo_save_dimensions_data',
+                    security: builderiusCfg.security,
+                    success:  function (r) {
+                        view.ajaxSynced(r);
+                    },
+                    error:    function (r) {
+                        view.ajaxError(r);
+                    },
+                };
+
+                view.originalModelSettings = originalSettings;
+                view.model.set({dimensionsData: finalSettings});
                 view.model.sync('create', view.model, data);
             }
         }
@@ -3782,12 +3915,16 @@
                 $(this).append(html);
             });
         }
+        $modal.on('click', '.uni-variables-list li', function () {
+            view.textarea.insertAtCaret($(this).text().replace(/\s/g, ''));
+            return false;
+        });
 
         $modal.on('change', 'input, select, textarea', function (e) {
             const $el = $( e.currentTarget );
 
             if ( !$el.parents('.cpo-query-rule-builder').length > 0 && $el.attr('name') !== 'sync[pid]' && $el.attr('name') !== 'sync[type]' ) {
-                $('#js-modal-save-btn').addClass('uni-active');    
+                $('#js-modal-save-btn').addClass('uni-active');
             }
         });
 
@@ -4023,7 +4160,7 @@
         $modal.on('change', 'input, select, textarea', function (e) {
             const $el = $( e.currentTarget );
             if ( !$el.parents('.cpo-query-rule-builder').length ) {
-                $('#js-modal-main-save-btn').addClass('uni-active');    
+                $('#js-modal-main-save-btn').addClass('uni-active');
             }
         });
 
@@ -4072,7 +4209,7 @@
         $modal.on('change', 'input, select, textarea', function (e) {
             const $el = $( e.currentTarget );
             if ( !$el.parents('.cpo-query-rule-builder').length ) {
-                $('#js-modal-main-save-btn').addClass('uni-active');    
+                $('#js-modal-main-save-btn').addClass('uni-active');
             }
         });
 
@@ -4107,6 +4244,17 @@
 
         uni_repeater_init('.uni-formula-conditional-rules-repeat', repeaterData);
         uni_query_builder_init('.cpo-query-rule-builder', queryBuilderData);
+    });
+
+    $(document.body).on('builderius_dimensions_modal_opening', function (e, view) {
+        const $modal = $('#uni-modal-dimensions-wrapper');
+
+        $modal.on('change', 'input, select, textarea', function (e) {
+            const $el = $( e.currentTarget );
+            if ( !$el.parents('.cpo-query-rule-builder').length ) {
+                $('#js-modal-main-save-btn').addClass('uni-active');
+            }
+        });
     });
 
     $(document.body).on('builderius_nov_modal_opening', function (e, view) {
@@ -4147,7 +4295,7 @@
         $modal.on('change', '.uni-matrix-import input[type="file"]', function () {
             $(this).addClass('uni-chosen').closest('.uni-matrix-import').find('label').text('File chosen');
         });
-        
+
         $modal.on('change', 'input, select, textarea', function () {
             $('#js-modal-nov-save-btn').addClass('uni-active');
         });
@@ -4366,6 +4514,7 @@
         update_everything(container, '.uni-cpo-non-option-vars-options-template');
 
         $(newRow).find('textarea, input').not('.wp-picker-clear').addClass('builderius-setting-field');
+        $(newRow).find('.uni-cpo-convert-wrapper select').addClass('builderius-setting-field');
         const $roleWrapperOne = $(newRow).find('.uni-cpo-non-option-vars-role');
         $roleWrapperOne.attr('data-uni-constrained', 'input[name=wholesale_enable]');
         $roleWrapperOne.attr('data-uni-constvalue', 'on');
@@ -4417,7 +4566,7 @@
             'max-width': width,
             'opacity': 1
         });
-        
+
         const wrapId = this.$element.closest('.uni-tab-content').attr('id');
         $('[href="#'+wrapId+'"]').closest('li').addClass('uni-warning');
     });

@@ -170,6 +170,21 @@ function uni_cpo_get_posts_by_slugs( $slugs, $post_type = 'uni_cpo_option' )
 }
 
 //
+function uni_cpo_get_posts_by_ids( $ids, $post_type = 'uni_cpo_option' )
+{
+    $query = new WP_Query( array(
+        'post__in'       => $ids,
+        'post_type'      => $post_type,
+        'posts_per_page' => -1,
+        'orderby'        => 'post__in',
+    ) );
+    if ( !empty($query->posts) ) {
+        return $query->posts;
+    }
+    return null;
+}
+
+//
 function uni_cpo_get_posts_slugs( $post_type = 'uni_cpo_option' )
 {
     $query = new WP_Query( array(
@@ -322,9 +337,12 @@ function uni_cpo_filter_settings_data_func( $data_data, $original_data, $data_na
     if ( 'general' === $data_name ) {
         $data_data['main']['content'] = ( !empty($original_data['main']['content']) ? uni_cpo_sanitize_text( $original_data['main']['content'] ) : '' );
     }
+    
     if ( 'cpo_general' === $data_name ) {
         $data_data['advanced']['cpo_tooltip'] = ( !empty($original_data['advanced']['cpo_tooltip']) ? uni_cpo_sanitize_tooltip( $original_data['advanced']['cpo_tooltip'] ) : '' );
+        $data_data['main']['cpo_notice_text'] = ( !empty($original_data['main']['cpo_notice_text']) ? uni_cpo_sanitize_text( $original_data['main']['cpo_notice_text'] ) : '' );
     }
+    
     if ( 'cpo_rules' === $data_name ) {
         $data_data['data'] = ( !empty($original_data['data']) ? $original_data['data'] : '' );
     }
@@ -353,7 +371,7 @@ function uni_cpo_option_apply_changes_walk( $v, $k, $d )
 //////////////////////////////////////////////////////////////////////////////////////
 // Calculation functions
 //////////////////////////////////////////////////////////////////////////////////////
-function uni_cpo_process_formula_with_non_option_vars( &$variables, $product_data )
+function uni_cpo_process_formula_with_non_option_vars( &$variables, $product_data, $filtered_form_data )
 {
     
     if ( is_array( $product_data['nov_data']['nov'] ) && !empty($product_data['nov_data']['nov']) ) {
@@ -378,7 +396,7 @@ function uni_cpo_process_formula_with_non_option_vars( &$variables, $product_dat
         $nov_val = uni_cpo_calculate_formula( $formula );
         $variables[$var_name] = $nov_val;
         array_splice( $product_data['nov_data']['nov'], 0, 1 );
-        uni_cpo_process_formula_with_non_option_vars( $variables, $product_data );
+        uni_cpo_process_formula_with_non_option_vars( $variables, $product_data, $filtered_form_data );
     }
     
     return $variables;
@@ -946,7 +964,7 @@ function uni_cpo_get_display_price_reversed( $product, $price )
 }
 
 // displays a new and discounted price in the cart
-function uni_cpo_change_cart_item_price( $price, $cart_item, $cart_item_key )
+function uni_cpo_change_cart_item_price( $price, $cart_item )
 {
     $product_id = $cart_item['product_id'];
     $product_data = Uni_Cpo_Product::get_product_data_by_id( $product_id );
@@ -1031,6 +1049,7 @@ function uni_cpo_add_cart_item_data( $cart_item_data, $product_id )
         $product_data = Uni_Cpo_Product::get_product_data_by_id( $product_id );
         
         if ( !empty($cart_item_data) ) {
+            // is used when 'order again' has been initiated
             $form_data = $cart_item_data;
             $cart_item_data = array();
         } else {
@@ -1077,9 +1096,6 @@ function uni_cpo_get_cart_item_from_session( $session_data, $values, $key )
     $session_data['_cpo_calc_option'] = ( isset( $values['_cpo_calc_option'] ) ? boolval( $values['_cpo_calc_option'] ) : false );
     $session_data['_cpo_cart_item_id'] = ( isset( $values['_cpo_cart_item_id'] ) ? $values['_cpo_cart_item_id'] : '' );
     $session_data['_cpo_data'] = ( isset( $values['_cpo_data'] ) ? $values['_cpo_data'] : '' );
-    //$session_data['_uni_cpo_item_attachments']  = ( isset($values['_uni_cpo_item_attachments']) )
-    // ? $values['_uni_cpo_item_attachments']
-    // : array();
     
     if ( isset( $session_data['_cpo_data'] ) ) {
         return uni_cpo_add_cart_item( $session_data );
@@ -1118,9 +1134,11 @@ function uni_cpo_get_item_data( $item_data, $cart_item )
         
         if ( !empty($filtered_form_data) ) {
             $posts = uni_cpo_get_posts_by_slugs( array_keys( $filtered_form_data ) );
+            
             if ( !empty($posts) ) {
-                foreach ( $posts as $post ) {
-                    $option = uni_cpo_get_option( $post->ID );
+                $posts_ids = wp_list_pluck( $posts, 'ID' );
+                foreach ( $posts_ids as $post_id ) {
+                    $option = uni_cpo_get_option( $post_id );
                     
                     if ( is_object( $option ) ) {
                         $post_name = trim( $option->get_slug(), '{}' );
@@ -1158,6 +1176,7 @@ function uni_cpo_get_item_data( $item_data, $cart_item )
                 
                 }
             }
+        
         }
     
     }
@@ -1194,16 +1213,17 @@ function uni_cpo_calculate_price_in_cart( $cart_item_data, $product_id )
         $is_calc_disabled = false;
         $formatted_vars = array();
         $main_formula = $product_data['formula_data']['main_formula'];
-        $is_calc_weight = ( 'on' === $product_data['weight_data']['weight_enable'] ? true : false );
         $filtered_form_data = array_filter( $form_data, function ( $k ) use( $form_data ) {
             return false !== strpos( $k, UniCpo()->get_var_slug() ) && !empty($form_data[$k]);
         }, ARRAY_FILTER_USE_KEY );
         
         if ( !empty($filtered_form_data) ) {
             $posts = uni_cpo_get_posts_by_slugs( array_keys( $filtered_form_data ) );
+            
             if ( !empty($posts) ) {
-                foreach ( $posts as $post ) {
-                    $option = uni_cpo_get_option( $post->ID );
+                $posts_ids = wp_list_pluck( $posts, 'ID' );
+                foreach ( $posts_ids as $post_id ) {
+                    $option = uni_cpo_get_option( $post_id );
                     
                     if ( is_object( $option ) ) {
                         $calculate_result = $option->calculate( $filtered_form_data );
@@ -1216,12 +1236,13 @@ function uni_cpo_calculate_price_in_cart( $cart_item_data, $product_id )
                 
                 }
             }
+        
         }
         
         $variables['{uni_cpo_price}'] = $product->get_price();
         // non option variables
         if ( 'on' === $product_data['nov_data']['nov_enable'] && !empty($product_data['nov_data']['nov']) ) {
-            $variables = uni_cpo_process_formula_with_non_option_vars( $variables, $product_data );
+            $variables = uni_cpo_process_formula_with_non_option_vars( $variables, $product_data, $filtered_form_data );
         }
         $temp_variables = $variables;
         unset( $temp_variables['{uni_cpo_price}'] );
@@ -1295,28 +1316,53 @@ function uni_cpo_woocommerce_order_again_cart_item_data( $cart_item_meta, $item 
 //
 function uni_cpo_re_add_cpo_item_data( $item_data, $raw_data )
 {
-    
-    if ( is_object( $raw_data ) ) {
-        foreach ( $raw_data as $meta ) {
-            
-            if ( false !== strpos( $meta->key, '_cpo' ) ) {
-                $meta_key_new = ltrim( $meta->key, '_' );
-                $item_data[$meta_key_new] = $meta->value;
-            }
-        
-        }
-    } elseif ( is_array( $raw_data ) ) {
+    if ( is_array( $raw_data ) ) {
         foreach ( $raw_data as $k => $v ) {
             
-            if ( false !== strpos( $k, '_cpo' ) ) {
-                $meta_key_new = ltrim( $k, '_' );
-                $item_data[$meta_key_new] = $v;
+            if ( is_array( $v ) ) {
+                
+                if ( false !== strpos( $k, '_cpo' ) ) {
+                    $meta_key_new = ltrim( $k, '_' );
+                    $item_data[$meta_key_new] = $v;
+                }
+            
+            } elseif ( is_a( $v, 'WC_Meta_Data' ) ) {
+                $meta_data = $v->get_data();
+                
+                if ( false !== strpos( $meta_data['key'], '_cpo' ) ) {
+                    $meta_key_new = ltrim( $meta_data['key'], '_' );
+                    $item_data[$meta_key_new] = $meta_data['value'];
+                }
+            
             }
         
         }
     }
-    
     $item_data['cpo_cart_item_id'] = current_time( 'timestamp' );
     unset( $item_data['cpo_price'] );
     return $item_data;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////
+// WC order edit page
+//////////////////////////////////////////////////////////////////////////////////////
+// adds Add/Edit CPO options btn for order items
+add_action(
+    'woocommerce_order_item_add_action_buttons',
+    'uni_cpo_woocommerce_order_item_add_action_buttons',
+    10,
+    1
+);
+function uni_cpo_woocommerce_order_item_add_action_buttons( $order )
+{
+    if ( $order->is_editable() ) {
+        foreach ( $order->get_items() as $item_id => $item_product ) {
+            $product_id = $item_product->get_product_id();
+            $product_data = Uni_Cpo_Product::get_product_data_by_id( $product_id );
+            $nonce = wp_create_nonce( 'order-item' );
+            if ( 'on' === $product_data['settings_data']['cpo_enable'] ) {
+                echo  '<button type="button" class="button cpo-edit-options-btn cpo-for-item-' . esc_attr( $item_id ) . '" data-security="' . esc_attr( $nonce ) . '" data-pid="' . esc_attr( $product_id ) . '" data-order_item_id="' . esc_attr( $item_id ) . '" style="display:none;">' . esc_html__( 'Add/Edit CPO option(s)', 'uni-cpo' ) . '</button>' ;
+            }
+        }
+    }
 }

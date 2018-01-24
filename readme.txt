@@ -1,35 +1,35 @@
-=== WooCommerce Product Options and Price Calculation Formulas Pro - Uni CPO ===
+=== WooCommerce Product Options and Price Calculation Formulas - Uni CPO ===
 Contributors: moomooagency, mrpsiho, andriimatenka, freemius
 Tags: custom options, extra options, product visual builder, woocommerce plugins, price calculation, maths formula, conditional logic, wholesale
 Requires at least: 4.8
 Tested up to: 4.9
 Requires PHP: 7.0
-WC requires at least: 3.0.0
-WC tested up to: 3.2.0
+WC requires at least: 3.2.0
+WC tested up to: 3.2.6
 Stable tag: trunk
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Provides an opportunity to add custom options for products with the possibility to calculate product price based on the chosen options and using custom maths formula!
+Provides an opportunity to add extra product options with the possibility to calculate the price based on the chosen options and using custom maths formula!
 
 == Description ==
 
 === Overview ===
 
-**Uni CPO - WooCommerce Options and Price Calculation Formulas** is a fully featured plugin that creates an opportunity to add custom options to your WooCommerce products as well as enables custom price calculation based on any maths formula. This version of the plugin includes these types of options: text input, text area, radio inputs and dropdown (select).
+**Uni CPO - WooCommerce Options and Price Calculation Formulas** is a fully featured plugin that creates an opportunity to add custom options for a WooCommerce products as well as enables custom price calculation based on any maths formula.
 
 It supports products type 'simple' only! But why you ever need any variable product after this plugin, right? :)
 
 https://www.youtube.com/watch?v=dX7-T4gVJ_I
 
-A fully featured visual form builder is used to add custom options. Would like to place the options in two/three/more columns? Easy! Would like to set custom color, margins, add custom text and so on? Yes, it's possible!!)
+A fully featured visual form builder is used to add custom options. Would like to place the options in two/three/more columns? Easy! Would like to set custom color, margins, add custom text and so on? Yes, it's possible too!!)
 
 Add custom fields to your products, display them conditionally, give a possibility for your customers to customize products, to personalize them by adding highly dynamic info like dimensions, custom labels, comments. Moreover, create a unique scheme for price calculation based on custom options added!
 
 === Main features ===
 
 * Visual form builder - design the look of your form in easy and smooth way!
-* Custom product option types: text input, text area, radio inputs and dropdown (select)
+* Custom product option types - 10+ different types!
 * A possibility to use non option variables (NOV) - synthetic variables which can hold both a specific value or a
 maths formula as its value
 * A possibility to use wholesale-like functionality for your NOVs - different values for different user roles!
@@ -38,8 +38,14 @@ maths formula as its value
 * A possibility to create fields conditional logic - display/hide certain custom options based on the values of
 other custom options and/or NOVs
 
+[The full list of plugin's features](https://moomoo-agency.gitbooks.io/uni-cpo-4-documentation/content/why-uni-cpo.html)
 [Documentation](https://moomoo-agency.gitbooks.io/uni-cpo-4-documentation/)
+
 [DEMO (PRO version)](https://cpo.builderius.io)
+You can try PRO version. Just use these credentials:
+username: `demo`
+password: `demo`
+[login URL](https://cpo.builderius.io/wp-login.php)
 
 **Pro version of the plugin is [available here](https://builderius.io/cpo).**
 
@@ -77,6 +83,17 @@ A: We wouldn't recommend to do this yet. First, this version is so called 'lite'
 7. screenshot-7.png
 
 == Changelog ==
+
+= 4.0.5 =
+* Added Dynamic Notice option
+* Added Range Slider option
+* Added Dimensions Conditional Logic
+* Added 'convert to unit' functionality for NOVs
+* Added order item edit functionality
+* Improved support for various WP themes, fixed some CSS related issues
+* Improved cart item inline edit functionality - added support for datepicker
+* Fixed an issue when alt image for suboptions was not actually optional
+* Fixed an issue when two clicks were needed to select radio input in 'image' mode
 
 = 4.0.4 =
 * Fixed an issue related to the order of cart/order meta

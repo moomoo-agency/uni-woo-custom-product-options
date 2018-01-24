@@ -7,143 +7,196 @@ var UniCpoCart = void 0,
     cpoMakeInstance = void 0;
 
 UniCpoCart = {
+    flatpickrCfg: {},
     _init: function _init() {
         try {
-            var cpoCartObj = this;
+            var _unicpo_cart_i18n$fla = unicpo_cart_i18n.flatpickr,
+                weekdays = _unicpo_cart_i18n$fla.weekdays,
+                months = _unicpo_cart_i18n$fla.months,
+                scrollTitle = _unicpo_cart_i18n$fla.scrollTitle,
+                toggleTitle = _unicpo_cart_i18n$fla.toggleTitle;
 
-            jQuery(document).on('click', '.uni-cpo-action-duplicate', function (e) {
-                e.preventDefault();
-
-                var $el = jQuery(e.target);
-                var elData = $el.data();
-                var $form = $el.parents('form');
-                var nonce = elData.nonce;
-                var key = elData.key;
-
-                jQuery.ajax({
-                    type: 'GET',
-                    url: wc_add_to_cart_params.cart_url + '?cpo_duplicate_cart_item=' + key + '&_nonce=' + nonce,
-                    dataType: 'html',
-                    beforeSend: function beforeSend() {
-                        cpoCartObj.block($form);
-                        cpoCartObj.block(jQuery('div.cart_totals'));
+            this.flatpickrCfg = {
+                locale: {
+                    weekdays: weekdays,
+                    months: months,
+                    daysInMonth: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
+                    firstDayOfWeek: 0,
+                    ordinal: function ordinal(nth) {
+                        var s = nth % 100;
+                        if (s > 3 && s < 21) return 'th';
+                        switch (s % 10) {
+                            case 1:
+                                return 'st';
+                            case 2:
+                                return 'nd';
+                            case 3:
+                                return 'rd';
+                            default:
+                                return 'th';
+                        }
                     },
-                    success: function success(r) {
+                    rangeSeparator: ' - ',
+                    weekAbbreviation: 'Wk',
+                    scrollTitle: scrollTitle,
+                    toggleTitle: toggleTitle,
+                    amPM: ['AM', 'PM']
+                }
+            };
+
+            this.bindOnCartItemDuplicate();
+            this.bindOnCartItemEditInline();
+            this.bindOnCartItemSaveAfterInlineEdit();
+        } catch (e) {
+            console.error(e);
+        }
+    },
+    bindOnCartItemDuplicate: function bindOnCartItemDuplicate() {
+        var cpoCartObj = this;
+
+        jQuery(document).on('click', '.uni-cpo-action-duplicate', function (e) {
+            e.preventDefault();
+
+            var $el = jQuery(e.target);
+            var elData = $el.data();
+            var $form = $el.parents('form');
+            var nonce = elData.nonce;
+            var key = elData.key;
+
+            jQuery.ajax({
+                type: 'GET',
+                url: wc_add_to_cart_params.cart_url + '?cpo_duplicate_cart_item=' + key + '&_nonce=' + nonce,
+                dataType: 'html',
+                beforeSend: function beforeSend() {
+                    cpoCartObj.block($form);
+                    cpoCartObj.block(jQuery('div.cart_totals'));
+                },
+                success: function success(r) {
+                    try {
                         cpoCartObj.update_wc_cart(r);
-                    },
-                    complete: function complete() {
-                        cpoCartObj.unblock($form);
-                        cpoCartObj.unblock(jQuery('div.cart_totals'));
+                    } catch (e) {
+                        console.error(e);
                     }
-                });
+                },
+                complete: function complete() {
+                    cpoCartObj.unblock($form);
+                    cpoCartObj.unblock(jQuery('div.cart_totals'));
+                }
+            });
+        });
+    },
+    bindOnCartItemEditInline: function bindOnCartItemEditInline() {
+        var cpoCartObj = this;
+
+        jQuery(document).on('click', '.uni-cpo-action-edit', function (e) {
+            e.preventDefault();
+
+            var $el = jQuery(e.target);
+            var elData = $el.data();
+            var $tr = $el.closest('tr');
+            var security = elData.nonce;
+            var key = elData.key;
+            var action = 'uni_cpo_cart_item_edit';
+            var $variationContainer = $tr.find('.variation');
+            var $editForm = jQuery('<div class="cpo-cart-item-edit-form"></div>');
+            var $saveBtn = jQuery('<button class="cpo-cart-item-save"></button');
+
+            var data = { action: action, key: key, security: security };
+
+            jQuery.ajax({
+                type: 'POST',
+                url: woocommerce_params.ajax_url,
+                data: data,
+                dataType: 'json',
+                beforeSend: function beforeSend() {
+                    $el.remove();
+                    cpoCartObj.block($tr);
+                },
+                success: function success(r) {
+                    try {
+                        $editForm.append(r.data);
+                        $saveBtn.text('Save changes');
+                        $editForm.append($saveBtn);
+                        $saveBtn.data('action', 'uni_cpo_cart_item_update');
+                        $saveBtn.data('key', key);
+                        $saveBtn.data('security', security);
+                        $variationContainer.replaceWith($editForm);
+                    } catch (e) {
+                        console.error(e);
+                    }
+                },
+                complete: function complete() {
+                    cpoCartObj.unblock($tr);
+                }
+            });
+        });
+    },
+    bindOnCartItemSaveAfterInlineEdit: function bindOnCartItemSaveAfterInlineEdit() {
+        var cpoCartObj = this;
+
+        jQuery(document).on('click', '.cpo-cart-item-save', function (e) {
+            e.preventDefault();
+
+            var $el = jQuery(e.target);
+            var data = $el.data();
+            var $form = $el.closest('.cpo-cart-item-edit-form');
+            var $options = $form.find('.cpo-cart-item-option:not(:disabled)');
+            var $tr = $el.closest('tr');
+            var isValid = true;
+
+            data.data = {};
+            jQuery.each($options, function (i, el) {
+                var $el = jQuery(el);
+                var elType = this.type || this.tagName.toLowerCase();
+
+                $el.parsley().validate();
+
+                if ($el.parsley().isValid()) {
+                    if ('checkbox' === elType) {
+                        var name = el.name.replace('[]', '');
+                        if (typeof data.data[name] !== 'undefined') {
+                            return;
+                        }
+                        data.data[name] = jQuery.makeArray(data.data[name]);
+
+                        jQuery('input[name="' + el.name + '"]:checked').each(function () {
+                            data.data[name].push(this.value);
+                        });
+                    } else {
+                        if ($el.hasClass('cpo-cart-item-option-multi')) {
+                            data.data[el.name] = $el.val().split('|');
+                        } else {
+                            data.data[el.name] = $el.val();
+                        }
+                    }
+                } else {
+                    isValid = false;
+                }
             });
 
-            jQuery(document).on('click', '.uni-cpo-action-edit', function (e) {
-                e.preventDefault();
-
-                var $el = jQuery(e.target);
-                var elData = $el.data();
-                var $tr = $el.closest('tr');
-                var security = elData.nonce;
-                var key = elData.key;
-                var action = 'uni_cpo_cart_item_edit';
-                var $variationContainer = $tr.find('.variation');
-                var $editForm = jQuery('<div class="cpo-cart-item-edit-form"></div>');
-                var $saveBtn = jQuery('<button class="cpo-cart-item-save"></button');
-
-                var data = { action: action, key: key, security: security };
-
+            if (isValid) {
                 jQuery.ajax({
                     type: 'POST',
                     url: woocommerce_params.ajax_url,
                     data: data,
                     dataType: 'json',
                     beforeSend: function beforeSend() {
-                        $el.remove();
                         cpoCartObj.block($tr);
                     },
                     success: function success(r) {
-                        $editForm.append(r.data);
-                        $saveBtn.text('Save changes');
-                        $editForm.append($saveBtn);
-                        $saveBtn.data('action', 'uni_cpo_cart_item_edit_save');
-                        $saveBtn.data('key', key);
-                        $saveBtn.data('security', security);
-                        $variationContainer.replaceWith($editForm);
+                        //console.log(r);
                     },
                     complete: function complete() {
-                        cpoCartObj.unblock($tr);
-                    }
-                });
-            });
-
-            jQuery(document).on('click', '.cpo-cart-item-save', function (e) {
-                e.preventDefault();
-
-                var $el = jQuery(e.target);
-                var data = $el.data();
-                var $form = $el.closest('.cpo-cart-item-edit-form');
-                var $options = $form.find('.cpo-cart-item-option:not(:disabled)');
-                var $tr = $el.closest('tr');
-                var isValid = true;
-
-                data.data = {};
-                jQuery.each($options, function (i, el) {
-                    var $el = jQuery(el);
-                    var elType = this.type || this.tagName.toLowerCase();
-
-                    $el.parsley().validate();
-
-                    if ($el.parsley().isValid()) {
-                        if ('checkbox' === elType) {
-                            var checkboxes = [];
-                            var name = this.name.slice(0, -2);
-
-                            if (typeof data.data[name] !== 'undefined') {
-                                return;
-                            }
-
-                            jQuery('input[name="' + this.name + '"]:checked').each(function () {
-                                checkboxes.push(jQuery(this).val());
-                            });
-                            data.data[name] = checkboxes;
-                        } else {
-                            if ($el.hasClass('cpo-cart-item-option-multi')) {
-                                data.data[el.name] = $el.val().split('|');
-                            } else {
-                                data.data[el.name] = $el.val();
-                            }
-                        }
-                    } else {
-                        isValid = false;
-                    }
-                });
-
-                if (isValid) {
-                    jQuery.ajax({
-                        type: 'POST',
-                        url: woocommerce_params.ajax_url,
-                        data: data,
-                        dataType: 'json',
-                        beforeSend: function beforeSend() {
-                            cpoCartObj.block($tr);
-                        },
-                        success: function success(r) {
-                            console.log(r);
-                        },
-                        complete: function complete() {
+                        try {
                             cpoCartObj.unblock($tr);
                             cpoCartObj.getCartPage(data.key);
+                        } catch (e) {
+                            console.error(e);
                         }
-                    });
-                }
-            });
-        } catch (e) {
-            console.error(e);
-        }
-    },
-    is_blocked: function is_blocked($node) {
-        return $node.is('.processing') || $node.parents('.processing').length;
+                    }
+                });
+            }
+        });
     },
     block: function block($node) {
         var cpoCartObj = this;
@@ -177,6 +230,9 @@ UniCpoCart = {
                 cpoCartObj.unblock(jQuery('div.cart_totals'));
             }
         });
+    },
+    is_blocked: function is_blocked($node) {
+        return $node.is('.processing') || $node.parents('.processing').length;
     },
     position: function position(el) {
         var $parent = el;
@@ -274,6 +330,7 @@ UniCpoCart = {
     }
 };
 
+//
 cpoMakeInstance = function cpoMakeInstance() {
     return Object.create(UniCpoCart);
 };
@@ -282,6 +339,7 @@ window.UniCpoCart = cpoMakeInstance();
 // init
 window.UniCpoCart._init();
 
+//
 window.Parsley.on('field:error', function () {
     window.UniCpoCart.position(this.$element);
 });

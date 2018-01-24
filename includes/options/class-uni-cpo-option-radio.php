@@ -126,9 +126,10 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
         return stripslashes_deep( $model );
     }
     
-    public function get_edit_field( $data, $value )
+    public function get_edit_field( $data, $value, $context = 'cart' )
     {
         $id = $data['id'];
+        $type = $data['type'];
         $cpo_general_main = $data['settings']['cpo_general']['main'];
         $cpo_general_advanced = $data['settings']['cpo_general']['advanced'];
         $cpo_validation_main = ( isset( $data['settings']['cpo_validation']['main'] ) ? $data['settings']['cpo_validation']['main'] : array() );
@@ -142,7 +143,11 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
         $slug = $this->get_slug();
         $input_css_class[] = $slug . '-field';
         $input_css_class[] = 'cpo-cart-item-option';
-        if ( $is_required ) {
+        $input_css_class[] = 'js-uni-cpo-field-' . $type;
+        if ( 'order' === $context ) {
+            $input_css_class[] = 'uni-admin-order-item-option-select';
+        }
+        if ( $is_required && 'cart' === $context ) {
             $attributes['data-parsley-required'] = 'true';
         }
         if ( !empty($cpo_validation_main) && isset( $cpo_validation_main['cpo_validation_msg'] ) && is_array( $cpo_validation_main['cpo_validation_msg'] ) ) {
@@ -157,6 +162,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
                     case 'custom':
                         $extra_validation_msgs = preg_split( '/\\R/', $v );
                         $attributes = uni_cpo_field_attributes_modifier( $extra_validation_msgs, $attributes );
+                        break;
                     default:
                         break;
                 }
@@ -171,14 +177,18 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
         ob_start();
         ?>
         <div class="cpo-cart-item-option-wrapper uni-node-<?php 
-        esc_attr_e( $id );
+        echo  esc_attr( $id ) ;
+        ?> <?php 
+        if ( 'order' === $context ) {
+            echo  esc_attr( "uni-admin-order-item-option-wrapper" ) ;
+        }
         ?>">
             <label><?php 
         echo  uni_cpo_sanitize_label( $this->cpo_order_label() ) ;
         ?></label>
 			<?php 
         
-        if ( $is_cart_edit ) {
+        if ( 'order' === $context || 'cart' === $context && $is_cart_edit ) {
             ?>
                 <select
                         class="<?php 
@@ -187,7 +197,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
             }, $input_css_class ) ) ;
             ?>"
                         name="<?php 
-            esc_attr_e( $slug );
+            echo  esc_attr( $slug ) ;
             ?>"
 					<?php 
             echo  self::get_custom_attribute_html( $attributes ) ;
@@ -212,7 +222,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
                 ?>
                         <option
                                 value="<?php 
-                esc_attr_e( $suboption['slug'] );
+                echo  esc_attr( $suboption['slug'] ) ;
                 ?>"
 							<?php 
                 echo  $selected ;
@@ -233,7 +243,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
             }, $input_css_class ) ) ;
             ?>"
                         name="<?php 
-            esc_attr_e( $slug );
+            echo  esc_attr( $slug ) ;
             ?>"
                         disabled>
                     <option value=""><?php 
@@ -256,7 +266,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
                 ?>
                         <option
                                 value="<?php 
-                esc_attr_e( $suboption['slug'] );
+                echo  esc_attr( $suboption['slug'] ) ;
                 ?>"
 							<?php 
                 echo  $selected ;
@@ -270,10 +280,10 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
                 <input
                         class="cpo-cart-item-option"
                         name="<?php 
-            esc_attr_e( $slug );
+            echo  esc_attr( $slug ) ;
             ?>"
                         value="<?php 
-            esc_attr_e( $value );
+            echo  esc_attr( $value ) ;
             ?>"
                         type="hidden" />
 			<?php 
@@ -584,6 +594,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
     public static function template( $data, $post_data = array() )
     {
         $id = $data['id'];
+        $pid = ( !empty($data['pid']) ? absint( $data['pid'] ) : 0 );
         $type = $data['type'];
         $selectors = $data['settings']['advanced']['selectors'];
         $suboptions = ( isset( $data['settings']['cpo_suboptions']['data']['cpo_radio_options'] ) ? $data['settings']['cpo_suboptions']['data']['cpo_radio_options'] : array() );
@@ -610,7 +621,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
         if ( !empty($data['pid']) ) {
             $option = uni_cpo_get_option( $data['pid'] );
         }
-        $slug = ( !empty($data['pid']) && is_object( $option ) ? $option->get_slug() : '' );
+        $slug = ( $pid && is_object( $option ) && 'trash' !== $option->get_status() ? $option->get_slug() : '' );
         $css_id[] = $slug;
         $css_class = array(
             'uni-module',
@@ -648,6 +659,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
                     case 'custom':
                         $extra_validation_msgs = preg_split( '/\\R/', $v );
                         $attributes = uni_cpo_field_attributes_modifier( $extra_validation_msgs, $attributes );
+                        break;
                     default:
                         break;
                 }
@@ -692,9 +704,9 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
         if ( !empty($cpo_general_advanced['cpo_label']) ) {
             ?>
             <<?php 
-            esc_attr_e( $cpo_label_tag );
+            echo  esc_attr( $cpo_label_tag ) ;
             ?> class="uni-cpo-module-<?php 
-            esc_attr_e( $type );
+            echo  esc_attr( $type ) ;
             ?>-label <?php 
             if ( $is_required ) {
                 ?> uni_cpo_field_required <?php 
@@ -716,7 +728,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
             
             ?>
             </<?php 
-            esc_attr_e( $cpo_label_tag );
+            echo  esc_attr( $cpo_label_tag ) ;
             ?>>
 		<?php 
         }
@@ -748,25 +760,25 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
             }, $input_css_class ) ) ;
             ?>"
                     id="<?php 
-            esc_attr_e( $slug );
+            echo  esc_attr( $slug ) ;
             ?>-field-<?php 
-            esc_attr_e( $suboption['slug'] );
+            echo  esc_attr( $suboption['slug'] ) ;
             ?>"
                     name="<?php 
-            esc_attr_e( $slug );
+            echo  esc_attr( $slug ) ;
             ?>"
                     type="radio"
                     value="<?php 
-            esc_attr_e( $suboption['slug'] );
+            echo  esc_attr( $suboption['slug'] ) ;
             ?>"
 				    <?php 
             echo  self::get_custom_attribute_html( $attributes_new ) ;
             ?> />
             <label
                     for="<?php 
-            esc_attr_e( $slug );
+            echo  esc_attr( $slug ) ;
             ?>-field-<?php 
-            esc_attr_e( $suboption['slug'] );
+            echo  esc_attr( $suboption['slug'] ) ;
             ?>"
                     class="<?php 
             echo  implode( ' ', array_map( function ( $el ) {
@@ -817,13 +829,13 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
         ob_start();
         ?>
 			.uni-node-<?php 
-        esc_attr_e( $id );
+        echo  esc_attr( $id ) ;
         ?> {
         		<?php 
         
         if ( !empty($margin['top']) ) {
             ?> margin-top: <?php 
-            esc_attr_e( "{$margin['top']}{$margin['unit']}" );
+            echo  esc_attr( "{$margin['top']}{$margin['unit']}" ) ;
             ?>; <?php 
         }
         
@@ -832,7 +844,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
         
         if ( !empty($margin['bottom']) ) {
             ?> margin-bottom: <?php 
-            esc_attr_e( "{$margin['bottom']}{$margin['unit']}" );
+            echo  esc_attr( "{$margin['bottom']}{$margin['unit']}" ) ;
             ?>; <?php 
         }
         
@@ -841,7 +853,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
         
         if ( !empty($margin['left']) ) {
             ?> margin-left: <?php 
-            esc_attr_e( "{$margin['left']}{$margin['unit']}" );
+            echo  esc_attr( "{$margin['left']}{$margin['unit']}" ) ;
             ?>; <?php 
         }
         
@@ -850,7 +862,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
         
         if ( !empty($margin['right']) ) {
             ?> margin-right: <?php 
-            esc_attr_e( "{$margin['right']}{$margin['unit']}" );
+            echo  esc_attr( "{$margin['right']}{$margin['unit']}" ) ;
             ?>; <?php 
         }
         
@@ -861,13 +873,13 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
         if ( $cpo_mode_radio === 'classic' ) {
             ?>
 				.uni-node-<?php 
-            esc_attr_e( $id );
+            echo  esc_attr( $id ) ;
             ?> .uni-cpo-option-label__text {
 					<?php 
             
             if ( !empty($font['color']) ) {
                 ?> color: <?php 
-                esc_attr_e( $font['color'] );
+                echo  esc_attr( $font['color'] ) ;
                 ?>;<?php 
             }
             
@@ -876,7 +888,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
             
             if ( $font['font_family'] !== 'inherit' ) {
                 ?> font-family: <?php 
-                esc_attr_e( $font['font_family'] );
+                echo  esc_attr( $font['font_family'] ) ;
                 ?>;<?php 
             }
             
@@ -885,7 +897,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
             
             if ( $font['font_style'] !== 'inherit' ) {
                 ?> font-style: <?php 
-                esc_attr_e( $font['font_style'] );
+                echo  esc_attr( $font['font_style'] ) ;
                 ?>;<?php 
             }
             
@@ -894,7 +906,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
             
             if ( !empty($font['font_weight']) ) {
                 ?> font-weight: <?php 
-                esc_attr_e( $font['font_weight'] );
+                echo  esc_attr( $font['font_weight'] ) ;
                 ?>;<?php 
             }
             
@@ -903,7 +915,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
             
             if ( !empty($font['font_size']['value']) ) {
                 ?> font-size: <?php 
-                esc_attr_e( "{$font['font_size']['value']}{$font['font_size']['unit']}" );
+                echo  esc_attr( "{$font['font_size']['value']}{$font['font_size']['unit']}" ) ;
                 ?>; <?php 
             }
             
@@ -912,7 +924,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
             
             if ( !empty($font['letter_spacing']) ) {
                 ?> letter-spacing: <?php 
-                esc_attr_e( $font['letter_spacing'] );
+                echo  esc_attr( $font['letter_spacing'] ) ;
                 ?>em;<?php 
             }
             
@@ -924,28 +936,28 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
             if ( $cpo_mode_radio === 'colour' ) {
                 ?>
 				.uni-node-<?php 
-                esc_attr_e( $id );
+                echo  esc_attr( $id ) ;
                 ?> .uni-cpo-radio-option-label {
             		<?php 
                 
                 if ( !empty($border['gap_px']) ) {
                     ?> margin-right: <?php 
-                    esc_attr_e( $border['gap_px'] );
+                    echo  esc_attr( $border['gap_px'] ) ;
                     ?>px; margin-bottom: <?php 
-                    esc_attr_e( $border['gap_px'] );
+                    echo  esc_attr( $border['gap_px'] ) ;
                     ?>px; <?php 
                 }
                 
                 ?>
             	}
             	.uni-node-<?php 
-                esc_attr_e( $id );
+                echo  esc_attr( $id ) ;
                 ?> .uni-cpo-option-label__colour-wrap {
             		<?php 
                 
                 if ( !empty($border['offset_px']) ) {
                     ?> padding: <?php 
-                    esc_attr_e( $border['offset_px'] );
+                    echo  esc_attr( $border['offset_px'] ) ;
                     ?>px;<?php 
                 }
                 
@@ -954,7 +966,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
                 
                 if ( !empty($border['width_px']) ) {
                     ?> border-width: <?php 
-                    esc_attr_e( $border['width_px'] );
+                    echo  esc_attr( $border['width_px'] ) ;
                     ?>px!important;<?php 
                 }
                 
@@ -973,40 +985,40 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
                 foreach ( $suboptions as $suboption ) {
                     ?>
 					.uni-node-<?php 
-                    esc_attr_e( $id );
+                    echo  esc_attr( $id ) ;
                     ?> input:checked + label.uni-node-<?php 
-                    esc_attr_e( $id );
+                    echo  esc_attr( $id ) ;
                     ?>-cpo-option-label-<?php 
-                    esc_attr_e( $suboption['slug'] );
+                    echo  esc_attr( $suboption['slug'] ) ;
                     ?> .uni-cpo-option-label__colour-wrap {
     					border-color: <?php 
-                    esc_attr_e( $suboption['suboption_colour'] );
+                    echo  esc_attr( $suboption['suboption_colour'] ) ;
                     ?>!important;
     				}
     				.uni-node-<?php 
-                    esc_attr_e( $id );
+                    echo  esc_attr( $id ) ;
                     ?> label.uni-node-<?php 
-                    esc_attr_e( $id );
+                    echo  esc_attr( $id ) ;
                     ?>-cpo-option-label-<?php 
-                    esc_attr_e( $suboption['slug'] );
+                    echo  esc_attr( $suboption['slug'] ) ;
                     ?> .uni-cpo-option-label__colour-wrap .uni-cpo-option-label__colour {
     					background-color: <?php 
-                    esc_attr_e( $suboption['suboption_colour'] );
+                    echo  esc_attr( $suboption['suboption_colour'] ) ;
                     ?>;
     				}
 				<?php 
                 }
                 ?>
 				.uni-node-<?php 
-                esc_attr_e( $id );
+                echo  esc_attr( $id ) ;
                 ?> .uni-cpo-option-label__colour-wrap .uni-cpo-option-label__colour {
             		<?php 
                 
                 if ( !empty($main['width_px']) ) {
                     ?> width: <?php 
-                    esc_attr_e( $main['width_px'] );
+                    echo  esc_attr( $main['width_px'] ) ;
                     ?>px;height: <?php 
-                    esc_attr_e( $main['width_px'] );
+                    echo  esc_attr( $main['width_px'] ) ;
                     ?>px; <?php 
                 }
                 
@@ -1027,54 +1039,54 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
                 if ( $cpo_mode_radio === 'image' ) {
                     ?>
 				.uni-node-<?php 
-                    esc_attr_e( $id );
+                    echo  esc_attr( $id ) ;
                     ?> .uni-cpo-radio-option-label {
             		<?php 
                     
                     if ( !empty($border['gap_px']) ) {
                         ?> margin-right: <?php 
-                        esc_attr_e( $border['gap_px'] );
+                        echo  esc_attr( $border['gap_px'] ) ;
                         ?>px; margin-bottom: <?php 
-                        esc_attr_e( $border['gap_px'] );
+                        echo  esc_attr( $border['gap_px'] ) ;
                         ?>px;<?php 
                     }
                     
                     ?>
             	}
             	.uni-node-<?php 
-                    esc_attr_e( $id );
+                    echo  esc_attr( $id ) ;
                     ?> input:checked + label .uni-cpo-option-label__image-wrap {
             		<?php 
                     
                     if ( !empty($border['color_active']) ) {
                         ?> border-color: <?php 
-                        esc_attr_e( $border['color_active'] );
+                        echo  esc_attr( $border['color_active'] ) ;
                         ?>!important;<?php 
                     }
                     
                     ?>
             	}
             	.uni-node-<?php 
-                    esc_attr_e( $id );
+                    echo  esc_attr( $id ) ;
                     ?> label:hover .uni-cpo-option-label__image-wrap {
 					<?php 
                     
                     if ( !empty($border['color_hover']) ) {
                         ?> border-color: <?php 
-                        esc_attr_e( $border['color_hover'] );
+                        echo  esc_attr( $border['color_hover'] ) ;
                         ?>!important;<?php 
                     }
                     
                     ?>
             	}
             	.uni-node-<?php 
-                    esc_attr_e( $id );
+                    echo  esc_attr( $id ) ;
                     ?> .uni-cpo-option-label__image-wrap {
             		<?php 
                     
                     if ( !empty($border['offset_px']) ) {
                         ?> padding: <?php 
-                        esc_attr_e( $border['offset_px'] );
+                        echo  esc_attr( $border['offset_px'] ) ;
                         ?>px;<?php 
                     }
                     
@@ -1083,7 +1095,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
                     
                     if ( !empty($border['width_px']) ) {
                         ?> border-width: <?php 
-                        esc_attr_e( $border['width_px'] );
+                        echo  esc_attr( $border['width_px'] ) ;
                         ?>px!important;<?php 
                     }
                     
@@ -1092,7 +1104,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
                     
                     if ( !empty($border['color']) ) {
                         ?> border-color: <?php 
-                        esc_attr_e( $border['color'] );
+                        echo  esc_attr( $border['color'] ) ;
                         ?>!important;<?php 
                     }
                     
@@ -1108,13 +1120,13 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
                     ?>
 	            }
             	.uni-node-<?php 
-                    esc_attr_e( $id );
+                    echo  esc_attr( $id ) ;
                     ?> .uni-cpo-option-label__image-wrap img {
             		<?php 
                     
                     if ( !empty($main['width_px']) ) {
                         ?> width: <?php 
-                        esc_attr_e( $main['width_px'] );
+                        echo  esc_attr( $main['width_px'] ) ;
                         ?>px;<?php 
                     }
                     
@@ -1123,7 +1135,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
                     
                     if ( !empty($main['height_px']) && empty($main['width_px']) ) {
                         ?> width:auto;height: <?php 
-                        esc_attr_e( $main['height_px'] );
+                        echo  esc_attr( $main['height_px'] ) ;
                         ?>px;<?php 
                     }
                     
@@ -1144,28 +1156,28 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
                     if ( $cpo_mode_radio === 'text' ) {
                         ?>
 	        	.uni-node-<?php 
-                        esc_attr_e( $id );
+                        echo  esc_attr( $id ) ;
                         ?> .uni-cpo-radio-option-label {
             		<?php 
                         
                         if ( !empty($border['gap_px']) ) {
                             ?> margin-right: <?php 
-                            esc_attr_e( $border['gap_px'] );
+                            echo  esc_attr( $border['gap_px'] ) ;
                             ?>px; margin-bottom: <?php 
-                            esc_attr_e( $border['gap_px'] );
+                            echo  esc_attr( $border['gap_px'] ) ;
                             ?>px;<?php 
                         }
                         
                         ?>
             	}
             	.uni-node-<?php 
-                        esc_attr_e( $id );
+                        echo  esc_attr( $id ) ;
                         ?> input:checked + label .uni-cpo-option-label__text-content {
             		<?php 
                         
                         if ( !empty($border['color_active']) ) {
                             ?>border-color: <?php 
-                            esc_attr_e( $border['color_active'] );
+                            echo  esc_attr( $border['color_active'] ) ;
                             ?>!important;<?php 
                         }
                         
@@ -1174,7 +1186,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
                         
                         if ( !empty($bg['color_active']) ) {
                             ?>background-color: <?php 
-                            esc_attr_e( $bg['color_active'] );
+                            echo  esc_attr( $bg['color_active'] ) ;
                             ?>!important;<?php 
                         }
                         
@@ -1183,20 +1195,20 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
                         
                         if ( !empty($font['color_active']) ) {
                             ?>color: <?php 
-                            esc_attr_e( $font['color_active'] );
+                            echo  esc_attr( $font['color_active'] ) ;
                             ?>;<?php 
                         }
                         
                         ?>
             	}
             	.uni-node-<?php 
-                        esc_attr_e( $id );
+                        echo  esc_attr( $id ) ;
                         ?> label:hover .uni-cpo-option-label__text-content {
 					<?php 
                         
                         if ( !empty($border['color_hover']) ) {
                             ?>border-color: <?php 
-                            esc_attr_e( $border['color_hover'] );
+                            echo  esc_attr( $border['color_hover'] ) ;
                             ?>!important;<?php 
                         }
                         
@@ -1205,7 +1217,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
                         
                         if ( !empty($bg['color_hover']) ) {
                             ?>background-color: <?php 
-                            esc_attr_e( $bg['color_hover'] );
+                            echo  esc_attr( $bg['color_hover'] ) ;
                             ?>!important;<?php 
                         }
                         
@@ -1214,20 +1226,20 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
                         
                         if ( !empty($font['color_hover']) ) {
                             ?>color: <?php 
-                            esc_attr_e( $font['color_hover'] );
+                            echo  esc_attr( $font['color_hover'] ) ;
                             ?>;<?php 
                         }
                         
                         ?>
             	}
             	.uni-node-<?php 
-                        esc_attr_e( $id );
+                        echo  esc_attr( $id ) ;
                         ?> .uni-cpo-option-label__text-content {
 	            	<?php 
                         
                         if ( !empty($font['color']) ) {
                             ?> color: <?php 
-                            esc_attr_e( $font['color'] );
+                            echo  esc_attr( $font['color'] ) ;
                             ?>;<?php 
                         }
                         
@@ -1236,7 +1248,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
                         
                         if ( !empty($font['text_align']) ) {
                             ?> text-align: <?php 
-                            esc_attr_e( $font['text_align'] );
+                            echo  esc_attr( $font['text_align'] ) ;
                             ?>;<?php 
                         }
                         
@@ -1245,7 +1257,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
                         
                         if ( $font['font_family'] !== 'inherit' ) {
                             ?> font-family: <?php 
-                            esc_attr_e( $font['font_family'] );
+                            echo  esc_attr( $font['font_family'] ) ;
                             ?>;<?php 
                         }
                         
@@ -1254,7 +1266,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
                         
                         if ( $font['font_style'] !== 'inherit' ) {
                             ?> font-style: <?php 
-                            esc_attr_e( $font['font_style'] );
+                            echo  esc_attr( $font['font_style'] ) ;
                             ?>;<?php 
                         }
                         
@@ -1263,7 +1275,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
                         
                         if ( !empty($font['font_weight']) ) {
                             ?> font-weight: <?php 
-                            esc_attr_e( $font['font_weight'] );
+                            echo  esc_attr( $font['font_weight'] ) ;
                             ?>;<?php 
                         }
                         
@@ -1272,7 +1284,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
                         
                         if ( !empty($font['font_size']['value']) ) {
                             ?> font-size: <?php 
-                            esc_attr_e( "{$font['font_size']['value']}{$font['font_size']['unit']}" );
+                            echo  esc_attr( "{$font['font_size']['value']}{$font['font_size']['unit']}" ) ;
                             ?>; <?php 
                         }
                         
@@ -1281,7 +1293,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
                         
                         if ( !empty($font['letter_spacing']) ) {
                             ?> letter-spacing: <?php 
-                            esc_attr_e( $font['letter_spacing'] );
+                            echo  esc_attr( $font['letter_spacing'] ) ;
                             ?>em;<?php 
                         }
                         
@@ -1290,7 +1302,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
                         
                         if ( !empty($main['width_px']) ) {
                             ?> width: <?php 
-                            esc_attr_e( $main['width_px'] );
+                            echo  esc_attr( $main['width_px'] ) ;
                             ?>px; <?php 
                         }
                         
@@ -1299,17 +1311,17 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
                         
                         if ( !empty($main['height_px']) ) {
                             ?> height: <?php 
-                            esc_attr_e( $main['height_px'] );
+                            echo  esc_attr( $main['height_px'] ) ;
                             ?>px; line-height: <?php 
-                            esc_attr_e( $main['height_px'] );
+                            echo  esc_attr( $main['height_px'] ) ;
                             ?>px; <?php 
                         } else {
                             
                             if ( $main['width_px'] ) {
                                 ?> height: <?php 
-                                esc_attr_e( $main['width_px'] );
+                                echo  esc_attr( $main['width_px'] ) ;
                                 ?>px; line-height: <?php 
-                                esc_attr_e( $main['width_px'] );
+                                echo  esc_attr( $main['width_px'] ) ;
                                 ?>px; <?php 
                             }
                         
@@ -1320,7 +1332,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
                         
                         if ( !empty($border['width_px']) ) {
                             ?> border-width: <?php 
-                            esc_attr_e( $border['width_px'] );
+                            echo  esc_attr( $border['width_px'] ) ;
                             ?>px!important;<?php 
                         }
                         
@@ -1329,7 +1341,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
                         
                         if ( !empty($border['color']) ) {
                             ?> border-color: <?php 
-                            esc_attr_e( $border['color'] );
+                            echo  esc_attr( $border['color'] ) ;
                             ?>!important;<?php 
                         }
                         
@@ -1338,7 +1350,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
                         
                         if ( !empty($bg['color']) ) {
                             ?> background-color: <?php 
-                            esc_attr_e( $bg['color'] );
+                            echo  esc_attr( $bg['color'] ) ;
                             ?>!important;<?php 
                         }
                         
@@ -1356,7 +1368,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
                         
                         if ( !empty($padding['top']) ) {
                             ?> padding-top: <?php 
-                            esc_attr_e( "{$padding['top']}{$padding['unit']}" );
+                            echo  esc_attr( "{$padding['top']}{$padding['unit']}" ) ;
                             ?>; <?php 
                         }
                         
@@ -1365,7 +1377,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
                         
                         if ( !empty($padding['bottom']) ) {
                             ?> padding-bottom: <?php 
-                            esc_attr_e( "{$padding['bottom']}{$padding['unit']}" );
+                            echo  esc_attr( "{$padding['bottom']}{$padding['unit']}" ) ;
                             ?>; <?php 
                         }
                         
@@ -1374,7 +1386,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
                         
                         if ( !empty($padding['left']) ) {
                             ?> padding-left: <?php 
-                            esc_attr_e( "{$padding['left']}{$padding['unit']}" );
+                            echo  esc_attr( "{$padding['left']}{$padding['unit']}" ) ;
                             ?>; <?php 
                         }
                         
@@ -1383,7 +1395,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
                         
                         if ( !empty($padding['right']) ) {
                             ?> padding-right: <?php 
-                            esc_attr_e( "{$padding['right']}{$padding['unit']}" );
+                            echo  esc_attr( "{$padding['right']}{$padding['unit']}" ) ;
                             ?>; <?php 
                         }
                         
