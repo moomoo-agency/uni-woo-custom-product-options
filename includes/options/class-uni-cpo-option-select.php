@@ -133,8 +133,9 @@ class Uni_Cpo_Option_Select extends Uni_Cpo_Option implements Uni_Cpo_Option_Int
 		return stripslashes_deep( $model );
 	}
 
-	public function get_edit_field( $data, $value ) {
+	public function get_edit_field( $data, $value, $context = 'cart' ) {
 		$id                   = $data['id'];
+		$type                 = $data['type'];
 		$cpo_general_main     = $data['settings']['cpo_general']['main'];
 		$cpo_general_advanced = $data['settings']['cpo_general']['advanced'];
 		$cpo_validation_main  = ( isset( $data['settings']['cpo_validation']['main'] ) )
@@ -155,15 +156,20 @@ class Uni_Cpo_Option_Select extends Uni_Cpo_Option implements Uni_Cpo_Option_Int
 		$slug              = $this->get_slug();
 		$input_css_class[] = $slug . '-field';
 		$input_css_class[] = 'cpo-cart-item-option';
+		$input_css_class[] = 'js-uni-cpo-field-' . $type;
 
-		if ( $is_required ) {
+		if ( 'order' === $context ) {
+			$input_css_class[] = 'uni-admin-order-item-option-select';
+		}
+
+		if ( $is_required && 'cart' === $context ) {
 			$attributes['data-parsley-required'] = 'true';
 		}
 
 		if ( ! empty( $cpo_validation_main ) && isset( $cpo_validation_main['cpo_validation_msg'] )
 		     && is_array( $cpo_validation_main['cpo_validation_msg'] ) ) {
 			foreach ( $cpo_validation_main['cpo_validation_msg'] as $k => $v ) {
-				if ( empty($v) ) {
+				if ( empty( $v ) ) {
 					continue;
 				}
 				switch ( $k ) {
@@ -172,7 +178,8 @@ class Uni_Cpo_Option_Select extends Uni_Cpo_Option implements Uni_Cpo_Option_Int
 						break;
 					case 'custom' :
 						$extra_validation_msgs = preg_split( '/\R/', $v );
-						$attributes = uni_cpo_field_attributes_modifier( $extra_validation_msgs, $attributes );
+						$attributes            = uni_cpo_field_attributes_modifier( $extra_validation_msgs, $attributes );
+						break;
 					default :
 						break;
 				}
@@ -181,71 +188,71 @@ class Uni_Cpo_Option_Select extends Uni_Cpo_Option implements Uni_Cpo_Option_Int
 
 		if ( ! empty( $cpo_validation_logic['cpo_vc_extra'] ) ) {
 			$extra_validation = preg_split( '/\R/', $cpo_validation_logic['cpo_vc_extra'] );
-			$attributes = uni_cpo_field_attributes_modifier( $extra_validation, $attributes );
+			$attributes       = uni_cpo_field_attributes_modifier( $extra_validation, $attributes );
 		}
 
 		ob_start();
 		?>
-        <div class="cpo-cart-item-option-wrapper uni-node-<?php esc_attr_e($id) ?>">
+        <div class="cpo-cart-item-option-wrapper uni-node-<?php echo esc_attr( $id ) ?> <?php if ( 'order' === $context ) { echo esc_attr( "uni-admin-order-item-option-wrapper" ); } ?>">
             <label><?php echo uni_cpo_sanitize_label( $this->cpo_order_label() ) ?></label>
-	        <?php if ( $is_cart_edit ) { ?>
+			<?php if ( 'order' === $context || ( 'cart' === $context && $is_cart_edit ) ) { ?>
                 <select
                         class="<?php echo implode( ' ', array_map( function ( $el ) {
-                            return esc_attr( $el );
-                        }, $input_css_class ) ); ?>"
-                        name="<?php esc_attr_e( $slug ); ?>"
-                        <?php echo self::get_custom_attribute_html( $attributes ); ?>>
+							return esc_attr( $el );
+						}, $input_css_class ) ); ?>"
+                        name="<?php echo esc_attr( $slug ); ?>"
+					<?php echo self::get_custom_attribute_html( $attributes ); ?>>
                     <option value=""><?php esc_html_e( 'Please select...', 'uni-cpo' ) ?></option>
-                    <?php
-                    foreach ( $suboptions as $suboption ) :
-                        if ( isset( $suboption['excl'] ) && ! empty( $suboption['excl'] ) ) {
-                            continue;
-                        }
-                        if ( ! empty( $value ) && $suboption['slug'] === $value ) {
-                            $selected = 'selected="selected"';
-                        } elseif ( $suboption['def'] === 'checked' ) {
-                            $selected = 'selected="selected"';
-                        } else {
-                            $selected = '';
-                        }
-                        ?>
+					<?php
+					foreach ( $suboptions as $suboption ) :
+						if ( isset( $suboption['excl'] ) && ! empty( $suboption['excl'] ) ) {
+							continue;
+						}
+						if ( ! empty( $value ) && $suboption['slug'] === $value ) {
+							$selected = 'selected="selected"';
+						} elseif ( $suboption['def'] === 'checked' ) {
+							$selected = 'selected="selected"';
+						} else {
+							$selected = '';
+						}
+						?>
                         <option
-                                value="<?php esc_attr_e( $suboption['slug'] ); ?>"
-                                <?php echo $selected; ?>><?php esc_html_e( $suboption['label'] ); ?></option>
-                    <?php endforeach; ?>
+                                value="<?php echo esc_attr( $suboption['slug'] ); ?>"
+							<?php echo $selected; ?>><?php esc_html_e( $suboption['label'] ); ?></option>
+					<?php endforeach; ?>
                 </select>
-	        <?php } else { ?>
+			<?php } else { ?>
                 <select
                         class="<?php echo implode( ' ', array_map( function ( $el ) {
-					        return esc_attr( $el );
-				        }, $input_css_class ) ); ?>"
-                        name="<?php esc_attr_e( $slug ); ?>"
+							return esc_attr( $el );
+						}, $input_css_class ) ); ?>"
+                        name="<?php echo esc_attr( $slug ); ?>"
                         disabled>
                     <option value=""><?php esc_html_e( 'Please select...', 'uni-cpo' ) ?></option>
-			        <?php
-			        foreach ( $suboptions as $suboption ) :
-				        if ( isset( $suboption['excl'] ) && ! empty( $suboption['excl'] ) ) {
-					        continue;
-				        }
-				        if ( ! empty( $value ) && $suboption['slug'] === $value ) {
-					        $selected = 'selected="selected"';
-				        } elseif ( $suboption['def'] === 'checked' ) {
-					        $selected = 'selected="selected"';
-				        } else {
-					        $selected = '';
-				        }
-				        ?>
+					<?php
+					foreach ( $suboptions as $suboption ) :
+						if ( isset( $suboption['excl'] ) && ! empty( $suboption['excl'] ) ) {
+							continue;
+						}
+						if ( ! empty( $value ) && $suboption['slug'] === $value ) {
+							$selected = 'selected="selected"';
+						} elseif ( $suboption['def'] === 'checked' ) {
+							$selected = 'selected="selected"';
+						} else {
+							$selected = '';
+						}
+						?>
                         <option
-                                value="<?php esc_attr_e( $suboption['slug'] ); ?>"
-					        <?php echo $selected; ?>><?php esc_html_e( $suboption['label'] ); ?></option>
-			        <?php endforeach; ?>
+                                value="<?php echo esc_attr( $suboption['slug'] ); ?>"
+							<?php echo $selected; ?>><?php esc_html_e( $suboption['label'] ); ?></option>
+					<?php endforeach; ?>
                 </select>
                 <input
                         class="cpo-cart-item-option"
-                        name="<?php esc_attr_e( $slug ) ?>"
-                        value="<?php esc_attr_e( $value ) ?>"
-                        type="hidden" />
-	        <?php } ?>
+                        name="<?php echo esc_attr( $slug ) ?>"
+                        value="<?php echo esc_attr( $value ) ?>"
+                        type="hidden"/>
+			<?php } ?>
         </div>
 		<?php
 
@@ -379,19 +386,19 @@ class Uni_Cpo_Option_Select extends Uni_Cpo_Option implements Uni_Cpo_Option_Int
                 data-type="{{- type }}">
             <style>
             	.uni-node-{{= id }} {
-            		{{ if ( margin.top ) { }} margin-top: {{= margin.top + margin.unit }}; {{ } }}
-                    {{ if ( margin.bottom ) { }} margin-bottom: {{= margin.bottom + margin.unit }}; {{ } }}
-                    {{ if ( margin.left ) { }} margin-left: {{= margin.left + margin.unit }}; {{ } }}
-                    {{ if ( margin.right ) { }} margin-right: {{= margin.right + margin.unit }}; {{ } }}
+            		{{ if ( margin.top ) { }} margin-top: {{= margin.top + margin.unit }}!important; {{ } }}
+                    {{ if ( margin.bottom ) { }} margin-bottom: {{= margin.bottom + margin.unit }}!important; {{ } }}
+                    {{ if ( margin.left ) { }} margin-left: {{= margin.left + margin.unit }}!important; {{ } }}
+                    {{ if ( margin.right ) { }} margin-right: {{= margin.right + margin.unit }}!important; {{ } }}
             	}
         		.uni-node-{{= id }} select {
                     {{ if ( width.value ) { }} width: {{= width.value+width.unit }}!important; {{ } }}
-                    {{ if ( height.value ) { }} height: {{= height.value+height.unit }}; {{ } }}
-                    {{ if ( border_top.style !== 'none' && border_top.color ) { }} border-top: {{= border_top.width + 'px '+ border_top.style +' '+ border_top.color }}; {{ } }}
-                    {{ if ( border_bottom.style !== 'none' && border_bottom.color ) { }} border-bottom: {{= border_bottom.width + 'px '+ border_bottom.style +' '+ border_bottom.color }}; {{ } }}
-                    {{ if ( border_left.style !== 'none' && border_left.color ) { }} border-left: {{= border_left.width + 'px '+ border_left.style +' '+ border_left.color }}; {{ } }}
-                    {{ if ( border_right.style !== 'none' && border_right.color ) { }} border-right: {{= border_right.width + 'px '+ border_right.style +' '+ border_right.color }}; {{ } }}
-                    {{ if ( radius.value ) { }} border-radius: {{= radius.value + radius.unit }}; {{ } }}
+                    {{ if ( height.value ) { }} height: {{= height.value+height.unit }}!important; min-height: {{= height.value+height.unit }}!important; {{ } }}
+                    {{ if ( border_top.style !== 'none' && border_top.color ) { }} border-top: {{= border_top.width + 'px '+ border_top.style +' '+ border_top.color }}!important; {{ } }}
+                    {{ if ( border_bottom.style !== 'none' && border_bottom.color ) { }} border-bottom: {{= border_bottom.width + 'px '+ border_bottom.style +' '+ border_bottom.color }}!important; {{ } }}
+                    {{ if ( border_left.style !== 'none' && border_left.color ) { }} border-left: {{= border_left.width + 'px '+ border_left.style +' '+ border_left.color }}!important; {{ } }}
+                    {{ if ( border_right.style !== 'none' && border_right.color ) { }} border-right: {{= border_right.width + 'px '+ border_right.style +' '+ border_right.color }}!important; {{ } }}
+                    {{ if ( radius.value ) { }} border-radius: {{= radius.value + radius.unit }}!important; {{ } }}
         		}
         	</style>
             {{ if ( cpo_label_tag && cpo_label ) { }}
@@ -444,7 +451,7 @@ class Uni_Cpo_Option_Select extends Uni_Cpo_Option implements Uni_Cpo_Option_Int
 			$option = uni_cpo_get_option( $data['pid'] );
 		}
 
-		$slug              = ( ! empty( $data['pid'] ) && is_object( $option ) ) ? $option->get_slug() : '';
+		$slug              = ( ! empty( $data['pid'] ) && is_object( $option ) && 'trash' !== $option->get_status() ) ? $option->get_slug() : '';
 		$css_id[]          = $slug;
 		$css_class         = array(
 			'uni-module',
@@ -478,6 +485,7 @@ class Uni_Cpo_Option_Select extends Uni_Cpo_Option implements Uni_Cpo_Option_Int
 					case 'custom' :
 						$extra_validation_msgs = preg_split( '/\R/', $v );
 						$attributes = uni_cpo_field_attributes_modifier( $extra_validation_msgs, $attributes );
+						break;
 					default :
 						break;
 				}
@@ -503,20 +511,20 @@ class Uni_Cpo_Option_Select extends Uni_Cpo_Option implements Uni_Cpo_Option_Int
 		<?php echo self::get_custom_attribute_html( $wrapper_attributes ); ?>>
 		<?php
 		if ( ! empty( $cpo_general_advanced['cpo_label'] ) ) { ?>
-            <<?php esc_attr_e( $cpo_label_tag ); ?> class="uni-cpo-module-<?php esc_attr_e( $type ); ?>-label <?php if ( $is_required ) { ?> uni_cpo_field_required <?php } ?>">
+            <<?php echo esc_attr( $cpo_label_tag ); ?> class="uni-cpo-module-<?php echo esc_attr( $type ); ?>-label <?php if ( $is_required ) { ?> uni_cpo_field_required <?php } ?>">
 			<?php esc_html_e( $cpo_general_advanced['cpo_label'] ); ?>
 			<?php if ( $is_tooltip && $cpo_general_advanced['cpo_tooltip'] !== '' ) { ?>
                 <span class="uni-cpo-tooltip"
                       data-tip="<?php echo uni_cpo_sanitize_tooltip( $cpo_general_advanced['cpo_tooltip'] ); ?>"></span>
 			<?php } ?>
-            </<?php esc_attr_e( $cpo_label_tag ); ?>>
+            </<?php echo esc_attr( $cpo_label_tag ); ?>>
 		<?php } ?>
         <select
                 class="<?php echo implode( ' ', array_map( function ( $el ) {
 					return esc_attr( $el );
 				}, $input_css_class ) ); ?>"
-                id="<?php esc_attr_e( $slug ); ?>-field"
-                name="<?php esc_attr_e( $slug ); ?>"
+                id="<?php echo esc_attr( $slug ); ?>-field"
+                name="<?php echo esc_attr( $slug ); ?>"
 			<?php echo self::get_custom_attribute_html( $attributes ); ?>>
             <option value=""><?php esc_html_e( 'Please select...', 'uni-cpo' ) ?></option>
 			<?php
@@ -533,7 +541,7 @@ class Uni_Cpo_Option_Select extends Uni_Cpo_Option implements Uni_Cpo_Option_Int
 				}
                 ?>
                 <option
-                        value="<?php esc_attr_e( $suboption['slug'] ); ?>"
+                        value="<?php echo esc_attr( $suboption['slug'] ); ?>"
 					    <?php echo $selected; ?>><?php esc_html_e( $suboption['label'] ); ?></option>
 			<?php endforeach; ?>
         </select>
@@ -555,20 +563,20 @@ class Uni_Cpo_Option_Select extends Uni_Cpo_Option implements Uni_Cpo_Option_Int
 
 		ob_start();
 		?>
-        .uni-node-<?php esc_attr_e( $id ); ?> {
-		<?php if ( ! empty( $margin['top'] ) ) { ?> margin-top: <?php esc_attr_e( "{$margin['top']}{$margin['unit']}" ) ?>; <?php } ?>
-		<?php if ( ! empty( $margin['bottom'] ) ) { ?> margin-bottom: <?php esc_attr_e( "{$margin['bottom']}{$margin['unit']}" ) ?>; <?php } ?>
-		<?php if ( ! empty( $margin['left'] ) ) { ?> margin-left: <?php esc_attr_e( "{$margin['left']}{$margin['unit']}" ) ?>; <?php } ?>
-		<?php if ( ! empty( $margin['right'] ) ) { ?> margin-right: <?php esc_attr_e( "{$margin['right']}{$margin['unit']}" ) ?>; <?php } ?>
+        .uni-node-<?php echo esc_attr( $id ); ?> {
+		<?php if ( ! empty( $margin['top'] ) ) { ?> margin-top: <?php echo esc_attr( "{$margin['top']}{$margin['unit']}" ) ?>!important; <?php } ?>
+		<?php if ( ! empty( $margin['bottom'] ) ) { ?> margin-bottom: <?php echo esc_attr( "{$margin['bottom']}{$margin['unit']}" ) ?>!important; <?php } ?>
+		<?php if ( ! empty( $margin['left'] ) ) { ?> margin-left: <?php echo esc_attr( "{$margin['left']}{$margin['unit']}" ) ?>!important; <?php } ?>
+		<?php if ( ! empty( $margin['right'] ) ) { ?> margin-right: <?php echo esc_attr( "{$margin['right']}{$margin['unit']}" ) ?>!important; <?php } ?>
         }
-        .uni-node-<?php esc_attr_e( $id ); ?> select {
-		<?php if ( ! empty( $main['width']['value'] ) ) { ?> width: <?php esc_attr_e( "{$main['width']['value']}{$main['width']['unit']}" ) ?>!important;<?php } ?>
-		<?php if ( ! empty( $main['height']['value'] ) ) { ?> height: <?php esc_attr_e( "{$main['height']['value']}{$main['height']['unit']}" ) ?>;<?php } ?>
-		<?php if ( $border_top['style'] !== 'none' && ! empty( $border_top['color'] ) ) { ?> border-top: <?php esc_attr_e( "{$border_top['width']}px {$border_top['style']} {$border_top['color']}" ) ?>; <?php } ?>
-		<?php if ( $border_bottom['style'] !== 'none' && ! empty( $border_bottom['color'] ) ) { ?> border-bottom: <?php esc_attr_e( "{$border_bottom['width']}px {$border_bottom['style']} {$border_bottom['color']}" ) ?>; <?php } ?>
-		<?php if ( $border_left['style'] !== 'none' && ! empty( $border_left['color'] ) ) { ?> border-left: <?php esc_attr_e( "{$border_left['width']}px {$border_left['style']} {$border_left['color']}" ) ?>; <?php } ?>
-		<?php if ( $border_right['style'] !== 'none' && ! empty( $border_right['color'] ) ) { ?> border-right: <?php esc_attr_e( "{$border_right['width']}px {$border_right['style']} {$border_right['color']}" ) ?>; <?php } ?>
-		<?php if ( ! empty( $radius['value'] ) ) { ?> border-radius: <?php esc_attr_e( "{$radius['value']}{$radius['unit']}" ) ?>; <?php } ?>
+        .uni-node-<?php echo esc_attr( $id ); ?> select {
+		<?php if ( ! empty( $main['width']['value'] ) ) { ?> width: <?php echo esc_attr( "{$main['width']['value']}{$main['width']['unit']}" ) ?>!important;<?php } ?>
+		<?php if ( ! empty( $main['height']['value'] ) ) { ?> height: <?php echo esc_attr( "{$main['height']['value']}{$main['height']['unit']}" ) ?>!important; min-height: <?php echo esc_attr( "{$main['height']['value']}{$main['height']['unit']}" ) ?>!important; <?php } ?>
+		<?php if ( $border_top['style'] !== 'none' && ! empty( $border_top['color'] ) ) { ?> border-top: <?php echo esc_attr( "{$border_top['width']}px {$border_top['style']} {$border_top['color']}" ) ?>!important; <?php } ?>
+		<?php if ( $border_bottom['style'] !== 'none' && ! empty( $border_bottom['color'] ) ) { ?> border-bottom: <?php echo esc_attr( "{$border_bottom['width']}px {$border_bottom['style']} {$border_bottom['color']}" ) ?>!important; <?php } ?>
+		<?php if ( $border_left['style'] !== 'none' && ! empty( $border_left['color'] ) ) { ?> border-left: <?php echo esc_attr( "{$border_left['width']}px {$border_left['style']} {$border_left['color']}" ) ?>!important; <?php } ?>
+		<?php if ( $border_right['style'] !== 'none' && ! empty( $border_right['color'] ) ) { ?> border-right: <?php echo esc_attr( "{$border_right['width']}px {$border_right['style']} {$border_right['color']}" ) ?>!important; <?php } ?>
+		<?php if ( ! empty( $radius['value'] ) ) { ?> border-radius: <?php echo esc_attr( "{$radius['value']}{$radius['unit']}" ) ?>!important; <?php } ?>
         }
 
 		<?php

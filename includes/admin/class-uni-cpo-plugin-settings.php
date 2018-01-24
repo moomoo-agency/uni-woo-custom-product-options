@@ -13,16 +13,17 @@ class Uni_Cpo_Plugin_Settings {
 	private $settings;
 
 	public function __construct( $file ) {
-		$this->file          = $file;
-		$this->dir           = dirname( $this->file );
-		$this->assets_dir    = trailingslashit( $this->dir ) . 'assets';
-		$this->assets_url    = esc_url( trailingslashit( plugins_url( '/assets/', $this->file ) ) );
-		$this->settings_base = 'uni_cpo_settings_general';
+		$this->file              = $file;
+		$this->dir               = dirname( $this->file );
+		$this->assets_dir        = trailingslashit( $this->dir ) . 'assets';
+		$this->assets_url        = esc_url( trailingslashit( plugins_url( '/assets/', $this->file ) ) );
+		$this->settings_base     = 'uni_cpo_settings_general';
 		$this->exclude_from_free = array(
 			'ajax_add_to_cart',
 			'product_image_size',
 			'display_weight_in_cart',
-			'file_upload'
+			'file_upload',
+			'range_slider_style'
 		);
 
 		// Initialise settings
@@ -71,12 +72,12 @@ class Uni_Cpo_Plugin_Settings {
 		wp_enqueue_script( 'farbtastic' );
 		wp_enqueue_media();
 		wp_register_script(
-			'unicpo-admin-js',
-			$this->assets_url . 'js/admin.js',
+			'uni-cpo-admin-utils',
+			$this->assets_url . 'js/admin-utils.js',
 			array( 'farbtastic', 'jquery' ),
 			UNI_CPO_VERSION
 		);
-		wp_enqueue_script( 'unicpo-admin' );
+		wp_enqueue_script( 'uni-cpo-admin-utils' );
 	}
 
 	/**
@@ -140,6 +141,20 @@ class Uni_Cpo_Plugin_Settings {
 					'description' => __( 'This option enables displaying weight in the cart.', 'uni-cpo' ),
 					'type'        => 'checkbox',
 					'default'     => ''
+				),
+				array(
+					'id'          => 'range_slider_style',
+					'label'       => __( 'Style for range sliders', 'uni-cpo' ),
+					'description' => __( 'Default style is "HTML 5". This style will be applied for all range slider option instances in the store.', 'uni-cpo' ),
+					'type'        => 'select',
+					'options'     => array(
+						'flat'   => __( 'Flat', 'uni-cpo' ),
+						'modern' => __( 'Modern', 'uni-cpo' ),
+						'html5'  => __( 'HTML5', 'uni-cpo' ),
+						'nice'   => __( 'Nice', 'uni-cpo' ),
+						'simple' => __( 'Simple', 'uni-cpo' ),
+					),
+					'default'     => 'html5'
 				),
 			)
 		);

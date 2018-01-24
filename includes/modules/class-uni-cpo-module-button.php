@@ -238,37 +238,37 @@ class Uni_Cpo_Module_Button extends Uni_Cpo_Module implements Uni_Cpo_Module_Int
 
 		ob_start();
 		?>
-        .uni-node-<?php esc_attr_e( $id ); ?>, .uni-node-<?php esc_attr_e( $id ); ?>:active, .uni-node-<?php esc_attr_e( $id ); ?>:focus {
-		<?php if ( $main['width_type'] === 'custom' ) { ?> width: <?php esc_attr_e( "{$main['width']['value']}{$main['width']['unit']}" ) ?>; <?php } ?>
-		<?php if ( $main['height']['value'] !== '' ) { ?> line-height: <?php esc_attr_e( "{$main['height']['value']}{$main['height']['unit']}" ) ?>;<?php } ?>
-		<?php if ( $text['color'] !== '' ) { ?> color: <?php esc_attr_e( $text['color'] ); ?>;<?php } ?>
-		<?php if ( $text['text_align'] !== '' ) { ?> text-align: <?php esc_attr_e( $text['text_align'] ); ?>;<?php } ?>
-		<?php if ( $font['font_family'] !== 'inherit' ) { ?> font-family: <?php esc_attr_e( $font['font_family'] ); ?>;<?php } ?>
-		<?php if ( $font['font_style'] !== 'inherit' ) { ?> font-style: <?php esc_attr_e( $font['font_style'] ); ?>;<?php } ?>
-		<?php if ( $font['font_weight'] !== '' ) { ?> font-weight: <?php esc_attr_e( $font['font_weight'] ); ?>;<?php } ?>
-		<?php if ( $font['font_size']['value'] !== '' ) { ?> font-size: <?php esc_attr_e( "{$font['font_size']['value']}{$font['font_size']['unit']}" ) ?>; <?php } ?>
-		<?php if ( $font['letter_spacing'] !== '' ) { ?> letter-spacing: <?php esc_attr_e( $font['letter_spacing'] ); ?>em;<?php } ?>
-		<?php if ( $background['background_color'] !== '' ) { ?> background-color: <?php esc_attr_e( $background['background_color'] ); ?>;<?php } ?>
-		<?php if ( $border_top['style'] !== 'none' && $border_top['color'] !== '' ) { ?> border-top: <?php esc_attr_e( "{$border_top['width']}px {$border_top['style']} {$border_top['color']}" ) ?>; <?php } ?>
-		<?php if ( $border_bottom['style'] !== 'none' && $border_bottom['color'] !== '' ) { ?> border-bottom: <?php esc_attr_e( "{$border_bottom['width']}px {$border_bottom['style']} {$border_bottom['color']}" ) ?>; <?php } ?>
-		<?php if ( $border_left['style'] !== 'none' && $border_left['color'] !== '' ) { ?> border-left: <?php esc_attr_e( "{$border_left['width']}px {$border_left['style']} {$border_left['color']}" ) ?>; <?php } ?>
-		<?php if ( $border_right['style'] !== 'none' && $border_right['color'] !== '' ) { ?> border-right: <?php esc_attr_e( "{$border_right['width']}px {$border_right['style']} {$border_right['color']}" ) ?>; <?php } ?>
-		<?php if ( $radius['value'] !== '' ) { ?> border-radius: <?php esc_attr_e( "{$radius['value']}{$radius['unit']}" ) ?>; <?php } ?>
-		<?php if ( $margin['top'] !== '' ) { ?> margin-top: <?php esc_attr_e( "{$margin['top']}{$margin['unit']}" ) ?>; <?php } ?>
-		<?php if ( $margin['bottom'] !== '' ) { ?> margin-bottom: <?php esc_attr_e( "{$margin['bottom']}{$margin['unit']}" ) ?>; <?php } ?>
-		<?php if ( $margin['left'] !== '' ) { ?> margin-left: <?php esc_attr_e( "{$margin['left']}{$margin['unit']}" ) ?>; <?php } ?>
-		<?php if ( $margin['right'] !== '' ) { ?> margin-right: <?php esc_attr_e( "{$margin['right']}{$margin['unit']}" ) ?>; <?php } ?>
-		<?php if ( $padding['top'] !== '' ) { ?> padding-top: <?php esc_attr_e( "{$padding['top']}{$padding['unit']}" ) ?>; <?php } ?>
-		<?php if ( $padding['bottom'] !== '' ) { ?> padding-bottom: <?php esc_attr_e( "{$padding['bottom']}{$padding['unit']}" ) ?>; <?php } ?>
-		<?php if ( $padding['left'] !== '' ) { ?> padding-left: <?php esc_attr_e( "{$padding['left']}{$padding['unit']}" ) ?>; <?php } ?>
-		<?php if ( $padding['right'] !== '' ) { ?> padding-right: <?php esc_attr_e( "{$padding['right']}{$padding['unit']}" ) ?>; <?php } ?>
+        .uni-node-<?php echo esc_attr( $id ); ?>, .uni-node-<?php echo esc_attr( $id ); ?>:active, .uni-node-<?php echo esc_attr( $id ); ?>:focus {
+		<?php if ( $main['width_type'] === 'custom' ) { ?> width: <?php echo esc_attr( "{$main['width']['value']}{$main['width']['unit']}" ) ?>; <?php } ?>
+		<?php if ( $main['height']['value'] !== '' ) { ?> line-height: <?php echo esc_attr( "{$main['height']['value']}{$main['height']['unit']}" ) ?>;<?php } ?>
+		<?php if ( $text['color'] !== '' ) { ?> color: <?php echo esc_attr( $text['color'] ); ?>;<?php } ?>
+		<?php if ( $text['text_align'] !== '' ) { ?> text-align: <?php echo esc_attr( $text['text_align'] ); ?>;<?php } ?>
+		<?php if ( $font['font_family'] !== 'inherit' ) { ?> font-family: <?php echo esc_attr( $font['font_family'] ); ?>;<?php } ?>
+		<?php if ( $font['font_style'] !== 'inherit' ) { ?> font-style: <?php echo esc_attr( $font['font_style'] ); ?>;<?php } ?>
+		<?php if ( $font['font_weight'] !== '' ) { ?> font-weight: <?php echo esc_attr( $font['font_weight'] ); ?>;<?php } ?>
+		<?php if ( $font['font_size']['value'] !== '' ) { ?> font-size: <?php echo esc_attr( "{$font['font_size']['value']}{$font['font_size']['unit']}" ) ?>; <?php } ?>
+		<?php if ( $font['letter_spacing'] !== '' ) { ?> letter-spacing: <?php echo esc_attr( $font['letter_spacing'] ); ?>em;<?php } ?>
+		<?php if ( $background['background_color'] !== '' ) { ?> background-color: <?php echo esc_attr( $background['background_color'] ); ?>;<?php } ?>
+		<?php if ( $border_top['style'] !== 'none' && $border_top['color'] !== '' ) { ?> border-top: <?php echo esc_attr( "{$border_top['width']}px {$border_top['style']} {$border_top['color']}" ) ?>; <?php } ?>
+		<?php if ( $border_bottom['style'] !== 'none' && $border_bottom['color'] !== '' ) { ?> border-bottom: <?php echo esc_attr( "{$border_bottom['width']}px {$border_bottom['style']} {$border_bottom['color']}" ) ?>; <?php } ?>
+		<?php if ( $border_left['style'] !== 'none' && $border_left['color'] !== '' ) { ?> border-left: <?php echo esc_attr( "{$border_left['width']}px {$border_left['style']} {$border_left['color']}" ) ?>; <?php } ?>
+		<?php if ( $border_right['style'] !== 'none' && $border_right['color'] !== '' ) { ?> border-right: <?php echo esc_attr( "{$border_right['width']}px {$border_right['style']} {$border_right['color']}" ) ?>; <?php } ?>
+		<?php if ( $radius['value'] !== '' ) { ?> border-radius: <?php echo esc_attr( "{$radius['value']}{$radius['unit']}" ) ?>; <?php } ?>
+		<?php if ( $margin['top'] !== '' ) { ?> margin-top: <?php echo esc_attr( "{$margin['top']}{$margin['unit']}" ) ?>; <?php } ?>
+		<?php if ( $margin['bottom'] !== '' ) { ?> margin-bottom: <?php echo esc_attr( "{$margin['bottom']}{$margin['unit']}" ) ?>; <?php } ?>
+		<?php if ( $margin['left'] !== '' ) { ?> margin-left: <?php echo esc_attr( "{$margin['left']}{$margin['unit']}" ) ?>; <?php } ?>
+		<?php if ( $margin['right'] !== '' ) { ?> margin-right: <?php echo esc_attr( "{$margin['right']}{$margin['unit']}" ) ?>; <?php } ?>
+		<?php if ( $padding['top'] !== '' ) { ?> padding-top: <?php echo esc_attr( "{$padding['top']}{$padding['unit']}" ) ?>; <?php } ?>
+		<?php if ( $padding['bottom'] !== '' ) { ?> padding-bottom: <?php echo esc_attr( "{$padding['bottom']}{$padding['unit']}" ) ?>; <?php } ?>
+		<?php if ( $padding['left'] !== '' ) { ?> padding-left: <?php echo esc_attr( "{$padding['left']}{$padding['unit']}" ) ?>; <?php } ?>
+		<?php if ( $padding['right'] !== '' ) { ?> padding-right: <?php echo esc_attr( "{$padding['right']}{$padding['unit']}" ) ?>; <?php } ?>
         }
 
 		<?php
 		if ( $text['color_hover'] !== '' || $background['background_hover_color'] ) { ?>
-            .uni-node-<?php esc_attr_e( $id ); ?>:hover {
-            color: <?php esc_attr_e( $text['color_hover'] ); ?>!important;
-            background-color: <?php esc_attr_e( $background['background_hover_color'] ); ?>;
+            .uni-node-<?php echo esc_attr( $id ); ?>:hover {
+            color: <?php echo esc_attr( $text['color_hover'] ); ?>!important;
+            background-color: <?php echo esc_attr( $background['background_hover_color'] ); ?>;
             }
 		<?php } ?>
 

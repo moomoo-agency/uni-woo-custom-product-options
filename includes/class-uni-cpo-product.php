@@ -405,6 +405,18 @@ final class Uni_Cpo_Product
             'weight_scheme'       => $weight_scheme,
             'main_weight_formula' => get_post_meta( $data['id'], '_cpo_main_weight_formula', true ),
         );
+        $dimensions_enable = ( get_post_meta( $data['id'], '_cpo_dimensions_enable', true ) ? get_post_meta( $data['id'], '_cpo_dimensions_enable', true ) : 'off' );
+        $d_unit_option = ( get_post_meta( $data['id'], '_cpo_d_unit_option', true ) ? get_post_meta( $data['id'], '_cpo_d_unit_option', true ) : '' );
+        $d_length_option = ( get_post_meta( $data['id'], '_cpo_d_length_option', true ) ? get_post_meta( $data['id'], '_cpo_d_length_option', true ) : '' );
+        $d_width_option = ( get_post_meta( $data['id'], '_cpo_d_width_option', true ) ? get_post_meta( $data['id'], '_cpo_d_width_option', true ) : '' );
+        $d_height_option = ( get_post_meta( $data['id'], '_cpo_d_height_option', true ) ? get_post_meta( $data['id'], '_cpo_d_height_option', true ) : '' );
+        $data['dimensions_data'] = array(
+            'dimensions_enable' => $dimensions_enable,
+            'd_unit_option'     => $d_unit_option,
+            'd_length_option'   => $d_length_option,
+            'd_width_option'    => $d_width_option,
+            'd_height_option'   => $d_height_option,
+        );
         $nov_enable = ( get_post_meta( $data['id'], '_cpo_nov_enable', true ) ? get_post_meta( $data['id'], '_cpo_nov_enable', true ) : 'off' );
         $wholesale_enable = ( get_post_meta( $data['id'], '_cpo_wholesale_enable', true ) ? get_post_meta( $data['id'], '_cpo_wholesale_enable', true ) : 'off' );
         $data['nov_data'] = array(
@@ -449,15 +461,21 @@ final class Uni_Cpo_Product
                 update_post_meta( $product->get_id(), '_cpo_weight_rules_enable', $data['weight_data']['weight_rules_enable'] );
                 update_post_meta( $product->get_id(), '_cpo_weight_scheme', $data['weight_data']['weight_scheme'] );
                 update_post_meta( $product->get_id(), '_cpo_main_weight_formula', $data['weight_data']['main_weight_formula'] );
+                update_post_meta( $product->get_id(), '_cpo_dimensions_enable', $data['dimensions_data']['dimensions_enable'] );
+                update_post_meta( $product->get_id(), '_cpo_d_unit_option', $data['dimensions_data']['d_unit_option'] );
+                update_post_meta( $product->get_id(), '_cpo_d_length_option', $data['dimensions_data']['d_length_option'] );
+                update_post_meta( $product->get_id(), '_cpo_d_width_option', $data['dimensions_data']['d_width_option'] );
+                update_post_meta( $product->get_id(), '_cpo_d_height_option', $data['dimensions_data']['d_height_option'] );
                 update_post_meta( $product->get_id(), '_cpo_nov_enable', $data['nov_data']['nov_enable'] );
                 update_post_meta( $product->get_id(), '_cpo_wholesale_enable', $data['nov_data']['wholesale_enable'] );
                 update_post_meta( $product->get_id(), '_cpo_nov', $data['nov_data']['nov'] );
                 return array(
-                    'settings_data'  => $data['settings_data'],
-                    'discounts_data' => $data['discounts_data'],
-                    'formula_data'   => $data['formula_data'],
-                    'weight_data'    => $data['weight_data'],
-                    'nov_data'       => $data['nov_data'],
+                    'settings_data'   => $data['settings_data'],
+                    'discounts_data'  => $data['discounts_data'],
+                    'formula_data'    => $data['formula_data'],
+                    'weight_data'     => $data['weight_data'],
+                    'dimensions_data' => $data['dimensions_data'],
+                    'nov_data'        => $data['nov_data'],
                 );
             } elseif ( 'settings_data' === $context ) {
                 update_post_meta( $product->get_id(), '_cpo_enable', $data['settings_data']['cpo_enable'] );
@@ -491,6 +509,15 @@ final class Uni_Cpo_Product
                 update_post_meta( $product->get_id(), '_cpo_main_weight_formula', $data['weight_data']['main_weight_formula'] );
                 return array(
                     'weight_data' => $data['weight_data'],
+                );
+            } elseif ( 'dimensions_data' === $context ) {
+                update_post_meta( $product->get_id(), '_cpo_dimensions_enable', $data['dimensions_data']['dimensions_enable'] );
+                update_post_meta( $product->get_id(), '_cpo_d_unit_option', $data['dimensions_data']['d_unit_option'] );
+                update_post_meta( $product->get_id(), '_cpo_d_length_option', $data['dimensions_data']['d_length_option'] );
+                update_post_meta( $product->get_id(), '_cpo_d_width_option', $data['dimensions_data']['d_width_option'] );
+                update_post_meta( $product->get_id(), '_cpo_d_height_option', $data['dimensions_data']['d_height_option'] );
+                return array(
+                    'dimensions_data' => $data['dimensions_data'],
                 );
             } elseif ( 'nov_data' === $context ) {
                 update_post_meta( $product->get_id(), '_cpo_nov_enable', $data['nov_data']['nov_enable'] );

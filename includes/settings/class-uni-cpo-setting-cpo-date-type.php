@@ -18,14 +18,16 @@ class Uni_Cpo_Setting_Cpo_Date_Type extends Uni_Cpo_Setting implements Uni_Cpo_S
 	public function __construct() {
 		$this->setting_key  = 'cpo_date_type';
 		$this->setting_data = array(
-			'title'             => __( 'Type of field', 'uni-cpo' ),
-			'is_tooltip'        => true,
-			'desc_tip'          => __( 'Choose between "single" and "range" datepicker', 'uni-cpo' ),
-			'options'           => array(
+			'title'              => __( 'Type of field', 'uni-cpo' ),
+			'is_tooltip'         => true,
+			'is_tooltip_warning' => true,
+			'desc_tip'           => __( 'Choose between "single" and "range" datepicker', 'uni-cpo' ),
+			'desc_tip_warning'   => __( 'Important to save to DB if modified', 'uni-cpo' ),
+			'options'            => array(
 				'single' => __( 'Single', 'uni-cpo' ),
 				'range'  => __( 'Range', 'uni-cpo' )
 			),
-			'js_var'            => 'data'
+			'js_var'             => 'data'
 		);
 		add_action( 'wp_footer', array( $this, 'js_template' ), 10 );
 	}

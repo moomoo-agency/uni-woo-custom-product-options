@@ -113,7 +113,8 @@ class Uni_Cpo_Setting_Cpo_Select_Options extends Uni_Cpo_Setting implements Uni_
 													'no_init_class'     => true,
 													'is_required'       => true,
 													'custom_attributes' => array(
-														'data-parsley-pattern' => '/^[a-z0-9]+(?:_[a-z0-9]+)*$/'
+														'data-parsley-pattern' => '/^[a-z][a-z0-9_]+$/',
+														'data-parsley-notequalto' => '.js-cpo-slug-field'
 													),
 													'class'             => array( 'js-cpo-slug-field' )
 												)
@@ -211,7 +212,8 @@ class Uni_Cpo_Setting_Cpo_Select_Options extends Uni_Cpo_Setting implements Uni_
 												array(
 													'is_required'       => true,
 													'custom_attributes' => array(
-														'data-parsley-pattern' => '/^[a-z0-9]+(?:_[a-z0-9]+)*$/'
+														'data-parsley-pattern' => '/^[a-z][a-z0-9_]+$/',
+														'data-parsley-notequalto' => '.js-cpo-slug-field'
 													),
 													'value'             => '{{- obj.slug }}',
 													'class'             => array( 'js-cpo-slug-field' )

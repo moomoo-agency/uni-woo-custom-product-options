@@ -208,6 +208,7 @@ jQuery.fn.uniConvertToSlug = function () {
     st = st.trim();
     st = st.replace(/ /g,'_');
     st = st.replace(/-/g, '_');
+    st = st.replace(/^[0-9]/g, 'a');
     st = st.replace(/[^\w-]+/g, '');
     $el.val(st);
 };
@@ -282,8 +283,8 @@ function update_everything(container, settingsTmpl) {
                 }
             }
         });
-        const $allMatrixSelects = $el.find('.uni-cpo-matrix-options-row > select');
-        $allMatrixSelects.each(function(index, el){
+        const $allNeededSelects = $el.find('.uni-cpo-matrix-options-row > select, .uni-cpo-convert-wrapper select');
+        $allNeededSelects.each(function(index, el){
             const $el = jQuery(el);
             const matches = el.name.match(regex);
             if ( matches ) {
@@ -346,3 +347,24 @@ function uniFindValueByKey(o, key) {
     }
     return result;
 }
+
+/* Custom ParsleyJS validators
+----------------------------------------------------------*/
+
+window.Parsley.addValidator('notequalto', {
+    validateString:  function (_value, selector, parsleyInstance) {
+        const fields = jQuery(selector).not(parsleyInstance.$element);
+        let unique = true;
+
+        fields.each(function(){
+            if (jQuery(this).val() === _value) {
+                unique = false;
+            }
+        });
+        return unique;
+    },
+    requirementType: 'string',
+    messages:        {
+        en: uni_parsley_loc.notequalto
+    }
+});

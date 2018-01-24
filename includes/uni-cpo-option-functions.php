@@ -41,8 +41,9 @@ function uni_cpo_get_option_types() {
 		'radio',
 		'checkbox',
 		'datepicker',
-		'file_upload'
-
+		'file_upload',
+		'range_slider',
+		'dynamic_notice'
 	);
 
 	// make it possible for third-party plugins to add new option types
@@ -123,6 +124,10 @@ function uni_cpo_get_setting_types() {
 		'color',
 		'color_active',
 		'color_hover',
+		'color_from',
+		'color_to',
+		'color_top',
+		'color_bottom',
 		'text_align',
 		'font_family',
 		'font_style',
@@ -193,7 +198,14 @@ function uni_cpo_get_setting_types() {
 		'cpo_validation_msg',
 		'cpo_vc_extra',
 		'cpo_is_vc',
-		'cpo_vc_scheme'
+		'cpo_vc_scheme',
+		'cpo_range_type',
+		'cpo_range_grid',
+		'cpo_range_from',
+		'cpo_range_to',
+		'cpo_range_prefix',
+		'cpo_range_postfix',
+		'cpo_notice_text'
 	);
 
 	// make it possible for third-party plugins to add new module types

@@ -383,3 +383,65 @@ function uni_cpo_sanitize_text( $var ) {
 function uni_cpo_sanitize_label( $var ) {
 	return htmlspecialchars( wp_kses( html_entity_decode( $var ), array() ) );
 }
+
+/**
+ * Normalise dimensions, unify to cm then convert to wanted unit value.
+ *
+ * Usage:
+ * uni_cpo_get_dimension(55, 'in');
+ * uni_cpo_get_dimension(55, 'in', 'm');
+ *
+ * @param int|float $dimension
+ * @param string $from_unit 'mm', 'm', 'in', 'ft', 'yd'
+ * @param string $to_unit (optional) 'mm', 'm', 'in', 'ft', 'yd'
+ * @return float
+ */
+function uni_cpo_get_dimension( $dimension, $from_unit, $to_unit = '' ) {
+	$from_unit = strtolower( $from_unit );
+
+	if ( empty( $to_unit ) ) {
+		$to_unit = strtolower( get_option( 'woocommerce_dimension_unit' ) );
+	}
+
+	// Unify all units to cm first.
+	if ( $from_unit !== $to_unit ) {
+		switch ( $from_unit ) {
+			case 'in' :
+				$dimension *= 2.54;
+				break;
+			case 'm' :
+				$dimension *= 100;
+				break;
+			case 'mm' :
+				$dimension *= 0.1;
+				break;
+			case 'ft' :
+				$dimension *= 30.48;
+				break;
+			case 'yd' :
+				$dimension *= 91.44;
+				break;
+		}
+
+		// Output desired unit.
+		switch ( $to_unit ) {
+			case 'in' :
+				$dimension *= 0.3937;
+				break;
+			case 'm' :
+				$dimension *= 0.01;
+				break;
+			case 'mm' :
+				$dimension *= 10;
+				break;
+			case 'ft' :
+				$dimension *= 0.032808399;
+				break;
+			case 'yd' :
+				$dimension *= 0.010936133;
+				break;
+		}
+	}
+
+	return ( $dimension < 0 ) ? 0 : $dimension;
+}

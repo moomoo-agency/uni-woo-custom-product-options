@@ -210,32 +210,32 @@ class Uni_Cpo_Module_Column extends Uni_Cpo_Module implements Uni_Cpo_Module_Int
 
 		ob_start();
 		?>
-        .uni-node-<?php esc_attr_e( $id ); ?> {
-		<?php if ( $main['float'] !== '' ) { ?> float: <?php esc_attr_e( $main['float'] ); ?>;<?php } ?>
-		<?php if ( $main['width']['value'] !== '' ) { ?> width: <?php esc_attr_e( "{$main['width']['value']}{$main['width']['unit']}" ) ?>; <?php } ?>
-		<?php if ( $margin['top'] !== '' ) { ?> margin-top: <?php esc_attr_e( "{$margin['top']}{$margin['unit']}" ) ?>; <?php } ?>
-		<?php if ( $margin['bottom'] !== '' ) { ?> margin-bottom: <?php esc_attr_e( "{$margin['bottom']}{$margin['unit']}" ) ?>; <?php } ?>
-		<?php if ( $margin['left'] !== '' ) { ?> margin-left: <?php esc_attr_e( "{$margin['left']}{$margin['unit']}" ) ?>; <?php } ?>
-		<?php if ( $margin['right'] !== '' ) { ?> margin-right: <?php esc_attr_e( "{$margin['right']}{$margin['unit']}" ) ?>; <?php } ?>
+        .uni-node-<?php echo esc_attr( $id ); ?> {
+		<?php if ( $main['float'] !== '' ) { ?> float: <?php echo esc_attr( $main['float'] ); ?>;<?php } ?>
+		<?php if ( $main['width']['value'] !== '' ) { ?> width: <?php echo esc_attr( "{$main['width']['value']}{$main['width']['unit']}" ) ?>; <?php } ?>
+		<?php if ( $margin['top'] !== '' ) { ?> margin-top: <?php echo esc_attr( "{$margin['top']}{$margin['unit']}" ) ?>; <?php } ?>
+		<?php if ( $margin['bottom'] !== '' ) { ?> margin-bottom: <?php echo esc_attr( "{$margin['bottom']}{$margin['unit']}" ) ?>; <?php } ?>
+		<?php if ( $margin['left'] !== '' ) { ?> margin-left: <?php echo esc_attr( "{$margin['left']}{$margin['unit']}" ) ?>; <?php } ?>
+		<?php if ( $margin['right'] !== '' ) { ?> margin-right: <?php echo esc_attr( "{$margin['right']}{$margin['unit']}" ) ?>; <?php } ?>
         }
-        .uni-node-<?php esc_attr_e( $id ); ?> .uni-col-content {
-		<?php if ( $background['background_type'] === 'color' && $background['background_color'] !== '' ) { ?> background-color: <?php esc_attr_e( $background['background_color'] ); ?>; <?php } ?>
+        .uni-node-<?php echo esc_attr( $id ); ?> .uni-col-content {
+		<?php if ( $background['background_type'] === 'color' && $background['background_color'] !== '' ) { ?> background-color: <?php echo esc_attr( $background['background_color'] ); ?>; <?php } ?>
 		<?php if ( $background['background_type'] === 'image' && $background['background_image']['url'] !== '' ) { ?>
-            background-image:url( <?php esc_attr_e( $background['background_image']['url'] ); ?> );
-            background-repeat: <?php esc_attr_e( $background['background_image']['repeat'] ); ?>;
-            background-position: <?php esc_attr_e( $background['background_image']['position'] ); ?>;
-            background-attachment: <?php esc_attr_e( $background['background_image']['attachment'] ); ?>;
-            background-size: <?php esc_attr_e( $background['background_image']['size'] ); ?>;
+            background-image:url( <?php echo esc_attr( $background['background_image']['url'] ); ?> );
+            background-repeat: <?php echo esc_attr( $background['background_image']['repeat'] ); ?>;
+            background-position: <?php echo esc_attr( $background['background_image']['position'] ); ?>;
+            background-attachment: <?php echo esc_attr( $background['background_image']['attachment'] ); ?>;
+            background-size: <?php echo esc_attr( $background['background_image']['size'] ); ?>;
 		<?php } ?>
-		<?php if ( $border_top['style'] !== 'none' && $border_top['color'] !== '' ) { ?> border-top: <?php esc_attr_e( "{$border_top['width']}px {$border_top['style']} {$border_top['color']}" ) ?>; <?php } ?>
-		<?php if ( $border_bottom['style'] !== 'none' && $border_bottom['color'] !== '' ) { ?> border-bottom: <?php esc_attr_e( "{$border_bottom['width']}px {$border_bottom['style']} {$border_bottom['color']}" ) ?>; <?php } ?>
-		<?php if ( $border_left['style'] !== 'none' && $border_left['color'] !== '' ) { ?> border-left: <?php esc_attr_e( "{$border_left['width']}px {$border_left['style']} {$border_left['color']}" ) ?>; <?php } ?>
-		<?php if ( $border_right['style'] !== 'none' && $border_right['color'] !== '' ) { ?> border-right: <?php esc_attr_e( "{$border_right['width']}px {$border_right['style']} {$border_right['color']}" ) ?>; <?php } ?>
-		<?php if ( $radius['value'] !== '' ) { ?> border-radius: <?php esc_attr_e( "{$radius['value']}{$radius['unit']}" ) ?>; <?php } ?>
-		<?php if ( $padding['top'] !== '' ) { ?> padding-top: <?php esc_attr_e( "{$padding['top']}{$padding['unit']}" ) ?>; <?php } ?>
-		<?php if ( $padding['bottom'] !== '' ) { ?> padding-bottom: <?php esc_attr_e( "{$padding['bottom']}{$padding['unit']}" ) ?>; <?php } ?>
-		<?php if ( $padding['left'] !== '' ) { ?> padding-left: <?php esc_attr_e( "{$padding['left']}{$padding['unit']}" ) ?>; <?php } ?>
-		<?php if ( $padding['right'] !== '' ) { ?> padding-right: <?php esc_attr_e( "{$padding['right']}{$padding['unit']}" ) ?>; <?php } ?>
+		<?php if ( $border_top['style'] !== 'none' && $border_top['color'] !== '' ) { ?> border-top: <?php echo esc_attr( "{$border_top['width']}px {$border_top['style']} {$border_top['color']}" ) ?>; <?php } ?>
+		<?php if ( $border_bottom['style'] !== 'none' && $border_bottom['color'] !== '' ) { ?> border-bottom: <?php echo esc_attr( "{$border_bottom['width']}px {$border_bottom['style']} {$border_bottom['color']}" ) ?>; <?php } ?>
+		<?php if ( $border_left['style'] !== 'none' && $border_left['color'] !== '' ) { ?> border-left: <?php echo esc_attr( "{$border_left['width']}px {$border_left['style']} {$border_left['color']}" ) ?>; <?php } ?>
+		<?php if ( $border_right['style'] !== 'none' && $border_right['color'] !== '' ) { ?> border-right: <?php echo esc_attr( "{$border_right['width']}px {$border_right['style']} {$border_right['color']}" ) ?>; <?php } ?>
+		<?php if ( $radius['value'] !== '' ) { ?> border-radius: <?php echo esc_attr( "{$radius['value']}{$radius['unit']}" ) ?>; <?php } ?>
+		<?php if ( $padding['top'] !== '' ) { ?> padding-top: <?php echo esc_attr( "{$padding['top']}{$padding['unit']}" ) ?>; <?php } ?>
+		<?php if ( $padding['bottom'] !== '' ) { ?> padding-bottom: <?php echo esc_attr( "{$padding['bottom']}{$padding['unit']}" ) ?>; <?php } ?>
+		<?php if ( $padding['left'] !== '' ) { ?> padding-left: <?php echo esc_attr( "{$padding['left']}{$padding['unit']}" ) ?>; <?php } ?>
+		<?php if ( $padding['right'] !== '' ) { ?> padding-right: <?php echo esc_attr( "{$padding['right']}{$padding['unit']}" ) ?>; <?php } ?>
         }
 
 		<?php

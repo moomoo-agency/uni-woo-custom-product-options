@@ -263,7 +263,7 @@ class Uni_Cpo_Option extends Uni_Cpo_Data {
 
 	public function formatted_model_data() {}
 
-	public function get_edit_field( $data, $value ) {}
+	public function get_edit_field( $data, $value, $context = 'cart' ) {}
 
 	public static function template( $data, $post_data ){}
 
@@ -294,7 +294,7 @@ class Uni_Cpo_Option extends Uni_Cpo_Data {
 		if ( is_array( $scheme ) && ! empty( $scheme ) ) {
 			$condition = uni_cpo_option_js_condition_prepare( $scheme );
 
-			$slide_down = '$' . $slug . '.slideDown(300, function(){ window.UniCpo.position($' . $slug . '); }).addClass("cpo-visible-field");' . "\n";
+			$slide_down = '$' . $slug . '.slideDown(300, function(){ window.UniCpo.position($' . $slug . '); if ("'.$data['type'].'" === "file_upload" ) { var id = $'.$slug.'.find(".js-uni-cpo-field-file_upload-el").attr("id"); window.UniCpo.fileUploadEl[id].refresh(); } }).addClass("cpo-visible-field");' . "\n";
 			$slide_up = '$' . $slug . '.slideUp(300).removeClass("cpo-visible-field");' . "\n";
 			$add_class = '$' . esc_attr( $slug ) . '_fields.each(function( index ) {' . "\n";
 			$add_class .= '$(this).addClass( extraClass );' . "\n";
