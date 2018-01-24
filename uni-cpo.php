@@ -14,7 +14,11 @@
  * WC tested up to: 3.2
  * License: GPL v3
  *
+<<<<<<< HEAD
  * @fs_premium_only /includes/options/class-uni-cpo-option-checkbox.php, /includes/options/class-uni-cpo-option-datepicker.php, /includes/options/class-uni-cpo-option-file-upload.php, /includes/options/class-uni-cpo-option-dynamic-notice.php, /includes/options/class-uni-cpo-option-range-slider.php
+=======
+ * @fs_premium_only /includes/options/class-uni-cpo-option-checkbox.php, /includes/options/class-uni-cpo-option-datepicker.php, /includes/options/class-uni-cpo-option-file-upload.php, /includes/options/class-uni-cpo-option-dynamic-notice.php
+>>>>>>> 8681f8d89d243890f5aa939d54d42316c7ccb6f9
  */
 /**
  * Uni CPO Plugin
