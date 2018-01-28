@@ -84,6 +84,10 @@ A: We wouldn't recommend to do this yet. First, this version is so called 'lite'
 
 == Changelog ==
 
+= 4.0.6 =
+* Fixed validation for Text Input in 'decimal' mode
+* Fixed a bug when it was not possible to set 'one letter' slug for suboptions
+
 = 4.0.5 =
 * Added Dynamic Notice option
 * Added Range Slider option

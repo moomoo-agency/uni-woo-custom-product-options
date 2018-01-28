@@ -521,7 +521,6 @@ class Uni_Cpo_Ajax
      */
     public static function uni_cpo_upload_file()
     {
-        check_ajax_referer( 'uni_cpo_frontend', 'security' );
     }
     
     /**
@@ -529,7 +528,6 @@ class Uni_Cpo_Ajax
      */
     public static function uni_cpo_remove_file()
     {
-        check_ajax_referer( 'uni_cpo_frontend', 'security' );
     }
     
     /**
@@ -554,7 +552,6 @@ class Uni_Cpo_Ajax
      */
     public static function uni_cpo_add_to_cart()
     {
-        check_ajax_referer( 'uni_cpo_frontend', 'security' );
     }
     
     /**
@@ -744,7 +741,6 @@ class Uni_Cpo_Ajax
      */
     public static function uni_cpo_cart_item_edit()
     {
-        check_ajax_referer( 'woocommerce-cart', 'security' );
     }
     
     /**
@@ -752,7 +748,6 @@ class Uni_Cpo_Ajax
      */
     public static function uni_cpo_cart_item_update()
     {
-        check_ajax_referer( 'woocommerce-cart', 'security' );
     }
     
     /**

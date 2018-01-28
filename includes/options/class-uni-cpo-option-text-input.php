@@ -503,9 +503,8 @@ class Uni_Cpo_Option_Text_Input extends Uni_Cpo_Option implements Uni_Cpo_Option
 			$attributes['data-parsley-type'] = 'integer';
 		}
 		if ( 'double' === $cpo_general_main['cpo_type'] ) {
-			$input_type                      = 'number';
+			$input_type                      = 'text';
 			$attributes['data-parsley-type-step'] = '0.1';
-			$attributes['data-parsley-type']      = 'number';
 			$attributes['data-parsley-pattern']   = '/^(\d+(?:[\.]\d{0,1})?)$/';
 		}
 		if ( in_array( $cpo_general_main['cpo_type'], array( 'integer', 'double' ) ) ) {

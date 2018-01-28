@@ -511,7 +511,7 @@ UniCpo = {
                         data[item.name] = item.value;
                     }
                 });
-                console.log(data);
+                //console.log(data);
                 cpoObj.addToCart(data);
             }
 
