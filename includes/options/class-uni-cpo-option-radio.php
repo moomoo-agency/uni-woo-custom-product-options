@@ -1435,6 +1435,14 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
                     }
                 }
             }
+            // else
+            return array(
+                $post_name => array(
+                'calc'       => 0,
+                'cart_meta'  => '',
+                'order_meta' => '',
+            ),
+            );
         } else {
             return array(
                 $post_name => array(

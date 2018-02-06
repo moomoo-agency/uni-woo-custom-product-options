@@ -281,6 +281,18 @@ class Uni_Cpo_Option_Select extends Uni_Cpo_Option implements Uni_Cpo_Option_Int
 					)
 				),
 				'style'           => array(
+					'font'   => array(
+						'color'          => '',
+						'text_align'     => '',
+						'font_family'    => 'inherit',
+						'font_style'     => 'inherit',
+						'font_weight'    => '',
+						'font_size'      => array(
+							'value' => '',
+							'unit'  => 'px'
+						),
+						'letter_spacing' => ''
+					),
 					'border' => array(
 						'border_unit'   => 'px',
 						'border_top'    => array(
@@ -370,6 +382,8 @@ class Uni_Cpo_Option_Select extends Uni_Cpo_Option implements Uni_Cpo_Option_Int
             {{ const { id_name, class_name } = data.settings.advanced.selectors; }}
             {{ const { cpo_slug, cpo_is_required } = data.settings.cpo_general.main; }}
             {{ const { width, height } = data.settings.general.main; }}
+
+			{{ const { color, text_align, font_family, font_style, font_weight, font_size, letter_spacing } = uniGet( data.settings.style, 'font', {color:'',text_align:'',font_family:'inherit',font_style:'inherit',font_weight:'',font_size:{value:'',unit:''},letter_spacing:''} ); }}
             {{ const { border_unit, border_top, border_bottom, border_left, border_right, radius } = data.settings.style.border; }}
             {{ const { margin } = data.settings.advanced.layout; }}
 
@@ -399,6 +413,13 @@ class Uni_Cpo_Option_Select extends Uni_Cpo_Option implements Uni_Cpo_Option_Int
                     {{ if ( border_left.style !== 'none' && border_left.color ) { }} border-left: {{= border_left.width + 'px '+ border_left.style +' '+ border_left.color }}!important; {{ } }}
                     {{ if ( border_right.style !== 'none' && border_right.color ) { }} border-right: {{= border_right.width + 'px '+ border_right.style +' '+ border_right.color }}!important; {{ } }}
                     {{ if ( radius.value ) { }} border-radius: {{= radius.value + radius.unit }}!important; {{ } }}
+					{{ if ( color !== '' ) { }} color: {{= color }}!important; {{ } }}
+                    {{ if ( text_align !== '' ) { }} text-align: {{= text_align }}!important; {{ } }}
+                    {{ if ( font_family !== 'inherit' ) { }} font-family: {{= font_family }}!important; {{ } }}
+                    {{ if ( font_style !== 'inherit' ) { }} font-style: {{= font_style }}!important; {{ } }}
+                    {{ if ( font_size.value !== '' ) { }} font-size: {{= font_size.value+font_size.unit }}!important; {{ } }}
+                    {{ if ( font_weight !== '' ) { }} font-weight: {{= font_weight }}!important; {{ } }}
+                    {{ if ( letter_spacing !== '' ) { }} letter-spacing: {{= letter_spacing+'em' }}!important; {{ } }}
         		}
         	</style>
             {{ if ( cpo_label_tag && cpo_label ) { }}
@@ -554,6 +575,7 @@ class Uni_Cpo_Option_Select extends Uni_Cpo_Option implements Uni_Cpo_Option_Int
 	public static function get_css( $data ) {
 		$id            = $data['id'];
 		$main          = $data['settings']['general']['main'];
+		$font          = ( ! empty( $data['settings']['style']['font'] ) ) ? $data['settings']['style']['font'] : array();
 		$border_top    = $data['settings']['style']['border']['border_top'];
 		$border_bottom = $data['settings']['style']['border']['border_bottom'];
 		$border_left   = $data['settings']['style']['border']['border_left'];
@@ -564,19 +586,26 @@ class Uni_Cpo_Option_Select extends Uni_Cpo_Option implements Uni_Cpo_Option_Int
 		ob_start();
 		?>
         .uni-node-<?php echo esc_attr( $id ); ?> {
-		<?php if ( ! empty( $margin['top'] ) ) { ?> margin-top: <?php echo esc_attr( "{$margin['top']}{$margin['unit']}" ) ?>!important; <?php } ?>
-		<?php if ( ! empty( $margin['bottom'] ) ) { ?> margin-bottom: <?php echo esc_attr( "{$margin['bottom']}{$margin['unit']}" ) ?>!important; <?php } ?>
-		<?php if ( ! empty( $margin['left'] ) ) { ?> margin-left: <?php echo esc_attr( "{$margin['left']}{$margin['unit']}" ) ?>!important; <?php } ?>
-		<?php if ( ! empty( $margin['right'] ) ) { ?> margin-right: <?php echo esc_attr( "{$margin['right']}{$margin['unit']}" ) ?>!important; <?php } ?>
+			<?php if ( ! empty( $margin['top'] ) ) { ?> margin-top: <?php echo esc_attr( "{$margin['top']}{$margin['unit']}" ) ?>!important; <?php } ?>
+			<?php if ( ! empty( $margin['bottom'] ) ) { ?> margin-bottom: <?php echo esc_attr( "{$margin['bottom']}{$margin['unit']}" ) ?>!important; <?php } ?>
+			<?php if ( ! empty( $margin['left'] ) ) { ?> margin-left: <?php echo esc_attr( "{$margin['left']}{$margin['unit']}" ) ?>!important; <?php } ?>
+			<?php if ( ! empty( $margin['right'] ) ) { ?> margin-right: <?php echo esc_attr( "{$margin['right']}{$margin['unit']}" ) ?>!important; <?php } ?>
         }
         .uni-node-<?php echo esc_attr( $id ); ?> select {
-		<?php if ( ! empty( $main['width']['value'] ) ) { ?> width: <?php echo esc_attr( "{$main['width']['value']}{$main['width']['unit']}" ) ?>!important;<?php } ?>
-		<?php if ( ! empty( $main['height']['value'] ) ) { ?> height: <?php echo esc_attr( "{$main['height']['value']}{$main['height']['unit']}" ) ?>!important; min-height: <?php echo esc_attr( "{$main['height']['value']}{$main['height']['unit']}" ) ?>!important; <?php } ?>
-		<?php if ( $border_top['style'] !== 'none' && ! empty( $border_top['color'] ) ) { ?> border-top: <?php echo esc_attr( "{$border_top['width']}px {$border_top['style']} {$border_top['color']}" ) ?>!important; <?php } ?>
-		<?php if ( $border_bottom['style'] !== 'none' && ! empty( $border_bottom['color'] ) ) { ?> border-bottom: <?php echo esc_attr( "{$border_bottom['width']}px {$border_bottom['style']} {$border_bottom['color']}" ) ?>!important; <?php } ?>
-		<?php if ( $border_left['style'] !== 'none' && ! empty( $border_left['color'] ) ) { ?> border-left: <?php echo esc_attr( "{$border_left['width']}px {$border_left['style']} {$border_left['color']}" ) ?>!important; <?php } ?>
-		<?php if ( $border_right['style'] !== 'none' && ! empty( $border_right['color'] ) ) { ?> border-right: <?php echo esc_attr( "{$border_right['width']}px {$border_right['style']} {$border_right['color']}" ) ?>!important; <?php } ?>
-		<?php if ( ! empty( $radius['value'] ) ) { ?> border-radius: <?php echo esc_attr( "{$radius['value']}{$radius['unit']}" ) ?>!important; <?php } ?>
+			<?php if ( ! empty( $main['width']['value'] ) ) { ?> width: <?php echo esc_attr( "{$main['width']['value']}{$main['width']['unit']}" ) ?>!important;<?php } ?>
+			<?php if ( ! empty( $main['height']['value'] ) ) { ?> height: <?php echo esc_attr( "{$main['height']['value']}{$main['height']['unit']}" ) ?>!important; min-height: <?php echo esc_attr( "{$main['height']['value']}{$main['height']['unit']}" ) ?>!important; <?php } ?>
+			<?php if ( $border_top['style'] !== 'none' && ! empty( $border_top['color'] ) ) { ?> border-top: <?php echo esc_attr( "{$border_top['width']}px {$border_top['style']} {$border_top['color']}" ) ?>!important; <?php } ?>
+			<?php if ( $border_bottom['style'] !== 'none' && ! empty( $border_bottom['color'] ) ) { ?> border-bottom: <?php echo esc_attr( "{$border_bottom['width']}px {$border_bottom['style']} {$border_bottom['color']}" ) ?>!important; <?php } ?>
+			<?php if ( $border_left['style'] !== 'none' && ! empty( $border_left['color'] ) ) { ?> border-left: <?php echo esc_attr( "{$border_left['width']}px {$border_left['style']} {$border_left['color']}" ) ?>!important; <?php } ?>
+			<?php if ( $border_right['style'] !== 'none' && ! empty( $border_right['color'] ) ) { ?> border-right: <?php echo esc_attr( "{$border_right['width']}px {$border_right['style']} {$border_right['color']}" ) ?>!important; <?php } ?>
+			<?php if ( ! empty( $radius['value'] ) ) { ?> border-radius: <?php echo esc_attr( "{$radius['value']}{$radius['unit']}" ) ?>!important; <?php } ?>
+			<?php if ( ! empty( $font['color'] ) ) { ?> color: <?php echo esc_attr( $font['color'] ); ?>!important;<?php } ?>
+			<?php if ( ! empty( $font['text_align'] ) ) { ?> text-align: <?php echo esc_attr( $font['text_align'] ); ?>!important;<?php } ?>
+			<?php if ( ! empty( $font['font_family'] ) && $font['font_family'] !== 'inherit' ) { ?> font-family: <?php echo esc_attr( $font['font_family'] ); ?>!important;<?php } ?>
+			<?php if ( ! empty( $font['font_style'] ) && $font['font_style'] !== 'inherit' ) { ?> font-style: <?php echo esc_attr( $font['font_style'] ); ?>!important;<?php } ?>
+			<?php if ( ! empty( $font['font_weight'] ) ) { ?> font-weight: <?php echo esc_attr( $font['font_weight'] ); ?>!important;<?php } ?>
+			<?php if ( ! empty( $font['font_size']['value'] ) ) { ?> font-size: <?php echo esc_attr( "{$font['font_size']['value']}{$font['font_size']['unit']}" ) ?>!important; <?php } ?>
+			<?php if ( ! empty( $font['letter_spacing'] ) ) { ?> letter-spacing: <?php echo esc_attr( $font['letter_spacing'] ); ?>em!important;<?php } ?>
         }
 
 		<?php

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Uni CPO 3.1.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-24 17:22+0200\n"
-"PO-Revision-Date: 2018-01-24 17:23+0200\n"
+"POT-Creation-Date: 2018-02-05 17:09+0200\n"
+"PO-Revision-Date: 2018-02-05 17:10+0200\n"
 "Last-Translator: \n"
 "Language-Team: MooMoo <sales@moomoo.agency>\n"
 "Language: es\n"
@@ -42,7 +42,7 @@ msgid "Uni CPO Settings"
 msgstr ""
 
 #: includes/admin/class-uni-cpo-plugin-settings.php:91
-#: includes/class-uni-cpo-frontend-scripts.php:611
+#: includes/class-uni-cpo-frontend-scripts.php:626
 msgid "Settings"
 msgstr ""
 
@@ -117,7 +117,9 @@ msgid "Style for range sliders"
 msgstr ""
 
 #: includes/admin/class-uni-cpo-plugin-settings.php:148
-msgid "Default style is \"HTML 5\". This style will be applied for"
+msgid ""
+"Default style is \"HTML 5\". This style will be applied for all range slider "
+"option instances in the store."
 msgstr ""
 
 #: includes/admin/class-uni-cpo-plugin-settings.php:151
@@ -256,138 +258,135 @@ msgid "Add/edit CPO options"
 msgstr ""
 
 #: includes/admin/uni-cpo-admin-functions.php:141
+#: includes/uni-cpo-core-functions.php:928
 msgid "Update"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:217
+#: includes/class-uni-cpo-ajax.php:218
 msgid "Invalid model type"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:221
+#: includes/class-uni-cpo-ajax.php:222
 msgid "Invalid builder model object type"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:239
+#: includes/class-uni-cpo-ajax.php:240
 msgid "Invalid model"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:264
+#: includes/class-uni-cpo-ajax.php:265
 msgid "Something went srong"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:315 includes/class-uni-cpo-ajax.php:655
+#: includes/class-uni-cpo-ajax.php:316 includes/class-uni-cpo-ajax.php:656
 msgid "Type is not specified"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:370 includes/class-uni-cpo-ajax.php:409
+#: includes/class-uni-cpo-ajax.php:371 includes/class-uni-cpo-ajax.php:410
 msgid "Product ID is not specified"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:413
+#: includes/class-uni-cpo-ajax.php:414
 msgid "Target product ID is not specified"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:420
+#: includes/class-uni-cpo-ajax.php:421
 #, php-format
 msgid "Product creation failed, could not find original product: %s"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:427
+#: includes/class-uni-cpo-ajax.php:428
 #, php-format
 msgid "Product creation failed, could not find targeted product: %s"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:606
+#: includes/class-uni-cpo-ajax.php:607
 msgid "No files added"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:623
+#: includes/class-uni-cpo-ajax.php:624
 msgid "Only CSV files are allowed"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:659
+#: includes/class-uni-cpo-ajax.php:660
 msgid "Target post is not chosen"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:663
+#: includes/class-uni-cpo-ajax.php:664
 msgid "Sync method is not chosen"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:692
+#: includes/class-uni-cpo-ajax.php:691
 msgid "No post ID specified"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:696
+#: includes/class-uni-cpo-ajax.php:695
 msgid "No file name specified"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:700
+#: includes/class-uni-cpo-ajax.php:699
 msgid "No option variable specified"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:704
+#: includes/class-uni-cpo-ajax.php:703
 msgid "Failed to upload file(s)."
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:736 includes/class-uni-cpo-ajax.php:744
+#: includes/class-uni-cpo-ajax.php:735 includes/class-uni-cpo-ajax.php:743
 msgid "Failed to open input stream."
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:766 includes/class-uni-cpo-ajax.php:1547
+#: includes/class-uni-cpo-ajax.php:765 includes/class-uni-cpo-ajax.php:1599
 msgid "Sorry, this file type is not permitted for security reasons."
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:792 includes/class-uni-cpo-ajax.php:815
+#: includes/class-uni-cpo-ajax.php:791 includes/class-uni-cpo-ajax.php:814
 msgid "The uploaded file could not be moved."
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:851
+#: includes/class-uni-cpo-ajax.php:850
 msgid "File is valid, and was successfully uploaded."
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:865
+#: includes/class-uni-cpo-ajax.php:860
 msgid "Still uploading..."
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:886
+#: includes/class-uni-cpo-ajax.php:879
 msgid "No attachment ID specified"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:892
+#: includes/class-uni-cpo-ajax.php:885
 msgid "File successfully deleted"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:975 includes/class-uni-cpo-ajax.php:1478
-#: includes/class-uni-cpo-ajax.php:1537
+#: includes/class-uni-cpo-ajax.php:985 includes/class-uni-cpo-ajax.php:1530
+#: includes/class-uni-cpo-ajax.php:1589
 msgid "Product ID is not set"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:1202
-msgid "Price calculation has been disabled during the calculation"
-msgstr ""
-
-#: includes/class-uni-cpo-ajax.php:1206
+#: includes/class-uni-cpo-ajax.php:1230
 msgid "Price calculation is disabled in settings"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:1388
+#: includes/class-uni-cpo-ajax.php:1440
 msgid "No options available"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:1482
+#: includes/class-uni-cpo-ajax.php:1534
 msgid "Email is not set"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:1502
+#: includes/class-uni-cpo-ajax.php:1554
 msgid "File cannot be saved"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:1505
+#: includes/class-uni-cpo-ajax.php:1557
 #, php-format
 msgid "[%s] Export request for product #%d"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:1506
+#: includes/class-uni-cpo-ajax.php:1558
 #, php-format
 msgid ""
 "A .txt file with encoded info of settings for product #%d is attached to "
@@ -396,7 +395,7 @@ msgid ""
 "the settings elsewhere."
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:1558
+#: includes/class-uni-cpo-ajax.php:1610
 msgid "File cannot be read"
 msgstr ""
 
@@ -684,164 +683,165 @@ msgstr ""
 msgid "Click to toggle"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:558
+#: includes/class-uni-cpo-frontend-scripts.php:573
 msgid "Smart Search"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:561
+#: includes/class-uni-cpo-frontend-scripts.php:576
 msgid "Basic Modules"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:562
+#: includes/class-uni-cpo-frontend-scripts.php:577
 msgid "Options"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:567
+#: includes/class-uni-cpo-frontend-scripts.php:582
 msgid "General"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:571
+#: includes/class-uni-cpo-frontend-scripts.php:586
 msgid "Style"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:575
+#: includes/class-uni-cpo-frontend-scripts.php:590
 msgid "Advanced"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:579
+#: includes/class-uni-cpo-frontend-scripts.php:594
 msgid "Main"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:583
+#: includes/class-uni-cpo-frontend-scripts.php:598
 msgid "Suboptions"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:587
+#: includes/class-uni-cpo-frontend-scripts.php:602
 msgid "Rules"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:591
+#: includes/class-uni-cpo-frontend-scripts.php:606
 msgid "Conditional"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:595
+#: includes/class-uni-cpo-frontend-scripts.php:610
 msgid "Validation"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:600
+#: includes/class-uni-cpo-frontend-scripts.php:615
 msgid "Delete"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:601
+#: includes/class-uni-cpo-frontend-scripts.php:616
 msgid "Save"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:602
+#: includes/class-uni-cpo-frontend-scripts.php:617
 #: includes/settings/class-uni-cpo-setting-sync.php:21
 msgid "Sync"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:603
-#: includes/class-uni-cpo-templates.php:608
-#: includes/class-uni-cpo-templates.php:708
-#: includes/class-uni-cpo-templates.php:880
-#: includes/class-uni-cpo-templates.php:1064
-#: includes/class-uni-cpo-templates.php:1193
+#: includes/class-uni-cpo-frontend-scripts.php:618
+#: includes/class-uni-cpo-templates.php:629
+#: includes/class-uni-cpo-templates.php:729
+#: includes/class-uni-cpo-templates.php:901
+#: includes/class-uni-cpo-templates.php:1085
+#: includes/class-uni-cpo-templates.php:1265
+#: includes/uni-cpo-core-functions.php:961
 msgid "Cancel"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:604
+#: includes/class-uni-cpo-frontend-scripts.php:619
 msgid "Suggestion"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:607
+#: includes/class-uni-cpo-frontend-scripts.php:622
 #: includes/modules/class-uni-cpo-module-row.php:29
 msgid "Row"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:608
+#: includes/class-uni-cpo-frontend-scripts.php:623
 #: includes/modules/class-uni-cpo-module-column.php:29
 msgid "Column"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:609
+#: includes/class-uni-cpo-frontend-scripts.php:624
 msgid "Module"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:610
+#: includes/class-uni-cpo-frontend-scripts.php:625
 msgid "Move Row"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:612
-#: includes/class-uni-cpo-templates.php:540
-#: includes/class-uni-cpo-templates.php:541
+#: includes/class-uni-cpo-frontend-scripts.php:627
+#: includes/class-uni-cpo-templates.php:561
+#: includes/class-uni-cpo-templates.php:562
 #: includes/settings/class-uni-cpo-setting-sync.php:61
-#: includes/uni-cpo-functions.php:217
+#: includes/uni-cpo-functions.php:215
 msgid "Duplicate"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:613
+#: includes/class-uni-cpo-frontend-scripts.php:628
 msgid "Remove"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:615
+#: includes/class-uni-cpo-frontend-scripts.php:630
 msgid "Upload"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:616
+#: includes/class-uni-cpo-frontend-scripts.php:631
 #: includes/options/class-uni-cpo-option-file-upload.php:457
 msgid "Select file"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:617
+#: includes/class-uni-cpo-frontend-scripts.php:632
 msgid "Please add suboptions"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:618
+#: includes/class-uni-cpo-frontend-scripts.php:633
 msgid "2nd var/1st var"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:619
+#: includes/class-uni-cpo-frontend-scripts.php:634
 #: includes/settings/class-uni-cpo-setting-sync.php:79
 msgid "- None -"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:621
+#: includes/class-uni-cpo-frontend-scripts.php:636
 msgid "Pro Version Feature"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:645
+#: includes/class-uni-cpo-frontend-scripts.php:660
 msgid "Clear"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:646
+#: includes/class-uni-cpo-frontend-scripts.php:661
 #: includes/settings/class-uni-cpo-setting-font-family.php:24
 #: includes/settings/class-uni-cpo-setting-font-style.php:24
 msgid "Default"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:647
+#: includes/class-uni-cpo-frontend-scripts.php:662
 msgid "Select Color"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:648
+#: includes/class-uni-cpo-frontend-scripts.php:663
 msgid "Current Color"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:741
+#: includes/class-uni-cpo-frontend-scripts.php:758
 msgid "Calculating"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:742
+#: includes/class-uni-cpo-frontend-scripts.php:759
 #, php-format
 msgid "This file should not be larger than %s Kb"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:743
+#: includes/class-uni-cpo-frontend-scripts.php:760
 msgid "File of this type is not allowed"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:744
+#: includes/class-uni-cpo-frontend-scripts.php:761
 msgid "The product has been added successfully!"
 msgstr ""
 
@@ -947,11 +947,11 @@ msgstr ""
 msgid "CPO Builder"
 msgstr ""
 
-#: includes/class-uni-cpo-product.php:526
+#: includes/class-uni-cpo-product.php:554
 msgid "Product does not exist or not chosen"
 msgstr ""
 
-#: includes/class-uni-cpo-product.php:614
+#: includes/class-uni-cpo-product.php:650
 msgid "Error"
 msgstr ""
 
@@ -996,7 +996,7 @@ msgid "Formula and conditional logic"
 msgstr ""
 
 #: includes/class-uni-cpo-templates.php:128
-#: includes/class-uni-cpo-templates.php:631
+#: includes/class-uni-cpo-templates.php:652
 msgid "Cart discounts"
 msgstr ""
 
@@ -1020,7 +1020,7 @@ msgstr ""
 
 #: includes/class-uni-cpo-templates.php:330
 #: includes/class-uni-cpo-templates.php:338
-#: includes/class-uni-cpo-templates.php:639
+#: includes/class-uni-cpo-templates.php:660
 msgid "General Settings"
 msgstr ""
 
@@ -1033,13 +1033,17 @@ msgstr ""
 #: includes/class-uni-cpo-templates.php:412
 #: includes/class-uni-cpo-templates.php:487
 #: includes/class-uni-cpo-templates.php:508
-#: includes/class-uni-cpo-templates.php:663
-#: includes/class-uni-cpo-templates.php:762
-#: includes/class-uni-cpo-templates.php:921
-#: includes/class-uni-cpo-templates.php:941
-#: includes/class-uni-cpo-templates.php:1114
-#: includes/class-uni-cpo-templates.php:1241
-#: includes/class-uni-cpo-templates.php:1261
+#: includes/class-uni-cpo-templates.php:529
+#: includes/class-uni-cpo-templates.php:684
+#: includes/class-uni-cpo-templates.php:783
+#: includes/class-uni-cpo-templates.php:942
+#: includes/class-uni-cpo-templates.php:962
+#: includes/class-uni-cpo-templates.php:1135
+#: includes/class-uni-cpo-templates.php:1175
+#: includes/class-uni-cpo-templates.php:1209
+#: includes/class-uni-cpo-templates.php:1243
+#: includes/class-uni-cpo-templates.php:1313
+#: includes/class-uni-cpo-templates.php:1333
 msgid "on"
 msgstr ""
 
@@ -1048,13 +1052,17 @@ msgstr ""
 #: includes/class-uni-cpo-templates.php:413
 #: includes/class-uni-cpo-templates.php:488
 #: includes/class-uni-cpo-templates.php:509
-#: includes/class-uni-cpo-templates.php:664
-#: includes/class-uni-cpo-templates.php:763
-#: includes/class-uni-cpo-templates.php:922
-#: includes/class-uni-cpo-templates.php:942
-#: includes/class-uni-cpo-templates.php:1115
-#: includes/class-uni-cpo-templates.php:1242
-#: includes/class-uni-cpo-templates.php:1262
+#: includes/class-uni-cpo-templates.php:530
+#: includes/class-uni-cpo-templates.php:685
+#: includes/class-uni-cpo-templates.php:784
+#: includes/class-uni-cpo-templates.php:943
+#: includes/class-uni-cpo-templates.php:963
+#: includes/class-uni-cpo-templates.php:1136
+#: includes/class-uni-cpo-templates.php:1176
+#: includes/class-uni-cpo-templates.php:1210
+#: includes/class-uni-cpo-templates.php:1244
+#: includes/class-uni-cpo-templates.php:1314
+#: includes/class-uni-cpo-templates.php:1334
 msgid "off"
 msgstr ""
 
@@ -1154,149 +1162,166 @@ msgid ""
 msgstr ""
 
 #: includes/class-uni-cpo-templates.php:512
-msgid "Enable edit of this product inline in the cart?"
+msgid "Enable inline editing of this product in the cart?"
 msgstr ""
 
 #: includes/class-uni-cpo-templates.php:514
 msgid ""
-"Cart item of this product can be edited inline in the cart if this option is "
-"enabled."
+"Cart item of this product will be possible to edit inline in the cart if "
+"this option is enabled. Inline editing mode means that form fields will be "
+"shown directly in the cart. Do not forget to enable inline editing for all "
+"or some options as it also works on per option basis!"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:526
+#: includes/class-uni-cpo-templates.php:533
+msgid ""
+"Enable editing of this product in the cart by returning to product page?"
+msgstr ""
+
+#: includes/class-uni-cpo-templates.php:535
+msgid ""
+"Cart item of this product will be possible to edit in the cart in \"full\" "
+"edit mode if this option is enabled. It means that a customer will be "
+"redirected to the product page where options' values will be pre-filled with "
+"those from the cart item. A customer will be redirected to the cart after "
+"clicking both \"Cancel\" and \"Update\" buttons. The related cart item "
+"options' values will be updated if \"Update\" button will be clicked."
+msgstr ""
+
+#: includes/class-uni-cpo-templates.php:547
 msgid "Duplicate from another product"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:532
+#: includes/class-uni-cpo-templates.php:553
 #: includes/settings/class-uni-cpo-setting-sync.php:72
 msgid "Fetch data"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:535
+#: includes/class-uni-cpo-templates.php:556
 msgid "-None-"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:545
-#: includes/class-uni-cpo-templates.php:575
-#: includes/class-uni-cpo-templates.php:1469
-#: includes/class-uni-cpo-templates.php:1719
+#: includes/class-uni-cpo-templates.php:566
+#: includes/class-uni-cpo-templates.php:596
+#: includes/class-uni-cpo-templates.php:1541
+#: includes/class-uni-cpo-templates.php:1791
 msgid "Import"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:556
+#: includes/class-uni-cpo-templates.php:577
 msgid "remove pid attribute values from all the modules"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:569
-#: includes/class-uni-cpo-templates.php:1464
-#: includes/class-uni-cpo-templates.php:1714
+#: includes/class-uni-cpo-templates.php:590
+#: includes/class-uni-cpo-templates.php:1536
+#: includes/class-uni-cpo-templates.php:1786
 msgid "Choose a file"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:579
-#: includes/class-uni-cpo-templates.php:597
+#: includes/class-uni-cpo-templates.php:600
+#: includes/class-uni-cpo-templates.php:618
 msgid "Export"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:584
+#: includes/class-uni-cpo-templates.php:605
 msgid "Email"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:594
+#: includes/class-uni-cpo-templates.php:615
 msgid "Your email"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:610
-#: includes/class-uni-cpo-templates.php:710
-#: includes/class-uni-cpo-templates.php:882
-#: includes/class-uni-cpo-templates.php:1066
-#: includes/class-uni-cpo-templates.php:1195
+#: includes/class-uni-cpo-templates.php:631
+#: includes/class-uni-cpo-templates.php:731
+#: includes/class-uni-cpo-templates.php:903
+#: includes/class-uni-cpo-templates.php:1087
+#: includes/class-uni-cpo-templates.php:1267
 #: includes/settings/class-uni-cpo-setting-sync.php:89
 msgid "Submit"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:645
+#: includes/class-uni-cpo-templates.php:666
 msgid "Role Based Discounts"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:667
+#: includes/class-uni-cpo-templates.php:688
 msgid "Enable role based cart discounts?"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:669
+#: includes/class-uni-cpo-templates.php:690
 msgid ""
 "This setting enables/disables cart discounts functionality based on a user "
 "role."
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:683
+#: includes/class-uni-cpo-templates.php:704
 msgid "Type and value of discount for"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:691
+#: includes/class-uni-cpo-templates.php:712
 msgid "Percentage"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:740
+#: includes/class-uni-cpo-templates.php:761
 msgid "Main Formula & Formulas Conditional Logic"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:746
+#: includes/class-uni-cpo-templates.php:767
 msgid "Formula"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:748
+#: includes/class-uni-cpo-templates.php:769
 msgid ""
 "This is a simple formula for your product. It will be applied if no rules "
 "are added or none of them are match."
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:766
-#: includes/class-uni-cpo-templates.php:945
+#: includes/class-uni-cpo-templates.php:787
+#: includes/class-uni-cpo-templates.php:966
 msgid "Conditional Logic"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:768
+#: includes/class-uni-cpo-templates.php:789
 msgid ""
 "It is also possible to use Formula Conditional Rules feature. First, enable "
 "it here and add some rules then."
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:774
+#: includes/class-uni-cpo-templates.php:795
 msgid "Main formula"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:783
-#: includes/class-uni-cpo-templates.php:962
-#: includes/class-uni-cpo-templates.php:1270
+#: includes/class-uni-cpo-templates.php:804
+#: includes/class-uni-cpo-templates.php:983
+#: includes/class-uni-cpo-templates.php:1342
 msgid "Available variables:"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:797
-#: includes/class-uni-cpo-templates.php:976
+#: includes/class-uni-cpo-templates.php:818
+#: includes/class-uni-cpo-templates.php:997
 msgid "Controls:"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:801
-#: includes/class-uni-cpo-templates.php:980
-#: includes/class-uni-cpo-templates.php:1289
+#: includes/class-uni-cpo-templates.php:822
+#: includes/class-uni-cpo-templates.php:1001
+#: includes/class-uni-cpo-templates.php:1361
 #: includes/settings/class-uni-cpo-setting-cpo-date-rules.php:51
 #: includes/settings/class-uni-cpo-setting-cpo-vc-scheme.php:47
 msgid "Add Rule"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:802
-#: includes/class-uni-cpo-templates.php:981
-#: includes/class-uni-cpo-templates.php:1290
+#: includes/class-uni-cpo-templates.php:823
+#: includes/class-uni-cpo-templates.php:1002
+#: includes/class-uni-cpo-templates.php:1362
 #: includes/settings/class-uni-cpo-setting-cpo-date-rules.php:52
 #: includes/settings/class-uni-cpo-setting-cpo-vc-scheme.php:48
 msgid "Remove All"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:818
-#: includes/class-uni-cpo-templates.php:851
-#: includes/class-uni-cpo-templates.php:998
-#: includes/class-uni-cpo-templates.php:1033
+#: includes/class-uni-cpo-templates.php:839
+#: includes/class-uni-cpo-templates.php:872
+#: includes/class-uni-cpo-templates.php:1019
+#: includes/class-uni-cpo-templates.php:1054
 #: includes/settings/class-uni-cpo-setting-cpo-date-rules.php:69
 #: includes/settings/class-uni-cpo-setting-cpo-date-rules.php:103
 #: includes/settings/class-uni-cpo-setting-cpo-fc-scheme.php:42
@@ -1305,44 +1330,44 @@ msgstr ""
 msgid "Fetch the rule"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:905
-#: includes/class-uni-cpo-templates.php:925
+#: includes/class-uni-cpo-templates.php:926
+#: includes/class-uni-cpo-templates.php:946
 msgid "Weight Calculation"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:927
+#: includes/class-uni-cpo-templates.php:948
 msgid ""
 "It is possible to calculate the weight of the ordered product item based on "
 "the values of custom options and a custom maths formula."
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:947
+#: includes/class-uni-cpo-templates.php:968
 msgid "It is also possible to use Weight Formula Conditional Rules feature."
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:953
+#: includes/class-uni-cpo-templates.php:974
 msgid "Main formula for weight"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:1098
+#: includes/class-uni-cpo-templates.php:1119
 msgid "Dimensions Settings"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:1118
+#: includes/class-uni-cpo-templates.php:1139
 msgid "Dimensions Calculation"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:1120
+#: includes/class-uni-cpo-templates.php:1141
 msgid ""
 "It is possible to enable setting ordered product dimensions dynamically "
 "based on chosen custom options"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:1126
+#: includes/class-uni-cpo-templates.php:1147
 msgid "Measurement unit"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:1128
+#: includes/class-uni-cpo-templates.php:1149
 #, php-format
 msgid ""
 "The following measurement unit is being used in your store: %s (according to "
@@ -1350,126 +1375,138 @@ msgid ""
 "use any)."
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:1130
+#: includes/class-uni-cpo-templates.php:1151
 msgid ""
 "Additionally, you may use this setting if you want to let you customers to "
 "choose an input measurement unit dynamically. Select the option which "
 "handles this. The values of the options responsible for width, height and "
 "length will be automatically converted FROM the unit chosen in this option "
-"TO the measurement unit of your store before beign both sent to shipping "
+"TO the measurement unit of your store before are being sent both to shipping "
 "plugin and used in price calculation."
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:1133
-#: includes/class-uni-cpo-templates.php:1147
-#: includes/class-uni-cpo-templates.php:1164
-#: includes/class-uni-cpo-templates.php:1181
+#: includes/class-uni-cpo-templates.php:1154
+#: includes/class-uni-cpo-templates.php:1185
+#: includes/class-uni-cpo-templates.php:1219
+#: includes/class-uni-cpo-templates.php:1253
 msgid "- Not selected -"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:1141
+#: includes/class-uni-cpo-templates.php:1162
 msgid "Length"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:1144
+#: includes/class-uni-cpo-templates.php:1179
+msgid "Convert length automatically?"
+msgstr ""
+
+#: includes/class-uni-cpo-templates.php:1182
 msgid "Select the option which value will be used as product length."
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:1158
+#: includes/class-uni-cpo-templates.php:1196
 #: includes/settings/class-uni-cpo-setting-width-px.php:21
 #: includes/settings/class-uni-cpo-setting-width.php:21
 msgid "Width"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:1161
+#: includes/class-uni-cpo-templates.php:1213
+msgid "Convert width automatically?"
+msgstr ""
+
+#: includes/class-uni-cpo-templates.php:1216
 msgid "Select the option which value will be used as product width."
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:1175
+#: includes/class-uni-cpo-templates.php:1230
 #: includes/settings/class-uni-cpo-setting-height-px.php:21
 #: includes/settings/class-uni-cpo-setting-height.php:21
 msgid "Height"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:1178
+#: includes/class-uni-cpo-templates.php:1247
+msgid "Convert height automatically?"
+msgstr ""
+
+#: includes/class-uni-cpo-templates.php:1250
 msgid "Select the option which value will be used as product height."
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:1226
-#: includes/class-uni-cpo-templates.php:1245
+#: includes/class-uni-cpo-templates.php:1298
+#: includes/class-uni-cpo-templates.php:1317
 msgid "Non Option Variables"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:1246
+#: includes/class-uni-cpo-templates.php:1318
 msgid "NOVs are variables without direct connection to any options."
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:1265
+#: includes/class-uni-cpo-templates.php:1337
 msgid "Wholesale"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:1266
+#: includes/class-uni-cpo-templates.php:1338
 msgid ""
 "Enabling this functionality will make it possible to set different value/"
 "formula on per user role basis"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:1284
+#: includes/class-uni-cpo-templates.php:1356
 msgid "Controls"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:1318
-#: includes/class-uni-cpo-templates.php:1527
+#: includes/class-uni-cpo-templates.php:1390
+#: includes/class-uni-cpo-templates.php:1599
 msgid "Matrix?"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:1332
-#: includes/class-uni-cpo-templates.php:1542
+#: includes/class-uni-cpo-templates.php:1404
+#: includes/class-uni-cpo-templates.php:1614
 msgid "Convert unit?"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:1343
-#: includes/class-uni-cpo-templates.php:1554
+#: includes/class-uni-cpo-templates.php:1415
+#: includes/class-uni-cpo-templates.php:1626
 msgid "to"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:1348
-#: includes/class-uni-cpo-templates.php:1560
+#: includes/class-uni-cpo-templates.php:1420
+#: includes/class-uni-cpo-templates.php:1632
 msgid "WC default unit"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:1349
-#: includes/class-uni-cpo-templates.php:1561
+#: includes/class-uni-cpo-templates.php:1421
+#: includes/class-uni-cpo-templates.php:1633
 msgid "mm"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:1350
-#: includes/class-uni-cpo-templates.php:1562
+#: includes/class-uni-cpo-templates.php:1422
+#: includes/class-uni-cpo-templates.php:1634
 msgid "cm"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:1351
-#: includes/class-uni-cpo-templates.php:1563
+#: includes/class-uni-cpo-templates.php:1423
+#: includes/class-uni-cpo-templates.php:1635
 msgid "m"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:1352
-#: includes/class-uni-cpo-templates.php:1564
+#: includes/class-uni-cpo-templates.php:1424
+#: includes/class-uni-cpo-templates.php:1636
 msgid "in"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:1353
-#: includes/class-uni-cpo-templates.php:1565
+#: includes/class-uni-cpo-templates.php:1425
+#: includes/class-uni-cpo-templates.php:1637
 msgid "ft"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:1354
-#: includes/class-uni-cpo-templates.php:1566
+#: includes/class-uni-cpo-templates.php:1426
+#: includes/class-uni-cpo-templates.php:1638
 msgid "yd"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:1454
-#: includes/class-uni-cpo-templates.php:1704
+#: includes/class-uni-cpo-templates.php:1526
+#: includes/class-uni-cpo-templates.php:1776
 msgid "Generate"
 msgstr ""
 
@@ -1545,8 +1582,8 @@ msgstr ""
 #: includes/options/class-uni-cpo-option-radio.php:225
 #: includes/options/class-uni-cpo-option-select.php:205
 #: includes/options/class-uni-cpo-option-select.php:231
-#: includes/options/class-uni-cpo-option-select.php:414
-#: includes/options/class-uni-cpo-option-select.php:529
+#: includes/options/class-uni-cpo-option-select.php:435
+#: includes/options/class-uni-cpo-option-select.php:550
 msgid "Please select..."
 msgstr ""
 
@@ -1770,17 +1807,15 @@ msgstr ""
 msgid "Content"
 msgstr ""
 
-#: includes/settings/class-uni-cpo-setting-cpo-date-rules.php:21
-msgid "Dates based rules"
+#: includes/settings/class-uni-cpo-setting-cpo-custom-values.php:21
+msgid "Custom values"
 msgstr ""
 
-#: includes/settings/class-uni-cpo-setting-cpo-date-rules.php:24
-msgid ""
-"These rules work in addition to \"Price/Rate\" setting and actually extend "
-"this setting far beyond, make it possible to apply different values based on "
-"dates/dates ranges chosen."
+#: includes/settings/class-uni-cpo-setting-cpo-custom-values.php:24
+msgid "A list of comma separated custom values"
 msgstr ""
 
+#: includes/settings/class-uni-cpo-setting-cpo-custom-values.php:25
 #: includes/settings/class-uni-cpo-setting-cpo-date-rules.php:25
 #: includes/settings/class-uni-cpo-setting-cpo-date-type.php:25
 #: includes/settings/class-uni-cpo-setting-cpo-day-night.php:25
@@ -1790,6 +1825,33 @@ msgstr ""
 #: includes/settings/class-uni-cpo-setting-cpo-rate.php:26
 #: includes/settings/class-uni-cpo-setting-cpo-slug.php:26
 msgid "Important to save to DB if modified"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-cpo-date-max.php:21
+msgid "Maximum date"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-cpo-date-max.php:23
+msgid "Add the maximum/latest date (inclusively) allowed for selection"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-cpo-date-min.php:21
+msgid "Minimum date"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-cpo-date-min.php:23
+msgid "Add the minimum/earliest date (inclusively) allowed for selection"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-cpo-date-rules.php:21
+msgid "Dates based rules"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-cpo-date-rules.php:24
+msgid ""
+"These rules work in addition to \"Price/Rate\" setting and actually extend "
+"this setting far beyond, make it possible to apply different values based on "
+"dates/dates ranges chosen."
 msgstr ""
 
 #: includes/settings/class-uni-cpo-setting-cpo-date-type.php:21
@@ -2490,34 +2552,38 @@ msgstr ""
 msgid "Width Type"
 msgstr ""
 
-#: includes/uni-cpo-core-functions.php:885
+#: includes/uni-cpo-core-functions.php:908
 msgid "Select options"
 msgstr ""
 
-#: includes/uni-cpo-core-functions.php:902
+#: includes/uni-cpo-core-functions.php:980
 msgid "Calculate"
 msgstr ""
 
-#: includes/uni-cpo-core-functions.php:958
+#: includes/uni-cpo-core-functions.php:1035
 #, php-format
 msgid "from %s"
 msgstr ""
 
-#: includes/uni-cpo-core-functions.php:1536
+#: includes/uni-cpo-core-functions.php:1621
 msgid "Item"
 msgstr ""
 
-#: includes/uni-cpo-core-functions.php:1538
+#: includes/uni-cpo-core-functions.php:1623
 #, php-format
 msgid "%s duplicated."
 msgstr ""
 
-#: includes/uni-cpo-core-functions.php:1567
+#: includes/uni-cpo-core-functions.php:1652
 msgid "Add/Edit CPO option(s)"
 msgstr ""
 
-#: includes/uni-cpo-functions.php:222
+#: includes/uni-cpo-functions.php:220
 msgid "Edit"
+msgstr ""
+
+#: includes/uni-cpo-functions.php:225
+msgid "Edit (inline)"
 msgstr ""
 
 #: uni-cpo.php:116

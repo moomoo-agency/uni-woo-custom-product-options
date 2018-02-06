@@ -110,7 +110,8 @@ class Uni_Cpo_Ajax
             'uni_cpo_add_to_cart'                => true,
             'uni_cpo_price_calc'                 => true,
             'uni_cpo_cart_item_edit'             => true,
-            'uni_cpo_cart_item_update'           => true,
+            'uni_cpo_cart_item_edit_inline'      => true,
+            'uni_cpo_cart_item_update_inline'    => true,
             'uni_cpo_order_item_edit'            => false,
             'uni_cpo_order_item_update'          => false,
             'uni_cpo_product_settings_export'    => false,
@@ -576,6 +577,7 @@ class Uni_Cpo_Ajax
             $formatted_vars = array();
             $nice_names_vars = array();
             $novs_nice = array();
+            $price_vars['quantity'] = ( !empty($form_data['quantity']) ? absint( $form_data['quantity'] ) : 1 );
             
             if ( 'on' === $product_data['settings_data']['cpo_enable'] && 'on' === $product_data['settings_data']['calc_enable'] ) {
                 $main_formula = $product_data['formula_data']['main_formula'];
@@ -646,7 +648,7 @@ class Uni_Cpo_Ajax
                         $is_calc_disabled = true;
                     }
                     
-                    if ( true !== $is_calc_disabled ) {
+                    if ( !$is_calc_disabled ) {
                         // filter, so 3rd party scripts can hook up
                         $price_calculated = apply_filters(
                             'uni_cpo_ajax_calculated_price',
@@ -705,7 +707,7 @@ class Uni_Cpo_Ajax
                     
                     } else {
                         
-                        if ( true === $is_calc_disabled ) {
+                        if ( $is_calc_disabled ) {
                             // ordering is disabled
                             $price_display = 0;
                             $price_vars['price'] = apply_filters( 'uni_cpo_ajax_calculation_price_tag_disabled_filter', uni_cpo_price( $price_display ), $price_display );
@@ -722,7 +724,16 @@ class Uni_Cpo_Ajax
                     $result['extra_data'] = $extra_data;
                     wp_send_json_success( $result );
                 } else {
-                    throw new Exception( __( 'Price calculation has been disabled during the calculation', 'uni-cpo' ) );
+                    $price_display = 0;
+                    $price_vars['price'] = apply_filters( 'uni_cpo_ajax_calculation_price_tag_disabled_filter', uni_cpo_price( $price_display ), $price_display );
+                    $extra_data = array(
+                        'order_product' => 'disabled',
+                    );
+                    $result['formatted_vars'] = $formatted_vars;
+                    $result['nice_names_vars'] = $nice_names_vars;
+                    $result['price_vars'] = $price_vars;
+                    $result['extra_data'] = $extra_data;
+                    wp_send_json_success( $result );
                 }
             
             } else {
@@ -744,9 +755,16 @@ class Uni_Cpo_Ajax
     }
     
     /**
-     *   uni_cpo_cart_item_update
+     *   uni_cpo_cart_item_edit_inline
      */
-    public static function uni_cpo_cart_item_update()
+    public static function uni_cpo_cart_item_edit_inline()
+    {
+    }
+    
+    /**
+     *   uni_cpo_cart_item_update_inline
+     */
+    public static function uni_cpo_cart_item_update_inline()
     {
     }
     

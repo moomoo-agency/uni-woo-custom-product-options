@@ -367,7 +367,6 @@ function uni_cpo_sanitize_tooltip( $var ) {
  */
 function uni_cpo_sanitize_text( $var ) {
 	$allowed_tags = uni_cpo_get_allowed_tags();
-
 	return wp_kses( html_entity_decode( $var ), $allowed_tags['text'] );
 }
 

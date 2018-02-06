@@ -509,6 +509,21 @@ class Uni_Cpo_Frontend_Scripts {
 						'dashed' => $assets_path . 'images/border-dashed.png',
 						'dotted' => $assets_path . 'images/border-dotted.png',
 						'double' => $assets_path . 'images/border-double.png'
+					),
+					'other_vars'    => array(
+						'quantity',
+						'currency',
+						'raw_price',
+						'raw_price_tax_rev',
+						'price',
+						'price_prefix',
+						'price_suffix',
+						'price_discounted',
+						'raw_total',
+						'raw_total_tax_rev',
+						'total',
+						'total_tax_rev',
+						'total_suffix',
 					)
 				),
 				'wholesale'          => uni_cpo_get_all_roles()
@@ -716,14 +731,16 @@ class Uni_Cpo_Frontend_Scripts {
 				'image_selector'          => apply_filters( 'uni_cpo_image_selector', $plugin_settings['product_image_container'], $product_data ),
 				'max_file_size'           => apply_filters( 'uni_cpo_max_file_size', $plugin_settings['max_file_size'], $product_data ),
 				'mime_types'              => apply_filters( 'uni_cpo_mime_types', str_replace( ' ', '', $plugin_settings['mime_type'] ), $product_data ),
-				'options_selector_change' => apply_filters( 'uni_cpo_options_selector_change', '.js-uni-cpo-field:not(.js-uni-cpo-field-datepicker-range, .js-uni-cpo-field-range_slider)', $product_data ),
+				'options_selector_change' => apply_filters( 'uni_cpo_options_selector_change', '.cart .input-text.qty, .js-uni-cpo-field:not(.js-uni-cpo-field-datepicker-range, .js-uni-cpo-field-range_slider)', $product_data ),
 				'options_selector'        => apply_filters( 'uni_cpo_options_selector', '.js-uni-cpo-field', $product_data ),
 				'formatted_vars'          => array(),
 				'nice_names_vars'         => array(),
 				'price_vars'              => array(
+					'currency'          => get_woocommerce_currency_symbol(),
 					'raw_price'         => 0,
 					'raw_price_tax_rev' => 0,
 					'price'             => $zero_price,
+					'price_prefix'      => '',
 					'price_suffix'      => '',
 					'price_discounted'  => 0,
 					'raw_total'         => 0,
@@ -772,7 +789,7 @@ class Uni_Cpo_Frontend_Scripts {
 
 			$uni_cpo_i18n = apply_filters( 'uni_cpo_cart_i18n_frontend_strings',
 				array(
-					'flatpickr'     => $localizations['flatpickr']
+					'flatpickr' => $localizations['flatpickr']
 				)
 			);
 			wp_localize_script( 'uni-cpo-cart', 'unicpo_cart_i18n', $uni_cpo_i18n );

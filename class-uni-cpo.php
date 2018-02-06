@@ -13,7 +13,7 @@ final class Uni_Cpo
      *
      * @var string
      */
-    public  $version = '4.0.6' ;
+    public  $version = '4.0.7-rc1' ;
     /**
      * The single instance of the class.
      *
@@ -249,13 +249,10 @@ final class Uni_Cpo
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-slug.php';
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-is-required.php';
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-type.php';
-            include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-date-type.php';
-            include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-day-night.php';
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-min-val.php';
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-max-val.php';
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-step-val.php';
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-def-val.php';
-            include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-disabled-dates.php';
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-min-chars.php';
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-max-chars.php';
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-rate.php';
@@ -284,13 +281,6 @@ final class Uni_Cpo
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-vc-extra.php';
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-is-vc.php';
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-vc-scheme.php';
-            include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-range-type.php';
-            include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-range-grid.php';
-            include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-range-from.php';
-            include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-range-to.php';
-            include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-range-prefix.php';
-            include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-range-postfix.php';
-            include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-notice-text.php';
             // common js templates
             include_once UNI_CPO_ABSPATH . 'includes/class-uni-cpo-templates.php';
         }

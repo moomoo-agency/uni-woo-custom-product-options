@@ -111,7 +111,7 @@ final class Uni_Cpo_Templates
                         data-tip="<?php 
         esc_attr_e( 'Delete content', 'uni-cpo' );
         ?>"></div>
-						
+
                 <div class="uni-clear"></div>
                 <div
                         id="js-panel-cpo-nov"

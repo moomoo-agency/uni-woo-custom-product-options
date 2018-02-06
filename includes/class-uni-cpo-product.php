@@ -123,15 +123,9 @@ final class Uni_Cpo_Product
         if ( !self::is_builder_active() && self::is_single_product() ) {
             $product_data = self::get_product_data();
             $plugin_settings = UniCpo()->get_settings();
+            $cpo_cart_item_id = current_time( 'timestamp' );
             
             if ( 'on' === $product_data['settings_data']['cpo_enable'] && !empty($product_data['content']) ) {
-                
-                if ( !empty($product_data['settings_data']['price_disabled_msg']) ) {
-                    echo  '<div class="js-uni-cpo-ordering-disabled-notice">' ;
-                    echo  $product_data['settings_data']['price_disabled_msg'] ;
-                    echo  '</div>' ;
-                }
-                
                 $post_data = array();
                 
                 if ( isset( $_POST['cpo_product_id'] ) ) {
@@ -141,6 +135,24 @@ final class Uni_Cpo_Product
                     unset( $_POST['add-to-cart'] );
                     unset( $_POST['quantity'] );
                     $post_data = $_POST;
+                } elseif ( isset( $_GET['cpo_cart_item_edit'] ) && get_transient( '_cpo_cart_item_edit_' . $_GET['cpo_cart_item_edit'] ) ) {
+                    $transient_data = get_transient( '_cpo_cart_item_edit_' . $_GET['cpo_cart_item_edit'] );
+                    $cart_item_key = $transient_data['key'];
+                    
+                    if ( WC()->cart->get_cart_contents() && $transient_data['product_id'] === $product_data['id'] ) {
+                        $cart_content = WC()->cart->get_cart_contents();
+                        $edited_item = $cart_content[$cart_item_key];
+                        $post_data = $edited_item['_cpo_data'];
+                        $cpo_cart_item_id = $cart_item_key;
+                    }
+                
+                }
+                
+                
+                if ( !empty($product_data['settings_data']['price_disabled_msg']) ) {
+                    echo  '<div class="js-uni-cpo-ordering-disabled-notice" style="display:none;">' ;
+                    echo  $product_data['settings_data']['price_disabled_msg'] ;
+                    echo  '</div>' ;
                 }
                 
                 echo  '<input type="hidden" class="js-cpo-pid" name="cpo_product_id" value="' . esc_attr( $product_data['id'] ) . '" />' ;
@@ -148,7 +160,7 @@ final class Uni_Cpo_Product
                     echo  '<input type="hidden" name="add-to-cart" value="' . esc_attr( $product_data['id'] ) . '" />' ;
                 }
                 echo  '<input type="hidden" class="js-cpo-product-image" name="cpo_product_image" value="' . esc_attr( $product_data['post_thumb_id'] ) . '" />' ;
-                echo  '<input type="hidden" class="js-cpo-cart-item" name="cpo_cart_item_id" value="' . current_time( 'timestamp' ) . '" />' ;
+                echo  '<input type="hidden" class="js-cpo-cart-item" name="cpo_cart_item_id" value="' . esc_attr( $cpo_cart_item_id ) . '" />' ;
                 foreach ( $product_data['content'] as $row_key => $row_data ) {
                     $row_class = UniCpo()->module_factory::get_classname_from_module_type( $row_data['type'] );
                     call_user_func( array( $row_class, 'template' ), $row_data, $post_data );
@@ -374,6 +386,7 @@ final class Uni_Cpo_Product
         $price_max = ( get_post_meta( $data['id'], '_cpo_max_price', true ) ? floatval( get_post_meta( $data['id'], '_cpo_max_price', true ) ) : 0 );
         $cart_duplicate_enable = ( get_post_meta( $data['id'], '_cart_duplicate_enable', true ) ? get_post_meta( $data['id'], '_cart_duplicate_enable', true ) : 'off' );
         $cart_edit_enable = ( get_post_meta( $data['id'], '_cart_edit_enable', true ) ? get_post_meta( $data['id'], '_cart_edit_enable', true ) : 'off' );
+        $cart_edit_full_enable = ( get_post_meta( $data['id'], '_cart_edit_full_enable', true ) ? get_post_meta( $data['id'], '_cart_edit_full_enable', true ) : 'off' );
         $data['settings_data'] = array(
             'cpo_enable'            => $cpo_enable,
             'calc_enable'           => $calc_enable,
@@ -383,6 +396,7 @@ final class Uni_Cpo_Product
             'price_disabled_msg'    => get_post_meta( $data['id'], '_cpo_price_disabled_msg', true ),
             'cart_duplicate_enable' => $cart_duplicate_enable,
             'cart_edit_enable'      => $cart_edit_enable,
+            'cart_edit_full_enable' => $cart_edit_full_enable,
         );
         $role_cart_discounts_enable = ( get_post_meta( $data['id'], '_cpo_role_cart_discounts_enable', true ) ? get_post_meta( $data['id'], '_cpo_role_cart_discounts_enable', true ) : 'off' );
         $data['discounts_data'] = array(
@@ -408,14 +422,20 @@ final class Uni_Cpo_Product
         $dimensions_enable = ( get_post_meta( $data['id'], '_cpo_dimensions_enable', true ) ? get_post_meta( $data['id'], '_cpo_dimensions_enable', true ) : 'off' );
         $d_unit_option = ( get_post_meta( $data['id'], '_cpo_d_unit_option', true ) ? get_post_meta( $data['id'], '_cpo_d_unit_option', true ) : '' );
         $d_length_option = ( get_post_meta( $data['id'], '_cpo_d_length_option', true ) ? get_post_meta( $data['id'], '_cpo_d_length_option', true ) : '' );
+        $convert_length = ( get_post_meta( $data['id'], '_cpo_convert_length', true ) ? get_post_meta( $data['id'], '_cpo_convert_length', true ) : 'off' );
         $d_width_option = ( get_post_meta( $data['id'], '_cpo_d_width_option', true ) ? get_post_meta( $data['id'], '_cpo_d_width_option', true ) : '' );
+        $convert_width = ( get_post_meta( $data['id'], '_cpo_convert_width', true ) ? get_post_meta( $data['id'], '_cpo_convert_width', true ) : 'off' );
         $d_height_option = ( get_post_meta( $data['id'], '_cpo_d_height_option', true ) ? get_post_meta( $data['id'], '_cpo_d_height_option', true ) : '' );
+        $convert_height = ( get_post_meta( $data['id'], '_cpo_convert_height', true ) ? get_post_meta( $data['id'], '_cpo_convert_height', true ) : 'off' );
         $data['dimensions_data'] = array(
             'dimensions_enable' => $dimensions_enable,
             'd_unit_option'     => $d_unit_option,
             'd_length_option'   => $d_length_option,
+            'convert_length'    => $convert_length,
             'd_width_option'    => $d_width_option,
+            'convert_width'     => $convert_width,
             'd_height_option'   => $d_height_option,
+            'convert_height'    => $convert_height,
         );
         $nov_enable = ( get_post_meta( $data['id'], '_cpo_nov_enable', true ) ? get_post_meta( $data['id'], '_cpo_nov_enable', true ) : 'off' );
         $wholesale_enable = ( get_post_meta( $data['id'], '_cpo_wholesale_enable', true ) ? get_post_meta( $data['id'], '_cpo_wholesale_enable', true ) : 'off' );
@@ -452,6 +472,7 @@ final class Uni_Cpo_Product
                 update_post_meta( $product->get_id(), '_cpo_price_disabled_msg', $data['settings_data']['price_disabled_msg'] );
                 update_post_meta( $product->get_id(), '_cart_duplicate_enable', $data['settings_data']['cart_duplicate_enable'] );
                 update_post_meta( $product->get_id(), '_cart_edit_enable', $data['settings_data']['cart_edit_enable'] );
+                update_post_meta( $product->get_id(), '_cart_edit_full_enable', $data['settings_data']['cart_edit_full_enable'] );
                 update_post_meta( $product->get_id(), '_cpo_role_cart_discounts_enable', $data['discounts_data']['role_cart_discounts_enable'] );
                 update_post_meta( $product->get_id(), '_cpo_role_cart_discounts', $data['discounts_data']['role_cart_discounts'] );
                 update_post_meta( $product->get_id(), '_cpo_formula_rules_enable', $data['formula_data']['rules_enable'] );
@@ -464,8 +485,11 @@ final class Uni_Cpo_Product
                 update_post_meta( $product->get_id(), '_cpo_dimensions_enable', $data['dimensions_data']['dimensions_enable'] );
                 update_post_meta( $product->get_id(), '_cpo_d_unit_option', $data['dimensions_data']['d_unit_option'] );
                 update_post_meta( $product->get_id(), '_cpo_d_length_option', $data['dimensions_data']['d_length_option'] );
+                update_post_meta( $product->get_id(), '_cpo_convert_length', $data['dimensions_data']['convert_length'] );
                 update_post_meta( $product->get_id(), '_cpo_d_width_option', $data['dimensions_data']['d_width_option'] );
+                update_post_meta( $product->get_id(), '_cpo_convert_width', $data['dimensions_data']['convert_width'] );
                 update_post_meta( $product->get_id(), '_cpo_d_height_option', $data['dimensions_data']['d_height_option'] );
+                update_post_meta( $product->get_id(), '_cpo_convert_height', $data['dimensions_data']['convert_height'] );
                 update_post_meta( $product->get_id(), '_cpo_nov_enable', $data['nov_data']['nov_enable'] );
                 update_post_meta( $product->get_id(), '_cpo_wholesale_enable', $data['nov_data']['wholesale_enable'] );
                 update_post_meta( $product->get_id(), '_cpo_nov', $data['nov_data']['nov'] );
@@ -486,6 +510,7 @@ final class Uni_Cpo_Product
                 update_post_meta( $product->get_id(), '_cpo_price_disabled_msg', $data['settings_data']['price_disabled_msg'] );
                 update_post_meta( $product->get_id(), '_cart_duplicate_enable', $data['settings_data']['cart_duplicate_enable'] );
                 update_post_meta( $product->get_id(), '_cart_edit_enable', $data['settings_data']['cart_edit_enable'] );
+                update_post_meta( $product->get_id(), '_cart_edit_full_enable', $data['settings_data']['cart_edit_full_enable'] );
                 return array(
                     'settings_data' => $data['settings_data'],
                 );
@@ -514,8 +539,11 @@ final class Uni_Cpo_Product
                 update_post_meta( $product->get_id(), '_cpo_dimensions_enable', $data['dimensions_data']['dimensions_enable'] );
                 update_post_meta( $product->get_id(), '_cpo_d_unit_option', $data['dimensions_data']['d_unit_option'] );
                 update_post_meta( $product->get_id(), '_cpo_d_length_option', $data['dimensions_data']['d_length_option'] );
+                update_post_meta( $product->get_id(), '_cpo_convert_length', $data['dimensions_data']['convert_length'] );
                 update_post_meta( $product->get_id(), '_cpo_d_width_option', $data['dimensions_data']['d_width_option'] );
+                update_post_meta( $product->get_id(), '_cpo_convert_width', $data['dimensions_data']['convert_width'] );
                 update_post_meta( $product->get_id(), '_cpo_d_height_option', $data['dimensions_data']['d_height_option'] );
+                update_post_meta( $product->get_id(), '_cpo_convert_height', $data['dimensions_data']['convert_height'] );
                 return array(
                     'dimensions_data' => $data['dimensions_data'],
                 );

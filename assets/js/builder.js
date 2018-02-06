@@ -295,21 +295,7 @@
          *
          */
         _initRangeSlider: function (el) {
-            let grid;
-            el.data('slider-grid') === 'no' ? grid = false : grid = true;
-            const options = {
-                type: el.data('slider-type'),
-                min: el.data('slider-min'),
-                max: el.data('slider-max'),
-                step: el.data('slider-step'),
-                from: el.data('slider-from'),
-                to: el.data('slider-to'),
-                grid: grid,
-                prefix: el.data('slider-prefix'),
-                postfix: el.data('slider-postfix'),
-                force_edges: true
-            };
-            el.ionRangeSlider(options);
+            el.ionRangeSlider();
         },
 
         /* Drag and Drop functionality

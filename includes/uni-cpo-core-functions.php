@@ -339,8 +339,8 @@ function uni_cpo_filter_settings_data_func( $data_data, $original_data, $data_na
     }
     
     if ( 'cpo_general' === $data_name ) {
-        $data_data['advanced']['cpo_tooltip'] = ( !empty($original_data['advanced']['cpo_tooltip']) ? uni_cpo_sanitize_tooltip( $original_data['advanced']['cpo_tooltip'] ) : '' );
-        $data_data['main']['cpo_notice_text'] = ( !empty($original_data['main']['cpo_notice_text']) ? uni_cpo_sanitize_text( $original_data['main']['cpo_notice_text'] ) : '' );
+        $data_data['advanced']['cpo_tooltip'] = ( !empty($original_data['advanced']['cpo_tooltip']) ? uni_cpo_sanitize_text( stripslashes_deep( $original_data['advanced']['cpo_tooltip'] ) ) : '' );
+        $data_data['main']['cpo_notice_text'] = ( !empty($original_data['main']['cpo_notice_text']) ? html_entity_decode( uni_cpo_sanitize_text( $original_data['main']['cpo_notice_text'] ) ) : '' );
     }
     
     if ( 'cpo_rules' === $data_name ) {
@@ -780,7 +780,7 @@ function uni_cpo_price( $price, $args = array() )
     );
     $data = apply_filters( 'wc_price_args', wp_parse_args( $args, $defaults ) );
     $negative = $price < 0;
-    $price = apply_filters( 'raw_uni_cpo_price', floatval( ( $negative ? $price * -1 : $price ) ) );
+    $price = apply_filters( 'uni_cpo_price_raw', floatval( ( $negative ? $price * -1 : $price ) ) );
     $price = apply_filters(
         'formatted_uni_cpo_price',
         number_format(
@@ -809,6 +809,35 @@ function uni_cpo_price( $price, $args = array() )
     );
 }
 
+//
+add_filter(
+    'woocommerce_get_price_html',
+    'uni_cpo_woocommerce_get_price_html',
+    10,
+    2
+);
+function uni_cpo_woocommerce_get_price_html( $price, $product )
+{
+    $product_id = intval( $product->get_id() );
+    $product_data = Uni_Cpo_Product::get_product_data_by_id( $product_id );
+    try {
+        
+        if ( 'on' === $product_data['settings_data']['cpo_enable'] && 'on' === $product_data['settings_data']['calc_enable'] && Uni_Cpo_Product::is_single_product() ) {
+            $dom = new DOMDocument();
+            $dom->loadHTML( $price, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD );
+            $spans = $dom->getElementsByTagName( 'span' );
+            $style_attr = $dom->createAttribute( 'style' );
+            $style_attr->value = 'display:none;';
+            $spans->item( 0 )->appendChild( $style_attr );
+            $price = $dom->saveHTML();
+        }
+    
+    } catch ( Exception $e ) {
+        return new WP_Error( 'cart-error', $e->getMessage() );
+    }
+    return $price;
+}
+
 // customers try to add a product to the cart from an archive page? let's check if it is possible to do!
 add_filter(
     'woocommerce_loop_add_to_cart_link',
@@ -835,14 +864,14 @@ function uni_cpo_add_to_cart_button( $link, $product )
 }
 
 //
-add_action( 'cpo_after_render_content', 'uni_cpo_calculate_button_output', 10 );
-function uni_cpo_calculate_button_output()
+add_action( 'cpo_after_render_content', 'uni_cpo_calculate_button_html', 10 );
+function uni_cpo_calculate_button_html()
 {
     global  $post ;
     $product_data = Uni_Cpo_Product::get_product_data_by_id( $post->ID );
     
     if ( 'on' === $product_data['settings_data']['calc_btn_enable'] ) {
-        $btn_text = apply_filters( 'cpo_calc_btn_text_filter', '<i class="fa fa-calculator" aria-hidden="true"></i>' . esc_html__( 'Calculate', 'uni-cpo' ), $post->ID );
+        $btn_text = apply_filters( 'uni_cpo_calculate_btn_text', '<i class="fa fa-calculator" aria-hidden="true"></i>' . esc_html__( 'Calculate', 'uni-cpo' ), $post->ID );
         echo  '<button type="button" class="uni-cpo-calculate-btn js-uni-cpo-calculate-btn button alt">' . $btn_text . '</button>' ;
     }
 
@@ -928,6 +957,7 @@ function uni_cpo_get_price_for_meta()
 }
 
 //
+add_action( 'woocommerce_single_product_summary', 'uni_cpo_display_price_custom_meta', 11 );
 function uni_cpo_display_price_custom_meta()
 {
     global  $product ;
@@ -939,12 +969,13 @@ function uni_cpo_display_price_custom_meta()
             'price' => $product_data['settings_data']['min_price'],
         ) );
         $price = apply_filters( 'uni_cpo_display_price_meta_tag', $price, $product );
-        echo  '<meta itemprop="lowPrice" content="' . esc_attr( $price ) . '" />' ;
-    } else {
-        $price = wc_get_price_to_display( $product );
-        echo  '<meta itemprop="price" content="' . esc_attr( $price ) . '" />' ;
+        echo  '<meta itemprop="minPrice" content="' . esc_attr( $price ) . '" itemtype="http://schema.org/PriceSpecification" />' ;
     }
-
+    
+    /*else {
+    		$price = wc_get_price_to_display( $product );
+    		echo '<meta itemprop="price" content="' . esc_attr( $price ) . '" itemtype="http://schema.org/Offer" />';
+    	}*/
 }
 
 //
@@ -975,7 +1006,7 @@ function uni_cpo_change_cart_item_price( $price, $cart_item )
             'qty'   => 1,
             'price' => $cart_item['_cpo_price'],
         ) );
-        $cpo_price = apply_filters( 'cpo_get_cart_price_calculated_raw', $price_calc, $product_data );
+        $cpo_price = apply_filters( 'uni_cpo_get_cart_price_calculated_raw', $price_calc, $product_data );
         $cpo_price = wc_price( $cpo_price );
         return $cpo_price;
     } else {

@@ -42,7 +42,7 @@ class Uni_Cpo_Setting_Cpo_Notice_Text extends Uni_Cpo_Setting implements Uni_Cpo
 					<?php echo $this->generate_textarea_html(); ?>
                 </div>
             </div>
-			<div class="uni-modal-row uni-clear">
+			<div class="uni-modal-row uni-modal-row-variables-list uni-clear">
 				<?php
 				echo $this->generate_field_label_html(
 					'cpo_notice_text[variables-list]',
@@ -61,6 +61,11 @@ class Uni_Cpo_Setting_Cpo_Notice_Text extends Uni_Cpo_Setting implements Uni_Cpo
                         </li>
                         {{ }); }}
                         {{ } }}
+                        {{ }); }}
+                        {{ _.each(builderiusCfg.cpo_data.other_vars, function(value){ }}
+                        <li class="uni-cpo-var-other">
+                            <span>{{= '\{\{\{'+'data.'+value+'\}\}\}' }}</span>
+                        </li>
                         {{ }); }}
                     </ul>
                 </div>

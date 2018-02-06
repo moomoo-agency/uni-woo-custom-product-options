@@ -4,39 +4,9 @@ jQuery(function ($) {
 
     window.UniCpo = {};
 
-    var _unicpo_i18n$flatpick = unicpo_i18n.flatpickr,
-        weekdays = _unicpo_i18n$flatpick.weekdays,
-        months = _unicpo_i18n$flatpick.months,
-        scrollTitle = _unicpo_i18n$flatpick.scrollTitle,
-        toggleTitle = _unicpo_i18n$flatpick.toggleTitle;
+    
+/* Premium Code Stripped by Freemius */
 
-    window.UniCpo.flatpickrCfg = {
-        locale: {
-            weekdays: weekdays,
-            months: months,
-            daysInMonth: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
-            firstDayOfWeek: 0,
-            ordinal: function ordinal(nth) {
-                var s = nth % 100;
-                if (s > 3 && s < 21) return 'th';
-                switch (s % 10) {
-                    case 1:
-                        return 'st';
-                    case 2:
-                        return 'nd';
-                    case 3:
-                        return 'rd';
-                    default:
-                        return 'th';
-                }
-            },
-            rangeSeparator: ' - ',
-            weekAbbreviation: 'Wk',
-            scrollTitle: scrollTitle,
-            toggleTitle: toggleTitle,
-            amPM: ['AM', 'PM']
-        }
-    };
 
     var blockDefaults = {
         message: null,

@@ -22,6 +22,7 @@ UniCpo = {
     mainImageChangers: jQuery('.uni-cpo-image-changer').get().reverse(),
     mainImageDefData: {},
     mainImageEl: '',
+    orderingDsblMsgEl: jQuery('.js-uni-cpo-ordering-disabled-notice'),
     priceTagEl: {},
     priceZeroEl: jQuery('<span class="js-cpo-text-zero-pice"></span>'),
     priceCalculateEl: jQuery('<span class="js-cpo-calculating"></span>'),
@@ -42,7 +43,7 @@ UniCpo = {
                 }
                 if (this.addToCartAjax && this.addToCartBtnEl.length > 0) {
                     this.addToCartBtnEl.attr('type', 'button');
-                    this.addToCartBtnEl.addClass('cpo_ajax_add_to_cart');
+                    this.addToCartBtnEl.addClass('uni_cpo_ajax_add_to_cart');
                 }
                 this.priceTagEl = jQuery(unicpo.price_selector);
                 if (!this.priceTagEl.length) {
@@ -80,39 +81,9 @@ UniCpo = {
                     }
                 }, 100);
 
-                var _unicpo_i18n$flatpick = unicpo_i18n.flatpickr,
-                    weekdays = _unicpo_i18n$flatpick.weekdays,
-                    months = _unicpo_i18n$flatpick.months,
-                    scrollTitle = _unicpo_i18n$flatpick.scrollTitle,
-                    toggleTitle = _unicpo_i18n$flatpick.toggleTitle;
+                
+/* Premium Code Stripped by Freemius */
 
-                this.flatpickrCfg = {
-                    locale: {
-                        weekdays: weekdays,
-                        months: months,
-                        daysInMonth: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
-                        firstDayOfWeek: 0,
-                        ordinal: function ordinal(nth) {
-                            var s = nth % 100;
-                            if (s > 3 && s < 21) return 'th';
-                            switch (s % 10) {
-                                case 1:
-                                    return 'st';
-                                case 2:
-                                    return 'nd';
-                                case 3:
-                                    return 'rd';
-                                default:
-                                    return 'th';
-                            }
-                        },
-                        rangeSeparator: ' - ',
-                        weekAbbreviation: 'Wk',
-                        scrollTitle: scrollTitle,
-                        toggleTitle: toggleTitle,
-                        amPM: ['AM', 'PM']
-                    }
-                };
 
                 this.bindOnRadioImageTap();
                 this.bindOnOptionSelected();
@@ -150,7 +121,7 @@ UniCpo = {
                     });
                 }
                 // Triggers an event - on before send ajax request
-                jQuery(document.body).trigger('cpo_options_data_ajax_before_send', [data.data]);
+                jQuery(document.body).trigger('uni_cpo_options_data_ajax_before_send', [data.data]);
             },
             error: function error() {
                 cpoObj._unblockForm(form, 'error');
@@ -161,6 +132,11 @@ UniCpo = {
                 if (r.success) {
                     cpoObj._unblockForm(form, 'success');
 
+                    if (typeof r.data.redirect !== 'undefined') {
+                        window.location = r.data.redirect;
+                        return;
+                    }
+
                     unicpo.formatted_vars = r.data.formatted_vars;
                     unicpo.nice_names_vars = r.data.nice_names_vars;
                     jQuery.extend(unicpo.price_vars, r.data.price_vars);
@@ -169,8 +145,14 @@ UniCpo = {
                     cpoObj.setPriceTo(unicpo.price_vars.price);
                     cpoObj.setBtnState(false);
 
+                    if (r.data.extra_data.order_product === 'disabled') {
+                        cpoObj.orderingDsblMsgEl.slideDown(300);
+                    } else {
+                        cpoObj.orderingDsblMsgEl.hide();
+                    }
+
                     // Triggers an event - on successful ajax request
-                    jQuery(document.body).trigger('cpo_options_data_ajax_success', [data.data, r.data]);
+                    jQuery(document.body).trigger('uni_cpo_options_data_ajax_success', [data.data, r.data]);
 
                     if (typeof r.data.fragments !== 'undefined') {
                         // Redirect to cart option
@@ -182,7 +164,7 @@ UniCpo = {
                         $wc.html(cpoObj.addedToCartMsg);
 
                         // Trigger event so themes can refresh other areas.
-                        jQuery(document.body).trigger('cpo_added_to_cart', [r.fragments, r.cart_hash]);
+                        jQuery(document.body).trigger('uni_cpo_added_to_cart', [r.fragments, r.cart_hash]);
                     }
                 } else {
                     cpoObj._unblockForm(form, 'error');
@@ -194,10 +176,15 @@ UniCpo = {
                     }
 
                     // Triggers an event - on failure ajax request
-                    jQuery(document.body).trigger('cpo_options_data_ajax_fail', [data.data, r]);
+                    jQuery(document.body).trigger('uni_cpo_options_data_ajax_fail', [data.data, r]);
                 }
             }
         });
+    },
+    bindMainImageChange: function bindMainImageChange() {
+        
+/* Premium Code Stripped by Freemius */
+
     },
     bindOnAddToCartClick: function bindOnAddToCartClick() {
         var cpoObj = this;
@@ -208,7 +195,7 @@ UniCpo = {
                 cpoObj.formSubmission();
             });
         } else {
-            jQuery(document).on('click', '.cpo_ajax_add_to_cart', function (e) {
+            jQuery(document).on('click', '.uni_cpo_ajax_add_to_cart', function (e) {
                 e.preventDefault();
                 cpoObj.formSubmission();
             });
@@ -224,66 +211,9 @@ UniCpo = {
         });
     },
     bindOnFileUploadClick: function bindOnFileUploadClick() {
-        var cpoObj = this;
-        var $fileUploadFields = jQuery('.js-uni-cpo-field-file_upload-el');
+        
+/* Premium Code Stripped by Freemius */
 
-        if ($fileUploadFields.length) {
-            $fileUploadFields.each(function () {
-                var $el = jQuery(this);
-                var id = $el.attr('id');
-                var listId = $el.siblings('.js-uni-cpo-file-upload-files').attr('id');
-
-                var _$el$data = $el.data(),
-                    postId = _$el$data.postId,
-                    slug = _$el$data.slug,
-                    maxFilesize = _$el$data.maxFilesize,
-                    mimeTypes = _$el$data.mimeTypes;
-
-                cpoObj.fileUploadEl[id] = new plupload.Uploader({
-                    max_files: 1,
-                    multi_selection: false,
-                    runtimes: 'html5',
-                    url: unicpo.ajax_url,
-                    browse_button: id,
-                    chunk_size: '1mb',
-                    filters: {
-                        max_file_size: maxFilesize ? maxFilesize + 'mb' : unicpo.max_file_size + 'mb',
-                        mime_types: [{
-                            title: 'Allowed formats',
-                            extensions: mimeTypes ? mimeTypes : unicpo.mime_types
-                        }]
-                    },
-                    listId: listId,
-                    uploadMode: 'single',
-                    multipart_params: {
-                        action: 'uni_cpo_upload_file',
-                        postId: postId,
-                        slug: slug,
-                        security: unicpo.security
-                    }
-                });
-
-                cpoObj.fileUploadEl[id].bind('PostInit', cpoObj.handlePluploadInit);
-                cpoObj.fileUploadEl[id].bind('Error', cpoObj.handlePluploadError);
-                cpoObj.fileUploadEl[id].bind('FileFiltered', cpoObj.handlePluploadFileFiltered);
-                cpoObj.fileUploadEl[id].bind('FilesAdded', cpoObj.handlePluploadFilesAdded);
-                cpoObj.fileUploadEl[id].bind('BeforeUpload', cpoObj.handlePluploadBeforeUpload);
-                cpoObj.fileUploadEl[id].bind('UploadProgress', cpoObj.handlePluploadUploadProgress);
-                cpoObj.fileUploadEl[id].bind('ChunkUploaded', cpoObj.handlePluploadChunkUploaded);
-                cpoObj.fileUploadEl[id].bind('FileUploaded', cpoObj.handlePluploadFileUploaded);
-                cpoObj.fileUploadEl[id].init();
-            });
-        }
-    },
-    bindMainImageChange: function bindMainImageChange() {
-        var cpoObj = this;
-
-        jQuery(document).on('change', cpoObj.mainImageChangers, function () {
-            cpoObj.changeMainImage();
-        });
-        jQuery(document).on('click', '.flex-control-thumbs li:first-of-type img', function () {
-            cpoObj.replaceMainImageData(cpoObj.mainImageDefData);
-        });
     },
     bindOnOptionSelected: function bindOnOptionSelected() {
         var cpoObj = this;
@@ -300,27 +230,9 @@ UniCpo = {
         });
     },
     bindOnRadioImageTap: function bindOnRadioImageTap() {
-        jQuery('.uni-module-radio .uni-cpo-option-label__image-wrap').on('touchstart', function () {
-            var id = jQuery(this).closest('label').attr('for');
-            setTimeout(function () {
-                jQuery('#' + id).prop("checked", true).trigger("change");
-            }, 400);
-        });
-        jQuery('.uni-module-checkbox .uni-cpo-option-label__image-wrap').on('touchstart', function () {
-            var label = jQuery(this).closest('label');
-            var id = label.attr('for');
+        
+/* Premium Code Stripped by Freemius */
 
-            setTimeout(function () {
-                if (label.hasClass('uni-checked')) {
-                    jQuery('#' + id).prop('checked', false).trigger("change");
-                    jQuery('.ui-tooltip').remove();
-                    label.removeClass('uni-checked');
-                } else {
-                    jQuery('#' + id).prop('checked', true).trigger("change");
-                    label.addClass('uni-checked');
-                }
-            }, 400);
-        });
     },
     calculate: function calculate(fields) {
         var data = {
@@ -332,31 +244,9 @@ UniCpo = {
         this.ajaxCall(data);
     },
     changeMainImage: function changeMainImage() {
-        if (!this.mainImageEl || !this.mainImageChangers.length) {
-            return;
-        }
+        
+/* Premium Code Stripped by Freemius */
 
-        var $firstChosenEl = void 0;
-        this.mainImageChangers.forEach(function (el) {
-            if (typeof $firstChosenEl === 'undefined') {
-                var $el = jQuery(el);
-                var type = $el.attr('type');
-
-                if (!$el.hasClass('uni-cpo-excluded-field')) {
-                    if ('radio' === type || 'checkbox' === type) {
-                        if (true === $el.prop('checked')) {
-                            $firstChosenEl = $el;
-                        }
-                    } else {
-                        $firstChosenEl = $el;
-                    }
-                }
-            }
-        });
-
-        var data = typeof $firstChosenEl !== 'undefined' ? $firstChosenEl.data() : this.mainImageDefData;
-
-        this.replaceMainImageData(data);
     },
     collectData: function collectData(isForConditional) {
         var formFields = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
@@ -460,14 +350,14 @@ UniCpo = {
 
             // Triggers an event - for each field
             if (isForConditional) {
-                jQuery(document.body).trigger('cpo_option_data_for_conditional', [fields, $el]);
+                jQuery(document.body).trigger('uni_cpo_option_data_for_conditional', [fields, $el]);
             } else {
-                jQuery(document.body).trigger('cpo_option_data_before_validate', [fields, $el]);
+                jQuery(document.body).trigger('uni_cpo_option_data_before_validate', [fields, $el]);
             }
         });
 
         if (isForConditional) {
-            var cpoFields = jQuery(document.body).triggerHandler('cpo_options_data_for_conditional', [fields]);
+            var cpoFields = jQuery(document.body).triggerHandler('uni_cpo_options_data_for_conditional', [fields]);
             if (typeof cpoFields !== 'undefined') {
                 fields = cpoFields;
             }
@@ -475,7 +365,7 @@ UniCpo = {
                 return cpoObj.collectData(true, fields);
             }
         } else {
-            var _cpoFields = jQuery(document.body).triggerHandler('cpo_options_data_before_validate', [fields]);
+            var _cpoFields = jQuery(document.body).triggerHandler('uni_cpo_options_data_before_validate', [fields]);
             if (typeof _cpoFields !== 'undefined') {
                 fields = _cpoFields;
             }
@@ -521,25 +411,9 @@ UniCpo = {
         }
     },
     getMainImageDefData: function getMainImageDefData() {
-        if (!this.mainImageEl) {
-            console.info('UniCPO: No main image found.');
-            return;
-        }
-        var $a = this.mainImageEl.find('a');
-        var $img = $a.find('img');
+        
+/* Premium Code Stripped by Freemius */
 
-        return {
-            imgId: unicpo.product_image_id,
-            imgFullUri: $a.attr('href'),
-            imgTitle: $img.attr('title'),
-            imgAlt: $img.attr('alt'),
-            imgUri: $img.attr('src'),
-            imgSrcset: $img.attr('srcset'),
-            imgSrc: $img.attr('data-src'),
-            imgLarge_image: $img.attr('data-large_image'),
-            imgLarge_image_width: $img.attr('data-large_image_width'),
-            imgLarge_image_height: $img.attr('data-large_image_height')
-        };
     },
     getMainImageEl: function getMainImageEl() {
         var $image = jQuery(unicpo.image_selector).find('div.woocommerce-product-gallery__image');
@@ -551,170 +425,49 @@ UniCpo = {
         var prodQty = $prodQtyInput.val() ? $prodQtyInput.val() : 1;
         var fields = {};
         fields['product_id'] = pid;
-        fields['quantity'] = prodQty;
+        fields['quantity'] = parseInt(prodQty);
         fields = jQuery.extend(fields, this.collectData(false));
         return fields;
     },
     handlePluploadInit: function handlePluploadInit(uploader) {
-        var cpoObj = window.UniCpo;
-        var list = uploader.settings.listId;
+        
+/* Premium Code Stripped by Freemius */
 
-        jQuery(document).on('click', '#' + list + ' .uni-cpo-file-upload-files-item-upload', function (e) {
-            e.preventDefault();
-            uploader.start();
-        });
-
-        jQuery(document).on('click', '#' + list + ' .uni-cpo-file-upload-files-item-remove', function (e) {
-            e.preventDefault();
-            var $el = jQuery(e.target);
-            var fileId = $el.data('file-id');
-            var attach_id = $el.data('attach_id');
-            var $li = $el.closest('li');
-            var $list = $el.closest('.js-uni-cpo-file-upload-files');
-            var $option = jQuery('#' + uploader.settings.multipart_params.slug + '-field');
-            window.UniCpo.parsleyRemoveError($option);
-
-            if (typeof attach_id !== 'undefined') {
-                var data = {
-                    action: 'uni_cpo_remove_file',
-                    security: unicpo.security,
-                    attach_id: attach_id
-                };
-
-                jQuery.ajax({
-                    url: unicpo.ajax_url,
-                    data: data,
-                    dataType: 'json',
-                    method: 'POST',
-                    beforeSend: function beforeSend() {
-                        cpoObj._blockForm($list);
-                    },
-                    error: function error() {
-                        cpoObj._unblockForm($list, 'error');
-                    },
-                    success: function success(r) {
-                        if (r.success) {
-                            cpoObj._unblockForm($list, 'success');
-                            uploader.removeFile(fileId);
-                            $li.remove();
-                            $option.val('').trigger('change');
-                        } else {
-                            cpoObj._unblockForm(form, 'error');
-                        }
-                    }
-                });
-            } else {
-                var files = uploader.files.filter(function (o) {
-                    return o.id === fileId;
-                });
-                if (files.length) {
-                    uploader.removeFile(files[0]);
-                }
-                $li.remove();
-                $option.trigger('change');
-            }
-        });
     },
     handlePluploadError: function handlePluploadError(uploader, error) {
-        var $option = jQuery('#' + uploader.settings.multipart_params.slug + '-field');
-        window.UniCpo.parsleyRemoveError($option);
+        
+/* Premium Code Stripped by Freemius */
 
-        if (-601 === error.code) {
-            $option.parsley().addError('file-type', { message: 'This type of files cannot be uploaded.' });
-        } else if (-600 === error.code) {
-            $option.parsley().addError('file-size', { message: 'The file is too big' });
-        } else {
-            $option.parsley().addError('file-custom', { message: error.message });
-        }
-        window.UniCpo.position($option, 0);
     },
     handlePluploadFileFiltered: function handlePluploadFileFiltered(uploader, file) {},
     handlePluploadFilesAdded: function handlePluploadFilesAdded(uploader, files) {
-        var $wrap = jQuery('#' + uploader.settings.listId).closest('.uni-module');
-        var el = $wrap.find('input[type="hidden"]');
-        window.UniCpo.parsleyRemoveError(el);
+        
+/* Premium Code Stripped by Freemius */
 
-        if ('single' === uploader.settings.uploadMode && uploader.files.length > 1) {
-            el.parsley().addError('file-limit', { message: 'Cannot send more than 1 file.' });
-            window.UniCpo.position(el, 0);
-            uploader.removeFile(files[0]);
-            return false;
-        }
-
-        for (var i = 0; i < files.length; i++) {
-            var item = '<li class="uni-cpo-file-upload-files-item">' + '<i class="uni-cpo-file-upload-files-item-icon"></i>' + '<span class="uni-cpo-file-upload-files-item-title">' + files[i].name + '</span>' + '<span class="uni-cpo-file-upload-files-item-uploaded"></span>' + '<button class="uni-cpo-file-upload-files-item-upload"></button>' + '<button data-file-id="' + files[i].id + '" class="uni-cpo-file-upload-files-item-remove"></button>' + '<span class="uni-cpo-file-upload-files-item-progress"><span></span></span>' + '</li>';
-            jQuery('#' + uploader.settings.listId).append(item);
-        }
-        el.trigger('change');
     },
     handlePluploadBeforeUpload: function handlePluploadBeforeUpload(uploader, file) {
-        var list = uploader.settings.listId;
-        uploader.settings.multipart_params.file_name = file.name;
-        jQuery('#' + list + ' .uni-cpo-file-upload-files-item-upload').attr('disabled', true);
-        jQuery('#' + list + ' .uni-cpo-file-upload-files-item-remove').attr('disabled', true);
+        
+/* Premium Code Stripped by Freemius */
+
     },
     handlePluploadUploadProgress: function handlePluploadUploadProgress(uploader, file) {
-        var list = uploader.settings.listId;
-        jQuery('#' + list + ' .uni-cpo-file-upload-files-item-progress span').css({ 'width': file.percent + '%' });
+        
+/* Premium Code Stripped by Freemius */
+
     },
     handlePluploadChunkUploaded: function handlePluploadChunkUploaded(uploader, file, r) {
         //console.log(file);
         //console.log(r);
     },
     handlePluploadFileUploaded: function handlePluploadFileUploaded(uploader, file, r) {
-        var id = uploader.settings.listId;
-        var $option = jQuery('#' + uploader.settings.multipart_params.slug + '-field');
-        var resp = JSON.parse(r.response.replace(/\\/g, ''));
-        window.UniCpo.parsleyRemoveError($option);
+        
+/* Premium Code Stripped by Freemius */
 
-        if (resp.success) {
-            var _resp$data$file = resp.data.file,
-                attach_id = _resp$data$file.id,
-                width = _resp$data$file.width,
-                height = _resp$data$file.height;
-
-            jQuery('#' + id + ' .uni-cpo-file-upload-files-item-progress').remove();
-            jQuery('#' + id + ' .uni-cpo-file-upload-files-item-upload').remove();
-            jQuery('#' + id + ' .uni-cpo-file-upload-files-item-uploaded').show();
-            jQuery('#' + id + ' .uni-cpo-file-upload-files-item-remove').attr('disabled', false);
-            jQuery('[data-file-id="' + file.id + '"]').data({
-                attach_id: attach_id
-            });
-            $option.val(attach_id);
-            $option.data({
-                width: width,
-                height: height
-            });
-            //uploader.removeFile(file); // remove from queue
-            $option.trigger('change');
-        } else {
-            $option.parsley().addError('file-upload', { message: resp.data.message });
-            window.UniCpo.position($option, 0);
-        }
     },
     initRangeSlider: function initRangeSlider() {
-        var cpoObj = this;
-        var sliders = jQuery('.js-uni-cpo-field-range_slider');
+        
+/* Premium Code Stripped by Freemius */
 
-        sliders.each(function () {
-            var $el = jQuery(this);
-            var options = {
-                force_edges: true,
-                input_values_separator: '-',
-                onFinish: function onFinish() {
-                    if (cpoObj._ajax_sent) {
-                        return false;
-                    }
-                    if (!cpoObj.calc || cpoObj.calc && !cpoObj.calcBtn) {
-                        cpoObj.processFormData();
-                    } else if (cpoObj.calc && cpoObj.calcBtn) {
-                        cpoObj.setBtnState(true);
-                        cpoObj.collectData(true);
-                    }
-                }
-            };
-            $el.ionRangeSlider(options);
-        });
     },
     initTooltip: function initTooltip() {
         jQuery('.uni-builderius-container').tooltip({
@@ -802,7 +555,7 @@ UniCpo = {
         }
 
         // Triggers an event - on form data process has been started
-        jQuery(document.body).trigger('cpo_form_data_process_start', [cpoObj]);
+        jQuery(document.body).trigger('uni_cpo_form_data_process_start', [cpoObj]);
 
         // validates
         cpoObj.productFormEl.parsley({ excluded: '[disabled], .qty, .uni-cpo-excluded-field' }).validate();
@@ -819,7 +572,7 @@ UniCpo = {
         }
 
         if (formValid && fields['product_id']) {
-            jQuery(document.body).trigger('cpo_options_data_after_validate_event', [fields]);
+            jQuery(document.body).trigger('uni_cpo_options_data_after_validate_event', [fields]);
             if (!cpoObj.calc) {
                 cpoObj.setBtnState(false);
             }
@@ -831,50 +584,13 @@ UniCpo = {
             }
         } else {
             cpoObj.setBtnState(true);
-            jQuery(document.body).trigger('cpo_options_data_not_valid_event', [fields]);
+            jQuery(document.body).trigger('uni_cpo_options_data_not_valid_event', [fields]);
         }
     },
     replaceMainImageData: function replaceMainImageData(data) {
-        var $a = this.mainImageEl.find('a');
-        var $img = $a.find('img');
-        var $zoom = $a.next('img.zoomImg').length > 0 ? $a.next('img.zoomImg') : '';
+        
+/* Premium Code Stripped by Freemius */
 
-        var imgId = data.imgId,
-            imgFullUri = data.imgFullUri,
-            imgTitle = data.imgTitle,
-            imgAlt = data.imgAlt,
-            imgUri = data.imgUri,
-            imgSrcset = data.imgSrcset,
-            imgSizes = data.imgSizes,
-            imgSrc = data.imgSrc,
-            imgLarge_image = data.imgLarge_image,
-            imgLarge_image_width = data.imgLarge_image_width,
-            imgLarge_image_height = data.imgLarge_image_height;
-
-
-        $img.parent().attr('href', imgFullUri);
-        $img.parent().attr('title', imgTitle);
-
-        $img.attr('title', imgTitle);
-        $img.attr('alt', imgAlt);
-        $img.attr('src', imgUri);
-        $img.attr('data-src', imgSrc);
-        $img.attr('data-large_image', imgLarge_image);
-        $img.attr('data-large_image_width', imgLarge_image_width);
-        $img.attr('data-large_image_height', imgLarge_image_height);
-        $img.attr('srcset', imgSrcset);
-        $img.attr('sizes', imgSizes);
-
-        if ($zoom) {
-            $zoom.attr('src', imgFullUri);
-        }
-
-        this.showFirstThumbOnImageChange();
-
-        this.productFormEl.find('.js-cpo-product-image').val(imgId);
-
-        // Triggers an event
-        jQuery(document.body).trigger('cpo_options_product_image_replaced_event', [data, $img]);
     },
     parsleyRemoveError: function parsleyRemoveError(el) {
         el.parsley().removeError('file-limit');
@@ -885,21 +601,20 @@ UniCpo = {
     },
     setBtnState: function setBtnState(state) {
         this.addToCartBtnEl.prop('disabled', state);
-        jQuery(document.body).trigger('cpo_set_btn_state_event', [state]);
+        jQuery(document.body).trigger('uni_cpo_set_btn_state_event', [state]);
     },
     setPriceTo: function setPriceTo(data) {
-        this.priceTagEl.html(data);
+        this.priceTagEl.html(data).show();
         var cloned = data;
         if ((typeof data === 'undefined' ? 'undefined' : _typeof(data)) === 'object') {
             cloned = data.clone();
         }
-        jQuery(document.body).trigger('cpo_set_price_event', [cloned]);
+        jQuery(document.body).trigger('uni_cpo_set_price_event', [cloned]);
     },
     showFirstThumbOnImageChange: function showFirstThumbOnImageChange() {
-        var slider_data = jQuery('.woocommerce-product-gallery').data('flexslider');
-        if (typeof slider_data !== 'undefined') {
-            slider_data.flexslider(0);
-        }
+        
+/* Premium Code Stripped by Freemius */
+
     },
     template: _.memoize(function (id) {
         var compiled = void 0;

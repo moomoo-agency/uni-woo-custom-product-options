@@ -76,11 +76,13 @@
 .uni-cpo-file-upload-choose-btn i {margin-right: 6px;}
 
 .uni-cpo-file-upload-files {list-style: none;margin: 0!important;padding: 0!important;}
-.uni-cpo-file-upload-files-item {position: relative;height: 26px; padding: 0 64px 0 28px;margin-bottom: 4px;}
-.uni-cpo-file-upload-files-item:last-child {margin-bottom: 0;}
+.uni-cpo-file-upload-files-item {position: relative;height: 26px; padding: 0 64px 0 28px;margin: 0 0 4px 0!important;}
+.uni-cpo-file-upload-files-item:last-child {margin-bottom: 0!important;}
 .uni-cpo-file-upload-files-item-icon {position: absolute;left: 0;top: 0;display: block;width: 20px;height: 26px;background: url(../images/sprite.svg) no-repeat -25px -310px transparent;}
 .uni-cpo-file-upload-files-item-title {display: block;width: 100%;min-width: 100px;line-height: 26px; font-size: 14px;text-overflow: ellipsis;overflow:hidden;white-space:nowrap;}
-.uni-cpo-file-upload-files-item-uploaded, .uni-cpo-file-upload-files-item-upload, .uni-cpo-file-upload-files-item-remove {position: absolute;right: 24px;top: 1px;width: 24px!important;height: 24px!important;border: 0!important;padding: 0!important;margin: 0!important;background: url(../images/sprite.svg) no-repeat 0 -335px transparent!important;outline: 0!important;}
+.uni-cpo-file-upload-files-item-uploaded,
+.uni-cpo-file-upload-files-item-upload,
+.uni-cpo-file-upload-files-item-remove {position: absolute;right: 24px;top: 1px;width: 24px!important;height: 24px!important;min-height: 24px!important; border: 0!important;padding: 0!important;margin: 0!important;background: url(../images/sprite.svg) no-repeat 0 -335px transparent!important;outline: 0!important;}
 .uni-cpo-file-upload-files-item-remove {right: 0;background-position: 0 -310px!important;}
 .uni-cpo-file-upload-files-item-uploaded {display: none; background-position: -50px -310px!important;}
 

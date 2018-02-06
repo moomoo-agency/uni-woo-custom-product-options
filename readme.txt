@@ -84,6 +84,21 @@ A: We wouldn't recommend to do this yet. First, this version is so called 'lite'
 
 == Changelog ==
 
+= 4.0.7-rc1 =
+* Added 'min date' and 'max date' settings for Date picker option
+* Added 'custom values' setting for Range Slider option
+* Added 'font' setting for Select option
+* Added cart item edit 'full' mode (PRO)
+* Added 'other variables' are now can be used in Dynamic Notice
+* Improved File upload: a file will be uploaded automatically after adding
+* Improved: WC price is now hidden on init
+* Improved: option's values are now preserved after page reload during adding to cart
+* Changed: JS event names are prefixed with 'uni_'
+* Fixed saving special tags in Dynamic Notice option
+* Fixed saving 'img' tag in tooltips
+* Fixed displaying/hiding 'order disabled' custom message
+* Fixed fields conditional logic when using NOVs
+
 = 4.0.6 =
 * Fixed validation for Text Input in 'decimal' mode
 * Fixed a bug when it was not possible to set 'one letter' slug for suboptions
