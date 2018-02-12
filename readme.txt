@@ -2,10 +2,10 @@
 Contributors: moomooagency, mrpsiho, andriimatenka, freemius
 Tags: custom options, extra options, product visual builder, woocommerce plugins, price calculation, maths formula, conditional logic, wholesale
 Requires at least: 4.8
-Tested up to: 4.9
+Tested up to: 4.9.4
 Requires PHP: 7.0
 WC requires at least: 3.2.0
-WC tested up to: 3.2.6
+WC tested up to: 3.3.1
 Stable tag: trunk
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -84,7 +84,11 @@ A: We wouldn't recommend to do this yet. First, this version is so called 'lite'
 
 == Changelog ==
 
-= 4.0.7-rc1 =
+= 4.0.8 =
+* Fixed a bug when adding product to cart
+* Added support for WC 3.3+
+
+= 4.0.7 =
 * Added 'min date' and 'max date' settings for Date picker option
 * Added 'custom values' setting for Range Slider option
 * Added 'font' setting for Select option

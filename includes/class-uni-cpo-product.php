@@ -116,9 +116,9 @@ final class Uni_Cpo_Product
      */
     public static function display_options()
     {
-        do_action( 'cpo_before_render_content' );
+        do_action( 'uni_cpo_before_render_content' );
         echo  '<div id="' . esc_attr( UniCpo()->get_builder_id() ) . '" class="uni-builderius-container">' ;
-        do_action( 'cpo_before_render_form_fields' );
+        do_action( 'uni_cpo_before_render_form_fields' );
         
         if ( !self::is_builder_active() && self::is_single_product() ) {
             $product_data = self::get_product_data();
@@ -126,7 +126,7 @@ final class Uni_Cpo_Product
             $cpo_cart_item_id = current_time( 'timestamp' );
             
             if ( 'on' === $product_data['settings_data']['cpo_enable'] && !empty($product_data['content']) ) {
-                $post_data = array();
+                $post_data = apply_filters( 'uni_cpo_post_data_before_options', array(), $product_data['id'] );
                 
                 if ( isset( $_POST['cpo_product_id'] ) ) {
                     $product_data['post_thumb_id'] = $_POST['cpo_product_image'];
@@ -161,6 +161,7 @@ final class Uni_Cpo_Product
                 }
                 echo  '<input type="hidden" class="js-cpo-product-image" name="cpo_product_image" value="' . esc_attr( $product_data['post_thumb_id'] ) . '" />' ;
                 echo  '<input type="hidden" class="js-cpo-cart-item" name="cpo_cart_item_id" value="' . esc_attr( $cpo_cart_item_id ) . '" />' ;
+                do_action( 'uni_cpo_before_render_builder_modules' );
                 foreach ( $product_data['content'] as $row_key => $row_data ) {
                     $row_class = UniCpo()->module_factory::get_classname_from_module_type( $row_data['type'] );
                     call_user_func( array( $row_class, 'template' ), $row_data, $post_data );
@@ -169,9 +170,9 @@ final class Uni_Cpo_Product
         
         }
         
-        do_action( 'cpo_after_render_form_fields' );
+        do_action( 'uni_cpo_after_render_form_fields' );
         echo  '</div>' ;
-        do_action( 'cpo_after_render_content' );
+        do_action( 'uni_cpo_after_render_content' );
     }
     
     /**

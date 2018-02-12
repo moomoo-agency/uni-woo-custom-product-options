@@ -104,8 +104,8 @@ function uni_cpo_order_formatted_meta_data( $formatted_meta, $item ) {
 	}
 }
 
-add_action( 'admin_footer', 'my_admin_footer_function' );
-function my_admin_footer_function() {
+add_action( 'admin_footer', 'uni_cpo_order_edit_options_modal' );
+function uni_cpo_order_edit_options_modal() {
 	$screen = get_current_screen();
 	if ( 'shop_order' === $screen->post_type ) {
 		?>

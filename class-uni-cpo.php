@@ -13,7 +13,7 @@ final class Uni_Cpo
      *
      * @var string
      */
-    public  $version = '4.0.7-rc1' ;
+    public  $version = '4.0.8' ;
     /**
      * The single instance of the class.
      *
@@ -51,7 +51,7 @@ final class Uni_Cpo
      */
     public function __clone()
     {
-        _doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'unicpo' ), '1.0.0' );
+        _doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'uni-cpo' ), '1.0.0' );
     }
     
     /**
@@ -62,7 +62,7 @@ final class Uni_Cpo
      */
     public function __wakeup()
     {
-        _doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'unicpo' ), '1.0.0' );
+        _doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'uni-cpo' ), '1.0.0' );
     }
     
     /**

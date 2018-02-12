@@ -145,14 +145,11 @@ UniCpo = {
                     cpoObj.setPriceTo(unicpo.price_vars.price);
                     cpoObj.setBtnState(false);
 
-                    if (r.data.extra_data.order_product === 'disabled') {
+                    if (typeof r.data.extra_data !== 'undefined' && typeof r.data.extra_data.order_product !== 'undefined' && r.data.extra_data.order_product === 'disabled') {
                         cpoObj.orderingDsblMsgEl.slideDown(300);
                     } else {
                         cpoObj.orderingDsblMsgEl.hide();
                     }
-
-                    // Triggers an event - on successful ajax request
-                    jQuery(document.body).trigger('uni_cpo_options_data_ajax_success', [data.data, r.data]);
 
                     if (typeof r.data.fragments !== 'undefined') {
                         // Redirect to cart option
@@ -165,6 +162,9 @@ UniCpo = {
 
                         // Trigger event so themes can refresh other areas.
                         jQuery(document.body).trigger('uni_cpo_added_to_cart', [r.fragments, r.cart_hash]);
+                    } else {
+                        // Triggers an event - on successful ajax request
+                        jQuery(document.body).trigger('uni_cpo_options_data_ajax_success', [data.data, r.data]);
                     }
                 } else {
                     cpoObj._unblockForm(form, 'error');

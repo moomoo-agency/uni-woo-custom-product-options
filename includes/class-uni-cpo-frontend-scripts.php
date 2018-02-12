@@ -749,7 +749,7 @@ class Uni_Cpo_Frontend_Scripts {
 					'total_tax_rev'     => $zero_price,
 					'total_suffix'      => '',
 				),
-				'extra_data'              => array( 'order_product' => 'enabled' ),
+				'extra_data'              => apply_filters( 'uni_cpo_extra_data', array( 'order_product' => 'enabled' ), $product_data )
 			);
 			wp_localize_script( 'uni-cpo-frontend', 'unicpo', $uni_cpo_cfg );
 
