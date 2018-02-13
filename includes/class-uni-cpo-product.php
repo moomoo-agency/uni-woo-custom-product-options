@@ -146,6 +146,11 @@ final class Uni_Cpo_Product
                         $cpo_cart_item_id = $cart_item_key;
                     }
                 
+                } elseif ( !empty(get_query_var( 'promo' )) && !empty(get_query_var( 'variation' )) ) {
+                    $endpoints = maybe_unserialize( get_post_meta( $product_data['id'], '_cpo_urls_endpoints', true ) );
+                    if ( !empty($endpoints) && is_array( $endpoints ) && isset( $endpoints[get_query_var( 'variation' )] ) ) {
+                        $post_data = $endpoints[get_query_var( 'variation' )];
+                    }
                 }
                 
                 
@@ -166,6 +171,7 @@ final class Uni_Cpo_Product
                     $row_class = UniCpo()->module_factory::get_classname_from_module_type( $row_data['type'] );
                     call_user_func( array( $row_class, 'template' ), $row_data, $post_data );
                 }
+                do_action( 'uni_cpo_after_render_builder_modules' );
             }
         
         }
@@ -302,17 +308,19 @@ final class Uni_Cpo_Product
      */
     public static function is_builder_active()
     {
+        $product_data = self::get_product_data();
+        $is_active = false;
         
         if ( self::is_post_editable() && !is_admin() && !post_password_required() ) {
             if ( isset( $_GET['cpo_options'] ) ) {
-                return true;
+                $is_active = true;
             }
             if ( '/?cpo_options' === $_SERVER['REQUEST_URI'] ) {
-                return true;
+                $is_active = true;
             }
         }
         
-        return false;
+        return apply_filters( 'uni_cpo_is_builder_active', $is_active, $product_data );
     }
     
     /**

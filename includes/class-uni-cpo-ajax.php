@@ -90,7 +90,7 @@ class Uni_Cpo_Ajax
      */
     public static function add_ajax_events()
     {
-        $aAjaxEvents = array(
+        $ajax_events = array(
             'uni_cpo_save_content'               => false,
             'uni_cpo_delete_content'             => false,
             'uni_cpo_save_model'                 => false,
@@ -117,10 +117,10 @@ class Uni_Cpo_Ajax
             'uni_cpo_product_settings_export'    => false,
             'uni_cpo_product_settings_import'    => false,
         );
-        foreach ( $aAjaxEvents as $sAjaxEvent => $bPriv ) {
-            add_action( 'wp_ajax_' . $sAjaxEvent, array( __CLASS__, $sAjaxEvent ) );
-            if ( $bPriv ) {
-                add_action( 'wp_ajax_nopriv_' . $sAjaxEvent, array( __CLASS__, $sAjaxEvent ) );
+        foreach ( $ajax_events as $ajax_event => $priv ) {
+            add_action( 'wp_ajax_' . $ajax_event, array( __CLASS__, $ajax_event ) );
+            if ( $priv ) {
+                add_action( 'wp_ajax_nopriv_' . $ajax_event, array( __CLASS__, $ajax_event ) );
             }
         }
     }

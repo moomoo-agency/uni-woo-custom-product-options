@@ -114,7 +114,10 @@ UniCpo = {
             method: 'POST',
             beforeSend: function beforeSend() {
                 cpoObj._blockForm(form);
-                cpoObj.setPriceTo(cpoObj.priceCalculateEl);
+
+                if (cpoObj.calc) {
+                    cpoObj.setPriceTo(cpoObj.priceCalculateEl);
+                }
                 if (cpoObj.addToCartAjax) {
                     $wc.find('.woocommerce-message').slideToggle(500, function () {
                         jQuery(this).remove();
@@ -142,8 +145,10 @@ UniCpo = {
                     jQuery.extend(unicpo.price_vars, r.data.price_vars);
                     jQuery.extend(unicpo.extra_data, r.data.extra_data);
 
-                    cpoObj.setPriceTo(unicpo.price_vars.price);
-                    cpoObj.setBtnState(false);
+                    if (cpoObj.calc) {
+                        cpoObj.setPriceTo(unicpo.price_vars.price);
+                        cpoObj.setBtnState(false);
+                    }
 
                     if (typeof r.data.extra_data !== 'undefined' && typeof r.data.extra_data.order_product !== 'undefined' && r.data.extra_data.order_product === 'disabled') {
                         cpoObj.orderingDsblMsgEl.slideDown(300);
@@ -168,7 +173,9 @@ UniCpo = {
                     }
                 } else {
                     cpoObj._unblockForm(form, 'error');
-                    cpoObj.setPriceTo(cpoObj.priceZeroEl);
+                    if (cpoObj.calc) {
+                        cpoObj.setPriceTo(cpoObj.priceZeroEl);
+                    }
 
                     if (r.product_url) {
                         window.location = response.product_url;

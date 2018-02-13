@@ -864,7 +864,7 @@ function uni_cpo_add_to_cart_button( $link, $product )
 }
 
 //
-add_action( 'cpo_after_render_content', 'uni_cpo_calculate_button_html', 10 );
+add_action( 'uni_cpo_after_render_content', 'uni_cpo_calculate_button_html', 10 );
 function uni_cpo_calculate_button_html()
 {
     global  $post ;
