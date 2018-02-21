@@ -122,7 +122,6 @@ final class Uni_Cpo_Product
         
         if ( !self::is_builder_active() && self::is_single_product() ) {
             $product_data = self::get_product_data();
-            $plugin_settings = UniCpo()->get_settings();
             $cpo_cart_item_id = current_time( 'timestamp' );
             
             if ( 'on' === $product_data['settings_data']['cpo_enable'] && !empty($product_data['content']) ) {
@@ -135,17 +134,13 @@ final class Uni_Cpo_Product
                     unset( $_POST['add-to-cart'] );
                     unset( $_POST['quantity'] );
                     $post_data = $_POST;
-                } elseif ( isset( $_GET['cpo_cart_item_edit'] ) && get_transient( '_cpo_cart_item_edit_' . $_GET['cpo_cart_item_edit'] ) ) {
+                } elseif ( self::is_cart_item_editing( $product_data['id'] ) ) {
                     $transient_data = get_transient( '_cpo_cart_item_edit_' . $_GET['cpo_cart_item_edit'] );
                     $cart_item_key = $transient_data['key'];
-                    
-                    if ( WC()->cart->get_cart_contents() && $transient_data['product_id'] === $product_data['id'] ) {
-                        $cart_content = WC()->cart->get_cart_contents();
-                        $edited_item = $cart_content[$cart_item_key];
-                        $post_data = $edited_item['_cpo_data'];
-                        $cpo_cart_item_id = $cart_item_key;
-                    }
-                
+                    $cart_content = WC()->cart->get_cart_contents();
+                    $edited_item = $cart_content[$cart_item_key];
+                    $post_data = $edited_item['_cpo_data'];
+                    $cpo_cart_item_id = $cart_item_key;
                 } elseif ( !empty(get_query_var( 'promo' )) && !empty(get_query_var( 'variation' )) ) {
                     $endpoints = maybe_unserialize( get_post_meta( $product_data['id'], '_cpo_urls_endpoints', true ) );
                     if ( !empty($endpoints) && is_array( $endpoints ) && isset( $endpoints[get_query_var( 'variation' )] ) ) {
@@ -161,17 +156,17 @@ final class Uni_Cpo_Product
                 }
                 
                 echo  '<input type="hidden" class="js-cpo-pid" name="cpo_product_id" value="' . esc_attr( $product_data['id'] ) . '" />' ;
-                if ( 'on' !== $plugin_settings['ajax_add_to_cart'] ) {
+                if ( !self::is_ajax_add_to_cart( $product_data['id'] ) ) {
                     echo  '<input type="hidden" name="add-to-cart" value="' . esc_attr( $product_data['id'] ) . '" />' ;
                 }
                 echo  '<input type="hidden" class="js-cpo-product-image" name="cpo_product_image" value="' . esc_attr( $product_data['post_thumb_id'] ) . '" />' ;
                 echo  '<input type="hidden" class="js-cpo-cart-item" name="cpo_cart_item_id" value="' . esc_attr( $cpo_cart_item_id ) . '" />' ;
-                do_action( 'uni_cpo_before_render_builder_modules' );
+                do_action( 'uni_cpo_before_render_builder_modules', $product_data );
                 foreach ( $product_data['content'] as $row_key => $row_data ) {
                     $row_class = UniCpo()->module_factory::get_classname_from_module_type( $row_data['type'] );
                     call_user_func( array( $row_class, 'template' ), $row_data, $post_data );
                 }
-                do_action( 'uni_cpo_after_render_builder_modules' );
+                do_action( 'uni_cpo_after_render_builder_modules', $product_data );
             }
         
         }
@@ -277,23 +272,35 @@ final class Uni_Cpo_Product
     }
     
     /**
-     * Checks whether the post can be edited
+     * Checks whether the product should be added via ajax
      *
-     * @since 4.0.0
+     * @since 4.0.10
      *
      * @return bool
      */
-    public static function is_post_editable()
+    public static function is_ajax_add_to_cart( $product_id )
     {
-        global  $wp_the_query ;
+        $plugin_settings = UniCpo()->get_settings();
+        return ( $plugin_settings['ajax_add_to_cart'] || self::is_cart_item_editing( $product_id ) ? true : false );
+    }
+    
+    /**
+     * Checks whether this is cart item editing
+     *
+     * @since 4.0.10
+     *
+     * @return bool
+     */
+    public static function is_cart_item_editing( $product_id )
+    {
+        $product_data = self::get_product_data_by_id( $product_id );
         
-        if ( is_singular( 'product' ) && isset( $wp_the_query->post ) ) {
-            $product = wc_get_product( $wp_the_query->post );
-            $user_can = current_user_can( 'edit_post', $product->get_id() );
-            $product_type = $product->get_type();
-            if ( $user_can && 'simple' === $product_type ) {
+        if ( isset( $_GET['cpo_cart_item_edit'] ) && get_transient( '_cpo_cart_item_edit_' . $_GET['cpo_cart_item_edit'] ) ) {
+            $transient_data = get_transient( '_cpo_cart_item_edit_' . $_GET['cpo_cart_item_edit'] );
+            if ( WC()->cart->get_cart_contents() && $transient_data['product_id'] === $product_data['id'] ) {
                 return true;
             }
+            return false;
         }
         
         return false;
@@ -321,6 +328,29 @@ final class Uni_Cpo_Product
         }
         
         return apply_filters( 'uni_cpo_is_builder_active', $is_active, $product_data );
+    }
+    
+    /**
+     * Checks whether the post can be edited
+     *
+     * @since 4.0.0
+     *
+     * @return bool
+     */
+    public static function is_post_editable()
+    {
+        global  $wp_the_query ;
+        
+        if ( is_singular( 'product' ) && isset( $wp_the_query->post ) ) {
+            $product = wc_get_product( $wp_the_query->post );
+            $user_can = current_user_can( 'edit_post', $product->get_id() );
+            $product_type = $product->get_type();
+            if ( $user_can && 'simple' === $product_type ) {
+                return true;
+            }
+        }
+        
+        return false;
     }
     
     /**

@@ -45,7 +45,7 @@ fieldset {margin:0;padding:0;border:none;}
 
 /* Font */
 #builderius-content, .uni-builder-panel, .uni-modal-wrapper, .uni-modal-wrapper button, .uni-modal-wrapper input, .uni-modal-wrapper textarea, .uni-modal-wrapper select, .uni-fetch-wrap .uni-btn-1, .uni-confirm-action-wrapper,
-.uni-modal-row .wp-picker-container input.wp-color-picker[type="text"], .uni-modal-formula h3, .uni-modal-conditional-logic h3, .uni-form-row h3, .ui-tooltip {line-height: 22px;color: #000000;font-size: 14px;font-family: 'Open Sans', sans-serif!important;}
+.uni-modal-row .wp-picker-container input.wp-color-picker[type="text"], .uni-modal-formula h3, .uni-modal-conditional-logic h3, .uni-form-row h3, .ui-tooltip {line-height: 22px;color: #000000;font-size: 14px;font-family: 'Open Sans', sans-serif!important;letter-spacing: 0px!important;}
 
 /* Sprite */
 .uni-matrix-import input[type="file"] + label, .uni-import-file-wrap input[type="file"] + label, .uni-cpo-tooltip-warning, .uni-cpo-tooltip,
@@ -441,7 +441,8 @@ fieldset {margin:0;padding:0;border:none;}
 
 div[data-group="status"] .uni-settings-group-title {margin-bottom: 15px;}
 div[data-group="status"] .uni-modal-row {padding: 10px 0; margin-bottom: 10px;background: repeating-linear-gradient(-45deg,#f4f5f9,#f4f5f9 10px,#ffffff 10px,#ffffff 20px);}
-.uni-btn-1.uni-unsync-module-btn {display: inline-block;vertical-align: top!important;padding: 0 12px!important;margin-bottom: 0!important; background-color: #f75555!important;}
+.uni-btn-1.uni-unsync-module-btn {display: inline-block;vertical-align: top!important;padding: 0 12px!important;margin-bottom: 0!important; background-color: #f75555!important;color: #fff!important;}
+.uni-btn-1.uni-unsync-module-btn:hover {background-color: #f75555!important;color: #fff!important;}
 
 .uni-settings-group-title {height: 1px;margin: 25px 0; background-color: #e1e4ee; font-size: 14px;font-weight: 600;}
 .uni-settings-group-title span {position: relative;top: -11px; height: 20px; padding-right: 10px;background-color: #fff;}
@@ -577,8 +578,8 @@ body input[type="number"].parsley-success {border-color: #3bc5b6!important;color
 .uni-fetch-wrap select {width: 366px;}
 .uni-fetch-wrap.uni-active select {float: left; width: 259px;margin-right: 15px;}
 .uni-fetch-wrap .uni-btn-1 {display: none;float: right!important; height: 36px!important;margin: 0!important;}
-.uni-fetch-data {float: left; width: 20px;height: 22px;box-shadow: none; border: 0;padding: 0;margin: 7px 14px 0 0; background: url(../images/sprite.svg) no-repeat -70px -170px transparent!important; border-radius: 0;vertical-align: top;}
-.uni-fetch-data:hover {background: url(../images/sprite.svg) no-repeat -70px -170px transparent!important;}
+.uni-modal-wrapper .uni-fetch-wrap .uni-fetch-data {float: left; width: 20px!important;height: 22px!important;box-shadow: none; border: 0!important;padding: 0!important;margin: 7px 14px 0 0!important; background: url(../images/sprite.svg) no-repeat -70px -170px transparent!important; border-radius: 0;vertical-align: top;}
+.uni-modal-wrapper .uni-fetch-wrap .uni-fetch-data:hover {background: url(../images/sprite.svg) no-repeat -70px -170px transparent!important;}
 
 .uni-save-to-db-label {position: relative;float: right;font-weight: normal;line-height: 36px;margin: 0 10px 0 0;}
 .uni-save-to-db-label .uni-cpo-tooltip-warning {left: auto;right: 6px;}
@@ -662,7 +663,7 @@ div[data-group="border"] .uni-modal-row:not(.uni-colour-picker-default) .wp-pick
 .uni-modal-tabs > ul.ui-tabs-nav > li.ui-tabs-active a {background-color: #fff!important; color: #4b69d9!important;}
 .uni-modal-tabs > ul.ui-tabs-nav > li.ui-tabs-active a:after {display: none!important;}
 .uni-modal-content-wrap {padding: 0 25px 0!important;}
-.uni-tab-content {padding: 0!important;border: 0!important; background: none!important;}
+.uni-modal-wrapper .uni-modal-tabs .uni-tab-content {padding: 0!important;border: 0!important; background: none!important;}
 
 /* Html ace editor */
 .ace_editor {height: 360px;margin-bottom: 15px;}
@@ -759,8 +760,8 @@ div[data-group="border"] .uni-modal-row:not(.uni-colour-picker-default) .wp-pick
 #uni-modal-general-settings-wrapper .uni-form-row p,
 #uni-modal-cart-discounts-wrapper .uni-form-row p,
 #uni-modal-dimensions-wrapper .uni-form-row p {line-height: 22px; margin-bottom: 20px;font-size: 13px;color: #8a8a8a;clear: both;}
-#uni-modal-general-settings-wrapper #js-modal-main-import-btn.uni-modal-main-import-btn.uni-btn-1 {float: right;}
-#uni-modal-general-settings-wrapper .uni-modal-main-export-btn, #uni-modal-cart-discounts-wrapper .uni-modal-main-export-btn {float: right;}
+#uni-modal-general-settings-wrapper #js-modal-main-import-btn.uni-modal-main-import-btn.uni-btn-1 {float: right;background-color: #3bc5b6 !important;color: #fff !important;}
+#uni-modal-general-settings-wrapper .uni-modal-main-export-btn, #uni-modal-cart-discounts-wrapper .uni-modal-main-export-btn {float: right;background-color: #3bc5b6 !important;color: #fff !important;}
 #uni-modal-general-settings-wrapper .uni-form-row input[type="text"], #uni-modal-cart-discounts-wrapper .uni-form-row input[type="text"] {width: 100%; height: 36px;padding: 0 10px!important;background-color: #fff!important; border: 1px solid #e5e5e5!important;color: #000000!important; font-size: 14px;-webkit-appearance:none;-moz-appearance: none; border-radius: 3px!important;box-shadow: none!important; -webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing: border-box;}
 #uni-modal-general-settings-wrapper .uni-form-row input[type="text"]:focus, #uni-modal-cart-discounts-wrapper .uni-form-row input[type="text"]:focus {border-color: #d7d7d7;}
 .uni-export-to-email {float: left;width: 293px!important;}
@@ -915,8 +916,8 @@ div[data-group="border"] .uni-modal-row:not(.uni-colour-picker-default) .wp-pick
 .uni-formula-conditional-rules-content-field-wrapper {position: relative;}
 .uni-formula-conditional-rules-content-field-wrapper textarea {width: 100%;height: 70px;}
 .uni-formula-conditional-rules-btn-wrap, .uni-select-option-add-wrapper {margin-bottom: 20px;}
-.uni_select_option_add, .uni_formula_conditional_rule_add, .uni_cpo_non_option_vars_option_add, .uni-matrix-generate-btn, button.uni-matrix-import-btn {display: block;float: left;width: auto!important; min-width: 105px!important;line-height: 36px;height: 36px;padding: 0 20px;margin-right: 0!important; border: 0;background-image: none!important; background-color: #3bc5b6;color: #ffffff;font-size: 15px;font-weight: bold;cursor: pointer;text-align: center;text-transform: none!important;border-radius: 3px!important;}
-button.uni-matrix-import-btn:hover, button.uni-matrix-import-btn:focus {background-color: #3bc5b6;color: #ffffff;}
+.uni_select_option_add, .uni_formula_conditional_rule_add, .uni_cpo_non_option_vars_option_add, .uni-matrix-generate-btn, button.uni-matrix-import-btn {display: block;float: left;width: auto!important; min-width: 105px!important;line-height: 36px;height: 36px;padding: 0 20px!important;margin-right: 0!important; border: 0;background-image: none!important; background-color: #3bc5b6!important;color: #ffffff!important;font-size: 15px;font-weight: bold;cursor: pointer;text-align: center;text-transform: none!important;border-radius: 3px!important;}
+button.uni-matrix-import-btn:hover, button.uni-matrix-import-btn:focus {background-color: #3bc5b6!important;color: #ffffff!important;}
 .uni-rules-remove-all {display: block;float: right;line-height: 36px;height: 36px;min-width: 105px; padding: 0 10px;background-color: #d5d5d5;color: #ffffff;font-size: 15px;font-weight: bold;cursor: pointer;text-align: center; border-radius: 3px;-webkit-transition: background-color 0.3s ease;-moz-transition: background-color 0.3s ease;-o-transition: background-color 0.3s ease;transition: background-color 0.3s ease;}
 .uni-rules-remove-all:hover {background-color: #f75555;}
 

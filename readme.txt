@@ -84,6 +84,14 @@ A: We wouldn't recommend to do this yet. First, this version is so called 'lite'
 
 == Changelog ==
 
+= 4.0.10 =
+* Fixed adding custom image (if selected) upon cart item duplication
+* Fixed updating cart item after 'full edit' instead of creating a new cart item
+* Fixed disabling 'add to cart' btn by using a special word 'disable' instead of formula
+
+= 4.0.9 =
+* Fixed a JS bug related to price calculation data that is returned from backend
+
 = 4.0.8 =
 * Fixed a bug when adding product to cart
 * Added support for WC 3.3+

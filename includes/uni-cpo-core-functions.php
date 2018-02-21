@@ -809,35 +809,6 @@ function uni_cpo_price( $price, $args = array() )
     );
 }
 
-//
-add_filter(
-    'woocommerce_get_price_html',
-    'uni_cpo_woocommerce_get_price_html',
-    10,
-    2
-);
-function uni_cpo_woocommerce_get_price_html( $price, $product )
-{
-    $product_id = intval( $product->get_id() );
-    $product_data = Uni_Cpo_Product::get_product_data_by_id( $product_id );
-    try {
-        
-        if ( 'on' === $product_data['settings_data']['cpo_enable'] && 'on' === $product_data['settings_data']['calc_enable'] && Uni_Cpo_Product::is_single_product() ) {
-            $dom = new DOMDocument();
-            $dom->loadHTML( $price, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD );
-            $spans = $dom->getElementsByTagName( 'span' );
-            $style_attr = $dom->createAttribute( 'style' );
-            $style_attr->value = 'display:none;';
-            $spans->item( 0 )->appendChild( $style_attr );
-            $price = $dom->saveHTML();
-        }
-    
-    } catch ( Exception $e ) {
-        return new WP_Error( 'cart-error', $e->getMessage() );
-    }
-    return $price;
-}
-
 // customers try to add a product to the cart from an archive page? let's check if it is possible to do!
 add_filter(
     'woocommerce_loop_add_to_cart_link',
@@ -971,11 +942,7 @@ function uni_cpo_display_price_custom_meta()
         $price = apply_filters( 'uni_cpo_display_price_meta_tag', $price, $product );
         echo  '<meta itemprop="minPrice" content="' . esc_attr( $price ) . '" itemtype="http://schema.org/PriceSpecification" />' ;
     }
-    
-    /*else {
-    		$price = wc_get_price_to_display( $product );
-    		echo '<meta itemprop="price" content="' . esc_attr( $price ) . '" itemtype="http://schema.org/Offer" />';
-    	}*/
+
 }
 
 //
@@ -1175,33 +1142,35 @@ function uni_cpo_get_item_data( $item_data, $cart_item )
                         $post_name = trim( $option->get_slug(), '{}' );
                         $display_key = uni_cpo_sanitize_label( $option->cpo_order_label() );
                         $calculate_result = $option->calculate( $filtered_form_data );
-                        foreach ( $calculate_result as $k => $v ) {
+                        if ( is_array( $calculate_result ) ) {
+                            foreach ( $calculate_result as $k => $v ) {
+                                
+                                if ( $post_name === $k ) {
+                                    // excluding special vars
+                                    
+                                    if ( is_array( $v['cart_meta'] ) ) {
+                                        $value = implode( ', ', $v['cart_meta'] );
+                                    } else {
+                                        $value = $v['cart_meta'];
+                                    }
+                                    
+                                    
+                                    if ( is_array( $v['order_meta'] ) ) {
+                                        $display_value = implode( ', ', $v['order_meta'] );
+                                    } else {
+                                        $display_value = $v['order_meta'];
+                                    }
+                                    
+                                    $item_data[] = array(
+                                        'name'    => $option->get_slug(),
+                                        'key'     => $display_key,
+                                        'value'   => $value,
+                                        'display' => $display_value,
+                                    );
+                                    break;
+                                }
                             
-                            if ( $post_name === $k ) {
-                                // excluding special vars
-                                
-                                if ( is_array( $v['cart_meta'] ) ) {
-                                    $value = implode( ', ', $v['cart_meta'] );
-                                } else {
-                                    $value = $v['cart_meta'];
-                                }
-                                
-                                
-                                if ( is_array( $v['order_meta'] ) ) {
-                                    $display_value = implode( ', ', $v['order_meta'] );
-                                } else {
-                                    $display_value = $v['order_meta'];
-                                }
-                                
-                                $item_data[] = array(
-                                    'name'    => $option->get_slug(),
-                                    'key'     => $display_key,
-                                    'value'   => $value,
-                                    'display' => $display_value,
-                                );
-                                break;
                             }
-                        
                         }
                     }
                 
@@ -1370,6 +1339,7 @@ function uni_cpo_re_add_cpo_item_data( $item_data, $raw_data )
         }
     }
     $item_data['cpo_cart_item_id'] = current_time( 'timestamp' );
+    $item_data['cpo_product_image'] = $raw_data['_cpo_product_image'];
     unset( $item_data['cpo_price'] );
     return $item_data;
 }

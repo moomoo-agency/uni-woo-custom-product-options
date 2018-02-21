@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Uni CPO 2.1.13\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-05 17:09+0200\n"
-"PO-Revision-Date: 2018-02-05 17:09+0200\n"
+"PO-Revision-Date: 2018-02-21 11:37+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -57,7 +57,7 @@ msgstr ""
 
 #: includes/admin/class-uni-cpo-plugin-settings.php:116
 msgid "Custom selector (id/class) for a product price html tag"
-msgstr ""
+msgstr "Кастомний селектор (id/class) для HTML тега що містить ціну"
 
 #: includes/admin/class-uni-cpo-plugin-settings.php:117
 msgid ""
@@ -66,11 +66,16 @@ msgid ""
 "However, the actual html markup of this block depends on the theme and you "
 "may need to define yours custom selector."
 msgstr ""
+"По замовчуванню, цей селектор ось такий “.summary.entry-summary .price > ."
+"amount, .summary.entry-summary .price ins .amount”. Однак, фактично це може "
+"бути інший тег чи з іншими класами/id і це залежить від того як "
+"запрограмована ваша тема. При потребі, вкажіть фактичний дял вашої теми "
+"селектор."
 
 #: includes/admin/class-uni-cpo-plugin-settings.php:120
 #: includes/admin/class-uni-cpo-plugin-settings.php:128
 msgid "CSS selector"
-msgstr ""
+msgstr "CSS селектор"
 
 #: includes/admin/class-uni-cpo-plugin-settings.php:124
 msgid "Custom selector (id/class) for a product image wrapper html tag"
@@ -138,10 +143,8 @@ msgid "Simple"
 msgstr ""
 
 #: includes/admin/class-uni-cpo-plugin-settings.php:163
-#, fuzzy
-#| msgid "Edit settings"
 msgid "File upload settings"
-msgstr "Ред. налаштування"
+msgstr "Налашт. файл аплоадера"
 
 #: includes/admin/class-uni-cpo-plugin-settings.php:168
 #: includes/settings/class-uni-cpo-setting-cpo-max-filesize.php:21
@@ -251,9 +254,8 @@ msgid "go to the builder"
 msgstr ""
 
 #: includes/admin/uni-cpo-admin-functions.php:117
-#, fuzzy
 msgid "Add/edit CPO options"
-msgstr "Редагувати опцію"
+msgstr "Дод./ред. CPO опції"
 
 #: includes/admin/uni-cpo-admin-functions.php:141
 #: includes/uni-cpo-core-functions.php:928
@@ -988,10 +990,8 @@ msgid "Weight conditional logic"
 msgstr "Умовна логіка ваги"
 
 #: includes/class-uni-cpo-templates.php:114
-#, fuzzy
-#| msgid "Edit settings"
 msgid "Dimensions settings"
-msgstr "Ред. налаштування"
+msgstr "Налаштування розмірів"
 
 #: includes/class-uni-cpo-templates.php:121
 msgid "Formula and conditional logic"
@@ -999,10 +999,8 @@ msgstr "Формула та умовна логіка"
 
 #: includes/class-uni-cpo-templates.php:128
 #: includes/class-uni-cpo-templates.php:652
-#, fuzzy
-#| msgid "Price with discount:"
 msgid "Cart discounts"
-msgstr "Ціна зі знижкою:"
+msgstr "Знижки у кошику"
 
 #: includes/class-uni-cpo-templates.php:135
 msgid "Save content"
@@ -1166,10 +1164,8 @@ msgid ""
 msgstr ""
 
 #: includes/class-uni-cpo-templates.php:512
-#, fuzzy
-#| msgid "Enable validation logic?"
 msgid "Enable inline editing of this product in the cart?"
-msgstr "Увімкнути умовну логіку валідації?"
+msgstr "Увімкнути інлайнове редагування товару у кошику?"
 
 #: includes/class-uni-cpo-templates.php:514
 msgid ""
@@ -1356,16 +1352,12 @@ msgid "Main formula for weight"
 msgstr ""
 
 #: includes/class-uni-cpo-templates.php:1119
-#, fuzzy
-#| msgid "Save Settings"
 msgid "Dimensions Settings"
-msgstr "Зберегти"
+msgstr "Налаштунки Розмірів"
 
 #: includes/class-uni-cpo-templates.php:1139
-#, fuzzy
-#| msgid "Weight Calculation"
 msgid "Dimensions Calculation"
-msgstr "Розрахунок ваги"
+msgstr "Розрахунок Розмірів"
 
 #: includes/class-uni-cpo-templates.php:1141
 msgid ""
@@ -1790,10 +1782,8 @@ msgid "Active Color"
 msgstr ""
 
 #: includes/settings/class-uni-cpo-setting-color-bottom.php:21
-#, fuzzy
-#| msgid "Colour (optional)"
 msgid "Color Bottom"
-msgstr "Колір (опц.)"
+msgstr "Колір низ"
 
 #: includes/settings/class-uni-cpo-setting-color-from.php:21
 msgid "From"
@@ -1804,10 +1794,8 @@ msgid "To"
 msgstr ""
 
 #: includes/settings/class-uni-cpo-setting-color-top.php:21
-#, fuzzy
-#| msgid "Colour (optional)"
 msgid "Color Top"
-msgstr "Колір (опц.)"
+msgstr "Колір верх"
 
 #: includes/settings/class-uni-cpo-setting-content-width.php:21
 msgid "Content Width"
@@ -1924,10 +1912,8 @@ msgid "Select date(s)..."
 msgstr ""
 
 #: includes/settings/class-uni-cpo-setting-cpo-enable-cartedit.php:21
-#, fuzzy
-#| msgid "Enable validation logic?"
 msgid "Enable inline editing in cart?"
-msgstr "Увімкнути умовну логіку валідації?"
+msgstr "Увімкнути інлайн редагування у кошику?"
 
 #: includes/settings/class-uni-cpo-setting-cpo-enable-cartedit.php:23
 msgid ""
@@ -2057,7 +2043,7 @@ msgstr ""
 
 #: includes/settings/class-uni-cpo-setting-cpo-max-chars.php:21
 msgid "Max. number of characters"
-msgstr ""
+msgstr "Макс. к-сть знаків"
 
 #: includes/settings/class-uni-cpo-setting-cpo-max-chars.php:23
 msgid "Add the maximum allowed number of characters for this field."
@@ -2069,7 +2055,7 @@ msgstr ""
 
 #: includes/settings/class-uni-cpo-setting-cpo-max-val.php:21
 msgid "Maximum value"
-msgstr ""
+msgstr "Макс. значення"
 
 #: includes/settings/class-uni-cpo-setting-cpo-max-val.php:23
 msgid ""
@@ -2084,7 +2070,7 @@ msgstr ""
 
 #: includes/settings/class-uni-cpo-setting-cpo-min-chars.php:21
 msgid "Min. number of characters"
-msgstr ""
+msgstr "Мін. к-сть знаків"
 
 #: includes/settings/class-uni-cpo-setting-cpo-min-chars.php:23
 msgid "Add the minimum allowed number of characters for this field."
@@ -2092,7 +2078,7 @@ msgstr ""
 
 #: includes/settings/class-uni-cpo-setting-cpo-min-val.php:21
 msgid "Minimum value"
-msgstr ""
+msgstr "Мін. значення"
 
 #: includes/settings/class-uni-cpo-setting-cpo-min-val.php:23
 msgid ""
@@ -2108,17 +2094,17 @@ msgstr ""
 #: includes/settings/class-uni-cpo-setting-cpo-mode-radio.php:36
 #: includes/settings/class-uni-cpo-setting-cpo-tooltip-type.php:23
 msgid "Classic"
-msgstr ""
+msgstr "Класичний"
 
 #: includes/settings/class-uni-cpo-setting-cpo-mode-checkbox.php:25
 #: includes/settings/class-uni-cpo-setting-cpo-mode-radio.php:26
 msgid "Colour"
-msgstr ""
+msgstr "Колір"
 
 #: includes/settings/class-uni-cpo-setting-cpo-mode-checkbox.php:26
 #: includes/settings/class-uni-cpo-setting-cpo-mode-radio.php:27
 msgid "Text"
-msgstr ""
+msgstr "Текст"
 
 #: includes/settings/class-uni-cpo-setting-cpo-mode-radio.php:22
 #: includes/settings/class-uni-cpo-setting-cpo-mode-radio.php:34
@@ -2126,10 +2112,8 @@ msgid "Type of radio input"
 msgstr ""
 
 #: includes/settings/class-uni-cpo-setting-cpo-notice-text.php:21
-#, fuzzy
-#| msgid "Some text"
 msgid "Notice text"
-msgstr "Якийсь текст"
+msgstr "Текст повідомлення"
 
 #: includes/settings/class-uni-cpo-setting-cpo-notice-text.php:23
 msgid "Custom text for this field. Simple HTML tags can be used here."
@@ -2137,7 +2121,7 @@ msgstr ""
 
 #: includes/settings/class-uni-cpo-setting-cpo-notice-text.php:50
 msgid "Available variables"
-msgstr ""
+msgstr "Доступні змінні"
 
 #: includes/settings/class-uni-cpo-setting-cpo-order-label.php:21
 msgid "Label text in cart/order meta"
@@ -2152,7 +2136,7 @@ msgstr ""
 #: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:21
 #: includes/settings/class-uni-cpo-setting-cpo-select-options.php:21
 msgid "Sub options"
-msgstr ""
+msgstr "Субопції"
 
 #: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:24
 msgid ""
@@ -2171,14 +2155,14 @@ msgstr "Додати"
 #: includes/settings/class-uni-cpo-setting-cpo-select-options.php:64
 #: includes/settings/class-uni-cpo-setting-cpo-select-options.php:165
 msgid "Make default?"
-msgstr ""
+msgstr "По замовчюванню?"
 
 #: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:78
 #: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:257
 #: includes/settings/class-uni-cpo-setting-cpo-select-options.php:78
 #: includes/settings/class-uni-cpo-setting-cpo-select-options.php:178
 msgid "Exclude?"
-msgstr ""
+msgstr "Виключити?"
 
 #: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:87
 #: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:266
@@ -2190,7 +2174,7 @@ msgstr "Лейбл"
 #: includes/settings/class-uni-cpo-setting-cpo-select-options.php:106
 #: includes/settings/class-uni-cpo-setting-cpo-select-options.php:206
 msgid "Value"
-msgstr ""
+msgstr "Значення"
 
 #: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:125
 #: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:304
@@ -2238,30 +2222,28 @@ msgid "Default value on the left"
 msgstr ""
 
 #: includes/settings/class-uni-cpo-setting-cpo-range-grid.php:21
-#, fuzzy
-#| msgid "Enable tooltip?"
 msgid "Enable grid?"
-msgstr "Увімкнути підказку?"
+msgstr "Увімкнути сітку?"
 
 #: includes/settings/class-uni-cpo-setting-cpo-range-grid.php:23
 msgid "Enables/disables displaying of the numbered grid"
-msgstr ""
+msgstr "Вмикає/вимикає відображення нумерованої сітки"
 
 #: includes/settings/class-uni-cpo-setting-cpo-range-postfix.php:21
 msgid "Postfix"
-msgstr ""
+msgstr "Постфікс"
 
 #: includes/settings/class-uni-cpo-setting-cpo-range-prefix.php:21
 msgid "Prefix"
-msgstr ""
+msgstr "Префікс"
 
 #: includes/settings/class-uni-cpo-setting-cpo-range-to.php:21
 msgid "Default to"
-msgstr ""
+msgstr "По замовч. з"
 
 #: includes/settings/class-uni-cpo-setting-cpo-range-to.php:23
 msgid "Default value on the right"
-msgstr ""
+msgstr "Значення по замовч. справа"
 
 #: includes/settings/class-uni-cpo-setting-cpo-range-type.php:21
 msgid "Type of range slider"
@@ -2313,7 +2295,7 @@ msgstr ""
 
 #: includes/settings/class-uni-cpo-setting-cpo-step-val.php:21
 msgid "Step value"
-msgstr ""
+msgstr "Крок"
 
 #: includes/settings/class-uni-cpo-setting-cpo-step-val.php:23
 msgid "Add the step value for this field. Only integer or float number."
@@ -2341,21 +2323,19 @@ msgstr ""
 
 #: includes/settings/class-uni-cpo-setting-cpo-type.php:26
 msgid "String"
-msgstr ""
+msgstr "Строка"
 
 #: includes/settings/class-uni-cpo-setting-cpo-type.php:27
 msgid "Integer"
-msgstr ""
+msgstr "Цілі числа"
 
 #: includes/settings/class-uni-cpo-setting-cpo-type.php:28
 msgid "Decimals"
-msgstr ""
+msgstr "Десяткові"
 
 #: includes/settings/class-uni-cpo-setting-cpo-upload-mode.php:21
-#, fuzzy
-#| msgid "Upload an image"
 msgid "Uploading mode"
-msgstr "Завантажити"
+msgstr "Режим завантаження"
 
 #: includes/settings/class-uni-cpo-setting-cpo-upload-mode.php:23
 msgid ""
@@ -2369,7 +2349,7 @@ msgstr ""
 
 #: includes/settings/class-uni-cpo-setting-cpo-validation-msg.php:21
 msgid "Custom validation messages"
-msgstr ""
+msgstr "Кастомний текст валідації"
 
 #: includes/settings/class-uni-cpo-setting-cpo-validation-msg.php:23
 msgid ""
@@ -2380,19 +2360,19 @@ msgstr ""
 
 #: includes/settings/class-uni-cpo-setting-cpo-validation-msg.php:46
 msgid "when is required"
-msgstr ""
+msgstr "коли обов’язкове поле"
 
 #: includes/settings/class-uni-cpo-setting-cpo-validation-msg.php:56
 msgid "when type is invalid"
-msgstr ""
+msgstr "коли не вірний тип"
 
 #: includes/settings/class-uni-cpo-setting-cpo-validation-msg.php:66
 msgid "for any custom validation"
-msgstr ""
+msgstr "для кастомних типів валідації"
 
 #: includes/settings/class-uni-cpo-setting-cpo-vc-extra.php:21
 msgid "Extra validation rules"
-msgstr ""
+msgstr "Дод. правила валідації"
 
 #: includes/settings/class-uni-cpo-setting-cpo-vc-extra.php:23
 msgid "Add new validation rules for this option"
@@ -2404,7 +2384,7 @@ msgstr "Схема умовної логіки валідації"
 
 #: includes/settings/class-uni-cpo-setting-float.php:21
 msgid "Float"
-msgstr ""
+msgstr "Обтікання"
 
 #: includes/settings/class-uni-cpo-setting-font-family.php:21
 msgid "Font Family"
@@ -2579,7 +2559,7 @@ msgstr ""
 
 #: includes/uni-cpo-core-functions.php:908
 msgid "Select options"
-msgstr ""
+msgstr "Зробіть вибір"
 
 #: includes/uni-cpo-core-functions.php:980
 msgid "Calculate"
@@ -2600,9 +2580,8 @@ msgid "%s duplicated."
 msgstr ""
 
 #: includes/uni-cpo-core-functions.php:1652
-#, fuzzy
 msgid "Add/Edit CPO option(s)"
-msgstr "Редагувати опцію"
+msgstr "Дод./ред CPO опцію(ї)"
 
 #: includes/uni-cpo-functions.php:220
 msgid "Edit"
@@ -2610,7 +2589,7 @@ msgstr "Редагувати"
 
 #: includes/uni-cpo-functions.php:225
 msgid "Edit (inline)"
-msgstr ""
+msgstr "Редагувати (інлайново)"
 
 #: uni-cpo.php:116
 #, php-format

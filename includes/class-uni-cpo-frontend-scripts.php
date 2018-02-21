@@ -726,7 +726,7 @@ class Uni_Cpo_Frontend_Scripts {
 					? true : false,
 				'pid'                     => $product_data['id'],
 				'product_image_id'        => $product_data['post_thumb_id'],
-				'ajax_add_to_cart'        => $plugin_settings['ajax_add_to_cart'],
+				'ajax_add_to_cart'        => Uni_Cpo_Product::is_ajax_add_to_cart( $product_data['id'] ),
 				'price_selector'          => apply_filters( 'uni_cpo_price_selector', $plugin_settings['product_price_container'], $product_data ),
 				'image_selector'          => apply_filters( 'uni_cpo_image_selector', $plugin_settings['product_image_container'], $product_data ),
 				'max_file_size'           => apply_filters( 'uni_cpo_max_file_size', $plugin_settings['max_file_size'], $product_data ),
@@ -781,6 +781,12 @@ class Uni_Cpo_Frontend_Scripts {
 					}
 				}
 			}
+
+			$price_selector = $uni_cpo_cfg['price_selector'];
+			$custom_css = "$price_selector {
+                    display:none;
+                }";
+			wp_add_inline_style( 'uni-cpo-styles-frontend', $custom_css );
 		}
 
 		// JS scripts and styles to be used in Cart page

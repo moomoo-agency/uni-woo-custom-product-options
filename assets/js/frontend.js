@@ -9,7 +9,7 @@ var UniCpo = void 0,
     cpoMakeInstance = void 0;
 
 UniCpo = {
-    addToCartAjax: 'on' === unicpo.ajax_add_to_cart,
+    addToCartAjax: unicpo.ajax_add_to_cart,
     addToCartBtnEl: {},
     addToCartBtnSelector: '.single_add_to_cart_button, button.product_type_simple',
     addedToCartMsg: jQuery('<div class="woocommerce-message"><a href="' + wc_add_to_cart_params.cart_url + '" class="button wc-forward">' + wc_add_to_cart_params.i18n_view_cart + '</a> ' + unicpo_i18n.added_to_cart + '</div>'),
@@ -145,15 +145,16 @@ UniCpo = {
                     jQuery.extend(unicpo.price_vars, r.data.price_vars);
                     jQuery.extend(unicpo.extra_data, r.data.extra_data);
 
-                    if (cpoObj.calc) {
-                        cpoObj.setPriceTo(unicpo.price_vars.price);
+                    if (typeof r.data.extra_data !== 'undefined' && typeof r.data.extra_data.order_product !== 'undefined' && r.data.extra_data.order_product === 'disabled') {
+                        cpoObj.orderingDsblMsgEl.slideDown(300);
+                        cpoObj.setBtnState(true);
+                    } else {
+                        cpoObj.orderingDsblMsgEl.hide();
                         cpoObj.setBtnState(false);
                     }
 
-                    if (typeof r.data.extra_data !== 'undefined' && typeof r.data.extra_data.order_product !== 'undefined' && r.data.extra_data.order_product === 'disabled') {
-                        cpoObj.orderingDsblMsgEl.slideDown(300);
-                    } else {
-                        cpoObj.orderingDsblMsgEl.hide();
+                    if (cpoObj.calc) {
+                        cpoObj.setPriceTo(unicpo.price_vars.price);
                     }
 
                     if (typeof r.data.fragments !== 'undefined') {
