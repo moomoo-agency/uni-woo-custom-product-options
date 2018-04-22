@@ -150,24 +150,23 @@ class Uni_Cpo_Option_Text_Input extends Uni_Cpo_Option implements Uni_Cpo_Option
 		if ( $is_required && 'cart' === $context ) {
 			$attributes['data-parsley-required'] = 'true';
 		}
-		if ( 'integer' === $cpo_general_main['cpo_type'] ) {
-			$input_type                      = 'number';
-			$attributes['data-parsley-type'] = 'integer';
-		}
-		if ( 'double' === $cpo_general_main['cpo_type'] ) {
-			$input_type                           = 'number';
-			$attributes['data-parsley-type-step'] = '0.1';
-			$attributes['data-parsley-type']      = 'number';
-			$attributes['data-parsley-pattern']   = '/^(\d+(?:[\.]\d{0,1})?)$/';
-		}
-		if ( in_array( $cpo_general_main['cpo_type'], array( 'integer', 'double' ) ) ) {
-			if ( ! empty( $cpo_general_main['cpo_min_val'] ) ) {
-				$attributes['data-parsley-min'] = $cpo_general_main['cpo_min_val'];
-			}
-			if ( ! empty( $cpo_general_main['cpo_max_val'] ) ) {
-				$attributes['data-parsley-max'] = $cpo_general_main['cpo_max_val'];
-			}
-		}
+        if ( 'integer' === $cpo_general_main['cpo_type'] ) {
+            $input_type                      = 'number';
+            $attributes['data-parsley-type'] = 'integer';
+        }
+        if ( 'double' === $cpo_general_main['cpo_type'] ) {
+            $input_type                      = 'text';
+            $attributes['data-parsley-type-step'] = '0.1';
+            $attributes['data-parsley-pattern']   = '/^(-?\d+(?:[\.]\d{0,1})?)$/';
+        }
+        if ( in_array( $cpo_general_main['cpo_type'], array( 'integer', 'double' ) ) ) {
+            if ( isset( $cpo_general_main['cpo_min_val'] ) && '' !== $cpo_general_main['cpo_min_val'] ) {
+                $attributes['data-parsley-min'] = $cpo_general_main['cpo_min_val'];
+            }
+            if ( isset( $cpo_general_main['cpo_max_val'] ) && '' !== $cpo_general_main['cpo_max_val'] ) {
+                $attributes['data-parsley-max'] = $cpo_general_main['cpo_max_val'];
+            }
+        }
 		if ( 'string' === $cpo_general_main['cpo_type'] ) {
 			if ( ! empty( $cpo_general_main['cpo_min_chars'] ) ) {
 				$attributes['data-parsley-minlength'] = $cpo_general_main['cpo_min_chars'];
@@ -179,14 +178,14 @@ class Uni_Cpo_Option_Text_Input extends Uni_Cpo_Option implements Uni_Cpo_Option
 		if ( empty( $main['width']['value'] ) ) {
 			$attributes['size'] = 2;
 		}
-		if ( ! empty( $cpo_general_main['cpo_step_val'] )
-		     && in_array( $cpo_general_main['cpo_type'], array( 'integer', 'double' ) ) ) {
-			$attributes['data-parsley-type-step'] = $cpo_general_main['cpo_step_val'];
-			if ( 'double' === $cpo_general_main['cpo_type'] ) {
-				$decimals_count                     = uni_cpo_get_decimals_count( $cpo_general_main['cpo_step_val'] );
-				$attributes['data-parsley-pattern'] = '/^(\d+(?:[\.]\d{0,' . $decimals_count . '})?)$/';
-			}
-		}
+        if ( ! empty( $cpo_general_main['cpo_step_val'] )
+             && in_array( $cpo_general_main['cpo_type'], array( 'integer', 'double' ) ) ) {
+            $attributes['data-parsley-type-step'] = $cpo_general_main['cpo_step_val'];
+            if ( 'double' === $cpo_general_main['cpo_type'] ) {
+                $decimals_count                     = uni_cpo_get_decimals_count( $cpo_general_main['cpo_step_val'] );
+                $attributes['data-parsley-pattern'] = '/^(-?\d+(?:[\.]\d{0,' . $decimals_count . '})?)$/';
+            }
+        }
 
 		if ( ! empty( $cpo_validation_main ) && isset( $cpo_validation_main['cpo_validation_msg'] )
 		     && is_array( $cpo_validation_main['cpo_validation_msg'] ) ) {
@@ -505,13 +504,13 @@ class Uni_Cpo_Option_Text_Input extends Uni_Cpo_Option implements Uni_Cpo_Option
 		if ( 'double' === $cpo_general_main['cpo_type'] ) {
 			$input_type                      = 'text';
 			$attributes['data-parsley-type-step'] = '0.1';
-			$attributes['data-parsley-pattern']   = '/^(\d+(?:[\.]\d{0,1})?)$/';
+			$attributes['data-parsley-pattern']   = '/^(-?\d+(?:[\.]\d{0,1})?)$/';
 		}
 		if ( in_array( $cpo_general_main['cpo_type'], array( 'integer', 'double' ) ) ) {
-			if ( ! empty( $cpo_general_main['cpo_min_val'] ) ) {
+			if ( isset( $cpo_general_main['cpo_min_val'] ) && '' !== $cpo_general_main['cpo_min_val'] ) {
 				$attributes['data-parsley-min'] = $cpo_general_main['cpo_min_val'];
 			}
-			if ( ! empty( $cpo_general_main['cpo_max_val'] ) ) {
+			if ( isset( $cpo_general_main['cpo_max_val'] ) && '' !== $cpo_general_main['cpo_max_val'] ) {
 				$attributes['data-parsley-max'] = $cpo_general_main['cpo_max_val'];
 			}
 		}
@@ -531,7 +530,7 @@ class Uni_Cpo_Option_Text_Input extends Uni_Cpo_Option implements Uni_Cpo_Option
 			$attributes['data-parsley-type-step'] = $cpo_general_main['cpo_step_val'];
 			if ( 'double' === $cpo_general_main['cpo_type'] ) {
 				$decimals_count                     = uni_cpo_get_decimals_count( $cpo_general_main['cpo_step_val'] );
-				$attributes['data-parsley-pattern'] = '/^(\d+(?:[\.]\d{0,' . $decimals_count . '})?)$/';
+				$attributes['data-parsley-pattern'] = '/^(-?\d+(?:[\.]\d{0,' . $decimals_count . '})?)$/';
 			}
 		}
 

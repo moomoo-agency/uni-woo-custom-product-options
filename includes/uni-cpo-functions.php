@@ -95,3 +95,9 @@ function uni_cpo_get_image_sizes_list()
     }
     return $list;
 }
+
+//
+function uni_cpo_pro_content()
+{
+    return ( !unicpo_fs()->is__premium_only() ? 'uni-premium-content' : '' );
+}

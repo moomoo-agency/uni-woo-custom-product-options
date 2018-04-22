@@ -45,7 +45,7 @@ class Uni_Cpo_Setting_Cpo_Validation_Msg extends Uni_Cpo_Setting implements  Uni
         echo  $this->generate_field_label_html() ;
         ?>
                 <div class="uni-modal-row-second uni-clear">
-                    <div class="uni-setting-fields-wrap-2 uni-clear">
+                    <div class="uni-setting-fields-wrap-5 uni-clear">
 						<?php 
         echo  $this->generate_text_html( $this->setting_key . '[req]', array(
             'placeholder' => __( 'when is required', 'uni-cpo' ),

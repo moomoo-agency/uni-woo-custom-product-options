@@ -39,7 +39,7 @@ class Uni_Cpo_Setting_Cpo_Vc_Extra extends Uni_Cpo_Setting implements  Uni_Cpo_S
         <script id="js-builderius-setting-<?php 
         echo  $this->setting_key ;
         ?>-tmpl" type="text/template">
-            <div class="uni-modal-row uni-modal-row__custom-width uni-clear<?php 
+            <div class="uni-modal-row uni-clear<?php 
         echo  ' uni-premium-content' ;
         ?>">
 				<?php 

@@ -100,6 +100,7 @@ class Uni_Cpo_Ajax
             'uni_cpo_duplicate_product_settings' => false,
             'uni_cpo_save_discounts_data'        => false,
             'uni_cpo_save_formula_data'          => false,
+            'uni_cpo_save_image_data'            => false,
             'uni_cpo_save_weight_data'           => false,
             'uni_cpo_save_dimensions_data'       => false,
             'uni_cpo_save_nov_data'              => false,
@@ -419,6 +420,37 @@ class Uni_Cpo_Ajax
     }
     
     /**
+     *   uni_cpo_save_image_data
+     */
+    public static function uni_cpo_save_image_data()
+    {
+        check_ajax_referer( 'uni_cpo_builder', 'security' );
+        if ( !current_user_can( 'edit_products' ) ) {
+            wp_die( -1 );
+        }
+        try {
+            $model = $_POST['model'];
+            $data['product_id'] = absint( $model['id'] );
+            $data['image_data'] = uni_cpo_clean( $model['imageData'] );
+            if ( !isset( $data['image_data']['image_scheme'] ) ) {
+                $data['image_data']['image_scheme'] = '';
+            }
+            $result = Uni_Cpo_Product::save_product_data( $data, 'image_data' );
+            
+            if ( !isset( $result['error'] ) ) {
+                wp_send_json_success( $result );
+            } else {
+                wp_send_json_error( $result );
+            }
+        
+        } catch ( Exception $e ) {
+            wp_send_json_error( array(
+                'error' => $e->getMessage(),
+            ) );
+        }
+    }
+    
+    /**
      *   uni_cpo_save_weight_data
      */
     public static function uni_cpo_save_weight_data()
@@ -617,7 +649,20 @@ class Uni_Cpo_Ajax
                 unset( $temp_variables['{uni_cpo_price}'] );
                 array_walk( $temp_variables, function ( &$v, $k ) use( $filtered_form_data, &$formatted_vars ) {
                     $k = trim( $k, '{}' );
-                    $formatted_vars[$k] = ( isset( $filtered_form_data[$k] ) ? $filtered_form_data[$k] : $v );
+                    
+                    if ( isset( $filtered_form_data[$k] ) && !is_array( $filtered_form_data[$k] ) ) {
+                        $filtered_form_data_values = explode( ' : ', $filtered_form_data[$k] );
+                        $formatted_vars[$k] = $filtered_form_data_values[0];
+                    } else {
+                        
+                        if ( isset( $filtered_form_data[$k] ) && is_array( $filtered_form_data[$k] ) ) {
+                            $formatted_vars[$k] = $filtered_form_data[$k];
+                        } else {
+                            $formatted_vars[$k] = $v;
+                        }
+                    
+                    }
+                
                 } );
                 // formula conditional logic
                 
@@ -682,8 +727,14 @@ class Uni_Cpo_Ajax
                         
                         if ( $product->is_taxable() ) {
                             // price with suffix - strips unnecessary
-                            $price_display_suffix = str_replace( ' <small class="woocommerce-price-suffix">', '', $price_display_suffix );
-                            $price_display_suffix = str_replace( ' </small>', '', $price_display_suffix );
+                            /*$price_display_suffix = str_replace(
+                            			' <small class="woocommerce-price-suffix">',
+                            			'',
+                            			$price_display_suffix );
+                            		$price_display_suffix = str_replace(
+                            			' </small>',
+                            			'',
+                            			$price_display_suffix );*/
                             // total with suffix
                             // creates 'with suffix' value for total
                             
@@ -697,12 +748,12 @@ class Uni_Cpo_Ajax
                                 $total_suffix = $product->get_price_suffix( $price_vars['raw_price_tax_rev'] * $form_data['quantity'] );
                             }
                             
-                            $total_suffix = str_replace( ' <small class="woocommerce-price-suffix">', '', $total_suffix );
-                            $total_suffix = str_replace( ' </small>', '', $total_suffix );
-                            $total_suffix = str_replace( '<span class="amount">', '', $total_suffix );
-                            $total_suffix = str_replace( '</span>', '', $total_suffix );
-                            $price_vars['price_suffix'] = $price_display_suffix;
-                            $price_vars['total_suffix'] = $total_suffix;
+                            /*$total_suffix = str_replace( ' <small class="woocommerce-price-suffix">', '', $total_suffix );
+                            		$total_suffix = str_replace( ' </small>', '', $total_suffix );
+                            		$total_suffix = str_replace( '<span class="amount">', '', $total_suffix );
+                            		$total_suffix = str_replace( '</span>', '', $total_suffix );*/
+                            $price_vars['price_tax_suffix'] = $price_display_suffix;
+                            $price_vars['total_tax_suffix'] = $total_suffix;
                         }
                     
                     } else {

@@ -208,8 +208,11 @@ jQuery.fn.uniConvertToSlug = function () {
     st = st.trim();
     st = st.replace(/ /g,'_');
     st = st.replace(/-/g, '_');
-    st = st.replace(/^[0-9]/g, 'a');
     st = st.replace(/[^\w-]+/g, '');
+    matches = st.match(/^[0-9]/g, 'a');
+    if (null != matches) {
+        st = 'a' + st;
+    }
     $el.val(st);
 };
 

@@ -385,7 +385,7 @@ function uni_cpo_process_formula_with_non_option_vars( &$variables, $product_dat
         $var_name = '{' . UniCpo()->get_nov_slug() . $nov['slug'] . '}';
         $formula = 0;
         
-        if ( isset( $nov['roles'] ) && 'on' === $product_data['nov_data']['wholesale_enable'] ) {
+        if ( isset( $nov['roles'] ) && 'on' === $product_data['nov_data']['wholesale_enable'] && (!isset( $nov['matrix']['enable'] ) || 'on' !== $nov['matrix']['enable']) ) {
             $formula = uni_cpo_get_role_based_nov_formula( $nov );
         } elseif ( isset( $nov['matrix']['enable'] ) && 'on' === $nov['matrix']['enable'] ) {
         } else {
@@ -850,11 +850,11 @@ function uni_cpo_calculate_button_html()
 
 add_filter(
     'woocommerce_get_price_html',
-    'uni_cpo_display_price_with_preffix',
+    'uni_cpo_display_custom_price_on_archives',
     10,
     2
 );
-function uni_cpo_display_price_with_preffix( $price, $product )
+function uni_cpo_display_custom_price_on_archives( $price, $product )
 {
     $product_id = intval( $product->get_id() );
     $product_data = Uni_Cpo_Product::get_product_data_by_id( $product_id );
@@ -887,18 +887,17 @@ function uni_cpo_display_price_with_preffix( $price, $product )
     
     }
     
-    if ( 'on' === $product_data['settings_data']['cpo_enable'] && 'on' === $product_data['settings_data']['calc_enable'] && !empty($product_data['settings_data']['min_price']) && (is_single() && $product_id !== $wp_query->queried_object_id || is_page() && $product_id !== $product_post_id || is_tax() || is_archive() || is_single() && !is_singular( 'product' ) && isset( $wp_query->queried_object->post_content ) && !has_shortcode( $wp_query->queried_object->post_content, 'product_page' )) ) {
-        $price = wc_get_price_to_display( $product, array(
-            'price' => $product_data['settings_data']['min_price'],
-        ) );
-        $price = apply_filters( 'uni_cpo_display_price_archive_page', $price, $product );
-        $display_price = uni_cpo_price( $price );
-        $display_price = sprintf( __( 'from %s', 'uni-cpo' ), $display_price );
+    if ( 'on' === $product_data['settings_data']['cpo_enable'] && 'on' === $product_data['settings_data']['calc_enable'] && (is_single() && $product_id !== $wp_query->queried_object_id || is_page() && $product_id !== $product_post_id || is_tax() || is_archive() || is_single() && !is_singular( 'product' ) && isset( $wp_query->queried_object->post_content ) && !has_shortcode( $wp_query->queried_object->post_content, 'product_page' )) ) {
+        $price = wc_get_price_to_display( $product );
+        $regular_price = uni_cpo_price( $price );
+        $starting_price = ( !empty($product_data['settings_data']['min_price']) ? floatval( $product_data['settings_data']['min_price'] ) : $price );
+        $formatted = uni_cpo_price( $starting_price );
         
         if ( $product->is_taxable() ) {
-            $price = $display_price . $product->get_price_suffix( $price );
+            $tax_suffix = $product->get_price_suffix( $starting_price );
+            $price = $formatted . $tax_suffix;
         } else {
-            $price = $display_price;
+            $price = $formatted;
         }
         
         return $price;
@@ -915,11 +914,18 @@ function uni_cpo_get_price_for_meta()
     $product_id = intval( $product->get_id() );
     $product_data = Uni_Cpo_Product::get_product_data_by_id( $product_id );
     
-    if ( 'on' === $product_data['settings_data']['cpo_enable'] && 'on' === $product_data['settings_data']['calc_enable'] && !empty($product_data['settings_data']['min_price']) ) {
-        $price = wc_get_price_to_display( $product, array(
-            'price' => $product_data['settings_data']['min_price'],
-        ) );
-        $price = apply_filters( 'uni_cpo_display_price_meta_tag', $price, $product );
+    if ( 'on' === $product_data['settings_data']['cpo_enable'] && 'on' === $product_data['settings_data']['calc_enable'] ) {
+        $starting_price = ( !empty($product_data['settings_data']['min_price']) ? floatval( $product_data['settings_data']['min_price'] ) : 0 );
+        
+        if ( 0 === $starting_price ) {
+            $price = apply_filters( 'uni_cpo_display_price_meta_tag', $starting_price, $product );
+            $price = wc_get_price_to_display( $product, array(
+                'price' => $price,
+            ) );
+        } else {
+            $price = wc_get_price_to_display( $product );
+        }
+        
         return $price;
     } else {
         return wc_get_price_to_display( $product );
@@ -932,14 +938,10 @@ add_action( 'woocommerce_single_product_summary', 'uni_cpo_display_price_custom_
 function uni_cpo_display_price_custom_meta()
 {
     global  $product ;
-    $product_id = intval( $product->get_id() );
-    $product_data = Uni_Cpo_Product::get_product_data_by_id( $product_id );
+    $product_data = Uni_Cpo_Product::get_product_data_by_id( $product->get_id() );
     
-    if ( 'on' === $product_data['settings_data']['cpo_enable'] && 'on' === $product_data['settings_data']['calc_enable'] && !empty($product_data['settings_data']['min_price']) ) {
-        $price = wc_get_price_to_display( $product, array(
-            'price' => $product_data['settings_data']['min_price'],
-        ) );
-        $price = apply_filters( 'uni_cpo_display_price_meta_tag', $price, $product );
+    if ( 'on' === $product_data['settings_data']['cpo_enable'] && 'on' === $product_data['settings_data']['calc_enable'] && (!empty($product_data['settings_data']['min_price']) || !empty($product_data['settings_data']['starting_price'])) ) {
+        $price = uni_cpo_get_price_for_meta();
         echo  '<meta itemprop="minPrice" content="' . esc_attr( $price ) . '" itemtype="http://schema.org/PriceSpecification" />' ;
     }
 
@@ -1093,6 +1095,7 @@ function uni_cpo_get_cart_item_from_session( $session_data, $values, $key )
 {
     $session_data['_cpo_calc_option'] = ( isset( $values['_cpo_calc_option'] ) ? boolval( $values['_cpo_calc_option'] ) : false );
     $session_data['_cpo_cart_item_id'] = ( isset( $values['_cpo_cart_item_id'] ) ? $values['_cpo_cart_item_id'] : '' );
+    $session_data['_cpo_product_image'] = ( isset( $values['_cpo_product_image'] ) ? $values['_cpo_product_image'] : '' );
     $session_data['_cpo_data'] = ( isset( $values['_cpo_data'] ) ? $values['_cpo_data'] : '' );
     
     if ( isset( $session_data['_cpo_data'] ) ) {
@@ -1199,7 +1202,24 @@ function uni_cpo_checkout_create_order_line_item(
             $item->add_meta_data( '_' . $name, $value );
         }
     }
-
+    
+    $additional_data = apply_filters(
+        'uni_cpo_additional_item_data',
+        array(),
+        $item,
+        $cart_item_key,
+        $values
+    );
+    if ( !empty($values['_cpo_product_image']) ) {
+        $additional_data = $additional_data + array(
+            '_uni_custom_item_image' => $values['_cpo_product_image'],
+        );
+    }
+    if ( !empty($additional_data) && is_array( $additional_data ) ) {
+        foreach ( $additional_data as $k => $v ) {
+            $item->add_meta_data( $k, $v );
+        }
+    }
 }
 
 //
@@ -1229,7 +1249,7 @@ function uni_cpo_calculate_price_in_cart( $cart_item_data, $product_id )
                         $calculate_result = $option->calculate( $filtered_form_data );
                         if ( !empty($calculate_result) ) {
                             foreach ( $calculate_result as $k => $v ) {
-                                $variables['{' . $k . '}'] = $v['calc'];
+                                $variables['{' . $k . '}'] = $v['cart_meta'];
                             }
                         }
                     }
@@ -1248,7 +1268,16 @@ function uni_cpo_calculate_price_in_cart( $cart_item_data, $product_id )
         unset( $temp_variables['{uni_cpo_price}'] );
         array_walk( $temp_variables, function ( &$v, $k ) use( $filtered_form_data, &$formatted_vars ) {
             $k = trim( $k, '{}' );
-            $formatted_vars[$k] = ( isset( $filtered_form_data[$k] ) ? $filtered_form_data[$k] : $v );
+            
+            if ( isset( $filtered_form_data[$k] ) && !is_array( $filtered_form_data[$k] ) ) {
+                $filtered_form_data_values = explode( ' : ', $filtered_form_data[$k] );
+                $formatted_vars[$k] = $filtered_form_data_values[0];
+            } elseif ( isset( $filtered_form_data[$k] ) && is_array( $filtered_form_data[$k] ) ) {
+                $formatted_vars[$k] = $filtered_form_data[$k];
+            } else {
+                $formatted_vars[$k] = $v;
+            }
+        
         } );
         // formula conditional logic
         
@@ -1316,6 +1345,9 @@ function uni_cpo_woocommerce_order_again_cart_item_data( $cart_item_meta, $item 
 //
 function uni_cpo_re_add_cpo_item_data( $item_data, $raw_data )
 {
+    $item_data['cpo_cart_item_id'] = current_time( 'timestamp' );
+    $item_data['cpo_product_image'] = ( isset( $raw_data['_cpo_product_image'] ) ? $raw_data['_cpo_product_image'] : '' );
+    unset( $item_data['cpo_price'] );
     if ( is_array( $raw_data ) ) {
         foreach ( $raw_data as $k => $v ) {
             
@@ -1333,14 +1365,14 @@ function uni_cpo_re_add_cpo_item_data( $item_data, $raw_data )
                     $meta_key_new = ltrim( $meta_data['key'], '_' );
                     $item_data[$meta_key_new] = $meta_data['value'];
                 }
-            
+                
+                if ( '_uni_custom_item_image' === $meta_data['key'] ) {
+                    $item_data['cpo_product_image'] = $meta_data['value'];
+                }
             }
         
         }
     }
-    $item_data['cpo_cart_item_id'] = current_time( 'timestamp' );
-    $item_data['cpo_product_image'] = $raw_data['_cpo_product_image'];
-    unset( $item_data['cpo_price'] );
     return $item_data;
 }
 

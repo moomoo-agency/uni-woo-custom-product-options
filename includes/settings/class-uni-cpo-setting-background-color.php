@@ -34,8 +34,7 @@ class Uni_Cpo_Setting_Background_Color extends Uni_Cpo_Setting implements Uni_Cp
 	public function js_template() {
 		?>
         <script id="js-builderius-setting-<?php echo $this->setting_key; ?>-tmpl" type="text/template">
-            <div class="uni-modal-row uni-clear" data-uni-constrained="select[name=background_type]"
-                data-uni-constvalue="color">
+            <div class="uni-modal-row uni-clear" data-uni-constrained="select[name=background_type]" data-uni-constvalue="color">
 				<?php echo $this->generate_field_label_html() ?>
                 <div class="uni-modal-row-second">
 					<?php echo $this->generate_text_html(); ?>

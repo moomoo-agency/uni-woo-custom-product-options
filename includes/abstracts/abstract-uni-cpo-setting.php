@@ -560,20 +560,20 @@ abstract class Uni_Cpo_Setting {
             <i class="fa fa-times"></i>
         </button>
         <div class="cpo-image-preview">
-        	<?php 
+        	<?php
         	if ( ! empty( $data['preview'] ) ) {
             	echo '<img src="' . esc_attr( $data['preview'] ) . '" />';
-            } 
+            }
             ?>
         </div>
         <div class="cpo-image-title">
-        	<?php 
+        	<?php
         	if ( ! empty( $data['alt'] ) ) {
             	echo esc_html( $data['alt'] );
-            } 
+            }
             ?>
         </div>
-		
+
 		<?php
 		return ob_get_clean();
 	}

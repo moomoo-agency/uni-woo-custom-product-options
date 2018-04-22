@@ -59,7 +59,7 @@ UniCpoCart = {
         var $form = jQuery('.woocommerce-cart-form');
         jQuery.ajax({
             type: 'GET',
-            url: wc_add_to_cart_params.cart_url + '?cpo_edited_cart_item=1',
+            url: unicpo_cart.cart_url + '?cpo_edited_cart_item=1',
             dataType: 'html',
             beforeSend: function beforeSend() {
                 cpoCartObj.block($form);

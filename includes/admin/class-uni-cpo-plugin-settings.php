@@ -5,26 +5,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class Uni_Cpo_Plugin_Settings {
-	private $dir;
 	private $file;
-	private $assets_dir;
-	private $assets_url;
 	private $settings_base;
 	private $settings;
 
 	public function __construct( $file ) {
 		$this->file              = $file;
-		$this->dir               = dirname( $this->file );
-		$this->assets_dir        = trailingslashit( $this->dir ) . 'assets';
-		$this->assets_url        = esc_url( trailingslashit( plugins_url( '/assets/', $this->file ) ) );
 		$this->settings_base     = 'uni_cpo_settings_general';
-		$this->exclude_from_free = array(
+		$this->exclude_from_free = apply_filters( 'uni_cpo_exclude_from_free_plugin_settings', array(
 			'ajax_add_to_cart',
 			'product_image_size',
+            'product_thumbnails_container',
 			'display_weight_in_cart',
+            'display_dimensions_in_cart',
 			'file_upload',
 			'range_slider_style'
-		);
+		) );
 
 		// Initialise settings
 		add_action( 'admin_init', array( $this, 'init' ) );
@@ -60,24 +56,6 @@ class Uni_Cpo_Plugin_Settings {
 			'uni-cpo-settings',
 			array( $this, 'settings_page' )
 		);
-		add_action( 'admin_print_styles-' . $page, array( $this, 'settings_assets' ) );
-	}
-
-	/**
-	 * Load settings JS & CSS
-	 * @return void
-	 */
-	public function settings_assets() {
-		wp_enqueue_style( 'farbtastic' );
-		wp_enqueue_script( 'farbtastic' );
-		wp_enqueue_media();
-		wp_register_script(
-			'uni-cpo-admin-utils',
-			$this->assets_url . 'js/admin-utils.js',
-			array( 'farbtastic', 'jquery' ),
-			UNI_CPO_VERSION
-		);
-		wp_enqueue_script( 'uni-cpo-admin-utils' );
 	}
 
 	/**
@@ -106,7 +84,7 @@ class Uni_Cpo_Plugin_Settings {
 			'fields'      => array(
 				array(
 					'id'          => 'ajax_add_to_cart',
-					'label'       => __( 'Using AJAX for adding to the cart', 'uni-cpo' ),
+					'label'       => __( 'Add product to the cart via AJAX', 'uni-cpo' ),
 					'description' => __( 'This option enables adding to cart via AJAX for all the products which use custom options and price calculation.', 'uni-cpo' ),
 					'type'        => 'checkbox',
 					'default'     => ''
@@ -136,12 +114,27 @@ class Uni_Cpo_Plugin_Settings {
 					'default'     => 'shop_single'
 				),
 				array(
+					'id'          => 'product_thumbnails_container',
+					'label'       => __( 'Custom selector (id/class) for a product thumbnails wrapper html tag', 'uni-cpo' ),
+					'description' => __( 'By default, the selector for a product thumbnails wrapper html tag on a single product page is "ol.flex-control-thumbs". However, the actual html markup of the thumbnails block depends on the theme and you may need to define yours custom selector.', 'uni-cpo' ),
+					'type'        => 'text',
+					'default'     => '',
+					'placeholder' => __( 'CSS selector', 'uni-cpo' )
+				),
+				array(
 					'id'          => 'display_weight_in_cart',
 					'label'       => __( 'Display weight in the cart', 'uni-cpo' ),
-					'description' => __( 'This option enables displaying weight in the cart.', 'uni-cpo' ),
+					'description' => __( 'This option enables displaying product weight in the cart.', 'uni-cpo' ),
 					'type'        => 'checkbox',
 					'default'     => ''
 				),
+                array(
+                    'id'          => 'display_dimensions_in_cart',
+                    'label'       => __( 'Display dimensions in the cart', 'uni-cpo' ),
+                    'description' => __( 'This option enables displaying product dimensions in the cart.', 'uni-cpo' ),
+                    'type'        => 'checkbox',
+                    'default'     => ''
+                ),
 				array(
 					'id'          => 'range_slider_style',
 					'label'       => __( 'Style for range sliders', 'uni-cpo' ),
@@ -207,7 +200,7 @@ class Uni_Cpo_Plugin_Settings {
 			)
 		);
 
-		$settings = apply_filters( 'cpo_settings_fields', $settings );
+		$settings = apply_filters( 'uni_cpo_plugin_settings_fields', $settings );
 
 		return $settings;
 	}
@@ -291,7 +284,7 @@ class Uni_Cpo_Plugin_Settings {
 		if ( isset( $field['default'] ) ) {
 			$data = $field['default'];
 			if ( $option ) {
-				$data = $option[ $field['id'] ];
+				$data = isset( $option[ $field['id'] ] ) ? $option[ $field['id'] ] : $field['default'];
 			}
 		}
 

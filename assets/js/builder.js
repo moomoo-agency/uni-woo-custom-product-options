@@ -136,6 +136,7 @@
                 autosaveData:   Builderius._autosaveGetData(),
                 discountsData:  builderiusCfg.product.discounts_data,
                 formulaData:    builderiusCfg.product.formula_data,
+                imageData:      builderiusCfg.product.image_data,
                 id:             builderiusCfg.product.id,
                 novData:        builderiusCfg.product.nov_data,
                 settingsData:   builderiusCfg.product.settings_data,
@@ -598,9 +599,13 @@
             const $wrap = $('#' + wrap);
             const row = $wrap.data('row');
 
-            if (typeof Builderius.scroll_table[row] !== 'undefined') {
-                Builderius.scroll_table[row].destroy();
-            }
+            typeof Builderius.scroll_table[row] !== 'undefined'
+                ? Builderius.scroll_table[row].destroy()
+                : null;
+
+            typeof Builderius.scroll_matrix_table !== 'undefined'
+                ? Builderius.scroll_matrix_table.destroy()
+                : null;
         },
 
         /**
@@ -611,10 +616,17 @@
             const row = $wrap.data('row');
             const $wrapper = $wrap.closest('.uni-matrix-table-wrapper');
 
-            Builderius.scroll_table[row] = $wrapper.jScrollPane({
-                mouseWheelSpeed: 40,
-                autoReinitialise: true
-            }).data().jsp;
+            if (typeof row !== undefined) {
+                Builderius.scroll_table[row] = $wrapper.jScrollPane({
+                    mouseWheelSpeed: 40,
+                    autoReinitialise: true
+                }).data().jsp;
+            } else {
+                Builderius.scroll_matrix_table = $wrapper.jScrollPane({
+                    mouseWheelSpeed: 40,
+                    autoReinitialise: true
+                }).data().jsp;
+            }
         },
 
         /**
@@ -1018,6 +1030,18 @@
         /**
          *
          */
+        _hidePremiumContent: function (wrap) {
+             if (wrap.length > 0) {
+                 wrap.each(function(){
+                     const html = '<div class="uni-premium-overlay"></div><div class="uni-premium-overlay-text">'+builderius_i18n.pro+'</div>'
+                     $(this).append(html);
+                 });
+             }
+         },
+
+        /**
+         *
+         */
         _linkedFields: function () {
             const $checkboxs = $('[data-linked-checkbox]');
 
@@ -1177,6 +1201,37 @@
         /**
          *
          */
+        _showMessage: function (msg = '', type = 'success') {
+            if ( $('body').hasClass('builderius') && msg !== '' ) {
+                $('body').prepend(`<div id="uni_message">${msg}</div>`);
+                const message_div = jQuery('#uni_message');
+
+                if (type === 'success') {
+                  message_div.addClass('uni-success-message');
+                }
+                if (type === 'warning') {
+                  message_div.addClass('uni-warning-message');
+                }
+                if (type == 'error') {
+                  message_div.addClass('uni-error-message');
+                }
+
+                message_div.fadeIn(400).dequeue().animate({ right: 25 }, 250, function(){
+                    setTimeout(function(){
+                        message_div.animate({ right: -125 }, 250).dequeue().fadeOut(400, function(){
+
+                            setTimeout(function(){
+                                message_div.removeClass('uni-success-message uni-warning-message uni-error-message');
+                            }, 1);
+                        });
+                    }, 3000);
+                });
+            }
+        },
+
+        /**
+         *
+         */
         _unblockForm: function (el, type) {
             Builderius._ajax_sent = false;
             $(document).find('.blockMsg > div[data-loader="circle"]').remove();
@@ -1268,7 +1323,8 @@
                 builtin: ['uni_cpo_price'],
                 regular: [],
                 special: [],
-                nov:     []
+                nov:     [],
+                matrix:  []
             };
             Builderius._queryBuilderFilter = [];
         },
@@ -1293,6 +1349,35 @@
                         if ('dynamic_notice' === type) {
                             return true;
                         }
+
+                        // if (_.indexOf(['text_input', 'select', 'radio', 'checkbox'], type) !== -1) {
+                        //
+                        //     if (typeof modSettings.cpo_general !== 'undefined' && !_.isEmpty(modSettings.cpo_general.main.cpo_slug)) {
+                        //         const varName = prefix + modSettings.cpo_general.main.cpo_slug;
+                        //         const obj = {
+                        //             slug: varName,
+                        //             type,
+                        //         };
+                        //
+                        //         if (_.indexOf(['select', 'radio', 'checkbox'], type) !== -1
+                        //             && modSettings.cpo_suboptions
+                        //             && typeof modSettings.cpo_suboptions.data !== 'undefined')
+                        //         {
+                        //             const suboptions = modSettings.cpo_suboptions.data;
+                        //             let values       = {};
+                        //             if (typeof suboptions.cpo_select_options !== 'undefined') {
+                        //                 values = Builderius._getSuboptionsFormatted(suboptions.cpo_select_options);
+                        //             }
+                        //             if (typeof suboptions.cpo_radio_options !== 'undefined') {
+                        //                 values = Builderius._getSuboptionsFormatted(suboptions.cpo_radio_options);
+                        //             }
+                        //
+                        //             obj.suboptions = values;
+                        //         }
+                        //
+                        //         Builderius._optionVars.matrix.push(obj);
+                        //     }
+                        // }
 
                         if ('option' === objType) {
                             if (typeof modSettings.cpo_general !== 'undefined'
@@ -1412,6 +1497,7 @@
             autosaveData:   {},
             discountsData:  {},
             formulaData:    {},
+            imageData:      {},
             id:             null,
             novData:        {},
             settingsData:   {},
@@ -1637,6 +1723,7 @@
             'click #js-panel-cpo-weight':                    'renderWeightModal',
             'click #js-panel-cpo-dimensions':                'renderDimensionsModal',
             'click #js-panel-cpo-formula':                   'renderFormulaModal',
+            'click #js-panel-cpo-image-logic':               'renderImageLogicModal',
             'click #js-panel-cpo-cart-discounts':            'renderDiscountsModal'
         },
         autosaveRestore: function () {
@@ -1695,24 +1782,33 @@
                                 $(this).remove();
                             });
                         }, 2000);
+                        Builderius._showMessage(r.statusText, 'error');
                         console.info(r.status, r.statusText);
                         Builderius._ajax_sent = false;
                     },
-                    success:    function () {
-                        Builderius.rowsCol.reset();
-                        $(Builderius._builderId).empty();
-                        Builderius._updateListOfVars();
-                        Builderius._initSortables();
-                        Builderius._ifEmptyItem();
-                        Builderius._removeWarningClass();
+                    success:    function (r) {
+                        if (r.success) {
+                            Builderius.rowsCol.reset();
+                            $(Builderius._builderId).empty();
+                            Builderius._updateListOfVars();
+                            Builderius._initSortables();
+                            Builderius._ifEmptyItem();
+                            Builderius._removeWarningClass();
 
-                        Builderius._unblockForm($wrap, 'success');
-                        setTimeout(function () {
-                            $wrap.fadeOut(200,function(){
-                                $(this).remove();
-                            });
-                        }, 2000);
-                        Builderius._ajax_sent = false;
+                            Builderius._unblockForm($wrap, 'success');
+                            setTimeout(function () {
+                                $wrap.fadeOut(200,function(){
+                                    $(this).remove();
+                                });
+                            }, 2000);
+                            Builderius._ajax_sent = false;
+                        } else {
+                            Builderius._unblockForm($wrap, 'error');
+                            if (typeof r.data.error !== 'undefined') {
+                                Builderius._showMessage(r.data.error, 'error');
+                                console.log(r.data.error);
+                            }
+                        }
                     }
                 });
             });
@@ -1753,6 +1849,10 @@
         renderFormulaModal:  function () {
             const formulaModalView = new Builderius.Views.MainFormulaModal({model: this.model});
             formulaModalView.render();
+        },
+        renderImageLogicModal: function () {
+            const imageLogicModalView = new Builderius.Views.ImageLogicModal({model: this.model});
+            imageLogicModalView.render();
         },
         renderNovModal:      function () {
             const novModalView = new Builderius.Views.NovModal({model: this.model});
@@ -1797,12 +1897,23 @@
                 error:      function (r) {
                     Builderius._ajax_sent = false;
                     Builderius._unblockForm('.uni-builderius-container', 'error');
+                    Builderius._showMessage(r.statusText, 'error');
                     console.info(r.status, r.statusText);
                 },
-                success:    function () {
-                    Builderius._ajax_sent = false;
-                    Builderius._unblockForm('.uni-builderius-container', 'success');
-                    Builderius._removeWarningClass();
+                success:    function (r) {
+                    if (r.success) {
+                        Builderius._ajax_sent = false;
+                        Builderius._unblockForm('.uni-builderius-container', 'success');
+                        Builderius._removeWarningClass();
+                    } else {
+                        Builderius._unblockForm('.uni-builderius-container', 'error');
+                        if (typeof r.data !== 'undefined') {
+                            Builderius._showMessage(r.data.error, 'error');
+                            console.log(r.data.error);
+                        }
+                    }
+
+
                 }
             });
         },
@@ -2548,17 +2659,18 @@
     Builderius.Views.Modal = Backbone.View.extend({
         el:                       'body',
         events:                   {
-            'click .uni-close-modal':              'closeModal',
-            'click #js-modal-cancel-btn':          'closeModal',
-            'click #js-modal-save-btn':            'saveSettings',
-            'change [data-uni-constrainer="yes"]': 'updateConstrained',
-            'click #js-fetch-similar-modules':     'fetchModules',
-            'change .js-sync-methods':             'settingSyncMethodChanged',
-            'change .js-sync-posts':               'settingSyncPostChanged',
-            'click #js-sync-module-btn':           'syncWithModule',
-            'click .uni-rules-remove-all':          'removeAllRules',
-            'click #js-unsync-module-btn':         'unSyncModule',
-            'focus #builderius-setting-cpo_notice_text': 'getFocused'
+            'click .uni-close-modal':                    'closeModal',
+            'click #js-modal-cancel-btn':                'closeModal',
+            'click #js-modal-save-btn':                  'saveSettings',
+            'change [data-uni-constrainer="yes"]':       'updateConstrained',
+            'click #js-fetch-similar-modules':           'fetchModules',
+            'change .js-sync-methods':                   'settingSyncMethodChanged',
+            'change .js-sync-posts':                     'settingSyncPostChanged',
+            'click #js-sync-module-btn':                 'syncWithModule',
+            'click .uni-rules-remove-all':               'removeAllRules',
+            'click #js-unsync-module-btn':               'unSyncModule',
+            'focus #builderius-setting-cpo_notice_text': 'getFocused',
+            'click .uni-matrix-import-btn':              'importMatrixCsv'
         },
         template:                 _.template($('#js-builderius-modal-tmpl').html()),
         template_tab_list:        _.template($('#js-builderius-modal-tab-list-tmpl').html()),
@@ -2649,6 +2761,7 @@
                 },
                 error:      function (r) {
                     Builderius._unblockForm('#js-block-settings-modal', 'error');
+                    Builderius._showMessage(r.statusText, 'error');
                     console.info(r.status, r.statusText);
                 },
                 success:    function (r) {
@@ -2667,12 +2780,229 @@
                         $('.uni-fetch-wrap').removeClass('uni-active');
                         $syncBtn.hide();
                         Builderius._unblockForm('#js-block-settings-modal', 'error');
+                        if (typeof r.data.error !== 'undefined') {
+                            Builderius._showMessage(r.data.error, 'error');
+                            console.log(r.data.error);
+                        }
                     }
                 }
             });
         },
+        generateMatrixTable:      function (array) {
+            const container = $('#uni-matrix-option-table-container').attr('id');
+            const $json     = $('.uni-matrix-option-json');
+            const metadata  = [];
+            const data      = [];
+
+            if ( array === undefined ) {
+                const cols        = $('.uni-matrix-option-data-in-col').val().split('|');
+                const splitedRows = $('.uni-matrix-option-data-in-row').val().split('|');
+
+                metadata.push({
+                    name:     'rows',
+                    label:    '',
+                    datatype: 'string',
+                    editable: false
+                });
+                cols.forEach(function (item, i) {
+                    metadata.push({
+                        name:     item,
+                        label:    item,
+                        datatype: 'double(, 4, dot, comma, , )',
+                        editable: true
+                    });
+                });
+                metadata.push({
+                    name:     'action',
+                    label:    'Action',
+                    datatype: 'html',
+                    editable: false,
+                    values:   null
+                });
+
+                if ($json.val() !== '') {
+                    const rows = JSON.parse($json.val());
+
+                    splitedRows.forEach(function(row, i){
+                        const empty = [];
+                        for (var j = 0; j < metadata.length; j++ ) {
+                            empty.push(0);
+                        }
+                        empty[0] = row;
+
+                        let values;
+                        if (typeof rows[i] !== 'undefined') {
+                            rows[i].columns[0] = row;
+                            values = rows[i].columns;
+                        } else {
+                            values = empty;
+                        }
+                        data.push({
+                            id:     i,
+                            values: values
+                        });
+                    });
+                } else {
+                    splitedRows.forEach(function(row, i){
+                        const values = [];
+                        for (var j = 0; j < metadata.length; j++ ) {
+                            values.push(0);
+                        }
+                        values[0] = row;
+                        data.push({
+                            id:     i,
+                            values: values
+                        });
+                    });
+                }
+            } else {
+                array.metadata.forEach(function (item, i) {
+                    metadata.push({
+                        name:     item,
+                        label:    item,
+                        datatype: 'double(4)',
+                        editable: true
+                    });
+                });
+                metadata.push({
+                    name:     'action',
+                    label:    'Action',
+                    datatype: 'html',
+                    editable: false,
+                    values:   null
+                });
+                array.data.forEach(function (row) {
+                    data.push({
+                        id:     row.id,
+                        values: row.columns
+                    });
+                });
+            }
+            //Matrix
+            this.matrixTable = new EditableGrid('matrixTable', {
+                enableSort:    false, // true is the default, set it to false if you don't want sorting to be enabled
+                editmode:      'absolute', // change this to "fixed" to test out editorzone, and to "static" to get the old-school mode
+                rowRemoved: function (oldRowIndex, rowId) {
+                    const splitedRows = $('.uni-matrix-option-data-in-row').val().split('|');
+
+                    splitedRows.splice(rowId, 1);
+                    $('.uni-matrix-option-data-in-row').val(splitedRows.join('|'));
+
+                    Builderius._destroyScroll( container );
+                    Builderius._initScroll( container );
+                },
+                duplicate:     function (rowIndex) {
+                    // copy values from given row
+                    const values   = this.getRowValues(rowIndex);
+                    values['name'] = values['name'] + ' (copy)';
+
+                    // get id for new row (max id + 1)
+                    var newRowId = 0;
+                    for (var r = 0; r < this.getRowCount(); r++) newRowId = Math.max(newRowId, parseInt(this.getRowId(r)) + 1);
+
+                    Builderius._destroyScroll( container );
+                    // add new row
+                    const splitedRows = $('.uni-matrix-option-data-in-row').val().split('|');
+                    splitedRows.splice(rowIndex, 0, values.rows);
+                    $('.uni-matrix-option-data-in-row').val(splitedRows.join('|'));
+                    //console.log(rowIndex, newRowId, values);
+                    this.insertAfter(rowIndex, newRowId, values);
+                    Builderius._initScroll( container );
+                },
+                tableRendered: function (containerid, className, tableid) {
+                    const str = JSON.stringify(this.data);
+                    $json.val(str);
+                },
+                modelChanged:  function (rowIndex, columnIndex, oldValue, newValue, row) {
+                    const str = JSON.stringify(this.data);
+                    $json.val(str);
+                }
+            });
+
+            //console.log(this.matrixTable);
+
+            //console.log(data);
+            this.matrixTable.load({
+                'metadata': metadata,
+                'data':     data
+            });
+
+            // renderer for the action column
+            this.matrixTable.setCellRenderer(
+                'action', new CellRenderer({
+                    render: function (cell, value) {
+                        cell.innerHTML = '<a class="uni-generated-table-remove-row" data-row="' + cell.rowIndex + '" style="cursor:pointer">' +
+                            '<i class="fa fa-trash" alt="delete" title="Delete row"></i></a>';
+                        cell.innerHTML += '&nbsp;<a class="uni-generated-table-clone-row" data-row="' + cell.rowIndex + '" style="cursor:pointer">' +
+                            '<i class="fa fa-files-o" border="0" alt="duplicate" title="Duplicate row"></i></a>';
+                    }
+                })
+            );
+
+            this.matrixTable.renderGrid(container, 'uni-generated-table', 'js-generated-table');
+            Builderius._initScroll(container);
+            $('.uni-matrix-generate-btn').removeClass('uni-active');
+        },
         getFocused: function (e) {
             this.textarea = $(e.currentTarget);
+        },
+        importMatrixCsv: function(e) {
+            e.preventDefault();
+            const view = this;
+            const $el = $(e.target);
+            const $wrap = $el.closest('.uni-cpo-matrix-options-wrap');
+            const wrapId = $wrap.find('.uni-matrix-table-container').attr('id');
+            const rowId = $el.data('row');
+            const $file = $el.prevAll('input[type=file]');
+            const file = $file[0].files[0];
+            const formData = new FormData();
+
+            if ( typeof file !== 'undefined' ) {
+                const data = {
+                    action:     'uni_cpo_import_matrix',
+                    security:   builderiusCfg.security
+                };
+
+                formData.append('file', file);
+
+                $.each(data, function(key, value){
+                    formData.append(key, value);
+                });
+
+                $.ajax({
+                    url:        builderiusCfg.ajax_url,
+                    data:       formData,
+                    method:     'POST',
+                    processData: false,
+                    contentType: false,
+                    beforeSend: function () {
+                        Builderius._blockForm('#uni-modal-wrap');
+                    },
+                    error:      function (r) {
+                        Builderius._unblockForm('#uni-modal-wrap', 'error');
+                        Builderius._showMessage(r.statusText, 'error');
+                        console.info(r.status, r.statusText);
+                    },
+                    success:    function (r) {
+                        if (r.success) {
+                            const $matrixDataEl = $wrap.find('.uni-matrix-data');
+                            let metadata = r.data.metadata;
+                            metadata.shift();
+                            metadata = metadata.join('|');
+                            $matrixDataEl.val(metadata);
+                            Builderius._destroyScroll( wrapId );
+                            view.generateTable($wrap,r.data);
+                            Builderius._unblockForm('#uni-modal-wrap', 'success');
+                        } else {
+                            Builderius._unblockForm('#uni-modal-wrap', 'error');
+                            if (typeof r.data.error !== 'undefined') {
+                                Builderius._showMessage(r.data.error, 'error');
+                                console.log(r.data.error);
+                            }
+                        }
+                    }
+                });
+            }
         },
         initialize:               function () {
             const view                  = this;
@@ -2991,6 +3321,7 @@
                 },
                 error:      function (r) {
                     Builderius._unblockForm('#js-block-settings-modal', 'error');
+                    Builderius._showMessage(r.statusText, 'error');
                     console.info(r.status, r.statusText);
                 },
                 success:    function (r) {
@@ -3008,7 +3339,10 @@
                         Builderius._unblockForm('#js-block-settings-modal', 'success');
                     } else {
                         Builderius._unblockForm('#js-block-settings-modal', 'error');
-                        console.log('error');
+                        if (typeof r.data.error !== 'undefined') {
+                            Builderius._showMessage(r.data.error, 'error');
+                            console.log(r.data.error);
+                        }
                     }
                 }
             });
@@ -3081,6 +3415,7 @@
                 },
                 error:      function (r) {
                     Builderius._unblockForm('#uni-modal-general-settings-wrapper', 'error');
+                    Builderius._showMessage(r.statusText, 'error');
                     console.info(r.status, r.statusText);
                 },
                 success:    function (r) {
@@ -3088,6 +3423,10 @@
                         location.reload();
                     } else {
                         Builderius._unblockForm('#uni-modal-general-settings-wrapper', 'error');
+                        if (typeof r.data.error !== 'undefined') {
+                            Builderius._showMessage(r.data.error, 'error');
+                            console.log(r.data.error);
+                        }
                     }
                 }
             });
@@ -3117,6 +3456,7 @@
                 },
                 error:      function (r) {
                     Builderius._unblockForm('#uni-modal-general-settings-wrapper', 'error');
+                    Builderius._showMessage(r.statusText, 'error');
                     console.info(r.status, r.statusText);
                 },
                 success:    function (r) {
@@ -3124,6 +3464,10 @@
                         Builderius._unblockForm('#uni-modal-general-settings-wrapper', 'success');
                     } else {
                         Builderius._unblockForm('#uni-modal-general-settings-wrapper', 'error');
+                        if (typeof r.data.error !== 'undefined') {
+                            Builderius._showMessage(r.data.error, 'error');
+                            console.log(r.data.error);
+                        }
                     }
                 }
             });
@@ -3151,6 +3495,7 @@
                 },
                 error:      function (r) {
                     Builderius._unblockForm('#uni-modal-general-settings-wrapper', 'error');
+                    Builderius._showMessage(r.statusText, 'error');
                     console.info(r.status, r.statusText);
                 },
                 success:    function (r) {
@@ -3165,6 +3510,10 @@
                     } else {
                         $syncBtn.hide();
                         Builderius._unblockForm('#uni-modal-general-settings-wrapper', 'error');
+                        if (typeof r.data.error !== 'undefined') {
+                            Builderius._showMessage(r.data.error, 'error');
+                            console.log(r.data.error);
+                        }
                     }
                 }
             });
@@ -3203,6 +3552,7 @@
                 },
                 error:      function (r) {
                     Builderius._unblockForm('#uni-modal-general-settings-wrapper', 'error');
+                    Builderius._showMessage(r.statusText, 'error');
                     console.info(r.status, r.statusText);
                 },
                 success:    function (r) {
@@ -3210,6 +3560,10 @@
                         location.reload();
                     } else {
                         Builderius._unblockForm('#uni-modal-general-settings-wrapper', 'error');
+                        if (typeof r.data.error !== 'undefined') {
+                            Builderius._showMessage(r.data.error, 'error');
+                            console.log(r.data.error);
+                        }
                     }
                 }
             });
@@ -3423,6 +3777,90 @@
 
                 view.originalModelSettings = originalSettings;
                 view.model.set({formulaData: finalSettings});
+                view.model.sync('create', view.model, data);
+            }
+        }
+    });
+
+    // MainFormulaModalView
+    Builderius.Views.ImageLogicModal = Backbone.View.extend({
+        el:           'body',
+        events:       {
+            'click .uni-close-modal':                         'closeModal',
+            'click #js-modal-main-cancel-btn':                'closeModal',
+            'click .uni-rules-remove-all':                    'removeAllRules',
+            'click #js-modal-main-save-btn':                  'saveSettings'
+        },
+        template:     _.template($('#js-builderius-modal-image-logic-tmpl').html()),
+        ajaxError:    function (r) {
+            Builderius._unblockForm('#uni-modal-wrap', 'error');
+            console.info(r.status, r.statusText);
+        },
+        ajaxSent:     function (model, xhr, options) {
+            Builderius._blockForm('#uni-modal-wrap');
+        },
+        ajaxSynced:   function (r) {
+            const view = this;
+            if (r.success) {
+                $('#js-modal-main-save-btn').removeClass('uni-active');
+                Builderius._unblockForm('#uni-modal-wrap', 'success');
+            } else {
+                // restore original settings
+                view.model.set({imageData: view.originalModelSettings});
+                Builderius._unblockForm('#uni-modal-wrap', 'error');
+            }
+        },
+        closeModal:   function () {
+            this.$el.find('#uni-modal-image-logic-wrapper').remove();
+            this.undelegateEvents(); // tip: use undelegateEvents() if 'setElement' was used before
+            this.stopListening();
+            Builderius._modal_on = false;
+        },
+        initialize:   function () {
+            this.originalModelSettings = {};
+            this.listenTo(this.model, 'request', this.ajaxSent);
+        },
+        removeAllRules: function () {
+            const $rows = $('.uni-formula-conditional-rules-options-row').not('.uni-formula-conditional-rules-options-template');
+            $rows.remove();
+            $('.uni_formula_conditional_rule_add').click();
+        },
+        render:       function () {
+            const view           = this;
+            Builderius._modal_on = true;
+
+            const modal = view.template({
+                data: view.model.get('imageData'),
+                vars: Builderius._optionVars
+            });
+            this.$el.append(modal);
+
+            // trigger
+            $(document.body).trigger('builderius_image_logic_modal_opening', [view]);
+
+            return this;
+        },
+        saveSettings: function () {
+            const view             = this;
+            const modalFieldValues = Builderius._readSettingsModal(view);
+            const originalSettings = JSON.parse(JSON.stringify(view.model.get('imageData')));
+
+            if (modalFieldValues.valid && !Builderius._ajax_sent) {
+                //const finalSettings = $.extend(true, {}, originalSettings, modalFieldValues.data);
+                const finalSettings = modalFieldValues.data;
+                const data          = {
+                    action:   'uni_cpo_save_image_data',
+                    security: builderiusCfg.security,
+                    success:  function (r) {
+                        view.ajaxSynced(r);
+                    },
+                    error:    function (r) {
+                        view.ajaxError(r);
+                    },
+                };
+
+                view.originalModelSettings = originalSettings;
+                view.model.set({imageData: finalSettings});
                 view.model.sync('create', view.model, data);
             }
         }
@@ -3797,6 +4235,7 @@
                     },
                     error:      function (r) {
                         Builderius._unblockForm('#uni-modal-wrap', 'error');
+                        Builderius._showMessage(r.statusText, 'error');
                         console.info(r.status, r.statusText);
                     },
                     success:    function (r) {
@@ -3812,7 +4251,7 @@
                         } else {
                             Builderius._unblockForm('#uni-modal-wrap', 'error');
                             if (typeof r.data.error !== 'undefined') {
-                                console.log(r.data.error);
+                                Builderius._showMessage(r.data.error, 'error');
                             }
                         }
                     }
@@ -3888,19 +4327,28 @@
     $(document.body).on('builderius_module_settings_modal_opening', function (e, view) {
         const $modal = $('#js-block-settings-modal');
         const filter = Builderius._getQueryBuilderFilter(view.model);
+        const $matrixJson = $('.uni-matrix-option-json');
+
 
         // init tabs
         $('#uni-modal-tabs').tabs({
-            activate: function (event, ui) {}
+            activate: function (event, ui) {
+                if (ui.newPanel.attr('id') === 'tab-cpo_matrix') {
+                    if ($matrixJson.val() !== '') {
+                        //console.log('Matrix tab activate!');
+                        view.generateMatrixTable();
+                    }
+                } else {
+                    if (ui.oldPanel.attr('id') === 'tab-cpo_matrix') {
+                        //console.log('Other tab activate!');
+                        Builderius._destroyScroll('uni-matrix-option-table-container');
+                    }
+                }
+            }
         });
 
-        $premiumContent = $('.uni-premium-content');
-        if ($premiumContent.length > 0) {
-            $premiumContent.each(function(){
-                const html = '<div class="uni-premium-overlay"></div><div class="uni-premium-overlay-text">'+builderius_i18n.pro+'</div>'
-                $(this).append(html);
-            });
-        }
+        Builderius._hidePremiumContent($('.uni-premium-content'));
+
         $modal.on('click', '.uni-variables-list li', function () {
             view.textarea.insertAtCaret($(this).text().replace(/\s/g, ''));
             return false;
@@ -3916,6 +4364,26 @@
 
         $modal.on('change', 'input[name="cpo_slug"], input[name="cpo_rate"], input[name="cpo_order_label"], input[name="cpo_day_night"], input[name^="cpo_radio_options"], input[name^="cpo_select_options"]', function () {
             $('#js-save-to-db').prop('checked', true);
+        });
+
+        /* Matrix option */
+        $modal.on('click', '.uni-matrix-generate-btn', function () {
+            view.generateMatrixTable();
+        });
+
+        $modal.on('click', '.uni-generated-table-remove-row', function () {
+            view.matrixTable.remove($(this).data('row'));
+        });
+
+        $modal.on('click', '.uni-generated-table-clone-row', function () {
+            view.matrixTable.duplicate($(this).data('row'));
+        });
+
+        $modal.on('change', '.uni-matrix-import input[type="file"]', function () {
+            $(this).addClass('uni-chosen').closest('.uni-matrix-import').find('label').text('File chosen');
+        });
+        $modal.on('change', 'textarea[name^="cpo_matrix_data"]', function () {
+            $(this).closest('div[data-group="data"]').find('.uni-matrix-generate-btn').addClass('uni-active');
         });
 
         const $repeater = $('.uni-select-option-repeat');
@@ -4183,6 +4651,54 @@
         uni_query_builder_init('.cpo-query-rule-builder', queryBuilderData);
     });
 
+    $(document.body).on('builderius_image_logic_modal_opening', function (e, view) {
+        const $modal = $('#uni-modal-image-logic-wrapper');
+
+        $modal.on('change', 'input, select, textarea', function (e) {
+            const $el = $( e.currentTarget );
+            if ( !$el.parents('.cpo-query-rule-builder').length ) {
+                $('#js-modal-main-save-btn').addClass('uni-active');
+            }
+        });
+
+        const filter    = Builderius._getQueryBuilderFilter();
+        const newFilter = filter.filter(function(obj) {
+            return ! obj.id.startsWith('uni_nov_cpo');
+        });
+        /*const rules     = (typeof view.model.get('formulaData').formula_scheme !== 'undefined' )
+            ? view.model.get('formulaData').formula_scheme
+            : {};*/
+        const rules = uniGet(view.model.get('imageData'), 'image_scheme', {});
+        const repeaterData     = {
+            wrapper:   '.uni-formula-conditional-rules-repeat-wrapper',
+            container: '.uni-formula-conditional-rules-options-wrapper',
+            row:       '.uni-formula-conditional-rules-options-row',
+            add:       '.uni_formula_conditional_rule_add',
+            remove:    '.uni_formula_conditional_rule_remove',
+            move:      '.uni_formula_conditional_rule_move',
+            template:  '.uni-formula-conditional-rules-options-template',
+            filter: newFilter,
+            rules
+        };
+        const queryBuilderData = {
+            icons:        {
+                add_group:    'fa fa-plus-circle',
+                add_rule:     'fa fa-plus',
+                remove_group: 'fa fa-times',
+                remove_rule:  'fa fa-times',
+                error:        'fa fa-exclamation-circle'
+            },
+            allow_groups: 1,
+            filters: newFilter,
+            rules
+        };
+
+        uni_repeater_init('.uni-formula-conditional-rules-repeat', repeaterData);
+        uni_query_builder_init('.cpo-query-rule-builder', queryBuilderData);
+
+        Builderius._initTooltip( $modal, 'center bottom', 'center top-10' );
+    });
+
     $(document.body).on('builderius_weight_modal_opening', function (e, view) {
         const $modal = $('#uni-modal-weight-wrapper');
 
@@ -4329,6 +4845,8 @@
         $modal.on('change', '.uni-import-file-wrap input[type="file"]', function () {
             $(this).addClass('uni-chosen').closest('.uni-import-file-wrap').find('label').text('File chosen');
         });
+
+        Builderius._hidePremiumContent($('.uni-premium-content'));
     });
 
     $(document.body).on('builderius_cart_discounts_modal_opening', function (e, view) {
@@ -4585,6 +5103,12 @@
         $el.uniConvertToSlug();
         $el.parsley().validate();
     });
+
+    // validation
+    $(document).on('change focusin focusout', '.js-cpo-custom-values-field', function () {
+        const $el = $(this);
+        $el.parsley().validate();
+    });
     // replaces commas with dots
     $(document).on('change focusin focusout', '.js-cpo-rate-field, .rule-value-container input', function () {
         const $el = $(this);
@@ -4593,7 +5117,6 @@
         $el.parsley().validate();
     });
 
-    //
     let media_uploader;
     $(document).on('click', '.cpo-upload-attachment', function (e) {
         e.preventDefault();
@@ -4634,12 +5157,12 @@
             if ($img_title.length > 0) {
                 $img_title.empty().append(json.filename);
             }
+
         });
 
         media_uploader.open();
     });
 
-    //
     $(document).on('click', '.cpo-remove-attachment', function (e) {
         e.preventDefault();
         const $btn         = $(e.target);

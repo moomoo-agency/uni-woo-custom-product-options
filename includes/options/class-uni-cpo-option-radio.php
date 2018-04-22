@@ -371,6 +371,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
             'cpo_mode_radio'     => 'classic',
             'cpo_geom_radio'     => 'circle',
             'cpo_is_changeimage' => 'no',
+            'cpo_encoded_image'  => '',
         ),
             'advanced' => array(
             'cpo_label'           => '',
@@ -394,11 +395,14 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
         ),
         ),
             'cpo_validation'  => array(
-            'main' => array(
+            'main'  => array(
             'cpo_validation_msg' => array(
             'req'    => '',
             'custom' => '',
         ),
+        ),
+            'logic' => array(
+            'cpo_vc_extra' => '',
         ),
         ),
         ),
@@ -601,8 +605,10 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
         $cpo_general_main = $data['settings']['cpo_general']['main'];
         $cpo_mode_radio = ( isset( $cpo_general_main['cpo_mode_radio'] ) ? $cpo_general_main['cpo_mode_radio'] : 'classic' );
         $cpo_change_image = ( isset( $cpo_general_main['cpo_is_changeimage'] ) ? $cpo_general_main['cpo_is_changeimage'] : 'no' );
+        $cpo_encoded_image = ( isset( $cpo_general_main['cpo_encoded_image'] ) ? $cpo_general_main['cpo_encoded_image'] : '' );
         $cpo_general_advanced = $data['settings']['cpo_general']['advanced'];
         $cpo_validation_main = ( isset( $data['settings']['cpo_validation']['main'] ) ? $data['settings']['cpo_validation']['main'] : array() );
+        $cpo_validation_logic = ( isset( $data['settings']['cpo_validation']['logic'] ) ? $data['settings']['cpo_validation']['logic'] : array() );
         $cpo_label_tag = $cpo_general_advanced['cpo_label_tag'];
         $attributes = array(
             'data-parsley-trigger'          => 'change focusout submit',
@@ -664,6 +670,15 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
                         break;
                 }
             }
+        }
+        
+        if ( !empty($cpo_validation_logic['cpo_vc_extra']) ) {
+            $extra_validation = preg_split( '/\\R/', $cpo_validation_logic['cpo_vc_extra'] );
+            $attributes = uni_cpo_field_attributes_modifier( $extra_validation, $attributes );
+        }
+        
+        if ( $cpo_encoded_image ) {
+            $wrapper_attributes['data-layered'] = true;
         }
         
         if ( $is_enabled && $is_hidden ) {

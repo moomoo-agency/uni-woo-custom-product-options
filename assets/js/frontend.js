@@ -16,18 +16,26 @@ UniCpo = {
     calc: unicpo.calc_on,
     calcBtn: unicpo.calc_btn_on,
     cpo: unicpo.cpo_on,
+    isTaxable: unicpo.taxable,
     fileUploadEl: {},
     flatpickrCfg: {},
     isFlexContainer: jQuery('.flex-viewport').length > 0,
+    isLayeredOn: unicpo.layered_on,
+    isSilentValidationOn: unicpo.silent_validation_on,
     mainImageChangers: jQuery('.uni-cpo-image-changer').get().reverse(),
     mainImageDefData: {},
     mainImageEl: '',
     orderingDsblMsgEl: jQuery('.js-uni-cpo-ordering-disabled-notice'),
     priceTagEl: {},
-    priceZeroEl: jQuery('<span class="js-cpo-text-zero-pice"></span>'),
+    priceStartingEl: jQuery('<span class="js-cpo-price-starting"></span>'),
     priceCalculateEl: jQuery('<span class="js-cpo-calculating"></span>'),
     productFormEl: {},
     progressEl: {},
+    priceSuffix: unicpo.price_vars.price_suffix,
+    priceTaxSuffixStarting: unicpo.price_vars.price_tax_suffix,
+    pricePostfix: unicpo.price_vars.price_postfix,
+    priceStarting: unicpo.price_vars.starting_price,
+    taxPriceSuffixElClass: '.woocommerce-price-suffix',
     _pid: 0,
     _ajax_sent: false,
     _init: function _init() {
@@ -40,6 +48,8 @@ UniCpo = {
                 this.productFormEl = this.addToCartBtnEl.closest('form');
                 if (!this.productFormEl.length) {
                     console.info('Product form is not found');
+                } else {
+                    this.productFormEl.attr('data-parsley-focus', 'none');
                 }
                 if (this.addToCartAjax && this.addToCartBtnEl.length > 0) {
                     this.addToCartBtnEl.attr('type', 'button');
@@ -49,7 +59,7 @@ UniCpo = {
                 if (!this.priceTagEl.length) {
                     console.info('Price tag html element is not found');
                 }
-                this.priceZeroEl.html(unicpo.price_vars.price);
+                this.priceStartingEl.html(this.getProperPrice());
                 this.priceCalculateEl.html(unicpo_i18n.calc_text);
 
                 if (!this.calc) {
@@ -57,13 +67,14 @@ UniCpo = {
                 }
                 if (this.calc && this.calcBtn) {
                     this.setBtnState(true);
-                    this.setPriceTo(this.priceZeroEl);
+                    this.setPriceTo({ price: this.priceStartingEl });
                     this.bindOnCalcBtnClick();
                 }
                 this.bindOnAddToCartClick();
                 this.initTooltip();
                 this.initRangeSlider();
                 this.bindOnFileUploadClick();
+                this.bindOnMatrixCellClick();
 
                 // initial calculation
                 var cpoObj = this;
@@ -78,6 +89,7 @@ UniCpo = {
                         cpoObj.mainImageEl = cpoObj.getMainImageEl();
                         cpoObj.mainImageDefData = cpoObj.getMainImageDefData();
                         cpoObj.changeMainImage();
+                        jQuery(document.body).trigger('uni_cpo_frontend_is_ready');
                     }
                 }, 100);
 
@@ -86,6 +98,7 @@ UniCpo = {
 
 
                 this.bindOnRadioImageTap();
+                this.bindOnRadioColourClick();
                 this.bindOnOptionSelected();
                 this.bindMainImageChange();
             }
@@ -99,7 +112,7 @@ UniCpo = {
             security: unicpo.security,
             data: fields
         };
-
+        //console.log(data);
         this.ajaxCall(data);
     },
     ajaxCall: function ajaxCall(data) {
@@ -116,7 +129,7 @@ UniCpo = {
                 cpoObj._blockForm(form);
 
                 if (cpoObj.calc) {
-                    cpoObj.setPriceTo(cpoObj.priceCalculateEl);
+                    cpoObj.setPriceTo({ price: cpoObj.priceCalculateEl, tax: 'hide' });
                 }
                 if (cpoObj.addToCartAjax) {
                     $wc.find('.woocommerce-message').slideToggle(500, function () {
@@ -128,7 +141,7 @@ UniCpo = {
             },
             error: function error() {
                 cpoObj._unblockForm(form, 'error');
-                cpoObj.setPriceTo(cpoObj.priceZeroEl);
+                cpoObj.setPriceTo({ price: cpoObj.priceStartingEl });
             },
             success: function success(r) {
                 //console.log(r);
@@ -154,7 +167,8 @@ UniCpo = {
                     }
 
                     if (cpoObj.calc) {
-                        cpoObj.setPriceTo(unicpo.price_vars.price);
+                        var calcPrice = cpoObj.getProperPrice({ price: unicpo.price_vars.price, doRemoveSuffix: true });
+                        cpoObj.setPriceTo({ price: calcPrice, tax: 'show' });
                     }
 
                     if (typeof r.data.fragments !== 'undefined') {
@@ -166,8 +180,12 @@ UniCpo = {
 
                         $wc.html(cpoObj.addedToCartMsg);
 
+                        jQuery.each(r.data.fragments, function (key, value) {
+                            jQuery(key).replaceWith(value);
+                        });
+
                         // Trigger event so themes can refresh other areas.
-                        jQuery(document.body).trigger('uni_cpo_added_to_cart', [r.fragments, r.cart_hash]);
+                        jQuery(document.body).trigger('uni_cpo_added_to_cart', [r.data]);
                     } else {
                         // Triggers an event - on successful ajax request
                         jQuery(document.body).trigger('uni_cpo_options_data_ajax_success', [data.data, r.data]);
@@ -175,7 +193,7 @@ UniCpo = {
                 } else {
                     cpoObj._unblockForm(form, 'error');
                     if (cpoObj.calc) {
-                        cpoObj.setPriceTo(cpoObj.priceZeroEl);
+                        cpoObj.setPriceTo({ price: cpoObj.priceStartingEl });
                     }
 
                     if (r.product_url) {
@@ -237,7 +255,17 @@ UniCpo = {
             }
         });
     },
+    bindOnRadioColourClick: function bindOnRadioColourClick() {
+        
+/* Premium Code Stripped by Freemius */
+
+    },
     bindOnRadioImageTap: function bindOnRadioImageTap() {
+        
+/* Premium Code Stripped by Freemius */
+
+    },
+    bindOnMatrixCellClick: function bindOnMatrixCellClick() {
         
 /* Premium Code Stripped by Freemius */
 
@@ -269,6 +297,7 @@ UniCpo = {
             }
 
             var el = this;
+            //console.log(el);
             var $el = jQuery(el);
             var elType = el.type || el.tagName.toLowerCase();
 
@@ -381,6 +410,50 @@ UniCpo = {
 
         return fields;
     },
+    colorify: function colorify(optionName, hex) {
+        var cpoObj = this;
+        var $layer = jQuery('#palette-layer-' + optionName);
+
+        if ($layer.length > 0) {
+            var colorRgb = cpoObj.hexToRgb(hex);
+
+            // gets main product image size
+            var width = $layer.width();
+            var height = $layer.height();
+
+            // gets original image size
+            var $fakeImg = jQuery('<img>').css('display', 'none').appendTo('body');
+            $fakeImg[0]['src'] = $layer[0].src;
+
+            var w = $fakeImg.width();
+            var h = $fakeImg.height();
+            $fakeImg.remove();
+
+            var canvas = document.createElement('canvas');
+            var ctx = canvas.getContext('2d');
+            canvas.width = w;
+            canvas.height = h;
+
+            ctx.drawImage($layer.get(0), 0, 0);
+            var imgd = ctx.getImageData(0, 0, w, h);
+            var pix = imgd.data;
+            var unique_color = [colorRgb.r, colorRgb.g, colorRgb.b];
+
+            // Loops through all of the pixels and modifies the components.
+            for (var i = 0, n = pix.length; i < n; i += 4) {
+                pix[i] = unique_color[0];
+                pix[i + 1] = unique_color[1];
+                pix[i + 2] = unique_color[2];
+            }
+
+            ctx.putImageData(imgd, 0, 0);
+
+            // put the new image to the DOM
+            $layer.attr('src', canvas.toDataURL('image/png'));
+            $layer.attr('width', width);
+            $layer.attr('height', height);
+        }
+    },
     formSubmission: function formSubmission() {
         var cpoObj = this;
 
@@ -464,13 +537,32 @@ UniCpo = {
 
     },
     handlePluploadChunkUploaded: function handlePluploadChunkUploaded(uploader, file, r) {
-        //console.log(file);
-        //console.log(r);
+        var parsedResponse = JSON.parse(r.response);
+        if (!parsedResponse.success) {
+            var slug = uploader.settings.multipart_params.slug;
+            var $option = jQuery('#' + slug + '-field');
+            uploader.stop();
+            $option.parsley().addError('file-upload', { message: parsedResponse.data.error });
+            window.UniCpo.position($option, 0);
+        }
     },
     handlePluploadFileUploaded: function handlePluploadFileUploaded(uploader, file, r) {
         
 /* Premium Code Stripped by Freemius */
 
+    },
+    hexToRgb: function hexToRgb(hex) {
+        var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+        hex = hex.replace(shorthandRegex, function (m, r, g, b) {
+            return r + r + g + g + b + b;
+        });
+
+        var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+        return result ? {
+            r: parseInt(result[1], 16),
+            g: parseInt(result[2], 16),
+            b: parseInt(result[3], 16)
+        } : null;
     },
     initRangeSlider: function initRangeSlider() {
         
@@ -559,7 +651,7 @@ UniCpo = {
 
         cpoObj.collectData(true);
         if (this.calc) {
-            cpoObj.setPriceTo(cpoObj.priceZeroEl);
+            cpoObj.setPriceTo({ price: cpoObj.priceStartingEl });
         }
 
         // Triggers an event - on form data process has been started
@@ -611,18 +703,59 @@ UniCpo = {
         this.addToCartBtnEl.prop('disabled', state);
         jQuery(document.body).trigger('uni_cpo_set_btn_state_event', [state]);
     },
-    setPriceTo: function setPriceTo(data) {
-        this.priceTagEl.html(data).show();
-        var cloned = data;
-        if ((typeof data === 'undefined' ? 'undefined' : _typeof(data)) === 'object') {
-            cloned = data.clone();
-        }
-        jQuery(document.body).trigger('uni_cpo_set_price_event', [cloned]);
+    setPriceTo: function setPriceTo(_ref) {
+        var price = _ref.price,
+            _ref$tax = _ref.tax,
+            tax = _ref$tax === undefined ? 'starting' : _ref$tax;
+
+        var cpoObj = this;
+        var $el = cpoObj.priceTagEl;
+        $el.parent().each(function () {
+            if (jQuery(this)[0].tagName === 'DEL') {
+                jQuery(this).find($el).show();
+            } else {
+                jQuery(this).find($el).html(price).show();
+                if (cpoObj.isTaxable && tax !== 'hide') {
+                    var $taxSuffixEl = jQuery(this).find(cpoObj.taxPriceSuffixElClass);
+                    var $newTaxSuffixEl = jQuery(cpoObj.getProperTaxSuffix(tax));
+                    $taxSuffixEl.replaceWith($newTaxSuffixEl);
+                    $newTaxSuffixEl.show();
+                } else {
+                    jQuery(this).find(cpoObj.taxPriceSuffixElClass).hide();
+                }
+                var cloned = price;
+                if ((typeof price === 'undefined' ? 'undefined' : _typeof(price)) === 'object') {
+                    cloned = price.clone();
+                }
+                jQuery(document.body).trigger('uni_cpo_set_price_event', [cloned]);
+            }
+        });
     },
     showFirstThumbOnImageChange: function showFirstThumbOnImageChange() {
         
 /* Premium Code Stripped by Freemius */
 
+    },
+    getProperPrice: function getProperPrice() {
+        var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+            _ref2$price = _ref2.price,
+            price = _ref2$price === undefined ? '' : _ref2$price,
+            _ref2$doRemoveSuffix = _ref2.doRemoveSuffix,
+            doRemoveSuffix = _ref2$doRemoveSuffix === undefined ? false : _ref2$doRemoveSuffix;
+
+        var initPrice = this.priceStarting && !price ? this.priceStarting : price ? price : unicpo.price_vars.price;
+        
+/* Premium Code Stripped by Freemius */
+
+
+        return initPrice;
+    },
+    getProperTaxSuffix: function getProperTaxSuffix(tax) {
+        if (tax === 'starting') {
+            return this.priceTaxSuffixStarting;
+        } else if (tax === 'show') {
+            return unicpo.price_vars.price_tax_suffix;
+        }
     },
     template: _.memoize(function (id) {
         var compiled = void 0;
@@ -708,5 +841,8 @@ window.Parsley.addValidator('mimeType', {
 });
 
 window.Parsley.on('field:error', function () {
+    if (window.UniCpo.isSilentValidationOn) {
+        this.removeError('required');
+    }
     window.UniCpo.position(this.$element);
 });

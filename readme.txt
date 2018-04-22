@@ -2,10 +2,10 @@
 Contributors: moomooagency, mrpsiho, andriimatenka, freemius
 Tags: custom options, extra options, product visual builder, woocommerce plugins, price calculation, maths formula, conditional logic, wholesale
 Requires at least: 4.8
-Tested up to: 4.9.4
+Tested up to: 4.9.5
 Requires PHP: 7.0
 WC requires at least: 3.2.0
-WC tested up to: 3.3.1
+WC tested up to: 3.3.5
 Stable tag: trunk
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -83,6 +83,19 @@ A: We wouldn't recommend to do this yet. First, this version is so called 'lite'
 7. screenshot-7.png
 
 == Changelog ==
+
+= 4.1.0 =
+* Added: Matrix Option
+* Added: Colorify functionality
+* Added: a possibility to add input for range slider in single mode
+* Added: starting price, price prefix, price postfix and price template for archives settings
+* Added: support for RTL languages
+* Fixed: a possibility to add files for order meta if this meta is for File Upload Option
+* Fixed: displaying added item in WC cart widget
+* Fixed: some other minor bugs
+
+= 4.0.11 =
+* Hot-fix price displaying issue on other products
 
 = 4.0.10 =
 * Fixed adding custom image (if selected) upon cart item duplication

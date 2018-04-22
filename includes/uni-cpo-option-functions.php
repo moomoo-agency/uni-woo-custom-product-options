@@ -43,7 +43,8 @@ function uni_cpo_get_option_types() {
 		'datepicker',
 		'file_upload',
 		'range_slider',
-		'dynamic_notice'
+		'dynamic_notice',
+		'matrix'
 	);
 
 	// make it possible for third-party plugins to add new option types
@@ -203,12 +204,15 @@ function uni_cpo_get_setting_types() {
 		'cpo_disabled_dates',
 		'cpo_range_type',
 		'cpo_range_grid',
+		'cpo_range_input',
 		'cpo_range_from',
 		'cpo_range_to',
 		'cpo_range_prefix',
 		'cpo_range_postfix',
 		'cpo_custom_values',
-		'cpo_notice_text'
+		'cpo_notice_text',
+        'cpo_matrix_data',
+        'cpo_encoded_image'
 	);
 
 	// make it possible for third-party plugins to add new module types

@@ -22,7 +22,7 @@ class Uni_Cpo_Setting_Cpo_Min_Val extends Uni_Cpo_Setting implements Uni_Cpo_Set
 			'is_tooltip'        => true,
 			'desc_tip'          => __( 'Add the minimum allowed value for this field. Only integer or float number.', 'uni-cpo' ),
 			'custom_attributes' => array(
-				'data-parsley-pattern' => '/^(\d+(?:[\.]\d{0,4})?)$/',
+				'data-parsley-pattern' => '/^(-?\d+(?:[\.]\d{0,4})?)$/',
 			),
 			'value'             => '{{- data }}'
 		);

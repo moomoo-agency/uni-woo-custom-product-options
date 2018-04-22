@@ -21,8 +21,8 @@ class Uni_Cpo_Setting_Cpo_Radio_Options extends Uni_Cpo_Setting implements  Uni_
         $this->setting_data = array(
             'title'              => __( 'Sub options', 'uni-cpo' ),
             'is_tooltip'         => true,
-            'is_tooltip_warning' => true,
             'desc_tip'           => __( 'Add some sub options for this option and, please, keep unique slugs for them. These slugs might be used in a formula conditional rules (e.g. when you use operators "equal", "not equal" etc).', 'uni-cpo' ),
+            'is_tooltip_warning' => true,
             'desc_tip_warning'   => __( 'Important to save to DB if modified', 'uni-cpo' ),
         );
         add_action( 'wp_footer', array( $this, 'js_template' ), 10 );
@@ -61,7 +61,7 @@ class Uni_Cpo_Setting_Cpo_Radio_Options extends Uni_Cpo_Setting implements  Uni_
                                     <span class="uni_select_option_move"><i class="fa fa-arrows"></i></span>
                                 </div>
                                 <div class="uni-select-option-content-wrapper uni-clear">
-                                    <div class="uni-select-option-content-field-wrapper uni-clear">
+                                    <div class="uni-select-option-content-field-wrapper uni-make-default-suboption uni-clear">
 										<?php 
         echo  $this->generate_radio_html( $this->setting_key . '[<%row-count%>][def]', array(
             'no_init_class' => true,
@@ -73,7 +73,7 @@ class Uni_Cpo_Setting_Cpo_Radio_Options extends Uni_Cpo_Setting implements  Uni_
         ) ) ;
         ?>
                                     </div>
-                                    <div class="uni-select-option-content-field-wrapper uni-clear">
+                                    <div class="uni-select-option-content-field-wrapper uni-exclude-suboption uni-clear">
 		                                <?php 
         echo  $this->generate_checkbox_html( $this->setting_key . '[<%row-count%>][excl]', array(
             'no_init_class' => true,
@@ -82,6 +82,7 @@ class Uni_Cpo_Setting_Cpo_Radio_Options extends Uni_Cpo_Setting implements  Uni_
         ) ) ;
         ?>
                                     </div>
+									<div class="uni-clear"></div>
                                     <div class="uni-select-option-content-field-wrapper uni-clear">
                                         <div class="uni-select-option-content-field-wrapper-item uni-clear">
                                             <label>
@@ -167,10 +168,10 @@ class Uni_Cpo_Setting_Cpo_Radio_Options extends Uni_Cpo_Setting implements  Uni_
                                         <div class="uni-select-option-content-field-wrapper-item uni-select-option-content-field-wrapper-image uni-clear uni-clear">
                                             <label>
 												<?php 
-        echo  esc_html__( 'Image (optional)', 'uni-cpo' ) ;
+        echo  esc_html__( 'Image', 'uni-cpo' ) ;
         ?>
 												<?php 
-        echo  uni_cpo_help_tip( __( 'Is used as a suboption image as well as can be used as the one that replaces the main product image', 'uni-cpo' ) ) ;
+        echo  uni_cpo_help_tip( __( 'Optional! Is used as a suboption image as well as can be used as the one that replaces the main product image', 'uni-cpo' ) ) ;
         ?>
                                             </label>
 											<?php 
@@ -194,10 +195,10 @@ class Uni_Cpo_Setting_Cpo_Radio_Options extends Uni_Cpo_Setting implements  Uni_
                                         <div class="uni-select-option-content-field-wrapper-item uni-select-option-content-field-wrapper-image uni-clear uni-clear">
                                             <label>
 			                                    <?php 
-        echo  esc_html__( 'Alt Image (optional)', 'uni-cpo' ) ;
+        echo  esc_html__( 'Alt Image', 'uni-cpo' ) ;
         ?>
 			                                    <?php 
-        echo  uni_cpo_help_tip( __( 'Is used ONLY as the one that replaces the main product image', 'uni-cpo' ) ) ;
+        echo  uni_cpo_help_tip( __( 'Optional! Is used ONLY as the one that replaces the main product image', 'uni-cpo' ) ) ;
         ?>
                                             </label>
 		                                    <?php 
@@ -214,7 +215,7 @@ class Uni_Cpo_Setting_Cpo_Radio_Options extends Uni_Cpo_Setting implements  Uni_
         ) ) ;
         ?>
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                                 <div class="uni-select-option-content-field-wrapper uni-select-option-remove-wrapper">
@@ -235,7 +236,7 @@ class Uni_Cpo_Setting_Cpo_Radio_Options extends Uni_Cpo_Setting implements  Uni_
                                     <span class="uni_select_option_move"><i class="fa fa-arrows"></i></span>
                                 </div>
                                 <div class="uni-select-option-content-wrapper uni-clear">
-                                    <div class="uni-select-option-content-field-wrapper uni-clear">
+                                    <div class="uni-select-option-content-field-wrapper uni-make-default-suboption uni-clear">
 										<?php 
         echo  $this->generate_radio_html( $this->setting_key . '[{{- i }}][def]', array(
             'options' => array(
@@ -246,7 +247,7 @@ class Uni_Cpo_Setting_Cpo_Radio_Options extends Uni_Cpo_Setting implements  Uni_
         ) ) ;
         ?>
                                     </div>
-                                    <div class="uni-select-option-content-field-wrapper uni-clear">
+                                    <div class="uni-select-option-content-field-wrapper uni-exclude-suboption uni-clear">
 		                                <?php 
         echo  $this->generate_checkbox_html( $this->setting_key . '[{{- i }}][excl]', array(
             'label'  => __( 'Exclude?', 'uni-cpo' ),
@@ -254,6 +255,7 @@ class Uni_Cpo_Setting_Cpo_Radio_Options extends Uni_Cpo_Setting implements  Uni_
         ) ) ;
         ?>
                                     </div>
+									<div class="uni-clear"></div>
                                     <div class="uni-select-option-content-field-wrapper uni-clear">
                                         <div class="uni-select-option-content-field-wrapper-item uni-clear">
                                             <label>
@@ -337,10 +339,10 @@ class Uni_Cpo_Setting_Cpo_Radio_Options extends Uni_Cpo_Setting implements  Uni_
                                         <div class="uni-select-option-content-field-wrapper-item uni-select-option-content-field-wrapper-image uni-clear">
                                             <label>
 												<?php 
-        echo  esc_html__( 'Image (optional)', 'uni-cpo' ) ;
+        echo  esc_html__( 'Image', 'uni-cpo' ) ;
         ?>
 												<?php 
-        echo  uni_cpo_help_tip( __( 'Is used as a suboption image as well as can be used as the one that replaces the main product image', 'uni-cpo' ) ) ;
+        echo  uni_cpo_help_tip( __( 'Optional! Is used as a suboption image as well as can be used as the one that replaces the main product image', 'uni-cpo' ) ) ;
         ?>
                                             </label>
 											<?php 
@@ -364,10 +366,10 @@ class Uni_Cpo_Setting_Cpo_Radio_Options extends Uni_Cpo_Setting implements  Uni_
                                         <div class="uni-select-option-content-field-wrapper-item uni-select-option-content-field-wrapper-image uni-clear uni-clear">
                                             <label>
 			                                    <?php 
-        echo  esc_html__( 'Alt Image (optional)', 'uni-cpo' ) ;
+        echo  esc_html__( 'Alt Image', 'uni-cpo' ) ;
         ?>
 			                                    <?php 
-        echo  uni_cpo_help_tip( __( 'Is used ONLY as the one that replaces the main product image', 'uni-cpo' ) ) ;
+        echo  uni_cpo_help_tip( __( 'Optional! Is used ONLY as the one that replaces the main product image', 'uni-cpo' ) ) ;
         ?>
                                             </label>
 		                                    <?php 
@@ -384,7 +386,7 @@ class Uni_Cpo_Setting_Cpo_Radio_Options extends Uni_Cpo_Setting implements  Uni_
         ) ) ;
         ?>
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                                 <div class="uni-select-option-content-field-wrapper uni-select-option-remove-wrapper">

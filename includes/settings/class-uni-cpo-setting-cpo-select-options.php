@@ -21,6 +21,8 @@ class Uni_Cpo_Setting_Cpo_Select_Options extends Uni_Cpo_Setting implements Uni_
 			'title'      => __( 'Sub options', 'uni-cpo' ),
 			'is_tooltip' => true,
 			'desc_tip'   => __( 'Add some sub options for select and, please, keep unique slugs for them. These slugs might be used in a formula conditional rules (e.g. when you use operators "equal", "not equal" etc).', 'uni-cpo' ),
+            'is_tooltip_warning' => true,
+            'desc_tip_warning'   => __( 'Important to save to DB if modified', 'uni-cpo' ),
 			'js_var'     => 'data'
 		);
 		add_action( 'wp_footer', array( $this, 'js_template' ), 10 );
@@ -54,7 +56,7 @@ class Uni_Cpo_Setting_Cpo_Select_Options extends Uni_Cpo_Setting implements Uni_
                                     <span class="uni_select_option_move"><i class="fa fa-arrows"></i></span>
                                 </div>
                                 <div class="uni-select-option-content-wrapper uni-clear">
-                                    <div class="uni-select-option-content-field-wrapper uni-clear">
+                                    <div class="uni-select-option-content-field-wrapper uni-make-default-suboption uni-clear">
 										<?php
 										echo $this->generate_radio_html(
 											$this->setting_key . '[<%row-count%>][def]',
@@ -69,7 +71,7 @@ class Uni_Cpo_Setting_Cpo_Select_Options extends Uni_Cpo_Setting implements Uni_
 										);
 										?>
                                     </div>
-                                    <div class="uni-select-option-content-field-wrapper uni-clear">
+                                    <div class="uni-select-option-content-field-wrapper uni-exclude-suboption uni-clear">
 		                                <?php
 		                                echo $this->generate_checkbox_html(
 			                                $this->setting_key . '[<%row-count%>][excl]',
@@ -81,6 +83,7 @@ class Uni_Cpo_Setting_Cpo_Select_Options extends Uni_Cpo_Setting implements Uni_
 		                                );
 		                                ?>
                                     </div>
+									<div class="uni-clear"></div>
                                     <div class="uni-select-option-content-field-wrapper uni-clear">
                                         <div class="uni-select-option-content-field-wrapper-item uni-clear">
                                             <label>
@@ -156,7 +159,7 @@ class Uni_Cpo_Setting_Cpo_Select_Options extends Uni_Cpo_Setting implements Uni_
                                     <span class="uni_select_option_move"><i class="fa fa-arrows"></i></span>
                                 </div>
                                 <div class="uni-select-option-content-wrapper uni-clear">
-                                    <div class="uni-select-option-content-field-wrapper uni-clear">
+                                    <div class="uni-select-option-content-field-wrapper uni-make-default-suboption uni-clear">
 										<?php
 										echo $this->generate_radio_html(
 											$this->setting_key . '[{{- i }}][def]',
@@ -170,7 +173,7 @@ class Uni_Cpo_Setting_Cpo_Select_Options extends Uni_Cpo_Setting implements Uni_
 										);
 										?>
                                     </div>
-                                    <div class="uni-select-option-content-field-wrapper uni-clear">
+                                    <div class="uni-select-option-content-field-wrapper uni-exclude-suboption uni-clear">
 		                                <?php
 		                                echo $this->generate_checkbox_html(
 			                                $this->setting_key . '[{{- i }}][excl]',
@@ -181,6 +184,7 @@ class Uni_Cpo_Setting_Cpo_Select_Options extends Uni_Cpo_Setting implements Uni_
 		                                );
 		                                ?>
                                     </div>
+									<div class="uni-clear"></div>
                                     <div class="uni-select-option-content-field-wrapper uni-clear">
                                         <div class="uni-select-option-content-field-wrapper-item uni-clear">
                                             <label>

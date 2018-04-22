@@ -21,8 +21,12 @@ class Uni_Cpo_Setting_Cpo_Custom_Values extends Uni_Cpo_Setting implements Uni_C
 			'title'              => __( 'Custom values', 'uni-cpo' ),
 			'is_tooltip_warning' => true,
 			'is_tooltip'         => true,
-			'desc_tip'           => __( 'A list of comma separated custom values', 'uni-cpo' ),
+			'desc_tip'           => __( 'A list of comma separated custom values. You must to add at least two values. Also you can\'t add comma as last char', 'uni-cpo' ),
 			'desc_tip_warning'   => __( 'Important to save to DB if modified', 'uni-cpo' ),
+			'custom_attributes'  => array(
+				'data-parsley-pattern' => '/^(\w{1,}\.{0,1}\w{0,})(,(\w{1,}\.{0,1}\w{0,}))+$/',
+			),
+			'class'              => array( 'js-cpo-custom-values-field' ),
 			'value'              => '{{- data }}'
 		);
 		add_action( 'wp_footer', array( $this, 'js_template' ), 10 );
