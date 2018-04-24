@@ -381,17 +381,17 @@ class Uni_Cpo_Option extends Uni_Cpo_Data
                     function <?php 
             echo  esc_attr( $slug ) ;
             ?>_fields_conditional_func (formData) {
-                        const $<?php 
+                        var $<?php 
             echo  esc_attr( $slug ) ;
             ?>          = $('#<?php 
             echo  esc_attr( $slug ) ;
             ?>');
-                        const $<?php 
+                        var $<?php 
             echo  esc_attr( $slug ) ;
             ?>_fields   = $<?php 
             echo  esc_attr( $slug ) ;
             ?>.find('input, select, textarea');
-                        const extraClass                                = 'uni-cpo-excluded-field';
+                        var extraClass                                = 'uni-cpo-excluded-field';
 
 						<?php 
             

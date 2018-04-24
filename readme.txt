@@ -84,6 +84,12 @@ A: We wouldn't recommend to do this yet. First, this version is so called 'lite'
 
 == Changelog ==
 
+= 4.1.1 =
+* Hot-fix for price calculation in the cart; there was a bug related to options with suboptions
+* Fixed: using NOVs in validation conditional logic
+* Added: support for Avada theme for changing image upon selection in option functionality
+* Added: a possibility to set NOV value as value for validation attribute
+
 = 4.1.0 =
 * Added: Matrix Option
 * Added: Colorify functionality

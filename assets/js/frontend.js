@@ -498,7 +498,7 @@ UniCpo = {
     },
     getMainImageEl: function getMainImageEl() {
         var $image = jQuery(unicpo.image_selector).find('div.woocommerce-product-gallery__image');
-        return $image.length > 0 ? $image.first() : '';
+        return $image.length > 0 ? $image.not('.clone').first() : '';
     },
     getFormattedFormData: function getFormattedFormData() {
         var pid = jQuery('.js-cpo-pid').val();

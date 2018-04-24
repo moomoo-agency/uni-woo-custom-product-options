@@ -371,7 +371,7 @@ function uni_cpo_option_apply_changes_walk( $v, $k, $d )
 //////////////////////////////////////////////////////////////////////////////////////
 // Calculation functions
 //////////////////////////////////////////////////////////////////////////////////////
-function uni_cpo_process_formula_with_non_option_vars( &$variables, $product_data, $filtered_form_data )
+function uni_cpo_process_formula_with_non_option_vars( &$variables, $product_data, &$formatted_vars )
 {
     
     if ( is_array( $product_data['nov_data']['nov'] ) && !empty($product_data['nov_data']['nov']) ) {
@@ -395,8 +395,9 @@ function uni_cpo_process_formula_with_non_option_vars( &$variables, $product_dat
         $formula = uni_cpo_process_formula_with_vars( $formula, $variables );
         $nov_val = uni_cpo_calculate_formula( $formula );
         $variables[$var_name] = $nov_val;
+        $formatted_vars[UniCpo()->get_nov_slug() . $nov['slug']] = $nov_val;
         array_splice( $product_data['nov_data']['nov'], 0, 1 );
-        uni_cpo_process_formula_with_non_option_vars( $variables, $product_data, $filtered_form_data );
+        uni_cpo_process_formula_with_non_option_vars( $variables, $product_data, $formatted_vars );
     }
     
     return $variables;
@@ -421,15 +422,15 @@ function uni_cpo_get_role_based_nov_formula( $nov )
 
 }
 
-function uni_cpo_process_formula_scheme( $variables, $data, $purpose = 'price' )
+function uni_cpo_process_formula_scheme( $variables, $product_data, $purpose = 'price' )
 {
     
     if ( 'price' === $purpose ) {
-        $scheme_data = $data['formula_data']['formula_scheme'];
+        $scheme_data = $product_data['formula_data']['formula_scheme'];
     } elseif ( 'weight' === $purpose ) {
-        $scheme_data = $data['weight_data']['weight_scheme'];
+        $scheme_data = $product_data['weight_data']['weight_scheme'];
     } elseif ( 'option_rules' === $purpose ) {
-        $scheme_data = $data;
+        $scheme_data = $product_data;
     }
     
     if ( !isset( $scheme_data ) ) {
@@ -1229,6 +1230,7 @@ function uni_cpo_calculate_price_in_cart( $cart_item_data, $product_id )
         $product = wc_get_product( $product_id );
         $product_data = Uni_Cpo_Product::get_product_data_by_id( $product_id );
         $form_data = $cart_item_data['_cpo_data'];
+        $options_eval_result = array();
         $variables = array();
         $is_calc_disabled = false;
         $formatted_vars = array();
@@ -1248,9 +1250,7 @@ function uni_cpo_calculate_price_in_cart( $cart_item_data, $product_id )
                     if ( is_object( $option ) ) {
                         $calculate_result = $option->calculate( $filtered_form_data );
                         if ( !empty($calculate_result) ) {
-                            foreach ( $calculate_result as $k => $v ) {
-                                $variables['{' . $k . '}'] = $v['cart_meta'];
-                            }
+                            $options_eval_result[$option->get_slug()] = $calculate_result;
                         }
                     }
                 
@@ -1259,26 +1259,19 @@ function uni_cpo_calculate_price_in_cart( $cart_item_data, $product_id )
         
         }
         
+        array_walk( $options_eval_result, function ( $v ) use( &$variables, &$formatted_vars ) {
+            foreach ( $v as $slug => $value ) {
+                // prepare $variables for calculation purpose
+                $variables['{' . $slug . '}'] = $value['calc'];
+                // prepare $formatted_vars for conditional logic purpose
+                $formatted_vars[$slug] = $value['cart_meta'];
+            }
+        } );
         $variables['{uni_cpo_price}'] = $product->get_price();
         // non option variables
         if ( 'on' === $product_data['nov_data']['nov_enable'] && !empty($product_data['nov_data']['nov']) ) {
-            $variables = uni_cpo_process_formula_with_non_option_vars( $variables, $product_data, $filtered_form_data );
+            $variables = uni_cpo_process_formula_with_non_option_vars( $variables, $product_data, $formatted_vars );
         }
-        $temp_variables = $variables;
-        unset( $temp_variables['{uni_cpo_price}'] );
-        array_walk( $temp_variables, function ( &$v, $k ) use( $filtered_form_data, &$formatted_vars ) {
-            $k = trim( $k, '{}' );
-            
-            if ( isset( $filtered_form_data[$k] ) && !is_array( $filtered_form_data[$k] ) ) {
-                $filtered_form_data_values = explode( ' : ', $filtered_form_data[$k] );
-                $formatted_vars[$k] = $filtered_form_data_values[0];
-            } elseif ( isset( $filtered_form_data[$k] ) && is_array( $filtered_form_data[$k] ) ) {
-                $formatted_vars[$k] = $filtered_form_data[$k];
-            } else {
-                $formatted_vars[$k] = $v;
-            }
-        
-        } );
         // formula conditional logic
         
         if ( 'on' === $product_data['formula_data']['rules_enable'] && !empty($product_data['formula_data']['formula_scheme']) && is_array( $product_data['formula_data']['formula_scheme'] ) ) {
