@@ -72,12 +72,6 @@ function uni_cpo_order_formatted_meta_data( $formatted_meta, $item ) {
                         if ( is_object( $option ) ) {
                             $display_key = uni_cpo_sanitize_label( $option->cpo_order_label() );
 
-                            /*if ( 'checkbox' === $option::get_type() && ! is_array( $meta_data['value'] ) ) {
-                                $form_data[ $slug ] = explode( ', ', $meta_data['value'] );
-                            } else {
-                                $form_data[ $slug ] = $meta_data['value'];
-                            }*/
-
                             if ( 'matrix' === $option::get_type() ) {
                                 //$form_data[ $slug ] = $meta_data['value'];
                                 if ( ! empty( $formatted_meta ) ) {
@@ -102,22 +96,24 @@ function uni_cpo_order_formatted_meta_data( $formatted_meta, $item ) {
                             }
 
                             $display_value = $value;
-                            foreach ( $calculate_result as $k => $v ) {
-                                if ( $slug === $k ) { // excluding special vars
-                                    if ( is_array( $v['order_meta'] ) ) {
-                                        $display_value = implode( ', ', $v['order_meta'] );
-                                    } else {
-                                        $display_value = $v['order_meta'];
+                            if ( $calculate_result ) {
+                                foreach ( $calculate_result as $k => $v ) {
+                                    if ( $slug === $k ) { // excluding special vars
+                                        if ( is_array( $v['order_meta'] ) ) {
+                                            $display_value = implode( ', ', $v['order_meta'] );
+                                        } else {
+                                            $display_value = $v['order_meta'];
+                                        }
+                                        break;
                                     }
-                                    break;
                                 }
+                                $formatted_meta[ $meta_data['id'] ] = (object) array(
+                                    'key'           => $meta_data['key'],
+                                    'value'         => $value,
+                                    'display_key'   => apply_filters( 'uni_cpo_order_item_display_meta_key', $display_key, $v ),
+                                    'display_value' => wpautop( make_clickable( apply_filters( 'uni_cpo_order_item_display_meta_value', $display_value, $v ) ) ),
+                                );
                             }
-                            $formatted_meta[ $meta_data['id'] ] = (object) array(
-                                'key'           => $meta_data['key'],
-                                'value'         => $value,
-                                'display_key'   => apply_filters( 'uni_cpo_order_item_display_meta_key', $display_key, $v ),
-                                'display_value' => wpautop( make_clickable( apply_filters( 'uni_cpo_order_item_display_meta_value', $display_value, $v ) ) ),
-                            );
                         }
                     }
 

@@ -84,6 +84,10 @@ A: We wouldn't recommend to do this yet. First, this version is so called 'lite'
 
 == Changelog ==
 
+= 4.1.2 =
+* Improvement: small fixes and improvements
+* Added: support for the plugin add-ons
+
 = 4.1.1 =
 * Hot-fix for price calculation in the cart; there was a bug related to options with suboptions
 * Fixed: using NOVs in validation conditional logic

@@ -152,6 +152,7 @@ jQuery(function ($) {
                 if (r.success) {
                     $item.replaceWith(r.data.html);
                     $item.unblock();
+                    $('.save-action').click();
                 } else {
                     window.alert(r.data.error);
                 }
