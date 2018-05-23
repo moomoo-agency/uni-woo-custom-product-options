@@ -125,6 +125,19 @@
          * @method _init
          */
         _init: function () {
+            $('body').addClass('builderius');
+
+            const status = Builderius._initCheckups();
+
+            if (status.error) {
+                for (let m of status.msg) {
+                    console.info('Uni CPO @', m);
+                }
+                setTimeout(() => {
+                    this._showMessage(status.msg.pop(), 'warning');
+                }, 2200);
+            }
+
             if (null === Builderius.getElById(Builderius._builderId.substring(1))) {
                 return false;
             }
@@ -171,14 +184,54 @@
         },
 
         /**
-         * Initializes body class
+         * Checks if all is good, notifies if not
+         *
+         * @since 4.1.3
+         * @access private
+         * @method _initClasses
+         */
+        _initCheckups: function() {
+            let error       = false;
+            let msg         = [];
+            const $cart     = $('form.cart');
+            const $priceTag = $(builderiusCfg.price_selector);
+            const $imageTag = $(builderiusCfg.image_selector);
+
+            if (! $cart.length) {
+                error = true;
+                msg.push(builderius_i18n.misconfig.no_form);
+            }
+            if ($cart.length > 1) {
+                error = true;
+                msg.push(builderius_i18n.misconfig.many_forms);
+            }
+            if (! builderiusCfg.regular_price) {
+                error = true;
+                msg.push(builderius_i18n.misconfig.free);
+            }
+            if (! $priceTag.length) {
+                error = true;
+                msg.push(builderius_i18n.misconfig.no_price_tag);
+            }
+            if (! $imageTag.length) {
+                error = true;
+                msg.push(builderius_i18n.misconfig.no_image_tag);
+            }
+
+            return {
+                error,
+                msg
+            };
+        },
+
+        /**
+         * Initializes classes
          *
          * @since 4.0.0
          * @access private
          * @method _initClasses
          */
         _initClasses: function () {
-            $('body').addClass('builderius');
             Builderius._contentClass = 'builderius-content-' + builderiusCfg.product.id;
             $(Builderius._builderId).addClass(Builderius._contentClass);
         },
@@ -1908,7 +1961,7 @@
                     } else {
                         Builderius._unblockForm('.uni-builderius-container', 'error');
                         if (typeof r.data !== 'undefined') {
-                            Builderius._showMessage(r.data.error, 'error');
+                            Builderius._showMessage(r.data.error, 'warning');
                             console.log(r.data.error);
                         }
                     }
@@ -2932,9 +2985,9 @@
                 'action', new CellRenderer({
                     render: function (cell, value) {
                         cell.innerHTML = '<a class="uni-generated-table-remove-row" data-row="' + cell.rowIndex + '" style="cursor:pointer">' +
-                            '<i class="fa fa-trash" alt="delete" title="Delete row"></i></a>';
+                            '<i class="fas fa-trash" alt="delete" title="Delete row"></i></a>';
                         cell.innerHTML += '&nbsp;<a class="uni-generated-table-clone-row" data-row="' + cell.rowIndex + '" style="cursor:pointer">' +
-                            '<i class="fa fa-files-o" border="0" alt="duplicate" title="Duplicate row"></i></a>';
+                            '<i class="fas fa-copy" border="0" alt="duplicate" title="Duplicate row"></i></a>';
                     }
                 })
             );
@@ -4185,9 +4238,9 @@
                 'action', new CellRenderer({
                     render: function (cell, value) {
                         cell.innerHTML = '<a class="uni-generated-table-remove-row" data-row="' + cell.rowIndex + '" style="cursor:pointer">' +
-                            '<i class="fa fa-trash" alt="delete" title="Delete row"></i></a>';
+                            '<i class="fas fa-trash" alt="delete" title="Delete row"></i></a>';
                         cell.innerHTML += '&nbsp;<a class="uni-generated-table-clone-row" data-row="' + cell.rowIndex + '" style="cursor:pointer">' +
-                            '<i class="fa fa-files-o" border="0" alt="duplicate" title="Duplicate row"></i></a>';
+                            '<i class="fas fa-copy" border="0" alt="duplicate" title="Duplicate row"></i></a>';
                     }
                 })
             );
@@ -4424,8 +4477,8 @@
                         icons:        {
                             add_group:    'fa fa-plus-circle',
                             add_rule:     'fa fa-plus',
-                            remove_group: 'fa fa-times',
-                            remove_rule:  'fa fa-times',
+                            remove_group: 'fas fa-times',
+                            remove_rule:  'fas fa-times',
                             error:        'fa fa-exclamation-circle'
                         },
                         allow_groups: 1,
@@ -4471,8 +4524,8 @@
                 icons:        {
                     add_group:    'fa fa-plus-circle',
                     add_rule:     'fa fa-plus',
-                    remove_group: 'fa fa-times',
-                    remove_rule:  'fa fa-times',
+                    remove_group: 'fas fa-times',
+                    remove_rule:  'fas fa-times',
                     error:        'fa fa-exclamation-circle'
                 },
                 allow_groups: 1,
@@ -4501,8 +4554,8 @@
                 icons:        {
                     add_group:    'fa fa-plus-circle',
                     add_rule:     'fa fa-plus',
-                    remove_group: 'fa fa-times',
-                    remove_rule:  'fa fa-times',
+                    remove_group: 'fas fa-times',
+                    remove_rule:  'fas fa-times',
                     error:        'fa fa-exclamation-circle'
                 },
                 allow_groups: 1,
@@ -4638,8 +4691,8 @@
             icons:        {
                 add_group:    'fa fa-plus-circle',
                 add_rule:     'fa fa-plus',
-                remove_group: 'fa fa-times',
-                remove_rule:  'fa fa-times',
+                remove_group: 'fas fa-times',
+                remove_rule:  'fas fa-times',
                 error:        'fa fa-exclamation-circle'
             },
             allow_groups: 1,
@@ -4684,8 +4737,8 @@
             icons:        {
                 add_group:    'fa fa-plus-circle',
                 add_rule:     'fa fa-plus',
-                remove_group: 'fa fa-times',
-                remove_rule:  'fa fa-times',
+                remove_group: 'fas fa-times',
+                remove_rule:  'fas fa-times',
                 error:        'fa fa-exclamation-circle'
             },
             allow_groups: 1,
@@ -4735,8 +4788,8 @@
             icons:        {
                 add_group:    'fa fa-plus-circle',
                 add_rule:     'fa fa-plus',
-                remove_group: 'fa fa-times',
-                remove_rule:  'fa fa-times',
+                remove_group: 'fas fa-times',
+                remove_rule:  'fas fa-times',
                 error:        'fa fa-exclamation-circle'
             },
             allow_groups: 1,
@@ -4986,8 +5039,8 @@
                 icons:        {
                     add_group:    'fa fa-plus-circle',
                     add_rule:     'fa fa-plus',
-                    remove_group: 'fa fa-times',
-                    remove_rule:  'fa fa-times',
+                    remove_group: 'fas fa-times',
+                    remove_rule:  'fas fa-times',
                     error:        'fa fa-exclamation-circle'
                 },
                 allow_groups: 1,
@@ -5082,16 +5135,19 @@
     });
 
     // converts a value of field_slug input to slug like formatted text
-    $(document).on('change focusin focusout', '.js-cpo-label-slug-field', function () {
-        const $el         = $(this);
-        const elVal       = $el.val();
-        const elData      = $el.attr('data-related-slug');
-        const slugFieldId = `#builderius-setting-${elData}`;
-        const $slugField  = $(slugFieldId);
+    $(document).on('change focusin focusout', '.js-cpo-label-slug-field', function() {
         try {
-            $slugField.val(elVal);
-            $slugField.uniConvertToSlug();
-            $slugField.parsley().validate();
+            const $el         = $(this);
+            const elVal       = $el.val();
+            const elData      = $el.attr('data-related-slug');
+            const slugFieldId = `#builderius-setting-${elData}`;
+            const $slugField  = $(slugFieldId);
+
+            if (!$slugField.val()) {
+                $slugField.val(elVal);
+                $slugField.uniConvertToSlug();
+                $slugField.parsley().validate();
+            }
         } catch (e) {
             console.error(e);
         }
@@ -5100,8 +5156,11 @@
     // converts a value of field_slug input to slug like formatted text
     $(document).on('change focusin focusout', '.js-cpo-slug-field', function () {
         const $el = $(this);
-        $el.uniConvertToSlug();
-        $el.parsley().validate();
+
+        if (!this.value) {
+            $el.uniConvertToSlug();
+            $el.parsley().validate();
+        }
     });
 
     // validation

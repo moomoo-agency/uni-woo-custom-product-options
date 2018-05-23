@@ -892,7 +892,7 @@ final class Uni_Cpo_Product {
                 return array( 'nov_data' => $data['nov_data'] );
             }
 
-            return array( 'error' => __( 'Error', 'uni-cpo' ) );
+            return array( 'error' => __( 'No context set. The data was not saved.', 'uni-cpo' ) );
         } catch ( Exception $e ) {
             return array( 'error' => $e->getMessage() );
         }

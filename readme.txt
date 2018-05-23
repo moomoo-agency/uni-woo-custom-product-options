@@ -2,7 +2,7 @@
 Contributors: moomooagency, mrpsiho, andriimatenka, freemius
 Tags: custom options, extra options, product visual builder, woocommerce plugins, price calculation, maths formula, conditional logic, wholesale
 Requires at least: 4.8
-Tested up to: 4.9.5
+Tested up to: 4.9.6
 Requires PHP: 7.0
 WC requires at least: 3.2.0
 WC tested up to: 3.3.5
@@ -83,6 +83,11 @@ A: We wouldn't recommend to do this yet. First, this version is so called 'lite'
 7. screenshot-7.png
 
 == Changelog ==
+
+= 4.1.3 =
+* Added: support for "Popup Maker – Popup Forms, Optins & More" plugin; use popups instead of tooltips
+* Improved: some small enhancements, including adding notifications in case of common errors and issues
+* Fixed: a bug when 'remove' icon is disappeared in NOV matrices
 
 = 4.1.2 =
 * Improvement: small fixes and improvements

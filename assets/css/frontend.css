@@ -459,6 +459,7 @@ input.parsley-error, textarea.parsley-error, select.parsley-error, div.parsley-e
     background: url(../images/sprite.svg) no-repeat -340px -190px transparent;
     cursor: pointer;
 }
+.uni-cpo-tooltip:focus, .uni-cpo-tooltip:active {outline: 0;}
 
 .ui-tooltip {
     box-shadow: none;
@@ -618,8 +619,8 @@ span.flatpickr-weekday {
 
 .uni_cpo_main_image_layered_image div.uni_cpo_main_image_overlay .wp-picker-container {
     float: left;
-    margin: 13px 0 0 20px;
-    width: 170px;
+    margin: 9px 0 0 14px;
+    width: 200px;
 }
 
 .uni_cpo_layered_image_enabled .flex-control-thumbs li:last-child {
@@ -635,26 +636,34 @@ span.flatpickr-weekday {
     width: 80px
 }
 
-.wp-picker-container .hidden {
-    display: none
+.wp-picker-container .hidden, .wp-picker-container .wp-color-result-text {
+    display: none !important;
 }
+.wp-picker-container .button.wp-picker-clear {
+    position: absolute;
+    right: 0;
+    top: -28px;
+    height: 25px;
+    width: 25px;
+    padding: 0;
+    border: 0;
+    margin: 0!important;
+    background: url(../images/sprite.svg) no-repeat 0 -170px #e8eaef!important;
+    text-indent: -999999px;
+    overflow: hidden;
+    vertical-align: top;
+    border-radius: 3px;
+    -webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing: border-box;}
 
 .wp-picker-container .wp-color-result.button {
-    height: 24px;
-    margin: 0 6px 6px 0;
-    padding: 0 0 0 30px;
-    font-size: 11px
-}
-
-.wp-color-result-text {
-    background: #f7f7f7;
-    border-radius: 0 2px 2px 0;
-    border-left: 1px solid #ccc;
-    color: #555;
-    display: block;
-    line-height: 22px;
-    padding: 0 6px;
-    text-align: center
+    height: 32px!important;
+    width: 50px!important;
+    margin: 0!important;
+    box-shadow: none!important;
+    padding: 0!important;
+    background-color: #eeeeee;
+    border: 1px solid #e5e5e5!important;
+    border-radius: 3px!important;
 }
 
 .wp-color-result:focus, .wp-color-result:hover {
@@ -683,6 +692,9 @@ span.flatpickr-weekday {
     transform: none !important
 }
 
+.uni_cpo_main_image_overlay .wp-picker-input-wrap {
+    position: relative;
+}
 .wp-picker-input-wrap label, .wp-picker-open + .wp-picker-input-wrap {
     display: inline-block;
     vertical-align: top
@@ -703,7 +715,7 @@ span.flatpickr-weekday {
 .wp-picker-container .iris-picker {
     border-radius: 0;
     border-color: #ddd;
-    margin-top: 6px
+    margin-top: 9px
 }
 
 .wp-picker-container input[type=text].wp-color-picker {
@@ -741,6 +753,10 @@ span.flatpickr-weekday {
 .iris-picker .iris-palette:focus {
     box-shadow: inset 0 0 5px rgba(0, 0, 0, .4), 0 0 0 1px #5b9dd9, 0 0 2px 1px rgba(30, 140, 190, .8)
 }
+
+.uni_cpo_main_image_overlay .wp-picker-container .iris-strip .ui-slider-handle {top: auto;}
+.uni_cpo_main_image_overlay .wp-picker-container .iris-strip .ui-slider-handle:before {background-color: transparent;width: auto;height: auto;content: "";}
+.uni_cpo_main_image_overlay .wp-picker-container .iris-strip .ui-slider-handle:after {display: none;}
 
 @media screen and (max-width: 782px) {
     .wp-picker-container input[type=text].wp-color-picker {

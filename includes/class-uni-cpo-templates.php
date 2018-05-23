@@ -932,7 +932,7 @@ final class Uni_Cpo_Templates {
                                         <div class="uni-formula-conditional-rules-options-template uni-formula-conditional-rules-options-row uni-clear">
                                             <div class="uni-formula-conditional-rules-move-wrapper">
                                                 <span class="uni_formula_conditional_rule_move"><i
-                                                            class="fa fa-arrows"></i></span>
+                                                            class="fas fa-arrows-alt"></i></span>
                                             </div>
                                             <div class="uni-formula-conditional-rules-content-wrapper">
                                                 <div class="uni-formula-conditional-rules-content-field-wrapper">
@@ -956,7 +956,7 @@ final class Uni_Cpo_Templates {
                                             </div>
                                             <div class="uni-formula-conditional-rules-remove-wrapper">
                                                 <span class="uni_formula_conditional_rule_remove"><i
-                                                            class="fa fa-times"></i></span>
+                                                            class="fas fa-times"></i></span>
                                             </div>
                                         </div>
                                         {{ if(! _.isEmpty(data.formula_scheme) ) { }}
@@ -965,7 +965,7 @@ final class Uni_Cpo_Templates {
                                         <div class="uni-formula-conditional-rules-options-row uni-clear">
                                             <div class="uni-formula-conditional-rules-move-wrapper">
                                                 <span class="uni_formula_conditional_rule_move"><i
-                                                            class="fa fa-arrows"></i></span>
+                                                            class="fas fa-arrows-alt"></i></span>
                                             </div>
                                             <div class="uni-formula-conditional-rules-content-wrapper">
                                                 <div class="uni-formula-conditional-rules-content-field-wrapper">
@@ -989,7 +989,7 @@ final class Uni_Cpo_Templates {
                                             </div>
                                             <div class="uni-formula-conditional-rules-remove-wrapper">
                                                 <span class="uni_formula_conditional_rule_remove"><i
-                                                            class="fa fa-times"></i></span>
+                                                            class="fas fa-times"></i></span>
                                             </div>
                                         </div>
                                         {{ i++; }}
@@ -1066,7 +1066,7 @@ final class Uni_Cpo_Templates {
                                         <div class="uni-formula-conditional-rules-options-template uni-formula-conditional-rules-options-row uni-clear">
                                             <div class="uni-formula-conditional-rules-move-wrapper">
                                                 <span class="uni_formula_conditional_rule_move"><i
-                                                            class="fa fa-arrows"></i></span>
+                                                            class="fas fa-arrows-alt"></i></span>
                                             </div>
                                             <div class="uni-formula-conditional-rules-content-wrapper">
                                                 <div class="uni-formula-conditional-rules-content-field-wrapper">
@@ -1108,13 +1108,13 @@ final class Uni_Cpo_Templates {
 											            type="button"
 											            class="cpo-upload-attachment"
 											            data-tip="<?php esc_attr_e('Add/Change attachment', 'uni-cpo') ?>">
-											            <i class="fa fa-pencil"></i>
+											            <i class="fas fa-pencil-alt"></i>
 											        </button>
 											        <button
 											            type="button"
 											            class="cpo-remove-attachment"
 											            data-tip="<?php esc_attr_e('Remove attachment', 'uni-cpo') ?>">
-											            <i class="fa fa-times"></i>
+											            <i class="fas fa-times"></i>
 											        </button>
 											        <div class="cpo-image-preview"></div>
 											        <div class="cpo-image-title"></div>
@@ -1122,7 +1122,7 @@ final class Uni_Cpo_Templates {
                                             </div>
                                             <div class="uni-formula-conditional-rules-remove-wrapper">
                                                 <span class="uni_formula_conditional_rule_remove"><i
-                                                            class="fa fa-times"></i></span>
+                                                            class="fas fa-times"></i></span>
                                             </div>
                                         </div>
                                         {{ if(! _.isEmpty(data.image_scheme) ) { }}
@@ -1131,7 +1131,7 @@ final class Uni_Cpo_Templates {
                                         <div class="uni-formula-conditional-rules-options-row uni-clear">
                                             <div class="uni-formula-conditional-rules-move-wrapper">
                                                 <span class="uni_formula_conditional_rule_move"><i
-                                                            class="fa fa-arrows"></i></span>
+                                                            class="fas fa-arrows-alt"></i></span>
                                             </div>
                                             <div class="uni-formula-conditional-rules-content-wrapper">
                                                 <div class="uni-formula-conditional-rules-content-field-wrapper">
@@ -1173,14 +1173,14 @@ final class Uni_Cpo_Templates {
 											            type="button"
 											            class="cpo-upload-attachment"
 											            data-tip="<?php esc_attr_e('Add/Change attachment', 'uni-cpo') ?>">
-											            <i class="fa fa-pencil"></i>
+											            <i class="fas fa-pencil-alt"></i>
 											        </button>
 											        <button
 											            type="button"
 											            class="cpo-remove-attachment"
 											            data-tip="<?php esc_attr_e('Remove attachment', 'uni-cpo') ?>"
 														{{ if ( obj.attach_uri !== '' ) { }} style="display:block;" {{ } }}>
-											            <i class="fa fa-times"></i>
+											            <i class="fas fa-times"></i>
 											        </button>
 											        <div class="cpo-image-preview">
 														<img src="{{- obj.attach_uri }}" />
@@ -1190,7 +1190,7 @@ final class Uni_Cpo_Templates {
                                             </div>
                                             <div class="uni-formula-conditional-rules-remove-wrapper">
                                                 <span class="uni_formula_conditional_rule_remove"><i
-                                                            class="fa fa-times"></i></span>
+                                                            class="fas fa-times"></i></span>
                                             </div>
                                         </div>
                                         {{ i++; }}
@@ -1321,7 +1321,7 @@ final class Uni_Cpo_Templates {
                                             <div class="uni-formula-conditional-rules-options-template uni-formula-conditional-rules-options-row uni-clear">
                                                 <div class="uni-formula-conditional-rules-move-wrapper">
                                                 <span class="uni_formula_conditional_rule_move">
-                                                    <i class="fa fa-arrows"></i>
+                                                    <i class="fas fa-arrows-alt"></i>
                                                 </span>
                                                 </div>
                                                 <div class="uni-formula-conditional-rules-content-wrapper">
@@ -1347,7 +1347,7 @@ final class Uni_Cpo_Templates {
                                                 </div>
                                                 <div class="uni-formula-conditional-rules-remove-wrapper">
                                                 <span class="uni_formula_conditional_rule_remove">
-                                                    <i class="fa fa-times"></i>
+                                                    <i class="fas fa-times"></i>
                                                 </span>
                                                 </div>
                                             </div>
@@ -1357,7 +1357,7 @@ final class Uni_Cpo_Templates {
                                             <div class="uni-formula-conditional-rules-options-row uni-clear">
                                                 <div class="uni-formula-conditional-rules-move-wrapper">
                                                 <span class="uni_formula_conditional_rule_move"><i
-                                                            class="fa fa-arrows"></i></span>
+                                                            class="fas fa-arrows-alt"></i></span>
                                                 </div>
                                                 <div class="uni-formula-conditional-rules-content-wrapper">
                                                     <div class="uni-formula-conditional-rules-content-field-wrapper">
@@ -1382,7 +1382,7 @@ final class Uni_Cpo_Templates {
                                                 </div>
                                                 <div class="uni-formula-conditional-rules-remove-wrapper">
                                                 <span class="uni_formula_conditional_rule_remove">
-                                                    <i class="fa fa-times"></i>
+                                                    <i class="fas fa-times"></i>
                                                 </span>
                                                 </div>
                                             </div>
@@ -1667,6 +1667,7 @@ final class Uni_Cpo_Templates {
                                 {{ }); }}
                             </ul>
                         </div>
+                        <?php /*
 						<div class="uni-form-row">
 					        <div class="uni-modal-row-first">
 				            	<label for="cpo_matrix_data[round]">Round</label>
@@ -1690,6 +1691,7 @@ final class Uni_Cpo_Templates {
 		                        </div>
 		                    </div>
 						</div>
+                        */ ?>
                         <div class="uni-form-row">
                             <h3><?php esc_html_e( 'Controls', 'uni-cpo' ) ?>:</h3>
                             <div class="uni-cpo-non-option-vars-options-repeat">
@@ -1705,7 +1707,7 @@ final class Uni_Cpo_Templates {
                                         <div class="uni-cpo-non-option-vars-options-template uni-cpo-non-option-vars-options-row">
                                             <div class="uni-cpo-non-option-vars-options-move-wrapper">
                                                 <span class="uni_cpo_non_option_vars_option_move"><i
-                                                            class="fa fa-arrows"></i></span>
+                                                            class="fas fa-arrows-alt"></i></span>
                                             </div>
                                             <div class="uni-cpo-non-option-vars-options-content-wrapper uni-clear">
                                                 <div class="uni-cpo-non-option-vars-options-content-field-wrapper uni-clear">
@@ -1897,7 +1899,7 @@ final class Uni_Cpo_Templates {
                                             </div>
                                             <div class="uni-cpo-non-option-vars-options-rules-remove-wrapper">
                                                     <span class="uni_cpo_non_option_vars_option_remove">
-                                                        <i class="fa fa-times"></i>
+                                                        <i class="fas fa-times"></i>
                                                     </span>
                                             </div>
                                         </div>
@@ -1915,7 +1917,7 @@ final class Uni_Cpo_Templates {
                                         <div class="uni-cpo-non-option-vars-options-row">
                                             <div class="uni-cpo-non-option-vars-options-move-wrapper">
                                                 <span class="uni_cpo_non_option_vars_option_move"><i
-                                                            class="fa fa-arrows"></i></span>
+                                                            class="fas fa-arrows-alt"></i></span>
                                             </div>
                                             <div class="uni-cpo-non-option-vars-options-content-wrapper uni-clear">
                                                 <div class="uni-cpo-non-option-vars-options-content-field-wrapper uni-clear">
@@ -2151,7 +2153,7 @@ final class Uni_Cpo_Templates {
                                             </div>
                                             <div class="uni-cpo-non-option-vars-options-rules-remove-wrapper">
                                                     <span class="uni_cpo_non_option_vars_option_remove">
-                                                        <i class="fa fa-times"></i>
+                                                        <i class="fas fa-times"></i>
                                                     </span>
                                             </div>
                                         </div>

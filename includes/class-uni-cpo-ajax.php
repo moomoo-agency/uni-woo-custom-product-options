@@ -131,11 +131,11 @@ class Uni_Cpo_Ajax
      */
     public static function uni_cpo_save_content()
     {
-        check_ajax_referer( 'uni_cpo_builder', 'security' );
-        if ( !current_user_can( 'edit_products' ) ) {
-            wp_die( -1 );
-        }
         try {
+            check_ajax_referer( 'uni_cpo_builder', 'security' );
+            if ( !current_user_can( 'edit_products' ) ) {
+                throw new Exception( __( 'Insufficient permissions for this operation', 'uni-cpo' ) );
+            }
             $data = json_decode( stripslashes_deep( $_POST['data'] ), true );
             $content = array();
             if ( is_array( $data ) && !empty($data) ) {
@@ -165,7 +165,9 @@ class Uni_Cpo_Ajax
             if ( $result ) {
                 wp_send_json_success();
             } else {
-                wp_send_json_error();
+                wp_send_json_error( array(
+                    'error' => __( 'The data was not saved. Maybe, there is nothing to save?' ),
+                ) );
             }
         
         } catch ( Exception $e ) {
@@ -180,17 +182,19 @@ class Uni_Cpo_Ajax
      */
     public static function uni_cpo_delete_content()
     {
-        check_ajax_referer( 'uni_cpo_builder', 'security' );
-        if ( !current_user_can( 'edit_products' ) ) {
-            wp_die( -1 );
-        }
         try {
+            check_ajax_referer( 'uni_cpo_builder', 'security' );
+            if ( !current_user_can( 'edit_products' ) ) {
+                throw new Exception( __( 'Insufficient permissions for this operation', 'uni-cpo' ) );
+            }
             $result = Uni_Cpo_Product::delete_content( absint( $_POST['product_id'] ) );
             
             if ( $result ) {
                 wp_send_json_success();
             } else {
-                wp_send_json_error();
+                wp_send_json_error( array(
+                    'error' => __( 'Hm-m... Something went wrong.' ),
+                ) );
             }
         
         } catch ( Exception $e ) {
@@ -205,11 +209,11 @@ class Uni_Cpo_Ajax
      */
     public static function uni_cpo_save_model()
     {
-        check_ajax_referer( 'uni_cpo_builder', 'security' );
-        if ( !current_user_can( 'edit_products' ) ) {
-            wp_die( -1 );
-        }
         try {
+            check_ajax_referer( 'uni_cpo_builder', 'security' );
+            if ( !current_user_can( 'edit_products' ) ) {
+                throw new Exception( __( 'Insufficient permissions for this operation', 'uni-cpo' ) );
+            }
             $data = $_POST['model'];
             $post_id = ( !empty($data['pid']) ? absint( $data['pid'] ) : 0 );
             $model_obj_type = ( !empty($data['obj_type']) ? uni_cpo_clean( $data['obj_type'] ) : '' );
@@ -303,11 +307,11 @@ class Uni_Cpo_Ajax
      */
     public static function uni_cpo_fetch_similar_modules()
     {
-        check_ajax_referer( 'uni_cpo_builder', 'security' );
-        if ( !current_user_can( 'edit_products' ) ) {
-            wp_die( -1 );
-        }
         try {
+            check_ajax_referer( 'uni_cpo_builder', 'security' );
+            if ( !current_user_can( 'edit_products' ) ) {
+                throw new Exception( __( 'Insufficient permissions for this operation', 'uni-cpo' ) );
+            }
             $data = uni_cpo_clean( $_POST );
             if ( !isset( $data['type'] ) || !isset( $data['obj_type'] ) ) {
                 throw new Exception( __( 'Type is not specified', 'uni-cpo' ) );
@@ -317,7 +321,9 @@ class Uni_Cpo_Ajax
             if ( $result ) {
                 wp_send_json_success( $result );
             } else {
-                wp_send_json_error();
+                wp_send_json_error( array(
+                    'error' => __( 'No modules', 'uni-cpo' ),
+                ) );
             }
         
         } catch ( Exception $e ) {
@@ -332,11 +338,11 @@ class Uni_Cpo_Ajax
      */
     public static function uni_cpo_save_settings_data()
     {
-        check_ajax_referer( 'uni_cpo_builder', 'security' );
-        if ( !current_user_can( 'edit_products' ) ) {
-            wp_die( -1 );
-        }
         try {
+            check_ajax_referer( 'uni_cpo_builder', 'security' );
+            if ( !current_user_can( 'edit_products' ) ) {
+                throw new Exception( __( 'Insufficient permissions for this operation', 'uni-cpo' ) );
+            }
             $model = $_POST['model'];
             $data['product_id'] = absint( $model['id'] );
             $data['settings_data'] = uni_cpo_clean( $model['settingsData'] );
@@ -360,10 +366,6 @@ class Uni_Cpo_Ajax
      */
     public static function uni_cpo_fetch_similar_products()
     {
-        check_ajax_referer( 'uni_cpo_builder', 'security' );
-        if ( !current_user_can( 'edit_products' ) ) {
-            wp_die( -1 );
-        }
     }
     
     /**
@@ -371,10 +373,6 @@ class Uni_Cpo_Ajax
      */
     public static function uni_cpo_duplicate_product_settings()
     {
-        check_ajax_referer( 'uni_cpo_builder', 'security' );
-        if ( !current_user_can( 'edit_products' ) ) {
-            wp_die( -1 );
-        }
     }
     
     /**
@@ -382,10 +380,6 @@ class Uni_Cpo_Ajax
      */
     public static function uni_cpo_save_discounts_data()
     {
-        check_ajax_referer( 'uni_cpo_builder', 'security' );
-        if ( !current_user_can( 'edit_products' ) ) {
-            wp_die( -1 );
-        }
     }
     
     /**
@@ -393,11 +387,11 @@ class Uni_Cpo_Ajax
      */
     public static function uni_cpo_save_formula_data()
     {
-        check_ajax_referer( 'uni_cpo_builder', 'security' );
-        if ( !current_user_can( 'edit_products' ) ) {
-            wp_die( -1 );
-        }
         try {
+            check_ajax_referer( 'uni_cpo_builder', 'security' );
+            if ( !current_user_can( 'edit_products' ) ) {
+                throw new Exception( __( 'Insufficient permissions for this operation', 'uni-cpo' ) );
+            }
             $model = $_POST['model'];
             $data['product_id'] = absint( $model['id'] );
             $data['formula_data'] = uni_cpo_clean( $model['formulaData'] );
@@ -424,11 +418,11 @@ class Uni_Cpo_Ajax
      */
     public static function uni_cpo_save_image_data()
     {
-        check_ajax_referer( 'uni_cpo_builder', 'security' );
-        if ( !current_user_can( 'edit_products' ) ) {
-            wp_die( -1 );
-        }
         try {
+            check_ajax_referer( 'uni_cpo_builder', 'security' );
+            if ( !current_user_can( 'edit_products' ) ) {
+                throw new Exception( __( 'Insufficient permissions for this operation', 'uni-cpo' ) );
+            }
             $model = $_POST['model'];
             $data['product_id'] = absint( $model['id'] );
             $data['image_data'] = uni_cpo_clean( $model['imageData'] );
@@ -455,10 +449,6 @@ class Uni_Cpo_Ajax
      */
     public static function uni_cpo_save_weight_data()
     {
-        check_ajax_referer( 'uni_cpo_builder', 'security' );
-        if ( !current_user_can( 'edit_products' ) ) {
-            wp_die( -1 );
-        }
     }
     
     /**
@@ -466,10 +456,6 @@ class Uni_Cpo_Ajax
      */
     public static function uni_cpo_save_dimensions_data()
     {
-        check_ajax_referer( 'uni_cpo_builder', 'security' );
-        if ( !current_user_can( 'edit_products' ) ) {
-            wp_die( -1 );
-        }
     }
     
     /**
@@ -477,11 +463,11 @@ class Uni_Cpo_Ajax
      */
     public static function uni_cpo_save_nov_data()
     {
-        check_ajax_referer( 'uni_cpo_builder', 'security' );
-        if ( !current_user_can( 'edit_products' ) ) {
-            wp_die( -1 );
-        }
         try {
+            check_ajax_referer( 'uni_cpo_builder', 'security' );
+            if ( !current_user_can( 'edit_products' ) ) {
+                throw new Exception( __( 'Insufficient permissions for this operation', 'uni-cpo' ) );
+            }
             $model = $_POST['model'];
             $data['product_id'] = absint( $model['id'] );
             $data['nov_data'] = uni_cpo_clean( $model['novData'] );
@@ -508,10 +494,6 @@ class Uni_Cpo_Ajax
      */
     public static function uni_cpo_import_matrix()
     {
-        check_ajax_referer( 'uni_cpo_builder', 'security' );
-        if ( !current_user_can( 'edit_products' ) ) {
-            wp_die( -1 );
-        }
     }
     
     /**
@@ -519,11 +501,11 @@ class Uni_Cpo_Ajax
      */
     public static function uni_cpo_sync_with_module()
     {
-        check_ajax_referer( 'uni_cpo_builder', 'security' );
-        if ( !current_user_can( 'edit_products' ) ) {
-            wp_die( -1 );
-        }
         try {
+            check_ajax_referer( 'uni_cpo_builder', 'security' );
+            if ( !current_user_can( 'edit_products' ) ) {
+                throw new Exception( __( 'Insufficient permissions for this operation', 'uni-cpo' ) );
+            }
             $data = uni_cpo_clean( $_POST );
             if ( !isset( $data['obj_type'] ) ) {
                 throw new Exception( __( 'Type is not specified', 'uni-cpo' ) );
@@ -539,7 +521,9 @@ class Uni_Cpo_Ajax
             if ( $result ) {
                 wp_send_json_success( $result );
             } else {
-                wp_send_json_error();
+                wp_send_json_error( array(
+                    'error' => __( 'No modules', 'uni-cpo' ),
+                ) );
             }
         
         } catch ( Exception $e ) {
@@ -716,15 +700,6 @@ class Uni_Cpo_Ajax
                         // price and total with suffixes
                         
                         if ( $product->is_taxable() ) {
-                            // price with suffix - strips unnecessary
-                            /*$price_display_suffix = str_replace(
-                            			' <small class="woocommerce-price-suffix">',
-                            			'',
-                            			$price_display_suffix );
-                            		$price_display_suffix = str_replace(
-                            			' </small>',
-                            			'',
-                            			$price_display_suffix );*/
                             // total with suffix
                             // creates 'with suffix' value for total
                             
@@ -738,10 +713,6 @@ class Uni_Cpo_Ajax
                                 $total_suffix = $product->get_price_suffix( $price_vars['raw_price_tax_rev'] * $form_data['quantity'] );
                             }
                             
-                            /*$total_suffix = str_replace( ' <small class="woocommerce-price-suffix">', '', $total_suffix );
-                            		$total_suffix = str_replace( ' </small>', '', $total_suffix );
-                            		$total_suffix = str_replace( '<span class="amount">', '', $total_suffix );
-                            		$total_suffix = str_replace( '</span>', '', $total_suffix );*/
                             $price_vars['price_tax_suffix'] = $price_display_suffix;
                             $price_vars['total_tax_suffix'] = $total_suffix;
                         }
@@ -814,11 +785,11 @@ class Uni_Cpo_Ajax
      */
     public static function uni_cpo_order_item_edit()
     {
-        check_ajax_referer( 'order-item', 'security' );
-        if ( !current_user_can( 'edit_shop_orders' ) ) {
-            wp_die( -1 );
-        }
         try {
+            check_ajax_referer( 'order-item', 'security' );
+            if ( !current_user_can( 'edit_shop_orders' ) ) {
+                throw new Exception( __( 'Insufficient permissions for this operation', 'uni-cpo' ) );
+            }
             $product_id = absint( $_POST['product_id'] );
             $order_item_id = absint( $_POST['order_item_id'] );
             $product_data = Uni_Cpo_Product::get_product_data_by_id( $product_id );
@@ -878,11 +849,11 @@ class Uni_Cpo_Ajax
      */
     public static function uni_cpo_order_item_update()
     {
-        check_ajax_referer( 'order-item', 'security' );
-        if ( !current_user_can( 'edit_shop_orders' ) ) {
-            wp_die( -1 );
-        }
         try {
+            check_ajax_referer( 'order-item', 'security' );
+            if ( !current_user_can( 'edit_shop_orders' ) ) {
+                throw new Exception( __( 'Insufficient permissions for this operation', 'uni-cpo' ) );
+            }
             $form_data = wc_clean( $_POST );
             $product_id = $form_data['product_id'];
             $order = wc_get_order( $form_data['order_id'] );
@@ -924,10 +895,6 @@ class Uni_Cpo_Ajax
                 $item->save();
             }
             
-            // Updates tax totals
-            //$order->update_taxes();
-            // Calc totals - this also triggers save
-            //$order->calculate_totals( false );
             ob_start();
             include wp_normalize_path( WP_PLUGIN_DIR . '/woocommerce/includes/admin/meta-boxes/views/html-order-item.php' );
             $html = ob_get_clean();
@@ -946,7 +913,6 @@ class Uni_Cpo_Ajax
      */
     public static function uni_cpo_product_settings_export()
     {
-        check_ajax_referer( 'uni_cpo_builder', 'security' );
     }
     
     /**
@@ -954,7 +920,6 @@ class Uni_Cpo_Ajax
      */
     public static function uni_cpo_product_settings_import()
     {
-        check_ajax_referer( 'uni_cpo_builder', 'security' );
     }
 
 }

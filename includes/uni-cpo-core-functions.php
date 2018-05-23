@@ -843,7 +843,7 @@ function uni_cpo_calculate_button_html()
     $product_data = Uni_Cpo_Product::get_product_data_by_id( $post->ID );
     
     if ( 'on' === $product_data['settings_data']['calc_btn_enable'] ) {
-        $btn_text = apply_filters( 'uni_cpo_calculate_btn_text', '<i class="fa fa-calculator" aria-hidden="true"></i>' . esc_html__( 'Calculate', 'uni-cpo' ), $post->ID );
+        $btn_text = apply_filters( 'uni_cpo_calculate_btn_text', '<i class="fas fa-calculator" aria-hidden="true"></i>' . esc_html__( 'Calculate', 'uni-cpo' ), $post->ID );
         echo  '<button type="button" class="uni-cpo-calculate-btn js-uni-cpo-calculate-btn button alt">' . $btn_text . '</button>' ;
     }
 

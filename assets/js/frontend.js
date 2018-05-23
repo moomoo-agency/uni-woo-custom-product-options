@@ -43,11 +43,11 @@ UniCpo = {
             if (this.cpo) {
                 this.addToCartBtnEl = jQuery(this.addToCartBtnSelector);
                 if (!this.addToCartBtnEl.length) {
-                    console.info('Add to cart button is not found');
+                    console.info('Uni CPO @', 'Add to cart button is not found');
                 }
                 this.productFormEl = this.addToCartBtnEl.closest('form');
                 if (!this.productFormEl.length) {
-                    console.info('Product form is not found');
+                    console.info('Uni CPO @', 'Product form is not found');
                 } else {
                     this.productFormEl.attr('data-parsley-focus', 'none');
                 }
@@ -57,7 +57,7 @@ UniCpo = {
                 }
                 this.priceTagEl = jQuery(unicpo.price_selector);
                 if (!this.priceTagEl.length) {
-                    console.info('Price tag html element is not found');
+                    console.info('Uni CPO @', 'Price tag html element is not found');
                 }
                 this.priceStartingEl.html(this.getProperPrice());
                 this.priceCalculateEl.html(unicpo_i18n.calc_text);
@@ -497,7 +497,7 @@ UniCpo = {
 
     },
     getMainImageEl: function getMainImageEl() {
-        var $image = jQuery(unicpo.image_selector).find('div.woocommerce-product-gallery__image');
+        var $image = jQuery(unicpo.image_selector).find('.woocommerce-product-gallery__image');
         return $image.length > 0 ? $image.not('.clone').first() : '';
     },
     getFormattedFormData: function getFormattedFormData() {
@@ -720,6 +720,7 @@ UniCpo = {
                     var $newTaxSuffixEl = jQuery(cpoObj.getProperTaxSuffix(tax));
                     $taxSuffixEl.replaceWith($newTaxSuffixEl);
                     $newTaxSuffixEl.show();
+                    $newTaxSuffixEl.find('span').show();
                 } else {
                     jQuery(this).find(cpoObj.taxPriceSuffixElClass).hide();
                 }

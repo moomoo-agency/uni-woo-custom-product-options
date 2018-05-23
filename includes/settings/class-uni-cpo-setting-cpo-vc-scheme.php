@@ -63,7 +63,7 @@ class Uni_Cpo_Setting_Cpo_Vc_Scheme extends Uni_Cpo_Setting implements  Uni_Cpo_
                                         <div class="uni-formula-conditional-rules-options-template uni-formula-conditional-rules-options-row uni-clear">
                                             <div class="uni-formula-conditional-rules-move-wrapper">
                                                 <span class="uni_formula_conditional_rule_move">
-                                                    <i class="fa fa-arrows"></i>
+                                                    <i class="fas fa-arrows-alt"></i>
                                                 </span>
                                             </div>
                                             <div class="uni-formula-conditional-rules-content-wrapper">
@@ -94,7 +94,7 @@ class Uni_Cpo_Setting_Cpo_Vc_Scheme extends Uni_Cpo_Setting implements  Uni_Cpo_
                                             </div>
                                             <div class="uni-formula-conditional-rules-remove-wrapper">
                                                 <span class="uni_formula_conditional_rule_remove"><i
-                                                            class="fa fa-times"></i></span>
+                                                            class="fas fa-times"></i></span>
                                             </div>
                                         </div>
                                         {{ if(! _.isEmpty(data) ) { }}
@@ -103,7 +103,7 @@ class Uni_Cpo_Setting_Cpo_Vc_Scheme extends Uni_Cpo_Setting implements  Uni_Cpo_
                                         <div class="uni-formula-conditional-rules-options-row uni-clear">
                                             <div class="uni-formula-conditional-rules-move-wrapper">
                                                 <span class="uni_formula_conditional_rule_move">
-                                                    <i class="fa fa-arrows"></i>
+                                                    <i class="fas fa-arrows-alt"></i>
                                                 </span>
                                             </div>
                                             <div class="uni-formula-conditional-rules-content-wrapper">
@@ -134,7 +134,7 @@ class Uni_Cpo_Setting_Cpo_Vc_Scheme extends Uni_Cpo_Setting implements  Uni_Cpo_
                                             </div>
                                             <div class="uni-formula-conditional-rules-remove-wrapper">
                                                 <span class="uni_formula_conditional_rule_remove">
-                                                    <i class="fa fa-times"></i>
+                                                    <i class="fas fa-times"></i>
                                                 </span>
                                             </div>
                                         </div>

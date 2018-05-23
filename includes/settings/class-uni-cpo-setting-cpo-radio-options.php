@@ -58,7 +58,7 @@ class Uni_Cpo_Setting_Cpo_Radio_Options extends Uni_Cpo_Setting implements  Uni_
 
                             <div class="uni-select-option-options-template uni-select-option-options-row">
                                 <div class="uni-select-option-move-wrapper">
-                                    <span class="uni_select_option_move"><i class="fa fa-arrows"></i></span>
+                                    <span class="uni_select_option_move"><i class="fas fa-arrows-alt"></i></span>
                                 </div>
                                 <div class="uni-select-option-content-wrapper uni-clear">
                                     <div class="uni-select-option-content-field-wrapper uni-make-default-suboption uni-clear">
@@ -220,7 +220,7 @@ class Uni_Cpo_Setting_Cpo_Radio_Options extends Uni_Cpo_Setting implements  Uni_
                                 </div>
                                 <div class="uni-select-option-content-field-wrapper uni-select-option-remove-wrapper">
                                     <span class="uni_select_option_remove">
-                                        <i class="fa fa-times"></i>
+                                        <i class="fas fa-times"></i>
                                     </span>
                                 </div>
                             </div>
@@ -233,7 +233,7 @@ class Uni_Cpo_Setting_Cpo_Radio_Options extends Uni_Cpo_Setting implements  Uni_
                             {{ } }}
                             <div class="uni-select-option-options-row">
                                 <div class="uni-select-option-move-wrapper">
-                                    <span class="uni_select_option_move"><i class="fa fa-arrows"></i></span>
+                                    <span class="uni_select_option_move"><i class="fas fa-arrows-alt"></i></span>
                                 </div>
                                 <div class="uni-select-option-content-wrapper uni-clear">
                                     <div class="uni-select-option-content-field-wrapper uni-make-default-suboption uni-clear">
@@ -391,7 +391,7 @@ class Uni_Cpo_Setting_Cpo_Radio_Options extends Uni_Cpo_Setting implements  Uni_
                                 </div>
                                 <div class="uni-select-option-content-field-wrapper uni-select-option-remove-wrapper">
                                     <span class="uni_select_option_remove">
-                                        <i class="fa fa-times"></i>
+                                        <i class="fas fa-times"></i>
                                     </span>
                                 </div>
                             </div>

@@ -64,6 +64,13 @@ class Uni_Cpo_Frontend_Scripts {
      */
     public static function get_styles() {
         return apply_filters( 'uni_cpo_enqueue_styles', array(
+            'uni-cpo-lity-css'        => array(
+                'used_in' => array( 'frontend' ),
+                'src'     => self::get_asset_url( '/includes/vendors/lity/lity.min.css' ),
+                'deps'    => '',
+                'version' => '2.3.1',
+                'media'   => 'all'
+            ),
             'editablegrid'            => array(
                 'used_in' => array( 'builder' ),
                 'src'     => self::get_asset_url( '/includes/vendors/editablegrid/editablegrid.css' ),
@@ -71,7 +78,7 @@ class Uni_Cpo_Frontend_Scripts {
                 'version' => '2.0.1',
                 'media'   => 'all'
             ),
-            'font-awesome'            => array(
+            'uni-cpo-font-awesome'    => array(
                 'used_in' => array( 'builder', 'cart', 'frontend' ),
                 'src'     => self::get_asset_url( '/includes/vendors/font-awesome/css/fontawesome-all.min.css' ),
                 'deps'    => '',
@@ -395,6 +402,7 @@ class Uni_Cpo_Frontend_Scripts {
         $vendors_path    = self::get_asset_url( '/includes/vendors/' );
 
         // Register any scripts for later use, or used as dependencies
+        self::register_script( 'uni-cpo-lity', $vendors_path . 'lity/lity.min.js', array(), '2.3.1' );
         self::register_script( 'editablegrid', $vendors_path . 'editablegrid/editablegrid.js', array(), '2.0.1' );
         self::register_script( 'editablegrid_charts', $vendors_path . 'editablegrid/editablegrid_charts.js', array(), '2.0.1' );
         self::register_script( 'editablegrid_editors', $vendors_path . 'editablegrid/editablegrid_editors.js', array(), '2.0.1' );
@@ -460,6 +468,7 @@ class Uni_Cpo_Frontend_Scripts {
                 'jquery-ui-widget',
                 'jquery-ui-position',
                 'jquery-ui-tooltip',
+                'uni-cpo-lity',
                 'plupload',
                 'moment',
                 'flatpickr',
@@ -494,12 +503,15 @@ class Uni_Cpo_Frontend_Scripts {
                 remove_action( 'wp_head', '_admin_bar_bump_cb' );
             }
 
+            $product_data = Uni_Cpo_Product::get_product_data();
+            $product      = wc_get_product( $product_data['id'] );
+
             // main config
             $uni_cpo_cfg = array(
                 'ajax_url'           => UniCpo()->ajax_url(),
                 'security'           => wp_create_nonce( 'uni_cpo_builder' ),
                 'builderId'          => UniCpo()->get_builder_id(),
-                'product'            => Uni_Cpo_Product::get_product_data(),
+                'product'            => $product_data,
                 'range_slider_style' => $plugin_settings['range_slider_style'],
                 'cpo_data'           => array(
                     'var_slug'      => UniCpo()->get_var_slug(),
@@ -526,7 +538,10 @@ class Uni_Cpo_Frontend_Scripts {
                         'total_suffix',
                     )
                 ),
-                'wholesale'          => uni_cpo_get_all_roles()
+                'wholesale'          => uni_cpo_get_all_roles(),
+                'regular_price'      => $product->get_regular_price(),
+                'price_selector'     => apply_filters( 'uni_cpo_price_selector', $plugin_settings['product_price_container'], $product_data ),
+                'image_selector'     => apply_filters( 'uni_cpo_image_selector', $plugin_settings['product_image_container'], $product_data ),
             );
             wp_localize_script( 'uni-cpo-builder', 'builderiusCfg', $uni_cpo_cfg );
 
@@ -638,6 +653,13 @@ class Uni_Cpo_Frontend_Scripts {
                     'none'            => __( '- None -', 'uni-cpo' ),
                     'flatpickr'       => $localizations['flatpickr'],
                     'pro'             => __( 'Pro Version Feature', 'uni-cpo' ),
+                    'misconfig'       => array(
+                        'no_form' => __( 'No cart form found! Check WooCommerce hooks integration with your theme', 'uni-cpo' ),
+                        'many_forms' => __( 'Too many cart forms found! Uni CPO works on single product page only!', 'uni-cpo' ),
+                        'free' => __( 'Regular price is not set. Price is required (even "1" works)!', 'uni-cpo' ),
+                        'no_price_tag' => __( 'It seems that price tag selector is wrong, please update!', 'uni-cpo' ),
+                        'no_image_tag' => __( 'It seems that image tag selector is wrong, please update!', 'uni-cpo' )
+                    )
                 )
             );
             wp_localize_script( 'uni-cpo-builder', 'builderius_i18n', $uni_cpo_i18n );
@@ -715,17 +737,17 @@ class Uni_Cpo_Frontend_Scripts {
             $product      = wc_get_product( $product_data['id'] );
             $zero_price   = uni_cpo_price( '0.00' );
             if ( UniCpo()->is_pro() ) {
-                $price_suffix = ( ! empty( $product_data['settings_data']['price_suffix'] ) ) ? $product_data['settings_data']['price_suffix'] : '';
-                $price_postfix = ( ! empty( $product_data['settings_data']['price_postfix'] ) ) ? $product_data['settings_data']['price_postfix'] : '';
+                $price_suffix       = ( ! empty( $product_data['settings_data']['price_suffix'] ) ) ? $product_data['settings_data']['price_suffix'] : '';
+                $price_postfix      = ( ! empty( $product_data['settings_data']['price_postfix'] ) ) ? $product_data['settings_data']['price_postfix'] : '';
                 $raw_starting_price = ( ! empty( $product_data['settings_data']['starting_price'] ) )
                     ? $product_data['settings_data']['starting_price']
                     : 0;
             } else {
-                $price_suffix = '';
-                $price_postfix = '';
+                $price_suffix       = '';
+                $price_postfix      = '';
                 $raw_starting_price = 0;
             }
-            $starting_price     = uni_cpo_price( $raw_starting_price );
+            $starting_price = uni_cpo_price( $raw_starting_price );
 
             $price_vars = array(
                 'currency'          => get_woocommerce_currency_symbol(),
@@ -741,7 +763,7 @@ class Uni_Cpo_Frontend_Scripts {
                 'raw_total_tax_rev' => 0,
                 'total'             => $zero_price,
                 'total_tax_rev'     => $zero_price,
-                'total_tax_suffix'  => $product->get_price_suffix(0),
+                'total_tax_suffix'  => $product->get_price_suffix( 0 ),
             );
 
             // main config

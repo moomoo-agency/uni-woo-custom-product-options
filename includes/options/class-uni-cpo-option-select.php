@@ -346,8 +346,14 @@ class Uni_Cpo_Option_Select extends Uni_Cpo_Option implements Uni_Cpo_Option_Int
 						'cpo_label_tag'    => 'label',
 						'cpo_order_label'  => '',
 						'cpo_is_tooltip'   => 'no',
+						'cpo_tooltip_type' => 'classic',
 						'cpo_tooltip'      => '',
-						//'cpo_tooltip_type' => 'classic'
+						'cpo_tooltip_image' => array(
+							'url' => '',
+							'id' => 0,
+							'alt' => ''
+						),
+						'cpo_tooltip_class' => '',
 						'cpo_enable_cartedit' => 'no'
 					)
 				),
@@ -396,6 +402,9 @@ class Uni_Cpo_Option_Select extends Uni_Cpo_Option implements Uni_Cpo_Option_Int
             {{ } }}
 
             {{ const { cpo_label_tag, cpo_label, cpo_is_tooltip, cpo_tooltip } = data.settings.cpo_general.advanced; }}
+			{{ const cpo_tooltip_type = uniGet( data.settings.cpo_general, 'advanced.cpo_tooltip_type', 'classic' ); }}
+			{{ const cpo_tooltip_image = uniGet( data.settings.cpo_general, 'advanced.cpo_tooltip_image', {url:''} ); }}
+			{{ const cpo_tooltip_class = uniGet( data.settings.cpo_general, 'advanced.cpo_tooltip_class', '' ); }}
             <div
             	id="{{- id_name }}"
                 class="uni-module uni-module-{{- type }} uni-node-{{- id }} {{- class_name }}"
@@ -428,7 +437,7 @@ class Uni_Cpo_Option_Select extends Uni_Cpo_Option implements Uni_Cpo_Option_Int
             {{ if ( cpo_label_tag && cpo_label ) { }}
                 <{{- cpo_label_tag }} class="uni-cpo-module-{{- type }}-label {{ if ( cpo_is_required === 'yes' ) { }} uni_cpo_field_required {{ } }}">
                 	{{- cpo_label }}
-                	{{ if ( cpo_is_tooltip === 'yes' && cpo_tooltip ) { }} <span class="uni-cpo-tooltip" data-tip="{{- cpo_tooltip }}"></span> {{ } }}
+					{{ if ( cpo_is_tooltip === 'yes' && cpo_tooltip !== '' && cpo_tooltip_type === 'classic' ) { }} <span class="uni-cpo-tooltip" data-tip="{{- cpo_tooltip }}"></span> {{ } else if ( cpo_is_tooltip === 'yes' && cpo_tooltip_image.url !== '' && cpo_tooltip_type === 'lightbox' ) { }} <span class="uni-cpo-tooltip"></span> {{ } else if ( cpo_is_tooltip === 'yes' && cpo_tooltip_class !== '' && cpo_tooltip_type === 'popup' ) { }} <span class="uni-cpo-tooltip"></span> {{ } }}
             	</{{- cpo_label_tag }}>
         	{{ } }}
             <select
@@ -473,6 +482,12 @@ class Uni_Cpo_Option_Select extends Uni_Cpo_Option implements Uni_Cpo_Option_Int
 		$is_tooltip           = ( 'yes' === $cpo_general_advanced['cpo_is_tooltip'] ) ? true : false;
 		$is_enabled           = ( 'yes' === $rules_data['cpo_is_fc'] ) ? true : false;
 		$is_hidden            = ( 'hide' === $rules_data['cpo_fc_default'] ) ? true : false;
+		$cpo_tooltip_type  	  = ( isset( $cpo_general_advanced['cpo_tooltip_type'] ) )
+            ? $cpo_general_advanced['cpo_tooltip_type']
+            : 'classic';
+		$cpo_tooltip_image    = ( isset( $cpo_general_advanced['cpo_tooltip_image']['url'] ) )
+            ? $cpo_general_advanced['cpo_tooltip_image']['url']
+            : '';
 
 		if ( ! empty( $data['pid'] ) ) {
 			$option = uni_cpo_get_option( $data['pid'] );
@@ -545,9 +560,13 @@ class Uni_Cpo_Option_Select extends Uni_Cpo_Option implements Uni_Cpo_Option_Int
 		if ( ! empty( $cpo_general_advanced['cpo_label'] ) ) { ?>
             <<?php echo esc_attr( $cpo_label_tag ); ?> class="uni-cpo-module-<?php echo esc_attr( $type ); ?>-label <?php if ( $is_required ) { ?> uni_cpo_field_required <?php } ?>">
 			<?php esc_html_e( $cpo_general_advanced['cpo_label'] ); ?>
-			<?php if ( $is_tooltip && $cpo_general_advanced['cpo_tooltip'] !== '' ) { ?>
+			<?php if ( $is_tooltip && $cpo_general_advanced['cpo_tooltip'] !== '' && $cpo_tooltip_type === 'classic' ) { ?>
                 <span class="uni-cpo-tooltip"
                       data-tip="<?php echo uni_cpo_sanitize_tooltip( $cpo_general_advanced['cpo_tooltip'] ); ?>"></span>
+			<?php } else if ( $is_tooltip && $cpo_tooltip_image !== '' && $cpo_tooltip_type === 'lightbox' ) { ?>
+				<a href="<?php esc_html_e( $cpo_tooltip_image ); ?>" data-lity class="uni-cpo-tooltip"></a>
+			<?php } else if ( $is_tooltip && $cpo_general_advanced['cpo_tooltip_class'] !== '' && $cpo_tooltip_type === 'popup' ) { ?>
+				<span class="uni-cpo-tooltip <?php esc_html_e( $cpo_general_advanced['cpo_tooltip_class'] ); ?>"></span>
 			<?php } ?>
             </<?php echo esc_attr( $cpo_label_tag ); ?>>
 		<?php } ?>

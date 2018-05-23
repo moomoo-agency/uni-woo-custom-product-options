@@ -548,7 +548,7 @@ abstract class Uni_Cpo_Setting {
             type="button"
             class="cpo-upload-attachment"
             data-tip="<?php esc_attr_e('Add/Change attachment', 'uni-cpo') ?>">
-            <i class="fa fa-pencil"></i>
+            <i class="fas fa-pencil-alt"></i>
         </button>
         <button
             type="button"
@@ -557,7 +557,7 @@ abstract class Uni_Cpo_Setting {
             {{ if (<?php echo esc_attr( $data['js_var'] ); ?>) { print(' style="display:block;"') } }}
             <?php } ?>
             data-tip="<?php esc_attr_e('Remove attachment', 'uni-cpo') ?>">
-            <i class="fa fa-times"></i>
+            <i class="fas fa-times"></i>
         </button>
         <div class="cpo-image-preview">
         	<?php

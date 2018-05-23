@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Uni CPO 2.1.13\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-22 07:22+0300\n"
-"PO-Revision-Date: 2018-05-02 17:40+0300\n"
+"POT-Creation-Date: 2018-05-23 17:20+0300\n"
+"PO-Revision-Date: 2018-05-23 17:21+0300\n"
 "Last-Translator: Luciano <lmilani.mail@gmail.com>\n"
 "Language-Team: French (France)\n"
 "Language: fr_FR\n"
@@ -17,7 +17,7 @@ msgstr ""
 msgid "Cheatin&#8217; huh?"
 msgstr ""
 
-#: class-uni-cpo.php:492
+#: class-uni-cpo.php:494
 #: includes/options/class-uni-cpo-option-file-upload.php:161
 #, fuzzy
 #| msgid "Edit settings"
@@ -44,7 +44,7 @@ msgid "Uni CPO Settings"
 msgstr ""
 
 #: includes/admin/class-uni-cpo-plugin-settings.php:69
-#: includes/class-uni-cpo-frontend-scripts.php:630
+#: includes/class-uni-cpo-frontend-scripts.php:645
 msgid "Settings"
 msgstr ""
 
@@ -285,51 +285,83 @@ msgstr "CPO Prix Formule"
 msgid "go to the builder"
 msgstr ""
 
-#: includes/admin/uni-cpo-admin-functions.php:146
+#: includes/admin/uni-cpo-admin-functions.php:142
 msgid "Add/edit CPO options"
 msgstr ""
 
-#: includes/admin/uni-cpo-admin-functions.php:170
-#: includes/uni-cpo-core-functions.php:902
+#: includes/admin/uni-cpo-admin-functions.php:166
+#: includes/uni-cpo-core-functions.php:903
 msgid "Update"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:219
+#: includes/class-uni-cpo-ajax.php:128 includes/class-uni-cpo-ajax.php:186
+#: includes/class-uni-cpo-ajax.php:208 includes/class-uni-cpo-ajax.php:310
+#: includes/class-uni-cpo-ajax.php:339 includes/class-uni-cpo-ajax.php:366
+#: includes/class-uni-cpo-ajax.php:406 includes/class-uni-cpo-ajax.php:459
+#: includes/class-uni-cpo-ajax.php:486 includes/class-uni-cpo-ajax.php:515
+#: includes/class-uni-cpo-ajax.php:545 includes/class-uni-cpo-ajax.php:576
+#: includes/class-uni-cpo-ajax.php:603 includes/class-uni-cpo-ajax.php:633
+#: includes/class-uni-cpo-ajax.php:680 includes/class-uni-cpo-ajax.php:1383
+#: includes/class-uni-cpo-ajax.php:1459
+msgid "Insufficient permissions for this operation"
+msgstr ""
+
+#: includes/class-uni-cpo-ajax.php:171
+msgid "The data was not saved. Maybe, there is nothing to save?"
+msgstr ""
+
+#: includes/class-uni-cpo-ajax.php:193
+msgid "Hm-m... Something went wrong."
+msgstr ""
+
+#: includes/class-uni-cpo-ajax.php:218
 msgid "Invalid model type"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:223
+#: includes/class-uni-cpo-ajax.php:222
 msgid "Invalid builder model object type"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:241
+#: includes/class-uni-cpo-ajax.php:240
 msgid "Invalid model"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:266
+#: includes/class-uni-cpo-ajax.php:265
 msgid "Something went srong"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:317 includes/class-uni-cpo-ajax.php:686
+#: includes/class-uni-cpo-ajax.php:316 includes/class-uni-cpo-ajax.php:686
 msgid "Type is not specified"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:372 includes/class-uni-cpo-ajax.php:411
+#: includes/class-uni-cpo-ajax.php:324 includes/class-uni-cpo-ajax.php:702
+msgid "No modules"
+msgstr ""
+
+#: includes/class-uni-cpo-ajax.php:372 includes/class-uni-cpo-ajax.php:412
 msgid "Product ID is not specified"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:415
+#: includes/class-uni-cpo-ajax.php:389
+msgid "No similar products"
+msgstr ""
+
+#: includes/class-uni-cpo-ajax.php:416
 msgid "Target product ID is not specified"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:422
+#: includes/class-uni-cpo-ajax.php:423
 #, php-format
 msgid "Product creation failed, could not find original product: %s"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:429
+#: includes/class-uni-cpo-ajax.php:430
 #, php-format
 msgid "Product creation failed, could not find targeted product: %s"
+msgstr ""
+
+#: includes/class-uni-cpo-ajax.php:441
+msgid "Error"
 msgstr ""
 
 #: includes/class-uni-cpo-ajax.php:637
@@ -338,6 +370,12 @@ msgstr ""
 
 #: includes/class-uni-cpo-ajax.php:654
 msgid "Only CSV files are allowed"
+msgstr ""
+
+#: includes/class-uni-cpo-ajax.php:663 includes/class-uni-cpo-ajax.php:904
+#: includes/class-uni-cpo-ajax.php:1338 includes/class-uni-cpo-ajax.php:1567
+#: includes/class-uni-cpo-ajax.php:1663
+msgid "Something went wrong"
 msgstr ""
 
 #: includes/class-uni-cpo-ajax.php:690
@@ -372,7 +410,7 @@ msgstr ""
 msgid "Failed to open input stream."
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:790 includes/class-uni-cpo-ajax.php:1621
+#: includes/class-uni-cpo-ajax.php:790 includes/class-uni-cpo-ajax.php:1599
 msgid "Sorry, this file type is not permitted for security reasons."
 msgstr ""
 
@@ -404,33 +442,33 @@ msgstr ""
 msgid "File successfully deleted"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:1002 includes/class-uni-cpo-ajax.php:1552
-#: includes/class-uni-cpo-ajax.php:1611
+#: includes/class-uni-cpo-ajax.php:1002 includes/class-uni-cpo-ajax.php:1528
+#: includes/class-uni-cpo-ajax.php:1589
 msgid "Product ID is not set"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:1252
+#: includes/class-uni-cpo-ajax.php:1235
 msgid "Price calculation is disabled in settings"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:1462
+#: includes/class-uni-cpo-ajax.php:1444
 msgid "No options available"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:1556
+#: includes/class-uni-cpo-ajax.php:1532
 msgid "Email is not set"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:1576
+#: includes/class-uni-cpo-ajax.php:1554
 msgid "File cannot be saved"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:1579
+#: includes/class-uni-cpo-ajax.php:1557
 #, php-format
 msgid "[%s] Export request for product #%d"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:1580
+#: includes/class-uni-cpo-ajax.php:1558
 #, php-format
 msgid ""
 "A .txt file with encoded info of settings for product #%d is attached to "
@@ -439,394 +477,394 @@ msgid ""
 "the settings elsewhere."
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:1632
+#: includes/class-uni-cpo-ajax.php:1611
 msgid "File cannot be read"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:212
-#: includes/class-uni-cpo-frontend-scripts.php:221
+#: includes/class-uni-cpo-frontend-scripts.php:219
+#: includes/class-uni-cpo-frontend-scripts.php:228
 msgid "This value seems to be invalid."
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:213
+#: includes/class-uni-cpo-frontend-scripts.php:220
 msgid "This value should be a valid email."
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:214
+#: includes/class-uni-cpo-frontend-scripts.php:221
 msgid "This value should be a valid url."
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:215
+#: includes/class-uni-cpo-frontend-scripts.php:222
 msgid "This value should be a valid number."
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:216
+#: includes/class-uni-cpo-frontend-scripts.php:223
 msgid "This value should be digits."
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:217
+#: includes/class-uni-cpo-frontend-scripts.php:224
 msgid "This value should be alphanumeric."
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:218
+#: includes/class-uni-cpo-frontend-scripts.php:225
 msgid "This value should be a valid integer."
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:219
+#: includes/class-uni-cpo-frontend-scripts.php:226
 msgid "This value should not be blank."
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:220
+#: includes/class-uni-cpo-frontend-scripts.php:227
 msgid "This value is required."
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:222
+#: includes/class-uni-cpo-frontend-scripts.php:229
 #, php-format
 msgid "This value should be greater than or equal to %s."
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:223
+#: includes/class-uni-cpo-frontend-scripts.php:230
 #, php-format
 msgid "This value should be lower than or equal to %s."
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:224
+#: includes/class-uni-cpo-frontend-scripts.php:231
 #, php-format
 msgid "This value should be between %s and %s."
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:225
+#: includes/class-uni-cpo-frontend-scripts.php:232
 #, php-format
 msgid "This value is too short. It should have %s characters or more."
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:226
+#: includes/class-uni-cpo-frontend-scripts.php:233
 #, php-format
 msgid "This value is too long. It should have %s characters or fewer."
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:227
+#: includes/class-uni-cpo-frontend-scripts.php:234
 #, php-format
 msgid ""
 "This value length is invalid. It should be between %s and %s characters long."
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:228
+#: includes/class-uni-cpo-frontend-scripts.php:235
 #, php-format
 msgid "You must select at least %s choices."
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:229
+#: includes/class-uni-cpo-frontend-scripts.php:236
 #, php-format
 msgid "You must select %s choices or fewer."
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:230
+#: includes/class-uni-cpo-frontend-scripts.php:237
 #, php-format
 msgid "You must select between %s and %s choices."
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:231
+#: includes/class-uni-cpo-frontend-scripts.php:238
 msgid "This value should be the same."
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:232
+#: includes/class-uni-cpo-frontend-scripts.php:239
 msgid "This value should be a valid date (YYYY-MM-DD)."
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:233
+#: includes/class-uni-cpo-frontend-scripts.php:240
 #, php-format
 msgid "This value is too short. It should have %s words or more."
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:234
+#: includes/class-uni-cpo-frontend-scripts.php:241
 #, php-format
 msgid "This value is too long. It should have %s words or fewer."
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:235
+#: includes/class-uni-cpo-frontend-scripts.php:242
 #, php-format
 msgid ""
 "This value length is invalid. It should be between %s and %s words long."
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:236
+#: includes/class-uni-cpo-frontend-scripts.php:243
 msgid "This value should be greater."
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:237
+#: includes/class-uni-cpo-frontend-scripts.php:244
 msgid "This value should be greater or equal."
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:238
+#: includes/class-uni-cpo-frontend-scripts.php:245
 msgid "This value should be less."
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:239
+#: includes/class-uni-cpo-frontend-scripts.php:246
 msgid "This value should be less or equal."
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:240
+#: includes/class-uni-cpo-frontend-scripts.php:247
 msgid "Must be unique!"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:245
+#: includes/class-uni-cpo-frontend-scripts.php:252
 msgid "Sun"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:246
+#: includes/class-uni-cpo-frontend-scripts.php:253
 msgid "Mon"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:247
+#: includes/class-uni-cpo-frontend-scripts.php:254
 msgid "Tue"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:248
+#: includes/class-uni-cpo-frontend-scripts.php:255
 msgid "Wed"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:249
+#: includes/class-uni-cpo-frontend-scripts.php:256
 msgid "Thu"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:250
+#: includes/class-uni-cpo-frontend-scripts.php:257
 msgid "Fri"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:251
+#: includes/class-uni-cpo-frontend-scripts.php:258
 msgid "Sat"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:254
+#: includes/class-uni-cpo-frontend-scripts.php:261
 msgid "Sunday"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:255
+#: includes/class-uni-cpo-frontend-scripts.php:262
 msgid "Monday"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:256
+#: includes/class-uni-cpo-frontend-scripts.php:263
 msgid "Tuesday"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:257
+#: includes/class-uni-cpo-frontend-scripts.php:264
 msgid "Wednesday"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:258
+#: includes/class-uni-cpo-frontend-scripts.php:265
 msgid "Thursday"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:259
+#: includes/class-uni-cpo-frontend-scripts.php:266
 msgid "Friday"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:260
+#: includes/class-uni-cpo-frontend-scripts.php:267
 msgid "Saturday"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:265
+#: includes/class-uni-cpo-frontend-scripts.php:272
 msgid "Jan"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:266
+#: includes/class-uni-cpo-frontend-scripts.php:273
 msgid "Feb"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:267
+#: includes/class-uni-cpo-frontend-scripts.php:274
 msgid "Mar"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:268
+#: includes/class-uni-cpo-frontend-scripts.php:275
 msgid "Apr"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:269
-#: includes/class-uni-cpo-frontend-scripts.php:283
+#: includes/class-uni-cpo-frontend-scripts.php:276
+#: includes/class-uni-cpo-frontend-scripts.php:290
 msgid "May"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:270
+#: includes/class-uni-cpo-frontend-scripts.php:277
 msgid "Jun"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:271
+#: includes/class-uni-cpo-frontend-scripts.php:278
 msgid "Jul"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:272
+#: includes/class-uni-cpo-frontend-scripts.php:279
 msgid "Aug"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:273
+#: includes/class-uni-cpo-frontend-scripts.php:280
 msgid "Sep"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:274
+#: includes/class-uni-cpo-frontend-scripts.php:281
 msgid "Oct"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:275
+#: includes/class-uni-cpo-frontend-scripts.php:282
 #, fuzzy
 #| msgid "No"
 msgid "Nov"
 msgstr "Non"
 
-#: includes/class-uni-cpo-frontend-scripts.php:276
+#: includes/class-uni-cpo-frontend-scripts.php:283
 msgid "Dec"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:279
+#: includes/class-uni-cpo-frontend-scripts.php:286
 msgid "January"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:280
+#: includes/class-uni-cpo-frontend-scripts.php:287
 msgid "February"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:281
+#: includes/class-uni-cpo-frontend-scripts.php:288
 msgid "March"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:282
+#: includes/class-uni-cpo-frontend-scripts.php:289
 msgid "April"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:284
+#: includes/class-uni-cpo-frontend-scripts.php:291
 msgid "June"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:285
+#: includes/class-uni-cpo-frontend-scripts.php:292
 msgid "July"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:286
+#: includes/class-uni-cpo-frontend-scripts.php:293
 msgid "August"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:287
+#: includes/class-uni-cpo-frontend-scripts.php:294
 msgid "September"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:288
+#: includes/class-uni-cpo-frontend-scripts.php:295
 msgid "October"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:289
+#: includes/class-uni-cpo-frontend-scripts.php:296
 msgid "November"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:290
+#: includes/class-uni-cpo-frontend-scripts.php:297
 msgid "December"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:293
+#: includes/class-uni-cpo-frontend-scripts.php:300
 msgid "Scroll to increment"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:294
+#: includes/class-uni-cpo-frontend-scripts.php:301
 msgid "Click to toggle"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:573
+#: includes/class-uni-cpo-frontend-scripts.php:588
 msgid "Smart Search"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:576
+#: includes/class-uni-cpo-frontend-scripts.php:591
 msgid "Basic Modules"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:577
+#: includes/class-uni-cpo-frontend-scripts.php:592
 msgid "Options"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:582
+#: includes/class-uni-cpo-frontend-scripts.php:597
 msgid "General"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:586
+#: includes/class-uni-cpo-frontend-scripts.php:601
 msgid "Style"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:590
+#: includes/class-uni-cpo-frontend-scripts.php:605
 msgid "Advanced"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:594
+#: includes/class-uni-cpo-frontend-scripts.php:609
 msgid "Main"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:598
+#: includes/class-uni-cpo-frontend-scripts.php:613
 #, fuzzy
 #| msgid "Select options"
 msgid "Suboptions"
 msgstr "Sélectionnez les options"
 
-#: includes/class-uni-cpo-frontend-scripts.php:602
+#: includes/class-uni-cpo-frontend-scripts.php:617
 #: includes/options/class-uni-cpo-option-matrix.php:38
 msgid "Matrix"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:606
+#: includes/class-uni-cpo-frontend-scripts.php:621
 msgid "Rules"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:610
+#: includes/class-uni-cpo-frontend-scripts.php:625
 msgid "Conditional"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:614
+#: includes/class-uni-cpo-frontend-scripts.php:629
 msgid "Validation"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:619
+#: includes/class-uni-cpo-frontend-scripts.php:634
 msgid "Delete"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:620
+#: includes/class-uni-cpo-frontend-scripts.php:635
 msgid "Save"
 msgstr "Enregistrer"
 
-#: includes/class-uni-cpo-frontend-scripts.php:621
+#: includes/class-uni-cpo-frontend-scripts.php:636
 #: includes/settings/class-uni-cpo-setting-sync.php:21
 msgid "Sync"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:622
+#: includes/class-uni-cpo-frontend-scripts.php:637
 #: includes/class-uni-cpo-templates.php:734
 #: includes/class-uni-cpo-templates.php:834
 #: includes/class-uni-cpo-templates.php:1006
 #: includes/class-uni-cpo-templates.php:1207
 #: includes/class-uni-cpo-templates.php:1400
 #: includes/class-uni-cpo-templates.php:1580
-#: includes/uni-cpo-core-functions.php:934
+#: includes/uni-cpo-core-functions.php:935
 msgid "Cancel"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:623
+#: includes/class-uni-cpo-frontend-scripts.php:638
 msgid "Suggestion"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:626
+#: includes/class-uni-cpo-frontend-scripts.php:641
 #: includes/modules/class-uni-cpo-module-row.php:29
 msgid "Row"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:627
+#: includes/class-uni-cpo-frontend-scripts.php:642
 #: includes/modules/class-uni-cpo-module-column.php:29
 msgid "Column"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:628
+#: includes/class-uni-cpo-frontend-scripts.php:643
 msgid "Module"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:629
+#: includes/class-uni-cpo-frontend-scripts.php:644
 msgid "Move Row"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:631
+#: includes/class-uni-cpo-frontend-scripts.php:646
 #: includes/class-uni-cpo-templates.php:666
 #: includes/class-uni-cpo-templates.php:667
 #: includes/settings/class-uni-cpo-setting-sync.php:61
@@ -834,76 +872,96 @@ msgstr ""
 msgid "Duplicate"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:632
+#: includes/class-uni-cpo-frontend-scripts.php:647
 #: includes/options/class-uni-cpo-option-file-upload.php:172
 msgid "Remove"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:634
+#: includes/class-uni-cpo-frontend-scripts.php:649
 msgid "Upload"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:635
-#: includes/options/class-uni-cpo-option-file-upload.php:470
+#: includes/class-uni-cpo-frontend-scripts.php:650
+#: includes/options/class-uni-cpo-option-file-upload.php:488
 #, fuzzy
 msgid "Select file"
 msgstr "Sélectionnez les options"
 
-#: includes/class-uni-cpo-frontend-scripts.php:636
+#: includes/class-uni-cpo-frontend-scripts.php:651
 msgid "Please add suboptions"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:637
+#: includes/class-uni-cpo-frontend-scripts.php:652
 msgid "2nd var/1st var"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:638
+#: includes/class-uni-cpo-frontend-scripts.php:653
 #: includes/settings/class-uni-cpo-setting-sync.php:79
 msgid "- None -"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:640
+#: includes/class-uni-cpo-frontend-scripts.php:655
 msgid "Pro Version Feature"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:664
-#: includes/class-uni-cpo-frontend-scripts.php:804
+#: includes/class-uni-cpo-frontend-scripts.php:657
+msgid "No cart form found! Check WooCommerce hooks integration with your theme"
+msgstr ""
+
+#: includes/class-uni-cpo-frontend-scripts.php:658
+msgid "Too many cart forms found! Uni CPO works on single product page only!"
+msgstr ""
+
+#: includes/class-uni-cpo-frontend-scripts.php:659
+msgid "Regular price is not set. Price is required (even \"1\" works)!"
+msgstr ""
+
+#: includes/class-uni-cpo-frontend-scripts.php:660
+msgid "It seems that price tag selector is wrong, please update!"
+msgstr ""
+
+#: includes/class-uni-cpo-frontend-scripts.php:661
+msgid "It seems that image tag selector is wrong, please update!"
+msgstr ""
+
+#: includes/class-uni-cpo-frontend-scripts.php:686
+#: includes/class-uni-cpo-frontend-scripts.php:826
 msgid "Clear"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:665
-#: includes/class-uni-cpo-frontend-scripts.php:805
+#: includes/class-uni-cpo-frontend-scripts.php:687
+#: includes/class-uni-cpo-frontend-scripts.php:827
 #: includes/settings/class-uni-cpo-setting-font-family.php:24
 #: includes/settings/class-uni-cpo-setting-font-style.php:24
 msgid "Default"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:666
-#: includes/class-uni-cpo-frontend-scripts.php:806
+#: includes/class-uni-cpo-frontend-scripts.php:688
+#: includes/class-uni-cpo-frontend-scripts.php:828
 #, fuzzy
 msgid "Select Color"
 msgstr "Sélectionnez les options"
 
-#: includes/class-uni-cpo-frontend-scripts.php:667
-#: includes/class-uni-cpo-frontend-scripts.php:807
+#: includes/class-uni-cpo-frontend-scripts.php:689
+#: includes/class-uni-cpo-frontend-scripts.php:829
 #, fuzzy
 msgid "Current Color"
 msgstr "Sélectionnez les options"
 
-#: includes/class-uni-cpo-frontend-scripts.php:777
+#: includes/class-uni-cpo-frontend-scripts.php:799
 msgid "Calculating"
 msgstr "Calculateur"
 
-#: includes/class-uni-cpo-frontend-scripts.php:778
+#: includes/class-uni-cpo-frontend-scripts.php:800
 #, php-format
 msgid "This file should not be larger than %s Kb"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:779
+#: includes/class-uni-cpo-frontend-scripts.php:801
 msgid "File of this type is not allowed"
 msgstr ""
 
-#: includes/class-uni-cpo-frontend-scripts.php:780
+#: includes/class-uni-cpo-frontend-scripts.php:802
 msgid "The product has been added successfully!"
 msgstr ""
 
@@ -1014,7 +1072,7 @@ msgid "Product does not exist or not chosen"
 msgstr ""
 
 #: includes/class-uni-cpo-product.php:895
-msgid "Error"
+msgid "No context set. The data was not saved."
 msgstr ""
 
 #: includes/class-uni-cpo-templates.php:54
@@ -1342,8 +1400,8 @@ msgstr ""
 
 #: includes/class-uni-cpo-templates.php:671
 #: includes/class-uni-cpo-templates.php:701
-#: includes/class-uni-cpo-templates.php:1879
-#: includes/class-uni-cpo-templates.php:2129
+#: includes/class-uni-cpo-templates.php:1881
+#: includes/class-uni-cpo-templates.php:2131
 #: includes/settings/class-uni-cpo-setting-cpo-matrix-data.php:106
 msgid "Import"
 msgstr ""
@@ -1353,8 +1411,8 @@ msgid "remove pid attribute values from all the modules"
 msgstr ""
 
 #: includes/class-uni-cpo-templates.php:695
-#: includes/class-uni-cpo-templates.php:1874
-#: includes/class-uni-cpo-templates.php:2124
+#: includes/class-uni-cpo-templates.php:1876
+#: includes/class-uni-cpo-templates.php:2126
 #: includes/settings/class-uni-cpo-setting-cpo-matrix-data.php:101
 #, fuzzy
 msgid "Choose a file"
@@ -1452,7 +1510,7 @@ msgstr ""
 #: includes/class-uni-cpo-templates.php:927
 #: includes/class-uni-cpo-templates.php:1061
 #: includes/class-uni-cpo-templates.php:1316
-#: includes/class-uni-cpo-templates.php:1699
+#: includes/class-uni-cpo-templates.php:1701
 #: includes/settings/class-uni-cpo-setting-cpo-date-rules.php:51
 #: includes/settings/class-uni-cpo-setting-cpo-vc-scheme.php:47
 msgid "Add Rule"
@@ -1461,7 +1519,7 @@ msgstr ""
 #: includes/class-uni-cpo-templates.php:928
 #: includes/class-uni-cpo-templates.php:1062
 #: includes/class-uni-cpo-templates.php:1317
-#: includes/class-uni-cpo-templates.php:1700
+#: includes/class-uni-cpo-templates.php:1702
 #: includes/settings/class-uni-cpo-setting-cpo-date-rules.php:52
 #: includes/settings/class-uni-cpo-setting-cpo-vc-scheme.php:48
 msgid "Remove All"
@@ -1639,62 +1697,62 @@ msgid ""
 "formula on per user role basis"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:1694
+#: includes/class-uni-cpo-templates.php:1696
 msgid "Controls"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:1728
-#: includes/class-uni-cpo-templates.php:1937
+#: includes/class-uni-cpo-templates.php:1730
+#: includes/class-uni-cpo-templates.php:1939
 msgid "Matrix?"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:1742
-#: includes/class-uni-cpo-templates.php:1952
+#: includes/class-uni-cpo-templates.php:1744
+#: includes/class-uni-cpo-templates.php:1954
 msgid "Convert unit?"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:1753
-#: includes/class-uni-cpo-templates.php:1964
+#: includes/class-uni-cpo-templates.php:1755
+#: includes/class-uni-cpo-templates.php:1966
 msgid "to"
-msgstr ""
-
-#: includes/class-uni-cpo-templates.php:1758
-#: includes/class-uni-cpo-templates.php:1970
-msgid "WC default unit"
-msgstr ""
-
-#: includes/class-uni-cpo-templates.php:1759
-#: includes/class-uni-cpo-templates.php:1971
-msgid "mm"
 msgstr ""
 
 #: includes/class-uni-cpo-templates.php:1760
 #: includes/class-uni-cpo-templates.php:1972
-msgid "cm"
+msgid "WC default unit"
 msgstr ""
 
 #: includes/class-uni-cpo-templates.php:1761
 #: includes/class-uni-cpo-templates.php:1973
-msgid "m"
+msgid "mm"
 msgstr ""
 
 #: includes/class-uni-cpo-templates.php:1762
 #: includes/class-uni-cpo-templates.php:1974
-msgid "in"
+msgid "cm"
 msgstr ""
 
 #: includes/class-uni-cpo-templates.php:1763
 #: includes/class-uni-cpo-templates.php:1975
-msgid "ft"
+msgid "m"
 msgstr ""
 
 #: includes/class-uni-cpo-templates.php:1764
 #: includes/class-uni-cpo-templates.php:1976
+msgid "in"
+msgstr ""
+
+#: includes/class-uni-cpo-templates.php:1765
+#: includes/class-uni-cpo-templates.php:1977
+msgid "ft"
+msgstr ""
+
+#: includes/class-uni-cpo-templates.php:1766
+#: includes/class-uni-cpo-templates.php:1978
 msgid "yd"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:1864
-#: includes/class-uni-cpo-templates.php:2114
+#: includes/class-uni-cpo-templates.php:1866
+#: includes/class-uni-cpo-templates.php:2116
 #: includes/settings/class-uni-cpo-setting-cpo-matrix-data.php:91
 msgid "Generate"
 msgstr ""
@@ -1733,8 +1791,8 @@ msgstr ""
 msgid "Checkbox Inputs"
 msgstr ""
 
-#: includes/options/class-uni-cpo-option-checkbox.php:700
-#: includes/options/class-uni-cpo-option-radio.php:689
+#: includes/options/class-uni-cpo-option-checkbox.php:715
+#: includes/options/class-uni-cpo-option-radio.php:704
 msgid "Please add suboptions to this option!"
 msgstr ""
 
@@ -1763,12 +1821,12 @@ msgstr ""
 #: includes/options/class-uni-cpo-option-radio.php:225
 #: includes/options/class-uni-cpo-option-select.php:205
 #: includes/options/class-uni-cpo-option-select.php:231
-#: includes/options/class-uni-cpo-option-select.php:438
-#: includes/options/class-uni-cpo-option-select.php:561
+#: includes/options/class-uni-cpo-option-select.php:447
+#: includes/options/class-uni-cpo-option-select.php:580
 msgid "Please select..."
 msgstr ""
 
-#: includes/options/class-uni-cpo-option-radio.php:806
+#: includes/options/class-uni-cpo-option-radio.php:825
 msgid "Please add image to suboption"
 msgstr ""
 
@@ -2323,7 +2381,7 @@ msgstr ""
 #: includes/settings/class-uni-cpo-setting-cpo-mode-checkbox.php:23
 #: includes/settings/class-uni-cpo-setting-cpo-mode-radio.php:24
 #: includes/settings/class-uni-cpo-setting-cpo-mode-radio.php:36
-#: includes/settings/class-uni-cpo-setting-cpo-tooltip-type.php:23
+#: includes/settings/class-uni-cpo-setting-cpo-tooltip-type.php:26
 msgid "Classic"
 msgstr ""
 
@@ -2535,8 +2593,29 @@ msgstr ""
 msgid "Add the step value for this field. Only integer or float number."
 msgstr ""
 
+#: includes/settings/class-uni-cpo-setting-cpo-tooltip-class.php:21
+msgid "Class name"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-cpo-tooltip-class.php:23
+msgid "Extra selector from Popup Maker"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-cpo-tooltip-image.php:21
+#, fuzzy
+msgid "Tooltip Image"
+msgstr "Ajouter une image"
+
 #: includes/settings/class-uni-cpo-setting-cpo-tooltip-type.php:21
 msgid "Type of tooltip"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-cpo-tooltip-type.php:27
+msgid "Lightbox"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-cpo-tooltip-type.php:28
+msgid "Popup Maker"
 msgstr ""
 
 #: includes/settings/class-uni-cpo-setting-cpo-tooltip.php:21
@@ -2794,24 +2873,24 @@ msgstr ""
 msgid "Width Type"
 msgstr ""
 
-#: includes/uni-cpo-core-functions.php:885
+#: includes/uni-cpo-core-functions.php:886
 msgid "Select options"
 msgstr "Sélectionnez les options"
 
-#: includes/uni-cpo-core-functions.php:953
+#: includes/uni-cpo-core-functions.php:954
 msgid "Calculate"
 msgstr "Calculer"
 
-#: includes/uni-cpo-core-functions.php:1643
+#: includes/uni-cpo-core-functions.php:1639
 msgid "Item"
 msgstr ""
 
-#: includes/uni-cpo-core-functions.php:1645
+#: includes/uni-cpo-core-functions.php:1641
 #, php-format
 msgid "%s duplicated."
 msgstr ""
 
-#: includes/uni-cpo-core-functions.php:1754
+#: includes/uni-cpo-core-functions.php:1750
 msgid "Add/Edit CPO option(s)"
 msgstr ""
 
@@ -2823,12 +2902,12 @@ msgstr ""
 msgid "Edit (inline)"
 msgstr ""
 
-#: uni-cpo.php:116
+#: uni-cpo.php:113
 #, php-format
 msgid "UniCpo requires PHP version %s+. It is NOT ACTIVATED!"
 msgstr ""
 
-#: uni-cpo.php:127
+#: uni-cpo.php:124
 #, php-format
 msgid "UniCpo requires WordPress version %s+. It is NOT ACTIVATED!"
 msgstr ""

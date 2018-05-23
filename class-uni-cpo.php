@@ -14,7 +14,7 @@ final class Uni_Cpo {
      *
      * @var string
      */
-    public $version = '4.1.1';
+    public $version = '4.1.3';
 
     /**
      * The single instance of the class.
@@ -304,6 +304,8 @@ final class Uni_Cpo {
             include_once( UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-order-label.php' );
             include_once( UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-is-tooltip.php' );
             include_once( UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-tooltip.php' );
+            include_once( UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-tooltip-class.php' );
+            include_once( UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-tooltip-image.php' );
             include_once( UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-tooltip-type.php' );
             include_once( UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-enable-cartedit.php' );
             include_once( UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-select-options.php' );
@@ -502,13 +504,12 @@ final class Uni_Cpo {
                 'all'
             );
             wp_enqueue_style(
-                'font-awesome',
-                $this->plugin_url() . '/includes/vendors/font-awesome/font-awesome.min.css',
+                'uni-cpo-font-awesome',
+                $this->plugin_url() . '/includes/vendors/font-awesome/css/fontawesome-all.min.css',
                 false,
-                '4.1.4',
+                '5.0.10',
                 'all'
             );
-
             wp_enqueue_style(
                 'uni-cpo-styles-order',
                 $this->plugin_url() . '/assets/css/admin-order.css',

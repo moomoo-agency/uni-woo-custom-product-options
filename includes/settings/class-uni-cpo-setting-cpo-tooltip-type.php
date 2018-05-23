@@ -19,8 +19,13 @@ class Uni_Cpo_Setting_Cpo_Tooltip_Type extends Uni_Cpo_Setting implements Uni_Cp
 		$this->setting_key  = 'cpo_tooltip_type';
 		$this->setting_data = array(
 			'title'   => __( 'Type of tooltip', 'uni-cpo' ),
+			'custom_attributes' => array(
+				'data-uni-constrainer' => 'yes'
+			),
 			'options' => array(
-				'classic' => __( 'Classic', 'uni-cpo' )
+				'classic' => __( 'Classic', 'uni-cpo' ),
+				'lightbox' => __( 'Lightbox', 'uni-cpo' ),
+				'popup' => __( 'Popup Maker', 'uni-cpo' )
 			),
 			'js_var'  => 'data'
 		);
