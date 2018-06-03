@@ -612,6 +612,7 @@ class Uni_Cpo_Ajax
                             
                             if ( is_object( $option ) ) {
                                 $calculate_result = $option->calculate( $filtered_form_data );
+                                //print_r($calculate_result);
                                 if ( !empty($calculate_result) ) {
                                     foreach ( $calculate_result as $k => $v ) {
                                         $options_eval_result[$option->get_slug()] = $calculate_result;

@@ -269,6 +269,8 @@ fieldset {margin:0;padding:0;border:none;}
 .uni-module-checkbox input[type="checkbox"] {display: none!important;}
 .uni-module-radio label,
 .uni-module-checkbox label {display: block!important; cursor: pointer;}
+.uni-module-radio label.uni-cpo-option-label,
+.uni-module-checkbox label.uni-cpo-option-label {margin-left: 0;}
 .uni-module-radio label.uni-cpo-module-radio-label,
 .uni-module-checkbox label.uni-cpo-module-checkbox-label {margin-bottom: 6px;}
 .uni-module-radio label .uni-cpo-option-label__text,
@@ -532,6 +534,9 @@ div[data-group="status"] .uni-modal-row {padding: 10px 0; margin-bottom: 10px;ba
 .uni-modal-row input[type="email"],
 .uni-modal-row input[type="password"],
 .uni-modal-row input[type="tel"] {display: inline-block; width: 100%; height: 32px;padding: 0 10px;margin: 0; border: 1px solid #e5e5e5!important;background-color: #fff!important; color: #000000!important;font-size: 13px;-webkit-appearance:none;-moz-appearance: none;border-radius: 3px!important;box-shadow: none!important; -webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing: border-box;}
+.uni-modal-row input.flatpickr-hour,
+.uni-modal-row input.flatpickr-minute {border: 0!important;background-color: transparent!important;}
+.uni-modal-row-second .flatpickr-calendar.showTimeInput.hasTime .flatpickr-time {border-top: 0!important;}
 
 .uni-modal-row .wp-picker-container input.wp-color-picker[type="text"] {width: 70px;font-size: 12px;padding: 0 5px;}
 .uni-modal-row textarea {min-width: 100%; max-width: 100%;height: 112px; padding-top: 6px;}
@@ -569,15 +574,15 @@ div[data-group="status"] .uni-modal-row {padding: 10px 0; margin-bottom: 10px;ba
 .uni-setting-fields-linked input[type="checkbox"] {display: none;}
 .uni-setting-fields-linked input:checked + label {background: -322px -1px #7891f9;}
 .uni-setting-fields-linked label {display: block;width: 32px;height: 32px;background: -282px -1px #e8eaef;}
-.uni-setting-fields-wrap .uni-setting-fields-linked {position: absolute;left: 42px;top: 27px;}
-.uni-setting-fields-wrap .uni-setting-fields-linked label {border-radius: 3px 0 0 3px;}
+.uni-setting-fields-wrap .uni-setting-fields-linked {position: absolute;left: 43px;top: 27px;}
+.uni-setting-fields-wrap .uni-setting-fields-linked label {border-radius: 3px 0 0 3px;margin: 0!important}
 .uni-setting-fields-wrap-4 .uni-setting-fields-linked {float: left;}
 .uni-setting-fields-wrap-4 .uni-setting-fields-linked label {border-radius: 3px 0 0 3px;}
 
 .uni-setting-radio-inputs {}
 .uni-setting-radio-item {float: left;}
 .uni-setting-radio-item input[type="radio"], .uni-setting-radio-item input[type="checkbox"] {display: none;}
-.uni-setting-radio-item label {display: block;min-width: 32px;height: 32px;line-height: 32px;padding: 0 8px; margin-left: 1px!important; background-color: #e8eaef; color: #6f747d;font-size: 13px;font-weight: 400!important;text-align: center;}
+.uni-setting-radio-item label {display: block;min-width: 32px;height: 32px;line-height: 32px;padding: 0 8px; margin-left: 1px!important;margin-right: 0!important;background-color: #e8eaef; color: #6f747d;font-size: 13px;font-weight: 400!important;text-align: center;}
 .uni-setting-radio-item input:checked + label {background-color: #7891f9;color: #fff;}
 .uni-setting-radio-item:first-child label {margin-left: 0;border-radius: 3px 0 0 3px;}
 .uni-setting-radio-item:last-child label {border-radius: 0 3px 3px 0!important;}

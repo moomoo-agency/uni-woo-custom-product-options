@@ -124,7 +124,7 @@ class Uni_Cpo_Frontend_Scripts {
                 'used_in' => array( 'builder' ),
                 'src'     => self::get_asset_url( '/includes/vendors/query-builder/query-builder.default.min.css' ),
                 'deps'    => '',
-                'version' => '2.4.5',
+                'version' => '2.5.2',
                 'media'   => 'all'
             ),
             'jquery-ui-structure'     => array(
@@ -410,7 +410,7 @@ class Uni_Cpo_Frontend_Scripts {
         self::register_script( 'editablegrid_utils', $vendors_path . 'editablegrid/editablegrid_utils.js', array(), '2.0.1' );
         self::register_script( 'editablegrid_validators', $vendors_path . 'editablegrid/editablegrid_validators.js', array(), '2.0.1' );
         self::register_script( 'repeatable-fields', $vendors_path . 'repeatable-fields/repeatable-fields.js', array( 'jquery' ), '1.4.8' );
-        self::register_script( 'query-builder', $vendors_path . 'query-builder/query-builder.standalone.min.js', array( 'jquery' ), '2.4.5' );
+        self::register_script( 'query-builder', $vendors_path . 'query-builder/query-builder.standalone.min.js', array( 'jquery' ), '2.5.2' );
         self::register_script( 'chosen', $vendors_path . 'chosen/chosen.jquery.js', array( 'jquery' ), '1.0.0' );
         self::register_script( 'imageselect', $vendors_path . 'chosen/ImageSelect.jquery.js', array( 'jquery' ), '1.8.0' );
         self::register_script( 'jscrollpane', $vendors_path . 'jscrollpane/jquery.jscrollpane.min.js', array( 'jquery' ), '2.0.16' );
@@ -785,7 +785,7 @@ class Uni_Cpo_Frontend_Scripts {
                 'thumbs_selector'         => apply_filters( 'uni_cpo_thumbs_selector', $plugin_settings['product_thumbnails_container'], $product_data ),
                 'max_file_size'           => apply_filters( 'uni_cpo_max_file_size', $plugin_settings['max_file_size'], $product_data ),
                 'mime_types'              => apply_filters( 'uni_cpo_mime_types', str_replace( ' ', '', $plugin_settings['mime_type'] ), $product_data ),
-                'options_selector_change' => apply_filters( 'uni_cpo_options_selector_change', '.cart .input-text.qty, .js-uni-cpo-field:not(.js-uni-cpo-field-datepicker-range, .js-uni-cpo-field-range_slider, .js-uni-cpo-field-matrix)', $product_data ),
+                'options_selector_change' => apply_filters( 'uni_cpo_options_selector_change', '.cart .input-text.qty, .js-uni-cpo-field:not(.js-uni-cpo-field-datepicker, .js-uni-cpo-field-range_slider, .js-uni-cpo-field-matrix)', $product_data ),
                 'options_selector'        => apply_filters( 'uni_cpo_options_selector', '.js-uni-cpo-field', $product_data ),
                 'formatted_vars'          => array(),
                 'nice_names_vars'         => array(),

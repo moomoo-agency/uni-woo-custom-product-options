@@ -389,10 +389,18 @@
                     $(Builderius._builderId).addClass('uni-builder-row-drag-started');
                     break;
                 case 'column':
+                    //console.log('column', $(Builderius._builderId).children().length);
                     $(Builderius._builderId).addClass('uni-builder-column-drag-started');
+                    if ( !$(Builderius._builderId).children().length ) {
+                        Builderius._showMessage('You have to add "Row" module first', 'warning');
+                    }
                     break;
                 default:
+                    //console.log('module', $(Builderius._builderId).children().length);
                     $(Builderius._builderId).addClass('uni-builder-module-drag-started');
+                    if ( !$(Builderius._builderId).children().length ) {
+                        Builderius._showMessage('You have to add "Row" module first', 'warning');
+                    }
                     break;
             }
 
@@ -902,12 +910,12 @@
                             $.each($fields, function () {
                                 const $formEl = $(this);
                                 if (!$formEl.hasClass('builderius-setting-excluded')) {
-                                    $formEl.addClass('builderius-setting-field');
+                                    $formEl.not('.flatpickr-hour, .flatpickr-minute, .cur-year').addClass('builderius-setting-field');
                                 }
                             });
                         }
                         if ($el.is(':input') && !$el.hasClass('builderius-setting-excluded')) {
-                            $el.addClass('builderius-setting-field');
+                            $el.not('.flatpickr-hour, .flatpickr-minute, .cur-year').addClass('builderius-setting-field');
                         }
                         $el.show();
                     } else {
@@ -1473,7 +1481,21 @@
                                 if (!_.isEmpty(modCfgSettings.special_vars)
                                     && !_.isEmpty(modCfgSettings.filter_data.special_vars)) {
 
-                                    modCfgSettings.special_vars.forEach((slug) => {
+                                    let specialVars = [].concat(modCfgSettings.special_vars);
+
+                                    if (modSettings.cpo_general.main.cpo_date_type === 'single') {
+                                        specialVars.splice(specialVars.indexOf('duration'), 1);
+                                        specialVars.splice(specialVars.indexOf('end'), 1);
+                                        specialVars.splice(specialVars.indexOf('days'), 1);
+                                    }
+                                    if (modSettings.cpo_general.main.cpo_date_type === 'multiple') {
+                                        specialVars.splice(specialVars.indexOf('end'), 1);
+                                    }
+                                    if (modSettings.cpo_general.main.cpo_date_type === 'range') {
+                                        specialVars.splice(specialVars.indexOf('days'), 1);
+                                    }
+
+                                    specialVars.forEach((slug) => {
                                         const varFullName = `${varName}_${slug}`;
                                         Builderius._optionVars.special.push(varFullName);
                                         const filter = {
@@ -1519,14 +1541,17 @@
                         label:     `{${varFullName}}`,
                         type:      'double',
                         input:     'text',
-                        operators: ['less',
+                        operators: [
+                            'less',
                             'less_or_equal',
                             'equal',
                             'not_equal',
                             'greater_or_equal',
                             'greater',
                             'is_empty',
-                            'is_not_empty']
+                            'is_not_empty',
+                            'between'
+                        ]
                     };
                     if (typeof _.findWhere(Builderius._queryBuilderFilter, filter) === 'undefined') {
                         Builderius._queryBuilderFilter.push(filter);
@@ -3390,6 +3415,7 @@
                         view.closeModal();
                         Builderius._autosave();
                         Builderius._unblockForm('#js-block-settings-modal', 'success');
+                        Builderius._addWarningClass();
                     } else {
                         Builderius._unblockForm('#js-block-settings-modal', 'error');
                         if (typeof r.data.error !== 'undefined') {
@@ -3405,6 +3431,7 @@
             view.model.set({pid: null});
             view.closeModal();
             Builderius._autosave();
+            Builderius._addWarningClass();
         },
         updateConstrained:        function () {
             Builderius._conditionalFields();
@@ -4613,6 +4640,13 @@
                 const $el = $(el);
                 const val = uniFindValueByKey(view.model.get('settings'), el.name);
                 const wrap = $el.closest('div')[ 0 ];
+                let noCalendar = false;
+                let enableTime = false;
+
+                if ($el.hasClass('datepicker-calendar-disabled') && $el.hasClass('timepicker-enabled')) {
+                    noCalendar = true;
+                    enableTime = true;
+                }
 
                 if ($el.hasClass('datepicker-mode-multiple')) {
                     let defaultValue;
@@ -4621,6 +4655,8 @@
                     }
                     $el.flatpickr({
                         locale,
+                        enableTime,
+                        noCalendar,
                         defaultValue,
                         appendTo: wrap,
                         mode: 'multiple'
@@ -4632,6 +4668,8 @@
                     }
                     $el.flatpickr({
                         locale,
+                        enableTime,
+                        noCalendar,
                         defaultValue,
                         appendTo: wrap,
                         mode: 'range'
@@ -4641,8 +4679,11 @@
                     if (typeof val !== 'undefined') {
                         defaultValue = val;
                     }
+
                     $el.flatpickr({
                         locale,
+                        enableTime,
+                        noCalendar,
                         defaultValue,
                         appendTo: wrap,
                     });
@@ -4924,7 +4965,7 @@
             });
         });
 
-        $(newRow).find('textarea, input').not('.wp-picker-clear').addClass('builderius-setting-field');
+        $(newRow).find('textarea, input').not('.wp-picker-clear, .flatpickr-hour, .flatpickr-minute, .cur-year').addClass('builderius-setting-field');
         $(container).attr('data-rf-row-count', count);
 
         $(newRow).find('.builderius-setting-colorpick').cs_wpColorPicker();
@@ -5030,7 +5071,7 @@
         $('.uni-modal-btns-wrap .uni-btn-1.uni-modal-save-btn').addClass('uni-active');
         update_everything(container, '.uni-formula-conditional-rules-options-template');
 
-        $(newRow).find('textarea, input[type="hidden"]').not('.wp-picker-clear').addClass('builderius-setting-field');
+        $(newRow).find('textarea, input[type="hidden"]').not('.wp-picker-clear, .flatpickr-hour, .flatpickr-minute, .cur-year').addClass('builderius-setting-field');
         $(container).attr('data-rf-row-count', count);
         const $builder = $('#cpo-formula-rule-builder-' + neededIndex);
         $builder.empty();
@@ -5070,7 +5111,7 @@
 
         update_everything(container, '.uni-cpo-non-option-vars-options-template');
 
-        $(newRow).find('textarea, input').not('.wp-picker-clear').addClass('builderius-setting-field');
+        $(newRow).find('textarea, input').not('.wp-picker-clear, .flatpickr-hour, .flatpickr-minute, .cur-year').addClass('builderius-setting-field');
         $(newRow).find('.uni-cpo-convert-wrapper select').addClass('builderius-setting-field');
         const $roleWrapperOne = $(newRow).find('.uni-cpo-non-option-vars-role');
         $roleWrapperOne.attr('data-uni-constrained', 'input[name=wholesale_enable]');

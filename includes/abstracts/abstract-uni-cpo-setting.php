@@ -178,6 +178,8 @@ abstract class Uni_Cpo_Setting {
 			'css'               => '',
 			'placeholder'       => '',
 			'type'              => 'single',
+            'calendar'          => 'enabled',
+            'timepicker'        => 'disabled',
 			'custom_attributes' => array(),
             'value'             => '',
 			'is_required'       => false,
@@ -194,6 +196,8 @@ abstract class Uni_Cpo_Setting {
 		}
 		$data['class'][] = 'builderius-setting-datepicker';
 		$data['class'][] = 'datepicker-mode-' . $data['type'];
+        $data['class'][] = 'datepicker-calendar-' . $data['calendar'];
+        $data['class'][] = 'timepicker-' . $data['timepicker'];
 		ob_start();
 		?>
 		<input

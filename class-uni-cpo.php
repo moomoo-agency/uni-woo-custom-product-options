@@ -14,7 +14,7 @@ final class Uni_Cpo {
      *
      * @var string
      */
-    public $version = '4.1.3';
+    public $version = '4.1.4';
 
     /**
      * The single instance of the class.
@@ -291,6 +291,12 @@ final class Uni_Cpo {
 
             include_once( UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-slug.php' );
             include_once( UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-is-required.php' );
+            include_once( UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-is-datepicker-disabled.php' );
+            include_once( UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-is-timepicker.php' );
+            include_once( UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-timepicker-type.php' );
+            include_once( UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-time-min.php' );
+            include_once( UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-time-max.php' );
+            include_once( UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-minute-step.php' );
             include_once( UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-type.php' );
             include_once( UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-min-val.php' );
             include_once( UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-max-val.php' );
@@ -337,6 +343,7 @@ final class Uni_Cpo {
                 include_once( UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-day-night.php' );
                 include_once( UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-date-min.php' );
                 include_once( UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-date-max.php' );
+                include_once( UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-date-conjunction.php' );
                 include_once( UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-disabled-dates.php' );
                 // range slider
                 include_once( UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-range-type.php' );

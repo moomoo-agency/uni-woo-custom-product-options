@@ -325,17 +325,77 @@ UniCpo = {
             } else if ('number' === elType || 'text' === elType) {
                 if ($el.hasClass('js-uni-cpo-field-datepicker')) {
                     var fp = document.getElementById(el.name + '-field')._flatpickr;
-                    if (fp.selectedDates.length) {
+                    var mode = fp.config.mode;
+                    var isDatepickerDisabled = fp.config.noCalendar;
+                    var isTimepicker = fp.config.enableTime;
+                    var isTime24hr = fp.config.time_24hr;
+
+                    if (isDatepickerDisabled && isTimepicker) {
+                        var startTime = moment(fp.selectedDates[0]);
+                        if (isTime24hr) {
+                            fields[el.name] = startTime.format('H:mm');
+                            fields[el.name + '_start'] = startTime.format('H:mm');
+                        } else {
+                            fields[el.name] = startTime.format('h:mm a');
+                            fields[el.name + '_start'] = startTime.format('h:mm a');
+                        }
+                    } else {
                         var startDate = moment(fp.selectedDates[0]);
-                        fields[el.name] = startDate.format('Y-MM-DD');
-                        fields[el.name + '_start'] = startDate.format('Y-MM-DD');
-                        if (fp.selectedDates[1]) {
+                        if (mode === 'single') {
+                            if (isTimepicker) {
+                                if (isTime24hr) {
+                                    fields[el.name] = startDate.format('Y-MM-DD H:mm');
+                                    fields[el.name + '_start'] = startDate.format('Y-MM-DD H:mm');
+                                } else {
+                                    fields[el.name] = startDate.format('Y-MM-DD h:mm a');
+                                    fields[el.name + '_start'] = startDate.format('Y-MM-DD h:mm a');
+                                }
+                            } else {
+                                fields[el.name] = startDate.format('Y-MM-DD');
+                                fields[el.name + '_start'] = startDate.format('Y-MM-DD');
+                            }
+                        } else if (mode === 'range') {
                             var endDate = moment(fp.selectedDates[1]);
-                            fields[el.name] = startDate.format('Y-MM-DD') + ' - ' + endDate.format('Y-MM-DD');
-                            fields[el.name + '_end'] = endDate.format('Y-MM-DD');
-                            fields[el.name + '_duration'] = endDate.diff(startDate, 'days');
-                            if ($el.hasClass('js-datepicker-mode-days')) {
-                                fields[el.name + '_duration'] = fields[el.name + '_duration'] + 1;
+                            if (fp.selectedDates.length) {
+                                if (isTimepicker) {
+                                    if (isTime24hr) {
+                                        fields[el.name] = startDate.format('Y-MM-DD H:mm') + ' - ' + endDate.format('Y-MM-DD H:mm');
+                                        fields[el.name + '_start'] = startDate.format('Y-MM-DD H:mm');
+                                        fields[el.name + '_end'] = endDate.format('Y-MM-DD H:mm');
+                                    } else {
+                                        fields[el.name] = startDate.format('Y-MM-DD h:mm a') + ' - ' + endDate.format('Y-MM-DD h:mm a');
+                                        fields[el.name + '_start'] = startDate.format('Y-MM-DD h:mm a');
+                                        fields[el.name + '_end'] = endDate.format('Y-MM-DD h:mm a');
+                                    }
+                                } else {
+                                    fields[el.name] = startDate.format('Y-MM-DD') + ' - ' + endDate.format('Y-MM-DD');
+                                    fields[el.name + '_start'] = startDate.format('Y-MM-DD');
+                                    fields[el.name + '_end'] = endDate.format('Y-MM-DD');
+                                }
+                                fields[el.name + '_duration'] = endDate.diff(startDate, 'days');
+                                if ($el.hasClass('js-datepicker-day-night-mode-days')) {
+                                    fields[el.name + '_duration'] = fields[el.name + '_duration'] + 1;
+                                }
+                            }
+                        } else if (mode === 'multiple') {
+                            if (fp.selectedDates.length) {
+                                fields[el.name] = $el.val();
+                                fields[el.name + '_duration'] = fp.selectedDates.length;
+                                fields[el.name + '_days'] = [];
+
+                                fp.selectedDates.forEach(function (item, i) {
+                                    var day = void 0;
+                                    if (isTimepicker) {
+                                        if (isTime24hr) {
+                                            day = moment(item).format('Y-MM-DD H:mm');
+                                        } else {
+                                            day = moment(item).format('Y-MM-DD h:mm a');
+                                        }
+                                    } else {
+                                        day = moment(item).format('Y-MM-DD');
+                                    }
+                                    fields[el.name + '_days'].push(day);
+                                });
                             }
                         }
                     }

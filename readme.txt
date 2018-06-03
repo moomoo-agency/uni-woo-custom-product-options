@@ -5,7 +5,7 @@ Requires at least: 4.8
 Tested up to: 4.9.6
 Requires PHP: 7.0
 WC requires at least: 3.2.0
-WC tested up to: 3.3.5
+WC tested up to: 3.4.1
 Stable tag: trunk
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -83,6 +83,13 @@ A: We wouldn't recommend to do this yet. First, this version is so called 'lite'
 7. screenshot-7.png
 
 == Changelog ==
+
+= 4.1.4 =
+* Added: timepicker mode for Datepicker Option
+* Added: 'multiple dates' mode for Datepicker Option
+* Added: 'subscription' product type unlocked for using in the plugin (experimental)
+* Updated: jQuery QueryBuilder script to 2.5.2
+* Fixed: several small style issues
 
 = 4.1.3 =
 * Added: support for "Popup Maker – Popup Forms, Optins & More" plugin; use popups instead of tooltips

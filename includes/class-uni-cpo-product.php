@@ -533,7 +533,7 @@ final class Uni_Cpo_Product {
             $user_can     = current_user_can( 'edit_post', $product->get_id() );
             $product_type = $product->get_type();
 
-            if ( $user_can && 'simple' === $product_type ) {
+            if ( $user_can && ( 'simple' === $product_type || 'subscription' === $product_type ) ) {
                 return true;
             }
         }

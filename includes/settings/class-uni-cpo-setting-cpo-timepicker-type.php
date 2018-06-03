@@ -5,23 +5,27 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /*
-* Uni_Cpo_Setting_Cpo_Date_Max class
+* Uni_Cpo_Setting_Cpo_Timepicker_Type class
 *
 */
 
-class Uni_Cpo_Setting_Cpo_Date_Max extends Uni_Cpo_Setting implements Uni_Cpo_Setting_Interface {
+class Uni_Cpo_Setting_Cpo_Timepicker_Type extends Uni_Cpo_Setting implements Uni_Cpo_Setting_Interface {
 
 	/**
 	 * Init
 	 *
 	 */
 	public function __construct() {
-		$this->setting_key  = 'cpo_date_max';
+		$this->setting_key  = 'cpo_timepicker_type';
 		$this->setting_data = array(
-			'title'             => __( 'Maximum date', 'uni-cpo' ),
-			'is_tooltip'        => true,
-			'desc_tip'          => __( 'Add the maximum/latest date (inclusively) allowed for selection', 'uni-cpo' ),
-			'value'             => '{{- data }}'
+			'title'      => __( '24-hour Time Picker?', 'uni-cpo' ),
+			'is_tooltip' => true,
+			'desc_tip'   => __( 'Enables/disables calendar functionality.', 'uni-cpo' ),
+			'options'    => array(
+				'no'  => __( 'No', 'uni-cpo' ),
+				'yes' => __( 'Yes', 'uni-cpo' )
+			),
+			'js_var'     => 'data'
 		);
 		add_action( 'wp_footer', array( $this, 'js_template' ), 10 );
 	}
@@ -36,11 +40,11 @@ class Uni_Cpo_Setting_Cpo_Date_Max extends Uni_Cpo_Setting implements Uni_Cpo_Se
 	public function js_template() {
 		?>
         <script id="js-builderius-setting-<?php echo $this->setting_key; ?>-tmpl" type="text/template">
-            <div class="uni-modal-row uni-clear" data-uni-constrained="input[name=cpo_is_datepicker_disabled]" data-uni-constvalue="no">
+            <div class="uni-modal-row uni-clear"  data-uni-constrained="input[name=cpo_is_timepicker]" data-uni-constvalue="yes">
 				<?php echo $this->generate_field_label_html(); ?>
                 <div class="uni-modal-row-second uni-clear">
                     <div class="uni-setting-fields-wrap-2 uni-clear">
-						<?php echo $this->generate_text_html(); ?>
+						<?php echo $this->generate_radio_html(); ?>
                     </div>
                 </div>
             </div>
