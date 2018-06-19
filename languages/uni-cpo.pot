@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Uni CPO 3.1.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-23 17:20+0300\n"
+"POT-Creation-Date: 2018-06-11 17:32+0300\n"
 "PO-Revision-Date: 2017-02-07 10:05+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: MooMoo <sales@moomoo.agency>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.0.7\n"
+"X-Generator: Poedit 2.0.8\n"
 "X-Poedit-KeywordsList: __;_e;esc_html__;esc_html_e;esc_attr__;esc_attr_e\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -28,18 +28,18 @@ msgstr ""
 msgid "Cheatin&#8217; huh?"
 msgstr ""
 
-#: class-uni-cpo.php:494
-#: includes/options/class-uni-cpo-option-file-upload.php:161
+#: class-uni-cpo.php:501
+#: includes/options/class-uni-cpo-option-file-upload.php:163
 msgid "No file uploaded"
 msgstr ""
 
-#: includes/abstracts/abstract-uni-cpo-setting.php:550
+#: includes/abstracts/abstract-uni-cpo-setting.php:554
 #: includes/class-uni-cpo-templates.php:1110
 #: includes/class-uni-cpo-templates.php:1175
 msgid "Add/Change attachment"
 msgstr ""
 
-#: includes/abstracts/abstract-uni-cpo-setting.php:559
+#: includes/abstracts/abstract-uni-cpo-setting.php:563
 #: includes/class-uni-cpo-templates.php:1116
 #: includes/class-uni-cpo-templates.php:1181
 msgid "Remove attachment"
@@ -213,65 +213,82 @@ msgid "Files storage"
 msgstr ""
 
 #: includes/admin/class-uni-cpo-plugin-settings.php:178
-msgid "Local is a default value"
+msgid "\"Local\" is set by default"
 msgstr ""
 
 #: includes/admin/class-uni-cpo-plugin-settings.php:181
 msgid "Local"
 msgstr ""
 
-#: includes/admin/class-uni-cpo-plugin-settings.php:187
-msgid "Enables custom local folder for file uploads"
+#: includes/admin/class-uni-cpo-plugin-settings.php:182
+msgid "Dropbox"
 msgstr ""
 
 #: includes/admin/class-uni-cpo-plugin-settings.php:188
+msgid "Enables custom local folder for file uploads"
+msgstr ""
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:189
 msgid ""
 "By default, all the files are handled by the standard WP functions and are "
 "stored in the same as any regular attachments. This setting is called to "
 "separate file uploads via the plugin's File Upload option from regular "
-"attachments and store them in different folder with custom folders structure."
+"attachments and store them in different folder with custom folders "
+"structure. This custom folder is still in \"Uploads\" folder."
 msgstr ""
 
-#: includes/admin/class-uni-cpo-plugin-settings.php:194
+#: includes/admin/class-uni-cpo-plugin-settings.php:196
 msgid "Define custom folders structure for file uploads"
 msgstr ""
 
-#: includes/admin/class-uni-cpo-plugin-settings.php:195
+#: includes/admin/class-uni-cpo-plugin-settings.php:197
 msgid ""
 "This setting works only if a custom local folder is enabled. The path always "
 "starts in the standard \"uploads\" folder. {{{POST_ID}}} and {{{DATE}}} "
 "variables may be used folders structure scheme."
 msgstr ""
 
-#: includes/admin/class-uni-cpo-plugin-settings.php:198
+#: includes/admin/class-uni-cpo-plugin-settings.php:200
 msgid "cpo-uploads/{{{POST_ID}}}/{{{DATE}}}"
 msgstr ""
 
-#: includes/admin/class-uni-cpo-plugin-settings.php:365
+#: includes/admin/class-uni-cpo-plugin-settings.php:205
+msgid "Dropbox Access Token"
+msgstr ""
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:206
+msgid ""
+"This access token makes it possible to upload files uploaded by customers to "
+"a separate folder in your Dropbox account. Attention: current limitation is "
+"150 mb file! So, if you choose \"dropbox\" as storage option, make sure that "
+"your file uploads are limited to 150 mb!"
+msgstr ""
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:377
 msgid "Upload an image"
 msgstr ""
 
-#: includes/admin/class-uni-cpo-plugin-settings.php:365
+#: includes/admin/class-uni-cpo-plugin-settings.php:377
 msgid "Use image"
 msgstr ""
 
-#: includes/admin/class-uni-cpo-plugin-settings.php:365
+#: includes/admin/class-uni-cpo-plugin-settings.php:377
 msgid "Upload new image"
 msgstr ""
 
-#: includes/admin/class-uni-cpo-plugin-settings.php:366
+#: includes/admin/class-uni-cpo-plugin-settings.php:378
 msgid "Remove image"
 msgstr ""
 
-#: includes/admin/class-uni-cpo-plugin-settings.php:422
+#: includes/admin/class-uni-cpo-plugin-settings.php:434
 msgid "Uni CPO Plugin Settings"
 msgstr ""
 
-#: includes/admin/class-uni-cpo-plugin-settings.php:427
+#: includes/admin/class-uni-cpo-plugin-settings.php:439
 msgid "All"
 msgstr ""
 
-#: includes/admin/class-uni-cpo-plugin-settings.php:449
+#: includes/admin/class-uni-cpo-plugin-settings.php:461
 msgid "Save Settings"
 msgstr ""
 
@@ -299,8 +316,8 @@ msgstr ""
 #: includes/class-uni-cpo-ajax.php:486 includes/class-uni-cpo-ajax.php:515
 #: includes/class-uni-cpo-ajax.php:545 includes/class-uni-cpo-ajax.php:576
 #: includes/class-uni-cpo-ajax.php:603 includes/class-uni-cpo-ajax.php:633
-#: includes/class-uni-cpo-ajax.php:680 includes/class-uni-cpo-ajax.php:1383
-#: includes/class-uni-cpo-ajax.php:1459
+#: includes/class-uni-cpo-ajax.php:680 includes/class-uni-cpo-ajax.php:1436
+#: includes/class-uni-cpo-ajax.php:1512
 msgid "Insufficient permissions for this operation"
 msgstr ""
 
@@ -370,9 +387,9 @@ msgstr ""
 msgid "Only CSV files are allowed"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:663 includes/class-uni-cpo-ajax.php:904
-#: includes/class-uni-cpo-ajax.php:1338 includes/class-uni-cpo-ajax.php:1567
-#: includes/class-uni-cpo-ajax.php:1663
+#: includes/class-uni-cpo-ajax.php:663 includes/class-uni-cpo-ajax.php:956
+#: includes/class-uni-cpo-ajax.php:1391 includes/class-uni-cpo-ajax.php:1620
+#: includes/class-uni-cpo-ajax.php:1716
 msgid "Something went wrong"
 msgstr ""
 
@@ -400,73 +417,77 @@ msgstr ""
 msgid "Failed to upload file(s)."
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:742
+#: includes/class-uni-cpo-ajax.php:737
+msgid "No dropbox token set. Abort operation."
+msgstr ""
+
+#: includes/class-uni-cpo-ajax.php:746
 msgid "The temp uploading dir cannot be created."
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:761 includes/class-uni-cpo-ajax.php:770
+#: includes/class-uni-cpo-ajax.php:765 includes/class-uni-cpo-ajax.php:774
 msgid "Failed to open input stream."
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:790 includes/class-uni-cpo-ajax.php:1599
+#: includes/class-uni-cpo-ajax.php:793 includes/class-uni-cpo-ajax.php:1652
 msgid "Sorry, this file type is not permitted for security reasons."
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:803
+#: includes/class-uni-cpo-ajax.php:808
 msgid "The uploading dir cannot be created."
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:811
+#: includes/class-uni-cpo-ajax.php:816
 msgid "An error occurred during uploading. Please, contact admin of the site."
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:822
+#: includes/class-uni-cpo-ajax.php:827
 msgid "The uploaded file could not be moved."
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:866
+#: includes/class-uni-cpo-ajax.php:871
 msgid "File is valid, and was successfully uploaded."
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:877
+#: includes/class-uni-cpo-ajax.php:905
 msgid "Still uploading..."
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:896
-msgid "No attachment ID specified"
+#: includes/class-uni-cpo-ajax.php:925
+msgid "Not enough data"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:902
+#: includes/class-uni-cpo-ajax.php:954
 msgid "File successfully deleted"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:1002 includes/class-uni-cpo-ajax.php:1528
-#: includes/class-uni-cpo-ajax.php:1589
+#: includes/class-uni-cpo-ajax.php:1054 includes/class-uni-cpo-ajax.php:1581
+#: includes/class-uni-cpo-ajax.php:1642
 msgid "Product ID is not set"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:1235
+#: includes/class-uni-cpo-ajax.php:1288
 msgid "Price calculation is disabled in settings"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:1444
+#: includes/class-uni-cpo-ajax.php:1497
 msgid "No options available"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:1532
+#: includes/class-uni-cpo-ajax.php:1585
 msgid "Email is not set"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:1554
+#: includes/class-uni-cpo-ajax.php:1607
 msgid "File cannot be saved"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:1557
+#: includes/class-uni-cpo-ajax.php:1610
 #, php-format
 msgid "[%s] Export request for product #%d"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:1558
+#: includes/class-uni-cpo-ajax.php:1611
 #, php-format
 msgid ""
 "A .txt file with encoded info of settings for product #%d is attached to "
@@ -475,7 +496,7 @@ msgid ""
 "the settings elsewhere."
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:1611
+#: includes/class-uni-cpo-ajax.php:1664
 msgid "File cannot be read"
 msgstr ""
 
@@ -862,12 +883,12 @@ msgstr ""
 #: includes/class-uni-cpo-templates.php:666
 #: includes/class-uni-cpo-templates.php:667
 #: includes/settings/class-uni-cpo-setting-sync.php:61
-#: includes/uni-cpo-functions.php:288
+#: includes/uni-cpo-functions.php:298
 msgid "Duplicate"
 msgstr ""
 
 #: includes/class-uni-cpo-frontend-scripts.php:647
-#: includes/options/class-uni-cpo-option-file-upload.php:172
+#: includes/options/class-uni-cpo-option-file-upload.php:174
 msgid "Remove"
 msgstr ""
 
@@ -876,7 +897,7 @@ msgid "Upload"
 msgstr ""
 
 #: includes/class-uni-cpo-frontend-scripts.php:650
-#: includes/options/class-uni-cpo-option-file-upload.php:488
+#: includes/options/class-uni-cpo-option-file-upload.php:500
 msgid "Select file"
 msgstr ""
 
@@ -1783,8 +1804,14 @@ msgstr ""
 msgid "File Upload"
 msgstr ""
 
-#: includes/options/class-uni-cpo-option-file-upload.php:167
+#: includes/options/class-uni-cpo-option-file-upload.php:169
 msgid "Add/Edit file"
+msgstr ""
+
+#: includes/options/class-uni-cpo-option-file-upload.php:189
+msgid ""
+"Local storage setting is set to \"Dropbox\", so it is not possible to add/"
+"edit files from here"
 msgstr ""
 
 #: includes/options/class-uni-cpo-option-radio.php:38
@@ -2043,6 +2070,14 @@ msgstr ""
 msgid "Important to save to DB if modified"
 msgstr ""
 
+#: includes/settings/class-uni-cpo-setting-cpo-date-conjunction.php:21
+msgid "Conjunction"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-cpo-date-conjunction.php:23
+msgid "Customizing the conjunction. Please use this template {#YOUR_SYMBOLS#}"
+msgstr ""
+
 #: includes/settings/class-uni-cpo-setting-cpo-date-max.php:21
 msgid "Maximum date"
 msgstr ""
@@ -2076,7 +2111,7 @@ msgid "Type of field"
 msgstr ""
 
 #: includes/settings/class-uni-cpo-setting-cpo-date-type.php:24
-msgid "Choose between \"single\" and \"range\" datepicker"
+msgid "Choose between \"single\", \"range\" and \"multiple\" datepicker"
 msgstr ""
 
 #: includes/settings/class-uni-cpo-setting-cpo-date-type.php:27
@@ -2087,6 +2122,11 @@ msgstr ""
 
 #: includes/settings/class-uni-cpo-setting-cpo-date-type.php:28
 msgid "Range"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-cpo-date-type.php:29
+#: includes/settings/class-uni-cpo-setting-cpo-upload-mode.php:26
+msgid "Multiple"
 msgstr ""
 
 #: includes/settings/class-uni-cpo-setting-cpo-day-night.php:21
@@ -2137,24 +2177,30 @@ msgstr ""
 
 #: includes/settings/class-uni-cpo-setting-cpo-enable-cartedit.php:25
 #: includes/settings/class-uni-cpo-setting-cpo-is-changeimage.php:25
+#: includes/settings/class-uni-cpo-setting-cpo-is-datepicker-disabled.php:25
 #: includes/settings/class-uni-cpo-setting-cpo-is-fc.php:25
 #: includes/settings/class-uni-cpo-setting-cpo-is-required.php:25
+#: includes/settings/class-uni-cpo-setting-cpo-is-timepicker.php:25
 #: includes/settings/class-uni-cpo-setting-cpo-is-tooltip.php:25
 #: includes/settings/class-uni-cpo-setting-cpo-is-vc.php:25
 #: includes/settings/class-uni-cpo-setting-cpo-range-grid.php:25
 #: includes/settings/class-uni-cpo-setting-cpo-range-input.php:25
+#: includes/settings/class-uni-cpo-setting-cpo-timepicker-type.php:25
 #: includes/settings/class-uni-cpo-setting-rel.php:24
 msgid "No"
 msgstr ""
 
 #: includes/settings/class-uni-cpo-setting-cpo-enable-cartedit.php:26
 #: includes/settings/class-uni-cpo-setting-cpo-is-changeimage.php:26
+#: includes/settings/class-uni-cpo-setting-cpo-is-datepicker-disabled.php:26
 #: includes/settings/class-uni-cpo-setting-cpo-is-fc.php:26
 #: includes/settings/class-uni-cpo-setting-cpo-is-required.php:26
+#: includes/settings/class-uni-cpo-setting-cpo-is-timepicker.php:26
 #: includes/settings/class-uni-cpo-setting-cpo-is-tooltip.php:26
 #: includes/settings/class-uni-cpo-setting-cpo-is-vc.php:26
 #: includes/settings/class-uni-cpo-setting-cpo-range-grid.php:26
 #: includes/settings/class-uni-cpo-setting-cpo-range-input.php:26
+#: includes/settings/class-uni-cpo-setting-cpo-timepicker-type.php:26
 #: includes/settings/class-uni-cpo-setting-rel.php:25
 msgid "Yes"
 msgstr ""
@@ -2217,6 +2263,14 @@ msgid ""
 "Enabling changing of the product main image upon selection in this option"
 msgstr ""
 
+#: includes/settings/class-uni-cpo-setting-cpo-is-datepicker-disabled.php:21
+msgid "Disable Calendar?"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-cpo-is-datepicker-disabled.php:23
+msgid "Enables/disables datepicker functionality."
+msgstr ""
+
 #: includes/settings/class-uni-cpo-setting-cpo-is-fc.php:21
 msgid "Enable conditional logic?"
 msgstr ""
@@ -2231,6 +2285,14 @@ msgstr ""
 
 #: includes/settings/class-uni-cpo-setting-cpo-is-required.php:23
 msgid "Choose whether the user must fill out this field or not."
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-cpo-is-timepicker.php:21
+msgid "Enable Timepicker?"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-cpo-is-timepicker.php:23
+msgid "Enables/disables timepicker functionality."
 msgstr ""
 
 #: includes/settings/class-uni-cpo-setting-cpo-is-tooltip.php:21
@@ -2338,6 +2400,14 @@ msgstr ""
 #: includes/settings/class-uni-cpo-setting-cpo-min-val.php:23
 msgid ""
 "Add the minimum allowed value for this field. Only integer or float number."
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-cpo-minute-step.php:21
+msgid "Minute increment"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-cpo-minute-step.php:23
+msgid "Adjusts the step for the minute input"
 msgstr ""
 
 #: includes/settings/class-uni-cpo-setting-cpo-mode-checkbox.php:21
@@ -2556,6 +2626,34 @@ msgstr ""
 msgid "Add the step value for this field. Only integer or float number."
 msgstr ""
 
+#: includes/settings/class-uni-cpo-setting-cpo-time-max.php:21
+msgid "Maximum time"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-cpo-time-max.php:23
+msgid ""
+"Add the maximum/latest time (inclusively) allowed for selection. You can use "
+"only 24-h format. For example: 09:00 or 19:00."
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-cpo-time-min.php:21
+msgid "Minimum time"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-cpo-time-min.php:23
+msgid ""
+"Add the minimum/earliest time (inclusively) allowed for selection. You can "
+"use only 24-h format. For example: 09:00 or 19:00."
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-cpo-timepicker-type.php:21
+msgid "24-hour Time Picker?"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-cpo-timepicker-type.php:23
+msgid "Enables/disables calendar functionality."
+msgstr ""
+
 #: includes/settings/class-uni-cpo-setting-cpo-tooltip-class.php:21
 msgid "Class name"
 msgstr ""
@@ -2616,10 +2714,6 @@ msgstr ""
 msgid ""
 "Choose whether it will be possible to upload only one file per option or "
 "many."
-msgstr ""
-
-#: includes/settings/class-uni-cpo-setting-cpo-upload-mode.php:26
-msgid "Multiple"
 msgstr ""
 
 #: includes/settings/class-uni-cpo-setting-cpo-validation-msg.php:21
@@ -2840,24 +2934,24 @@ msgstr ""
 msgid "Calculate"
 msgstr ""
 
-#: includes/uni-cpo-core-functions.php:1639
+#: includes/uni-cpo-core-functions.php:1645
 msgid "Item"
 msgstr ""
 
-#: includes/uni-cpo-core-functions.php:1641
+#: includes/uni-cpo-core-functions.php:1647
 #, php-format
 msgid "%s duplicated."
 msgstr ""
 
-#: includes/uni-cpo-core-functions.php:1750
+#: includes/uni-cpo-core-functions.php:1756
 msgid "Add/Edit CPO option(s)"
 msgstr ""
 
-#: includes/uni-cpo-functions.php:293
+#: includes/uni-cpo-functions.php:303
 msgid "Edit"
 msgstr ""
 
-#: includes/uni-cpo-functions.php:298
+#: includes/uni-cpo-functions.php:308
 msgid "Edit (inline)"
 msgstr ""
 

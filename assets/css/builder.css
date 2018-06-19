@@ -573,7 +573,7 @@ div[data-group="status"] .uni-modal-row {padding: 10px 0; margin-bottom: 10px;ba
 
 .uni-setting-fields-linked input[type="checkbox"] {display: none;}
 .uni-setting-fields-linked input:checked + label {background: -322px -1px #7891f9;}
-.uni-setting-fields-linked label {display: block;width: 32px;height: 32px;background: -282px -1px #e8eaef;}
+.uni-setting-fields-linked label {display: block!important;width: 32px;height: 32px;background: -282px -1px #e8eaef;}
 .uni-setting-fields-wrap .uni-setting-fields-linked {position: absolute;left: 43px;top: 27px;}
 .uni-setting-fields-wrap .uni-setting-fields-linked label {border-radius: 3px 0 0 3px;margin: 0!important}
 .uni-setting-fields-wrap-4 .uni-setting-fields-linked {float: left;}

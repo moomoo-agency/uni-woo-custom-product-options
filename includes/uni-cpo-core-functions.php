@@ -446,31 +446,30 @@ function uni_cpo_process_formula_scheme( $variables, $product_data, $purpose = '
         if ( $block_rules_count > 1 ) {
             $check_for_1 = array();
             $check_for_2 = array();
-            $is_passed_2 = '';
             foreach ( $rules_block['rules'] as $rule_key => $rule_item ) {
+                $check_for_3 = array();
                 
                 if ( isset( $rule_item['rules'] ) ) {
                     $rule_1_condition = $rule_item['condition'];
                     foreach ( $rule_item['rules'] as $rule_2_key => $rule_2_item ) {
-                        $check_for_2[] = uni_cpo_formula_condition_check( $rule_2_item, $variables );
+                        $check_for_3[] = uni_cpo_formula_condition_check( $rule_2_item, $variables );
                     }
                     
-                    if ( false === in_array( false, $check_for_2, true ) && 'AND' === $rule_1_condition ) {
+                    if ( false === in_array( false, $check_for_3, true ) && 'AND' === $rule_1_condition ) {
                         $is_passed_2 = true;
-                    } elseif ( false !== in_array( true, $check_for_2, true ) && 'OR' === $rule_1_condition ) {
+                    } elseif ( false !== in_array( true, $check_for_3, true ) && 'OR' === $rule_1_condition ) {
                         $is_passed_2 = true;
                     } else {
                         $is_passed_2 = false;
                     }
-                
+                    
+                    array_push( $check_for_2, $is_passed_2 );
                 } else {
                     $check_for_1[] = uni_cpo_formula_condition_check( $rule_item, $variables );
                 }
             
             }
-            if ( is_bool( $is_passed_2 ) ) {
-                array_push( $check_for_1, $is_passed_2 );
-            }
+            $check_for_1 = array_merge( $check_for_1, $check_for_2 );
             
             if ( false === in_array( false, $check_for_1, true ) && 'AND' === $block_condition ) {
                 $is_passed_block = true;
@@ -1234,7 +1233,7 @@ function uni_cpo_checkout_create_order_line_item(
 }
 
 //
-function uni_cpo_calculate_price_in_cart( $cart_item_data, $product_id )
+function uni_cpo_calculate_price_in_cart( &$cart_item_data, $product_id )
 {
     try {
         $product = wc_get_product( $product_id );

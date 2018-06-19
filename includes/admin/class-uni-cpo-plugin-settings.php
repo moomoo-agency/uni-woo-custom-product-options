@@ -175,19 +175,21 @@ class Uni_Cpo_Plugin_Settings {
 				array(
 					'id'          => 'file_storage',
 					'label'       => __( 'Files storage', 'uni-cpo' ),
-					'description' => __( 'Local is a default value', 'uni-cpo' ),
+					'description' => __( '"Local" is set by default', 'uni-cpo' ),
 					'type'        => 'select',
 					'options'     => array(
-						'local' => __( 'Local', 'uni-cpo' )
+						'local' => __( 'Local', 'uni-cpo' ),
+                        'dropbox' => __( 'Dropbox', 'uni-cpo' )
 					),
 					'default'     => 'local'
 				),
 				array(
 					'id'          => 'custom_path_enable',
 					'label'       => __( 'Enables custom local folder for file uploads', 'uni-cpo' ),
-					'description' => __( 'By default, all the files are handled by the standard WP functions and are stored in the same as any regular attachments. This setting is called to separate file uploads via the plugin\'s File Upload option from regular attachments and store them in different folder with custom folders structure.', 'uni-cpo' ),
+					'description' => __( 'By default, all the files are handled by the standard WP functions and are stored in the same as any regular attachments. This setting is called to separate file uploads via the plugin\'s File Upload option from regular attachments and store them in different folder with custom folders structure. This custom folder is still in "Uploads" folder.', 'uni-cpo' ),
 					'type'        => 'checkbox',
-					'default'     => ''
+					'default'     => '',
+					'dependency'  => '#file_storage:is(local)'
 				),
 				array(
 					'id'          => 'custom_path',
@@ -195,8 +197,18 @@ class Uni_Cpo_Plugin_Settings {
 					'description' => __( 'This setting works only if a custom local folder is enabled. The path always starts in the standard "uploads" folder. {{{POST_ID}}} and {{{DATE}}} variables may be used folders structure scheme.', 'uni-cpo' ),
 					'type'        => 'text',
 					'default'     => '',
-					'placeholder' => __( 'cpo-uploads/{{{POST_ID}}}/{{{DATE}}}', 'uni-cpo' )
-				)
+					'placeholder' => __( 'cpo-uploads/{{{POST_ID}}}/{{{DATE}}}', 'uni-cpo' ),
+                    'dependency'  => '#file_storage:is(local)'
+				),
+                array(
+                    'id'          => 'dropbox_token',
+                    'label'       => __( 'Dropbox Access Token', 'uni-cpo' ),
+                    'description' => __( 'This access token makes it possible to upload files uploaded by customers to a separate folder in your Dropbox account. Attention: current limitation is 150 mb file! So, if you choose "dropbox" as storage option, make sure that your file uploads are limited to 150 mb!', 'uni-cpo' ),
+                    'type'        => 'text',
+                    'default'     => '',
+                    'placeholder' => '',
+                    'dependency'  => '#file_storage:is(dropbox)'
+                )
 			)
 		);
 

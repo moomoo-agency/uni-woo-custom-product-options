@@ -5,7 +5,7 @@ Requires at least: 4.8
 Tested up to: 4.9.6
 Requires PHP: 7.0
 WC requires at least: 3.2.0
-WC tested up to: 3.4.1
+WC tested up to: 3.4.2
 Stable tag: trunk
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -18,13 +18,13 @@ Provides an opportunity to add extra product options with the possibility to cal
 
 **Uni CPO - WooCommerce Options and Price Calculation Formulas** is a fully featured plugin that creates an opportunity to add custom options for a WooCommerce products as well as enables custom price calculation based on any maths formula.
 
-It supports products type 'simple' only! But why you ever need any variable product after this plugin, right? :)
+It supports ONLY these product types: 'simple' and 'subscription' (experimental)! But why you ever need any variable product after this plugin, right? :)
 
-https://www.youtube.com/watch?v=dX7-T4gVJ_I
+A fully featured visual form builder is used to add custom options. Would you like to place the options in two/three/more columns? Easy! Would you like to set custom color, margins, add custom text and so on? Yes, it's possible too!!)
 
-A fully featured visual form builder is used to add custom options. Would like to place the options in two/three/more columns? Easy! Would like to set custom color, margins, add custom text and so on? Yes, it's possible too!!)
+[Check out this unique Colorify functionality (PRO) ](https://www.youtube.com/watch?v=-6_CBPuD1w4)
 
-Add custom fields to your products, display them conditionally, give a possibility for your customers to customize products, to personalize them by adding highly dynamic info like dimensions, custom labels, comments. Moreover, create a unique scheme for price calculation based on custom options added!
+Add extra options to your products, display them conditionally, give a possibility for your customers to customize products, to personalize them by adding highly dynamic info like dimensions, custom labels, comments. Moreover, create a unique scheme for price calculation based on custom options added!
 
 === Main features ===
 
@@ -37,17 +37,24 @@ maths formula as its value
 * A possibility to add formulas conditional logic - apply different formulas under different circumstances!
 * A possibility to create fields conditional logic - display/hide certain custom options based on the values of
 other custom options and/or NOVs
+* A possibility to use custom price tables (via Non Option Variables functionality), set product price based on one or two custom options!
+* Integrate with ShipperHQ or Boxtal and let them use the calculated weight of the ordered item and request the real shipping rates!
+...and many many more! ;)
 
-[The full list of plugin's features](https://moomoo-agency.gitbooks.io/uni-cpo-4-documentation/content/why-uni-cpo.html)
-[Documentation](https://moomoo-agency.gitbooks.io/uni-cpo-4-documentation/)
+=== Full List of Features and Docs ===
 
-[DEMO (PRO version)](https://cpo.builderius.io)
-You can try PRO version. Just use these credentials:
-username: `demo`
-password: `demo`
+* [The full list of plugin's features](https://moomoo-agency.gitbooks.io/uni-cpo-4-documentation/content/why-uni-cpo.html)
+* [The plugin's Documentation](https://moomoo-agency.gitbooks.io/uni-cpo-4-documentation/)
+
+=== Demo - Try By Yourself! ===
+
+[DEMO site with PRO version installed (unlocked all the features)](https://cpo.builderius.io)
+Use the following credentials to log in and try by yourself:
+* username: `demo`
+* password: `demo`
 [login URL](https://cpo.builderius.io/wp-login.php)
 
-**Pro version of the plugin is [available here](https://builderius.io/cpo).**
+**Pro version of the plugin is [available here](https://builderius.io/cpo)**
 
 == Installation ==
 
@@ -83,6 +90,14 @@ A: We wouldn't recommend to do this yet. First, this version is so called 'lite'
 7. screenshot-7.png
 
 == Changelog ==
+
+= 4.1.6 =
+* Added: a possibility to use regular variables and NOVs as cart discounts values
+* Fixed: a bug in formula conditional logic
+
+= 4.1.5 =
+* Added: a possibility to use Dropbox as the file storage for the files uploaded via File Upload Options
+* Updated: Freemius SDK
 
 = 4.1.4 =
 * Added: timepicker mode for Datepicker Option

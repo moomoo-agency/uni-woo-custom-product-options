@@ -167,7 +167,10 @@ UniCpo = {
                     }
 
                     if (cpoObj.calc) {
-                        var calcPrice = cpoObj.getProperPrice({ price: unicpo.price_vars.price, doRemoveSuffix: true });
+                        var calcPrice = cpoObj.getProperPrice({
+                            price: unicpo.price_vars.price,
+                            doRemoveSuffix: true
+                        });
                         cpoObj.setPriceTo({ price: calcPrice, tax: 'show' });
                     }
 
