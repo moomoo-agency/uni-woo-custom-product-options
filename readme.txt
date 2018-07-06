@@ -91,6 +91,11 @@ A: We wouldn't recommend to do this yet. First, this version is so called 'lite'
 
 == Changelog ==
 
+= 4.2.0 =
+* Added: suboption conditional logic (currently Select option only)
+* Added: a possibility to display NOVs in cart/order meta
+* Fixed: a bug with saving checkboxes values in order meta
+
 = 4.1.6 =
 * Added: a possibility to use regular variables and NOVs as cart discounts values
 * Fixed: a bug in formula conditional logic

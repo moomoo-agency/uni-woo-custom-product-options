@@ -88,6 +88,15 @@
         _modal_on: false,
 
         /**
+         * Holds slug of current option which modal window is opened
+         *
+         * @since 4.2.0
+         * @access private
+         * @property {null|string} _option_slug
+         */
+        _option_slug: null,
+
+        /**
          * Whether a panel is shown.
          *
          * @since 4.0.0
@@ -2798,6 +2807,7 @@
             this.undelegateEvents(); // tip: use undelegateEvents() if 'setElement' was used before
             this.stopListening();
             Builderius._modal_on = false;
+            Builderius._option_slug = null;
         },
         displaySuggestion:        function (slug) {
             if ($('.uni-slug-suggestion').length) {
@@ -3092,7 +3102,6 @@
                 const $tmpl = $('#js-builderius-setting-' + setting + '-tmpl');
                 if ($tmpl.length > 0) {
                     view.settingTmpls[setting] = _.template($tmpl.html(), {variable: 'data'});
-
                 }
             });
 
@@ -3253,8 +3262,13 @@
             $('.uni_formula_conditional_rule_add').click();
         },
         render:                   function () {
-            Builderius._modal_on = true;
             const view           = this;
+
+            Builderius._modal_on = true;
+            if (view.model.get('obj_type') === 'option') {
+                const settings = view.model.get('settings');
+                Builderius._option_slug = settings.cpo_general.main.cpo_slug || null;
+            }
 
             const modal = view.template({
                 model_data:           view.model.toJSON(),
@@ -4408,6 +4422,7 @@
         const $modal = $('#js-block-settings-modal');
         const filter = Builderius._getQueryBuilderFilter(view.model);
         const $matrixJson = $('.uni-matrix-option-json');
+        const optionType = view.model.get('type');
 
 
         // init tabs
@@ -4533,9 +4548,13 @@
         }
 
         if (typeof view.model.get('settings').cpo_rules !== 'undefined') {
-            const filterSelfOnly = Builderius._getQueryBuilderFilter(view.model, 'date_rules');
-            // TODO make extendable
-            const rulesDate            = uniGet(view.model.get('settings'), 'cpo_rules.data.cpo_date_rules', {});
+            const filterSelfOnly = optionType === 'datepicker'
+                ? Builderius._getQueryBuilderFilter(view.model, 'date_rules')
+                : filter;
+            const rulesDate            = optionType === 'datepicker'
+                ? uniGet(view.model.get('settings'), 'cpo_rules.data.cpo_date_rules', {})
+                : uniGet(view.model.get('settings'), 'cpo_rules.main.cpo_sc_scheme', {});
+
             const repeaterDataForDateRules     = {
                 wrapper:   '.uni-formula-conditional-rules-repeat-wrapper',
                 container: '.uni-formula-conditional-rules-options-wrapper',
@@ -5071,7 +5090,7 @@
         $('.uni-modal-btns-wrap .uni-btn-1.uni-modal-save-btn').addClass('uni-active');
         update_everything(container, '.uni-formula-conditional-rules-options-template');
 
-        $(newRow).find('textarea, input[type="hidden"]').not('.wp-picker-clear, .flatpickr-hour, .flatpickr-minute, .cur-year').addClass('builderius-setting-field');
+        $(newRow).find('textarea, input[type="hidden"], input[type="checkbox"]').not('.wp-picker-clear, .flatpickr-hour, .flatpickr-minute, .cur-year').addClass('builderius-setting-field');
         $(container).attr('data-rf-row-count', count);
         const $builder = $('#cpo-formula-rule-builder-' + neededIndex);
         $builder.empty();

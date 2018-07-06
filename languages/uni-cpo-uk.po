@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Uni CPO 2.1.13\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-11 17:32+0300\n"
-"PO-Revision-Date: 2018-06-11 17:32+0300\n"
+"POT-Creation-Date: 2018-07-06 07:09+0300\n"
+"PO-Revision-Date: 2018-07-06 07:25+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -23,18 +23,16 @@ msgstr ""
 msgid "Cheatin&#8217; huh?"
 msgstr ""
 
-#: class-uni-cpo.php:501
+#: class-uni-cpo.php:505
 #: includes/options/class-uni-cpo-option-file-upload.php:163
-#, fuzzy
-#| msgid "File upload settings"
 msgid "No file uploaded"
-msgstr "Налашт. файл аплоадера"
+msgstr "Жодного файла не завантажено"
 
 #: includes/abstracts/abstract-uni-cpo-setting.php:554
 #: includes/class-uni-cpo-templates.php:1110
 #: includes/class-uni-cpo-templates.php:1175
 msgid "Add/Change attachment"
-msgstr ""
+msgstr "Дод/Змін. вкладення"
 
 #: includes/abstracts/abstract-uni-cpo-setting.php:563
 #: includes/class-uni-cpo-templates.php:1116
@@ -50,7 +48,7 @@ msgstr ""
 #: includes/admin/class-uni-cpo-plugin-settings.php:69
 #: includes/class-uni-cpo-frontend-scripts.php:645
 msgid "Settings"
-msgstr ""
+msgstr "Налаштування"
 
 #: includes/admin/class-uni-cpo-plugin-settings.php:82
 msgid "Standard"
@@ -58,13 +56,15 @@ msgstr "Стандартний"
 
 #: includes/admin/class-uni-cpo-plugin-settings.php:87
 msgid "Add product to the cart via AJAX"
-msgstr ""
+msgstr "AJAX додавання у кошик"
 
 #: includes/admin/class-uni-cpo-plugin-settings.php:88
 msgid ""
 "This option enables adding to cart via AJAX for all the products which use "
 "custom options and price calculation."
 msgstr ""
+"Ця опція вмикає підтримку додавання товарів з увімкненим відображенням "
+"кастомних опцій у кошик з допомогою AJAX (без перезавантаження сторінки)."
 
 #: includes/admin/class-uni-cpo-plugin-settings.php:94
 msgid "Custom selector (id/class) for a product price html tag"
@@ -117,33 +117,21 @@ msgid ""
 msgstr ""
 
 #: includes/admin/class-uni-cpo-plugin-settings.php:118
-#, fuzzy
-#| msgid "Custom selector (id/class) for a product price html tag"
 msgid "Custom selector (id/class) for a product thumbnails wrapper html tag"
-msgstr "Кастомний селектор (id/class) для HTML тега що містить ціну"
+msgstr ""
+"Кастомний селектор (id/class) для HTML врапера основго зображення товару"
 
 #: includes/admin/class-uni-cpo-plugin-settings.php:119
-#, fuzzy
-#| msgid ""
-#| "By default, the selector for a product price html tag is \".summary.entry-"
-#| "summary .price > .amount, .summary.entry-summary .price ins .amount\". "
-#| "However, the actual html markup of this block depends on the theme and "
-#| "you may need to define yours custom selector."
 msgid ""
 "By default, the selector for a product thumbnails wrapper html tag on a "
 "single product page is \"ol.flex-control-thumbs\". However, the actual html "
 "markup of the thumbnails block depends on the theme and you may need to "
 "define yours custom selector."
 msgstr ""
-"По замовчуванню, цей селектор ось такий “.summary.entry-summary .price > ."
-"amount, .summary.entry-summary .price ins .amount”. Однак, фактично це може "
-"бути інший тег чи з іншими класами/id і це залежить від того як "
-"запрограмована ваша тема. При потребі, вкажіть фактичний дял вашої теми "
-"селектор."
 
 #: includes/admin/class-uni-cpo-plugin-settings.php:126
 msgid "Display weight in the cart"
-msgstr ""
+msgstr "Відображати вагу у кошику"
 
 #: includes/admin/class-uni-cpo-plugin-settings.php:127
 msgid "This option enables displaying product weight in the cart."
@@ -151,7 +139,7 @@ msgstr ""
 
 #: includes/admin/class-uni-cpo-plugin-settings.php:133
 msgid "Display dimensions in the cart"
-msgstr ""
+msgstr "Відображати розміри у кошику"
 
 #: includes/admin/class-uni-cpo-plugin-settings.php:134
 msgid "This option enables displaying product dimensions in the cart."
@@ -194,7 +182,7 @@ msgstr "Налашт. файл аплоадера"
 #: includes/admin/class-uni-cpo-plugin-settings.php:161
 #: includes/settings/class-uni-cpo-setting-cpo-max-filesize.php:21
 msgid "Upload max file size (Mb)"
-msgstr ""
+msgstr "Макс. розмір файлів (Mb)"
 
 #: includes/admin/class-uni-cpo-plugin-settings.php:162
 msgid ""
@@ -209,7 +197,7 @@ msgstr ""
 #: includes/admin/class-uni-cpo-plugin-settings.php:169
 #: includes/settings/class-uni-cpo-setting-cpo-mime-types.php:21
 msgid "Allowed mime types"
-msgstr ""
+msgstr "Дозволені розширення файлів"
 
 #: includes/admin/class-uni-cpo-plugin-settings.php:170
 msgid ""
@@ -315,12 +303,12 @@ msgstr ""
 msgid "go to the builder"
 msgstr ""
 
-#: includes/admin/uni-cpo-admin-functions.php:142
+#: includes/admin/uni-cpo-admin-functions.php:208
 msgid "Add/edit CPO options"
 msgstr "Дод./ред. CPO опції"
 
-#: includes/admin/uni-cpo-admin-functions.php:166
-#: includes/uni-cpo-core-functions.php:903
+#: includes/admin/uni-cpo-admin-functions.php:232
+#: includes/uni-cpo-core-functions.php:924
 msgid "Update"
 msgstr ""
 
@@ -331,8 +319,8 @@ msgstr ""
 #: includes/class-uni-cpo-ajax.php:486 includes/class-uni-cpo-ajax.php:515
 #: includes/class-uni-cpo-ajax.php:545 includes/class-uni-cpo-ajax.php:576
 #: includes/class-uni-cpo-ajax.php:603 includes/class-uni-cpo-ajax.php:633
-#: includes/class-uni-cpo-ajax.php:680 includes/class-uni-cpo-ajax.php:1436
-#: includes/class-uni-cpo-ajax.php:1512
+#: includes/class-uni-cpo-ajax.php:680 includes/class-uni-cpo-ajax.php:1421
+#: includes/class-uni-cpo-ajax.php:1497
 msgid "Insufficient permissions for this operation"
 msgstr ""
 
@@ -403,8 +391,8 @@ msgid "Only CSV files are allowed"
 msgstr ""
 
 #: includes/class-uni-cpo-ajax.php:663 includes/class-uni-cpo-ajax.php:956
-#: includes/class-uni-cpo-ajax.php:1391 includes/class-uni-cpo-ajax.php:1620
-#: includes/class-uni-cpo-ajax.php:1716
+#: includes/class-uni-cpo-ajax.php:1376 includes/class-uni-cpo-ajax.php:1628
+#: includes/class-uni-cpo-ajax.php:1724
 msgid "Something went wrong"
 msgstr ""
 
@@ -444,7 +432,7 @@ msgstr ""
 msgid "Failed to open input stream."
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:793 includes/class-uni-cpo-ajax.php:1652
+#: includes/class-uni-cpo-ajax.php:793 includes/class-uni-cpo-ajax.php:1660
 msgid "Sorry, this file type is not permitted for security reasons."
 msgstr ""
 
@@ -476,33 +464,33 @@ msgstr ""
 msgid "File successfully deleted"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:1054 includes/class-uni-cpo-ajax.php:1581
-#: includes/class-uni-cpo-ajax.php:1642
+#: includes/class-uni-cpo-ajax.php:1054 includes/class-uni-cpo-ajax.php:1589
+#: includes/class-uni-cpo-ajax.php:1650
 msgid "Product ID is not set"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:1288
+#: includes/class-uni-cpo-ajax.php:1273
 msgid "Price calculation is disabled in settings"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:1497
+#: includes/class-uni-cpo-ajax.php:1482
 msgid "No options available"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:1585
+#: includes/class-uni-cpo-ajax.php:1593
 msgid "Email is not set"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:1607
+#: includes/class-uni-cpo-ajax.php:1615
 msgid "File cannot be saved"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:1610
+#: includes/class-uni-cpo-ajax.php:1618
 #, php-format
 msgid "[%s] Export request for product #%d"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:1611
+#: includes/class-uni-cpo-ajax.php:1619
 #, php-format
 msgid ""
 "A .txt file with encoded info of settings for product #%d is attached to "
@@ -511,7 +499,7 @@ msgid ""
 "the settings elsewhere."
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:1664
+#: includes/class-uni-cpo-ajax.php:1672
 msgid "File cannot be read"
 msgstr ""
 
@@ -740,10 +728,8 @@ msgid "Oct"
 msgstr ""
 
 #: includes/class-uni-cpo-frontend-scripts.php:282
-#, fuzzy
-#| msgid "No"
 msgid "Nov"
-msgstr "Ні"
+msgstr ""
 
 #: includes/class-uni-cpo-frontend-scripts.php:283
 msgid "Dec"
@@ -861,7 +847,7 @@ msgstr "Зберегти"
 #: includes/class-uni-cpo-frontend-scripts.php:636
 #: includes/settings/class-uni-cpo-setting-sync.php:21
 msgid "Sync"
-msgstr ""
+msgstr "Синхр."
 
 #: includes/class-uni-cpo-frontend-scripts.php:637
 #: includes/class-uni-cpo-templates.php:734
@@ -870,7 +856,7 @@ msgstr ""
 #: includes/class-uni-cpo-templates.php:1207
 #: includes/class-uni-cpo-templates.php:1400
 #: includes/class-uni-cpo-templates.php:1580
-#: includes/uni-cpo-core-functions.php:935
+#: includes/uni-cpo-core-functions.php:956
 msgid "Cancel"
 msgstr "Скасувати"
 
@@ -881,20 +867,20 @@ msgstr ""
 #: includes/class-uni-cpo-frontend-scripts.php:641
 #: includes/modules/class-uni-cpo-module-row.php:29
 msgid "Row"
-msgstr ""
+msgstr "Рядок"
 
 #: includes/class-uni-cpo-frontend-scripts.php:642
 #: includes/modules/class-uni-cpo-module-column.php:29
 msgid "Column"
-msgstr ""
+msgstr "Колонка"
 
 #: includes/class-uni-cpo-frontend-scripts.php:643
 msgid "Module"
-msgstr ""
+msgstr "Модуль"
 
 #: includes/class-uni-cpo-frontend-scripts.php:644
 msgid "Move Row"
-msgstr ""
+msgstr "Перемістити"
 
 #: includes/class-uni-cpo-frontend-scripts.php:646
 #: includes/class-uni-cpo-templates.php:666
@@ -902,7 +888,7 @@ msgstr ""
 #: includes/settings/class-uni-cpo-setting-sync.php:61
 #: includes/uni-cpo-functions.php:298
 msgid "Duplicate"
-msgstr ""
+msgstr "Клонувати"
 
 #: includes/class-uni-cpo-frontend-scripts.php:647
 #: includes/options/class-uni-cpo-option-file-upload.php:174
@@ -911,7 +897,7 @@ msgstr "Видалити"
 
 #: includes/class-uni-cpo-frontend-scripts.php:649
 msgid "Upload"
-msgstr ""
+msgstr "Завантажити"
 
 #: includes/class-uni-cpo-frontend-scripts.php:650
 #: includes/options/class-uni-cpo-option-file-upload.php:500
@@ -920,7 +906,7 @@ msgstr "Вибрати файл"
 
 #: includes/class-uni-cpo-frontend-scripts.php:651
 msgid "Please add suboptions"
-msgstr ""
+msgstr "Будь ласка додайте суб опції"
 
 #: includes/class-uni-cpo-frontend-scripts.php:652
 msgid "2nd var/1st var"
@@ -929,31 +915,39 @@ msgstr ""
 #: includes/class-uni-cpo-frontend-scripts.php:653
 #: includes/settings/class-uni-cpo-setting-sync.php:79
 msgid "- None -"
-msgstr ""
+msgstr "- Не вибрано -"
 
 #: includes/class-uni-cpo-frontend-scripts.php:655
 msgid "Pro Version Feature"
-msgstr ""
+msgstr "Функціональність PRO версії"
 
 #: includes/class-uni-cpo-frontend-scripts.php:657
 msgid "No cart form found! Check WooCommerce hooks integration with your theme"
 msgstr ""
+"Не знайдено форми “.cart”! Перевірте вашу тему на предмет правильної "
+"інтеграції з WooCommerce"
 
 #: includes/class-uni-cpo-frontend-scripts.php:658
 msgid "Too many cart forms found! Uni CPO works on single product page only!"
 msgstr ""
+"Надто багато форм “.cart”! Uni CPO працює лише на одиночній сторінці товару!"
 
 #: includes/class-uni-cpo-frontend-scripts.php:659
 msgid "Regular price is not set. Price is required (even \"1\" works)!"
 msgstr ""
+"Не встановлено звичайну ціну. Ціна є обов’язковим атрибутом (навіть “1” "
+"підійде)!"
 
 #: includes/class-uni-cpo-frontend-scripts.php:660
 msgid "It seems that price tag selector is wrong, please update!"
 msgstr ""
+"Схоже що CSS селектор для HTML тега ціни не вірний. Будь ласка, оновіть!"
 
 #: includes/class-uni-cpo-frontend-scripts.php:661
 msgid "It seems that image tag selector is wrong, please update!"
 msgstr ""
+"Схоже що CSS селектор для HTML врапера основного зображення не вірний. Будь "
+"ласка, оновіть!"
 
 #: includes/class-uni-cpo-frontend-scripts.php:686
 #: includes/class-uni-cpo-frontend-scripts.php:826
@@ -1137,10 +1131,8 @@ msgid "Weight conditional logic"
 msgstr "Умовна логіка ваги"
 
 #: includes/class-uni-cpo-templates.php:114
-#, fuzzy
-#| msgid "Enable conditional logic?"
 msgid "Image conditional logic"
-msgstr "Увімкнути умовну логіку для полів опцій?"
+msgstr "Увімкнути умовну логіку для основного зображення?"
 
 #: includes/class-uni-cpo-templates.php:118
 msgid "Dimensions settings"
@@ -1153,7 +1145,7 @@ msgstr "Знижки у кошику"
 
 #: includes/class-uni-cpo-templates.php:127
 msgid "Save content"
-msgstr ""
+msgstr "Зберегти"
 
 #: includes/class-uni-cpo-templates.php:132
 msgid "Formula and conditional logic"
@@ -1180,14 +1172,12 @@ msgid "General Settings"
 msgstr ""
 
 #: includes/class-uni-cpo-templates.php:342
-#, fuzzy
-#| msgid "Save Settings"
 msgid "Price Settings"
-msgstr "Зберегти"
+msgstr "Налашт. ціни"
 
 #: includes/class-uni-cpo-templates.php:351
 msgid "Import/Export"
-msgstr ""
+msgstr "Імпорт/Експорт"
 
 #: includes/class-uni-cpo-templates.php:371
 #: includes/class-uni-cpo-templates.php:392
@@ -1209,7 +1199,7 @@ msgstr ""
 #: includes/class-uni-cpo-templates.php:1628
 #: includes/class-uni-cpo-templates.php:1648
 msgid "on"
-msgstr ""
+msgstr "так"
 
 #: includes/class-uni-cpo-templates.php:372
 #: includes/class-uni-cpo-templates.php:393
@@ -1231,11 +1221,11 @@ msgstr ""
 #: includes/class-uni-cpo-templates.php:1629
 #: includes/class-uni-cpo-templates.php:1649
 msgid "off"
-msgstr ""
+msgstr "ні"
 
 #: includes/class-uni-cpo-templates.php:375
 msgid "Display custom options on the product page?"
-msgstr ""
+msgstr "Відображати кастомні опції на сторінці товару?"
 
 #: includes/class-uni-cpo-templates.php:377
 msgid ""
@@ -1246,7 +1236,7 @@ msgstr ""
 
 #: includes/class-uni-cpo-templates.php:396
 msgid "Enable price calculation based on custom options?"
-msgstr ""
+msgstr "Увімкнути калькуляцію ціни на основі кастомних опцій?"
 
 #: includes/class-uni-cpo-templates.php:398
 msgid ""
@@ -1322,10 +1312,8 @@ msgid ""
 msgstr ""
 
 #: includes/class-uni-cpo-templates.php:528
-#, fuzzy
-#| msgid "Enable validation logic?"
 msgid "Enable \"silent validation\" mode?"
-msgstr "Увімкнути умовну логіку валідації?"
+msgstr ""
 
 #: includes/class-uni-cpo-templates.php:530
 msgid ""
@@ -1376,7 +1364,7 @@ msgstr ""
 
 #: includes/class-uni-cpo-templates.php:587
 msgid "Price suffix"
-msgstr ""
+msgstr "Суфікс ціни"
 
 #: includes/class-uni-cpo-templates.php:590
 msgid ""
@@ -1385,10 +1373,8 @@ msgid ""
 msgstr ""
 
 #: includes/class-uni-cpo-templates.php:602
-#, fuzzy
-#| msgid "Postfix"
 msgid "Price postfix"
-msgstr "Постфікс"
+msgstr "Постфікс ціни"
 
 #: includes/class-uni-cpo-templates.php:605
 msgid "Custom price tag postfix. If set, will be shown in any case."
@@ -1396,7 +1382,7 @@ msgstr ""
 
 #: includes/class-uni-cpo-templates.php:617
 msgid "Starting price"
-msgstr ""
+msgstr "Стартова ціна"
 
 #: includes/class-uni-cpo-templates.php:620
 msgid ""
@@ -1406,7 +1392,7 @@ msgstr ""
 
 #: includes/class-uni-cpo-templates.php:633
 msgid "Price template for archives"
-msgstr ""
+msgstr "Шаблон ціни для архівних сторінок"
 
 #: includes/class-uni-cpo-templates.php:636
 msgid ""
@@ -1431,8 +1417,8 @@ msgstr ""
 
 #: includes/class-uni-cpo-templates.php:671
 #: includes/class-uni-cpo-templates.php:701
-#: includes/class-uni-cpo-templates.php:1881
-#: includes/class-uni-cpo-templates.php:2131
+#: includes/class-uni-cpo-templates.php:1904
+#: includes/class-uni-cpo-templates.php:2180
 #: includes/settings/class-uni-cpo-setting-cpo-matrix-data.php:106
 msgid "Import"
 msgstr ""
@@ -1442,8 +1428,8 @@ msgid "remove pid attribute values from all the modules"
 msgstr ""
 
 #: includes/class-uni-cpo-templates.php:695
-#: includes/class-uni-cpo-templates.php:1876
-#: includes/class-uni-cpo-templates.php:2126
+#: includes/class-uni-cpo-templates.php:1899
+#: includes/class-uni-cpo-templates.php:2175
 #: includes/settings/class-uni-cpo-setting-cpo-matrix-data.php:101
 msgid "Choose a file"
 msgstr "Вибрати файл"
@@ -1539,6 +1525,7 @@ msgstr ""
 #: includes/class-uni-cpo-templates.php:1316
 #: includes/class-uni-cpo-templates.php:1701
 #: includes/settings/class-uni-cpo-setting-cpo-date-rules.php:51
+#: includes/settings/class-uni-cpo-setting-cpo-sc-scheme.php:50
 #: includes/settings/class-uni-cpo-setting-cpo-vc-scheme.php:47
 msgid "Add Rule"
 msgstr ""
@@ -1548,6 +1535,7 @@ msgstr ""
 #: includes/class-uni-cpo-templates.php:1317
 #: includes/class-uni-cpo-templates.php:1702
 #: includes/settings/class-uni-cpo-setting-cpo-date-rules.php:52
+#: includes/settings/class-uni-cpo-setting-cpo-sc-scheme.php:51
 #: includes/settings/class-uni-cpo-setting-cpo-vc-scheme.php:48
 msgid "Remove All"
 msgstr "Видалити все"
@@ -1561,6 +1549,8 @@ msgstr "Видалити все"
 #: includes/settings/class-uni-cpo-setting-cpo-date-rules.php:69
 #: includes/settings/class-uni-cpo-setting-cpo-date-rules.php:103
 #: includes/settings/class-uni-cpo-setting-cpo-fc-scheme.php:42
+#: includes/settings/class-uni-cpo-setting-cpo-sc-scheme.php:68
+#: includes/settings/class-uni-cpo-setting-cpo-sc-scheme.php:116
 #: includes/settings/class-uni-cpo-setting-cpo-vc-scheme.php:65
 #: includes/settings/class-uni-cpo-setting-cpo-vc-scheme.php:99
 msgid "Fetch the rule"
@@ -1568,10 +1558,8 @@ msgstr ""
 
 #: includes/class-uni-cpo-templates.php:1031
 #: includes/class-uni-cpo-templates.php:1051
-#, fuzzy
-#| msgid "Conditional Logic"
 msgid "Image Conditional Logic"
-msgstr "Умовна логіка"
+msgstr ""
 
 #: includes/class-uni-cpo-templates.php:1053
 msgid ""
@@ -1620,11 +1608,11 @@ msgstr ""
 
 #: includes/class-uni-cpo-templates.php:1434
 msgid "Dimensions Settings"
-msgstr "Налаштунки Розмірів"
+msgstr "Налаштунки розмірів"
 
 #: includes/class-uni-cpo-templates.php:1454
 msgid "Dimensions Calculation"
-msgstr "Розрахунок Розмірів"
+msgstr "Розрахунок розмірів"
 
 #: includes/class-uni-cpo-templates.php:1456
 msgid ""
@@ -1725,57 +1713,67 @@ msgid "Controls"
 msgstr ""
 
 #: includes/class-uni-cpo-templates.php:1730
-#: includes/class-uni-cpo-templates.php:1939
+#: includes/class-uni-cpo-templates.php:1964
 msgid "Matrix?"
 msgstr ""
 
 #: includes/class-uni-cpo-templates.php:1744
-#: includes/class-uni-cpo-templates.php:1954
+#: includes/class-uni-cpo-templates.php:1979
 msgid "Convert unit?"
 msgstr ""
 
 #: includes/class-uni-cpo-templates.php:1755
-#: includes/class-uni-cpo-templates.php:1966
+#: includes/class-uni-cpo-templates.php:1991
 msgid "to"
 msgstr ""
 
 #: includes/class-uni-cpo-templates.php:1760
-#: includes/class-uni-cpo-templates.php:1972
+#: includes/class-uni-cpo-templates.php:1997
 msgid "WC default unit"
 msgstr ""
 
 #: includes/class-uni-cpo-templates.php:1761
-#: includes/class-uni-cpo-templates.php:1973
+#: includes/class-uni-cpo-templates.php:1998
 msgid "mm"
 msgstr ""
 
 #: includes/class-uni-cpo-templates.php:1762
-#: includes/class-uni-cpo-templates.php:1974
+#: includes/class-uni-cpo-templates.php:1999
 msgid "cm"
 msgstr ""
 
 #: includes/class-uni-cpo-templates.php:1763
-#: includes/class-uni-cpo-templates.php:1975
+#: includes/class-uni-cpo-templates.php:2000
 msgid "m"
 msgstr ""
 
 #: includes/class-uni-cpo-templates.php:1764
-#: includes/class-uni-cpo-templates.php:1976
+#: includes/class-uni-cpo-templates.php:2001
 msgid "in"
 msgstr ""
 
 #: includes/class-uni-cpo-templates.php:1765
-#: includes/class-uni-cpo-templates.php:1977
+#: includes/class-uni-cpo-templates.php:2002
 msgid "ft"
 msgstr ""
 
 #: includes/class-uni-cpo-templates.php:1766
-#: includes/class-uni-cpo-templates.php:1978
+#: includes/class-uni-cpo-templates.php:2003
 msgid "yd"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:1866
-#: includes/class-uni-cpo-templates.php:2116
+#: includes/class-uni-cpo-templates.php:1773
+#: includes/class-uni-cpo-templates.php:2010
+msgid "Display in cart?"
+msgstr ""
+
+#: includes/class-uni-cpo-templates.php:1783
+#: includes/class-uni-cpo-templates.php:2021
+msgid "Name"
+msgstr ""
+
+#: includes/class-uni-cpo-templates.php:1889
+#: includes/class-uni-cpo-templates.php:2165
 #: includes/settings/class-uni-cpo-setting-cpo-matrix-data.php:91
 msgid "Generate"
 msgstr ""
@@ -1832,10 +1830,8 @@ msgid "File Upload"
 msgstr ""
 
 #: includes/options/class-uni-cpo-option-file-upload.php:169
-#, fuzzy
-#| msgid "Add/Edit option(s)"
 msgid "Add/Edit file"
-msgstr "Дод./Ред. опцію(ї)"
+msgstr "Дод./Ред. файл"
 
 #: includes/options/class-uni-cpo-option-file-upload.php:189
 msgid ""
@@ -1849,10 +1845,10 @@ msgstr ""
 
 #: includes/options/class-uni-cpo-option-radio.php:199
 #: includes/options/class-uni-cpo-option-radio.php:225
-#: includes/options/class-uni-cpo-option-select.php:205
-#: includes/options/class-uni-cpo-option-select.php:231
-#: includes/options/class-uni-cpo-option-select.php:447
-#: includes/options/class-uni-cpo-option-select.php:580
+#: includes/options/class-uni-cpo-option-select.php:220
+#: includes/options/class-uni-cpo-option-select.php:246
+#: includes/options/class-uni-cpo-option-select.php:469
+#: includes/options/class-uni-cpo-option-select.php:602
 msgid "Please select..."
 msgstr ""
 
@@ -1864,7 +1860,7 @@ msgstr ""
 msgid "Range Slider"
 msgstr ""
 
-#: includes/options/class-uni-cpo-option-select.php:38
+#: includes/options/class-uni-cpo-option-select.php:39
 msgid "Select"
 msgstr ""
 
@@ -2209,6 +2205,7 @@ msgstr ""
 #: includes/settings/class-uni-cpo-setting-cpo-is-datepicker-disabled.php:25
 #: includes/settings/class-uni-cpo-setting-cpo-is-fc.php:25
 #: includes/settings/class-uni-cpo-setting-cpo-is-required.php:25
+#: includes/settings/class-uni-cpo-setting-cpo-is-sc.php:25
 #: includes/settings/class-uni-cpo-setting-cpo-is-timepicker.php:25
 #: includes/settings/class-uni-cpo-setting-cpo-is-tooltip.php:25
 #: includes/settings/class-uni-cpo-setting-cpo-is-vc.php:25
@@ -2224,6 +2221,7 @@ msgstr "Ні"
 #: includes/settings/class-uni-cpo-setting-cpo-is-datepicker-disabled.php:26
 #: includes/settings/class-uni-cpo-setting-cpo-is-fc.php:26
 #: includes/settings/class-uni-cpo-setting-cpo-is-required.php:26
+#: includes/settings/class-uni-cpo-setting-cpo-is-sc.php:26
 #: includes/settings/class-uni-cpo-setting-cpo-is-timepicker.php:26
 #: includes/settings/class-uni-cpo-setting-cpo-is-tooltip.php:26
 #: includes/settings/class-uni-cpo-setting-cpo-is-vc.php:26
@@ -2243,21 +2241,24 @@ msgid "The code. You can use b64.io web service to perform the encoding."
 msgstr ""
 
 #: includes/settings/class-uni-cpo-setting-cpo-fc-default.php:21
+#: includes/settings/class-uni-cpo-setting-cpo-sc-default.php:21
 msgid "Show or hide by default?"
 msgstr ""
 
 #: includes/settings/class-uni-cpo-setting-cpo-fc-default.php:23
 msgid ""
-"Choose whether this option should be shown or hidden at the beggining,\n"
+"Choose whether this option should be shown or hidden at the beginning,\n"
 "                so its state will be changed to the opposite once the "
 "condition is met."
 msgstr ""
 
 #: includes/settings/class-uni-cpo-setting-cpo-fc-default.php:26
+#: includes/settings/class-uni-cpo-setting-cpo-sc-default.php:26
 msgid "Hide"
 msgstr ""
 
 #: includes/settings/class-uni-cpo-setting-cpo-fc-default.php:27
+#: includes/settings/class-uni-cpo-setting-cpo-sc-default.php:27
 msgid "Show"
 msgstr ""
 
@@ -2301,10 +2302,12 @@ msgid "Enables/disables datepicker functionality."
 msgstr ""
 
 #: includes/settings/class-uni-cpo-setting-cpo-is-fc.php:21
+#: includes/settings/class-uni-cpo-setting-cpo-is-sc.php:21
 msgid "Enable conditional logic?"
 msgstr "Увімкнути умовну логіку для полів опцій?"
 
 #: includes/settings/class-uni-cpo-setting-cpo-is-fc.php:23
+#: includes/settings/class-uni-cpo-setting-cpo-is-sc.php:23
 msgid "Enables conditional logic for displaying or hiding this module."
 msgstr ""
 
@@ -2317,10 +2320,8 @@ msgid "Choose whether the user must fill out this field or not."
 msgstr ""
 
 #: includes/settings/class-uni-cpo-setting-cpo-is-timepicker.php:21
-#, fuzzy
-#| msgid "Enable tooltip?"
 msgid "Enable Timepicker?"
-msgstr "Увімкнути підказку?"
+msgstr "Увімкнути таймпікер?"
 
 #: includes/settings/class-uni-cpo-setting-cpo-is-timepicker.php:23
 msgid "Enables/disables timepicker functionality."
@@ -2359,10 +2360,8 @@ msgid ""
 msgstr ""
 
 #: includes/settings/class-uni-cpo-setting-cpo-matrix-data.php:21
-#, fuzzy
-#| msgid "Save data"
 msgid "Matrix data"
-msgstr "Зберегти дані"
+msgstr "Дані матриці"
 
 #: includes/settings/class-uni-cpo-setting-cpo-matrix-data.php:42
 msgid "# in cols"
@@ -2587,10 +2586,8 @@ msgid "Show input?"
 msgstr ""
 
 #: includes/settings/class-uni-cpo-setting-cpo-range-input.php:23
-#, fuzzy
-#| msgid "Enables/disables displaying of the numbered grid"
 msgid "Enables/disables displaying of the text input"
-msgstr "Вмикає/вимикає відображення нумерованої сітки"
+msgstr "Вмикає/вимикає відображення текстового поля"
 
 #: includes/settings/class-uni-cpo-setting-cpo-range-postfix.php:21
 msgid "Postfix"
@@ -2630,6 +2627,27 @@ msgid ""
 "the user."
 msgstr ""
 
+#: includes/settings/class-uni-cpo-setting-cpo-sc-default.php:23
+msgid ""
+"Choose whether these suboptions should be shown or hidden at the beginning,\n"
+"                so its state will be changed to the opposite once the "
+"condition is met."
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-cpo-sc-scheme.php:21
+msgid "Suboptions conditional rules"
+msgstr "Умовні правила відображення суб опцій"
+
+#: includes/settings/class-uni-cpo-setting-cpo-sc-scheme.php:23
+msgid "Conditionally displaying suboptions"
+msgstr ""
+
+#: includes/settings/class-uni-cpo-setting-cpo-sc-scheme.php:88
+#: includes/settings/class-uni-cpo-setting-cpo-sc-scheme.php:138
+msgid ""
+"It seems this option is not saved to DB/does not have slug/suboptions yet"
+msgstr ""
+
 #: includes/settings/class-uni-cpo-setting-cpo-select-options.php:23
 msgid ""
 "Add some sub options for select and, please, keep unique slugs for them. "
@@ -2665,10 +2683,8 @@ msgid "Add the step value for this field. Only integer or float number."
 msgstr ""
 
 #: includes/settings/class-uni-cpo-setting-cpo-time-max.php:21
-#, fuzzy
-#| msgid "Maximum value"
 msgid "Maximum time"
-msgstr "Макс. значення"
+msgstr "Макс. час"
 
 #: includes/settings/class-uni-cpo-setting-cpo-time-max.php:23
 msgid ""
@@ -2677,10 +2693,8 @@ msgid ""
 msgstr ""
 
 #: includes/settings/class-uni-cpo-setting-cpo-time-min.php:21
-#, fuzzy
-#| msgid "Minimum value"
 msgid "Minimum time"
-msgstr "Мін. значення"
+msgstr "Мін. час"
 
 #: includes/settings/class-uni-cpo-setting-cpo-time-min.php:23
 msgid ""
@@ -2968,24 +2982,29 @@ msgstr ""
 msgid "Width Type"
 msgstr ""
 
-#: includes/uni-cpo-core-functions.php:886
+#: includes/uni-cpo-core-functions.php:837
+#, php-format
+msgid "%1$s(Saved %2$s%%!)%3$s"
+msgstr ""
+
+#: includes/uni-cpo-core-functions.php:907
 msgid "Select options"
 msgstr "Зробіть вибір"
 
-#: includes/uni-cpo-core-functions.php:954
+#: includes/uni-cpo-core-functions.php:975
 msgid "Calculate"
 msgstr ""
 
-#: includes/uni-cpo-core-functions.php:1645
+#: includes/uni-cpo-core-functions.php:1713
 msgid "Item"
 msgstr ""
 
-#: includes/uni-cpo-core-functions.php:1647
+#: includes/uni-cpo-core-functions.php:1715
 #, php-format
 msgid "%s duplicated."
 msgstr ""
 
-#: includes/uni-cpo-core-functions.php:1756
+#: includes/uni-cpo-core-functions.php:1825
 msgid "Add/Edit CPO option(s)"
 msgstr "Дод./ред CPO опцію(ї)"
 
@@ -3030,9 +3049,6 @@ msgstr ""
 
 #~ msgid "Choose file"
 #~ msgstr "Вибрати файл"
-
-#~ msgid "Delete formula conditional rules"
-#~ msgstr "Видалити умовні правила для формул"
 
 #, fuzzy
 #~ msgid "This plugin requires WordPress 4.6+!"

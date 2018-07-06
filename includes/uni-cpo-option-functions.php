@@ -221,7 +221,10 @@ function uni_cpo_get_setting_types() {
 		'cpo_custom_values',
 		'cpo_notice_text',
         'cpo_matrix_data',
-        'cpo_encoded_image'
+        'cpo_encoded_image',
+		'cpo_sc_scheme',
+		'cpo_is_sc',
+		'cpo_sc_default'
 	);
 
 	// make it possible for third-party plugins to add new module types

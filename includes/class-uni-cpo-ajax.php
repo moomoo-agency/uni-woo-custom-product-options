@@ -593,7 +593,6 @@ class Uni_Cpo_Ajax
             $options_eval_result = array();
             $formatted_vars = array();
             $nice_names_vars = array();
-            $novs_nice = array();
             $price_vars['quantity'] = ( !empty($form_data['quantity']) ? absint( $form_data['quantity'] ) : 1 );
             
             if ( 'on' === $product_data['settings_data']['cpo_enable'] && 'on' === $product_data['settings_data']['calc_enable'] ) {
@@ -881,6 +880,7 @@ class Uni_Cpo_Ajax
                     
                     if ( isset( $formatted_meta['_' . $key] ) ) {
                         $item->update_meta_data( '_' . $key, $value, $formatted_meta['_' . $key] );
+                        unset( $formatted_meta['_' . $key] );
                     } else {
                         $item->add_meta_data( '_' . $key, $value );
                     }
@@ -888,6 +888,13 @@ class Uni_Cpo_Ajax
                 }
                 $cart_item_data['_cpo_data'] = $form_data;
                 $item_price = uni_cpo_calculate_price_in_cart( $cart_item_data, $product_id );
+                if ( !empty($formatted_meta) ) {
+                    foreach ( $formatted_meta as $k => $v ) {
+                        if ( false !== strpos( $k, UniCpo()->get_var_slug() ) ) {
+                            $item->delete_meta_data( $k );
+                        }
+                    }
+                }
                 $item_qty = $item->get_quantity();
                 $item->set_subtotal( $item_price );
                 $item_total = $item_qty * $item_price;

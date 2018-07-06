@@ -416,6 +416,10 @@ class Uni_Cpo_Option extends Uni_Cpo_Data
     
     }
     
+    public static function suboptions_conditional_rules( $data, $attributes = array() )
+    {
+    }
+    
     public static function validation_rules( $data, $attributes = array() )
     {
     }

@@ -1716,7 +1716,7 @@ final class Uni_Cpo_Templates {
                                                             type="text"
                                                             name="nov[<%row-count%>][slug]"
                                                             value=""
-                                                            class="uni-cpo-modal-field uni-cpo-non-option-slug-field"
+                                                            class="uni-cpo-modal-field uni-cpo-non-option-slug-field uni-cpo-input-for-nov"
                                                             data-parsley-required="true"
                                                             data-parsley-trigger="change focusout submit"
                                                             data-parsley-notequalto=".uni-cpo-non-option-slug-field"/>
@@ -1766,6 +1766,29 @@ final class Uni_Cpo_Templates {
                                                             <option value="yd"><?php esc_html_e( 'yd', 'uni-cpo' ) ?></option>
                                                         </select>
                                                     </div>
+
+	                                                <div class="uni-cpo-non-option-vars-options-content-field-wrapper uni-cpo-cart-display-wrapper uni-clear">
+		                                                <label for="uni-row[<%row-count%>]-cart-display"
+		                                                       class="uni-cart-display-checkbox">
+			                                                <?php esc_html_e( 'Display in cart?', 'uni-cpo' ) ?>
+			                                                <input
+					                                                id="uni-row[<%row-count%>]-cart-display"
+					                                                class="builderius-single-checkbox"
+					                                                type="checkbox"
+					                                                name="nov[<%row-count%>][cart_display][enable]"
+					                                                value="on"/>
+			                                                <span></span>
+		                                                </label>
+		                                                <label for="uni-row[<%row-count%>]-cart-display-to">
+			                                                <?php esc_html_e( 'Name', 'uni-cpo' ) ?>
+		                                                </label>
+		                                                <input
+				                                                id="uni-row[<%row-count%>]-cart-display-name"
+				                                                class="uni-cpo-input-for-nov"
+				                                                type="text"
+				                                                name="nov[<%row-count%>][cart_display][name]"
+				                                                value=""/>
+	                                                </div>
 	                                                <?php
                                                 }
                                                 ?>
@@ -1913,7 +1936,9 @@ final class Uni_Cpo_Templates {
                                         {{ obj.matrix = { enable: 'off' }; }}
                                         {{ } }}
                                         {{ convertEnable = uniGet(obj, 'convert.enable', 'off'); }}
+	                                    {{ inCartDisplay = uniGet(obj, 'cart_display.enable', 'off'); }}
                                         {{ convertTo = uniGet(obj, 'convert.to', ''); }}
+	                                    {{ cartName = uniGet(obj, 'cart_display.name', ''); }}
                                         <div class="uni-cpo-non-option-vars-options-row">
                                             <div class="uni-cpo-non-option-vars-options-move-wrapper">
                                                 <span class="uni_cpo_non_option_vars_option_move"><i
@@ -1926,7 +1951,7 @@ final class Uni_Cpo_Templates {
                                                             type="text"
                                                             name="nov[{{- i }}][slug]"
                                                             value="{{- obj.slug }}"
-                                                            class="uni-cpo-modal-field uni-cpo-non-option-slug-field builderius-setting-field"
+                                                            class="uni-cpo-modal-field uni-cpo-non-option-slug-field builderius-setting-field uni-cpo-input-for-nov"
                                                             data-parsley-required="true"
                                                             data-parsley-trigger="change focusout submit"
                                                             data-parsley-notequalto=".uni-cpo-non-option-slug-field"/>
@@ -1978,6 +2003,30 @@ final class Uni_Cpo_Templates {
                                                             <option value="yd"{{ if (convertTo === 'yd') { print(' selected'); } }}><?php esc_html_e( 'yd', 'uni-cpo' ) ?></option>
                                                         </select>
                                                     </div>
+
+	                                                <div class="uni-cpo-non-option-vars-options-content-field-wrapper uni-cpo-cart-display-wrapper uni-clear">
+		                                                <label for="uni-row[{{- i }}]-cart-display"
+		                                                       class="uni-cart-display-checkbox">
+			                                                <?php esc_html_e( 'Display in cart?', 'uni-cpo' ) ?>
+			                                                <input
+					                                                id="uni-row[{{- i }}]-cart-display"
+					                                                class="builderius-setting-field builderius-single-checkbox"
+					                                                type="checkbox"
+					                                                name="nov[{{- i }}][cart_display][enable]"
+					                                                value="on"
+					                                                {{ if (inCartDisplay === 'on') { print(' checked'); } }}/>
+			                                                <span></span>
+		                                                </label>
+		                                                <label for="uni-row[{{- i }}]-cart-display-to">
+			                                                <?php esc_html_e( 'Name', 'uni-cpo' ) ?>
+		                                                </label>
+		                                                    <input
+				                                                id="uni-row[{{- i }}]-cart-display-name"
+				                                                class="builderius-setting-field uni-cpo-input-for-nov"
+				                                                type="text"
+				                                                name="nov[{{- i }}][cart_display][name]"
+				                                                value="{{- cartName}}"/>
+	                                                </div>
 	                                                <?php
                                                 }
                                                 ?>

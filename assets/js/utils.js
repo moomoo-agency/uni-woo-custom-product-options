@@ -286,7 +286,7 @@ function update_everything(container, settingsTmpl) {
                 }
             }
         });
-        const $allNeededSelects = $el.find('.uni-cpo-matrix-options-row > select, .uni-cpo-convert-wrapper select');
+        const $allNeededSelects = $el.find('.uni-cpo-matrix-options-row > select, .uni-cpo-convert-wrapper select, .uni-cpo-cart-display-wrapper input');
         $allNeededSelects.each(function(index, el){
             const $el = jQuery(el);
             const matches = el.name.match(regex);

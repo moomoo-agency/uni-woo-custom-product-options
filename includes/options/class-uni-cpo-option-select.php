@@ -17,7 +17,8 @@ class Uni_Cpo_Option_Select extends Uni_Cpo_Option implements Uni_Cpo_Option_Int
 	 * @var array
 	 */
 	protected $extra_data = array(
-		'cpo_suboptions' => array()
+		'cpo_suboptions' => array(),
+		'cpo_rules' => array()
 	);
 
 	/**
@@ -90,6 +91,10 @@ class Uni_Cpo_Option_Select extends Uni_Cpo_Option implements Uni_Cpo_Option_Int
 		return ( ! empty( $cpo_general['main']['cpo_rate'] ) ) ? floatval( $cpo_general['main']['cpo_rate'] ) : 0;
 	}
 
+	public function get_cpo_rules( $context = 'view' ) {
+		return $this->get_prop( 'cpo_rules', $context );
+	}
+
 	/*
 	|--------------------------------------------------------------------------
 	| Setters
@@ -103,6 +108,15 @@ class Uni_Cpo_Option_Select extends Uni_Cpo_Option implements Uni_Cpo_Option_Int
 	 */
 	public function set_cpo_suboptions( $options ) {
 		$this->set_prop( 'cpo_suboptions', $options );
+	}
+
+	/**
+	 * Set rules.
+	 *
+	 * @param string $rules
+	 */
+	public function set_cpo_rules( $rules ) {
+		$this->set_prop( 'cpo_rules', $rules );
 	}
 
 	/*
@@ -127,6 +141,7 @@ class Uni_Cpo_Option_Select extends Uni_Cpo_Option implements Uni_Cpo_Option_Int
 		$model['settings']['cpo_general']                     = $this->get_cpo_general();
 		$model['settings']['cpo_general']['main']['cpo_slug'] = $this->get_slug_ending();
 		$model['settings']['cpo_suboptions']                  = $this->get_cpo_suboptions();
+		$model['settings']['cpo_rules']                       = $this->get_cpo_rules();
 		$model['settings']['cpo_conditional']                 = $this->get_cpo_conditional();
 		$model['settings']['cpo_validation']                  = $this->get_cpo_validation();
 
@@ -360,6 +375,13 @@ class Uni_Cpo_Option_Select extends Uni_Cpo_Option implements Uni_Cpo_Option_Int
 				'cpo_suboptions'  => array(
 					'data' => array(
 						'cpo_select_options' => array()
+					)
+				),
+				'cpo_rules'  => array(
+					'main' => array(
+						'cpo_is_sc'      => 'no',
+						'cpo_sc_default' => 'hide',
+						'cpo_sc_scheme' => ''
 					)
 				),
 				'cpo_conditional' => array(
@@ -600,6 +622,7 @@ class Uni_Cpo_Option_Select extends Uni_Cpo_Option implements Uni_Cpo_Option_Int
 		<?php
 
 		self::conditional_rules( $data );
+		self::suboptions_conditional_rules( $data );
 	}
 
 	public static function get_css( $data ) {

@@ -13,7 +13,7 @@ final class Uni_Cpo
      *
      * @var string
      */
-    public  $version = '4.1.6' ;
+    public  $version = '4.2.0' ;
     /**
      * The single instance of the class.
      *
@@ -296,7 +296,6 @@ final class Uni_Cpo
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-enable-cartedit.php';
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-select-options.php';
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-radio-options.php';
-            include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-date-rules.php';
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-mode-radio.php';
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-geom-radio.php';
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-upload-mode.php';
@@ -312,6 +311,9 @@ final class Uni_Cpo
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-vc-extra.php';
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-is-vc.php';
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-vc-scheme.php';
+            include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-is-sc.php';
+            include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-sc-default.php';
+            include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-sc-scheme.php';
             
             if ( $this->is_pro() ) {
                 // radio
@@ -323,6 +325,7 @@ final class Uni_Cpo
                 include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-date-max.php';
                 include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-date-conjunction.php';
                 include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-disabled-dates.php';
+                include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-date-rules.php';
                 // range slider
                 include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-range-type.php';
                 include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-range-grid.php';

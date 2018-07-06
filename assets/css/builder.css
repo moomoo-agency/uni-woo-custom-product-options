@@ -1028,7 +1028,8 @@ button.uni-matrix-import-btn:hover, button.uni-matrix-import-btn:focus {backgrou
 .uni-cpo-non-option-vars-options-content-field-wrapper span:first-child {width: 140px;}
 .uni-cpo-non-option-vars-options-content-field-wrapper span code {padding: 0;border: 0!important; color: #202020;font-size: 16px;font-family: monospace,monospace;background-color: transparent;}
 .uni-cpo-non-option-vars-options-content-formula-wrapper label {display: block; margin-bottom: 8px; font-weight: normal;}
-.uni-cpo-non-option-slug-field {float: left!important;width: 200px!important;height: 30px!important;padding: 0 6px!important;margin: 0 10px 0 0!important;border: 1px solid #d7d7d7!important;background-color: #fff!important; color: #000000!important;font-size: 14px!important;border-radius: 3px!important;box-shadow: none!important;}
+.uni-cpo-input-for-nov {width: 200px!important;height: 30px!important;padding: 0 6px!important;margin: 0 10px 0 0!important;border: 1px solid #d7d7d7!important;background-color: #fff!important; color: #000000!important;font-size: 14px!important;border-radius: 3px!important;box-shadow: none!important;}
+.uni-cpo-non-option-slug-field {float:left!important;}
 
 .uni-cpo-non-option-vars-options-checkboxes-wrap {}
 .uni-cpo-non-option-vars-options-checkboxes-wrap label {display: block;position: relative; float: left;line-height: 18px;padding-left: 32px;margin-right: 28px;margin-bottom: 8px; min-width: 136px; color: #9a9a9a;font-size: 14px;font-family:courier, serif;}
@@ -1044,7 +1045,7 @@ button.uni-matrix-import-btn:hover, button.uni-matrix-import-btn:focus {backgrou
 #uni-modal-nov-wrapper .uni-modal-formula {position: relative;width: 260px;}
 #uni-modal-nov-wrapper .uni-modal-formula h3 {text-align: right;}
 #uni-modal-nov-wrapper .uni-modal-conditional-logic {width: 250px;}
-.uni-cpo-non-option-vars-options-content-field-wrapper.uni-cpo-convert-wrapper {margin-bottom: 20px;}
+.uni-cpo-non-option-vars-options-content-field-wrapper.uni-cpo-cart-display-wrapper{margin-bottom: 20px;}
 .uni-convert-checkbox {position: relative;float: left;line-height: 30px;padding-right: 32px;}
 .uni-convert-checkbox + label {float: left;display: block;line-height: 30px;margin-right: 8px;}
 .uni-convert-checkbox input[type="checkbox"] {display: none;}

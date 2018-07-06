@@ -1201,16 +1201,6 @@ function uni_cpo_checkout_create_order_line_item(
         foreach ( $form_data as $name => $value ) {
             $item->add_meta_data( '_' . $name, $value );
         }
-        // weight and dimensions
-        $physical_attrs = array(
-            'weight',
-            'width',
-            'length',
-            'height'
-        );
-        foreach ( $physical_attrs as $attr ) {
-            $item->add_meta_data( "_uni_item_{$attr}", $values['data']->{"get_{$attr}"}() );
-        }
     }
     
     $additional_data = apply_filters(

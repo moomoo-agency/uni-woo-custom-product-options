@@ -20,7 +20,7 @@ class Uni_Cpo_Setting_Cpo_Fc_Default extends Uni_Cpo_Setting implements Uni_Cpo_
 		$this->setting_data = array(
 			'title'      => __( 'Show or hide by default?', 'uni-cpo' ),
 			'is_tooltip' => true,
-			'desc_tip'   => __( 'Choose whether this option should be shown or hidden at the beggining,
+			'desc_tip'   => __( 'Choose whether this option should be shown or hidden at the beginning,
                 so its state will be changed to the opposite once the condition is met.', 'uni-cpo' ),
 			'options'    => array(
 				'hide' => __( 'Hide', 'uni-cpo' ),
