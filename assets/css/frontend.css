@@ -68,6 +68,7 @@
 .uni-module-checkbox label {
     cursor: pointer;
     display: block !important;
+    margin-left: 0;
 }
 
 .uni-module-radio label.uni-cpo-module-radio-label,

@@ -57,6 +57,9 @@ add_filter(
 function uni_cpo_order_formatted_meta_data( $formatted_meta, $item )
 {
     try {
+        if ( !method_exists( $item, 'get_product_id' ) ) {
+            return $formatted_meta;
+        }
         $item_meta_data = $item->get_meta_data();
         $filtered_form_data = array();
         array_walk( $item_meta_data, function ( $v ) use( &$filtered_form_data ) {
