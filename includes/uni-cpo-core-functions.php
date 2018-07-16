@@ -730,28 +730,28 @@ function uni_cpo_option_js_condition( $rule )
     $cpo_var = 'formData';
     switch ( $rule['operator'] ) {
         case 'less':
-            $statement = "(typeof {$cpo_var}.{$rule['id']} !== 'undefined') && {$cpo_var}.{$rule['id']} < {$rule['value']}";
+            $statement = "UniCpo.isProp({$cpo_var}, '{$rule['id']}') && {$cpo_var}.{$rule['id']} < {$rule['value']}";
             break;
         case 'less_or_equal':
-            $statement = "(typeof {$cpo_var}.{$rule['id']} !== 'undefined') && {$cpo_var}.{$rule['id']} <= {$rule['value']}";
+            $statement = "UniCpo.isProp({$cpo_var}, '{$rule['id']}') && {$cpo_var}.{$rule['id']} <= {$rule['value']}";
             break;
         case 'equal':
-            $statement = "(typeof {$cpo_var}.{$rule['id']} !== 'undefined') && ({$cpo_var}.{$rule['id']}.constructor === Array ? {$cpo_var}.{$rule['id']}.indexOf('{$rule['value']}') !== -1 : (window.UniCpo.isNumber('{$rule['value']}') ? parseFloat({$cpo_var}.{$rule['id']}) === parseFloat({$rule['value']}) : {$cpo_var}.{$rule['id']} === '{$rule['value']}'))";
+            $statement = "UniCpo.isProp({$cpo_var}, '{$rule['id']}') && ({$cpo_var}.{$rule['id']}.constructor === Array ? {$cpo_var}.{$rule['id']}.indexOf('{$rule['value']}') !== -1 : (window.UniCpo.isNumber('{$rule['value']}') ? parseFloat({$cpo_var}.{$rule['id']}) === parseFloat({$rule['value']}) : {$cpo_var}.{$rule['id']} === '{$rule['value']}'))";
             break;
         case 'not_equal':
-            $statement = "(typeof {$cpo_var}.{$rule['id']} !== 'undefined') && ({$cpo_var}.{$rule['id']}.constructor === Array ? {$cpo_var}.{$rule['id']}.indexOf('{$rule['value']}') === -1 : (window.UniCpo.isNumber('{$rule['value']}') ? parseFloat({$cpo_var}.{$rule['id']}) !== parseFloat({$rule['value']}) : {$cpo_var}.{$rule['id']} !== '{$rule['value']}'))";
+            $statement = "UniCpo.isProp({$cpo_var}, '{$rule['id']}') && ({$cpo_var}.{$rule['id']}.constructor === Array ? {$cpo_var}.{$rule['id']}.indexOf('{$rule['value']}') === -1 : (window.UniCpo.isNumber('{$rule['value']}') ? parseFloat({$cpo_var}.{$rule['id']}) !== parseFloat({$rule['value']}) : {$cpo_var}.{$rule['id']} !== '{$rule['value']}'))";
             break;
         case 'greater_or_equal':
-            $statement = "(typeof {$cpo_var}.{$rule['id']} !== 'undefined') && {$cpo_var}.{$rule['id']} >= {$rule['value']}";
+            $statement = "UniCpo.isProp({$cpo_var}, '{$rule['id']}') && {$cpo_var}.{$rule['id']} >= {$rule['value']}";
             break;
         case 'greater':
-            $statement = "(typeof {$cpo_var}.{$rule['id']} !== 'undefined') && {$cpo_var}.{$rule['id']} > {$rule['value']}";
+            $statement = "UniCpo.isProp({$cpo_var}, '{$rule['id']}') && {$cpo_var}.{$rule['id']} > {$rule['value']}";
             break;
         case 'is_empty':
-            $statement = "(typeof {$cpo_var}.{$rule['id']} === 'undefined' || ({$cpo_var}.{$rule['id']}.constructor === Array ? {$cpo_var}.{$rule['id']}.length === 0 : {$cpo_var}.{$rule['id']} === ''))";
+            $statement = "(UniCpo.isProp({$cpo_var}, '{$rule['id']}') || ({$cpo_var}.{$rule['id']}.constructor === Array ? {$cpo_var}.{$rule['id']}.length === 0 : {$cpo_var}.{$rule['id']} === ''))";
             break;
         case 'is_not_empty':
-            $statement = "(typeof {$cpo_var}.{$rule['id']} !== 'undefined' && ({$cpo_var}.{$rule['id']}.constructor === Array ? {$cpo_var}.{$rule['id']}.length > 0 : {$cpo_var}.{$rule['id']} !== ''))";
+            $statement = "(UniCpo.isProp({$cpo_var}, '{$rule['id']}') && ({$cpo_var}.{$rule['id']}.constructor === Array ? {$cpo_var}.{$rule['id']}.length > 0 : {$cpo_var}.{$rule['id']} !== ''))";
             break;
     }
     return $statement;

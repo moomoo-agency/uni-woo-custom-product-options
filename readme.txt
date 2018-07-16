@@ -91,6 +91,14 @@ A: We wouldn't recommend to do this yet. First, this version is so called 'lite'
 
 == Changelog ==
 
+= 4.2.2 =
+* Added: support of Storefront Sticky header
+* Improved: suboption conditional logic
+* Fixed: some minor styling issues
+
+= 4.2.1 =
+* Fixed: a bug on order edit page
+
 = 4.2.0 =
 * Added: suboption conditional logic (currently Select option only)
 * Added: a possibility to display NOVs in cart/order meta

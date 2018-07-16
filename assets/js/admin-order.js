@@ -147,7 +147,6 @@ jQuery(function ($) {
                     opacity: 0.6
                 }
             });
-            console.log(data);
 
             $.post(woocommerce_admin_meta_boxes.ajax_url, data, function (r) {
                 if (r.success) {

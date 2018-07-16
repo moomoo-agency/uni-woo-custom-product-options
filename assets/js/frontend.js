@@ -218,6 +218,11 @@ UniCpo = {
     bindOnAddToCartClick: function bindOnAddToCartClick() {
         var cpoObj = this;
 
+        jQuery(document).on('click', '.storefront-sticky-add-to-cart__content-button', function (e) {
+            cpoObj.formSubmission();
+            e.preventDefault();
+        });
+
         if (!this.addToCartAjax) {
             jQuery(document).on('click', this.addToCartBtnSelector, function (e) {
                 e.preventDefault();
@@ -852,6 +857,9 @@ UniCpo = {
     _unblockForm: function _unblockForm(el, type) {
         this._ajax_sent = false;
         jQuery(el).unblock();
+    },
+    isProp: function isProp(obj, prop) {
+        return obj[prop] != null && typeof obj[prop] !== 'undefined';
     }
 };
 
