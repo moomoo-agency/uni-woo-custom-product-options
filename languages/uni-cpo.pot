@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Uni CPO 3.1.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-06 07:09+0300\n"
+"POT-Creation-Date: 2018-07-25 20:46+0300\n"
 "PO-Revision-Date: 2017-02-07 10:05+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: MooMoo <sales@moomoo.agency>\n"
@@ -28,7 +28,7 @@ msgstr ""
 msgid "Cheatin&#8217; huh?"
 msgstr ""
 
-#: class-uni-cpo.php:505
+#: class-uni-cpo.php:506
 #: includes/options/class-uni-cpo-option-file-upload.php:163
 msgid "No file uploaded"
 msgstr ""
@@ -43,6 +43,64 @@ msgstr ""
 #: includes/class-uni-cpo-templates.php:1116
 #: includes/class-uni-cpo-templates.php:1181
 msgid "Remove attachment"
+msgstr ""
+
+#: includes/admin/class-uni-cpo-admin-pointers.php:56
+msgid "Product name"
+msgstr ""
+
+#: includes/admin/class-uni-cpo-admin-pointers.php:57
+msgid ""
+"It is not directly related to Uni CPO, but always remember adding product "
+"name."
+msgstr ""
+
+#: includes/admin/class-uni-cpo-admin-pointers.php:69
+msgid "Product type"
+msgstr ""
+
+#: includes/admin/class-uni-cpo-admin-pointers.php:70
+msgid ""
+"You should choose \"simple\" or \"simple subscription\". Uni CPO does not "
+"support other types!"
+msgstr ""
+
+#: includes/admin/class-uni-cpo-admin-pointers.php:85
+msgid "Prices"
+msgstr ""
+
+#: includes/admin/class-uni-cpo-admin-pointers.php:86
+msgid ""
+"Next you need to give your product a price otherwise it will be considered "
+"as free and Uni CPO visual form builder will not be shown."
+msgstr ""
+
+#: includes/admin/class-uni-cpo-admin-pointers.php:97
+msgid "Create/save a product"
+msgstr ""
+
+#: includes/admin/class-uni-cpo-admin-pointers.php:98
+msgid ""
+"Hit the \"Publish\" button to save changes. You may save the product as "
+"draft as well."
+msgstr ""
+
+#: includes/admin/class-uni-cpo-admin-pointers.php:109
+msgid "Start configuring the product"
+msgstr ""
+
+#: includes/admin/class-uni-cpo-admin-pointers.php:110
+msgid ""
+"Open \"CPO Form builder\" tab and click \"Go to builder\" to start "
+"configuring your product"
+msgstr ""
+
+#: includes/admin/class-uni-cpo-admin-pointers.php:155
+msgid "Dismiss"
+msgstr ""
+
+#: includes/admin/class-uni-cpo-admin-pointers.php:156
+msgid "Next"
 msgstr ""
 
 #: includes/admin/class-uni-cpo-plugin-settings.php:53
@@ -284,11 +342,15 @@ msgstr ""
 msgid "Uni CPO Plugin Settings"
 msgstr ""
 
-#: includes/admin/class-uni-cpo-plugin-settings.php:439
+#: includes/admin/class-uni-cpo-plugin-settings.php:437
+msgid "Uni CPO product basic setup tutorial"
+msgstr ""
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:444
 msgid "All"
 msgstr ""
 
-#: includes/admin/class-uni-cpo-plugin-settings.php:461
+#: includes/admin/class-uni-cpo-plugin-settings.php:466
 msgid "Save Settings"
 msgstr ""
 
@@ -300,12 +362,12 @@ msgstr ""
 msgid "go to the builder"
 msgstr ""
 
-#: includes/admin/uni-cpo-admin-functions.php:208
+#: includes/admin/uni-cpo-admin-functions.php:213
 msgid "Add/edit CPO options"
 msgstr ""
 
-#: includes/admin/uni-cpo-admin-functions.php:232
-#: includes/uni-cpo-core-functions.php:924
+#: includes/admin/uni-cpo-admin-functions.php:237
+#: includes/uni-cpo-core-functions.php:940
 msgid "Update"
 msgstr ""
 
@@ -853,7 +915,7 @@ msgstr ""
 #: includes/class-uni-cpo-templates.php:1207
 #: includes/class-uni-cpo-templates.php:1400
 #: includes/class-uni-cpo-templates.php:1580
-#: includes/uni-cpo-core-functions.php:956
+#: includes/uni-cpo-core-functions.php:972
 msgid "Cancel"
 msgstr ""
 
@@ -883,7 +945,7 @@ msgstr ""
 #: includes/class-uni-cpo-templates.php:666
 #: includes/class-uni-cpo-templates.php:667
 #: includes/settings/class-uni-cpo-setting-sync.php:61
-#: includes/uni-cpo-functions.php:298
+#: includes/uni-cpo-functions.php:309
 msgid "Duplicate"
 msgstr ""
 
@@ -1406,8 +1468,8 @@ msgstr ""
 
 #: includes/class-uni-cpo-templates.php:671
 #: includes/class-uni-cpo-templates.php:701
-#: includes/class-uni-cpo-templates.php:1904
-#: includes/class-uni-cpo-templates.php:2180
+#: includes/class-uni-cpo-templates.php:1906
+#: includes/class-uni-cpo-templates.php:2184
 #: includes/settings/class-uni-cpo-setting-cpo-matrix-data.php:106
 msgid "Import"
 msgstr ""
@@ -1417,8 +1479,8 @@ msgid "remove pid attribute values from all the modules"
 msgstr ""
 
 #: includes/class-uni-cpo-templates.php:695
-#: includes/class-uni-cpo-templates.php:1899
-#: includes/class-uni-cpo-templates.php:2175
+#: includes/class-uni-cpo-templates.php:1901
+#: includes/class-uni-cpo-templates.php:2179
 #: includes/settings/class-uni-cpo-setting-cpo-matrix-data.php:101
 msgid "Choose a file"
 msgstr ""
@@ -1702,67 +1764,67 @@ msgid "Controls"
 msgstr ""
 
 #: includes/class-uni-cpo-templates.php:1730
-#: includes/class-uni-cpo-templates.php:1964
+#: includes/class-uni-cpo-templates.php:1966
 msgid "Matrix?"
 msgstr ""
 
 #: includes/class-uni-cpo-templates.php:1744
-#: includes/class-uni-cpo-templates.php:1979
+#: includes/class-uni-cpo-templates.php:1981
 msgid "Convert unit?"
 msgstr ""
 
 #: includes/class-uni-cpo-templates.php:1755
-#: includes/class-uni-cpo-templates.php:1991
+#: includes/class-uni-cpo-templates.php:1993
 msgid "to"
 msgstr ""
 
 #: includes/class-uni-cpo-templates.php:1760
-#: includes/class-uni-cpo-templates.php:1997
+#: includes/class-uni-cpo-templates.php:1999
 msgid "WC default unit"
 msgstr ""
 
 #: includes/class-uni-cpo-templates.php:1761
-#: includes/class-uni-cpo-templates.php:1998
+#: includes/class-uni-cpo-templates.php:2000
 msgid "mm"
 msgstr ""
 
 #: includes/class-uni-cpo-templates.php:1762
-#: includes/class-uni-cpo-templates.php:1999
+#: includes/class-uni-cpo-templates.php:2001
 msgid "cm"
 msgstr ""
 
 #: includes/class-uni-cpo-templates.php:1763
-#: includes/class-uni-cpo-templates.php:2000
+#: includes/class-uni-cpo-templates.php:2002
 msgid "m"
 msgstr ""
 
 #: includes/class-uni-cpo-templates.php:1764
-#: includes/class-uni-cpo-templates.php:2001
+#: includes/class-uni-cpo-templates.php:2003
 msgid "in"
 msgstr ""
 
 #: includes/class-uni-cpo-templates.php:1765
-#: includes/class-uni-cpo-templates.php:2002
+#: includes/class-uni-cpo-templates.php:2004
 msgid "ft"
 msgstr ""
 
 #: includes/class-uni-cpo-templates.php:1766
-#: includes/class-uni-cpo-templates.php:2003
+#: includes/class-uni-cpo-templates.php:2005
 msgid "yd"
 msgstr ""
 
 #: includes/class-uni-cpo-templates.php:1773
-#: includes/class-uni-cpo-templates.php:2010
+#: includes/class-uni-cpo-templates.php:2012
 msgid "Display in cart?"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:1783
-#: includes/class-uni-cpo-templates.php:2021
+#: includes/class-uni-cpo-templates.php:1785
+#: includes/class-uni-cpo-templates.php:2025
 msgid "Name"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:1889
-#: includes/class-uni-cpo-templates.php:2165
+#: includes/class-uni-cpo-templates.php:1891
+#: includes/class-uni-cpo-templates.php:2169
 #: includes/settings/class-uni-cpo-setting-cpo-matrix-data.php:91
 msgid "Generate"
 msgstr ""
@@ -2968,46 +3030,53 @@ msgstr ""
 msgid "Width Type"
 msgstr ""
 
-#: includes/uni-cpo-core-functions.php:837
+#: includes/uni-cpo-core-functions.php:853
 #, php-format
 msgid "%1$s(Saved %2$s%%!)%3$s"
 msgstr ""
 
-#: includes/uni-cpo-core-functions.php:907
+#: includes/uni-cpo-core-functions.php:923
 msgid "Select options"
 msgstr ""
 
-#: includes/uni-cpo-core-functions.php:975
+#: includes/uni-cpo-core-functions.php:991
 msgid "Calculate"
 msgstr ""
 
-#: includes/uni-cpo-core-functions.php:1713
+#: includes/uni-cpo-core-functions.php:1732
 msgid "Item"
 msgstr ""
 
-#: includes/uni-cpo-core-functions.php:1715
+#: includes/uni-cpo-core-functions.php:1734
 #, php-format
 msgid "%s duplicated."
 msgstr ""
 
-#: includes/uni-cpo-core-functions.php:1825
+#: includes/uni-cpo-core-functions.php:1844
 msgid "Add/Edit CPO option(s)"
 msgstr ""
 
-#: includes/uni-cpo-functions.php:303
+#: includes/uni-cpo-functions.php:314
 msgid "Edit"
 msgstr ""
 
-#: includes/uni-cpo-functions.php:308
+#: includes/uni-cpo-functions.php:319
 msgid "Edit (inline)"
 msgstr ""
 
-#: uni-cpo.php:113
+#: uni-cpo.php:170
 #, php-format
-msgid "UniCpo requires PHP version %s+. It is NOT ACTIVATED!"
+msgid "Uni CPO requires PHP version %s+. It is activated but NOT FUNCTIONAL!"
 msgstr ""
 
-#: uni-cpo.php:124
+#: uni-cpo.php:182
 #, php-format
-msgid "UniCpo requires WordPress version %s+. It is NOT ACTIVATED!"
+msgid ""
+"Uni CPO requires WordPress version %s+. It is activated but NOT FUNCTIONAL!"
+msgstr ""
+
+#: uni-cpo.php:194
+#, php-format
+msgid ""
+"Uni CPO requires WooCommerce version %s+. It is activated but NOT FUNCTIONAL"
 msgstr ""

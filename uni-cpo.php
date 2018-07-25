@@ -4,7 +4,7 @@
  * Plugin Name: Uni Woo Custom Product Options
  * Plugin URI: https://builderius.io/cpo
  * Description: Provides an opportunity to add extra product options with the possibility to calculate the price based on the chosen options and using custom maths formula!
- * Version: 4.2.2
+ * Version: 4.2.4
  * Author: MooMoo Agency
  * Author URI: http://moomoo.agency
  * Domain Path: /languages/
@@ -39,6 +39,55 @@ if ( !defined( 'ABSPATH' ) ) {
     // Exit if accessed directly.
 }
 
+if ( !function_exists( 'uni_cpo_is_plugin_active' ) ) {
+    /**
+     * Helper function to determine whether a plugin is active.
+     *
+     * @since 4.2.4
+     *
+     * @param string $plugin_name plugin name, as the plugin-filename.php
+     *
+     * @return boolean true if the named plugin is installed and active
+     */
+    function uni_cpo_is_plugin_active( $plugin_name )
+    {
+        $active_plugins = (array) get_option( 'active_plugins', array() );
+        if ( is_multisite() ) {
+            $active_plugins = array_merge( $active_plugins, array_keys( get_site_option( 'active_sitewide_plugins', array() ) ) );
+        }
+        $plugin_filenames = array();
+        foreach ( $active_plugins as $plugin ) {
+            
+            if ( false !== strpos( $plugin, '/' ) ) {
+                // normal plugin name (plugin-dir/plugin-filename.php)
+                list( , $filename ) = explode( '/', $plugin );
+            } else {
+                // no directory, just plugin file
+                $filename = $plugin;
+            }
+            
+            $plugin_filenames[] = $filename;
+        }
+        return in_array( $plugin_name, $plugin_filenames );
+    }
+
+}
+if ( !function_exists( 'uni_cpo_is_wc' ) ) {
+    /**
+     * Helper function to determine whether WC 3.2+ is active
+     *
+     * @since 4.2.4
+     *
+     * @param void
+     *
+     * @return boolean
+     */
+    function uni_cpo_is_wc()
+    {
+        return uni_cpo_is_plugin_active( 'woocommerce.php' );
+    }
+
+}
 
 if ( !function_exists( 'unicpo_fs' ) ) {
     
@@ -46,6 +95,8 @@ if ( !function_exists( 'unicpo_fs' ) ) {
         add_action( 'admin_notices', 'uni_cpo_fail_php_version' );
     } elseif ( !version_compare( get_bloginfo( 'version' ), '4.8', '>=' ) ) {
         add_action( 'admin_notices', 'uni_cpo_fail_wp_version' );
+    } elseif ( !uni_cpo_is_wc() ) {
+        add_action( 'admin_notices', 'uni_cpo_fail_wc_version' );
     } else {
         // Include the main class.
         if ( !class_exists( 'UniCpo' ) ) {
@@ -109,8 +160,9 @@ if ( !function_exists( 'unicpo_fs' ) ) {
      */
     function uni_cpo_fail_php_version()
     {
-        $message = sprintf( esc_html__( 'UniCpo requires PHP version %s+. It is NOT ACTIVATED!', 'uni-cpo' ), '7.0' );
+        $message = sprintf( esc_html__( 'Uni CPO requires PHP version %s+. It is activated but NOT FUNCTIONAL!', 'uni-cpo' ), '7.0' );
         echo  uni_cpo_fail_notice_wrapper( $message ) ;
+        return;
     }
     
     /**
@@ -121,8 +173,22 @@ if ( !function_exists( 'unicpo_fs' ) ) {
      */
     function uni_cpo_fail_wp_version()
     {
-        $message = sprintf( esc_html__( 'UniCpo requires WordPress version %s+. It is NOT ACTIVATED!', 'uni-cpo' ), '4.8' );
+        $message = sprintf( esc_html__( 'Uni CPO requires WordPress version %s+. It is activated but NOT FUNCTIONAL!', 'uni-cpo' ), '4.8' );
         echo  uni_cpo_fail_notice_wrapper( $message ) ;
+        return;
+    }
+    
+    /**
+     * WC version check notice
+     *
+     * @since 4.2.4
+     * @return void
+     */
+    function uni_cpo_fail_wc_version()
+    {
+        $message = sprintf( esc_html__( 'Uni CPO requires WooCommerce version %s+. It is activated but NOT FUNCTIONAL', 'uni-cpo' ), '3.2' );
+        echo  uni_cpo_fail_notice_wrapper( $message ) ;
+        return;
     }
     
     /**

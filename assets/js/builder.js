@@ -1559,7 +1559,8 @@
                             'greater',
                             'is_empty',
                             'is_not_empty',
-                            'between'
+                            'between',
+                            'not_between'
                         ]
                     };
                     if (typeof _.findWhere(Builderius._queryBuilderFilter, filter) === 'undefined') {

@@ -536,8 +536,14 @@ function uni_cpo_formula_condition_check( $rule, $variables )
             break;
         case 'equal':
             
-            if ( isset( $variables[$var_name] ) && !is_array( $variables[$var_name] ) && $variables[$var_name] === $rule_value ) {
-                $is_passed = true;
+            if ( isset( $variables[$var_name] ) && !is_array( $variables[$var_name] ) ) {
+                
+                if ( in_array( $rule_type, array( 'double', 'integer' ) ) ) {
+                    $is_passed = floatval( $variables[$var_name] ) === floatval( $rule_value );
+                } else {
+                    $is_passed = $variables[$var_name] === $rule_value;
+                }
+            
             } elseif ( isset( $variables[$var_name] ) && is_array( $variables[$var_name] ) ) {
                 foreach ( $variables[$var_name] as $value ) {
                     
@@ -552,8 +558,14 @@ function uni_cpo_formula_condition_check( $rule, $variables )
             break;
         case 'not_equal':
             
-            if ( isset( $variables[$var_name] ) && !is_array( $variables[$var_name] ) && $variables[$var_name] !== $rule_value ) {
-                $is_passed = true;
+            if ( isset( $variables[$var_name] ) && !is_array( $variables[$var_name] ) ) {
+                
+                if ( in_array( $rule_type, array( 'double', 'integer' ) ) ) {
+                    $is_passed = floatval( $variables[$var_name] ) !== floatval( $rule_value );
+                } else {
+                    $is_passed = $variables[$var_name] !== $rule_value;
+                }
+            
             } elseif ( isset( $variables[$var_name] ) && is_array( $variables[$var_name] ) ) {
                 foreach ( $variables[$var_name] as $value ) {
                     
@@ -611,28 +623,36 @@ function uni_cpo_formula_condition_check( $rule, $variables )
             }
             break;
         case 'between':
-            
             if ( isset( $variables[$var_name] ) ) {
-                $rule_startdate = new DateTime( $rule_value[0] );
-                $rule_enddate = new DateTime( $rule_value[1] );
-                $chosen_date = new DateTime( $variables[$var_name] );
-                if ( $rule_startdate <= $chosen_date && $chosen_date <= $rule_enddate ) {
-                    $is_passed = true;
+                
+                if ( 'date' === $rule_type ) {
+                    $rule_startdate = new DateTime( $rule_value[0] );
+                    $rule_enddate = new DateTime( $rule_value[1] );
+                    $chosen_date = new DateTime( $variables[$var_name] );
+                    if ( $rule_startdate <= $chosen_date && $chosen_date <= $rule_enddate ) {
+                        $is_passed = true;
+                    }
+                } else {
+                    $is_passed = floatval( $rule_value[0] ) <= floatval( $variables[$var_name] ) && floatval( $variables[$var_name] ) <= floatval( $rule_value[1] );
                 }
-            }
             
+            }
             break;
         case 'not_between':
-            
             if ( isset( $variables[$var_name] ) ) {
-                $rule_startdate = new DateTime( $rule_value[0] );
-                $rule_enddate = new DateTime( $rule_value[1] );
-                $chosen_date = new DateTime( $variables[$var_name] );
-                if ( $rule_startdate >= $chosen_date || $chosen_date >= $rule_enddate ) {
-                    $is_passed = true;
+                
+                if ( 'date' === $rule_type ) {
+                    $rule_startdate = new DateTime( $rule_value[0] );
+                    $rule_enddate = new DateTime( $rule_value[1] );
+                    $chosen_date = new DateTime( $variables[$var_name] );
+                    if ( $rule_startdate >= $chosen_date || $chosen_date >= $rule_enddate ) {
+                        $is_passed = true;
+                    }
+                } else {
+                    $is_passed = floatval( $rule_value[0] ) >= floatval( $variables[$var_name] ) || floatval( $variables[$var_name] ) >= floatval( $rule_value[1] );
                 }
-            }
             
+            }
             break;
     }
     return $is_passed;
@@ -889,8 +909,10 @@ function uni_cpo_display_custom_price_on_archives( $price, $product )
     
     if ( 'on' === $product_data['settings_data']['cpo_enable'] && 'on' === $product_data['settings_data']['calc_enable'] && (is_single() && $product_id !== $wp_query->queried_object_id || is_page() && $product_id !== $product_post_id || is_tax() || is_archive() || is_single() && !is_singular( 'product' ) && isset( $wp_query->queried_object->post_content ) && !has_shortcode( $wp_query->queried_object->post_content, 'product_page' )) ) {
         $price = wc_get_price_to_display( $product );
+        $price = apply_filters( 'uni_cpo_price_regular_archive', $price, $product );
         $regular_price = uni_cpo_price( $price );
         $starting_price = ( !empty($product_data['settings_data']['min_price']) ? floatval( $product_data['settings_data']['min_price'] ) : $price );
+        $starting_price = apply_filters( 'uni_cpo_price_starting_archive', $starting_price, $product );
         $formatted = uni_cpo_price( $starting_price );
         
         if ( $product->is_taxable() ) {

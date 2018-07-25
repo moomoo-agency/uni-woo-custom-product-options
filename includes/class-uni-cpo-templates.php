@@ -1767,7 +1767,7 @@ final class Uni_Cpo_Templates {
                                                         </select>
                                                     </div>
 
-	                                                <div class="uni-cpo-non-option-vars-options-content-field-wrapper uni-cpo-cart-display-wrapper uni-clear">
+	                                                <div class="uni-cpo-non-option-vars-options-content-field-wrapper uni-clear">
 		                                                <label for="uni-row[<%row-count%>]-cart-display"
 		                                                       class="uni-cart-display-checkbox">
 			                                                <?php esc_html_e( 'Display in cart?', 'uni-cpo' ) ?>
@@ -1779,6 +1779,8 @@ final class Uni_Cpo_Templates {
 					                                                value="on"/>
 			                                                <span></span>
 		                                                </label>
+                                                    </div>
+                                                    <div class="uni-cpo-non-option-vars-options-content-field-wrapper uni-cpo-cart-display-wrapper uni-clear">
 		                                                <label for="uni-row[<%row-count%>]-cart-display-to">
 			                                                <?php esc_html_e( 'Name', 'uni-cpo' ) ?>
 		                                                </label>
@@ -1788,7 +1790,7 @@ final class Uni_Cpo_Templates {
 				                                                type="text"
 				                                                name="nov[<%row-count%>][cart_display][name]"
 				                                                value=""/>
-	                                                </div>
+                                                    </div>
 	                                                <?php
                                                 }
                                                 ?>
@@ -2004,7 +2006,7 @@ final class Uni_Cpo_Templates {
                                                         </select>
                                                     </div>
 
-	                                                <div class="uni-cpo-non-option-vars-options-content-field-wrapper uni-cpo-cart-display-wrapper uni-clear">
+	                                                <div class="uni-cpo-non-option-vars-options-content-field-wrapper uni-clear">
 		                                                <label for="uni-row[{{- i }}]-cart-display"
 		                                                       class="uni-cart-display-checkbox">
 			                                                <?php esc_html_e( 'Display in cart?', 'uni-cpo' ) ?>
@@ -2017,6 +2019,8 @@ final class Uni_Cpo_Templates {
 					                                                {{ if (inCartDisplay === 'on') { print(' checked'); } }}/>
 			                                                <span></span>
 		                                                </label>
+                                                    </div>
+                                                    <div class="uni-cpo-non-option-vars-options-content-field-wrapper uni-cpo-cart-display-wrapper uni-clear">
 		                                                <label for="uni-row[{{- i }}]-cart-display-to">
 			                                                <?php esc_html_e( 'Name', 'uni-cpo' ) ?>
 		                                                </label>
@@ -2026,7 +2030,7 @@ final class Uni_Cpo_Templates {
 				                                                type="text"
 				                                                name="nov[{{- i }}][cart_display][name]"
 				                                                value="{{- cartName}}"/>
-	                                                </div>
+                                                    </div>
 	                                                <?php
                                                 }
                                                 ?>

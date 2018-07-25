@@ -381,19 +381,20 @@ class Uni_Cpo_Option extends Uni_Cpo_Data
                     function <?php 
             echo  esc_attr( $slug ) ;
             ?>_fields_conditional_func (formData) {
-                        var $<?php 
+                        try {
+                            var $<?php 
             echo  esc_attr( $slug ) ;
             ?>          = $('#<?php 
             echo  esc_attr( $slug ) ;
             ?>');
-                        var $<?php 
+                            var $<?php 
             echo  esc_attr( $slug ) ;
-            ?>_fields   = $<?php 
+            ?>_fields = $<?php 
             echo  esc_attr( $slug ) ;
             ?>.find('input, select, textarea');
-                        var extraClass                                = 'uni-cpo-excluded-field';
+                            var extraClass = 'uni-cpo-excluded-field';
 
-						<?php 
+	                        <?php 
             
             if ( $is_hidden ) {
                 $is_hidden_html = 'if ( ! $' . esc_attr( $slug ) . '.hasClass("cpo-visible-field") ) {' . "\n";
@@ -405,9 +406,12 @@ class Uni_Cpo_Option extends Uni_Cpo_Data
             
             ?>
 
-						<?php 
+	                        <?php 
             echo  $final_statement ;
             ?>
+                        } catch (e) {
+                            console.error(e);
+                        }
                     }
                 });
             </script>

@@ -62,6 +62,19 @@ class Uni_Cpo_Option_Text_Input extends Uni_Cpo_Option implements Uni_Cpo_Option
 			'is_not_empty'
 		);
 
+		$special_operators = array(
+			'less',
+			'less_or_equal',
+			'equal',
+			'not_equal',
+			'greater_or_equal',
+			'greater',
+			'is_empty',
+			'is_not_empty',
+			'between',
+			'not_between'
+		);
+
 		return array(
 			'input'        => 'text',
 			'operators'    => $operators,
@@ -69,12 +82,12 @@ class Uni_Cpo_Option_Text_Input extends Uni_Cpo_Option implements Uni_Cpo_Option
 				'count'        => array(
 					'type'      => 'integer',
 					'input'     => 'text',
-					'operators' => $operators
+					'operators' => $special_operators
 				),
 				'count_spaces' => array(
 					'type'      => 'integer',
 					'input'     => 'text',
-					'operators' => $operators
+					'operators' => $special_operators
 				)
 			)
 		);

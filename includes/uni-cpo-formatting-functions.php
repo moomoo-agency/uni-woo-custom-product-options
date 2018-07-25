@@ -76,6 +76,8 @@ function uni_cpo_get_allowed_tags() {
 		'text'    => array(
 			'address'    => array(),
 			'a'          => array(
+				'class'  => true,
+				'id'     => true,
 				'href'   => true,
 				'rel'    => true,
 				'rev'    => true,
@@ -168,21 +170,33 @@ function uni_cpo_get_allowed_tags() {
 			),
 			'h1'         => array(
 				'align' => true,
+				'class' => true,
+				'id'    => true,
 			),
 			'h2'         => array(
 				'align' => true,
+				'class' => true,
+				'id'    => true,
 			),
 			'h3'         => array(
 				'align' => true,
+				'class' => true,
+				'id'    => true,
 			),
 			'h4'         => array(
 				'align' => true,
+				'class' => true,
+				'id'    => true,
 			),
 			'h5'         => array(
 				'align' => true,
+				'class' => true,
+				'id'    => true,
 			),
 			'h6'         => array(
 				'align' => true,
+				'class' => true,
+				'id'    => true,
 			),
 			'hr'         => array(
 				'align'   => true,
@@ -202,6 +216,8 @@ function uni_cpo_get_allowed_tags() {
 				'src'      => true,
 				'usemap'   => true,
 				'width'    => true,
+				'class'    => true,
+				'id'       => true,
 			),
 			'ins'        => array(
 				'datetime' => true,
@@ -248,6 +264,8 @@ function uni_cpo_get_allowed_tags() {
 				'rules'       => true,
 				'summary'     => true,
 				'width'       => true,
+				'class'       => true,
+				'id'          => true,
 			),
 			'tbody'      => array(
 				'align'   => true,
@@ -271,6 +289,8 @@ function uni_cpo_get_allowed_tags() {
 				'scope'   => true,
 				'valign'  => true,
 				'width'   => true,
+				'class'   => true,
+				'id'      => true,
 			),
 			'tfoot'      => array(
 				'align'   => true,
@@ -293,6 +313,8 @@ function uni_cpo_get_allowed_tags() {
 				'scope'   => true,
 				'valign'  => true,
 				'width'   => true,
+				'class'   => true,
+				'id'      => true,
 			),
 			'thead'      => array(
 				'align'   => true,
@@ -352,7 +374,8 @@ function uni_cpo_get_allowed_tags() {
  */
 function uni_cpo_sanitize_tooltip( $var ) {
 	$allowed_tags = uni_cpo_get_allowed_tags();
-	$var = str_replace('"', "'", $var);
+	$var          = str_replace( '"', "'", $var );
+
 	return wp_kses( html_entity_decode( $var ), $allowed_tags['tooltip'] );
 }
 
@@ -367,6 +390,7 @@ function uni_cpo_sanitize_tooltip( $var ) {
  */
 function uni_cpo_sanitize_text( $var ) {
 	$allowed_tags = uni_cpo_get_allowed_tags();
+
 	return wp_kses( html_entity_decode( $var ), $allowed_tags['text'] );
 }
 
@@ -393,6 +417,7 @@ function uni_cpo_sanitize_label( $var ) {
  * @param int|float $dimension
  * @param string $from_unit 'mm', 'm', 'in', 'ft', 'yd'
  * @param string $to_unit (optional) 'mm', 'm', 'in', 'ft', 'yd'
+ *
  * @return float
  */
 function uni_cpo_get_dimension( $dimension, $from_unit, $to_unit = '' ) {

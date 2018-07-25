@@ -13,7 +13,7 @@ final class Uni_Cpo
      *
      * @var string
      */
-    public  $version = '4.2.2' ;
+    public  $version = '4.2.4' ;
     /**
      * The single instance of the class.
      *
@@ -352,6 +352,7 @@ final class Uni_Cpo
         }
         include_once UNI_CPO_ABSPATH . 'includes/class-uni-cpo-frontend-scripts.php';
         include_once UNI_CPO_ABSPATH . 'includes/admin/uni-cpo-admin-functions.php';
+        include_once UNI_CPO_ABSPATH . 'includes/admin/class-uni-cpo-admin-pointers.php';
         include_once UNI_CPO_ABSPATH . 'includes/admin/class-uni-cpo-plugin-settings.php';
         include_once UNI_CPO_ABSPATH . 'includes/class-eval-math.php';
         include_once UNI_CPO_ABSPATH . 'includes/class-uni-cpo-post-types.php';

@@ -91,6 +91,17 @@ A: We wouldn't recommend to do this yet. First, this version is so called 'lite'
 
 == Changelog ==
 
+= 4.2.4 =
+* Added: product basic setup tutorial (WP pointers)
+* Added: 'between' and 'not_between' query builder filters for Text Input; fixed the same filters for NOVs
+* Fixed: some minor styling issues
+
+= 4.2.3 =
+* Added: support of Aelia Currency Switcher
+* Fixed: not saving 'class' and/or 'id' attributes for a, img, table html tags
+* Fixed: displaying dimensions for cart items even if it is disabled
+* Improved: suboptions conditional logic functionality based on users' feedbacks
+
 = 4.2.2 =
 * Added: support of Storefront Sticky header
 * Improved: suboption conditional logic

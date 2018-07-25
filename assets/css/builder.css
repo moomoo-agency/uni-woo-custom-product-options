@@ -317,7 +317,7 @@ fieldset {margin:0;padding:0;border:none;}
 .uni-module-checkbox label .uni-cpo-option-label__text-content {white-space: nowrap;-webkit-box-sizing: content-box!important;-moz-box-sizing: content-box!important;box-sizing: content-box!important;}
 
 /* Module: select */
-.uni-module-select select {padding: 0 30px 0 6px!important;background: url(../images/arrow-gray.svg) no-repeat right center #fff;box-shadow: none; -webkit-appearance:none;-moz-appearance: none;}
+.uni-module-select select {padding: 0 30px 0 6px!important;background: url(../images/arrow-gray.svg) no-repeat right center #fff!important;box-shadow: none; -webkit-appearance:none;-moz-appearance: none;}
 
 /* Module: file upload */
 .uni-module-file_upload {min-width: 192px;}
@@ -691,10 +691,10 @@ div[data-group="border"] .uni-modal-row:not(.uni-colour-picker-default) .wp-pick
 .uni-setting-fields-wrap-3 .uni-col-2 label {display: block;float: left; width: 105px;}
 .uni-setting-fields-wrap-3 .wp-picker-container {display: block;float: right;}
 
-.uni-modal-select {width: 235px; height: 32px; padding: 0 30px 0 6px!important;margin: 0; border: 1px solid #e5e5e5;background: url(../images/arrow.svg) no-repeat right center #fff;box-shadow: none!important; color: #000000; font-size: 14px;border-radius: 3px!important;-webkit-appearance:none;-moz-appearance: none;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing: border-box;}
+.uni-modal-select {width: 235px; height: 32px; padding: 0 30px 0 6px!important;margin: 0; border: 1px solid #e5e5e5;background: url(../images/arrow.svg) no-repeat right center #fff!important;box-shadow: none!important; color: #000000; font-size: 14px;border-radius: 3px!important;-webkit-appearance:none;-moz-appearance: none;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing: border-box;}
 
 .uni-custom-select-wrap {position: relative;float: left;width: 100px;margin-right: 15px;}
-.uni-custom-select-head {width: 100%;height: 32px;line-height: 32px; padding: 0 30px 0 10px; border: 1px solid #e5e5e5;background: url(../images/arrow.svg) no-repeat right center #fff; color: #000000;font-size: 14px;cursor: pointer;text-transform: capitalize;border-radius: 3px!important; -webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing: border-box;}
+.uni-custom-select-head {width: 100%;height: 32px;line-height: 32px; padding: 0 30px 0 10px; border: 1px solid #e5e5e5;background: url(../images/arrow.svg) no-repeat right center #fff!important; color: #000000;font-size: 14px;cursor: pointer;text-transform: capitalize;border-radius: 3px!important; -webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing: border-box;}
 .uni-custom-select-head img {position: relative;display: inline-block;top: -1px;vertical-align: middle;}
 .uni-custom-select-list {display: none; position: absolute;left: 0;top: 35px;width: 100%;border: 1px solid #7891f9;background-color: #fff;margin: 0; z-index: 2;border-radius: 3px;
 -moz-background-clip: padding; -webkit-background-clip: padding; background-clip: padding-box; -webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing: border-box;}
@@ -940,7 +940,7 @@ div[data-group="border"] .uni-modal-row:not(.uni-colour-picker-default) .wp-pick
 .query-builder .rules-group-header {float: none;clear: none;width: auto;text-align: inherit;font-weight: normal;}
 .query-builder dt, .query-builder dd {border: 0!important;}
 .query-builder .rule-container, .query-builder .rule-placeholder, .query-builder .rules-group-container {line-height: normal;}
-.query-builder select, .query-builder input[type="text"] {width: 100%!important; height: 30px!important; padding: 0 30px 0 2px!important; border: 1px solid #e5e5e5!important;background: url(../images/arrow.svg) no-repeat right center #fff!important; color: #000000!important;font-size: 13px!important;border-radius: 3px!important;box-shadow: none!important; -webkit-appearance:none;-moz-appearance: none;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing: border-box;}
+.query-builder select, .query-builder input[type="text"] {width: 100%!important;min-width: inherit!important; height: 30px!important; padding: 0 30px 0 2px!important;margin: 0!important;  border: 1px solid #e5e5e5!important;background: url(../images/arrow.svg) no-repeat right center #fff!important; color: #000000!important;font-size: 13px!important;border-radius: 3px!important;box-shadow: none!important; -webkit-appearance:none;-moz-appearance: none;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing: border-box;}
 .query-builder input[type="text"] {background: none!important;}
 .query-builder .rule-value-container {width: 25%;padding-left: 9px;}
 .query-builder .rule-filter-container,
@@ -1026,7 +1026,7 @@ button.uni-matrix-import-btn:hover, button.uni-matrix-import-btn:focus {backgrou
 .uni-cpo-non-option-vars-options-content-field-wrapper:last-child {margin-bottom: 0;}
 .uni-cpo-non-option-vars-options-content-field-wrapper span {float: left; line-height: 28px; color: #202020;font-size: 14px;font-family:courier, serif!important; }
 .uni-cpo-non-option-vars-options-content-field-wrapper span:first-child {width: 140px;}
-.uni-cpo-non-option-vars-options-content-field-wrapper span code {padding: 0;border: 0!important; color: #202020;font-size: 16px;font-family: monospace,monospace;background-color: transparent;}
+.uni-cpo-non-option-vars-options-content-field-wrapper span code {padding: 0;!important;margin: 0!important; border: 0!important; color: #202020;font-size: 16px;font-family: monospace,monospace;background: transparent!important;}
 .uni-cpo-non-option-vars-options-content-formula-wrapper label {display: block; margin-bottom: 8px; font-weight: normal;}
 .uni-cpo-input-for-nov {width: 200px!important;height: 30px!important;padding: 0 6px!important;margin: 0 10px 0 0!important;border: 1px solid #d7d7d7!important;background-color: #fff!important; color: #000000!important;font-size: 14px!important;border-radius: 3px!important;box-shadow: none!important;}
 .uni-cpo-non-option-slug-field {float:left!important;}
@@ -1045,13 +1045,19 @@ button.uni-matrix-import-btn:hover, button.uni-matrix-import-btn:focus {backgrou
 #uni-modal-nov-wrapper .uni-modal-formula {position: relative;width: 260px;}
 #uni-modal-nov-wrapper .uni-modal-formula h3 {text-align: right;}
 #uni-modal-nov-wrapper .uni-modal-conditional-logic {width: 250px;}
-.uni-cpo-non-option-vars-options-content-field-wrapper.uni-cpo-cart-display-wrapper{margin-bottom: 20px;}
-.uni-convert-checkbox {position: relative;float: left;line-height: 30px;padding-right: 32px;}
-.uni-convert-checkbox + label {float: left;display: block;line-height: 30px;margin-right: 8px;}
-.uni-convert-checkbox input[type="checkbox"] {display: none;}
-.uni-convert-checkbox span {position: absolute;right: 7px;top: 50%;width: 18px;height: 18px;margin-top: -9px;border: 1px solid #d5d5d5;background-color: #fff;-webkit-transition: background-color 0.3s ease;-moz-transition: background-color 0.3s ease;-o-transition: background-color 0.3s ease;transition: background-color 0.3s ease; -webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing: border-box;}
-.uni-convert-checkbox input:checked + span {background-color: #d5d5d5;}
-.uni-cpo-convert-wrapper select {min-width: 200px;max-width: 200px; height: 30px;padding: 0 30px 0 6px!important;margin: 0!important; border: 1px solid #d7d7d7!important;background: url(../images/arrow.svg) no-repeat right center #fff; color: #000000!important;font-size: 14px!important;border-radius: 3px!important;-webkit-appearance:none;-moz-appearance: none;}
+.uni-cpo-cart-display-wrapper {margin-bottom: 16px;}
+.uni-cpo-cart-display-wrapper label {display: block;float: left;line-height: 29px; width: 140px;}
+.uni-convert-checkbox,
+.uni-cart-display-checkbox {position: relative;float: left;line-height: 30px;padding-right: 32px;}
+.uni-convert-checkbox + label,
+.uni-cart-display-checkbox + label {float: left;display: block;line-height: 30px;margin-right: 8px;}
+.uni-convert-checkbox input[type="checkbox"],
+.uni-cart-display-checkbox input[type="checkbox"] {display: none;}
+.uni-convert-checkbox span,
+.uni-cart-display-checkbox span {position: absolute;right: 7px;top: 50%;width: 18px;height: 18px;margin-top: -9px;border: 1px solid #d5d5d5;background-color: #fff;-webkit-transition: background-color 0.3s ease;-moz-transition: background-color 0.3s ease;-o-transition: background-color 0.3s ease;transition: background-color 0.3s ease; -webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing: border-box;}
+.uni-convert-checkbox input:checked + span,
+.uni-cart-display-checkbox input:checked + span {background-color: #d5d5d5;}
+.uni-cpo-convert-wrapper select {min-width: 200px;max-width: 200px; height: 30px;padding: 0 30px 0 6px!important;margin: 0!important; border: 1px solid #d7d7d7!important;background: url(../images/arrow.svg) no-repeat right center #fff!important; color: #000000!important;font-size: 14px!important;border-radius: 3px!important;-webkit-appearance:none;-moz-appearance: none;}
 
 .uni-matrix-checkbox {position: absolute;right: 0;top: 2px;padding-right: 26px;color: #9a9a9a;font-size: 14px;font-family:courier, serif!important;}
 .uni-matrix-checkbox input[type="checkbox"] {display: none;}
@@ -1059,7 +1065,7 @@ button.uni-matrix-import-btn:hover, button.uni-matrix-import-btn:focus {backgrou
 .uni-matrix-checkbox input:checked + span {background-color: #d5d5d5;}
 
 .uni-cpo-matrix-options-row label {float: left;width: 140px;line-height: 30px;margin-bottom: 8px; font-weight: normal;}
-.uni-cpo-matrix-options-row select {float: left;min-width: 200px;max-width: 200px; height: 30px;padding: 0 30px 0 6px!important;margin: 0!important; border: 1px solid #d7d7d7!important;background: url(../images/arrow.svg) no-repeat right center #fff; color: #000000!important;font-size: 14px!important;border-radius: 3px!important;-webkit-appearance:none;-moz-appearance: none;}
+.uni-cpo-matrix-options-row select {float: left;min-width: 200px!important;max-width: 200px!important; height: 30px;padding: 0 30px 0 6px!important;margin: 0!important; border: 1px solid #d7d7d7!important;background: url(../images/arrow.svg) no-repeat right center #fff!important; color: #000000!important;font-size: 14px!important;border-radius: 3px!important;-webkit-appearance:none;-moz-appearance: none;}
 .uni-cpo-matrix-options-row input {float: left!important;height: 30px!important;width: calc(100% - 140px)!important;padding: 0 10px!important;margin: 0!important; border: 1px solid #d7d7d7!important;background-color: #fff!important; color: #000000!important;font-size: 14px!important;border-radius: 3px!important;box-shadow: none!important;}
 .uni-matrix-generate-btn {float: left;margin-bottom: 15px;}
 .uni-matrix-import {float: right;}

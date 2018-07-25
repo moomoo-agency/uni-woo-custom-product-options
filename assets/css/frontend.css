@@ -194,7 +194,7 @@
 /* Module: select */
 .uni-module-select select {
     padding: 0 30px 0 6px !important;
-    background: url(../images/arrow-gray.svg) no-repeat right center #fff;
+    background: url(../images/arrow-gray.svg) no-repeat right center #fff!important;
     box-shadow: none;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -566,7 +566,7 @@ span.flatpickr-weekday {
 
 /* RTL */
 .rtl .uni-module-select select {
-    background-position: left center;
+    background-position: left center!important;
     padding: 0 6px 0 30px !important;
 }
 

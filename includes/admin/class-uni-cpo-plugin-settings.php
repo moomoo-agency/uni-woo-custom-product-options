@@ -432,6 +432,11 @@ class Uni_Cpo_Plugin_Settings {
 		// Build page HTML
 		$html = '<div class="wrap" id="plugin_settings">' . "\n";
 		$html .= '<h1>' . esc_html__( 'Uni CPO Plugin Settings', 'uni-cpo' ) . '</h1>' . "\n";
+		$html .= '<p class="uni-cpo-setup-actions">
+						<a class="button button-primary button-large" href="' . esc_url( admin_url( 'post-new.php?post_type=product&cpo-tutorial=true' ) ) . '">'
+							. esc_html__( 'Uni CPO product basic setup tutorial', 'uni-cpo' ) .
+						'</a>
+					</p>';
 		$html .= '<form method="post" action="options.php" enctype="multipart/form-data">' . "\n";
 
 		// Setup navigation
