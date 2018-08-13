@@ -362,16 +362,16 @@ class Uni_Cpo_Option extends Uni_Cpo_Data
             
             $final_statement .= '}' . "\n";
             ?>
-            <script>
-                jQuery(document).ready(function ($) {
+			<script>
+                jQuery(document).ready(function($) {
                     'use strict';
 
-                    $(document.body).on('uni_cpo_options_data_ajax_success', function () {
+                    $(document.body).on('uni_cpo_options_data_ajax_success', function() {
 						<?php 
             echo  esc_attr( $slug ) ;
             ?>_fields_conditional_func(unicpo.formatted_vars);
                     });
-                    $(document.body).on('uni_cpo_options_data_for_conditional', function (e, fields) {
+                    $(document.body).on('uni_cpo_options_data_for_conditional', function(e, fields) {
                         var variables = $.extend({}, unicpo.formatted_vars, fields);
 						<?php 
             echo  esc_attr( $slug ) ;
@@ -394,7 +394,7 @@ class Uni_Cpo_Option extends Uni_Cpo_Data
             ?>.find('input, select, textarea');
                             var extraClass = 'uni-cpo-excluded-field';
 
-	                        <?php 
+							<?php 
             
             if ( $is_hidden ) {
                 $is_hidden_html = 'if ( ! $' . esc_attr( $slug ) . '.hasClass("cpo-visible-field") ) {' . "\n";
@@ -406,7 +406,7 @@ class Uni_Cpo_Option extends Uni_Cpo_Data
             
             ?>
 
-	                        <?php 
+							<?php 
             echo  $final_statement ;
             ?>
                         } catch (e) {
@@ -414,7 +414,7 @@ class Uni_Cpo_Option extends Uni_Cpo_Data
                         }
                     }
                 });
-            </script>
+			</script>
 			<?php 
         }
     

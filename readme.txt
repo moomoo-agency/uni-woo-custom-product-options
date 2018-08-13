@@ -2,10 +2,10 @@
 Contributors: moomooagency, mrpsiho, andriimatenka, freemius
 Tags: custom options, extra options, product visual builder, woocommerce plugins, price calculation, maths formula, conditional logic, wholesale
 Requires at least: 4.8
-Tested up to: 4.9.6
+Tested up to: 4.9.8
 Requires PHP: 7.0
 WC requires at least: 3.2.0
-WC tested up to: 3.4.2
+WC tested up to: 3.4.4
 Stable tag: trunk
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -14,19 +14,18 @@ Provides an opportunity to add extra product options with the possibility to cal
 
 == Description ==
 
-=== Overview ===
+= Overview =
 
 **Uni CPO - WooCommerce Options and Price Calculation Formulas** is a fully featured plugin that creates an opportunity to add custom options for a WooCommerce products as well as enables custom price calculation based on any maths formula.
 
-It supports ONLY these product types: 'simple' and 'subscription' (experimental)! But why you ever need any variable product after this plugin, right? :)
-
 A fully featured visual form builder is used to add custom options. Would you like to place the options in two/three/more columns? Easy! Would you like to set custom color, margins, add custom text and so on? Yes, it's possible too!!)
 
-[Check out this unique Colorify functionality (PRO) ](https://www.youtube.com/watch?v=-6_CBPuD1w4)
+It takes only 3 minutes to personalize a WC product and implement price calculation based on the extra product options and any maths formula you like:
+[youtube https://www.youtube.com/watch?v=qZHWG9IAD5Q]
 
 Add extra options to your products, display them conditionally, give a possibility for your customers to customize products, to personalize them by adding highly dynamic info like dimensions, custom labels, comments. Moreover, create a unique scheme for price calculation based on custom options added!
 
-=== Main features ===
+= Main features =
 
 * Visual form builder - design the look of your form in easy and smooth way!
 * Custom product option types - 10+ different types!
@@ -41,12 +40,12 @@ other custom options and/or NOVs
 * Integrate with ShipperHQ or Boxtal and let them use the calculated weight of the ordered item and request the real shipping rates!
 ...and many many more! ;)
 
-=== Full List of Features and Docs ===
+= Full List of Features and Docs =
 
 * [The full list of plugin's features](https://moomoo-agency.gitbooks.io/uni-cpo-4-documentation/content/why-uni-cpo.html)
 * [The plugin's Documentation](https://moomoo-agency.gitbooks.io/uni-cpo-4-documentation/)
 
-=== Demo - Try By Yourself! ===
+= Demo - Try By Yourself! =
 
 [DEMO site with PRO version installed (unlocked all the features)](https://cpo.builderius.io)
 Use the following credentials to log in and try by yourself:
@@ -56,15 +55,23 @@ Use the following credentials to log in and try by yourself:
 
 **Pro version of the plugin is [available here](https://builderius.io/cpo)**
 
+**Uni CPO supports ONLY these product types: 'simple' and 'subscription'!** But why you ever need any variable products when this plugin exists, right? :)
+
 == Installation ==
 
-=== Minimum Requirements ===
+= Minimum Requirements =
 
 * WooCommerce 3.2+
 * WordPress 4.8 or greater
 * PHP version 7.0 or greater
 
-=== Installation ===
+= Automatic installation =
+
+To do an automatic install of Uni CPO, log in to your WordPress dashboard, navigate to the Plugins menu and click Add New.
+
+In the search field type “Uni CPO” and click Search Plugins. Once you’ve found our WC extension plugin you can view details about it such as the point release, rating and description. Most importantly of course, you can install it by simply clicking “Install Now”.
+
+= Manual installation =
 
 1. Upload the plugin files to the `/wp-content/plugins/uni-woo-custom-product-options` directory, or install the plugin through the WordPress plugins screen directly.
 1. Activate the plugin through the `Plugins` screen in WordPress
@@ -90,6 +97,10 @@ A: We wouldn't recommend to do this yet. First, this version is so called 'lite'
 7. screenshot-7.png
 
 == Changelog ==
+
+= 4.2.5 =
+* Added: a possibility to use any NOV as starting price setting; useful for displaying role based wholesale prices
+* Fixed: issues with fields conditional logic and operators 'between' and 'not_between'
 
 = 4.2.4 =
 * Added: product basic setup tutorial (WP pointers)

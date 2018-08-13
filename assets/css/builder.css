@@ -1075,7 +1075,7 @@ button.uni-matrix-import-btn:hover, button.uni-matrix-import-btn:focus {backgrou
 .uni-matrix-import input[type="file"] + label * {pointer-events: none;}
 
 button.uni-matrix-import-btn {float: right;min-width: 10px!important;padding: 0 16px;}
-.uni-matrix-table-wrapper, .uni-matrix-option-table-wrapper {clear: both;max-height: 207px;}
+.uni-matrix-table-wrapper, .uni-matrix-option-table-wrapper {clear: both;max-height: 307px;}
 
 .fa.fa-times {position: relative;}
 .fa.fa-plus-square {position: relative;top: -1px;}

@@ -102,6 +102,13 @@ final class Uni_Cpo_Templates {
                         id="js-panel-cpo-nov"
                         class="uni-panel-action-btn uni-cpo-nov-btn"
                         data-tip="<?php esc_attr_e( 'Non option variables', 'uni-cpo' ); ?>"></div>
+	            <?php
+	            if ( ! UniCpo()->is_pro() ) { ?>
+	            <div
+			            id="js-panel-cpo-formula"
+			            class="uni-panel-action-btn uni-cpo-formula-btn"
+			            data-tip="<?php esc_attr_e( 'Formula and conditional logic', 'uni-cpo' ); ?>"></div>
+	            <?php } ?>
                 <?php
 				if ( UniCpo()->is_pro() ) { ?>
                     <div
@@ -109,28 +116,30 @@ final class Uni_Cpo_Templates {
                             class="uni-panel-action-btn uni-cpo-weight-btn"
                             data-tip="<?php esc_attr_e( 'Weight conditional logic', 'uni-cpo' ); ?>"></div>
 					<div
+							id="js-panel-cpo-dimensions"
+							class="uni-panel-action-btn uni-cpo-dimensions-btn"
+							data-tip="<?php esc_attr_e( 'Dimensions settings', 'uni-cpo' ); ?>"></div>
+					<div
 							id="js-panel-cpo-image-logic"
 							class="uni-panel-action-btn uni-cpo-image-logic-btn"
 							data-tip="<?php esc_attr_e( 'Image conditional logic', 'uni-cpo' ); ?>"></div>
-                    <div
-                            id="js-panel-cpo-dimensions"
-                            class="uni-panel-action-btn uni-cpo-dimensions-btn"
-                            data-tip="<?php esc_attr_e( 'Dimensions settings', 'uni-cpo' ); ?>"></div>
-                    <div
-                        id="js-panel-cpo-cart-discounts"
-                        class="uni-panel-action-btn uni-cpo-cart-discounts-btn"
-                        data-tip="<?php esc_attr_e( 'Cart discounts', 'uni-cpo' ); ?>"></div>
 	            <?php } ?>
                 <div
                         id="js-panel-save-changes"
                         class="uni-panel-action-btn uni-panel-save-changes-btn"
                         data-tip="<?php esc_attr_e( 'Save content', 'uni-cpo' ); ?>"></div>
 				<div class="uni-clear"></div>
+	            <?php
+	            if ( UniCpo()->is_pro() ) { ?>
 				<div
                         id="js-panel-cpo-formula"
                         class="uni-panel-action-btn uni-cpo-formula-btn"
                         data-tip="<?php esc_attr_e( 'Formula and conditional logic', 'uni-cpo' ); ?>"></div>
-
+	            <div
+			            id="js-panel-cpo-cart-discounts"
+			            class="uni-panel-action-btn uni-cpo-cart-discounts-btn"
+			            data-tip="<?php esc_attr_e( 'Cart discounts', 'uni-cpo' ); ?>"></div>
+	            <?php } ?>
             </div>
             <?php /*
             <div class="uni-builder-panel-search">
@@ -633,7 +642,7 @@ final class Uni_Cpo_Templates {
                                         <?php esc_html_e( 'Price template for archives', 'uni-cpo' ) ?>
                                     </h3>
                                     <p>
-                                        <?php esc_html_e( 'Custom price template to be displayed on archives. Template variables: &#123;&#123;&#123;REGULAR_PRICE&#125;&#125;&#125;, &#123;&#123;&#123;STARTING_PRICE&#125;&#125;&#125;. Example: "from &#123;&#123;&#123;STARTING_PRICE&#125;&#125;&#125; / sq.m."', 'uni-cpo' ) ?>
+                                        <?php esc_html_e( 'Custom price template to be displayed on archives. Template variables: &#123;&#123;&#123;REGULAR_PRICE&#125;&#125;&#125;, &#123;&#123;&#123;STARTING_PRICE&#125;&#125;&#125; or any NOV in triple curly braces. Example: "from &#123;&#123;&#123;STARTING_PRICE&#125;&#125;&#125; / sq.m." or "from &#123;&#123;&#123;uni_nov_cpo_base_price&#125;&#125;&#125;".', 'uni-cpo' ) ?>
                                     </p>
                                     <input
                                             type="text"

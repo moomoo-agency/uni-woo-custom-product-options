@@ -756,10 +756,10 @@ function uni_cpo_option_js_condition( $rule )
             $statement = "UniCpo.isProp({$cpo_var}, '{$rule['id']}') && {$cpo_var}.{$rule['id']} <= {$rule['value']}";
             break;
         case 'equal':
-            $statement = "UniCpo.isProp({$cpo_var}, '{$rule['id']}') && ({$cpo_var}.{$rule['id']}.constructor === Array ? {$cpo_var}.{$rule['id']}.indexOf('{$rule['value']}') !== -1 : (window.UniCpo.isNumber('{$rule['value']}') ? parseFloat({$cpo_var}.{$rule['id']}) === parseFloat({$rule['value']}) : {$cpo_var}.{$rule['id']} === '{$rule['value']}'))";
+            $statement = "UniCpo.isProp({$cpo_var}, '{$rule['id']}') && ({$cpo_var}.{$rule['id']}.constructor === Array ? {$cpo_var}.{$rule['id']}.indexOf('{$rule['value']}') !== -1 : (window.UniCpo.isNumber('{$rule['value']}') ? parseFloat({$cpo_var}.{$rule['id']}) === parseFloat('{$rule['value']}') : {$cpo_var}.{$rule['id']} === '{$rule['value']}'))";
             break;
         case 'not_equal':
-            $statement = "UniCpo.isProp({$cpo_var}, '{$rule['id']}') && ({$cpo_var}.{$rule['id']}.constructor === Array ? {$cpo_var}.{$rule['id']}.indexOf('{$rule['value']}') === -1 : (window.UniCpo.isNumber('{$rule['value']}') ? parseFloat({$cpo_var}.{$rule['id']}) !== parseFloat({$rule['value']}) : {$cpo_var}.{$rule['id']} !== '{$rule['value']}'))";
+            $statement = "UniCpo.isProp({$cpo_var}, '{$rule['id']}') && ({$cpo_var}.{$rule['id']}.constructor === Array ? {$cpo_var}.{$rule['id']}.indexOf('{$rule['value']}') === -1 : (window.UniCpo.isNumber('{$rule['value']}') ? parseFloat({$cpo_var}.{$rule['id']}) !== parseFloat('{$rule['value']}') : {$cpo_var}.{$rule['id']} !== '{$rule['value']}'))";
             break;
         case 'greater_or_equal':
             $statement = "UniCpo.isProp({$cpo_var}, '{$rule['id']}') && {$cpo_var}.{$rule['id']} >= {$rule['value']}";
@@ -772,6 +772,12 @@ function uni_cpo_option_js_condition( $rule )
             break;
         case 'is_not_empty':
             $statement = "(UniCpo.isProp({$cpo_var}, '{$rule['id']}') && ({$cpo_var}.{$rule['id']}.constructor === Array ? {$cpo_var}.{$rule['id']}.length > 0 : {$cpo_var}.{$rule['id']} !== ''))";
+            break;
+        case 'between':
+            $statement = "(UniCpo.isProp({$cpo_var}, '{$rule['id']}') && {$cpo_var}.{$rule['id']} >= {$rule['value'][0]} && {$cpo_var}.{$rule['id']} <= {$rule['value'][1]})";
+            break;
+        case 'not_between':
+            $statement = "(UniCpo.isProp({$cpo_var}, '{$rule['id']}') && ({$cpo_var}.{$rule['id']} <= {$rule['value'][0]} || {$cpo_var}.{$rule['id']} >= {$rule['value'][1]}))";
             break;
     }
     return $statement;

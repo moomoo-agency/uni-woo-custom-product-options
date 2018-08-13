@@ -13,7 +13,7 @@ final class Uni_Cpo
      *
      * @var string
      */
-    public  $version = '4.2.4' ;
+    public  $version = '4.2.5' ;
     /**
      * The single instance of the class.
      *
