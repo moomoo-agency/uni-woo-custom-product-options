@@ -530,8 +530,9 @@ class Uni_Cpo_Option_Text_Input extends Uni_Cpo_Option implements Uni_Cpo_Option
 			$attributes['data-parsley-type'] = 'integer';
 		}
 		if ( 'double' === $cpo_general_main['cpo_type'] ) {
-			$input_type                      = 'text';
-			$attributes['data-parsley-type-step'] = '0.1';
+			//$input_type                      = 'text';
+			$input_type                      = 'number';
+			//$attributes['data-parsley-type-step'] = '0.1';
 			$attributes['data-parsley-pattern']   = '/^(-?\d+(?:[\.]\d{0,1})?)$/';
 		}
 		if ( in_array( $cpo_general_main['cpo_type'], array( 'integer', 'double' ) ) ) {
@@ -555,8 +556,9 @@ class Uni_Cpo_Option_Text_Input extends Uni_Cpo_Option implements Uni_Cpo_Option
 		}
 		if ( ! empty( $cpo_general_main['cpo_step_val'] )
 		      && in_array( $cpo_general_main['cpo_type'], array( 'integer', 'double' ) ) ) {
-			$attributes['data-parsley-type-step'] = $cpo_general_main['cpo_step_val'];
+			$attributes['step'] = $cpo_general_main['cpo_step_val'];
 			if ( 'double' === $cpo_general_main['cpo_type'] ) {
+				//unset($attributes['step']);
 				$decimals_count                     = uni_cpo_get_decimals_count( $cpo_general_main['cpo_step_val'] );
 				$attributes['data-parsley-pattern'] = '/^(-?\d+(?:[\.]\d{0,' . $decimals_count . '})?)$/';
 			}

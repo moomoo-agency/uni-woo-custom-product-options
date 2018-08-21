@@ -98,6 +98,15 @@ A: We wouldn't recommend to do this yet. First, this version is so called 'lite'
 
 == Changelog ==
 
+= 4.2.7 =
+* Fixed: 'step' attribute for Text Input now works like intended
+* Fixed: the compatibility issue with Aelia Currency Switcher when using {uni_cpo_price} variable
+
+= 4.2.6 =
+* Fixed: bug in IE with radio/checkbox options
+* Fixed: added missing parsley.min.js.map file
+* Fixed: bug with border for radio/checkbox options
+
 = 4.2.5 =
 * Added: a possibility to use any NOV as starting price setting; useful for displaying role based wholesale prices
 * Fixed: issues with fields conditional logic and operators 'between' and 'not_between'

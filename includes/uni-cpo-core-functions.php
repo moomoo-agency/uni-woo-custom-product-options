@@ -1294,7 +1294,7 @@ function uni_cpo_calculate_price_in_cart( &$cart_item_data, $product_id )
                 $formatted_vars[$slug] = $value['cart_meta'];
             }
         } );
-        $variables['{uni_cpo_price}'] = $product->get_price();
+        $variables['{uni_cpo_price}'] = $product->get_price( 'edit' );
         // non option variables
         if ( 'on' === $product_data['nov_data']['nov_enable'] && !empty($product_data['nov_data']['nov']) ) {
             $variables = uni_cpo_process_formula_with_non_option_vars( $variables, $product_data, $formatted_vars );

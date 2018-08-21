@@ -4,7 +4,7 @@
  * Plugin Name: Uni Woo Custom Product Options
  * Plugin URI: https://builderius.io/cpo
  * Description: Provides an opportunity to add extra product options with the possibility to calculate the price based on the chosen options and using custom maths formula!
- * Version: 4.2.5
+ * Version: 4.2.7
  * Author: MooMoo Agency
  * Author URI: http://moomoo.agency
  * Domain Path: /languages/
@@ -111,20 +111,21 @@ if ( !function_exists( 'unicpo_fs' ) ) {
                 // Include Freemius SDK.
                 require_once dirname( __FILE__ ) . '/includes/freemius/start.php';
                 $unicpo_fs = fs_dynamic_init( array(
-                    'id'             => '1534',
-                    'slug'           => 'uni-woo-custom-product-options',
-                    'type'           => 'plugin',
-                    'public_key'     => 'pk_69013caadae19db148a7e4e250aab',
-                    'is_premium'     => false,
-                    'has_addons'     => true,
-                    'has_paid_plans' => true,
-                    'menu'           => array(
+                    'id'              => '1534',
+                    'slug'            => 'uni-woo-custom-product-options',
+                    'type'            => 'plugin',
+                    'public_key'      => 'pk_69013caadae19db148a7e4e250aab',
+                    'is_premium'      => false,
+                    'has_addons'      => true,
+                    'has_paid_plans'  => true,
+                    'has_affiliation' => 'all',
+                    'menu'            => array(
                     'slug'   => 'uni-cpo-settings',
                     'parent' => array(
                     'slug' => 'woocommerce',
                 ),
                 ),
-                    'is_live'        => true,
+                    'is_live'         => true,
                 ) );
             }
             

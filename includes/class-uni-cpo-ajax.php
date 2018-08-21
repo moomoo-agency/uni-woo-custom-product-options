@@ -632,7 +632,7 @@ class Uni_Cpo_Ajax
                         $formatted_vars[$slug] = $value['cart_meta'];
                     }
                 } );
-                $variables['{uni_cpo_price}'] = $product->get_price();
+                $variables['{uni_cpo_price}'] = $product->get_price( 'edit' );
                 $nice_names_vars['uni_cpo_price'] = $variables['{uni_cpo_price}'];
                 // non option variables
                 if ( 'on' === $product_data['nov_data']['nov_enable'] && !empty($product_data['nov_data']['nov']) ) {

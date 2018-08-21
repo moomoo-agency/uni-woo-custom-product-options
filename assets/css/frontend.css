@@ -83,7 +83,11 @@
 .uni-module-checkbox label .uni-cpo-option-label__text {
     vertical-align: top;
 }
-
+.uni-module-radio label .uni-cpo-option-label__image,
+.uni-module-checkbox label .uni-cpo-option-label__image {
+    pointer-events: none;
+    position: relative;
+}
 .uni-module-radio label .uni-cpo-option-label__image,
 .uni-module-radio label .uni-cpo-option-label__colour-wrap,
 .uni-module-radio label .uni-cpo-option-label__colour,
@@ -149,6 +153,15 @@
 .uni-module-checkbox:not(.uni-module-checkbox-classic-mode) label.uni-cpo-option-label {
     display: block;
     float: left;
+}
+
+.uni-module-radio.uni-module-radio-colour-mode label.uni-cpo-option-label .uni-cpo-option-label__colour-wrap,
+.uni-module-radio.uni-module-radio-image-mode label.uni-cpo-option-label .uni-cpo-option-label__image-wrap,
+.uni-module-radio.uni-module-radio-text-mode label.uni-cpo-option-label .uni-cpo-option-label__text-content,
+.uni-module-checkbox.uni-module-checkbox-colour-mode label.uni-cpo-option-label .uni-cpo-option-label__colour-wrap,
+.uni-module-checkbox.uni-module-checkbox-image-mode label.uni-cpo-option-label .uni-cpo-option-label__image-wrap,
+.uni-module-checkbox.uni-module-checkbox-text-mode label.uni-cpo-option-label .uni-cpo-option-label__text-content {
+    border-style: solid;
 }
 
 .uni-module-radio:not(.uni-module-radio-classic-mode) label.uni-cpo-option-label:last-child,

@@ -500,7 +500,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
 	            	}
 	            	.uni-node-{{= id }} .uni-cpo-option-label__colour-wrap {
 		            	{{ if ( offset_px ) { }} padding: {{= offset_px }}px; {{ } }}
-		            	{{ if ( border_width ) { }} border-width: {{= border_width }}px!important; {{ } }}
+                        {{ if ( border_width ) { }} border-width: {{= border_width }}px!important; border-style: solid; {{ } else { }} border-width: 0; border-style: solid; {{ } }}
 		            	{{ if ( cpo_geom_radio === 'circle' ) { }} border-radius: 100%; {{ } else { }} border-radius: 0%; {{ } }}
 		            }
 		            {{ if (radioOptions) { }}
@@ -526,7 +526,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
 	            	}
 	            	.uni-node-{{= id }} .uni-cpo-option-label__image-wrap {
 	            		{{ if ( offset_px ) { }} padding: {{= offset_px }}px; {{ } }}
-		            	{{ if ( border_width ) { }} border-width: {{= border_width }}px!important; {{ } }}
+                        {{ if ( border_width ) { }} border-width: {{= border_width }}px!important; border-style: solid; {{ } else { }} border-width: 0; border-style: solid; {{ } }}
 	            		{{ if ( border_color ) { }} border-color: {{= border_color }}!important; {{ } }}
 		            	{{ if ( cpo_geom_radio === 'circle' ) { }} border-radius: 100%; {{ } else { }} border-radius: 0%; {{ } }}
 		            }
@@ -559,7 +559,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
 	                    {{ if ( letter_spacing ) { }} letter-spacing: {{= letter_spacing+'em' }}; {{ } }}
 	                    {{ if ( width_px ) { }} width: {{= width_px }}px; {{ } }}
 	                    {{ if ( height_px ) { }} height: {{= height_px }}px;line-height: {{= height_px }}px; {{ } else if ( width_px ) { }} height: {{= width_px }}px;line-height: {{= width_px }}px; {{ } }}
-	            		{{ if ( border_width ) { }} border-width: {{= border_width }}px!important;border-style: solid; {{ } }}
+                        {{ if ( border_width ) { }} border-width: {{= border_width }}px!important; border-style: solid; {{ } else { }} border-width: 0; border-style: solid; {{ } }}
 	            		{{ if ( border_color ) { }} border-color: {{= border_color }}!important; {{ } }}
 	            		{{ if ( bg_color ) { }} background-color: {{= bg_color }}!important; {{ } }}
 	            		{{ if ( cpo_geom_radio === 'circle' ) { }} border-radius: 100%; {{ } else { }} border-radius: 0%; {{ } }}
@@ -1009,12 +1009,14 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
                 }
                 
                 ?>
-            		<?php 
+                    <?php 
                 
                 if ( !empty($border['width_px']) ) {
                     ?> border-width: <?php 
                     echo  esc_attr( $border['width_px'] ) ;
-                    ?>px!important;<?php 
+                    ?>px!important; border-style: solid; <?php 
+                } else {
+                    ?> border-width: 0!important; border-style: solid; <?php 
                 }
                 
                 ?>
@@ -1138,12 +1140,14 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
                     }
                     
                     ?>
-            		<?php 
+                    <?php 
                     
                     if ( !empty($border['width_px']) ) {
                         ?> border-width: <?php 
                         echo  esc_attr( $border['width_px'] ) ;
-                        ?>px!important;<?php 
+                        ?>px!important; border-style: solid; <?php 
+                    } else {
+                        ?> border-width: 0!important; border-style: solid; <?php 
                     }
                     
                     ?>
@@ -1375,12 +1379,14 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
                         }
                         
                         ?>
-            		<?php 
+                    <?php 
                         
                         if ( !empty($border['width_px']) ) {
                             ?> border-width: <?php 
                             echo  esc_attr( $border['width_px'] ) ;
-                            ?>px!important; border-style: solid;<?php 
+                            ?>px!important; border-style: solid; <?php 
+                        } else {
+                            ?> border-width: 0!important; border-style: solid; <?php 
                         }
                         
                         ?>
