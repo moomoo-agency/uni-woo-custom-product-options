@@ -312,6 +312,24 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
         ),
         ),
             'style'           => array(
+            'label'          => array(
+            'color'            => '',
+            'text_align_label' => '',
+            'font_family'      => 'inherit',
+            'font_weight'      => '',
+            'font_size_label'  => array(
+            'value' => '',
+            'unit'  => 'px',
+        ),
+        ),
+            'description'    => array(
+            'color'          => '',
+            'font_weight'    => '',
+            'font_size_desc' => array(
+            'value' => '',
+            'unit'  => 'px',
+        ),
+        ),
             'font'           => array(
             'color'          => '#333333',
             'color_hover'    => '',
@@ -429,6 +447,16 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
             {{ const width_px = uniGet(general, 'main.width_px', '42'); }}
             {{ const height_px = uniGet(general, 'main.height_px', ''); }}
 
+            {{ const color_label = uniGet( data.settings.style, 'label.color', '' ); }}
+            {{ const text_align_label = uniGet( data.settings.style, 'label.text_align_label', 'inherit' ); }}
+            {{ const font_family_label = uniGet( data.settings.style, 'label.font_family', '' ); }}
+            {{ const font_weight_label = uniGet( data.settings.style, 'label.font_weight', '' ); }}
+            {{ const font_size_label = uniGet( data.settings.style, 'label.font_size_label', {value:'',unit:'px'} ); }}
+
+            {{ const color_desc = uniGet( data.settings.style, 'description.color', '' ); }}
+            {{ const font_weight_desc = uniGet( data.settings.style, 'description.font_weight', '' ); }}
+            {{ const font_size_desc = uniGet( data.settings.style, 'description.font_size_desc', {value:'',unit:'px'} ); }}
+
             {{ const color = uniGet(style, 'font.color', '#333333'); }}
             {{ const color_hover = uniGet(style, 'font.color_hover', ''); }}
             {{ const color_active = uniGet(style, 'font.color_active', ''); }}
@@ -473,6 +501,8 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
 			{{ const cpo_tooltip_image = uniGet( data.settings.cpo_general, 'advanced.cpo_tooltip_image', {url:''} ); }}
 			{{ const cpo_tooltip_class = uniGet( data.settings.cpo_general, 'advanced.cpo_tooltip_class', '' ); }}
 
+            {{ const correct_width = Number(width_px) + Number(border_width) * 2 + Number(offset_px) * 2; }}
+
             <div
                     id="{{- id_name }}"
                     class="uni-module uni-module-{{- type }} uni-module-{{- type }}-{{- cpo_mode_radio }}-mode uni-node-{{- id }} {{- class_name }} {{- emptyModule }}"
@@ -485,6 +515,15 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
                     {{ if ( margin.left ) { }} margin-left: {{= margin.left + margin.unit }}; {{ } }}
                     {{ if ( margin.right ) { }} margin-right: {{= margin.right + margin.unit }}; {{ } }}
                 }
+                {{ if ( cpo_label_tag && cpo_label !== '' ) { }}
+                    .uni-node-{{= id }} .uni-cpo-module-{{- type }}-label {
+                        {{ if ( color_label !== '' ) { }} color: {{= color_label }}!important; {{ } }}
+                        {{ if ( text_align_label !== '' ) { }} text-align: {{= text_align_label }}!important; display: block; {{ } }}
+                        {{ if ( font_family_label !== 'inherit' ) { }} font-family: {{= font_family_label }}!important; {{ } }}
+                        {{ if ( font_size_label.value !== '' ) { }} font-size: {{= font_size_label.value+font_size_label.unit }}!important; {{ } }}
+                        {{ if ( font_weight_label !== '' ) { }} font-weight: {{= font_weight_label }}!important; {{ } }}
+                    }
+                {{ } }}
             	{{ if ( cpo_mode_radio === 'classic' ) { }}
 	                .uni-node-{{= id }} .uni-cpo-option-label__text {
 	                    {{ if ( color ) { }} color: {{= color }}; {{ } }}
@@ -496,6 +535,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
 	                }
 	            {{ } else if ( cpo_mode_radio === 'colour' ) { }}
 	            	.uni-node-{{= id }} .uni-cpo-radio-option-label {
+                        {{ if ( width_px ) { }} width: {{= correct_width }}px; {{ } }}
 	            		{{ if ( gap_px ) { }} margin-right: {{= gap_px }}px; margin-bottom: {{= gap_px }}px; {{ } }}
 	            	}
 	            	.uni-node-{{= id }} .uni-cpo-option-label__colour-wrap {
@@ -519,6 +559,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
 	            	}
 	            {{ } else if ( cpo_mode_radio === 'image' ) { }}
 	            	.uni-node-{{= id }} .uni-cpo-radio-option-label {
+                        {{ if ( width_px ) { }} width: {{= correct_width }}px; {{ } }}
 	            		{{ if ( gap_px ) { }} margin-right: {{= gap_px }}px; margin-bottom: {{= gap_px }}px; {{ } }}
 	            	}
 	            	.uni-node-{{= id }} input:checked + label .uni-cpo-option-label__image-wrap {
@@ -569,6 +610,11 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
                         {{ if ( padding.right ) { }} padding-right: {{= padding.right + padding.unit }}; {{ } }}
 	                }
 	            {{ } }}
+                .uni-node-{{= id }} .uni-cpo-option-label__description {
+                    {{ if ( color_desc !== '' ) { }} color: {{= color_desc }}!important; {{ } }}
+                    {{ if ( font_size_desc.value !== '' ) { }} font-size: {{= font_size_desc.value+font_size_desc.unit }}!important; {{ } }}
+                    {{ if ( font_weight_desc !== '' ) { }} font-weight: {{= font_weight_desc }}!important; {{ } }}
+                }
             </style>
             {{ if ( cpo_label_tag && cpo_label ) { }}
                 <{{- cpo_label_tag }} class="uni-cpo-module-{{- type }}-label {{ if ( cpo_is_required === 'yes' ) { }} uni_cpo_field_required {{ } }}">
@@ -593,6 +639,9 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
 		                    <span class="uni-cpo-option-label__radio"></span>
 		                    <span class="uni-cpo-option-label__text">
 		                        {{- option.label }}
+                                <span class="uni-cpo-option-label__description">
+                                    {{- option.suboption_text }}
+                                </span>
 		                    </span>
                         <?php 
         ?>
@@ -837,9 +886,24 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
                 case 'classic':
                     ?>
 					<span class="uni-cpo-option-label__radio"></span>
-	                <span class="uni-cpo-option-label__text"><?php 
+	                <span class="uni-cpo-option-label__text">
+                        <?php 
                     esc_html_e( $suboption['label'] );
-                    ?></span>
+                    ?>
+                        <?php 
+                    
+                    if ( !empty($suboption['suboption_text']) ) {
+                        ?>
+                            <span class="uni-cpo-option-label__description">
+                                <?php 
+                        esc_html_e( $suboption['suboption_text'] );
+                        ?>
+                            </span>
+                        <?php 
+                    }
+                    
+                    ?>
+                    </span>
 				<?php 
                     break;
                 case 'colour':
@@ -863,8 +927,11 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
     public static function get_css( $data )
     {
         $id = $data['id'];
+        $type = $data['type'];
         $suboptions = ( isset( $data['settings']['cpo_suboptions']['data']['cpo_radio_options'] ) ? $data['settings']['cpo_suboptions']['data']['cpo_radio_options'] : array() );
         $main = $data['settings']['general']['main'];
+        $label = ( !empty($data['settings']['style']['label']) ? $data['settings']['style']['label'] : array() );
+        $description = ( !empty($data['settings']['style']['description']) ? $data['settings']['style']['description'] : array() );
         $font = $data['settings']['style']['font'];
         $bg = ( isset( $data['settings']['style']['background'] ) ? $data['settings']['style']['background'] : array() );
         $border = $data['settings']['style']['border'];
@@ -873,6 +940,8 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
         $cpo_general_main = $data['settings']['cpo_general']['main'];
         $cpo_mode_radio = $cpo_general_main['cpo_mode_radio'];
         $cpo_geom_radio = $cpo_general_main['cpo_geom_radio'];
+        $cpo_general_advanced = $data['settings']['cpo_general']['advanced'];
+        $correct_width = $main['width_px'] + $border['width_px'] * 2 + $border['offset_px'] * 2;
         ob_start();
         ?>
 			.uni-node-<?php 
@@ -915,6 +984,65 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
         
         ?>
         	}
+            <?php 
+        
+        if ( !empty($cpo_general_advanced['cpo_label']) ) {
+            ?>
+                .uni-node-<?php 
+            echo  esc_attr( $id ) ;
+            ?> .uni-cpo-module-<?php 
+            echo  esc_attr( $type ) ;
+            ?>-label {
+                <?php 
+            
+            if ( !empty($label['color']) ) {
+                ?> color: <?php 
+                echo  esc_attr( $label['color'] ) ;
+                ?>!important;<?php 
+            }
+            
+            ?>
+                <?php 
+            
+            if ( !empty($label['text_align_label']) ) {
+                ?> text-align: <?php 
+                echo  esc_attr( $label['text_align_label'] ) ;
+                ?>!important; display: block; <?php 
+            }
+            
+            ?>
+                <?php 
+            
+            if ( !empty($label['font_family']) && $label['font_family'] !== 'inherit' ) {
+                ?> font-family: <?php 
+                echo  esc_attr( $label['font_family'] ) ;
+                ?>!important;<?php 
+            }
+            
+            ?>
+                <?php 
+            
+            if ( !empty($label['font_weight']) ) {
+                ?> font-weight: <?php 
+                echo  esc_attr( $label['font_weight'] ) ;
+                ?>!important;<?php 
+            }
+            
+            ?>
+                <?php 
+            
+            if ( !empty($label['font_size_label']['value']) ) {
+                ?> font-size: <?php 
+                echo  esc_attr( "{$label['font_size_label']['value']}{$label['font_size_label']['unit']}" ) ;
+                ?>!important; <?php 
+            }
+            
+            ?>
+                }
+            <?php 
+        }
+        
+        ?>
 			<?php 
         
         if ( $cpo_mode_radio === 'classic' ) {
@@ -985,6 +1113,15 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
 				.uni-node-<?php 
                 echo  esc_attr( $id ) ;
                 ?> .uni-cpo-radio-option-label {
+                    <?php 
+                
+                if ( !empty($correct_width) ) {
+                    ?> width: <?php 
+                    echo  esc_attr( $correct_width ) ;
+                    ?>px; <?php 
+                }
+                
+                ?>
             		<?php 
                 
                 if ( !empty($border['gap_px']) ) {
@@ -1090,6 +1227,15 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
 				.uni-node-<?php 
                     echo  esc_attr( $id ) ;
                     ?> .uni-cpo-radio-option-label {
+                    <?php 
+                    
+                    if ( !empty($correct_width) ) {
+                        ?> width: <?php 
+                        echo  esc_attr( $correct_width ) ;
+                        ?>px; <?php 
+                    }
+                    
+                    ?>
             		<?php 
                     
                     if ( !empty($border['gap_px']) ) {
@@ -1464,6 +1610,37 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
         }
         
         ?>
+            .uni-node-<?php 
+        echo  esc_attr( $id ) ;
+        ?> .uni-cpo-option-label__description {
+                <?php 
+        
+        if ( !empty($description['color']) ) {
+            ?> color: <?php 
+            echo  esc_attr( $description['color'] ) ;
+            ?>!important;<?php 
+        }
+        
+        ?>
+                <?php 
+        
+        if ( !empty($description['font_weight']) ) {
+            ?> font-weight: <?php 
+            echo  esc_attr( $description['font_weight'] ) ;
+            ?>!important;<?php 
+        }
+        
+        ?>
+                <?php 
+        
+        if ( !empty($description['font_size_desc']['value']) ) {
+            ?> font-size: <?php 
+            echo  esc_attr( "{$description['font_size_desc']['value']}{$description['font_size_desc']['unit']}" ) ;
+            ?>!important; <?php 
+        }
+        
+        ?>
+            }
 
 		<?php 
         return ob_get_clean();

@@ -151,6 +151,18 @@ class Uni_Cpo_Setting_Cpo_Radio_Options extends Uni_Cpo_Setting implements  Uni_
         ) ) ;
         ?>
                                         </div>
+                                        <div class="uni-select-option-content-field-wrapper-item uni-clear">
+                                            <label>
+                                                <?php 
+        echo  esc_html__( 'Description (optional)', 'uni-cpo' ) ;
+        ?>
+                                            </label>
+                                            <?php 
+        echo  $this->generate_text_html( $this->setting_key . '[<%row-count%>][suboption_text]', array(
+            'no_init_class' => true,
+        ) ) ;
+        ?>
+                                        </div>
                                         <div class="uni-select-option-content-field-wrapper-item uni-select-option-content-field-wrapper-colour uni-clear">
                                         	<label>
 												<?php 
@@ -312,13 +324,24 @@ class Uni_Cpo_Setting_Cpo_Radio_Options extends Uni_Cpo_Setting implements  Uni_
                                     <div class="uni-select-option-content-field-wrapper uni-clear<?php 
         echo  ' uni-premium-content' ;
         ?>">
-                                    	<div class="uni-select-option-content-field-wrapper-item uni-clear">
+
+                                        <div class="uni-select-option-content-field-wrapper-item uni-clear">
                                             <label><?php 
         echo  esc_html__( 'CSS Class (optional)', 'uni-cpo' ) ;
         ?></label>
 											<?php 
         echo  $this->generate_text_html( $this->setting_key . '[{{- i }}][suboption_class]', array(
             'value' => '{{- obj.suboption_class }}',
+        ) ) ;
+        ?>
+                                        </div>
+                                        <div class="uni-select-option-content-field-wrapper-item uni-clear">
+                                            <label><?php 
+        echo  esc_html__( 'Description (optional)', 'uni-cpo' ) ;
+        ?></label>
+                                            <?php 
+        echo  $this->generate_text_html( $this->setting_key . '[{{- i }}][suboption_text]', array(
+            'value' => '{{- obj.suboption_text }}',
         ) ) ;
         ?>
                                         </div>

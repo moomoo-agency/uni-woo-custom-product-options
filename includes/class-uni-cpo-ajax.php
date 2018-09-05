@@ -345,7 +345,11 @@ class Uni_Cpo_Ajax
             }
             $model = $_POST['model'];
             $data['product_id'] = absint( $model['id'] );
-            $data['settings_data'] = uni_cpo_clean( $model['settingsData'] );
+            foreach ( $model['settingsData'] as $data_name => $data_data ) {
+                $data_name = uni_cpo_clean( $data_name );
+                $data_data = html_entity_decode( uni_cpo_sanitize_text( $data_data ) );
+                $data['settings_data'][$data_name] = $data_data;
+            }
             $result = Uni_Cpo_Product::save_product_data( $data, 'settings_data' );
             
             if ( !isset( $result['error'] ) ) {
@@ -594,6 +598,9 @@ class Uni_Cpo_Ajax
             $formatted_vars = array();
             $nice_names_vars = array();
             $price_vars['quantity'] = ( !empty($form_data['quantity']) ? absint( $form_data['quantity'] ) : 1 );
+            $currency = get_woocommerce_currency();
+            $price_vars['currency'] = get_woocommerce_currency_symbol( $currency );
+            $price_vars['currency_code'] = $currency;
             
             if ( 'on' === $product_data['settings_data']['cpo_enable'] && 'on' === $product_data['settings_data']['calc_enable'] ) {
                 $main_formula = $product_data['formula_data']['main_formula'];
@@ -895,6 +902,7 @@ class Uni_Cpo_Ajax
                         }
                     }
                 }
+                $item_qty = 0;
                 $item_qty = $item->get_quantity();
                 $item->set_subtotal( $item_price );
                 $item_total = $item_qty * $item_price;

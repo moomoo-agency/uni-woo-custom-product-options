@@ -766,6 +766,8 @@ span.flatpickr-weekday {
 .uni_cpo_main_image_overlay .wp-picker-container .iris-strip .ui-slider-handle:before {background-color: transparent;width: auto;height: auto;content: "";}
 .uni_cpo_main_image_overlay .wp-picker-container .iris-strip .ui-slider-handle:after {display: none;}
 
+.woocommerce-mini-cart-item .uni-cpo-cart-action {display:none;}
+
 @media screen and (max-width: 782px) {
     .wp-picker-container input[type=text].wp-color-picker {
         width: 80px;

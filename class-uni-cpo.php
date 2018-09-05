@@ -13,7 +13,7 @@ final class Uni_Cpo
      *
      * @var string
      */
-    public  $version = '4.2.7' ;
+    public  $version = '4.3.0' ;
     /**
      * The single instance of the class.
      *
@@ -237,10 +237,13 @@ final class Uni_Cpo
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-color-hover.php';
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-color-active.php';
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-text-align.php';
+            include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-text-align-label.php';
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-font-family.php';
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-font-style.php';
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-font-weight.php';
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-font-size.php';
+            include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-font-size-label.php';
+            include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-font-size-desc.php';
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-font-size-px.php';
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-letter-spacing.php';
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-line-height.php';

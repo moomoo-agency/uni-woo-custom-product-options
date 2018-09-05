@@ -5,7 +5,7 @@ Requires at least: 4.8
 Tested up to: 4.9.8
 Requires PHP: 7.0
 WC requires at least: 3.2.0
-WC tested up to: 3.4.4
+WC tested up to: 3.4.5
 Stable tag: trunk
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -44,6 +44,7 @@ other custom options and/or NOVs
 
 * [The full list of plugin's features](https://moomoo-agency.gitbooks.io/uni-cpo-4-documentation/content/why-uni-cpo.html)
 * [The plugin's Documentation](https://moomoo-agency.gitbooks.io/uni-cpo-4-documentation/)
+* [How to Use Quick Guide](https://moomoo-agency.gitbooks.io/uni-cpo-4-documentation/content/usage.html)
 
 = Demo - Try By Yourself! =
 
@@ -54,6 +55,7 @@ Use the following credentials to log in and try by yourself:
 [login URL](https://cpo.builderius.io/wp-login.php)
 
 **Pro version of the plugin is [available here](https://builderius.io/cpo)**
+**The official FB group [Builderians](https://www.facebook.com/groups/builderians/)**
 
 **Uni CPO supports ONLY these product types: 'simple' and 'subscription'!** But why you ever need any variable products when this plugin exists, right? :)
 
@@ -97,6 +99,13 @@ A: We wouldn't recommend to do this yet. First, this version is so called 'lite'
 7. screenshot-7.png
 
 == Changelog ==
+
+= 4.3.0 =
+* Added: qty based cart discounts
+* Added: possibility to choose custom field as qty field (instead of standard WC qty field) and display its value in Qty column in cart/order
+* Added: "sold individually" setting; it does what the original WC setting does, but for products with enabled Uni CPO options
+* Improved: displaying custom price tag templates on archives
+* Improved: added separate settings for styling option's label
 
 = 4.2.7 =
 * Fixed: 'step' attribute for Text Input now works like intended

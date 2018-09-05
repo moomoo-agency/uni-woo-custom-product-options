@@ -914,18 +914,23 @@ function uni_cpo_display_custom_price_on_archives( $price, $product )
     }
     
     if ( 'on' === $product_data['settings_data']['cpo_enable'] && 'on' === $product_data['settings_data']['calc_enable'] && (is_single() && $product_id !== $wp_query->queried_object_id || is_page() && $product_id !== $product_post_id || is_tax() || is_archive() || is_single() && !is_singular( 'product' ) && isset( $wp_query->queried_object->post_content ) && !has_shortcode( $wp_query->queried_object->post_content, 'product_page' )) ) {
-        $price = wc_get_price_to_display( $product );
-        $price = apply_filters( 'uni_cpo_price_regular_archive', $price, $product );
-        $regular_price = uni_cpo_price( $price );
+        $raw_regular_price = $product->get_regular_price( 'edit' );
+        $raw_sale_price = $product->get_sale_price( 'edit' );
+        $display_regular_price = apply_filters( 'uni_cpo_price_regular_archive', wc_get_price_to_display( $product, array(
+            'price' => $raw_regular_price,
+        ) ), $product );
+        $display_sale_price = apply_filters( 'uni_cpo_price_sale_archive', wc_get_price_to_display( $product, array(
+            'price' => $raw_sale_price,
+        ) ), $product );
+        $starting_price = 0;
+        $is_using_archive_tmpl = false;
         $starting_price = ( !empty($product_data['settings_data']['min_price']) ? floatval( $product_data['settings_data']['min_price'] ) : $price );
         $starting_price = apply_filters( 'uni_cpo_price_starting_archive', $starting_price, $product );
-        $formatted = uni_cpo_price( $starting_price );
+        $price = uni_cpo_price( $starting_price );
         
-        if ( $product->is_taxable() ) {
+        if ( $product->is_taxable() && $starting_price && !($is_using_archive_tmpl && $product->is_on_sale()) ) {
             $tax_suffix = $product->get_price_suffix( $starting_price );
-            $price = $formatted . $tax_suffix;
-        } else {
-            $price = $formatted;
+            $price = $price . $tax_suffix;
         }
         
         return $price;
@@ -1042,7 +1047,7 @@ add_filter(
     'woocommerce_add_cart_item_data',
     'uni_cpo_add_cart_item_data',
     10,
-    2
+    4
 );
 add_filter(
     'woocommerce_get_cart_item_from_session',
@@ -1071,10 +1076,17 @@ add_action(
     4
 );
 // adds custom option data to the cart
-function uni_cpo_add_cart_item_data( $cart_item_data, $product_id )
+function uni_cpo_add_cart_item_data(
+    $cart_item_data,
+    $product_id,
+    $variation_id,
+    $quantity
+)
 {
     try {
         $product_data = Uni_Cpo_Product::get_product_data_by_id( $product_id );
+        $product = wc_get_product( $product_id );
+        $qty_field_slug = $product_data['settings_data']['qty_field'];
         
         if ( !empty($cart_item_data) ) {
             // is used when 'order again' has been initiated
@@ -1089,12 +1101,26 @@ function uni_cpo_add_cart_item_data( $cart_item_data, $product_id )
             $cart_item_data['_cpo_calc_option'] = ( 'on' === $product_data['settings_data']['calc_enable'] ? true : false );
             $cart_item_data['_cpo_cart_item_id'] = ( !empty($form_data['cpo_cart_item_id']) ? $form_data['cpo_cart_item_id'] : '' );
             $cart_item_data['_cpo_product_image'] = ( !empty($form_data['cpo_product_image']) ? $form_data['cpo_product_image'] : '' );
-            // TODO create an array of values which must be unset and add a filter
-            unset( $form_data['cpo_cart_item_id'] );
-            unset( $form_data['cpo_product_id'] );
-            unset( $form_data['add-to-cart'] );
-            unset( $form_data['cpo_product_image'] );
-            unset( $form_data['quantity'] );
+            // values to be unset
+            $unset_values = apply_filters(
+                'uni_cpo_add_to_cart_values_to_be_unset',
+                array(
+                'cpo_cart_item_id',
+                'cpo_product_id',
+                'add-to-cart',
+                'cpo_product_image',
+                'quantity'
+            ),
+                $cart_item_data,
+                $product_id
+            );
+            if ( !empty($unset_values) ) {
+                foreach ( $unset_values as $v ) {
+                    if ( isset( $form_data[$v] ) ) {
+                        unset( $form_data[$v] );
+                    }
+                }
+            }
             // it is isset when ordering again has been initiated
             $cart_item_data['_cpo_data'] = ( isset( $form_data['cpo_data'] ) ? $form_data['cpo_data'] : $form_data );
             

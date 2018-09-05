@@ -286,7 +286,7 @@ function update_everything(container, settingsTmpl) {
                 }
             }
         });
-        const $allNeededSelects = $el.find('.uni-cpo-matrix-options-row > select, .uni-cpo-convert-wrapper select, .uni-cpo-cart-display-wrapper input');
+        const $allNeededSelects = $el.find('.uni-cpo-matrix-options-row > select, .uni-cpo-convert-wrapper select, .uni-modal-select, .uni-cpo-cart-display-wrapper input');
         $allNeededSelects.each(function(index, el){
             const $el = jQuery(el);
             const matches = el.name.match(regex);
@@ -325,7 +325,7 @@ function update_everything(container, settingsTmpl) {
     });
 }
 
-uniGet = (obj, key, def) => {
+const uniGet = (obj, key, def) => {
     return key.split('.').reduce(function(o, x) {
         if ( typeof o === 'undefined' || o === null ) {
             return o;

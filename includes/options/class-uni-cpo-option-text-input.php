@@ -284,6 +284,16 @@ class Uni_Cpo_Option_Text_Input extends Uni_Cpo_Option implements Uni_Cpo_Option
 					)
 				),
 				'style'           => array(
+                    'label'   => array(
+                        'color'          => '',
+                        'text_align_label'     => '',
+                        'font_family'    => 'inherit',
+                        'font_weight'    => '',
+                        'font_size_label'      => array(
+                            'value' => '',
+                            'unit'  => 'px'
+                        ),
+                    ),
 					'font'   => array(
 						'color'          => '',
 						'text_align'     => '',
@@ -408,6 +418,13 @@ class Uni_Cpo_Option_Text_Input extends Uni_Cpo_Option implements Uni_Cpo_Option
             {{ const { id, type } = data; }}
             {{ const { id_name, class_name } = data.settings.advanced.selectors; }}
             {{ const { width, height } = data.settings.general.main; }}
+
+            {{ const color_label = uniGet( data.settings.style, 'label.color', '' ); }}
+            {{ const text_align_label = uniGet( data.settings.style, 'label.text_align_label', 'inherit' ); }}
+            {{ const font_family_label = uniGet( data.settings.style, 'label.font_family', '' ); }}
+            {{ const font_weight_label = uniGet( data.settings.style, 'label.font_weight', '' ); }}
+            {{ const font_size_label = uniGet( data.settings.style, 'label.font_size_label', {value:'',unit:'px'} ); }}
+
             {{ const { color, text_align, font_family, font_style, font_weight, font_size, letter_spacing, line_height } = data.settings.style.font; }}
             {{ const { border_unit, border_top, border_bottom, border_left, border_right, radius } = data.settings.style.border; }}
             {{ const { margin } = data.settings.advanced.layout; }}
@@ -431,6 +448,15 @@ class Uni_Cpo_Option_Text_Input extends Uni_Cpo_Option implements Uni_Cpo_Option
                     {{ if ( margin.left !== '' ) { }} margin-left: {{= margin.left + margin.unit }}!important; {{ } }}
                     {{ if ( margin.right !== '' ) { }} margin-right: {{= margin.right + margin.unit }}!important; {{ } }}
             	}
+                {{ if ( cpo_label_tag && cpo_label !== '' ) { }}
+                    .uni-node-{{= id }} .uni-cpo-module-{{- type }}-label {
+                        {{ if ( color_label !== '' ) { }} color: {{= color_label }}!important; {{ } }}
+                        {{ if ( text_align_label !== '' ) { }} text-align: {{= text_align_label }}!important; display: block; {{ } }}
+                        {{ if ( font_family_label !== 'inherit' ) { }} font-family: {{= font_family_label }}!important; {{ } }}
+                        {{ if ( font_size_label.value !== '' ) { }} font-size: {{= font_size_label.value+font_size_label.unit }}!important; {{ } }}
+                        {{ if ( font_weight_label !== '' ) { }} font-weight: {{= font_weight_label }}!important; {{ } }}
+                    }
+                {{ } }}
         		.uni-node-{{= id }} input[type="text"], .uni-node-{{= id }} input[type="number"] {
         			{{ if ( width.value !== '' ) { }} width: {{= width.value+width.unit }}!important; max-width: {{= width.value+width.unit }}!important; {{ } }}
         			{{ if ( height.value !== '' ) { }} height: {{= height.value+height.unit }}!important; min-height: {{= height.value+height.unit }}!important; {{ } }}
@@ -640,8 +666,11 @@ class Uni_Cpo_Option_Text_Input extends Uni_Cpo_Option implements Uni_Cpo_Option
 
 	public static function get_css( $data ) {
 		$id            = $data['id'];
+        $type          = $data['type'];
 		$main          = $data['settings']['general']['main'];
+		$label         = ( ! empty( $data['settings']['style']['label'] ) ) ? $data['settings']['style']['label'] : array();
 		$font          = $data['settings']['style']['font'];
+
 		$border_top    = $data['settings']['style']['border']['border_top'];
 		$border_bottom = $data['settings']['style']['border']['border_bottom'];
 		$border_left   = $data['settings']['style']['border']['border_left'];
@@ -651,15 +680,27 @@ class Uni_Cpo_Option_Text_Input extends Uni_Cpo_Option implements Uni_Cpo_Option
 			? $data['settings']['style']['text_input']['padding']
 			: array();
 		$margin        = $data['settings']['advanced']['layout']['margin'];
+        $cpo_general_advanced = $data['settings']['cpo_general']['advanced'];
 
 		ob_start();
 		?>
         .uni-node-<?php echo esc_attr( $id ); ?> {
-		<?php if ( ! empty( $margin['top'] ) ) { ?> margin-top: <?php echo esc_attr( "{$margin['top']}{$margin['unit']}" ) ?>!important; <?php } ?>
-		<?php if ( ! empty( $margin['bottom'] ) ) { ?> margin-bottom: <?php echo esc_attr( "{$margin['bottom']}{$margin['unit']}" ) ?>!important; <?php } ?>
-		<?php if ( ! empty( $margin['left'] ) ) { ?> margin-left: <?php echo esc_attr( "{$margin['left']}{$margin['unit']}" ) ?>!important; <?php } ?>
-		<?php if ( ! empty( $margin['right'] ) ) { ?> margin-right: <?php echo esc_attr( "{$margin['right']}{$margin['unit']}" ) ?>!important; <?php } ?>
+            <?php if ( ! empty( $margin['top'] ) ) { ?> margin-top: <?php echo esc_attr( "{$margin['top']}{$margin['unit']}" ) ?>!important; <?php } ?>
+            <?php if ( ! empty( $margin['bottom'] ) ) { ?> margin-bottom: <?php echo esc_attr( "{$margin['bottom']}{$margin['unit']}" ) ?>!important; <?php } ?>
+            <?php if ( ! empty( $margin['left'] ) ) { ?> margin-left: <?php echo esc_attr( "{$margin['left']}{$margin['unit']}" ) ?>!important; <?php } ?>
+            <?php if ( ! empty( $margin['right'] ) ) { ?> margin-right: <?php echo esc_attr( "{$margin['right']}{$margin['unit']}" ) ?>!important; <?php } ?>
         }
+
+        <?php if ( ! empty( $cpo_general_advanced['cpo_label'] ) ) { ?>
+            .uni-node-<?php echo esc_attr( $id ); ?> .uni-cpo-module-<?php echo esc_attr( $type ); ?>-label {
+                <?php if ( ! empty( $label['color'] ) ) { ?> color: <?php echo esc_attr( $label['color'] ); ?>!important;<?php } ?>
+                <?php if ( ! empty( $label['text_align_label'] ) ) { ?> text-align: <?php echo esc_attr( $label['text_align_label'] ); ?>!important; display: block; <?php } ?>
+                <?php if ( ! empty( $label['font_family'] ) && $label['font_family'] !== 'inherit' ) { ?> font-family: <?php echo esc_attr( $label['font_family'] ); ?>!important;<?php } ?>
+                <?php if ( ! empty( $label['font_weight'] ) ) { ?> font-weight: <?php echo esc_attr( $label['font_weight'] ); ?>!important;<?php } ?>
+                <?php if ( ! empty( $label['font_size_label']['value'] ) ) { ?> font-size: <?php echo esc_attr( "{$label['font_size_label']['value']}{$label['font_size_label']['unit']}" ) ?>!important; <?php } ?>
+            }
+        <?php } ?>
+
         .uni-node-<?php echo esc_attr( $id ); ?> input[type="text"], .uni-node-<?php echo esc_attr( $id ); ?> input[type="number"] {
 			<?php if ( ! empty( $main['width']['value'] ) ) { ?> width: <?php echo esc_attr( "{$main['width']['value']}{$main['width']['unit']}" ) ?>!important; max-width: <?php echo esc_attr( "{$main['width']['value']}{$main['width']['unit']}" ) ?>!important;<?php } ?>
 			<?php if ( ! empty( $main['height']['value'] ) ) { ?> height: <?php echo esc_attr( "{$main['height']['value']}{$main['height']['unit']}" ) ?>!important; min-height: <?php echo esc_attr( "{$main['height']['value']}{$main['height']['unit']}" ) ?>!important;<?php } ?>

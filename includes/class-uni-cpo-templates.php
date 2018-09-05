@@ -539,6 +539,46 @@ final class Uni_Cpo_Templates {
                                         <?php esc_html_e( 'Removes validation error messages for all the required fields, but still correctly validates them; useful for preventing "this field is required" messages spam in the form field.', 'uni-cpo' ) ?>
                                     </p>
                                 </div>
+
+	                            <div class="uni-form-row uni-form-row-v2 uni-clear <?php echo uni_cpo_pro_content() ?>">
+		                            <h3>
+			                            <?php esc_html_e( 'Custom quantity field', 'uni-cpo' ) ?>
+		                            </h3>
+		                            <p>
+			                            <?php esc_html_e( 'By default it is a standard WC qty field. But it also can be any Text Input based custom option. Important: WC original "sold individually" setting must be enabled so this setting could work!', 'uni-cpo' ) ?>
+		                            </p>
+		                            <select
+				                            class="uni-modal-select builderius-setting-field"
+				                            name="qty_field">
+			                            <option value="wc"><?php esc_html_e( 'WC qty field', 'uni-cpo' ) ?></option>
+			                            {{ if(typeof vars.regular !== 'undefined'){ }}
+			                            {{ _.each(vars.regular, function(value){ }}
+			                            <option value="{{- value }}"{{ if (typeof data.qty_field !== 'undefined' && data.qty_field === value) { print(' selected'); } }}>{{- '{'+value+'}' }}</option>
+			                            {{ }); }}
+			                            {{ } }}
+		                            </select>
+	                            </div>
+
+	                            <div class="uni-form-row uni-form-row__with-checkbox <?php echo uni_cpo_pro_content() ?>">
+		                            <label class="uni-main-feature__checkbox" for="uni-sold_individually-checkbox">
+			                            <input
+					                            id="uni-sold_individually-checkbox"
+					                            class="builderius-setting-field builderius-single-checkbox"
+					                            type="checkbox"
+					                            name="sold_individually"
+					                            value="on"
+					                            {{ if (data.sold_individually === 'on') { print(' checked'); } }}/>
+			                            <span class="uni-main-feature__label-wrap">
+                                            <span class="uni-main-feature__checkbox-label"></span>
+                                            <span class="uni-main-feature__checkbox-on"><?php esc_html_e( 'on', 'uni-cpo' ) ?></span>
+                                            <span class="uni-main-feature__checkbox-off"><?php esc_html_e( 'off', 'uni-cpo' ) ?></span>
+                                        </span>
+		                            </label>
+		                            <h3><?php esc_html_e( 'Sold individually?', 'uni-cpo' ) ?></h3>
+		                            <p>
+			                            <?php esc_html_e( 'Uni CPO uses WC original "sold individually" setting for hiding WC qty field only. Still, we need a possibility to restrict adding the same product twice to the cart even for Uni CPO enabled products. This is exactly what this setting does!', 'uni-cpo' ) ?>
+		                            </p>
+	                            </div>
                             </div>
 
                             <div id="tab-price" class="uni-tab-content">
@@ -642,7 +682,7 @@ final class Uni_Cpo_Templates {
                                         <?php esc_html_e( 'Price template for archives', 'uni-cpo' ) ?>
                                     </h3>
                                     <p>
-                                        <?php esc_html_e( 'Custom price template to be displayed on archives. Template variables: &#123;&#123;&#123;REGULAR_PRICE&#125;&#125;&#125;, &#123;&#123;&#123;STARTING_PRICE&#125;&#125;&#125; or any NOV in triple curly braces. Example: "from &#123;&#123;&#123;STARTING_PRICE&#125;&#125;&#125; / sq.m." or "from &#123;&#123;&#123;uni_nov_cpo_base_price&#125;&#125;&#125;".', 'uni-cpo' ) ?>
+                                        <?php _e( sprintf( 'Custom price template to be displayed on archives. Special variables (%s the complete list of such vars %s) and/or NOVs in triple curly braces can be used in the template.', '<a href="https://moomoo-agency.gitbooks.io/uni-cpo-4-documentation/content/general-settings.html" target="_blank">', '</a>'), 'uni-cpo' ) ?>
                                     </p>
                                     <input
                                             type="text"
@@ -651,6 +691,21 @@ final class Uni_Cpo_Templates {
                                             value="{{- data.price_archives }}"
                                             data-parsley-trigger="change focusout submit" />
                                 </div>
+
+	                            <div class="uni-form-row uni-clear <?php echo uni_cpo_pro_content() ?>">
+		                            <h3>
+			                            <?php esc_html_e( 'Price template for archives during active sale', 'uni-cpo' ) ?>
+		                            </h3>
+		                            <p>
+			                            <?php esc_html_e( 'This the same as above, but this template will be chosen only during active sales campaign for this product.', 'uni-cpo' ) ?>
+		                            </p>
+		                            <input
+				                            type="text"
+				                            class="builderius-setting-field"
+				                            name="price_archives_sale"
+				                            value="{{- data.price_archives_sale }}"
+				                            data-parsley-trigger="change focusout submit" />
+	                            </div>
                             </div>
 
                             <?php
@@ -760,6 +815,8 @@ final class Uni_Cpo_Templates {
 		if ( UniCpo()->is_pro() ) {
 			?>
             <script id="js-builderius-modal-cart-discounts-tmpl" type="text/template">
+	            {{ discountsStrategy = uniGet(data, 'cart_discounts_strategy', ''); }}
+	            {{ qtyDiscounts = uniGet(data, 'qty_cart_discounts_enable', 'off'); }}
                 <div id="uni-modal-wrapper" class="uni-modal-wrapper">
                     <div id="uni-modal-cart-discounts-wrapper" class="uni-modal-wrap">
                         <div class="uni-modal-head">
@@ -780,30 +837,71 @@ final class Uni_Cpo_Templates {
 										<?php esc_html_e( 'Role Based Discounts', 'uni-cpo' ) ?>
                                     </a>
                                 </li>
+	                            <li>
+		                            <a href="#tab-qty-based">
+			                            <i class="uni-tab-icon-role"></i>
+			                            <?php esc_html_e( 'Quantity Based Discounts', 'uni-cpo' ) ?>
+		                            </a>
+	                            </li>
                             </ul>
                             <div class="uni-modal-content uni-clear">
                                 <div id="tab-general" class="uni-tab-content">
+	                                <div class="uni-form-row uni-form-row-v2 uni-clear <?php echo uni_cpo_pro_content() ?>">
+		                                <h3>
+			                                <?php esc_html_e( 'Cart discounts strategy', 'uni-cpo' ) ?>
+		                                </h3>
+		                                <p>
+			                                <?php esc_html_e( 'Choose how to apply different types of cart discounts', 'uni-cpo' ) ?>
+		                                </p>
+		                                <select name="cart_discounts_strategy" class="uni-modal-select builderius-setting-field">
+			                                <option value="highest"{{ if (discountsStrategy === 'highest') { print(' selected'); } }}><?php esc_html_e( 'Use the highest discount only', 'uni-cpo' ) ?></option>
+			                                <option value="combine"{{ if (discountsStrategy === 'combine') { print(' selected'); } }}><?php esc_html_e( 'Combine all applicable discounts', 'uni-cpo' ) ?></option>
+		                                </select>
+	                                </div>
+
                                     <div class="uni-form-row uni-form-row__with-checkbox">
-                                        <label class="uni-main-feature__checkbox"
-                                               for="uni-role_cart_discounts_enable-checkbox">
-                                            <input
-                                                    id="uni-role_cart_discounts_enable-checkbox"
-                                                    class="builderius-setting-field builderius-single-checkbox"
-                                                    type="checkbox"
-                                                    name="role_cart_discounts_enable"
-                                                    value="on"
-                                                    {{ if (data.role_cart_discounts_enable=== 'on') { print(' checked'); } }}/>
-                                            <span class="uni-main-feature__label-wrap">
+		                                <label class="uni-main-feature__checkbox"
+		                                       for="uni-role_cart_discounts_enable-checkbox">
+			                                <input
+					                                id="uni-role_cart_discounts_enable-checkbox"
+					                                class="builderius-setting-field builderius-single-checkbox"
+					                                type="checkbox"
+					                                name="role_cart_discounts_enable"
+					                                value="on"
+					                                {{ if (data.role_cart_discounts_enable === 'on') { print(' checked'); } }}/>
+			                                <span class="uni-main-feature__label-wrap">
                                             <span class="uni-main-feature__checkbox-label"></span>
                                             <span class="uni-main-feature__checkbox-on"><?php esc_html_e( 'on', 'uni-cpo' ) ?></span>
                                             <span class="uni-main-feature__checkbox-off"><?php esc_html_e( 'off', 'uni-cpo' ) ?></span>
                                         </span>
-                                        </label>
-                                        <h3><?php esc_html_e( 'Enable role based cart discounts?', 'uni-cpo' ) ?></h3>
-                                        <p>
-											<?php esc_html_e( 'This setting enables/disables cart discounts functionality based on a user role.', 'uni-cpo' ) ?>
-                                        </p>
-                                    </div>
+		                                </label>
+		                                <h3><?php esc_html_e( 'Enable role based cart discounts?', 'uni-cpo' ) ?></h3>
+		                                <p>
+			                                <?php esc_html_e( 'This setting enables/disables cart discounts functionality based on a user role.', 'uni-cpo' ) ?>
+		                                </p>
+	                                </div>
+
+	                                <div class="uni-form-row uni-form-row__with-checkbox">
+		                                <label class="uni-main-feature__checkbox"
+		                                       for="uni-qty_cart_discounts_enable-checkbox">
+			                                <input
+					                                id="uni-qty_cart_discounts_enable-checkbox"
+					                                class="builderius-setting-field builderius-single-checkbox"
+					                                type="checkbox"
+					                                name="qty_cart_discounts_enable"
+					                                value="on"
+					                                {{ if (qtyDiscounts === 'on') { print(' checked'); } }}/>
+			                                <span class="uni-main-feature__label-wrap">
+                                            <span class="uni-main-feature__checkbox-label"></span>
+                                            <span class="uni-main-feature__checkbox-on"><?php esc_html_e( 'on', 'uni-cpo' ) ?></span>
+                                            <span class="uni-main-feature__checkbox-off"><?php esc_html_e( 'off', 'uni-cpo' ) ?></span>
+                                        </span>
+		                                </label>
+		                                <h3><?php esc_html_e( 'Enable quantity based cart discounts?', 'uni-cpo' ) ?></h3>
+		                                <p>
+			                                <?php esc_html_e( 'This setting enables/disables cart discounts functionality based on the quantity of ordered items.', 'uni-cpo' ) ?>
+		                                </p>
+	                                </div>
 
                                 </div>
                                 <div id="tab-role-based" class="uni-tab-content">
@@ -824,6 +922,7 @@ final class Uni_Cpo_Templates {
                                                     class="uni-modal-select builderius-setting-field"
                                                     name="role_cart_discounts[{{- k }}][type]">
                                                 <option value="per"><?php esc_html_e( 'Percentage', 'uni-cpo' ) ?></option>
+	                                            <option value="abs"><?php esc_html_e( 'Fixed', 'uni-cpo' ) ?></option>
                                             </select>
                                         </div>
                                         <div class="uni-modal-row-second">
@@ -836,6 +935,150 @@ final class Uni_Cpo_Templates {
                                     </div>
                                     {{ }); }}
                                 </div>
+	                            <div id="tab-qty-based" class="uni-tab-content">
+                                    <div class="uni-form-row uni-form-row-v2 uni-clear <?php echo uni_cpo_pro_content() ?>">
+                                        <h3>
+                                            <?php esc_html_e( 'Choose a qty field to check for qty discounts based on.', 'uni-cpo' ) ?>
+                                        </h3>
+                                        <p>
+                                            <?php esc_html_e( 'It may be standard WC qty field or any custom option that serves as qty field. We do not recommend using the option chosen here in your price calculation formula, still it is possible. Always double check ;)', 'uni-cpo' ) ?>
+                                        </p>
+                                        <select
+                                                class="uni-modal-select builderius-setting-field"
+                                                name="qty_cart_discounts_field">
+                                            <option value="wc"><?php esc_html_e( 'WC qty field', 'uni-cpo' ) ?></option>
+                                            {{ if(typeof vars.regular !== 'undefined'){ }}
+                                            {{ _.each(vars.regular, function(value){ }}
+                                            <option value="{{- value }}"{{ if (data.qty_cart_discounts_field === value) { print(' selected'); } }}>{{- '{'+value+'}' }}</option>
+                                            {{ }); }}
+                                            {{ } }}
+                                        </select>
+                                    </div>
+
+		                            <div class="uni-form-row uni-clear <?php echo uni_cpo_pro_content() ?>">
+			                            <h3>
+				                            <?php esc_html_e( 'Rules', 'uni-cpo' ) ?>
+			                            </h3>
+			                            <div class="uni-cpo-non-option-vars-options-repeat">
+				                            <div class="uni-cpo-non-option-vars-options-repeat-wrapper">
+
+					                            <div class="uni-formula-conditional-rules-btn-wrap uni-clear">
+						                            <span class="uni_cpo_non_option_vars_option_add"><?php esc_html_e( 'Add Rule', 'uni-cpo' ) ?></span>
+						                            <span class="uni-rules-remove-all"><?php esc_html_e( 'Remove All', 'uni-cpo' ) ?></span>
+					                            </div>
+
+					                            <div class="uni-cpo-non-option-vars-options-wrapper">
+
+						                            <div class="uni-cpo-non-option-vars-options-template uni-cpo-non-option-vars-options-row uni-query-builder-row">
+							                            <div class="uni-cpo-non-option-vars-options-move-wrapper">
+                                                            <span class="uni_cpo_non_option_vars_option_move">
+	                                                            <i class="fas fa-arrows-alt"></i>
+                                                            </span>
+							                            </div>
+							                            <div class="uni-cpo-non-option-vars-options-content-wrapper uni-clear">
+								                            <label><?php esc_html_e( 'Min. qty', 'uni-cpo' ) ?></label>
+								                            <input
+										                            type="text"
+										                            name="qty_cart_discounts[<%row-count%>][min]"
+										                            value=""
+										                            class="uni-cpo-modal-field uni-cpo-input-for-nov"
+										                            data-parsley-required="true"
+										                            data-parsley-trigger="change focusout submit"/>
+
+								                            <label><?php esc_html_e( 'Max. qty', 'uni-cpo' ) ?></label>
+								                            <input
+										                            type="text"
+										                            name="qty_cart_discounts[<%row-count%>][max]"
+										                            value=""
+										                            class="uni-cpo-modal-field uni-cpo-input-for-nov"
+										                            data-parsley-required="true"
+										                            data-parsley-trigger="change focusout submit"/>
+
+								                            <label><?php esc_html_e( 'Type', 'uni-cpo' ) ?></label>
+								                            <select
+										                            class="uni-modal-select"
+										                            name="qty_cart_discounts[<%row-count%>][type]">
+									                            <option value="per"><?php esc_html_e( 'Percentage', 'uni-cpo' ) ?></option>
+									                            <option value="abs"><?php esc_html_e( 'Fixed', 'uni-cpo' ) ?></option>
+								                            </select>
+
+								                            <label><?php esc_html_e( 'Discount', 'uni-cpo' ) ?></label>
+								                            <input
+										                            type="text"
+										                            name="qty_cart_discounts[<%row-count%>][value]"
+										                            value=""
+										                            class="uni-cpo-modal-field uni-cpo-input-for-nov"
+										                            data-parsley-required="true"
+										                            data-parsley-trigger="change focusout submit"/>
+
+							                            </div>
+							                            <div class="uni-cpo-non-option-vars-options-rules-remove-wrapper">
+                                                            <span class="uni_cpo_non_option_vars_option_remove">
+                                                                <i class="fas fa-times"></i>
+                                                            </span>
+							                            </div>
+						                            </div>
+
+						                            {{ if (data.qty_cart_discounts) { }}
+						                            {{ let i = 0; }}
+						                            {{ _.each(data.qty_cart_discounts, function(obj){ }}
+						                            <div class="uni-cpo-non-option-vars-options-row uni-query-builder-row">
+							                            <div class="uni-cpo-non-option-vars-options-move-wrapper">
+                                                            <span class="uni_cpo_non_option_vars_option_move">
+	                                                            <i class="fas fa-arrows-alt"></i>
+                                                            </span>
+							                            </div>
+							                            <div class="uni-cpo-non-option-vars-options-content-wrapper uni-clear">
+                                                            <label><?php esc_html_e( 'Min. qty', 'uni-cpo' ) ?></label>
+                                                            <input
+                                                                    type="text"
+                                                                    name="qty_cart_discounts[{{- i }}][min]"
+                                                                    value="{{- obj.min }}"
+                                                                    class="uni-cpo-modal-field uni-cpo-input-for-nov builderius-setting-field"
+                                                                    data-parsley-required="true"
+                                                                    data-parsley-trigger="change focusout submit"/>
+
+                                                            <label><?php esc_html_e( 'Max. qty', 'uni-cpo' ) ?></label>
+                                                            <input
+                                                                    type="text"
+                                                                    name="qty_cart_discounts[{{- i }}][max]"
+                                                                    value="{{- obj.max }}"
+                                                                    class="uni-cpo-modal-field uni-cpo-input-for-nov builderius-setting-field"
+                                                                    data-parsley-required="true"
+                                                                    data-parsley-trigger="change focusout submit"/>
+
+                                                            <label><?php esc_html_e( 'Type', 'uni-cpo' ) ?></label>
+                                                            <select
+                                                                    class="uni-modal-select builderius-setting-field"
+                                                                    name="qty_cart_discounts[{{- i }}][type]">
+                                                                <option value="per"{{ if (obj.type === 'per') { print(' selected'); } }}><?php esc_html_e( 'Percentage', 'uni-cpo' ) ?></option>
+                                                                <option value="abs"{{ if (obj.type === 'abs') { print(' selected'); } }}><?php esc_html_e( 'Fixed', 'uni-cpo' ) ?></option>
+                                                            </select>
+
+                                                            <label><?php esc_html_e( 'Discount', 'uni-cpo' ) ?></label>
+                                                            <input
+                                                                    type="text"
+                                                                    name="qty_cart_discounts[{{- i }}][value]"
+                                                                    value="{{- obj.value }}"
+                                                                    class="uni-cpo-modal-field uni-cpo-input-for-nov builderius-setting-field"
+                                                                    data-parsley-required="true"
+                                                                    data-parsley-trigger="change focusout submit"/>
+
+							                            </div>
+							                            <div class="uni-cpo-non-option-vars-options-rules-remove-wrapper">
+                                                            <span class="uni_cpo_non_option_vars_option_remove">
+                                                                <i class="fas fa-times"></i>
+                                                            </span>
+							                            </div>
+						                            </div>
+						                            {{ i++; }}
+						                            {{ }); }}
+						                            {{ } }}
+					                            </div>
+				                            </div>
+			                            </div>
+		                            </div>
+	                            </div>
                             </div>
                         </div>
                         <div class="uni-modal-btns-wrap uni-clear">
@@ -891,7 +1134,7 @@ final class Uni_Cpo_Templates {
                                         type="checkbox"
                                         name="rules_enable"
                                         value="on"
-                                        {{ if (data.rules_enable=== 'on') { print(' checked'); } }} />
+                                        {{ if (data.rules_enable === 'on') { print(' checked'); } }} />
                                 <span class="uni-conditional-logic__label-wrap">
                                     <span class="uni-conditional-logic__checkbox-label"></span>
                                     <span class="uni-conditional-logic__checkbox-on"><?php esc_html_e( 'on', 'uni-cpo' ) ?></span>

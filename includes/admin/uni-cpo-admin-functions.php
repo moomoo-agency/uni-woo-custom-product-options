@@ -79,7 +79,9 @@ function uni_cpo_order_formatted_meta_data( $formatted_meta, $item )
         array_walk( $item_meta_data, function ( $v ) use( &$formatted_meta, $filtered_form_data, $excluded_order_item_meta_keys ) {
             $meta_data = $v->get_data();
             
-            if ( false !== strpos( $meta_data['key'], UniCpo()->get_var_slug() ) && !empty($meta_data['value']) ) {
+            if ( in_array( $meta_data['key'], $excluded_order_item_meta_keys ) ) {
+                unset( $formatted_meta[$meta_data['id']] );
+            } elseif ( false !== strpos( $meta_data['key'], UniCpo()->get_var_slug() ) && !empty($meta_data['value']) ) {
                 $slug = ltrim( $meta_data['key'], '_' );
                 $post = uni_cpo_get_post_by_slug( $slug );
                 
@@ -139,8 +141,6 @@ function uni_cpo_order_formatted_meta_data( $formatted_meta, $item )
                 
                 }
             
-            } elseif ( in_array( $meta_data['key'], $excluded_order_item_meta_keys ) ) {
-                unset( $formatted_meta[$meta_data['id']] );
             }
         
         } );

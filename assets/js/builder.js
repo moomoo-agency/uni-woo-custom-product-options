@@ -1420,35 +1420,6 @@
                             return true;
                         }
 
-                        // if (_.indexOf(['text_input', 'select', 'radio', 'checkbox'], type) !== -1) {
-                        //
-                        //     if (typeof modSettings.cpo_general !== 'undefined' && !_.isEmpty(modSettings.cpo_general.main.cpo_slug)) {
-                        //         const varName = prefix + modSettings.cpo_general.main.cpo_slug;
-                        //         const obj = {
-                        //             slug: varName,
-                        //             type,
-                        //         };
-                        //
-                        //         if (_.indexOf(['select', 'radio', 'checkbox'], type) !== -1
-                        //             && modSettings.cpo_suboptions
-                        //             && typeof modSettings.cpo_suboptions.data !== 'undefined')
-                        //         {
-                        //             const suboptions = modSettings.cpo_suboptions.data;
-                        //             let values       = {};
-                        //             if (typeof suboptions.cpo_select_options !== 'undefined') {
-                        //                 values = Builderius._getSuboptionsFormatted(suboptions.cpo_select_options);
-                        //             }
-                        //             if (typeof suboptions.cpo_radio_options !== 'undefined') {
-                        //                 values = Builderius._getSuboptionsFormatted(suboptions.cpo_radio_options);
-                        //             }
-                        //
-                        //             obj.suboptions = values;
-                        //         }
-                        //
-                        //         Builderius._optionVars.matrix.push(obj);
-                        //     }
-                        // }
-
                         if ('option' === objType) {
                             if (typeof modSettings.cpo_general !== 'undefined'
                                 && !_.isEmpty(modSettings.cpo_general.main.cpo_slug)) {
@@ -4972,6 +4943,34 @@
         $modal.on('change', 'input, select, textarea', function () {
             $('#js-modal-main-save-btn').addClass('uni-active');
         });
+
+        // init non option variables
+        const $repeater = $('.uni-cpo-non-option-vars-options-repeat');
+        if ($repeater.length > 0) {
+            $repeater.each(function () {
+                $(this).repeatable_fields({
+                    wrapper:               '.uni-cpo-non-option-vars-options-repeat-wrapper',
+                    container:             '.uni-cpo-non-option-vars-options-wrapper',
+                    row:                   '.uni-cpo-non-option-vars-options-row',
+                    add:                   '.uni_cpo_non_option_vars_option_add',
+                    remove:                '.uni-cpo-non-option-vars-options-rules-remove-wrapper',
+                    move:                  '.uni-cpo-non-option-vars-options-move-wrapper',
+                    template:              '.uni-cpo-non-option-vars-options-template',
+                    is_sortable:           true,
+                    before_add:            null,
+                    after_add:             function (container, newRow) {
+                        uni_after_add_nov_item(container, newRow);
+                    },
+                    before_remove:         null,
+                    after_remove:          function (container) {
+                        $('#js-modal-nov-save-btn').addClass('uni-active');
+                        update_everything(container, '.uni-cpo-non-option-vars-options-template');
+                    },
+                    sortable_options:      null,
+                    row_count_placeholder: '<%row-count%>',
+                });
+            });
+        }
     });
 
     // uni_after_add_suboption
@@ -5132,7 +5131,7 @@
         update_everything(container, '.uni-cpo-non-option-vars-options-template');
 
         $(newRow).find('textarea, input').not('.wp-picker-clear, .flatpickr-hour, .flatpickr-minute, .cur-year').addClass('builderius-setting-field');
-        $(newRow).find('.uni-cpo-convert-wrapper select').addClass('builderius-setting-field');
+        $(newRow).find('.uni-cpo-convert-wrapper select, .uni-modal-select').addClass('builderius-setting-field');
         const $roleWrapperOne = $(newRow).find('.uni-cpo-non-option-vars-role');
         $roleWrapperOne.attr('data-uni-constrained', 'input[name=wholesale_enable]');
         $roleWrapperOne.attr('data-uni-constvalue', 'on');

@@ -199,8 +199,8 @@ UniCpo = {
                         cpoObj.setPriceTo({ price: cpoObj.priceStartingEl });
                     }
 
-                    if (r.product_url) {
-                        window.location = response.product_url;
+                    if (r.data.product_url) {
+                        window.location = r.data.product_url;
                         return;
                     }
 
@@ -778,26 +778,30 @@ UniCpo = {
 
         var cpoObj = this;
         var $el = cpoObj.priceTagEl;
-        $el.parent().each(function () {
-            if (jQuery(this)[0].tagName === 'DEL') {
-                jQuery(this).find($el).show();
-            } else {
-                jQuery(this).find($el).html(price).show();
-                if (cpoObj.isTaxable && tax !== 'hide') {
-                    var $taxSuffixEl = jQuery(this).find(cpoObj.taxPriceSuffixElClass);
-                    var $newTaxSuffixEl = jQuery(cpoObj.getProperTaxSuffix(tax));
-                    $taxSuffixEl.replaceWith($newTaxSuffixEl);
-                    $newTaxSuffixEl.show();
-                    $newTaxSuffixEl.find('span').show();
+        $el.each(function (i, elInList) {
+            jQuery(elInList).parent().each(function (k, elInListParent) {
+                if (jQuery(elInListParent)[0].tagName === 'DEL') {
+                    jQuery(elInListParent).find(elInList).show();
                 } else {
-                    jQuery(this).find(cpoObj.taxPriceSuffixElClass).hide();
+                    jQuery(elInListParent).find(elInList).each(function () {
+                        var cloned = price;
+                        if ((typeof price === 'undefined' ? 'undefined' : _typeof(price)) === 'object') {
+                            cloned = price.clone();
+                        }
+                        jQuery(this).html(cloned).show();
+                        jQuery(document.body).trigger('uni_cpo_set_price_event', [cloned]);
+                    });
+                    if (cpoObj.isTaxable && tax !== 'hide') {
+                        var $taxSuffixEl = jQuery(elInListParent).find(cpoObj.taxPriceSuffixElClass);
+                        var $newTaxSuffixEl = jQuery(cpoObj.getProperTaxSuffix(tax));
+                        $taxSuffixEl.replaceWith($newTaxSuffixEl);
+                        $newTaxSuffixEl.show();
+                        $newTaxSuffixEl.find('span').show();
+                    } else {
+                        jQuery(elInListParent).find(cpoObj.taxPriceSuffixElClass).hide();
+                    }
                 }
-                var cloned = price;
-                if ((typeof price === 'undefined' ? 'undefined' : _typeof(price)) === 'object') {
-                    cloned = price.clone();
-                }
-                jQuery(document.body).trigger('uni_cpo_set_price_event', [cloned]);
-            }
+            });
         });
     },
     showFirstThumbOnImageChange: function showFirstThumbOnImageChange() {
@@ -918,3 +922,9 @@ window.Parsley.on('field:error', function () {
     }
     window.UniCpo.position(this.$element);
 });
+
+/* Custom JS functions-helpers
+----------------------------------------------------------*/
+
+/* Custom JS functions-helpers to be used in Dynamic Notice
+----------------------------------------------------------*/
