@@ -1115,7 +1115,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
                 ?> .uni-cpo-radio-option-label {
                     <?php 
                 
-                if ( !empty($correct_width) ) {
+                if ( !empty($main['width_px']) ) {
                     ?> width: <?php 
                     echo  esc_attr( $correct_width ) ;
                     ?>px; <?php 
@@ -1229,7 +1229,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
                     ?> .uni-cpo-radio-option-label {
                     <?php 
                     
-                    if ( !empty($correct_width) ) {
+                    if ( !empty($main['width_px']) ) {
                         ?> width: <?php 
                         echo  esc_attr( $correct_width ) ;
                         ?>px; <?php 

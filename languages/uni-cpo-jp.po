@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Uni CPO 3.1.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-27 17:22+0300\n"
-"PO-Revision-Date: 2018-08-27 17:23+0300\n"
+"POT-Creation-Date: 2018-09-08 06:45+0300\n"
+"PO-Revision-Date: 2018-09-08 06:46+0300\n"
 "Last-Translator: \n"
 "Language-Team: MooMoo <sales@moomoo.agency>\n"
 "Language: ja\n"
@@ -28,20 +28,20 @@ msgstr ""
 msgid "Cheatin&#8217; huh?"
 msgstr ""
 
-#: class-uni-cpo.php:506
+#: class-uni-cpo.php:509
 #: includes/options/class-uni-cpo-option-file-upload.php:163
 msgid "No file uploaded"
 msgstr "ファイルはアップロードされていません"
 
 #: includes/abstracts/abstract-uni-cpo-setting.php:554
-#: includes/class-uni-cpo-templates.php:1349
-#: includes/class-uni-cpo-templates.php:1414
+#: includes/class-uni-cpo-templates.php:1362
+#: includes/class-uni-cpo-templates.php:1427
 msgid "Add/Change attachment"
 msgstr "添付ファイルの追加/変更"
 
 #: includes/abstracts/abstract-uni-cpo-setting.php:563
-#: includes/class-uni-cpo-templates.php:1355
-#: includes/class-uni-cpo-templates.php:1420
+#: includes/class-uni-cpo-templates.php:1368
+#: includes/class-uni-cpo-templates.php:1433
 msgid "Remove attachment"
 msgstr "削除する"
 
@@ -115,7 +115,7 @@ msgid "Uni CPO Settings"
 msgstr "フォーム設定"
 
 #: includes/admin/class-uni-cpo-plugin-settings.php:69
-#: includes/class-uni-cpo-frontend-scripts.php:647
+#: includes/class-uni-cpo-frontend-scripts.php:672
 msgid "Settings"
 msgstr "設定"
 
@@ -403,13 +403,13 @@ msgstr "更新"
 
 #: includes/class-uni-cpo-ajax.php:128 includes/class-uni-cpo-ajax.php:186
 #: includes/class-uni-cpo-ajax.php:208 includes/class-uni-cpo-ajax.php:310
-#: includes/class-uni-cpo-ajax.php:339 includes/class-uni-cpo-ajax.php:366
-#: includes/class-uni-cpo-ajax.php:406 includes/class-uni-cpo-ajax.php:459
-#: includes/class-uni-cpo-ajax.php:486 includes/class-uni-cpo-ajax.php:515
-#: includes/class-uni-cpo-ajax.php:545 includes/class-uni-cpo-ajax.php:576
-#: includes/class-uni-cpo-ajax.php:603 includes/class-uni-cpo-ajax.php:633
-#: includes/class-uni-cpo-ajax.php:680 includes/class-uni-cpo-ajax.php:1458
-#: includes/class-uni-cpo-ajax.php:1534
+#: includes/class-uni-cpo-ajax.php:339 includes/class-uni-cpo-ajax.php:370
+#: includes/class-uni-cpo-ajax.php:410 includes/class-uni-cpo-ajax.php:463
+#: includes/class-uni-cpo-ajax.php:490 includes/class-uni-cpo-ajax.php:519
+#: includes/class-uni-cpo-ajax.php:549 includes/class-uni-cpo-ajax.php:580
+#: includes/class-uni-cpo-ajax.php:607 includes/class-uni-cpo-ajax.php:637
+#: includes/class-uni-cpo-ajax.php:684 includes/class-uni-cpo-ajax.php:1462
+#: includes/class-uni-cpo-ajax.php:1538
 msgid "Insufficient permissions for this operation"
 msgstr "権限が不足しています。"
 
@@ -437,154 +437,154 @@ msgstr "「無効なファイルタイプ」のようなもの"
 msgid "Something went srong"
 msgstr "何かが間違っていた"
 
-#: includes/class-uni-cpo-ajax.php:316 includes/class-uni-cpo-ajax.php:686
+#: includes/class-uni-cpo-ajax.php:316 includes/class-uni-cpo-ajax.php:690
 msgid "Type is not specified"
 msgstr "フィールドのタイプ"
 
-#: includes/class-uni-cpo-ajax.php:324 includes/class-uni-cpo-ajax.php:702
+#: includes/class-uni-cpo-ajax.php:324 includes/class-uni-cpo-ajax.php:706
 msgid "No modules"
 msgstr "モジュールなし"
 
-#: includes/class-uni-cpo-ajax.php:372 includes/class-uni-cpo-ajax.php:412
+#: includes/class-uni-cpo-ajax.php:376 includes/class-uni-cpo-ajax.php:416
 msgid "Product ID is not specified"
 msgstr "商品IDは指定されていません"
 
-#: includes/class-uni-cpo-ajax.php:389
+#: includes/class-uni-cpo-ajax.php:393
 msgid "No similar products"
 msgstr "似たような商品はありません。"
 
-#: includes/class-uni-cpo-ajax.php:416
+#: includes/class-uni-cpo-ajax.php:420
 msgid "Target product ID is not specified"
 msgstr "ターゲットの製品 ID が指定されていません。"
 
-#: includes/class-uni-cpo-ajax.php:423
+#: includes/class-uni-cpo-ajax.php:427
 #, php-format
 msgid "Product creation failed, could not find original product: %s"
 msgstr ""
 "商品の作成に失敗しました。オリジナルの商品を見つけることができませんでした:%s"
 
-#: includes/class-uni-cpo-ajax.php:430
+#: includes/class-uni-cpo-ajax.php:434
 #, php-format
 msgid "Product creation failed, could not find targeted product: %s"
 msgstr ""
 "商品の作成に失敗しました。オリジナルの商品を見つけることができませんでした:%s"
 
-#: includes/class-uni-cpo-ajax.php:441
+#: includes/class-uni-cpo-ajax.php:445
 msgid "Error"
 msgstr "ファイルフィールドのファイルタイプエラー"
 
-#: includes/class-uni-cpo-ajax.php:637
+#: includes/class-uni-cpo-ajax.php:641
 msgid "No files added"
 msgstr "最大ファイル数"
 
-#: includes/class-uni-cpo-ajax.php:654
+#: includes/class-uni-cpo-ajax.php:658
 msgid "Only CSV files are allowed"
 msgstr "許可されたファイル"
 
-#: includes/class-uni-cpo-ajax.php:663 includes/class-uni-cpo-ajax.php:956
-#: includes/class-uni-cpo-ajax.php:1401 includes/class-uni-cpo-ajax.php:1681
-#: includes/class-uni-cpo-ajax.php:1777
+#: includes/class-uni-cpo-ajax.php:667 includes/class-uni-cpo-ajax.php:960
+#: includes/class-uni-cpo-ajax.php:1405 includes/class-uni-cpo-ajax.php:1685
+#: includes/class-uni-cpo-ajax.php:1781
 msgid "Something went wrong"
 msgstr "何か問題が発生しています。"
 
-#: includes/class-uni-cpo-ajax.php:690
+#: includes/class-uni-cpo-ajax.php:694
 msgid "Target post is not chosen"
 msgstr "ターゲットの記事が選択されていません。"
 
-#: includes/class-uni-cpo-ajax.php:694
+#: includes/class-uni-cpo-ajax.php:698
 msgid "Sync method is not chosen"
 msgstr "検証方法を選択する"
 
-#: includes/class-uni-cpo-ajax.php:721
+#: includes/class-uni-cpo-ajax.php:725
 msgid "No post ID specified"
 msgstr "投稿IDが見つかりません"
 
-#: includes/class-uni-cpo-ajax.php:725
+#: includes/class-uni-cpo-ajax.php:729
 msgid "No file name specified"
 msgstr "これはステップ名です"
 
-#: includes/class-uni-cpo-ajax.php:729
+#: includes/class-uni-cpo-ajax.php:733
 msgid "No option variable specified"
 msgstr "新しいオプションを追加する"
 
-#: includes/class-uni-cpo-ajax.php:733
+#: includes/class-uni-cpo-ajax.php:737
 msgid "Failed to upload file(s)."
 msgstr "アップロードに失敗"
 
-#: includes/class-uni-cpo-ajax.php:737
+#: includes/class-uni-cpo-ajax.php:741
 msgid "No dropbox token set. Abort operation."
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:746
+#: includes/class-uni-cpo-ajax.php:750
 msgid "The temp uploading dir cannot be created."
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:765 includes/class-uni-cpo-ajax.php:774
+#: includes/class-uni-cpo-ajax.php:769 includes/class-uni-cpo-ajax.php:778
 msgid "Failed to open input stream."
 msgstr "入力ストリームを開くことができませんでした。"
 
-#: includes/class-uni-cpo-ajax.php:793 includes/class-uni-cpo-ajax.php:1713
+#: includes/class-uni-cpo-ajax.php:797 includes/class-uni-cpo-ajax.php:1717
 msgid "Sorry, this file type is not permitted for security reasons."
 msgstr ""
 "申し訳ありませんが、セキュリティ上の理由から、このファイルタイプは許可されて"
 "いません。"
 
-#: includes/class-uni-cpo-ajax.php:808
+#: includes/class-uni-cpo-ajax.php:812
 msgid "The uploading dir cannot be created."
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:816
+#: includes/class-uni-cpo-ajax.php:820
 msgid "An error occurred during uploading. Please, contact admin of the site."
 msgstr ""
 "アップロード中にエラーがありました。サーバー管理者にお問い合わせください:"
 
-#: includes/class-uni-cpo-ajax.php:827
+#: includes/class-uni-cpo-ajax.php:831
 msgid "The uploaded file could not be moved."
 msgstr "アップロードされたファイルは、%sに移動できませんでした。"
 
-#: includes/class-uni-cpo-ajax.php:871
+#: includes/class-uni-cpo-ajax.php:875
 msgid "File is valid, and was successfully uploaded."
 msgstr "ファイルが有効であり、正しくアップロードされました。"
 
-#: includes/class-uni-cpo-ajax.php:905
+#: includes/class-uni-cpo-ajax.php:909
 msgid "Still uploading..."
 msgstr "まだアップロードしています…"
 
-#: includes/class-uni-cpo-ajax.php:925
+#: includes/class-uni-cpo-ajax.php:929
 msgid "Not enough data"
 msgstr "データ不足"
 
-#: includes/class-uni-cpo-ajax.php:954
+#: includes/class-uni-cpo-ajax.php:958
 msgid "File successfully deleted"
 msgstr "ファイルは削除されました"
 
-#: includes/class-uni-cpo-ajax.php:1054 includes/class-uni-cpo-ajax.php:1642
-#: includes/class-uni-cpo-ajax.php:1703
+#: includes/class-uni-cpo-ajax.php:1058 includes/class-uni-cpo-ajax.php:1646
+#: includes/class-uni-cpo-ajax.php:1707
 msgid "Product ID is not set"
 msgstr "商品IDが設定されていません"
 
-#: includes/class-uni-cpo-ajax.php:1298
+#: includes/class-uni-cpo-ajax.php:1302
 msgid "Price calculation is disabled in settings"
 msgstr "価格計算は設定で無効になっています"
 
-#: includes/class-uni-cpo-ajax.php:1519
+#: includes/class-uni-cpo-ajax.php:1523
 msgid "No options available"
 msgstr "オプションはありません"
 
-#: includes/class-uni-cpo-ajax.php:1646
+#: includes/class-uni-cpo-ajax.php:1650
 msgid "Email is not set"
 msgstr "電子メールが設定されていません。"
 
-#: includes/class-uni-cpo-ajax.php:1668
+#: includes/class-uni-cpo-ajax.php:1672
 msgid "File cannot be saved"
 msgstr "ファイルを保存できません。"
 
-#: includes/class-uni-cpo-ajax.php:1671
+#: includes/class-uni-cpo-ajax.php:1675
 #, php-format
 msgid "[%s] Export request for product #%d"
 msgstr ""
 
-#: includes/class-uni-cpo-ajax.php:1672
+#: includes/class-uni-cpo-ajax.php:1676
 #, php-format
 msgid ""
 "A .txt file with encoded info of settings for product #%d is attached to "
@@ -597,7 +597,7 @@ msgstr ""
 "を使用して追加されたすべての製品設定が含まれています。このファイルを使用し"
 "て、別の場所で設定を再インポートします。"
 
-#: includes/class-uni-cpo-ajax.php:1725
+#: includes/class-uni-cpo-ajax.php:1729
 msgid "File cannot be read"
 msgstr ".zipデータファイルを選択する"
 
@@ -885,202 +885,202 @@ msgstr "スクロールマージン"
 msgid "Click to toggle"
 msgstr "クリックで切り替え"
 
-#: includes/class-uni-cpo-frontend-scripts.php:590
+#: includes/class-uni-cpo-frontend-scripts.php:615
 msgid "Smart Search"
 msgstr "スマート検索"
 
-#: includes/class-uni-cpo-frontend-scripts.php:593
+#: includes/class-uni-cpo-frontend-scripts.php:618
 msgid "Basic Modules"
 msgstr "基本モジュール"
 
-#: includes/class-uni-cpo-frontend-scripts.php:594
+#: includes/class-uni-cpo-frontend-scripts.php:619
 msgid "Options"
 msgstr "オプション"
 
-#: includes/class-uni-cpo-frontend-scripts.php:599
+#: includes/class-uni-cpo-frontend-scripts.php:624
 msgid "General"
 msgstr "一般"
 
-#: includes/class-uni-cpo-frontend-scripts.php:603
+#: includes/class-uni-cpo-frontend-scripts.php:628
 msgid "Style"
 msgstr "数量選択スタイル"
 
-#: includes/class-uni-cpo-frontend-scripts.php:607
+#: includes/class-uni-cpo-frontend-scripts.php:632
 msgid "Advanced"
 msgstr "高度な設定"
 
-#: includes/class-uni-cpo-frontend-scripts.php:611
+#: includes/class-uni-cpo-frontend-scripts.php:636
 msgid "Main"
 msgstr "メインタイトルのHTMLタグ"
 
-#: includes/class-uni-cpo-frontend-scripts.php:615
+#: includes/class-uni-cpo-frontend-scripts.php:640
 msgid "Suboptions"
 msgstr "サブオプション"
 
-#: includes/class-uni-cpo-frontend-scripts.php:619
+#: includes/class-uni-cpo-frontend-scripts.php:644
 #: includes/options/class-uni-cpo-option-matrix.php:38
 msgid "Matrix"
 msgstr "マトリックス"
 
-#: includes/class-uni-cpo-frontend-scripts.php:623
-#: includes/class-uni-cpo-templates.php:945
+#: includes/class-uni-cpo-frontend-scripts.php:648
+#: includes/class-uni-cpo-templates.php:960
 msgid "Rules"
 msgstr "カスタムCSSルール"
 
-#: includes/class-uni-cpo-frontend-scripts.php:627
+#: includes/class-uni-cpo-frontend-scripts.php:652
 msgid "Conditional"
 msgstr "条件判定"
 
-#: includes/class-uni-cpo-frontend-scripts.php:631
+#: includes/class-uni-cpo-frontend-scripts.php:656
 msgid "Validation"
 msgstr "検証"
 
-#: includes/class-uni-cpo-frontend-scripts.php:636
+#: includes/class-uni-cpo-frontend-scripts.php:661
 msgid "Delete"
 msgstr "このフォームを削除する"
 
-#: includes/class-uni-cpo-frontend-scripts.php:637
+#: includes/class-uni-cpo-frontend-scripts.php:662
 msgid "Save"
 msgstr "セーブ"
 
-#: includes/class-uni-cpo-frontend-scripts.php:638
+#: includes/class-uni-cpo-frontend-scripts.php:663
 #: includes/settings/class-uni-cpo-setting-sync.php:21
 msgid "Sync"
 msgstr "同期"
 
-#: includes/class-uni-cpo-frontend-scripts.php:639
-#: includes/class-uni-cpo-templates.php:783
-#: includes/class-uni-cpo-templates.php:1073
-#: includes/class-uni-cpo-templates.php:1245
-#: includes/class-uni-cpo-templates.php:1446
-#: includes/class-uni-cpo-templates.php:1639
-#: includes/class-uni-cpo-templates.php:1819
+#: includes/class-uni-cpo-frontend-scripts.php:664
+#: includes/class-uni-cpo-templates.php:798
+#: includes/class-uni-cpo-templates.php:1086
+#: includes/class-uni-cpo-templates.php:1258
+#: includes/class-uni-cpo-templates.php:1459
+#: includes/class-uni-cpo-templates.php:1652
+#: includes/class-uni-cpo-templates.php:1832
 #: includes/uni-cpo-core-functions.php:1088
 msgid "Cancel"
 msgstr "キャンセル"
 
-#: includes/class-uni-cpo-frontend-scripts.php:640
+#: includes/class-uni-cpo-frontend-scripts.php:665
 msgid "Suggestion"
 msgstr "提案"
 
-#: includes/class-uni-cpo-frontend-scripts.php:643
+#: includes/class-uni-cpo-frontend-scripts.php:668
 #: includes/modules/class-uni-cpo-module-row.php:29
 msgid "Row"
 msgstr "行"
 
-#: includes/class-uni-cpo-frontend-scripts.php:644
+#: includes/class-uni-cpo-frontend-scripts.php:669
 #: includes/modules/class-uni-cpo-module-column.php:29
 msgid "Column"
 msgstr "列"
 
-#: includes/class-uni-cpo-frontend-scripts.php:645
+#: includes/class-uni-cpo-frontend-scripts.php:670
 msgid "Module"
 msgstr "モジュール"
 
-#: includes/class-uni-cpo-frontend-scripts.php:646
+#: includes/class-uni-cpo-frontend-scripts.php:671
 msgid "Move Row"
 msgstr "行"
 
-#: includes/class-uni-cpo-frontend-scripts.php:648
-#: includes/class-uni-cpo-templates.php:715
-#: includes/class-uni-cpo-templates.php:716
+#: includes/class-uni-cpo-frontend-scripts.php:673
+#: includes/class-uni-cpo-templates.php:730
+#: includes/class-uni-cpo-templates.php:731
 #: includes/settings/class-uni-cpo-setting-sync.php:61
 #: includes/uni-cpo-functions.php:309
 msgid "Duplicate"
 msgstr "重複"
 
-#: includes/class-uni-cpo-frontend-scripts.php:649
+#: includes/class-uni-cpo-frontend-scripts.php:674
 #: includes/options/class-uni-cpo-option-file-upload.php:174
 msgid "Remove"
 msgstr "削除する"
 
-#: includes/class-uni-cpo-frontend-scripts.php:651
+#: includes/class-uni-cpo-frontend-scripts.php:676
 msgid "Upload"
 msgstr "画像をアップロード"
 
-#: includes/class-uni-cpo-frontend-scripts.php:652
-#: includes/options/class-uni-cpo-option-file-upload.php:500
+#: includes/class-uni-cpo-frontend-scripts.php:677
+#: includes/options/class-uni-cpo-option-file-upload.php:525
 msgid "Select file"
 msgstr ".zipデータファイルを選択する"
 
-#: includes/class-uni-cpo-frontend-scripts.php:653
+#: includes/class-uni-cpo-frontend-scripts.php:678
 msgid "Please add suboptions"
 msgstr "ステップを追加"
 
-#: includes/class-uni-cpo-frontend-scripts.php:654
+#: includes/class-uni-cpo-frontend-scripts.php:679
 msgid "2nd var/1st var"
 msgstr "2/1 日 var var"
 
-#: includes/class-uni-cpo-frontend-scripts.php:655
+#: includes/class-uni-cpo-frontend-scripts.php:680
 #: includes/settings/class-uni-cpo-setting-sync.php:79
 msgid "- None -"
 msgstr "なし"
 
-#: includes/class-uni-cpo-frontend-scripts.php:657
+#: includes/class-uni-cpo-frontend-scripts.php:682
 msgid "Pro Version Feature"
 msgstr "Pro バージョンの機能"
 
-#: includes/class-uni-cpo-frontend-scripts.php:659
+#: includes/class-uni-cpo-frontend-scripts.php:684
 msgid "No cart form found! Check WooCommerce hooks integration with your theme"
 msgstr ""
 "カートのフォームが見つかりましたなし!WooCommerce フックあなたのテーマとの統合"
 "をチェックします。"
 
-#: includes/class-uni-cpo-frontend-scripts.php:660
+#: includes/class-uni-cpo-frontend-scripts.php:685
 msgid "Too many cart forms found! Uni CPO works on single product page only!"
 msgstr ""
 "あまりにも多くのカート フォームを発見!ユニの CPO は、単一の製品ページにのみ作"
 "品!"
 
-#: includes/class-uni-cpo-frontend-scripts.php:661
+#: includes/class-uni-cpo-frontend-scripts.php:686
 msgid "Regular price is not set. Price is required (even \"1\" works)!"
 msgstr "通常価格は設定されていません。価格が必要 (でも「1」の作品) です!"
 
-#: includes/class-uni-cpo-frontend-scripts.php:662
+#: includes/class-uni-cpo-frontend-scripts.php:687
 msgid "It seems that price tag selector is wrong, please update!"
 msgstr "その価格タグ セレクターが間違っているようだ、アップデートしてください!"
 
-#: includes/class-uni-cpo-frontend-scripts.php:663
+#: includes/class-uni-cpo-frontend-scripts.php:688
 msgid "It seems that image tag selector is wrong, please update!"
 msgstr ""
 "そのイメージ タグ セレクターが間違っているようだ、アップデートしてください!"
 
-#: includes/class-uni-cpo-frontend-scripts.php:688
-#: includes/class-uni-cpo-frontend-scripts.php:828
+#: includes/class-uni-cpo-frontend-scripts.php:713
+#: includes/class-uni-cpo-frontend-scripts.php:880
 msgid "Clear"
 msgstr "クリア"
 
-#: includes/class-uni-cpo-frontend-scripts.php:689
-#: includes/class-uni-cpo-frontend-scripts.php:829
+#: includes/class-uni-cpo-frontend-scripts.php:714
+#: includes/class-uni-cpo-frontend-scripts.php:881
 #: includes/settings/class-uni-cpo-setting-font-family.php:24
 #: includes/settings/class-uni-cpo-setting-font-style.php:24
 msgid "Default"
 msgstr "デフォルト"
 
-#: includes/class-uni-cpo-frontend-scripts.php:690
-#: includes/class-uni-cpo-frontend-scripts.php:830
+#: includes/class-uni-cpo-frontend-scripts.php:715
+#: includes/class-uni-cpo-frontend-scripts.php:882
 msgid "Select Color"
 msgstr "選択"
 
-#: includes/class-uni-cpo-frontend-scripts.php:691
-#: includes/class-uni-cpo-frontend-scripts.php:831
+#: includes/class-uni-cpo-frontend-scripts.php:716
+#: includes/class-uni-cpo-frontend-scripts.php:883
 msgid "Current Color"
 msgstr "色"
 
-#: includes/class-uni-cpo-frontend-scripts.php:801
+#: includes/class-uni-cpo-frontend-scripts.php:853
 msgid "Calculating"
 msgstr "計算しています…"
 
-#: includes/class-uni-cpo-frontend-scripts.php:802
+#: includes/class-uni-cpo-frontend-scripts.php:854
 #, php-format
 msgid "This file should not be larger than %s Kb"
 msgstr "このファイルが %s Kb より大きくなければなりません"
 
-#: includes/class-uni-cpo-frontend-scripts.php:803
+#: includes/class-uni-cpo-frontend-scripts.php:855
 msgid "File of this type is not allowed"
 msgstr "ファイルフィールドのファイルタイプエラー"
 
-#: includes/class-uni-cpo-frontend-scripts.php:804
+#: includes/class-uni-cpo-frontend-scripts.php:856
 msgid "The product has been added successfully!"
 msgstr "製品が正常に追加されました!"
 
@@ -1186,11 +1186,11 @@ msgstr "CPO ビルダーへ"
 msgid "CPO Builder"
 msgstr "CPO ビルダー"
 
-#: includes/class-uni-cpo-product.php:799
+#: includes/class-uni-cpo-product.php:805
 msgid "Product does not exist or not chosen"
 msgstr "リクエストされた商品は存在しません。"
 
-#: includes/class-uni-cpo-product.php:928
+#: includes/class-uni-cpo-product.php:936
 msgid "No context set. The data was not saved."
 msgstr "コンテキストが設定されていません。データは保存されませんでした。"
 
@@ -1244,7 +1244,7 @@ msgid "Save content"
 msgstr "コンテンツを保存"
 
 #: includes/class-uni-cpo-templates.php:141
-#: includes/class-uni-cpo-templates.php:808
+#: includes/class-uni-cpo-templates.php:823
 msgid "Cart discounts"
 msgstr "カート割引"
 
@@ -1266,7 +1266,7 @@ msgstr "DBに保存しますか？"
 
 #: includes/class-uni-cpo-templates.php:337
 #: includes/class-uni-cpo-templates.php:345
-#: includes/class-uni-cpo-templates.php:816
+#: includes/class-uni-cpo-templates.php:831
 msgid "General Settings"
 msgstr "一般設定"
 
@@ -1287,18 +1287,18 @@ msgstr "インポート/エクスポート"
 #: includes/class-uni-cpo-templates.php:512
 #: includes/class-uni-cpo-templates.php:533
 #: includes/class-uni-cpo-templates.php:573
-#: includes/class-uni-cpo-templates.php:859
-#: includes/class-uni-cpo-templates.php:881
-#: includes/class-uni-cpo-templates.php:1127
-#: includes/class-uni-cpo-templates.php:1286
-#: includes/class-uni-cpo-templates.php:1496
-#: includes/class-uni-cpo-templates.php:1516
-#: includes/class-uni-cpo-templates.php:1689
-#: includes/class-uni-cpo-templates.php:1729
-#: includes/class-uni-cpo-templates.php:1763
-#: includes/class-uni-cpo-templates.php:1797
-#: includes/class-uni-cpo-templates.php:1867
-#: includes/class-uni-cpo-templates.php:1887
+#: includes/class-uni-cpo-templates.php:874
+#: includes/class-uni-cpo-templates.php:896
+#: includes/class-uni-cpo-templates.php:1140
+#: includes/class-uni-cpo-templates.php:1299
+#: includes/class-uni-cpo-templates.php:1509
+#: includes/class-uni-cpo-templates.php:1529
+#: includes/class-uni-cpo-templates.php:1702
+#: includes/class-uni-cpo-templates.php:1742
+#: includes/class-uni-cpo-templates.php:1776
+#: includes/class-uni-cpo-templates.php:1810
+#: includes/class-uni-cpo-templates.php:1880
+#: includes/class-uni-cpo-templates.php:1900
 msgid "on"
 msgstr "オン"
 
@@ -1311,18 +1311,18 @@ msgstr "オン"
 #: includes/class-uni-cpo-templates.php:513
 #: includes/class-uni-cpo-templates.php:534
 #: includes/class-uni-cpo-templates.php:574
-#: includes/class-uni-cpo-templates.php:860
-#: includes/class-uni-cpo-templates.php:882
-#: includes/class-uni-cpo-templates.php:1128
-#: includes/class-uni-cpo-templates.php:1287
-#: includes/class-uni-cpo-templates.php:1497
-#: includes/class-uni-cpo-templates.php:1517
-#: includes/class-uni-cpo-templates.php:1690
-#: includes/class-uni-cpo-templates.php:1730
-#: includes/class-uni-cpo-templates.php:1764
-#: includes/class-uni-cpo-templates.php:1798
-#: includes/class-uni-cpo-templates.php:1868
-#: includes/class-uni-cpo-templates.php:1888
+#: includes/class-uni-cpo-templates.php:875
+#: includes/class-uni-cpo-templates.php:897
+#: includes/class-uni-cpo-templates.php:1141
+#: includes/class-uni-cpo-templates.php:1300
+#: includes/class-uni-cpo-templates.php:1510
+#: includes/class-uni-cpo-templates.php:1530
+#: includes/class-uni-cpo-templates.php:1703
+#: includes/class-uni-cpo-templates.php:1743
+#: includes/class-uni-cpo-templates.php:1777
+#: includes/class-uni-cpo-templates.php:1811
+#: includes/class-uni-cpo-templates.php:1881
+#: includes/class-uni-cpo-templates.php:1901
 msgid "off"
 msgstr "オフ"
 
@@ -1462,7 +1462,7 @@ msgid ""
 msgstr ""
 
 #: includes/class-uni-cpo-templates.php:553
-#: includes/class-uni-cpo-templates.php:934
+#: includes/class-uni-cpo-templates.php:949
 msgid "WC qty field"
 msgstr ""
 
@@ -1473,7 +1473,7 @@ msgstr ""
 #: includes/class-uni-cpo-templates.php:579
 msgid ""
 "Uni CPO uses WC original \"sold individually\" setting for hiding WC qty "
-"field only. Still, we need a possibility to restrict adding teh same product "
+"field only. Still, we need a possibility to restrict adding the same product "
 "twice to the cart even for Uni CPO enabled products. This is exactly what "
 "this setting does!"
 msgstr ""
@@ -1565,124 +1565,118 @@ msgstr ""
 msgid "Price template for archives"
 msgstr "初期価格"
 
-#: includes/class-uni-cpo-templates.php:685
+#: includes/class-uni-cpo-templates.php:697
 #, fuzzy
-#| msgid ""
-#| "Custom price template to be displayed on archives. Template variables: "
-#| "&#123;&#123;&#123;REGULAR_PRICE&#125;&#125;&#125;, &#123;&#123;&#123;"
-#| "STARTING_PRICE&#125;&#125;&#125;. Example: \"from &#123;&#123;&#123;"
-#| "STARTING_PRICE&#125;&#125;&#125; / sq.m.\""
-msgid ""
-"Custom price template to be displayed on archives. Template variables: &#123;"
-"&#123;&#123;REGULAR_PRICE&#125;&#125;&#125;, &#123;&#123;&#123;"
-"STARTING_PRICE&#125;&#125;&#125; or any NOV in triple curly braces. Example: "
-"\"from &#123;&#123;&#123;STARTING_PRICE&#125;&#125;&#125; / sq.m.\" or "
-"\"from &#123;&#123;&#123;uni_nov_cpo_base_price&#125;&#125;&#125;\"."
-msgstr ""
-"アーカイブに表示されるカスタム価格テンプレート。テンプレート変数："
-"{{{REGULAR_PRICE}}}、{{{STARTING_PRICE}}}。例：「from {{{STARTING_PRICE}}} / "
-"sq.m.」"
+#| msgid "Price template for archives"
+msgid "Price template for archives during active sale"
+msgstr "初期価格"
 
-#: includes/class-uni-cpo-templates.php:701
+#: includes/class-uni-cpo-templates.php:700
+msgid ""
+"This the same as above, but this template will be chosen only during active "
+"sales campaign for this product."
+msgstr ""
+
+#: includes/class-uni-cpo-templates.php:716
 msgid "Duplicate from another product"
 msgstr "別の製品から複製する"
 
-#: includes/class-uni-cpo-templates.php:707
+#: includes/class-uni-cpo-templates.php:722
 #: includes/settings/class-uni-cpo-setting-sync.php:72
 msgid "Fetch data"
 msgstr "データの取得"
 
-#: includes/class-uni-cpo-templates.php:710
+#: includes/class-uni-cpo-templates.php:725
 msgid "-None-"
 msgstr "なし"
 
-#: includes/class-uni-cpo-templates.php:720
-#: includes/class-uni-cpo-templates.php:750
-#: includes/class-uni-cpo-templates.php:2145
-#: includes/class-uni-cpo-templates.php:2423
+#: includes/class-uni-cpo-templates.php:735
+#: includes/class-uni-cpo-templates.php:765
+#: includes/class-uni-cpo-templates.php:2158
+#: includes/class-uni-cpo-templates.php:2436
 #: includes/settings/class-uni-cpo-setting-cpo-matrix-data.php:106
 msgid "Import"
 msgstr "インポート"
 
-#: includes/class-uni-cpo-templates.php:731
+#: includes/class-uni-cpo-templates.php:746
 msgid "remove pid attribute values from all the modules"
 msgstr "すべてのモジュールからpid属性値を削除する"
 
-#: includes/class-uni-cpo-templates.php:744
-#: includes/class-uni-cpo-templates.php:2140
-#: includes/class-uni-cpo-templates.php:2418
+#: includes/class-uni-cpo-templates.php:759
+#: includes/class-uni-cpo-templates.php:2153
+#: includes/class-uni-cpo-templates.php:2431
 #: includes/settings/class-uni-cpo-setting-cpo-matrix-data.php:101
 msgid "Choose a file"
 msgstr "タイプを選択"
 
-#: includes/class-uni-cpo-templates.php:754
-#: includes/class-uni-cpo-templates.php:772
+#: includes/class-uni-cpo-templates.php:769
+#: includes/class-uni-cpo-templates.php:787
 msgid "Export"
 msgstr "すべてのフォームをエクスポートする"
 
-#: includes/class-uni-cpo-templates.php:759
+#: includes/class-uni-cpo-templates.php:774
 msgid "Email"
 msgstr "Eメール"
 
-#: includes/class-uni-cpo-templates.php:769
+#: includes/class-uni-cpo-templates.php:784
 msgid "Your email"
 msgstr "メールアドレス"
 
-#: includes/class-uni-cpo-templates.php:785
-#: includes/class-uni-cpo-templates.php:1075
-#: includes/class-uni-cpo-templates.php:1247
-#: includes/class-uni-cpo-templates.php:1448
-#: includes/class-uni-cpo-templates.php:1641
-#: includes/class-uni-cpo-templates.php:1821
+#: includes/class-uni-cpo-templates.php:800
+#: includes/class-uni-cpo-templates.php:1088
+#: includes/class-uni-cpo-templates.php:1260
+#: includes/class-uni-cpo-templates.php:1461
+#: includes/class-uni-cpo-templates.php:1654
+#: includes/class-uni-cpo-templates.php:1834
 #: includes/settings/class-uni-cpo-setting-sync.php:89
 msgid "Submit"
 msgstr "送信"
 
-#: includes/class-uni-cpo-templates.php:822
+#: includes/class-uni-cpo-templates.php:837
 msgid "Role Based Discounts"
 msgstr "基本ディスカウントルール"
 
-#: includes/class-uni-cpo-templates.php:828
+#: includes/class-uni-cpo-templates.php:843
 #, fuzzy
 #| msgid "Role Based Discounts"
 msgid "Quantity Based Discounts"
 msgstr "基本ディスカウントルール"
 
-#: includes/class-uni-cpo-templates.php:836
+#: includes/class-uni-cpo-templates.php:851
 #, fuzzy
 #| msgid "Cart discounts"
 msgid "Cart discounts strategy"
 msgstr "カート割引"
 
-#: includes/class-uni-cpo-templates.php:839
+#: includes/class-uni-cpo-templates.php:854
 msgid "Choose how to apply different types of cart discounts"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:842
+#: includes/class-uni-cpo-templates.php:857
 msgid "Use the highest discount only"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:843
+#: includes/class-uni-cpo-templates.php:858
 msgid "Combine all applicable discounts"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:863
+#: includes/class-uni-cpo-templates.php:878
 msgid "Enable role based cart discounts?"
 msgstr "基本ディスカントルールを有効にしますか？"
 
-#: includes/class-uni-cpo-templates.php:865
+#: includes/class-uni-cpo-templates.php:880
 msgid ""
 "This setting enables/disables cart discounts functionality based on a user "
 "role."
 msgstr "この設定を有効/無効にカート割引機能はユーザーの役割に基づきます。"
 
-#: includes/class-uni-cpo-templates.php:885
+#: includes/class-uni-cpo-templates.php:900
 #, fuzzy
 #| msgid "Enable role based cart discounts?"
 msgid "Enable quantity based cart discounts?"
 msgstr "基本ディスカントルールを有効にしますか？"
 
-#: includes/class-uni-cpo-templates.php:887
+#: includes/class-uni-cpo-templates.php:902
 #, fuzzy
 #| msgid ""
 #| "This setting enables/disables cart discounts functionality based on a "
@@ -1692,90 +1686,90 @@ msgid ""
 "quantity of ordered items."
 msgstr "この設定を有効/無効にカート割引機能はユーザーの役割に基づきます。"
 
-#: includes/class-uni-cpo-templates.php:901
+#: includes/class-uni-cpo-templates.php:916
 msgid "Type and value of discount for"
 msgstr "割引クーポン"
 
-#: includes/class-uni-cpo-templates.php:909
-#: includes/class-uni-cpo-templates.php:986
-#: includes/class-uni-cpo-templates.php:1040
+#: includes/class-uni-cpo-templates.php:924
+#: includes/class-uni-cpo-templates.php:1001
+#: includes/class-uni-cpo-templates.php:1054
 msgid "Percentage"
 msgstr "パーセンテージ"
 
-#: includes/class-uni-cpo-templates.php:910
-#: includes/class-uni-cpo-templates.php:987
-#: includes/class-uni-cpo-templates.php:1041
+#: includes/class-uni-cpo-templates.php:925
+#: includes/class-uni-cpo-templates.php:1002
+#: includes/class-uni-cpo-templates.php:1055
 #: includes/settings/class-uni-cpo-setting-background-image.php:140
 #: includes/settings/class-uni-cpo-setting-content-width.php:24
 msgid "Fixed"
 msgstr "固定金額"
 
-#: includes/class-uni-cpo-templates.php:926
+#: includes/class-uni-cpo-templates.php:941
 msgid "Choose a qty field to check for qty discounts based on."
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:929
+#: includes/class-uni-cpo-templates.php:944
 msgid ""
 "It may be standard WC qty field or any custom option that serves as qty "
 "field. We do not recommend using the option chosen here in your price "
 "calculation formula, still it is possible. Always double check ;)"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:951
-#: includes/class-uni-cpo-templates.php:1166
-#: includes/class-uni-cpo-templates.php:1300
-#: includes/class-uni-cpo-templates.php:1555
-#: includes/class-uni-cpo-templates.php:1940
+#: includes/class-uni-cpo-templates.php:966
+#: includes/class-uni-cpo-templates.php:1179
+#: includes/class-uni-cpo-templates.php:1313
+#: includes/class-uni-cpo-templates.php:1568
+#: includes/class-uni-cpo-templates.php:1953
 #: includes/settings/class-uni-cpo-setting-cpo-date-rules.php:51
 #: includes/settings/class-uni-cpo-setting-cpo-sc-scheme.php:50
 #: includes/settings/class-uni-cpo-setting-cpo-vc-scheme.php:47
 msgid "Add Rule"
 msgstr "ステップを追加"
 
-#: includes/class-uni-cpo-templates.php:952
-#: includes/class-uni-cpo-templates.php:1167
-#: includes/class-uni-cpo-templates.php:1301
-#: includes/class-uni-cpo-templates.php:1556
-#: includes/class-uni-cpo-templates.php:1941
+#: includes/class-uni-cpo-templates.php:967
+#: includes/class-uni-cpo-templates.php:1180
+#: includes/class-uni-cpo-templates.php:1314
+#: includes/class-uni-cpo-templates.php:1569
+#: includes/class-uni-cpo-templates.php:1954
 #: includes/settings/class-uni-cpo-setting-cpo-date-rules.php:52
 #: includes/settings/class-uni-cpo-setting-cpo-sc-scheme.php:51
 #: includes/settings/class-uni-cpo-setting-cpo-vc-scheme.php:48
 msgid "Remove All"
 msgstr "すべてのステップを削除"
 
-#: includes/class-uni-cpo-templates.php:964
-#: includes/class-uni-cpo-templates.php:1018
+#: includes/class-uni-cpo-templates.php:979
+#: includes/class-uni-cpo-templates.php:1032
 msgid "Min. qty"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:973
-#: includes/class-uni-cpo-templates.php:1027
+#: includes/class-uni-cpo-templates.php:988
+#: includes/class-uni-cpo-templates.php:1041
 msgid "Max. qty"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:982
-#: includes/class-uni-cpo-templates.php:1036
+#: includes/class-uni-cpo-templates.php:997
+#: includes/class-uni-cpo-templates.php:1050
 #: includes/settings/class-uni-cpo-setting-background-type.php:21
 #: includes/settings/class-uni-cpo-setting-divider-style.php:21
 msgid "Type"
 msgstr "タイプ"
 
-#: includes/class-uni-cpo-templates.php:990
-#: includes/class-uni-cpo-templates.php:1044
+#: includes/class-uni-cpo-templates.php:1005
+#: includes/class-uni-cpo-templates.php:1058
 #, fuzzy
 #| msgid "Cart discounts"
 msgid "Discount"
 msgstr "カート割引"
 
-#: includes/class-uni-cpo-templates.php:1105
+#: includes/class-uni-cpo-templates.php:1118
 msgid "Main Formula & Formulas Conditional Logic"
 msgstr "主な公式・数式条件付きロジック"
 
-#: includes/class-uni-cpo-templates.php:1111
+#: includes/class-uni-cpo-templates.php:1124
 msgid "Formula"
 msgstr "数式"
 
-#: includes/class-uni-cpo-templates.php:1113
+#: includes/class-uni-cpo-templates.php:1126
 msgid ""
 "This is a simple formula for your product. It will be applied if no rules "
 "are added or none of them are match."
@@ -1783,12 +1777,12 @@ msgstr ""
 "これはあなたの製品のための簡単な公式です。ルールが追加されていない場合、また"
 "は一致するルールがない場合は適用されます。"
 
-#: includes/class-uni-cpo-templates.php:1131
-#: includes/class-uni-cpo-templates.php:1520
+#: includes/class-uni-cpo-templates.php:1144
+#: includes/class-uni-cpo-templates.php:1533
 msgid "Conditional Logic"
 msgstr "画像をアップロード"
 
-#: includes/class-uni-cpo-templates.php:1133
+#: includes/class-uni-cpo-templates.php:1146
 msgid ""
 "It is also possible to use Formula Conditional Rules feature. First, enable "
 "it here and add some rules then."
@@ -1796,28 +1790,28 @@ msgstr ""
 "フォーミュラ条件付きルール機能を使用することもできます。まず、ここで有効にし"
 "て、いくつかのルールを追加します。"
 
-#: includes/class-uni-cpo-templates.php:1139
+#: includes/class-uni-cpo-templates.php:1152
 msgid "Main formula"
 msgstr "主な色"
 
-#: includes/class-uni-cpo-templates.php:1148
-#: includes/class-uni-cpo-templates.php:1537
-#: includes/class-uni-cpo-templates.php:1896
+#: includes/class-uni-cpo-templates.php:1161
+#: includes/class-uni-cpo-templates.php:1550
+#: includes/class-uni-cpo-templates.php:1909
 msgid "Available variables:"
 msgstr "利用可能"
 
-#: includes/class-uni-cpo-templates.php:1162
-#: includes/class-uni-cpo-templates.php:1296
-#: includes/class-uni-cpo-templates.php:1551
+#: includes/class-uni-cpo-templates.php:1175
+#: includes/class-uni-cpo-templates.php:1309
+#: includes/class-uni-cpo-templates.php:1564
 msgid "Controls:"
 msgstr "コントロール"
 
-#: includes/class-uni-cpo-templates.php:1183
-#: includes/class-uni-cpo-templates.php:1216
-#: includes/class-uni-cpo-templates.php:1317
-#: includes/class-uni-cpo-templates.php:1382
-#: includes/class-uni-cpo-templates.php:1573
-#: includes/class-uni-cpo-templates.php:1608
+#: includes/class-uni-cpo-templates.php:1196
+#: includes/class-uni-cpo-templates.php:1229
+#: includes/class-uni-cpo-templates.php:1330
+#: includes/class-uni-cpo-templates.php:1395
+#: includes/class-uni-cpo-templates.php:1586
+#: includes/class-uni-cpo-templates.php:1621
 #: includes/settings/class-uni-cpo-setting-cpo-date-rules.php:69
 #: includes/settings/class-uni-cpo-setting-cpo-date-rules.php:103
 #: includes/settings/class-uni-cpo-setting-cpo-fc-scheme.php:42
@@ -1828,12 +1822,12 @@ msgstr "コントロール"
 msgid "Fetch the rule"
 msgstr "ルールを取得する"
 
-#: includes/class-uni-cpo-templates.php:1270
-#: includes/class-uni-cpo-templates.php:1290
+#: includes/class-uni-cpo-templates.php:1283
+#: includes/class-uni-cpo-templates.php:1303
 msgid "Image Conditional Logic"
 msgstr "画像条件付きロジック"
 
-#: includes/class-uni-cpo-templates.php:1292
+#: includes/class-uni-cpo-templates.php:1305
 msgid ""
 "It is possible to change the main image of product item based on the values "
 "of custom options."
@@ -1841,21 +1835,21 @@ msgstr ""
 "カスタムオプションの値に基づいて商品アイテムのメインイメージを変更することが"
 "できます。"
 
-#: includes/class-uni-cpo-templates.php:1325
-#: includes/class-uni-cpo-templates.php:1390
+#: includes/class-uni-cpo-templates.php:1338
+#: includes/class-uni-cpo-templates.php:1403
 #: includes/modules/class-uni-cpo-module-image.php:29
 #: includes/settings/class-uni-cpo-setting-background-image.php:40
 #: includes/settings/class-uni-cpo-setting-background-type.php:28
 #: includes/settings/class-uni-cpo-setting-cpo-mode-checkbox.php:24
 #: includes/settings/class-uni-cpo-setting-cpo-mode-radio.php:25
-#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:172
-#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:350
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:185
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:375
 #: includes/settings/class-uni-cpo-setting-image.php:21
 msgid "Image"
 msgstr "画像"
 
-#: includes/class-uni-cpo-templates.php:1326
-#: includes/class-uni-cpo-templates.php:1391
+#: includes/class-uni-cpo-templates.php:1339
+#: includes/class-uni-cpo-templates.php:1404
 msgid ""
 "Is used as a suboption image as well as can be used as the one that replaces "
 "the main product image"
@@ -1863,12 +1857,12 @@ msgstr ""
 "サブオプションイメージとして使用されるだけでなく、主製品イメージを置き換える"
 "ものとして使用できます"
 
-#: includes/class-uni-cpo-templates.php:1480
-#: includes/class-uni-cpo-templates.php:1500
+#: includes/class-uni-cpo-templates.php:1493
+#: includes/class-uni-cpo-templates.php:1513
 msgid "Weight Calculation"
 msgstr "計算"
 
-#: includes/class-uni-cpo-templates.php:1502
+#: includes/class-uni-cpo-templates.php:1515
 msgid ""
 "It is possible to calculate the weight of the ordered product item based on "
 "the values of custom options and a custom maths formula."
@@ -1876,23 +1870,23 @@ msgstr ""
 "カスタムオプションの値とカスタム数式の式に基づいて、注文商品の重量を計算する"
 "ことができます。"
 
-#: includes/class-uni-cpo-templates.php:1522
+#: includes/class-uni-cpo-templates.php:1535
 msgid "It is also possible to use Weight Formula Conditional Rules feature."
 msgstr "重み式条件付きルール機能を使用することもできます。"
 
-#: includes/class-uni-cpo-templates.php:1528
+#: includes/class-uni-cpo-templates.php:1541
 msgid "Main formula for weight"
 msgstr "メインタイトルのHTMLタグ"
 
-#: includes/class-uni-cpo-templates.php:1673
+#: includes/class-uni-cpo-templates.php:1686
 msgid "Dimensions Settings"
 msgstr "寸法の設定"
 
-#: includes/class-uni-cpo-templates.php:1693
+#: includes/class-uni-cpo-templates.php:1706
 msgid "Dimensions Calculation"
 msgstr "寸法計算"
 
-#: includes/class-uni-cpo-templates.php:1695
+#: includes/class-uni-cpo-templates.php:1708
 msgid ""
 "It is possible to enable setting ordered product dimensions dynamically "
 "based on chosen custom options"
@@ -1900,11 +1894,11 @@ msgstr ""
 "選択したカスタムオプションに基づいて注文商品の寸法を動的に設定することができ"
 "ます"
 
-#: includes/class-uni-cpo-templates.php:1701
+#: includes/class-uni-cpo-templates.php:1714
 msgid "Measurement unit"
 msgstr "物理単位"
 
-#: includes/class-uni-cpo-templates.php:1703
+#: includes/class-uni-cpo-templates.php:1716
 #, php-format
 msgid ""
 "The following measurement unit is being used in your store: %s (according to "
@@ -1914,7 +1908,7 @@ msgstr ""
 "次の測定単位が店舗で使用されています：%s（WC設定に従います）。同じユニットが"
 "出荷用プラグインで使用されます（使用している場合）。"
 
-#: includes/class-uni-cpo-templates.php:1705
+#: includes/class-uni-cpo-templates.php:1718
 msgid ""
 "Additionally, you may use this setting if you want to let you customers to "
 "choose an input measurement unit dynamically. Select the option which "
@@ -1928,67 +1922,67 @@ msgstr ""
 "当するオプションの値は、このオプションで選択した単位から自動的に出荷プラグイ"
 "ンに送信され、価格計算に使用される前に店舗の測定単位に変換されます。"
 
-#: includes/class-uni-cpo-templates.php:1708
-#: includes/class-uni-cpo-templates.php:1739
-#: includes/class-uni-cpo-templates.php:1773
-#: includes/class-uni-cpo-templates.php:1807
+#: includes/class-uni-cpo-templates.php:1721
+#: includes/class-uni-cpo-templates.php:1752
+#: includes/class-uni-cpo-templates.php:1786
+#: includes/class-uni-cpo-templates.php:1820
 msgid "- Not selected -"
 msgstr "-ラベルが選択されていません-"
 
-#: includes/class-uni-cpo-templates.php:1716
+#: includes/class-uni-cpo-templates.php:1729
 msgid "Length"
 msgstr "必要最小限の長さを入力してください"
 
-#: includes/class-uni-cpo-templates.php:1733
+#: includes/class-uni-cpo-templates.php:1746
 msgid "Convert length automatically?"
 msgstr "自動的に長さを変換しますか？"
 
-#: includes/class-uni-cpo-templates.php:1736
+#: includes/class-uni-cpo-templates.php:1749
 msgid "Select the option which value will be used as product length."
 msgstr "製品長さとして使用する値を選択します。"
 
-#: includes/class-uni-cpo-templates.php:1750
+#: includes/class-uni-cpo-templates.php:1763
 #: includes/settings/class-uni-cpo-setting-width-px.php:21
 #: includes/settings/class-uni-cpo-setting-width.php:21
 msgid "Width"
 msgstr "最大幅"
 
-#: includes/class-uni-cpo-templates.php:1767
+#: includes/class-uni-cpo-templates.php:1780
 msgid "Convert width automatically?"
 msgstr "自動的に幅を変換しますか？"
 
-#: includes/class-uni-cpo-templates.php:1770
+#: includes/class-uni-cpo-templates.php:1783
 msgid "Select the option which value will be used as product width."
 msgstr "製品幅として使用する値を選択します。"
 
-#: includes/class-uni-cpo-templates.php:1784
+#: includes/class-uni-cpo-templates.php:1797
 #: includes/settings/class-uni-cpo-setting-height-px.php:21
 #: includes/settings/class-uni-cpo-setting-height.php:21
 msgid "Height"
 msgstr "最大高さ"
 
-#: includes/class-uni-cpo-templates.php:1801
+#: includes/class-uni-cpo-templates.php:1814
 msgid "Convert height automatically?"
 msgstr "自動的に高さを変換しますか？"
 
-#: includes/class-uni-cpo-templates.php:1804
+#: includes/class-uni-cpo-templates.php:1817
 msgid "Select the option which value will be used as product height."
 msgstr "製品高さとして使用する値を選択します。"
 
-#: includes/class-uni-cpo-templates.php:1852
-#: includes/class-uni-cpo-templates.php:1871
+#: includes/class-uni-cpo-templates.php:1865
+#: includes/class-uni-cpo-templates.php:1884
 msgid "Non Option Variables"
 msgstr "非オプション変数"
 
-#: includes/class-uni-cpo-templates.php:1872
+#: includes/class-uni-cpo-templates.php:1885
 msgid "NOVs are variables without direct connection to any options."
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:1891
+#: includes/class-uni-cpo-templates.php:1904
 msgid "Wholesale"
 msgstr "卸売"
 
-#: includes/class-uni-cpo-templates.php:1892
+#: includes/class-uni-cpo-templates.php:1905
 msgid ""
 "Enabling this functionality will make it possible to set different value/"
 "formula on per user role basis"
@@ -1996,72 +1990,72 @@ msgstr ""
 "この機能を有効にすることが異なる値/数式にユーザーの役割ごとに設定することが可"
 "能"
 
-#: includes/class-uni-cpo-templates.php:1935
+#: includes/class-uni-cpo-templates.php:1948
 msgid "Controls"
 msgstr "コントロール"
 
-#: includes/class-uni-cpo-templates.php:1969
-#: includes/class-uni-cpo-templates.php:2205
+#: includes/class-uni-cpo-templates.php:1982
+#: includes/class-uni-cpo-templates.php:2218
 msgid "Matrix?"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:1983
-#: includes/class-uni-cpo-templates.php:2220
+#: includes/class-uni-cpo-templates.php:1996
+#: includes/class-uni-cpo-templates.php:2233
 msgid "Convert unit?"
 msgstr "単位を変換しますか？"
 
-#: includes/class-uni-cpo-templates.php:1994
-#: includes/class-uni-cpo-templates.php:2232
+#: includes/class-uni-cpo-templates.php:2007
+#: includes/class-uni-cpo-templates.php:2245
 msgid "to"
 msgstr "から"
 
-#: includes/class-uni-cpo-templates.php:1999
-#: includes/class-uni-cpo-templates.php:2238
+#: includes/class-uni-cpo-templates.php:2012
+#: includes/class-uni-cpo-templates.php:2251
 msgid "WC default unit"
 msgstr "デフォルト"
 
-#: includes/class-uni-cpo-templates.php:2000
-#: includes/class-uni-cpo-templates.php:2239
+#: includes/class-uni-cpo-templates.php:2013
+#: includes/class-uni-cpo-templates.php:2252
 msgid "mm"
 msgstr "mm"
 
-#: includes/class-uni-cpo-templates.php:2001
-#: includes/class-uni-cpo-templates.php:2240
+#: includes/class-uni-cpo-templates.php:2014
+#: includes/class-uni-cpo-templates.php:2253
 msgid "cm"
 msgstr "cm"
 
-#: includes/class-uni-cpo-templates.php:2002
-#: includes/class-uni-cpo-templates.php:2241
+#: includes/class-uni-cpo-templates.php:2015
+#: includes/class-uni-cpo-templates.php:2254
 msgid "m"
 msgstr "m"
 
-#: includes/class-uni-cpo-templates.php:2003
-#: includes/class-uni-cpo-templates.php:2242
+#: includes/class-uni-cpo-templates.php:2016
+#: includes/class-uni-cpo-templates.php:2255
 msgid "in"
 msgstr "in"
 
-#: includes/class-uni-cpo-templates.php:2004
-#: includes/class-uni-cpo-templates.php:2243
+#: includes/class-uni-cpo-templates.php:2017
+#: includes/class-uni-cpo-templates.php:2256
 msgid "ft"
 msgstr "ft"
 
-#: includes/class-uni-cpo-templates.php:2005
-#: includes/class-uni-cpo-templates.php:2244
+#: includes/class-uni-cpo-templates.php:2018
+#: includes/class-uni-cpo-templates.php:2257
 msgid "yd"
 msgstr "ヤード"
 
-#: includes/class-uni-cpo-templates.php:2012
-#: includes/class-uni-cpo-templates.php:2251
+#: includes/class-uni-cpo-templates.php:2025
+#: includes/class-uni-cpo-templates.php:2264
 msgid "Display in cart?"
 msgstr ""
 
-#: includes/class-uni-cpo-templates.php:2024
-#: includes/class-uni-cpo-templates.php:2264
+#: includes/class-uni-cpo-templates.php:2037
+#: includes/class-uni-cpo-templates.php:2277
 msgid "Name"
 msgstr "名前"
 
-#: includes/class-uni-cpo-templates.php:2130
-#: includes/class-uni-cpo-templates.php:2408
+#: includes/class-uni-cpo-templates.php:2143
+#: includes/class-uni-cpo-templates.php:2421
 #: includes/settings/class-uni-cpo-setting-cpo-matrix-data.php:91
 msgid "Generate"
 msgstr "生成"
@@ -2100,8 +2094,8 @@ msgstr "ここをクリック"
 msgid "Checkbox Inputs"
 msgstr "チェックボックス"
 
-#: includes/options/class-uni-cpo-option-checkbox.php:715
-#: includes/options/class-uni-cpo-option-radio.php:704
+#: includes/options/class-uni-cpo-option-checkbox.php:770
+#: includes/options/class-uni-cpo-option-radio.php:759
 msgid "Please add suboptions to this option!"
 msgstr "このオプションにサブオプションを追加してください!"
 
@@ -2135,12 +2129,12 @@ msgstr "ラジオ入力"
 #: includes/options/class-uni-cpo-option-radio.php:225
 #: includes/options/class-uni-cpo-option-select.php:220
 #: includes/options/class-uni-cpo-option-select.php:246
-#: includes/options/class-uni-cpo-option-select.php:469
-#: includes/options/class-uni-cpo-option-select.php:602
+#: includes/options/class-uni-cpo-option-select.php:494
+#: includes/options/class-uni-cpo-option-select.php:627
 msgid "Please select..."
 msgstr "選択してください　"
 
-#: includes/options/class-uni-cpo-option-radio.php:825
+#: includes/options/class-uni-cpo-option-radio.php:892
 msgid "Please add image to suboption"
 msgstr "サブオプションに画像を追加してください"
 
@@ -2809,48 +2803,55 @@ msgid "Add"
 msgstr "フォームの新規作成"
 
 #: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:64
-#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:245
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:258
 #: includes/settings/class-uni-cpo-setting-cpo-select-options.php:66
 #: includes/settings/class-uni-cpo-setting-cpo-select-options.php:168
 msgid "Make default?"
 msgstr "デフォルトにする?"
 
 #: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:78
-#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:258
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:271
 #: includes/settings/class-uni-cpo-setting-cpo-select-options.php:80
 #: includes/settings/class-uni-cpo-setting-cpo-select-options.php:181
 msgid "Exclude?"
 msgstr "除外しますか？"
 
 #: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:88
-#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:268
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:281
 msgid "Label"
 msgstr "ラベル"
 
 #: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:107
-#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:287
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:300
 #: includes/settings/class-uni-cpo-setting-cpo-select-options.php:109
 #: includes/settings/class-uni-cpo-setting-cpo-select-options.php:210
 msgid "Value"
 msgstr "値"
 
 #: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:126
-#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:306
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:319
 msgid "Price / Rate (optional)"
 msgstr "初期価格"
 
 #: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:144
-#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:323
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:337
 msgid "CSS Class (optional)"
 msgstr "カスタムCSSルール"
 
 #: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:157
-#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:335
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:348
+#, fuzzy
+#| msgid "Price / Rate (optional)"
+msgid "Description (optional)"
+msgstr "初期価格"
+
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:170
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:360
 msgid "Colour (optional)"
 msgstr "色 (オプション)"
 
-#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:173
-#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:351
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:186
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:376
 msgid ""
 "Optional! Is used as a suboption image as well as can be used as the one "
 "that replaces the main product image"
@@ -2858,13 +2859,13 @@ msgstr ""
 "オプション!主な製品イメージを置き換える 1 つとして使用することができますもサ"
 "ブオプションのイメージとして使用されます。"
 
-#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:198
-#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:376
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:211
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:401
 msgid "Alt Image"
 msgstr "画像"
 
-#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:199
-#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:377
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:212
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:402
 msgid "Optional! Is used ONLY as the one that replaces the main product image"
 msgstr "オプション!使用は主な製品イメージを置き換えるものとしてのみ"
 
@@ -3152,6 +3153,8 @@ msgstr "Georgia"
 msgid "Courier"
 msgstr "Courier"
 
+#: includes/settings/class-uni-cpo-setting-font-size-desc.php:21
+#: includes/settings/class-uni-cpo-setting-font-size-label.php:21
 #: includes/settings/class-uni-cpo-setting-font-size-px.php:21
 #: includes/settings/class-uni-cpo-setting-font-size.php:21
 msgid "Font Size"
@@ -3283,6 +3286,7 @@ msgstr "新しいウインドウ"
 msgid "Same Window"
 msgstr "同じタブ"
 
+#: includes/settings/class-uni-cpo-setting-text-align-label.php:21
 #: includes/settings/class-uni-cpo-setting-text-align.php:21
 msgid "Text Align"
 msgstr "フォームを左に揃えます"
@@ -3316,16 +3320,16 @@ msgstr "選択フィールドのオプション"
 msgid "Calculate"
 msgstr "計算する"
 
-#: includes/uni-cpo-core-functions.php:1942
+#: includes/uni-cpo-core-functions.php:1959
 msgid "Item"
 msgstr "項目"
 
-#: includes/uni-cpo-core-functions.php:1944
+#: includes/uni-cpo-core-functions.php:1961
 #, php-format
 msgid "%s duplicated."
 msgstr "%sは重複しています。"
 
-#: includes/uni-cpo-core-functions.php:2054
+#: includes/uni-cpo-core-functions.php:2071
 msgid "Add/Edit CPO option(s)"
 msgstr "CPOオプションの追加/編集"
 
@@ -3356,3 +3360,20 @@ msgstr "UniCpoにはPHPバージョン%s+が必要です。それは活性化さ
 msgid ""
 "Uni CPO requires WooCommerce version %s+. It is activated but NOT FUNCTIONAL"
 msgstr "UniCpoにはPHPバージョン%s+が必要です。それは活性化されていません！"
+
+#, fuzzy
+#~| msgid ""
+#~| "Custom price template to be displayed on archives. Template variables: "
+#~| "&#123;&#123;&#123;REGULAR_PRICE&#125;&#125;&#125;, &#123;&#123;&#123;"
+#~| "STARTING_PRICE&#125;&#125;&#125;. Example: \"from &#123;&#123;&#123;"
+#~| "STARTING_PRICE&#125;&#125;&#125; / sq.m.\""
+#~ msgid ""
+#~ "Custom price template to be displayed on archives. Template variables: "
+#~ "&#123;&#123;&#123;REGULAR_PRICE&#125;&#125;&#125;, &#123;&#123;&#123;"
+#~ "STARTING_PRICE&#125;&#125;&#125; or any NOV in triple curly braces. "
+#~ "Example: \"from &#123;&#123;&#123;STARTING_PRICE&#125;&#125;&#125; / sq.m."
+#~ "\" or \"from &#123;&#123;&#123;uni_nov_cpo_base_price&#125;&#125;&#125;\"."
+#~ msgstr ""
+#~ "アーカイブに表示されるカスタム価格テンプレート。テンプレート変数："
+#~ "{{{REGULAR_PRICE}}}、{{{STARTING_PRICE}}}。例：「from "
+#~ "{{{STARTING_PRICE}}} / sq.m.」"

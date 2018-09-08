@@ -100,6 +100,9 @@ A: We wouldn't recommend to do this yet. First, this version is so called 'lite'
 
 == Changelog ==
 
+= 4.3.1 =
+* Fixed: some issues with radio and checkboxes options
+
 = 4.3.0 =
 * Added: qty based cart discounts
 * Added: possibility to choose custom field as qty field (instead of standard WC qty field) and display its value in Qty column in cart/order
