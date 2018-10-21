@@ -6,10 +6,10 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 /*
-* Uni_Cpo_Setting_Cpo_Is_Changeimage class
+* Uni_Cpo_Setting_Cpo_Is_Imagify class
 *
 */
-class Uni_Cpo_Setting_Cpo_Is_Changeimage extends Uni_Cpo_Setting implements  Uni_Cpo_Setting_Interface 
+class Uni_Cpo_Setting_Cpo_Is_Imagify extends Uni_Cpo_Setting implements  Uni_Cpo_Setting_Interface 
 {
     /**
      * Init
@@ -17,11 +17,11 @@ class Uni_Cpo_Setting_Cpo_Is_Changeimage extends Uni_Cpo_Setting implements  Uni
      */
     public function __construct()
     {
-        $this->setting_key = 'cpo_is_changeimage';
+        $this->setting_key = 'cpo_is_imagify';
         $this->setting_data = array(
-            'title'      => __( 'Enable image changing?', 'uni-cpo' ),
+            'title'      => __( 'Use for Imagify?', 'uni-cpo' ),
             'is_tooltip' => true,
-            'desc_tip'   => __( 'Enables the functionality of changing of the product main image upon selection in this option', 'uni-cpo' ),
+            'desc_tip'   => __( 'Enables using this option in Imagify functionality.', 'uni-cpo' ),
             'options'    => array(
             'no'  => __( 'No', 'uni-cpo' ),
             'yes' => __( 'Yes', 'uni-cpo' ),

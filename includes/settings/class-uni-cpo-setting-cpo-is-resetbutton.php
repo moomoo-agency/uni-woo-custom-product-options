@@ -6,10 +6,10 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 /*
-* Uni_Cpo_Setting_Cpo_Is_Changeimage class
+* Uni_Cpo_Setting_Cpo_Is_Resetbutton class
 *
 */
-class Uni_Cpo_Setting_Cpo_Is_Changeimage extends Uni_Cpo_Setting implements  Uni_Cpo_Setting_Interface 
+class Uni_Cpo_Setting_Cpo_Is_Resetbutton extends Uni_Cpo_Setting implements  Uni_Cpo_Setting_Interface 
 {
     /**
      * Init
@@ -17,16 +17,19 @@ class Uni_Cpo_Setting_Cpo_Is_Changeimage extends Uni_Cpo_Setting implements  Uni
      */
     public function __construct()
     {
-        $this->setting_key = 'cpo_is_changeimage';
+        $this->setting_key = 'cpo_is_resetbutton';
         $this->setting_data = array(
-            'title'      => __( 'Enable image changing?', 'uni-cpo' ),
-            'is_tooltip' => true,
-            'desc_tip'   => __( 'Enables the functionality of changing of the product main image upon selection in this option', 'uni-cpo' ),
-            'options'    => array(
+            'title'             => __( 'Enable reset button?', 'uni-cpo' ),
+            'is_tooltip'        => true,
+            'desc_tip'          => __( 'Enabling reset button for this option', 'uni-cpo' ),
+            'custom_attributes' => array(
+            'data-uni-constrainer' => 'yes',
+        ),
+            'options'           => array(
             'no'  => __( 'No', 'uni-cpo' ),
             'yes' => __( 'Yes', 'uni-cpo' ),
         ),
-            'js_var'     => 'data',
+            'js_var'            => 'data',
         );
         add_action( 'wp_footer', array( $this, 'js_template' ), 10 );
     }

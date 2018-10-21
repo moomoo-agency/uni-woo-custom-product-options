@@ -2,10 +2,10 @@
 Contributors: moomooagency, mrpsiho, andriimatenka, freemius
 Tags: custom options, extra options, product visual builder, woocommerce plugins, price calculation, maths formula, conditional logic, wholesale
 Requires at least: 4.8
-Tested up to: 4.9.8
+Tested up to: 5.0.0
 Requires PHP: 7.0
 WC requires at least: 3.2.0
-WC tested up to: 3.4.5
+WC tested up to: 3.4.7
 Stable tag: trunk
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -99,6 +99,21 @@ A: We wouldn't recommend to do this yet. First, this version is so called 'lite'
 7. screenshot-7.png
 
 == Changelog ==
+
+= 4.4.0 =
+* Added: Imagify functionality
+* Added: new option: Extra Cart Button
+* Added: "Free samples" functionality
+* Added: new option: Google Map
+* Added: two new vars for Dynamic Notice related to cart discounts
+* Added: helper methods for variables to be used in Dynamic Notice
+* Improved: fields conditional logic script, fixed some minor issues
+* Fixed: Colorify func related code - the issue when the main image has not been updated accordingly on init
+* Fixed: Cart/order meta strings could not be translated via string translation functionality of multi language plugins
+* Fixed: a bug related to using big numbers in Matrix option
+
+= 4.3.2 =
+* Fixed: a PHP Warning related to Radio Input option
 
 = 4.3.1 =
 * Fixed: some issues with radio and checkboxes options

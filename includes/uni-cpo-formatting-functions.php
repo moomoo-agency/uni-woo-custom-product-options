@@ -83,6 +83,7 @@ function uni_cpo_get_allowed_tags() {
 				'rev'    => true,
 				'name'   => true,
 				'target' => true,
+				'title'  => true
 			),
 			'abbr'       => array(),
 			'acronym'    => array(),
@@ -222,6 +223,18 @@ function uni_cpo_get_allowed_tags() {
 			'ins'        => array(
 				'datetime' => true,
 				'cite'     => true,
+			),
+			'input'        => array(
+				'class' => true,
+				'id' => true,
+				'name' => true,
+				'value' => true,
+				'data-parsley-trigger' => true,
+				'data-parsley-type' => true,
+				'data-parsley-min' => true,
+				'step' => true,
+				'data-parsley-id' => true,
+				'type' => true
 			),
 			'kbd'        => array(),
 			'li'         => array(

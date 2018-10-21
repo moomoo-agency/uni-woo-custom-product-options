@@ -5,22 +5,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /*
-* Uni_Cpo_Setting_Cpo_Label class
+* Uni_Cpo_Setting_Cpo_Resetbutton_Text class
 *
 */
 
-class Uni_Cpo_Setting_Cpo_Encoded_Image extends Uni_Cpo_Setting implements Uni_Cpo_Setting_Interface {
+class Uni_Cpo_Setting_Cpo_Resetbutton_Text extends Uni_Cpo_Setting implements Uni_Cpo_Setting_Interface {
 
 	/**
 	 * Init
 	 *
 	 */
 	public function __construct() {
-		$this->setting_key  = 'cpo_encoded_image';
+		$this->setting_key  = 'cpo_resetbutton_text';
 		$this->setting_data = array(
-			'title'      => __( 'Base64 Encoded Image', 'uni-cpo' ),
+			'title'      => __( 'Reset button text', 'uni-cpo' ),
 			'is_tooltip' => true,
-			'desc_tip'   => __( 'The code of encoded image. Is used for Colorify functionality. You can use b64.io web service to perform the encoding.', 'uni-cpo' ),
+			'desc_tip'   => __( 'Custom text for reset button', 'uni-cpo' ),
 			'value'      => '{{- data }}'
 		);
 		add_action( 'wp_footer', array( $this, 'js_template' ), 10 );
@@ -36,7 +36,7 @@ class Uni_Cpo_Setting_Cpo_Encoded_Image extends Uni_Cpo_Setting implements Uni_C
 	public function js_template() {
 		?>
         <script id="js-builderius-setting-<?php echo $this->setting_key; ?>-tmpl" type="text/template">
-            <div class="uni-modal-row uni-clear">
+            <div class="uni-modal-row uni-clear" data-uni-constrained="input[name=cpo_is_resetbutton]" data-uni-constvalue="yes">
 				<?php echo $this->generate_field_label_html(); ?>
                 <div class="uni-modal-row-second uni-clear">
 					<?php echo $this->generate_text_html(); ?>

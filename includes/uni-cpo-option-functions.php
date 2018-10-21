@@ -44,7 +44,9 @@ function uni_cpo_get_option_types() {
 		'file_upload',
 		'range_slider',
 		'dynamic_notice',
-		'matrix'
+		'matrix',
+		'extra_cart_button',
+		'google_map'
 	);
 
 	// make it possible for third-party plugins to add new option types
@@ -198,6 +200,8 @@ function uni_cpo_get_setting_types() {
 		'cpo_mode_checkbox',
 		'cpo_geom_checkbox',
 		'cpo_is_changeimage',
+		'cpo_is_resetbutton',
+        'cpo_resetbutton_text',
 		'cpo_validation_msg',
 		'cpo_vc_extra',
 		'cpo_is_vc',
@@ -227,7 +231,13 @@ function uni_cpo_get_setting_types() {
         'cpo_encoded_image',
 		'cpo_sc_scheme',
 		'cpo_is_sc',
-		'cpo_sc_default'
+		'cpo_sc_default',
+		'cpo_order_visibility',
+		'cpo_addtocart_mode',
+		'cpo_samples_mode',
+		'cpo_map_center',
+		'cpo_map_zoom',
+		'cpo_is_imagify'
 	);
 
 	// make it possible for third-party plugins to add new module types

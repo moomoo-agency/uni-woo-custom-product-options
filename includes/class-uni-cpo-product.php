@@ -166,7 +166,7 @@ final class Uni_Cpo_Product {
 
 				if ( ! empty( $product_data['settings_data']['price_disabled_msg'] ) ) {
 					echo '<div class="js-uni-cpo-ordering-disabled-notice" style="display:none;">';
-					echo $product_data['settings_data']['price_disabled_msg'];
+					echo do_shortcode( $product_data['settings_data']['price_disabled_msg'] );
 					echo '</div>';
 				}
 
@@ -622,9 +622,9 @@ final class Uni_Cpo_Product {
 		$calc_btn_enable       = ( get_post_meta( $data['id'], '_cpo_calc_btn_enable', true ) )
 			? get_post_meta( $data['id'], '_cpo_calc_btn_enable', true )
 			: 'off';
-		$layered_image_enable  = ( get_post_meta( $data['id'], '_cpo_layered_image_enable', true ) )
-			? get_post_meta( $data['id'], '_cpo_layered_image_enable', true )
-			: 'off';
+        $reset_form_btn       = ( get_post_meta( $data['id'], '_cpo_reset_form_btn', true ) )
+            ? get_post_meta( $data['id'], '_cpo_reset_form_btn', true )
+            : 'off';
 		$cart_duplicate_enable = ( get_post_meta( $data['id'], '_cart_duplicate_enable', true ) )
 			? get_post_meta( $data['id'], '_cart_duplicate_enable', true )
 			: 'off';
@@ -657,12 +657,21 @@ final class Uni_Cpo_Product {
 			: '';
 		$price_archives        = get_post_meta( $data['id'], '_cpo_price_archives', true );
 		$price_archives_sale   = get_post_meta( $data['id'], '_cpo_price_archives_sale', true );
+		$layered_image_enable  = ( get_post_meta( $data['id'], '_cpo_layered_image_enable', true ) )
+			? get_post_meta( $data['id'], '_cpo_layered_image_enable', true )
+			: 'off';
+		$imagify_enable  = ( get_post_meta( $data['id'], '_cpo_imagify_enable', true ) )
+			? get_post_meta( $data['id'], '_cpo_imagify_enable', true )
+			: 'off';
+		$imagify_base_image  = ( get_post_meta( $data['id'], '_cpo_imagify_base_image', true ) )
+			? get_post_meta( $data['id'], '_cpo_imagify_base_image', true )
+			: '';
 
 		$data['settings_data'] = array(
 			'cpo_enable'            => $cpo_enable,
 			'calc_enable'           => $calc_enable,
 			'calc_btn_enable'       => $calc_btn_enable,
-			'layered_image_enable'  => $layered_image_enable,
+			'reset_form_btn'       => $reset_form_btn,
 			'cart_duplicate_enable' => $cart_duplicate_enable,
 			'cart_edit_enable'      => $cart_edit_enable,
 			'cart_edit_full_enable' => $cart_edit_full_enable,
@@ -676,7 +685,10 @@ final class Uni_Cpo_Product {
 			'price_postfix'         => $price_postfix,
 			'starting_price'        => $starting_price,
 			'price_archives'        => $price_archives,
-			'price_archives_sale'   => $price_archives_sale
+			'price_archives_sale'   => $price_archives_sale,
+			'layered_image_enable'  => $layered_image_enable,
+			'imagify_enable' => $imagify_enable,
+			'imagify_base_image' => $imagify_base_image
 		);
 
 		$discounts_strategy         = ( get_post_meta( $data['id'], '_cpo_cart_discounts_strategy', true ) )
@@ -809,7 +821,7 @@ final class Uni_Cpo_Product {
 				update_post_meta( $product->get_id(), '_cpo_enable', $data['settings_data']['cpo_enable'] );
 				update_post_meta( $product->get_id(), '_cpo_calc_enable', $data['settings_data']['calc_enable'] );
 				update_post_meta( $product->get_id(), '_cpo_calc_btn_enable', $data['settings_data']['calc_btn_enable'] );
-				update_post_meta( $product->get_id(), '_cpo_layered_image_enable', $data['settings_data']['layered_image_enable'] );
+				update_post_meta( $product->get_id(), '_cpo_reset_form_btn', $data['settings_data']['reset_form_btn'] );
 				update_post_meta( $product->get_id(), '_cart_duplicate_enable', $data['settings_data']['cart_duplicate_enable'] );
 				update_post_meta( $product->get_id(), '_cart_edit_enable', $data['settings_data']['cart_edit_enable'] );
 				update_post_meta( $product->get_id(), '_cart_edit_full_enable', $data['settings_data']['cart_edit_full_enable'] );
@@ -824,6 +836,9 @@ final class Uni_Cpo_Product {
 				update_post_meta( $product->get_id(), '_cpo_starting_price', $data['settings_data']['starting_price'] );
 				update_post_meta( $product->get_id(), '_cpo_price_archives', $data['settings_data']['price_archives'] );
 				update_post_meta( $product->get_id(), '_cpo_price_archives', $data['settings_data']['price_archives_sale'] );
+				update_post_meta( $product->get_id(), '_cpo_layered_image_enable', $data['settings_data']['layered_image_enable'] );
+				update_post_meta( $product->get_id(), '_cpo_imagify_enable', $data['settings_data']['imagify_enable'] );
+				update_post_meta( $product->get_id(), '_cpo_imagify_base_image', $data['settings_data']['imagify_base_image'] );
 
 				update_post_meta( $product->get_id(), '_cpo_cart_discounts_strategy', $data['discounts_data']['cart_discounts_strategy'] );
 				update_post_meta( $product->get_id(), '_cpo_role_cart_discounts_enable', $data['discounts_data']['role_cart_discounts_enable'] );
@@ -870,7 +885,7 @@ final class Uni_Cpo_Product {
 				update_post_meta( $product->get_id(), '_cpo_enable', $data['settings_data']['cpo_enable'] );
 				update_post_meta( $product->get_id(), '_cpo_calc_enable', $data['settings_data']['calc_enable'] );
 				update_post_meta( $product->get_id(), '_cpo_calc_btn_enable', $data['settings_data']['calc_btn_enable'] );
-				update_post_meta( $product->get_id(), '_cpo_layered_image_enable', $data['settings_data']['layered_image_enable'] );
+				update_post_meta( $product->get_id(), '_cpo_reset_form_btn', $data['settings_data']['reset_form_btn'] );
 				update_post_meta( $product->get_id(), '_cart_duplicate_enable', $data['settings_data']['cart_duplicate_enable'] );
 				update_post_meta( $product->get_id(), '_cart_edit_enable', $data['settings_data']['cart_edit_enable'] );
 				update_post_meta( $product->get_id(), '_cart_edit_full_enable', $data['settings_data']['cart_edit_full_enable'] );
@@ -885,6 +900,9 @@ final class Uni_Cpo_Product {
 				update_post_meta( $product->get_id(), '_cpo_starting_price', $data['settings_data']['starting_price'] );
 				update_post_meta( $product->get_id(), '_cpo_price_archives', $data['settings_data']['price_archives'] );
 				update_post_meta( $product->get_id(), '_cpo_price_archives_sale', $data['settings_data']['price_archives_sale'] );
+                update_post_meta( $product->get_id(), '_cpo_layered_image_enable', $data['settings_data']['layered_image_enable'] );
+				update_post_meta( $product->get_id(), '_cpo_imagify_enable', $data['settings_data']['imagify_enable'] );
+				update_post_meta( $product->get_id(), '_cpo_imagify_base_image', $data['settings_data']['imagify_base_image'] );
 
 				return array( 'settings_data' => $data['settings_data'] );
 			} elseif ( 'discounts_data' === $context ) {

@@ -597,6 +597,7 @@ class Uni_Cpo_Ajax
             $options_eval_result = array();
             $formatted_vars = array();
             $nice_names_vars = array();
+            $is_free_sample = false;
             $price_vars['quantity'] = ( !empty($form_data['quantity']) ? absint( $form_data['quantity'] ) : 1 );
             $currency = get_woocommerce_currency();
             $price_vars['currency'] = get_woocommerce_currency_symbol( $currency );
@@ -618,7 +619,12 @@ class Uni_Cpo_Ajax
                             
                             if ( is_object( $option ) ) {
                                 $calculate_result = $option->calculate( $filtered_form_data );
-                                //print_r($calculate_result);
+                                
+                                if ( 'extra_cart_button' === $option->get_type() ) {
+                                    $is_free_sample = $calculate_result;
+                                    continue;
+                                }
+                                
                                 if ( !empty($calculate_result) ) {
                                     foreach ( $calculate_result as $k => $v ) {
                                         $options_eval_result[$option->get_slug()] = $calculate_result;
@@ -654,7 +660,7 @@ class Uni_Cpo_Ajax
                     }
                 }
                 
-                if ( 'disable' === $main_formula ) {
+                if ( 'disable' === $main_formula || 0 === $is_free_sample ) {
                     $is_calc_disabled = true;
                 }
                 //
@@ -695,12 +701,18 @@ class Uni_Cpo_Ajax
                         
                         $price_vars['price'] = apply_filters( 'uni_cpo_ajax_calculation_price_tag_filter', uni_cpo_price( $price_display ), $price_display );
                         $price_vars['raw_price'] = $price_calculated;
-                        $price_vars['raw_total'] = $price_vars['raw_price'] * $form_data['quantity'];
+                        $price_vars['raw_total'] = $price_vars['raw_price'] * $price_vars['quantity'];
                         $price_vars['total'] = uni_cpo_price( $price_vars['raw_total'] );
+                        
+                        if ( !empty($price_vars['raw_price_discounted']) ) {
+                            $price_vars['raw_total_discounted'] = $price_vars['raw_price_discounted'] * $price_vars['quantity'];
+                            $price_vars['total_discounted'] = uni_cpo_price( $price_vars['raw_total_discounted'] );
+                        }
+                        
                         
                         if ( $product->is_taxable() ) {
                             $price_vars['raw_price_tax_rev'] = $price_display_tax_rev;
-                            $price_vars['raw_total_tax_rev'] = $price_vars['raw_price_tax_rev'] * $form_data['quantity'];
+                            $price_vars['raw_total_tax_rev'] = $price_vars['raw_price_tax_rev'] * $price_vars['quantity'];
                             $price_vars['total_tax_rev'] = uni_cpo_price( $price_vars['raw_total_tax_rev'] );
                         }
                         
@@ -711,13 +723,13 @@ class Uni_Cpo_Ajax
                             // creates 'with suffix' value for total
                             
                             if ( get_option( 'woocommerce_prices_include_tax' ) === 'no' && get_option( 'woocommerce_tax_display_shop' ) == 'incl' ) {
-                                $total_suffix = $product->get_price_suffix( $price_vars['raw_price_tax_rev'] * $form_data['quantity'] );
+                                $total_suffix = $product->get_price_suffix( $price_vars['raw_price_tax_rev'] * $price_vars['quantity'] );
                             } elseif ( get_option( 'woocommerce_prices_include_tax' ) === 'yes' && get_option( 'woocommerce_tax_display_shop' ) == 'incl' ) {
-                                $total_suffix = $product->get_price_suffix( $price_vars['raw_price'] * $form_data['quantity'] );
+                                $total_suffix = $product->get_price_suffix( $price_vars['raw_price'] * $price_vars['quantity'] );
                             } elseif ( get_option( 'woocommerce_prices_include_tax' ) === 'no' && get_option( 'woocommerce_tax_display_shop' ) == 'excl' ) {
-                                $total_suffix = $product->get_price_suffix( $price_vars['raw_price'] * $form_data['quantity'] );
+                                $total_suffix = $product->get_price_suffix( $price_vars['raw_price'] * $price_vars['quantity'] );
                             } elseif ( get_option( 'woocommerce_prices_include_tax' ) === 'yes' && get_option( 'woocommerce_tax_display_shop' ) == 'excl' ) {
-                                $total_suffix = $product->get_price_suffix( $price_vars['raw_price_tax_rev'] * $form_data['quantity'] );
+                                $total_suffix = $product->get_price_suffix( $price_vars['raw_price_tax_rev'] * $price_vars['quantity'] );
                             }
                             
                             $price_vars['price_tax_suffix'] = $price_display_suffix;

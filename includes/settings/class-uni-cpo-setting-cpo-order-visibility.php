@@ -6,10 +6,10 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 /*
-* Uni_Cpo_Setting_Cpo_Enable_Cartedit class
+* Uni_Cpo_Setting_Cpo_Order_Visibility class
 *
 */
-class Uni_Cpo_Setting_Cpo_Enable_Cartedit extends Uni_Cpo_Setting implements  Uni_Cpo_Setting_Interface 
+class Uni_Cpo_Setting_Cpo_Order_Visibility extends Uni_Cpo_Setting implements  Uni_Cpo_Setting_Interface 
 {
     /**
      * Init
@@ -17,12 +17,12 @@ class Uni_Cpo_Setting_Cpo_Enable_Cartedit extends Uni_Cpo_Setting implements  Un
      */
     public function __construct()
     {
-        $this->setting_key = 'cpo_enable_cartedit';
+        $this->setting_key = 'cpo_order_visibility';
         $this->setting_data = array(
-            'title'              => __( 'Enable inline editing in cart?', 'uni-cpo' ),
+            'title'              => __( 'Hide meta in cart/order details?', 'uni-cpo' ),
             'is_tooltip'         => true,
             'is_tooltip_warning' => true,
-            'desc_tip'           => __( 'Enables/disables a possibility to edit this option inline in the cart. Such possibility must also be enabled globally for this product.', 'uni-cpo' ),
+            'desc_tip'           => __( 'Hides this option related meta in cart/order details.', 'uni-cpo' ),
             'desc_tip_warning'   => __( 'Important to save to DB if modified', 'uni-cpo' ),
             'options'            => array(
             'no'  => __( 'No', 'uni-cpo' ),

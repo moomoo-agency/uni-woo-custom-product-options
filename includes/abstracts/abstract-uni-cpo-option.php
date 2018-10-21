@@ -294,6 +294,13 @@ class Uni_Cpo_Option extends Uni_Cpo_Data
     
     }
     
+    public function cpo_order_visibility()
+    {
+        $cpo_general = $this->get_cpo_general();
+        // hide?
+        return ( !empty($cpo_general['advanced']['cpo_order_visibility']) && 'yes' === $cpo_general['advanced']['cpo_order_visibility'] ? true : false );
+    }
+    
     public function formatted_model_data()
     {
     }
@@ -380,7 +387,7 @@ class Uni_Cpo_Option extends Uni_Cpo_Data
 
                     function <?php 
             echo  esc_attr( $slug ) ;
-            ?>_fields_conditional_func (formData) {
+            ?>_fields_conditional_func(formData) {
                         try {
                             var $<?php 
             echo  esc_attr( $slug ) ;

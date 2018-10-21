@@ -5,22 +5,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /*
-* Uni_Cpo_Setting_Cpo_Label class
+* Uni_Cpo_Setting_Cpo_Map_Zoom class
 *
 */
 
-class Uni_Cpo_Setting_Cpo_Encoded_Image extends Uni_Cpo_Setting implements Uni_Cpo_Setting_Interface {
+class Uni_Cpo_Setting_Cpo_Map_Zoom extends Uni_Cpo_Setting implements Uni_Cpo_Setting_Interface {
 
 	/**
 	 * Init
 	 *
 	 */
 	public function __construct() {
-		$this->setting_key  = 'cpo_encoded_image';
+		$this->setting_key  = 'cpo_map_zoom';
 		$this->setting_data = array(
-			'title'      => __( 'Base64 Encoded Image', 'uni-cpo' ),
+			'title'      => __( 'Map zoom level', 'uni-cpo' ),
 			'is_tooltip' => true,
-			'desc_tip'   => __( 'The code of encoded image. Is used for Colorify functionality. You can use b64.io web service to perform the encoding.', 'uni-cpo' ),
+			'desc_tip'   => __( 'Add zoom level for the map', 'uni-cpo' ),
 			'value'      => '{{- data }}'
 		);
 		add_action( 'wp_footer', array( $this, 'js_template' ), 10 );

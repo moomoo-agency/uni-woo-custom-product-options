@@ -42,22 +42,22 @@ class Uni_Cpo_Setting_Cpo_Slug extends Uni_Cpo_Setting implements Uni_Cpo_Settin
 	 */
 	public function js_template() {
 		?>
-        <script id="js-builderius-setting-<?php echo $this->setting_key; ?>-tmpl" type="text/template">
-            <div class="uni-modal-row uni-clear">
+		<script id="js-builderius-setting-<?php echo $this->setting_key; ?>-tmpl" type="text/template">
+			<div class="uni-modal-row uni-clear">
 				<?php echo $this->generate_field_label_html(); ?>
-                <div class="uni-modal-row-second uni-modal-row-slug-wrap">
-                    <div class="uni-fcell uni-slug-name">
+				<div class="uni-modal-row-second uni-modal-row-slug-wrap">
+					<div class="uni-fcell uni-slug-name">
 						<?php echo '{' . UniCpo()->get_var_slug(); ?>
-                    </div>
-                    <div class="uni-scell uni-clear">
-                        <div id="js-cpo-field-slug-wrapper">
+					</div>
+					<div class="uni-scell uni-clear">
+						<div id="js-cpo-field-slug-wrapper">
 							<?php echo $this->generate_text_html(); ?>
-                        </div>
+						</div>
 						<?php echo '}'; ?>
-                    </div>
-                </div>
-            </div>
-        </script>
+					</div>
+				</div>
+			</div>
+		</script>
 		<?php
 	}
 

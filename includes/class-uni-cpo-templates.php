@@ -329,6 +329,9 @@ final class Uni_Cpo_Templates {
 	 * @return string
 	 */
 	static public function modal_general_settings() {
+		global $product;
+		$product_id   = $product->get_id();
+		$product_data = Uni_Cpo_Product::get_product_data_by_id( $product_id );
 		?>
         <script id="js-builderius-modal-general-settings-tmpl" type="text/template">
             <div id="uni-modal-wrapper" class="uni-modal-wrapper">
@@ -354,6 +357,12 @@ final class Uni_Cpo_Templates {
                             <?php
                             if ( UniCpo()->is_pro() ) {
 	                            ?>
+	                            <li>
+		                            <a href="#tab-image">
+			                            <i class="uni-tab-icon-general"></i>
+			                            <?php esc_html_e( 'Image Related Settings', 'uni-cpo' ) ?>
+		                            </a>
+	                            </li>
                                 <li>
                                     <a href="#tab-import">
                                         <i class="uni-tab-icon-import"></i>
@@ -431,27 +440,6 @@ final class Uni_Cpo_Templates {
                                     </h3>
                                     <p>
                                         <?php esc_html_e( 'Enable this option if you want to use "calculate" button and perform calculation on click on this button instead of instant price calculation after any options chosen/value defined.', 'uni-cpo' ) ?>
-                                    </p>
-                                </div>
-
-                                <div class="uni-form-row uni-form-row__with-checkbox <?php echo uni_cpo_pro_content() ?>">
-                                    <label class="uni-main-feature__checkbox" for="uni-layered_image_enable-checkbox">
-                                        <input
-                                                id="uni-layered_image_enable-checkbox"
-                                                class="builderius-setting-field builderius-single-checkbox"
-                                                type="checkbox"
-                                                name="layered_image_enable"
-                                                value="on"
-                                                {{ if (data.layered_image_enable === 'on') { print(' checked'); } }}/>
-                                        <span class="uni-main-feature__label-wrap">
-                                            <span class="uni-main-feature__checkbox-label"></span>
-                                            <span class="uni-main-feature__checkbox-on"><?php esc_html_e( 'on', 'uni-cpo' ) ?></span>
-                                            <span class="uni-main-feature__checkbox-off"><?php esc_html_e( 'off', 'uni-cpo' ) ?></span>
-                                        </span>
-                                    </label>
-                                    <h3><?php esc_html_e( 'Enable colorify/layered image feature for this product?', 'uni-cpo' ) ?></h3>
-                                    <p>
-                                        <?php esc_html_e( 'Enables "colorify" functionality. Important: product image must be set (either alone or several along with product gallery).', 'uni-cpo' ) ?>
                                     </p>
                                 </div>
 
@@ -579,6 +567,26 @@ final class Uni_Cpo_Templates {
 			                            <?php esc_html_e( 'Uni CPO uses WC original "sold individually" setting for hiding WC qty field only. Still, we need a possibility to restrict adding the same product twice to the cart even for Uni CPO enabled products. This is exactly what this setting does!', 'uni-cpo' ) ?>
 		                            </p>
 	                            </div>
+                                <div class="uni-form-row uni-form-row__with-checkbox <?php echo uni_cpo_pro_content() ?>">
+                                    <label class="uni-main-feature__checkbox" for="uni-reset_form_btn-checkbox">
+                                        <input
+                                                id="uni-reset_form_btn-checkbox"
+                                                class="builderius-setting-field builderius-single-checkbox"
+                                                type="checkbox"
+                                                name="reset_form_btn"
+                                                value="on"
+                                                {{ if (data.reset_form_btn === 'on') { print(' checked'); } }}/>
+                                        <span class="uni-main-feature__label-wrap">
+                                            <span class="uni-main-feature__checkbox-label"></span>
+                                            <span class="uni-main-feature__checkbox-on"><?php esc_html_e( 'on', 'uni-cpo' ) ?></span>
+                                            <span class="uni-main-feature__checkbox-off"><?php esc_html_e( 'off', 'uni-cpo' ) ?></span>
+                                        </span>
+                                    </label>
+                                    <h3><?php esc_html_e( 'Reset form button?', 'uni-cpo' ) ?></h3>
+                                    <p>
+                                        <?php esc_html_e( 'Enable this option if you want to show "Reset all form" button', 'uni-cpo' ) ?>
+                                    </p>
+                                </div>
                             </div>
 
                             <div id="tab-price" class="uni-tab-content">
@@ -711,6 +719,89 @@ final class Uni_Cpo_Templates {
                             <?php
                             if ( UniCpo()->is_pro() ) {
 	                            ?>
+	                            <div id="tab-image" class="uni-tab-content">
+		                            <div class="uni-form-row uni-form-row__with-checkbox <?php echo uni_cpo_pro_content() ?>">
+			                            <label class="uni-main-feature__checkbox" for="uni-layered_image_enable-checkbox">
+				                            <input
+						                            id="uni-layered_image_enable-checkbox"
+						                            class="builderius-setting-field builderius-single-checkbox"
+						                            type="checkbox"
+						                            name="layered_image_enable"
+						                            value="on"
+						                            {{ if (data.layered_image_enable === 'on') { print(' checked'); } }}/>
+				                            <span class="uni-main-feature__label-wrap">
+                                            <span class="uni-main-feature__checkbox-label"></span>
+                                            <span class="uni-main-feature__checkbox-on"><?php esc_html_e( 'on', 'uni-cpo' ) ?></span>
+                                            <span class="uni-main-feature__checkbox-off"><?php esc_html_e( 'off', 'uni-cpo' ) ?></span>
+                                        </span>
+			                            </label>
+			                            <h3><?php esc_html_e( 'Enable Colorify?', 'uni-cpo' ) ?></h3>
+			                            <p>
+				                            <?php esc_html_e( 'Enables "Colorify" functionality. Important: product image must be set (either alone or with product gallery images).', 'uni-cpo' ) ?>
+			                            </p>
+		                            </div>
+
+		                            <div class="uni-form-row uni-form-row__with-checkbox <?php echo uni_cpo_pro_content() ?>">
+			                            <label class="uni-main-feature__checkbox" for="uni-imagify_enable-checkbox">
+				                            <input
+						                            id="uni-imagify_enable-checkbox"
+						                            class="builderius-setting-field builderius-single-checkbox"
+						                            type="checkbox"
+						                            name="imagify_enable"
+						                            value="on"
+						                            {{ console.log(data); if (data.imagify_enable === 'on') { print(' checked'); } }}/>
+				                            <span class="uni-main-feature__label-wrap">
+                                            <span class="uni-main-feature__checkbox-label"></span>
+                                            <span class="uni-main-feature__checkbox-on"><?php esc_html_e( 'on', 'uni-cpo' ) ?></span>
+                                            <span class="uni-main-feature__checkbox-off"><?php esc_html_e( 'off', 'uni-cpo' ) ?></span>
+                                        </span>
+			                            </label>
+			                            <h3><?php esc_html_e( 'Enable Imagify?', 'uni-cpo' ) ?></h3>
+			                            <p>
+				                            <?php esc_html_e( 'Enables "Imagify" functionality. Important: it does not work when Colorify is enabled! You have to use either Colorify or Imagify. Important: product image must be set (either alone or with product gallery images).', 'uni-cpo' ) ?>
+			                            </p>
+		                            </div>
+
+		                            <div class="uni-form-row uni-clear <?php echo uni_cpo_pro_content() ?>">
+			                            <h3>
+				                            <?php esc_html_e( 'Base image for Imagify', 'uni-cpo' ) ?>
+			                            </h3>
+			                            <p>
+				                            <?php esc_html_e( 'Adds a base image (the static one that will be placed below all other "images-layers") to be used for Imagify', 'uni-cpo' ) ?>
+			                            </p>
+                                        <div class = 'uni-imagify-base-image-wrapper'>
+                                            <input
+                                                    type="hidden"
+                                                    class="builderius-setting-field"
+                                                    name="imagify_base_image"
+                                                    value="{{- data.imagify_base_image }}" />
+                                            <button
+                                                    type="button"
+                                                    class="cpo-upload-attachment"
+                                                    data-tip="<?php esc_attr_e('Add/Change attachment', 'uni-cpo') ?>">
+                                                <i class="fas fa-pencil-alt"></i>
+                                            </button>
+                                            <button
+                                                    type="button"
+                                                    class="cpo-remove-attachment"
+                                                    <?php if ( ! empty( $product_data['settings_data']['imagify_base_image'] ) ) {
+                                                        echo 'style="display:block;"';
+                                                    } ?>
+                                                    data-tip="<?php esc_attr_e('Remove attachment', 'uni-cpo') ?>">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                            <div class="cpo-image-preview">
+                                                <?php
+                                                if ( ! empty( $product_data['settings_data']['imagify_base_image'] ) ) {
+                                                    $image = wp_get_attachment_image_src( $product_data['settings_data']['imagify_base_image'], 'woocommerce_single' );
+                                                    echo '<img src="' . esc_url( $image[0] ) . '" />';
+                                                }
+                                                ?>
+                                            </div>
+                                        </div>
+		                            </div>
+	                            </div>
+
                                 <div id="tab-import" class="uni-tab-content">
                                     <div class="uni-settings-group-title uni-settings-group-title__duplicate">
                                         <span><?php esc_html_e( 'Duplicate from another product', 'uni-cpo' ) ?></span>

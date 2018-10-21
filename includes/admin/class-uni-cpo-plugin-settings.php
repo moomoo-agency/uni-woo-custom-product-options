@@ -18,8 +18,10 @@ class Uni_Cpo_Plugin_Settings {
             'product_thumbnails_container',
 			'display_weight_in_cart',
             'display_dimensions_in_cart',
+			'range_slider_style',
 			'file_upload',
-			'range_slider_style'
+			'sample_feature',
+			'gmap_api_key'
 		) );
 
 		// Initialise settings
@@ -149,6 +151,14 @@ class Uni_Cpo_Plugin_Settings {
 					),
 					'default'     => 'html5'
 				),
+				array(
+					'id'          => 'gmap_api_key',
+					'label'       => __( 'Google Map API Key', 'uni-cpo' ),
+					'description' => __( 'Add Google Map API key in order to use Google Map option', 'uni-cpo' ),
+					'type'        => 'text',
+					'default'     => '',
+					'placeholder' => ''
+				)
 			)
 		);
 
@@ -209,6 +219,28 @@ class Uni_Cpo_Plugin_Settings {
                     'placeholder' => '',
                     'dependency'  => '#file_storage:is(dropbox)'
                 )
+			)
+		);
+
+		$settings['sample_feature'] = array(
+			'title'       => __( 'Free sample functionality', 'uni-cpo' ),
+			'description' => '',
+			'fields'      => array(
+				array(
+					'id'          => 'free_sample_enable',
+					'label'       => __( 'Enable "Free sample" functionality', 'uni-cpo' ),
+					'description' => __( 'Enables so called "Free Sample" functionality (adding to cart free products (zero price)) and limits the total number of free products (if set).', 'uni-cpo' ),
+					'type'        => 'checkbox',
+					'default'     => ''
+				),
+				array(
+					'id'          => 'free_samples_limit',
+					'label'       => __( '"Free sample" products limit', 'uni-cpo' ),
+					'description' => __( 'Sets the maximum total number of free products which can be added to a single order. Set to "0" or leave it empty to allow unlimited samples.', 'uni-cpo' ),
+					'type'        => 'text',
+					'default'     => '',
+					'placeholder' => __( '5', 'uni-cpo' )
+				)
 			)
 		);
 

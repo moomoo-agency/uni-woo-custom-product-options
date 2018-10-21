@@ -184,7 +184,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
         }
         ?>">
             <label><?php 
-        echo  uni_cpo_sanitize_label( $this->cpo_order_label() ) ;
+        esc_html_e( uni_cpo_sanitize_label( $this->cpo_order_label() ) );
         ?></label>
 			<?php 
         
@@ -384,27 +384,31 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
         ),
             'cpo_general'     => array(
             'main'     => array(
-            'cpo_slug'           => '',
-            'cpo_is_required'    => 'no',
-            'cpo_mode_radio'     => 'classic',
-            'cpo_geom_radio'     => 'circle',
-            'cpo_is_changeimage' => 'no',
-            'cpo_encoded_image'  => '',
+            'cpo_slug'             => '',
+            'cpo_is_required'      => 'no',
+            'cpo_mode_radio'       => 'classic',
+            'cpo_geom_radio'       => 'circle',
+            'cpo_is_changeimage'   => 'no',
+            'cpo_is_imagify'       => 'no',
+            'cpo_is_resetbutton'   => 'no',
+            'cpo_resetbutton_text' => 'Clear option',
+            'cpo_encoded_image'    => '',
         ),
             'advanced' => array(
-            'cpo_label'           => '',
-            'cpo_label_tag'       => 'label',
-            'cpo_order_label'     => '',
-            'cpo_is_tooltip'      => 'no',
-            'cpo_tooltip_type'    => 'classic',
-            'cpo_tooltip'         => '',
-            'cpo_tooltip_image'   => array(
+            'cpo_label'            => '',
+            'cpo_label_tag'        => 'label',
+            'cpo_order_label'      => '',
+            'cpo_is_tooltip'       => 'no',
+            'cpo_tooltip_type'     => 'classic',
+            'cpo_tooltip'          => '',
+            'cpo_tooltip_image'    => array(
             'url' => '',
             'id'  => 0,
             'alt' => '',
         ),
-            'cpo_tooltip_class'   => '',
-            'cpo_enable_cartedit' => 'no',
+            'cpo_tooltip_class'    => '',
+            'cpo_enable_cartedit'  => 'no',
+            'cpo_order_visibility' => 'no',
         ),
         ),
             'cpo_suboptions'  => array(
@@ -447,15 +451,15 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
             {{ const width_px = uniGet(general, 'main.width_px', '42'); }}
             {{ const height_px = uniGet(general, 'main.height_px', ''); }}
 
-            {{ const color_label = uniGet( data.settings.style, 'label.color', '' ); }}
-            {{ const text_align_label = uniGet( data.settings.style, 'label.text_align_label', 'inherit' ); }}
-            {{ const font_family_label = uniGet( data.settings.style, 'label.font_family', '' ); }}
-            {{ const font_weight_label = uniGet( data.settings.style, 'label.font_weight', '' ); }}
-            {{ const font_size_label = uniGet( data.settings.style, 'label.font_size_label', {value:'',unit:'px'} ); }}
+            {{ const color_label = uniGet( style, 'label.color', '' ); }}
+            {{ const text_align_label = uniGet( style, 'label.text_align_label', 'inherit' ); }}
+            {{ const font_family_label = uniGet( style, 'label.font_family', '' ); }}
+            {{ const font_weight_label = uniGet( style, 'label.font_weight', '' ); }}
+            {{ const font_size_label = uniGet( style, 'label.font_size_label', {value:'',unit:'px'} ); }}
 
-            {{ const color_desc = uniGet( data.settings.style, 'description.color', '' ); }}
-            {{ const font_weight_desc = uniGet( data.settings.style, 'description.font_weight', '' ); }}
-            {{ const font_size_desc = uniGet( data.settings.style, 'description.font_size_desc', {value:'',unit:'px'} ); }}
+            {{ const color_desc = uniGet( style, 'description.color', '' ); }}
+            {{ const font_weight_desc = uniGet( style, 'description.font_weight', '' ); }}
+            {{ const font_size_desc = uniGet( style, 'description.font_size_desc', {value:'',unit:'px'} ); }}
 
             {{ const color = uniGet(style, 'font.color', '#333333'); }}
             {{ const color_hover = uniGet(style, 'font.color_hover', ''); }}
@@ -497,9 +501,12 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
             {{ } }}
 
             {{ const { cpo_label_tag, cpo_label, cpo_is_tooltip, cpo_tooltip } = cpo_general.advanced; }}
-			{{ const cpo_tooltip_type = uniGet( data.settings.cpo_general, 'advanced.cpo_tooltip_type', 'classic' ); }}
-			{{ const cpo_tooltip_image = uniGet( data.settings.cpo_general, 'advanced.cpo_tooltip_image', {url:''} ); }}
-			{{ const cpo_tooltip_class = uniGet( data.settings.cpo_general, 'advanced.cpo_tooltip_class', '' ); }}
+			{{ const cpo_tooltip_type = uniGet( cpo_general, 'advanced.cpo_tooltip_type', 'classic' ); }}
+			{{ const cpo_tooltip_image = uniGet( cpo_general, 'advanced.cpo_tooltip_image', {url:''} ); }}
+			{{ const cpo_tooltip_class = uniGet( cpo_general, 'advanced.cpo_tooltip_class', '' ); }}
+
+            {{ const cpo_is_resetbutton = uniGet(cpo_general.main, 'cpo_is_resetbutton', 'no'); }}
+            {{ const cpo_resetbutton_text = uniGet(cpo_general.main, 'cpo_resetbutton_text', 'Clear option'); }}
 
             {{ const correct_width = Number(width_px) + Number(border_width) * 2 + Number(offset_px) * 2; }}
 
@@ -649,6 +656,11 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
 	                </label>
                 {{ } }}
             {{ } }}
+            {{ if (cpo_is_resetbutton === 'yes') { }}
+                <div class = "uni-cpo-radio-resetbutton uni-clear">
+                    <button class = "uni_cpo_{{- cpo_slug }}-field-reset-button js-uni-cpo-field-{{- type }}-reset-button">{{- cpo_resetbutton_text }}</button>
+                </div>
+            {{ } }}
             </div>
         </script>
 		<?php 
@@ -664,10 +676,13 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
         $cpo_general_main = $data['settings']['cpo_general']['main'];
         $cpo_mode_radio = ( isset( $cpo_general_main['cpo_mode_radio'] ) ? $cpo_general_main['cpo_mode_radio'] : 'classic' );
         $cpo_change_image = ( isset( $cpo_general_main['cpo_is_changeimage'] ) ? $cpo_general_main['cpo_is_changeimage'] : 'no' );
+        $cpo_is_imagify = ( isset( $cpo_general_main['cpo_is_imagify'] ) ? $cpo_general_main['cpo_is_imagify'] : 'no' );
         $cpo_encoded_image = ( isset( $cpo_general_main['cpo_encoded_image'] ) ? $cpo_general_main['cpo_encoded_image'] : '' );
         $cpo_general_advanced = $data['settings']['cpo_general']['advanced'];
         $cpo_validation_main = ( isset( $data['settings']['cpo_validation']['main'] ) ? $data['settings']['cpo_validation']['main'] : array() );
         $cpo_validation_logic = ( isset( $data['settings']['cpo_validation']['logic'] ) ? $data['settings']['cpo_validation']['logic'] : array() );
+        $cpo_is_resetbutton = ( isset( $cpo_general_main['cpo_is_resetbutton'] ) ? ( 'yes' === $cpo_general_main['cpo_is_resetbutton'] ? true : false ) : false );
+        $cpo_resetbutton_text = ( isset( $cpo_general_main['cpo_resetbutton_text'] ) ? $cpo_general_main['cpo_resetbutton_text'] : 'Clear option' );
         $cpo_label_tag = $cpo_general_advanced['cpo_label_tag'];
         $attributes = array(
             'data-parsley-trigger'          => 'change focusout submit',
@@ -738,9 +753,18 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
             $attributes = uni_cpo_field_attributes_modifier( $extra_validation, $attributes );
         }
         
+        
         if ( $cpo_encoded_image ) {
             $wrapper_attributes['data-layered'] = true;
+            $input_css_class[] = 'uni-cpo-colorify-imagify-changer';
         }
+        
+        
+        if ( 'yes' === $cpo_is_imagify ) {
+            $wrapper_attributes['data-imagify'] = true;
+            $input_css_class[] = 'uni-cpo-colorify-imagify-changer';
+        }
+        
         
         if ( $is_enabled && $is_hidden ) {
             $wrapper_attributes['style'] = 'display:none;';
@@ -837,6 +861,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
             }
             $suboption_classes = $suboption_classes_default;
             $attributes_new = $attributes;
+            $data_image = '';
             if ( isset( $suboption['suboption_class'] ) && !empty($suboption['suboption_class']) ) {
                 array_push( $suboption_classes, $suboption['suboption_class'] );
             }
@@ -886,7 +911,10 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
                 case 'classic':
                     ?>
 					<span class="uni-cpo-option-label__radio"></span>
-	                <span class="uni-cpo-option-label__text">
+	                <span class="uni-cpo-option-label__text"
+	                      data-image="<?php 
+                    echo  esc_attr( $data_image ) ;
+                    ?>">
                         <?php 
                     esc_html_e( $suboption['label'] );
                     ?>
@@ -919,6 +947,25 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
 		<?php 
         }
         ?>
+        <?php 
+        
+        if ( $cpo_is_resetbutton ) {
+            ?>
+            <div class = "uni-cpo-radio-resetbutton uni-clear">
+                <button class = "uni_cpo_<?php 
+            echo  esc_attr( $slug ) ;
+            ?>-field-reset-button js-uni-cpo-field-<?php 
+            echo  esc_attr( $type ) ;
+            ?>-reset-button"><?php 
+            esc_html_e( $cpo_resetbutton_text );
+            ?></button>
+            </div>
+        <?php 
+        }
+        
+        ?>
+
+
         </div>
 		<?php 
         self::conditional_rules( $data );
@@ -941,7 +988,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
         $cpo_mode_radio = $cpo_general_main['cpo_mode_radio'];
         $cpo_geom_radio = $cpo_general_main['cpo_geom_radio'];
         $cpo_general_advanced = $data['settings']['cpo_general']['advanced'];
-        $correct_width = $main['width_px'] + $border['width_px'] * 2 + $border['offset_px'] * 2;
+        $correct_width = absint( $main['width_px'] ) + absint( $border['width_px'] ) * 2 + absint( $border['offset_px'] ) * 2;
         ob_start();
         ?>
 			.uni-node-<?php 

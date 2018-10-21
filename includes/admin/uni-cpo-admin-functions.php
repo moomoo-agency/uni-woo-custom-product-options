@@ -120,9 +120,24 @@ function uni_cpo_order_formatted_meta_data( $formatted_meta, $item )
                                     // excluding special vars
                                     
                                     if ( is_array( $v['order_meta'] ) ) {
+                                        $v['order_meta'] = array_map( function ( $item ) {
+                                            
+                                            if ( !is_numeric( $item ) ) {
+                                                return esc_html__( $item );
+                                            } else {
+                                                return $item;
+                                            }
+                                        
+                                        }, $v['order_meta'] );
                                         $display_value = implode( ', ', $v['order_meta'] );
                                     } else {
-                                        $display_value = $v['order_meta'];
+                                        
+                                        if ( !is_numeric( $v['order_meta'] ) ) {
+                                            $display_value = esc_html__( $v['order_meta'] );
+                                        } else {
+                                            $display_value = $v['order_meta'];
+                                        }
+                                    
                                     }
                                     
                                     break;

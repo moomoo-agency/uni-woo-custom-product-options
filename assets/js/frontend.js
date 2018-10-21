@@ -15,14 +15,18 @@ UniCpo = {
     addedToCartMsg: jQuery('<div class="woocommerce-message"><a href="' + wc_add_to_cart_params.cart_url + '" class="button wc-forward">' + wc_add_to_cart_params.i18n_view_cart + '</a> ' + unicpo_i18n.added_to_cart + '</div>'),
     calc: unicpo.calc_on,
     calcBtn: unicpo.calc_btn_on,
+    resetBtn: unicpo.reset_form_btn_on,
     cpo: unicpo.cpo_on,
     isTaxable: unicpo.taxable,
     fileUploadEl: {},
     flatpickrCfg: {},
+    geocoder: null,
     isFlexContainer: jQuery('.flex-viewport').length > 0,
     isLayeredOn: unicpo.layered_on,
+    isImagify: unicpo.imagify_on,
     isSilentValidationOn: unicpo.silent_validation_on,
     mainImageChangers: jQuery('.uni-cpo-image-changer').get().reverse(),
+    colorifyImagifyChangers: jQuery('.uni-cpo-colorify-imagify-changer').get(),
     mainImageDefData: {},
     mainImageEl: '',
     orderingDsblMsgEl: jQuery('.js-uni-cpo-ordering-disabled-notice'),
@@ -70,8 +74,17 @@ UniCpo = {
                     this.setPriceTo({ price: this.priceStartingEl });
                     this.bindOnCalcBtnClick();
                 }
+
                 this.bindOnAddToCartClick();
                 this.initTooltip();
+
+                if ((typeof google === 'undefined' ? 'undefined' : _typeof(google)) === 'object' && _typeof(google.maps) === 'object') {
+                    this.geocoder = new google.maps.Geocoder();
+                    this.initGoogleMap();
+                } else {
+                    console.info('Uni CPO @', 'Google API key is missing or invalid');
+                }
+
                 this.initRangeSlider();
                 this.bindOnFileUploadClick();
                 this.bindOnMatrixCellClick();
@@ -89,6 +102,7 @@ UniCpo = {
                         cpoObj.mainImageEl = cpoObj.getMainImageEl();
                         cpoObj.mainImageDefData = cpoObj.getMainImageDefData();
                         cpoObj.changeMainImage();
+                        cpoObj.checkColorifyImagify();
                         jQuery(document.body).trigger('uni_cpo_frontend_is_ready');
                     }
                 }, 100);
@@ -99,8 +113,9 @@ UniCpo = {
 
                 this.bindOnRadioImageTap();
                 this.bindOnRadioColourClick();
+                this.bindOnRadioTextClick();
                 this.bindOnOptionSelected();
-                this.bindMainImageChange();
+                this.bindImageChangers();
             }
         } catch (e) {
             console.error(e);
@@ -171,7 +186,12 @@ UniCpo = {
                             price: unicpo.price_vars.price,
                             doRemoveSuffix: true
                         });
-                        cpoObj.setPriceTo({ price: calcPrice, tax: 'show' });
+                        if (unicpo.price_vars.raw_price) {
+                            cpoObj.setPriceTo({ price: calcPrice, tax: 'show' });
+                        } else {
+                            cpoObj.setPriceTo({ price: cpoObj.priceStartingEl });
+                            cpoObj.setBtnState(true);
+                        }
                     }
 
                     if (typeof r.data.fragments !== 'undefined') {
@@ -210,7 +230,7 @@ UniCpo = {
             }
         });
     },
-    bindMainImageChange: function bindMainImageChange() {
+    bindImageChangers: function bindImageChangers() {
         
 /* Premium Code Stripped by Freemius */
 
@@ -244,6 +264,63 @@ UniCpo = {
             cpoObj.processFormData();
         });
     },
+    bindOnResetFormBtnClick: function bindOnResetFormBtnClick() {
+        var cpoObj = this;
+        jQuery(document).on('click', '.js-uni-cpo-reset-form-btn', function () {
+            var $fieldsToProcess = jQuery(unicpo.options_selector);
+
+            $fieldsToProcess.each(function () {
+                if (!this.name) {
+                    return;
+                }
+
+                var el = this;
+                var $el = jQuery(el);
+                var $module = $el.closest('.uni-module');
+                var elType = el.type || el.tagName.toLowerCase();
+
+                if ('checkbox' === elType || 'radio' === elType) {
+                    $el.attr('checked', false);
+                } else if ('select-one' === elType || 'textarea' === elType) {
+                    $el.val('');
+                } else if ('number' === elType || 'text' === elType) {
+                    if ($el.hasClass('js-uni-cpo-field-range_slider')) {
+                        var slider = $el.data('ionRangeSlider');
+                        var min = $el.attr('data-min');
+                        var max = $el.attr('data-max');
+                        var $input = $el.siblings(jQuery('.js-uni-cpo-field-range_slider-additional-field'));
+
+                        slider.update({
+                            from: min,
+                            to: max
+                        });
+                        $input.val(min);
+                        return;
+                    } else if ($el.hasClass('flatpickr-input')) {
+                        var fp = el._flatpickr;
+                        fp.clear();
+                    }
+
+                    $el.val('');
+                } else if ('hidden' === elType) {
+                    if ($module.hasClass('uni-module-matrix')) {
+                        $module.find('.uni-clicked').removeClass('uni-clicked');
+                    }
+                    if ($module.hasClass('uni-module-file_upload')) {
+                        var $btn = $module.find('.uni-cpo-file-upload-files-item-remove');
+
+                        $btn.each(function () {
+                            jQuery(this).trigger('click');
+                        });
+                    }
+                    $el.val('');
+                } else {
+                    $el.val('');
+                }
+            });
+            cpoObj.processFormData();
+        });
+    },
     bindOnFileUploadClick: function bindOnFileUploadClick() {
         
 /* Premium Code Stripped by Freemius */
@@ -263,7 +340,17 @@ UniCpo = {
             }
         });
     },
+    bindOnResetRadioBtnClick: function bindOnResetRadioBtnClick() {
+        
+/* Premium Code Stripped by Freemius */
+
+    },
     bindOnRadioColourClick: function bindOnRadioColourClick() {
+        
+/* Premium Code Stripped by Freemius */
+
+    },
+    bindOnRadioTextClick: function bindOnRadioTextClick() {
         
 /* Premium Code Stripped by Freemius */
 
@@ -292,6 +379,11 @@ UniCpo = {
 /* Premium Code Stripped by Freemius */
 
     },
+    checkColorifyImagify: function checkColorifyImagify() {
+        
+/* Premium Code Stripped by Freemius */
+
+    },
     collectData: function collectData(isForConditional) {
         var formFields = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
@@ -305,7 +397,6 @@ UniCpo = {
             }
 
             var el = this;
-            //console.log(el);
             var $el = jQuery(el);
             var elType = el.type || el.tagName.toLowerCase();
 
@@ -362,6 +453,7 @@ UniCpo = {
                                 fields[el.name] = startDate.format('Y-MM-DD');
                                 fields[el.name + '_start'] = startDate.format('Y-MM-DD');
                             }
+                            fields[el.name + '_duration'] = 1;
                         } else if (mode === 'range') {
                             var endDate = moment(fp.selectedDates[1]);
                             if (fp.selectedDates.length) {
@@ -419,6 +511,11 @@ UniCpo = {
                         fields[el.name + '_from'] = $el.val();
                         fields[el.name + '_to'] = $el.val();
                     }
+                } else if ($el.hasClass('js-uni-cpo-field-google_map')) {
+                    var $latlng = $el.prev();
+
+                    fields[el.name] = $el.val();
+                    fields[el.name + '_latlng'] = $latlng.val();
                 } else {
                     if (!cpoObj.isNumber($el.val())) {
                         var val = $el.val().replace(/,/, '.');
@@ -479,48 +576,14 @@ UniCpo = {
         return fields;
     },
     colorify: function colorify(optionName, hex) {
-        var cpoObj = this;
-        var $layer = jQuery('#palette-layer-' + optionName);
+        
+/* Premium Code Stripped by Freemius */
 
-        if ($layer.length > 0) {
-            var colorRgb = cpoObj.hexToRgb(hex);
+    },
+    imagify: function imagify(optionName, image) {
+        
+/* Premium Code Stripped by Freemius */
 
-            // gets main product image size
-            var width = $layer.width();
-            var height = $layer.height();
-
-            // gets original image size
-            var $fakeImg = jQuery('<img>').css('display', 'none').appendTo('body');
-            $fakeImg[0]['src'] = $layer[0].src;
-
-            var w = $fakeImg.width();
-            var h = $fakeImg.height();
-            $fakeImg.remove();
-
-            var canvas = document.createElement('canvas');
-            var ctx = canvas.getContext('2d');
-            canvas.width = w;
-            canvas.height = h;
-
-            ctx.drawImage($layer.get(0), 0, 0);
-            var imgd = ctx.getImageData(0, 0, w, h);
-            var pix = imgd.data;
-            var unique_color = [colorRgb.r, colorRgb.g, colorRgb.b];
-
-            // Loops through all of the pixels and modifies the components.
-            for (var i = 0, n = pix.length; i < n; i += 4) {
-                pix[i] = unique_color[0];
-                pix[i + 1] = unique_color[1];
-                pix[i + 2] = unique_color[2];
-            }
-
-            ctx.putImageData(imgd, 0, 0);
-
-            // put the new image to the DOM
-            $layer.attr('src', canvas.toDataURL('image/png'));
-            $layer.attr('width', width);
-            $layer.attr('height', height);
-        }
     },
     formSubmission: function formSubmission() {
         var cpoObj = this;
@@ -550,7 +613,7 @@ UniCpo = {
                         data[item.name] = item.value;
                     }
                 });
-                //console.log(data);
+                //console.log(data, cpoObj.productFormEl.serializeArray());
                 cpoObj.addToCart(data);
             }
 
@@ -631,6 +694,17 @@ UniCpo = {
             g: parseInt(result[2], 16),
             b: parseInt(result[3], 16)
         } : null;
+    },
+    gMapMarkers: {},
+    addGoogleMarker: function addGoogleMarker(location, map, mapId) {
+        
+/* Premium Code Stripped by Freemius */
+
+    },
+    initGoogleMap: function initGoogleMap() {
+        
+/* Premium Code Stripped by Freemius */
+
     },
     initRangeSlider: function initRangeSlider() {
         
@@ -809,6 +883,11 @@ UniCpo = {
 /* Premium Code Stripped by Freemius */
 
     },
+    showLastThumb: function showLastThumb() {
+        
+/* Premium Code Stripped by Freemius */
+
+    },
     getProperPrice: function getProperPrice() {
         var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
             _ref2$price = _ref2.price,
@@ -928,3 +1007,44 @@ window.Parsley.on('field:error', function () {
 
 /* Custom JS functions-helpers to be used in Dynamic Notice
 ----------------------------------------------------------*/
+var uniData = function uniData(data) {
+    return {
+        data: data,
+        init: function init() {
+            if (typeof data !== 'undefined') {
+                Object.assign(this, data);
+            }
+        },
+        checkExistance: function checkExistance(prop) {
+            if (typeof this[prop] !== 'undefined') {
+                return true;
+            } else {
+                return false;
+            }
+        },
+        getLabel: function getLabel(prop) {
+            if (typeof unicpoAllOptions[prop] !== 'undefined' && typeof unicpoAllOptions[prop]['label'] !== 'undefined') {
+                return unicpoAllOptions[prop]['label'];
+            }
+
+            return '';
+        },
+        getSuboptionLabel: function getSuboptionLabel(prop) {
+            if (typeof unicpoAllOptions[prop] !== 'undefined' && typeof unicpoAllOptions[prop].suboptions[this[prop]] !== 'undefined') {
+                return unicpoAllOptions[prop].suboptions[this[prop]]['label'];
+            }
+
+            return '';
+        },
+        asPrice: function asPrice(prop) {
+            var exists = this.checkExistance(prop);
+            return exists && typeof this[prop] !== 'undefined' ? parseFloat(this[prop]).toFixed(2) : parseFloat(0).toFixed(2);
+        },
+        asNumber: function asNumber(prop) {
+            var precision = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 2;
+
+            var exists = this.checkExistance(prop);
+            return exists && typeof this[prop] !== 'undefined' ? parseFloat(this[prop]).toFixed(precision) : parseFloat(0).toFixed(precision);
+        }
+    };
+};

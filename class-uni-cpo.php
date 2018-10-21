@@ -13,7 +13,7 @@ final class Uni_Cpo
      *
      * @var string
      */
-    public  $version = '4.3.1' ;
+    public  $version = '4.4.0' ;
     /**
      * The single instance of the class.
      *
@@ -214,6 +214,8 @@ final class Uni_Cpo
                 include_once UNI_CPO_ABSPATH . 'includes/options/class-uni-cpo-option-range-slider.php';
                 include_once UNI_CPO_ABSPATH . 'includes/options/class-uni-cpo-option-dynamic-notice.php';
                 include_once UNI_CPO_ABSPATH . 'includes/options/class-uni-cpo-option-matrix.php';
+                include_once UNI_CPO_ABSPATH . 'includes/options/class-uni-cpo-option-extra-cart-button.php';
+                include_once UNI_CPO_ABSPATH . 'includes/options/class-uni-cpo-option-google-map.php';
             }
         
         }
@@ -307,6 +309,9 @@ final class Uni_Cpo
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-mode-checkbox.php';
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-geom-checkbox.php';
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-is-changeimage.php';
+            include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-order-visibility.php';
+            include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-addtocart-mode.php';
+            include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-samples-mode.php';
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-is-fc.php';
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-fc-default.php';
             include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-fc-scheme.php';
@@ -321,6 +326,9 @@ final class Uni_Cpo
             if ( $this->is_pro() ) {
                 // radio
                 include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-encoded-image.php';
+                include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-is-resetbutton.php';
+                include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-resetbutton-text.php';
+                include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-is-imagify.php';
                 // date picker
                 include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-date-type.php';
                 include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-day-night.php';
@@ -342,6 +350,9 @@ final class Uni_Cpo
                 include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-notice-text.php';
                 // matrix
                 include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-matrix-data.php';
+                // map
+                include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-map-center.php';
+                include_once UNI_CPO_ABSPATH . 'includes/settings/class-uni-cpo-setting-cpo-map-zoom.php';
             }
             
             // common js templates
@@ -570,6 +581,8 @@ final class Uni_Cpo
             'custom_path_enable'           => '',
             'custom_path'                  => '',
             'dropbox_token'                => '',
+            'free_sample_enable'           => '',
+            'free_samples_limit'           => '',
         );
     }
     

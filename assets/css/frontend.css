@@ -59,6 +59,9 @@
 }
 
 /* Module: radio */
+.uni-cpo-radio-resetbutton {
+    clear: both
+}
 .uni-module-radio input[type="radio"],
 .uni-module-checkbox input[type="checkbox"] {
     display: none;
@@ -423,6 +426,15 @@ input.js-uni-cpo-field-range_slider-additional-field[type="text"]:focus {
     cursor: pointer;
 }
 
+/* Module: google map */
+.uni-cpo-map-option-input {
+    width: 100%;
+    height: 36px;
+    margin-top: 15px;
+    background-color: #ffffff!important;
+    box-shadow: none !important;
+}
+
 /* Parsley validation */
 .uni-builderius-container .parsley-errors-list {
     position: absolute !important;
@@ -615,7 +627,7 @@ span.flatpickr-weekday {
 .uni_cpo_main_image_layered_image div.uni_cpo_main_image_overlay p {
     display: inline-block;
     float: left;
-    margin: 15px 0 0 20px;
+    margin: 15px 0 0 10px;
     color: #fff;
     font-size: 13px;
     max-width: 50%;
@@ -627,17 +639,27 @@ span.flatpickr-weekday {
 
 .uni_cpo_main_image_layered_image div.uni_cpo_main_image_overlay .wp-picker-container {
     float: left;
-    margin: 9px 0 0 14px;
+    margin: 9px 0 0 10px;
     width: 200px;
 }
+div.uni_cpo_main_image_overlay .wp-picker-container .button.wp-picker-clear {
+    left: 60px;
+    top: -32px;
+    right: auto;
+}
 
-.uni_cpo_layered_image_enabled .flex-control-thumbs li:last-child {
-    position: relative;
+.uni_cpo_imagify_enabled .flex-control-thumbs li:last-child,
+.uni_cpo_colorify_enabled .flex-control-thumbs li:last-child {
+    background-color: transparent;
     background-image: url(../images/palette.svg);
-    background-size: 50%;
+    background-size: 70%;
     background-repeat: no-repeat;
     background-position: 50%;
     border: 1px solid #edf1ff;
+}
+.uni_cpo_imagify_enabled .flex-control-thumbs li:last-child {
+    background-image: url(../images/imagify-icon.svg);
+    background-size: 60%;
 }
 
 .wp-color-picker {

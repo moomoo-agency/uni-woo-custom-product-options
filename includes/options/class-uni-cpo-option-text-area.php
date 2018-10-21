@@ -183,7 +183,7 @@ class Uni_Cpo_Option_Text_Area extends Uni_Cpo_Option implements Uni_Cpo_Option_
 		ob_start();
 		?>
         <div class="cpo-cart-item-option-wrapper uni-node-<?php echo esc_attr($id) ?> <?php if ( 'order' === $context ) { echo esc_attr( "uni-admin-order-item-option-wrapper" ); } ?>">
-            <label><?php echo uni_cpo_sanitize_label( $this->cpo_order_label() ) ?></label>
+            <label><?php esc_html_e( uni_cpo_sanitize_label( $this->cpo_order_label() ) ) ?></label>
 	        <?php if ( 'order' === $context || ( 'cart' === $context && $is_cart_edit ) ) { ?>
                 <textarea
                         class="<?php echo implode( ' ', array_map( function ( $el ) {
@@ -331,7 +331,8 @@ class Uni_Cpo_Option_Text_Area extends Uni_Cpo_Option implements Uni_Cpo_Option_
 							'alt' => ''
 						),
 						'cpo_tooltip_class' => '',
-						'cpo_enable_cartedit' => 'no'
+						'cpo_enable_cartedit' => 'no',
+						'cpo_order_visibility' => 'no'
 					)
 				),
 				'cpo_conditional' => array(

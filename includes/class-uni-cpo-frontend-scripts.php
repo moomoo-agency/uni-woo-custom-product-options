@@ -558,8 +558,10 @@ class Uni_Cpo_Frontend_Scripts {
 						'raw_price_discounted',
 						'price_discounted',
 						'raw_total',
+						'raw_total_discounted',
 						'raw_total_tax_rev',
 						'total',
+						'total_discounted',
 						'total_tax_rev',
 						'total_suffix',
 					)
@@ -691,6 +693,16 @@ class Uni_Cpo_Frontend_Scripts {
 			);
 			wp_localize_script( 'uni-cpo-builder', 'builderius_i18n', $uni_cpo_i18n );
 
+			if ( ! empty( $plugin_settings['gmap_api_key'] ) ) {
+				wp_enqueue_script(
+					'google-map',
+					'https://maps.googleapis.com/maps/api/js?key=' . trim( $plugin_settings['gmap_api_key'] ),
+					array(),
+					false,
+					1
+				);
+			}
+
 			// media uploader
 			wp_enqueue_media();
 
@@ -814,8 +826,10 @@ class Uni_Cpo_Frontend_Scripts {
 				'price_postfix'        => $price_postfix,
 				'starting_price'       => $starting_price,
 				'raw_total'            => 0,
+				'raw_total_discounted' => 0,
 				'raw_total_tax_rev'    => 0,
 				'total'                => $zero_price,
+				'total_discounted'     => $zero_price,
 				'total_tax_rev'        => $zero_price,
 				'total_tax_suffix'     => $product->get_price_suffix( 0 ),
 			);
@@ -828,7 +842,9 @@ class Uni_Cpo_Frontend_Scripts {
 				'cpo_on'                  => ( 'off' !== $product_data['settings_data']['cpo_enable'] ) ? true : false,
 				'calc_on'                 => ( 'off' !== $product_data['settings_data']['calc_enable'] ) ? true : false,
 				'calc_btn_on'             => ( 'off' !== $product_data['settings_data']['calc_btn_enable'] ) ? true : false,
+				'reset_form_btn_on'       => ( 'off' !== $product_data['settings_data']['reset_form_btn'] ) ? true : false,
 				'layered_on'              => ( 'off' !== $product_data['settings_data']['layered_image_enable'] ) ? true : false,
+				'imagify_on'              => ( 'off' !== $product_data['settings_data']['imagify_enable'] ) ? true : false,
 				'silent_validation_on'    => ( 'off' !== $product_data['settings_data']['silent_validation_on'] ) ? true : false,
 				'taxable'                 => $product->is_taxable(),
 				'pid'                     => $product_data['id'],
@@ -848,6 +864,10 @@ class Uni_Cpo_Frontend_Scripts {
 			);
 			wp_localize_script( 'uni-cpo-frontend', 'unicpo', $uni_cpo_cfg );
 
+			$all_option_data = uni_cpo_get_options_data_for_frontend( $product_data['id'] );
+
+			wp_localize_script( 'uni-cpo-frontend', 'unicpoAllOptions', $all_option_data );
+
 			$uni_cpo_i18n = apply_filters( 'uni_cpo_i18n_frontend_strings',
 				array(
 					'calc_text'     => __( 'Calculating', 'uni-cpo' ),
@@ -860,6 +880,16 @@ class Uni_Cpo_Frontend_Scripts {
 			wp_localize_script( 'uni-cpo-frontend', 'unicpo_i18n', $uni_cpo_i18n );
 
 			wp_localize_script( 'parsleyjs', 'uni_parsley_loc', $localizations['parsleyjs'] );
+
+			if ( ! empty( $plugin_settings['gmap_api_key'] ) ) {
+				wp_enqueue_script(
+					'google-map',
+					'https://maps.googleapis.com/maps/api/js?key=' . trim( $plugin_settings['gmap_api_key'] ),
+					array(),
+					false,
+					1
+				);
+			}
 
 			wp_enqueue_script(
 				'iris',
@@ -970,6 +1000,10 @@ class Uni_Cpo_Frontend_Scripts {
 		}
 
 		$product_data = Uni_Cpo_Product::get_product_data();
+
+		if ( 'on' !== $product_data['settings_data']['cpo_enable'] ) {
+			return;
+		}
 
 		if ( is_writable( UNI_CPO_CSS_DIR ) ) {
 			$css_file_uri = get_option( 'builder_css_cached_for' . $product_data['id'] );
