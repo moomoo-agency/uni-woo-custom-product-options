@@ -100,6 +100,9 @@ A: We wouldn't recommend to do this yet. First, this version is so called 'lite'
 
 == Changelog ==
 
+= 4.4.1 =
+* Hotfix: a bug in the code
+
 = 4.4.0 =
 * Added: Imagify functionality
 * Added: new option: Extra Cart Button
