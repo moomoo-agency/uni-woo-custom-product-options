@@ -13,7 +13,7 @@ final class Uni_Cpo
      *
      * @var string
      */
-    public  $version = '4.4.1' ;
+    public  $version = '4.4.3' ;
     /**
      * The single instance of the class.
      *
@@ -569,7 +569,7 @@ final class Uni_Cpo
             'ajax_add_to_cart'             => '',
             'product_price_container'      => '.summary.entry-summary .price > .amount, .summary.entry-summary .price ins .amount',
             'product_image_container'      => 'figure.woocommerce-product-gallery__wrapper',
-            'product_image_size'           => 'shop_single',
+            'product_image_size'           => 'woocommerce_single',
             'product_thumbnails_container' => 'ol.flex-control-thumbs',
             'gmap_api_key'                 => '',
             'display_weight_in_cart'       => '',

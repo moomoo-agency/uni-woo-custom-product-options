@@ -110,10 +110,10 @@ class Uni_Cpo_Plugin_Settings {
 				array(
 					'id'          => 'product_image_size',
 					'label'       => __( 'Image size that is used for single product main image', 'uni-cpo' ),
-					'description' => __( 'By default, this is "shop_single". However the actual thumbnail size used depends on the theme and you may need to choose the correct one. This setting works in conjuction with the previous one and it is important to choose proper image size, so it will be used whenever a customer selects new option in a dropdown option or image select option with an image added to this chosen option.', 'uni-cpo' ),
+					'description' => __( 'By default, this is "woocommerce_single". However the actual thumbnail size used depends on the theme and you may need to choose the correct one. This setting works in conjuction with the previous one and it is important to choose proper image size, so it will be used whenever a customer selects new option in a dropdown option or image select option with an image added to this chosen option.', 'uni-cpo' ),
 					'type'        => 'select',
 					'options'     => uni_cpo_get_image_sizes_list(),
-					'default'     => 'shop_single'
+					'default'     => 'woocommerce_single'
 				),
 				array(
 					'id'          => 'product_thumbnails_container',

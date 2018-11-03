@@ -340,7 +340,7 @@ function uni_cpo_filter_settings_data_func( $data_data, $original_data, $data_na
     
     if ( 'cpo_general' === $data_name ) {
         $data_data['advanced']['cpo_tooltip'] = ( !empty($original_data['advanced']['cpo_tooltip']) ? uni_cpo_sanitize_text( stripslashes_deep( $original_data['advanced']['cpo_tooltip'] ) ) : '' );
-        $data_data['main']['cpo_notice_text'] = ( !empty($original_data['main']['cpo_notice_text']) ? html_entity_decode( sanitize_text_field( $original_data['main']['cpo_notice_text'] ) ) : '' );
+        $data_data['main']['cpo_notice_text'] = ( !empty($original_data['main']['cpo_notice_text']) ? html_entity_decode( uni_cpo_sanitize_text( $original_data['main']['cpo_notice_text'] ) ) : '' );
     }
     
     if ( 'cpo_rules' === $data_name ) {
@@ -896,6 +896,9 @@ add_filter(
 );
 function uni_cpo_display_custom_price_on_archives( $price, $product )
 {
+    if ( is_admin() ) {
+        return $price;
+    }
     $product_id = intval( $product->get_id() );
     $product_data = Uni_Cpo_Product::get_product_data_by_id( $product_id );
     $product_post_id = 0;

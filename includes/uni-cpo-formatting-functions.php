@@ -224,17 +224,17 @@ function uni_cpo_get_allowed_tags() {
 				'datetime' => true,
 				'cite'     => true,
 			),
-			'input'        => array(
-				'class' => true,
-				'id' => true,
-				'name' => true,
-				'value' => true,
+			'input'      => array(
+				'class'                => true,
+				'id'                   => true,
+				'name'                 => true,
+				'value'                => true,
 				'data-parsley-trigger' => true,
-				'data-parsley-type' => true,
-				'data-parsley-min' => true,
-				'step' => true,
-				'data-parsley-id' => true,
-				'type' => true
+				'data-parsley-type'    => true,
+				'data-parsley-min'     => true,
+				'step'                 => true,
+				'data-parsley-id'      => true,
+				'type'                 => true
 			),
 			'kbd'        => array(),
 			'li'         => array(

@@ -2715,11 +2715,13 @@
         },
         render:            function() {
             const element = this.template(this.model.toJSON());
-            const view = this;
+            this.setElement(element);
+
             if (this.model.get('type') === 'range_slider') {
                 const $el = this.$el.find('.js-uni-cpo-field-range_slider');
                 Builderius._initRangeSlider($el);
             }
+
             if (this.model.get('type') === 'google_map') {
                 // TODO (issue) loads twice
                 /*const slug = uniGet(this.model.get('settings'), 'cpo_general.main.cpo_slug', '');
@@ -2732,7 +2734,7 @@
                 };
                 Builderius._initGoogleMap(data);*/
             }
-            this.setElement(element);
+
             return this;
         },
         updateOrder:       function(collection) {

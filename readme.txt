@@ -5,7 +5,7 @@ Requires at least: 4.8
 Tested up to: 5.0.0
 Requires PHP: 7.0
 WC requires at least: 3.2.0
-WC tested up to: 3.4.7
+WC tested up to: 3.5.1
 Stable tag: trunk
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -99,6 +99,13 @@ A: We wouldn't recommend to do this yet. First, this version is so called 'lite'
 7. screenshot-7.png
 
 == Changelog ==
+
+= 4.4.2 =
+* Fixed: displaying product price in admin area; reverted to original prices, so they can be sorted
+* Fixed: displaying range slider in the builder mode
+
+= 4.4.2 =
+* Hotfix: another one bug in the code
 
 = 4.4.1 =
 * Hotfix: a bug in the code

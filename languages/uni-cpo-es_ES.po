@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Uni CPO 3.1.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-20 22:52+0200\n"
-"PO-Revision-Date: 2018-10-20 22:53+0200\n"
+"POT-Creation-Date: 2018-11-02 16:36+0100\n"
+"PO-Revision-Date: 2018-11-02 16:37+0100\n"
 "Last-Translator: \n"
 "Language-Team: MooMoo <sales@moomoo.agency>\n"
 "Language: es\n"
@@ -166,12 +166,12 @@ msgstr ""
 
 #: includes/admin/class-uni-cpo-plugin-settings.php:113
 msgid ""
-"By default, this is \"shop_single\". However the actual thumbnail size used "
-"depends on the theme and you may need to choose the correct one. This "
-"setting works in conjuction with the previous one and it is important to "
-"choose proper image size, so it will be used whenever a customer selects new "
-"option in a dropdown option or image select option with an image added to "
-"this chosen option."
+"By default, this is \"woocommerce_single\". However the actual thumbnail "
+"size used depends on the theme and you may need to choose the correct one. "
+"This setting works in conjuction with the previous one and it is important "
+"to choose proper image size, so it will be used whenever a customer selects "
+"new option in a dropdown option or image select option with an image added "
+"to this chosen option."
 msgstr ""
 
 #: includes/admin/class-uni-cpo-plugin-settings.php:120
@@ -581,7 +581,7 @@ msgid "You cannot add another \"%s\" to your cart."
 msgstr ""
 
 #: includes/class-uni-cpo-ajax.php:1471
-#: includes/uni-cpo-core-functions.php:1552
+#: includes/uni-cpo-core-functions.php:1556
 #, php-format
 msgid "The total number of samples in the cart is limited to %d"
 msgstr ""
@@ -2104,6 +2104,10 @@ msgstr ""
 msgid "Google Map"
 msgstr ""
 
+#: includes/options/class-uni-cpo-option-google-map.php:316
+msgid "Google map is unavailable in the builder mode"
+msgstr ""
+
 #: includes/options/class-uni-cpo-option-radio.php:38
 msgid "Radio Inputs"
 msgstr ""
@@ -3358,20 +3362,20 @@ msgstr ""
 msgid "Reset form"
 msgstr ""
 
-#: includes/uni-cpo-core-functions.php:1552
+#: includes/uni-cpo-core-functions.php:1556
 msgid "View cart"
 msgstr ""
 
-#: includes/uni-cpo-core-functions.php:2075
+#: includes/uni-cpo-core-functions.php:2079
 msgid "Item"
 msgstr ""
 
-#: includes/uni-cpo-core-functions.php:2077
+#: includes/uni-cpo-core-functions.php:2081
 #, php-format
 msgid "%s duplicated."
 msgstr ""
 
-#: includes/uni-cpo-core-functions.php:2301
+#: includes/uni-cpo-core-functions.php:2305
 msgid "Add/Edit CPO option(s)"
 msgstr ""
 
