@@ -217,3 +217,26 @@ function uni_cpo_order_edit_options_modal()
     }
 
 }
+
+//////////////////////////////////////////////////////////////////////////////////////
+// WC order edit page
+//////////////////////////////////////////////////////////////////////////////////////
+// adds Add/Edit CPO options btn for order items
+add_action(
+    'woocommerce_after_order_itemmeta',
+    'uni_cpo_woocommerce_order_item_add_action_buttons',
+    10,
+    2
+);
+function uni_cpo_woocommerce_order_item_add_action_buttons( $item_id, $item )
+{
+    if ( 'line_item' !== $item->get_type() ) {
+        return;
+    }
+    $product_id = $item->get_product_id();
+    $product_data = Uni_Cpo_Product::get_product_data_by_id( $product_id );
+    $nonce = wp_create_nonce( 'order-item' );
+    if ( 'on' === $product_data['settings_data']['cpo_enable'] ) {
+        echo  '<button type="button" class="button cpo-edit-options-btn cpo-for-item-' . esc_attr( $item_id ) . '" data-security="' . esc_attr( $nonce ) . '" data-pid="' . esc_attr( $product_id ) . '" data-order_item_id="' . esc_attr( $item_id ) . '">' . esc_html__( 'Add/Edit CPO option(s)', 'uni-cpo' ) . '</button>' ;
+    }
+}

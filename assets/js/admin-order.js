@@ -8,19 +8,6 @@ jQuery(function ($) {
 /* Premium Code Stripped by Freemius */
 
 
-    $(document.body).on('click', 'tr.item', function () {
-        var $table = $(this).closest('table');
-        var $rows = $table.find('tr.item.selected');
-        $('.cpo-edit-options-btn').hide();
-
-        if ($rows.length === 1) {
-            // ONLY one at a time
-            var order_item_id = $rows.get(0).getAttribute('data-order_item_id');
-
-            $('.cpo-for-item-' + order_item_id).show();
-        }
-    });
-
     $(document.body).on('click', '.cpo-edit-options-btn', function (e) {
         e.stopPropagation();
 

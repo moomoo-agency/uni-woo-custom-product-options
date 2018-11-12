@@ -100,7 +100,10 @@ A: We wouldn't recommend to do this yet. First, this version is so called 'lite'
 
 == Changelog ==
 
-= 4.4.2 =
+= 4.4.4 =
+* Fixed: add/edit CPO options data on edit order page in admin area
+
+= 4.4.3 =
 * Fixed: displaying product price in admin area; reverted to original prices, so they can be sorted
 * Fixed: displaying range slider in the builder mode
 
