@@ -941,6 +941,7 @@ function uni_cpo_display_custom_price_on_archives( $price, $product )
         ) ), $product );
         $starting_price = 0;
         $is_using_archive_tmpl = false;
+        $price = wc_get_price_to_display( $product );
         $starting_price = ( !empty($product_data['settings_data']['min_price']) ? floatval( $product_data['settings_data']['min_price'] ) : $price );
         $starting_price = apply_filters( 'uni_cpo_price_starting_archive', $starting_price, $product );
         $price = uni_cpo_price( $starting_price );

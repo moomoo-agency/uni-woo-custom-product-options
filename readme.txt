@@ -100,6 +100,9 @@ A: We wouldn't recommend to do this yet. First, this version is so called 'lite'
 
 == Changelog ==
 
+= 4.4.5 =
+* Improved: displaying product prices on archives
+
 = 4.4.4 =
 * Fixed: add/edit CPO options data on edit order page in admin area
 
