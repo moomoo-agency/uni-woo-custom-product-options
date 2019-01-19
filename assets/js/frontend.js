@@ -2,6 +2,8 @@
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 /* UniCpo
 ----------------------------------------------------------*/
 
@@ -15,7 +17,7 @@ UniCpo = {
     addedToCartMsg: jQuery('<div class="woocommerce-message"><a href="' + wc_add_to_cart_params.cart_url + '" class="button wc-forward">' + wc_add_to_cart_params.i18n_view_cart + '</a> ' + unicpo_i18n.added_to_cart + '</div>'),
     calc: unicpo.calc_on,
     calcBtn: unicpo.calc_btn_on,
-    resetBtn: unicpo.reset_form_btn_on,
+    colorifyImagifyChangers: jQuery('.uni-cpo-colorify-imagify-changer').get(),
     cpo: unicpo.cpo_on,
     isTaxable: unicpo.taxable,
     fileUploadEl: {},
@@ -25,8 +27,8 @@ UniCpo = {
     isLayeredOn: unicpo.layered_on,
     isImagify: unicpo.imagify_on,
     isSilentValidationOn: unicpo.silent_validation_on,
+    layeredImg: null,
     mainImageChangers: jQuery('.uni-cpo-image-changer').get().reverse(),
-    colorifyImagifyChangers: jQuery('.uni-cpo-colorify-imagify-changer').get(),
     mainImageDefData: {},
     mainImageEl: '',
     orderingDsblMsgEl: jQuery('.js-uni-cpo-ordering-disabled-notice'),
@@ -39,6 +41,7 @@ UniCpo = {
     priceTaxSuffixStarting: unicpo.price_vars.price_tax_suffix,
     pricePostfix: unicpo.price_vars.price_postfix,
     priceStarting: unicpo.price_vars.starting_price,
+    resetBtn: unicpo.reset_form_btn_on,
     taxPriceSuffixElClass: '.woocommerce-price-suffix',
     _pid: 0,
     _ajax_sent: false,
@@ -281,6 +284,7 @@ UniCpo = {
 
                 if ('checkbox' === elType || 'radio' === elType) {
                     $el.attr('checked', false);
+                    cpoObj.layeredImg = '';
                 } else if ('select-one' === elType || 'textarea' === elType) {
                     $el.val('');
                 } else if ('number' === elType || 'text' === elType) {
@@ -580,6 +584,16 @@ UniCpo = {
 /* Premium Code Stripped by Freemius */
 
     },
+    combineImg: function combineImg() {
+        
+/* Premium Code Stripped by Freemius */
+
+    },
+    loadImage: function loadImage(imagePath) {
+        
+/* Premium Code Stripped by Freemius */
+
+    },
     imagify: function imagify(optionName, image) {
         
 /* Premium Code Stripped by Freemius */
@@ -599,6 +613,8 @@ UniCpo = {
                 jQuery(this).prop('disabled', true);
             });
 
+            jQuery('input[name="cpo_product_layered_image"]').val(cpoObj.layeredImg);
+
             // regular form submission or via ajax
             if (!cpoObj.addToCartAjax) {
                 cpoObj.productFormEl.submit();
@@ -614,6 +630,7 @@ UniCpo = {
                     }
                 });
                 //console.log(data, cpoObj.productFormEl.serializeArray());
+
                 cpoObj.addToCart(data);
             }
 

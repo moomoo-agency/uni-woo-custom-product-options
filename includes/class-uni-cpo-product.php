@@ -175,6 +175,7 @@ final class Uni_Cpo_Product {
 					echo '<input type="hidden" name="add-to-cart" value="' . esc_attr( $product_data['id'] ) . '" />';
 				}
 				echo '<input type="hidden" class="js-cpo-product-image" name="cpo_product_image" value="' . esc_attr( $product_data['post_thumb_id'] ) . '" />';
+				echo '<input type="hidden" class="js-cpo-product-layered-image" name="cpo_product_layered_image" value="" />';
 				echo '<input type="hidden" class="js-cpo-cart-item" name="cpo_cart_item_id" value="' . esc_attr( $cpo_cart_item_id ) . '" />';
 
 				do_action( 'uni_cpo_before_render_builder_modules', $product_data );

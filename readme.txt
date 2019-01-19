@@ -100,6 +100,11 @@ A: We wouldn't recommend to do this yet. First, this version is so called 'lite'
 
 == Changelog ==
 
+= 4.4.6 =
+* Improved: Colorify/Imagify dynamically generated image for the cart/order item
+* Fixed: Fixed a broken link/html to the uploaded file; reverted to just filename, because WC does not allow ANY html
+* Fixed: changing slides in Flatsome theme when using Colorify/Imagify functionality
+
 = 4.4.5 =
 * Improved: displaying product prices on archives
 

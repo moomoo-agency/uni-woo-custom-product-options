@@ -1118,6 +1118,9 @@ function uni_cpo_add_cart_item_data(
             $cart_item_data['_cpo_calc_option'] = ( 'on' === $product_data['settings_data']['calc_enable'] ? true : false );
             $cart_item_data['_cpo_cart_item_id'] = ( !empty($form_data['cpo_cart_item_id']) ? $form_data['cpo_cart_item_id'] : '' );
             $cart_item_data['_cpo_product_image'] = ( !empty($form_data['cpo_product_image']) ? $form_data['cpo_product_image'] : '' );
+            if ( !empty($form_data['cpo_product_layered_image']) ) {
+                $cart_item_data['_cpo_product_image'] = uni_cpo_upload_base64_image( $form_data['cpo_product_layered_image'], 'product_' . $form_data['cpo_product_id'] . '_image_' . time() );
+            }
             // values to be unset
             $unset_values = apply_filters(
                 'uni_cpo_add_to_cart_values_to_be_unset',
@@ -1126,6 +1129,7 @@ function uni_cpo_add_cart_item_data(
                 'cpo_product_id',
                 'add-to-cart',
                 'cpo_product_image',
+                'cpo_product_layered_image',
                 'quantity'
             ),
                 $cart_item_data,
