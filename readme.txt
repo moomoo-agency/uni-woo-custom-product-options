@@ -2,10 +2,10 @@
 Contributors: moomooagency, mrpsiho, andriimatenka, freemius
 Tags: custom options, extra options, product visual builder, woocommerce plugins, price calculation, maths formula, conditional logic, wholesale
 Requires at least: 4.8
-Tested up to: 5.0.0
+Tested up to: 5.0.3
 Requires PHP: 7.0
 WC requires at least: 3.2.0
-WC tested up to: 3.5.1
+WC tested up to: 3.5.4
 Stable tag: trunk
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -99,6 +99,9 @@ A: We wouldn't recommend to do this yet. First, this version is so called 'lite'
 7. screenshot-7.png
 
 == Changelog ==
+
+= 4.4.7 =
+* Fixed: a bug when excluded from participating in Imagify options were still used in Imagify
 
 = 4.4.6 =
 * Improved: Colorify/Imagify dynamically generated image for the cart/order item

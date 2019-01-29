@@ -1503,7 +1503,7 @@ function uni_cpo_get_options_data_for_frontend( $product_id )
                                     $suboptions = ( isset( $module['settings']['cpo_suboptions']['data']['cpo_radio_options'] ) ? $module['settings']['cpo_suboptions']['data']['cpo_radio_options'] : (( isset( $module['settings']['cpo_suboptions']['data']['cpo_select_options'] ) ? $module['settings']['cpo_suboptions']['data']['cpo_select_options'] : array() )) );
                                     $suboptions_formatted = array();
                                     $colorify_data = array();
-                                    $is_imagify = ( !empty($module['settings']['cpo_general']['main']['cpo_is_imagify']) ? true : false );
+                                    $is_imagify = ( !empty($module['settings']['cpo_general']['main']['cpo_is_imagify']) && 'yes' === $module['settings']['cpo_general']['main']['cpo_is_imagify'] ? true : false );
                                     if ( !empty($suboptions) ) {
                                         foreach ( $suboptions as $suboption ) {
                                             
