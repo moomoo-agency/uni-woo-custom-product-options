@@ -643,6 +643,12 @@ class Uni_Cpo_Ajax
                         $variables['{' . $slug . '}'] = $value['calc'];
                         // prepare $formatted_vars for conditional logic purpose
                         $formatted_vars[$slug] = $value['cart_meta'];
+                        /*if ( unicpo_fs()->is__premium_only() ) {
+                        			// prepare $nice_names_vars for displaying in frontend
+                        			$nice_names_vars[ $slug ] = ( is_array( $value['order_meta'] ) )
+                        				? implode( ', ', $value['order_meta'] )
+                        				: $value['order_meta'];
+                        		}*/
                     }
                 } );
                 $variables['{uni_cpo_price}'] = $product->get_price( 'edit' );
@@ -651,6 +657,12 @@ class Uni_Cpo_Ajax
                 if ( 'on' === $product_data['nov_data']['nov_enable'] && !empty($product_data['nov_data']['nov']) ) {
                     $variables = uni_cpo_process_formula_with_non_option_vars( $variables, $product_data, $formatted_vars );
                 }
+                /*if ( unicpo_fs()->is__premium_only() ) {
+                					// gets only non option variables and strips curly braces
+                					$novs_nice = uni_cpo_filter_novs( $variables );
+                
+                					$nice_names_vars = $nice_names_vars + $novs_nice;
+                				}*/
                 // formula conditional logic
                 
                 if ( 'on' === $product_data['formula_data']['rules_enable'] && !empty($product_data['formula_data']['formula_scheme']) && is_array( $product_data['formula_data']['formula_scheme'] ) ) {

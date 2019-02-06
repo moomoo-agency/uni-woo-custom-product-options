@@ -1098,7 +1098,7 @@ function uni_cpo_add_cart_item_data(
     $cart_item_data,
     $product_id,
     $variation_id,
-    $quantity
+    $quantity = null
 )
 {
     try {

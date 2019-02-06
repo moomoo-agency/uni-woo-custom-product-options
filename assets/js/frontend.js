@@ -171,8 +171,9 @@ UniCpo = {
                         return;
                     }
 
-                    unicpo.formatted_vars = r.data.formatted_vars;
-                    unicpo.nice_names_vars = r.data.nice_names_vars;
+                    //unicpo.formatted_vars = r.data.formatted_vars;
+                    //unicpo.nice_names_vars = r.data.nice_names_vars;
+                    unicpo.formatted_vars = Object.assign({}, r.data.formatted_vars, r.data.nice_names_vars);
                     jQuery.extend(unicpo.price_vars, r.data.price_vars);
                     jQuery.extend(unicpo.extra_data, r.data.extra_data);
 
@@ -1049,6 +1050,14 @@ var uniData = function uniData(data) {
         getSuboptionLabel: function getSuboptionLabel(prop) {
             if (typeof unicpoAllOptions[prop] !== 'undefined' && typeof unicpoAllOptions[prop].suboptions[this[prop]] !== 'undefined') {
                 return unicpoAllOptions[prop].suboptions[this[prop]]['label'];
+            } else if (typeof unicpoAllOptions[prop] !== 'undefined' && Array.isArray(this[prop])) {
+                var label = '';
+
+                this[prop].forEach(function (item) {
+                    label += ', ' + unicpoAllOptions[prop].suboptions[item]['label'];
+                });
+
+                return label.substr(2);
             }
 
             return '';

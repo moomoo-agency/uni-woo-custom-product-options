@@ -100,6 +100,11 @@ A: We wouldn't recommend to do this yet. First, this version is so called 'lite'
 
 == Changelog ==
 
+= 4.4.8 =
+* Added: support for YITH bundled products plugin
+* Fixed: a bug with data.getSuboptionLabel() method for Checkbox inputs option
+* Fixed: a bug with changing main image and adding item to the cart page
+
 = 4.4.7 =
 * Fixed: a bug when excluded from participating in Imagify options were still used in Imagify
 
