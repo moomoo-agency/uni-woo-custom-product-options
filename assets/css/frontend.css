@@ -67,6 +67,11 @@
     display: none;
 }
 
+.uni-module-radio input[type="radio"][disabled][hidden] + .uni-cpo-option-label,
+.uni-module-checkbox input[type="checkbox"][disabled][hidden] + .uni-cpo-option-label{
+    display: none!important;
+}
+
 .uni-module-radio label,
 .uni-module-checkbox label {
     cursor: pointer;

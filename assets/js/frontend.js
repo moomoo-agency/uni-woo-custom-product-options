@@ -961,6 +961,13 @@ UniCpo = {
     },
     isProp: function isProp(obj, prop) {
         return obj[prop] != null && typeof obj[prop] !== 'undefined';
+    },
+    isDateBetween: function isDateBetween(start, end, target) {
+        var d1 = Date.parse(start);
+        var d2 = Date.parse(end);
+        var dTarget = Date.parse(target);
+        console.log('is', dTarget >= d1 && dTarget <= d2);
+        return dTarget >= d1 && dTarget <= d2;
     }
 };
 

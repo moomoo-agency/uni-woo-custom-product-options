@@ -643,12 +643,6 @@ class Uni_Cpo_Ajax
                         $variables['{' . $slug . '}'] = $value['calc'];
                         // prepare $formatted_vars for conditional logic purpose
                         $formatted_vars[$slug] = $value['cart_meta'];
-                        /*if ( unicpo_fs()->is__premium_only() ) {
-                        			// prepare $nice_names_vars for displaying in frontend
-                        			$nice_names_vars[ $slug ] = ( is_array( $value['order_meta'] ) )
-                        				? implode( ', ', $value['order_meta'] )
-                        				: $value['order_meta'];
-                        		}*/
                     }
                 } );
                 $variables['{uni_cpo_price}'] = $product->get_price( 'edit' );

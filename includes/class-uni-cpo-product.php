@@ -432,14 +432,21 @@ final class Uni_Cpo_Product {
 							}
 						}
 						$uniqueFields = array_unique( $arrFields );
-
 						foreach ( $uniqueFields as $field ) {
-							$output = '$(document.body).on(\'change\', \'[id*="' . $field . '-field"]\', function (){' . "\n";
+						    if ( strpos($field, '_from') ) {
+                                $newField = str_replace("_from","",$field);
+                            } else if ( strpos($field, '_to') ) {
+                                $newField = str_replace("_to","",$field);
+                            } else {
+                                $newField = $field;
+                            }
+
+							$output = '$(document.body).on(\'change\', \'[id*="' . $newField . '-field"]\', function (){' . "\n";
 							$output .= 'let fields = window.UniCpo.collectData(false);' . "\n";
 							$output .= 'const interval = setInterval(function () {' . "\n";
 							$output .= 'change_main_image_func(fields);' . "\n";
 							$output .= 'clearInterval(interval);' . "\n";
-							$output .= '}, 200);' . "\n";
+							$output .= '}, "'.$field.'".includes("_from") ? 0 : "'.$field.'".includes("_to") ? 0 : 200);' . "\n";
 							$output .= '});' . "\n";
 							echo $output;
 						} ?>

@@ -1,11 +1,11 @@
-=== WooCommerce Product Options and Price Calculation Formulas - Uni CPO ===
+=== Product Options and Price Calculation Formulas for WooCommerce – Uni CPO ===
 Contributors: moomooagency, mrpsiho, andriimatenka, freemius
 Tags: custom options, extra options, product visual builder, woocommerce plugins, price calculation, maths formula, conditional logic, wholesale
 Requires at least: 4.8
-Tested up to: 5.0.3
+Tested up to: 5.1.1
 Requires PHP: 7.0
-WC requires at least: 3.2.0
-WC tested up to: 3.5.4
+WC requires at least: 3.4.0
+WC tested up to: 3.6.2
 Stable tag: trunk
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -100,8 +100,22 @@ A: We wouldn't recommend to do this yet. First, this version is so called 'lite'
 
 == Changelog ==
 
+= 4.5.2 =
+* Fixed: small fix: a PHP warning when using conditional logic
+
+= 4.5.1 =
+* Fixed: a bug with suboptions conditional rules for Radio Input and Checkboxes options"
+* Fixed: a bug with changing main image for "Range slider"
+
+= 4.5.0 =
+* Added: suboptions conditional rules for Radio Input and Checkboxes options
+* Fixed: a bug with step setting for "Range slider" option and the input next to range slider
+
+= 4.4.9 =
+* Fixed: Security fix
+
 = 4.4.8 =
-* Added: support for YITH bundled products plugin
+* Fixed: conflict when using along with YITH bundled products plugin
 * Fixed: a bug with data.getSuboptionLabel() method for Checkbox inputs option
 * Fixed: a bug with changing main image and adding item to the cart page
 

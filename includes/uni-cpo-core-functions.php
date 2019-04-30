@@ -441,7 +441,7 @@ function uni_cpo_process_formula_scheme( $variables, $product_data, $purpose = '
         $rules_block = json_decode( $scheme_item['rule'], true );
         $block_condition = $rules_block['condition'];
         $is_passed_block = false;
-        $block_rules_count = count( $rules_block['rules'] );
+        $block_rules_count = ( is_array( $rules_block['rules'] ) ? count( $rules_block['rules'] ) : 0 );
         
         if ( $block_rules_count > 1 ) {
             $check_for_1 = array();
@@ -480,8 +480,10 @@ function uni_cpo_process_formula_scheme( $variables, $product_data, $purpose = '
             }
         
         } else {
-            foreach ( $rules_block['rules'] as $rule_key => $rule_item ) {
-                $is_passed_block = uni_cpo_formula_condition_check( $rule_item, $variables );
+            if ( is_array( $rules_block['rules'] ) ) {
+                foreach ( $rules_block['rules'] as $rule_key => $rule_item ) {
+                    $is_passed_block = uni_cpo_formula_condition_check( $rule_item, $variables );
+                }
             }
         }
         
@@ -715,7 +717,7 @@ function uni_cpo_option_js_condition_prepare( $scheme )
     $condition_operator = $scheme['condition'];
     $operator = ( 'AND' === $condition_operator ? '&&' : '||' );
     $rules = $scheme['rules'];
-    $rules_count = count( $rules );
+    $rules_count = ( is_array( $rules ) ? count( $rules ) : 0 );
     
     if ( $rules_count > 1 ) {
         foreach ( $rules as $rule ) {
@@ -729,16 +731,20 @@ function uni_cpo_option_js_condition_prepare( $scheme )
         }
         $condition = '(' . implode( " {$operator} ", $statements ) . ')';
     } else {
-        foreach ( $rules as $rule ) {
-            
-            if ( isset( $rule['rules'] ) ) {
-                $statement = uni_cpo_option_js_condition_prepare( $rule );
-            } else {
-                $statement = uni_cpo_option_js_condition( $rule );
-            }
         
+        if ( is_array( $rules ) ) {
+            foreach ( $rules as $rule ) {
+                
+                if ( isset( $rule['rules'] ) ) {
+                    $statement = uni_cpo_option_js_condition_prepare( $rule );
+                } else {
+                    $statement = uni_cpo_option_js_condition( $rule );
+                }
+            
+            }
+            $condition = '(' . $statement . ')';
         }
-        $condition = '(' . $statement . ')';
+    
     }
     
     return $condition;
@@ -774,10 +780,22 @@ function uni_cpo_option_js_condition( $rule )
             $statement = "(UniCpo.isProp({$cpo_var}, '{$rule['id']}') && ({$cpo_var}.{$rule['id']}.constructor === Array ? {$cpo_var}.{$rule['id']}.length > 0 : {$cpo_var}.{$rule['id']} !== ''))";
             break;
         case 'between':
-            $statement = "(UniCpo.isProp({$cpo_var}, '{$rule['id']}') && {$cpo_var}.{$rule['id']} >= {$rule['value'][0]} && {$cpo_var}.{$rule['id']} <= {$rule['value'][1]})";
+            
+            if ( $rule['type'] === 'date' ) {
+                $statement = "(UniCpo.isProp({$cpo_var}, '{$rule['id']}') && UniCpo.isDateBetween('{$rule['value'][0]}', '{$rule['value'][1]}', {$cpo_var}.{$rule['id']}))";
+            } else {
+                $statement = "(UniCpo.isProp({$cpo_var}, '{$rule['id']}') && {$cpo_var}.{$rule['id']} >= {$rule['value'][0]} && {$cpo_var}.{$rule['id']} <= {$rule['value'][1]})";
+            }
+            
             break;
         case 'not_between':
-            $statement = "(UniCpo.isProp({$cpo_var}, '{$rule['id']}') && ({$cpo_var}.{$rule['id']} <= {$rule['value'][0]} || {$cpo_var}.{$rule['id']} >= {$rule['value'][1]}))";
+            
+            if ( $rule['type'] === 'date' ) {
+                $statement = "(UniCpo.isProp({$cpo_var}, '{$rule['id']}') && !UniCpo.isDateBetween('{$rule['value'][0]}', '{$rule['value'][1]}', {$cpo_var}.{$rule['id']}))";
+            } else {
+                $statement = "(UniCpo.isProp({$cpo_var}, '{$rule['id']}') && ({$cpo_var}.{$rule['id']} <= {$rule['value'][0]} || {$cpo_var}.{$rule['id']} >= {$rule['value'][1]}))";
+            }
+            
             break;
     }
     return $statement;
