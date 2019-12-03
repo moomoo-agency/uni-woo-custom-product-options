@@ -22,12 +22,12 @@ include 'uni-cpo-formatting-functions.php';
 /**
  * Display an Uni Cpo help tip.
  *
- * @since  4.0.0
- *
- * @param  string $tip Help tip text
- * @param  bool $allow_html Allow sanitized HTML if true or escape
+ * @param string $tip Help tip text
+ * @param bool $allow_html Allow sanitized HTML if true or escape
  *
  * @return string
+ * @since  4.0.0
+ *
  */
 function uni_cpo_help_tip( $tip, $allow_html = false, $args = array() )
 {
@@ -83,9 +83,9 @@ function uni_cpo_decode( $value )
 /**
  * Get values of modules from multidimensional array
  *
+ * @return array
  * @since  4.0.0
  *
- * @return array
  */
 function uni_cpo_get_mod_values( $content )
 {
@@ -363,7 +363,15 @@ function uni_cpo_option_apply_changes_walk( $v, $k, $d )
     } elseif ( !is_array( $v ) && isset( $d[1][$v] ) ) {
         $d[0][$v] = $d[1][$v];
     } elseif ( !is_array( $v ) ) {
-        $d[0][$v] = array();
+        
+        if ( isset( $d[0][$v] ) ) {
+            $d[0][$v] = array();
+        } else {
+            $d[0] = [
+                $v => array(),
+            ];
+        }
+    
     }
 
 }
@@ -433,6 +441,9 @@ function uni_cpo_process_formula_scheme( $variables, $product_data, $purpose = '
         $scheme_data = $product_data;
     }
     
+    // let's inject a special variables to be used in formula logic
+    $variables['currency'] = get_woocommerce_currency();
+    $variables = apply_filters( 'uni_cpo_variables_for_formula_logic', $variables );
     if ( !isset( $scheme_data ) ) {
         return false;
     }
@@ -774,10 +785,10 @@ function uni_cpo_option_js_condition( $rule )
             $statement = "UniCpo.isProp({$cpo_var}, '{$rule['id']}') && {$cpo_var}.{$rule['id']} > {$rule['value']}";
             break;
         case 'is_empty':
-            $statement = "!(!UniCpo.isProp({$cpo_var}, '{$rule['id']}') || ({$cpo_var}.{$rule['id']}.constructor === Array ? {$cpo_var}.{$rule['id']}.length === 0 : {$cpo_var}.{$rule['id']} === ''))";
+            $statement = "(R.isNil({$cpo_var}.{$rule['id']}) || R.isEmpty({$cpo_var}.{$rule['id']}))";
             break;
         case 'is_not_empty':
-            $statement = "(UniCpo.isProp({$cpo_var}, '{$rule['id']}') && ({$cpo_var}.{$rule['id']}.constructor === Array ? {$cpo_var}.{$rule['id']}.length > 0 : {$cpo_var}.{$rule['id']} !== ''))";
+            $statement = "!(R.isNil({$cpo_var}.{$rule['id']}) || R.isEmpty({$cpo_var}.{$rule['id']}))";
             break;
         case 'between':
             
@@ -1097,6 +1108,13 @@ add_filter(
     10,
     1
 );
+// sets uni cpo's price after all plugins ;)
+add_action(
+    'woocommerce_cart_loaded_from_session',
+    'uni_cpo_re_calculate_price',
+    99,
+    1
+);
 // get item data to display in cart and checkout page
 add_filter(
     'woocommerce_get_item_data',
@@ -1236,6 +1254,15 @@ function uni_cpo_add_cart_item( $cart_item_data )
     }
     
     return $cart_item_data;
+}
+
+function uni_cpo_re_calculate_price( $cart )
+{
+    foreach ( $cart->cart_contents as $cart_item_key => $cart_item_data ) {
+        if ( isset( $cart_item_data['_cpo_price'] ) ) {
+            WC()->cart->cart_contents[$cart_item_key]['data']->set_price( $cart_item_data['_cpo_price'] );
+        }
+    }
 }
 
 //

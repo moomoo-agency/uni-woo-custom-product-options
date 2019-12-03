@@ -2,10 +2,10 @@
 Contributors: moomooagency, mrpsiho, andriimatenka, freemius
 Tags: custom options, extra options, product visual builder, woocommerce plugins, price calculation, maths formula, conditional logic, wholesale
 Requires at least: 4.8
-Tested up to: 5.1.1
+Tested up to: 5.3.0
 Requires PHP: 7.0
-WC requires at least: 3.4.0
-WC tested up to: 3.6.2
+WC requires at least: 3.5.0
+WC tested up to: 3.8.1
 Stable tag: trunk
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -99,6 +99,53 @@ A: We wouldn't recommend to do this yet. First, this version is so called 'lite'
 7. screenshot-7.png
 
 == Changelog ==
+
+= 4.6.8 =
+* Fixed: a bug in NOV matrix functionality
+* Fixed: a bug in 'getLabel' func
+
+= 4.6.7 =
+* Fixed: a bug in Select option render function
+* Added: 'uni_cpo_before_render_builder_modules' filter
+* Added: cs_CZ translation file (thanks to Radim Hahn)
+
+= 4.6.6 =
+* Fixed: a styling issue with tooltip for select field
+* Improved: NOV's matrix 'range sum' functionality
+
+= 4.6.5 =
+* Fixed: an issue with wrong values when editting cart item
+* Fixed: an issue with lost validation of qty field when using Uni CPO plugin
+* Fixed: an issue when it sometimes was possible to upload more than file for File Upload
+
+= 4.6.4 =
+* Fixed: a bug in NOV's matrix 'range sum' functionality
+
+= 4.6.3 =
+* Added: rangesum() math function (the details are in the docs)
+* Added: an advanced functionality related to using NOV's matrix in 'range sum' functionality
+
+
+= 4.6.2 =
+* Fixed: a bug in Datepicker related to counting duration when in 'days' mode
+* Fixed: a bug in fields conditional logic related to operators is_empty|is_not_empty and radio/checkboxes fields
+
+= 4.6.1 =
+* Improved: CSV import functionality
+
+= 4.6.0 =
+* Added: import tool for radio/checkboxes/select options' suboptions
+* Fixed: a possibility to choose more than one default value for checkboxes
+
+= 4.5.4 =
+* Added: 'currency' special variable to formula conditional logic; may be used in conjunction with Aelia switcher
+* Added: new type of JS validators: 'greaterorequalthan', 'greaterthan', 'lessorequalthan', 'lessthan'
+* Fixed: an issue with validation when creating order in admin area
+* Fixed: an issue with with matrix table
+
+= 4.5.3 =
+* Added: 'minpositiveorzero' function to be used in formulas
+* Added: 'uni_wrapper_attributes_for_option' filter; now custom attributes can be added to option's wrapper
 
 = 4.5.2 =
 * Fixed: small fix: a PHP warning when using conditional logic

@@ -117,6 +117,9 @@ class Uni_Cpo_Ajax
             'uni_cpo_order_item_update'          => false,
             'uni_cpo_product_settings_export'    => false,
             'uni_cpo_product_settings_import'    => false,
+            'uni_cpo_exim_view'                  => false,
+            'uni_cpo_exim_import'                => false,
+            'uni_cpo_exim_export'                => false,
         );
         foreach ( $ajax_events as $ajax_event => $priv ) {
             add_action( 'wp_ajax_' . $ajax_event, array( __CLASS__, $ajax_event ) );
@@ -651,12 +654,6 @@ class Uni_Cpo_Ajax
                 if ( 'on' === $product_data['nov_data']['nov_enable'] && !empty($product_data['nov_data']['nov']) ) {
                     $variables = uni_cpo_process_formula_with_non_option_vars( $variables, $product_data, $formatted_vars );
                 }
-                /*if ( unicpo_fs()->is__premium_only() ) {
-                					// gets only non option variables and strips curly braces
-                					$novs_nice = uni_cpo_filter_novs( $variables );
-                
-                					$nice_names_vars = $nice_names_vars + $novs_nice;
-                				}*/
                 // formula conditional logic
                 
                 if ( 'on' === $product_data['formula_data']['rules_enable'] && !empty($product_data['formula_data']['formula_scheme']) && is_array( $product_data['formula_data']['formula_scheme'] ) ) {
@@ -953,6 +950,27 @@ class Uni_Cpo_Ajax
      *   uni_cpo_product_settings_import
      */
     public static function uni_cpo_product_settings_import()
+    {
+    }
+    
+    /**
+     *   uni_cpo_exim_view
+     */
+    public static function uni_cpo_exim_view()
+    {
+    }
+    
+    /**
+     *   uni_cpo_exim_import
+     */
+    public static function uni_cpo_exim_import()
+    {
+    }
+    
+    /**
+     *   uni_cpo_exim_export
+     */
+    public static function uni_cpo_exim_export()
     {
     }
 

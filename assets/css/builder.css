@@ -1004,7 +1004,8 @@ div[data-group="border"] .uni-modal-row:not(.uni-colour-picker-default) .wp-pick
 .uni-select-option-content-field-wrapper-def label {display: inline-block;line-height: 20px;margin-right: 10px;}
 .uni-select-option-content-field-wrapper-def input[type="radio"] {margin-top: 3px;vertical-align: top;}
 .uni-make-default-suboption {float: left;}
-.uni-exclude-suboption {float: right;margin-bottom: 0px!important;}
+.uni-make-default-suboption input.uni-make-default-checkbox { float: left; margin-top: 10px;margin-right: 4px; }
+.uni-exclude-suboption {float: right;margin-bottom: 0!important;}
 .uni-exclude-suboption label {line-height: 22px;}
 
 .uni-select-option-content-wrapper .uni-select-option-fcell .uni-select-option-content-field-wrapper {}

@@ -116,6 +116,11 @@
         /**
          *
          */
+        _optionTypes: {},
+
+        /**
+         *
+         */
         _queryBuilderFilter: [],
 
         /**
@@ -1388,8 +1393,22 @@
                         });
                     }
                 }
+
                 return filter;
             } else {
+                if ('formula_rules' === context) {
+                    const isCurrency = filter.filter((i) => i.id === 'currency').shift();
+                    if (typeof isCurrency === 'undefined') {
+                        const currency_var = {
+                            id:        'currency',
+                            input:     'text',
+                            label:     'currency code',
+                            operators: ['equal', 'not_equal'],
+                            type:      'string'
+                        };
+                        filter.push(currency_var);
+                    }
+                }
                 return filter;
             }
         },
@@ -1417,6 +1436,7 @@
                 matrix:  []
             };
             Builderius._queryBuilderFilter = [];
+            Builderius._optionTypes = {};
         },
 
         /**
@@ -1438,6 +1458,16 @@
                         // TODO make extendable
                         if ('dynamic_notice' === type) {
                             return true;
+                        }
+
+                        if ('checkbox' === type) {
+                            if ('option' === objType) {
+                                if (typeof modSettings.cpo_general !== 'undefined'
+                                    && !_.isEmpty(modSettings.cpo_general.main.cpo_slug)) {
+                                    const varName = prefix + modSettings.cpo_general.main.cpo_slug;
+                                    Builderius._optionTypes[varName] = 'checkbox';
+                                }
+                            }
                         }
 
                         if ('option' === objType) {
@@ -1472,6 +1502,7 @@
                                     }
                                     filter.values = values;
                                 }
+
                                 if (_.isEmpty(Builderius._queryBuilderFilter)
                                     || typeof _.findWhere(Builderius._queryBuilderFilter, filter) === 'undefined') {
                                     Builderius._queryBuilderFilter.push(filter);
@@ -2900,7 +2931,7 @@
                     metadata.push({
                         name:     item,
                         label:    item,
-                        datatype: 'double(, 4, dot, comma, , )',
+                        datatype: 'double(4)',
                         editable: true
                     });
                 });
@@ -4186,7 +4217,7 @@
                 metadata.push({
                     name:     'rows',
                     label:    builderius_i18n.matrix_head,
-                    datatype: 'double(, 4, dot, comma, , )',
+                    datatype: 'double(4)',
                     editable: true
                 });
 
@@ -4194,7 +4225,7 @@
                     metadata.push({
                         name:     item,
                         label:    item,
-                        datatype: 'double(, 4, dot, comma, , )',
+                        datatype: 'double(4)',
                         editable: true
                     });
                     empty.push(0);
@@ -4734,10 +4765,7 @@
             }
         });
 
-        const filter = Builderius._getQueryBuilderFilter();
-        /*const rules     = (typeof view.model.get('formulaData').formula_scheme !== 'undefined' )
-            ? view.model.get('formulaData').formula_scheme
-            : {};*/
+        const filter = Builderius._getQueryBuilderFilter('', 'formula_rules');
         const rules = uniGet(view.model.get('formulaData'), 'formula_scheme', {});
         const repeaterData = {
             wrapper:   '.uni-formula-conditional-rules-repeat-wrapper',

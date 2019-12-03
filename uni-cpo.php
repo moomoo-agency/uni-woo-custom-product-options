@@ -4,14 +4,14 @@
  * Plugin Name: Product Options and Price Calculation Formulas for WooCommerce – Uni CPO
  * Plugin URI: https://builderius.io/cpo
  * Description: Provides an opportunity to add extra product options with the possibility to calculate the price based on the chosen options and using custom maths formula!
- * Version: 4.5.2
+ * Version: 4.6.8
  * Author: MooMoo Agency
  * Author URI: http://moomoo.agency
  * Domain Path: /languages/
  * Text Domain: uni-cpo
  * Requires PHP: 7.0
- * WC requires at least: 3.4.0
- * WC tested up to: 3.6.2
+ * WC requires at least: 3.5.0
+ * WC tested up to: 3.8.1
  * License: GPL v3
  *
  */

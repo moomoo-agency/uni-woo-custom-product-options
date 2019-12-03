@@ -180,6 +180,8 @@ final class Uni_Cpo_Product {
 
 				do_action( 'uni_cpo_before_render_builder_modules', $product_data );
 
+				$product_data = apply_filters( 'uni_cpo_before_render_builder_modules', $product_data );
+
 				foreach ( $product_data['content'] as $row_key => $row_data ) {
 					$row_class = UniCpo()->module_factory::get_classname_from_module_type( $row_data['type'] );
 					call_user_func( array( $row_class, 'template' ), $row_data, $post_data );

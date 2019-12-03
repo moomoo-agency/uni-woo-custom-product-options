@@ -14,6 +14,10 @@
     visibility: hidden !important;
 }
 
+option[disabled]{
+    display:none;
+}
+
 .uni-builderius-container {
     width: 100%;
 }
@@ -860,4 +864,27 @@ div.uni_cpo_main_image_overlay .wp-picker-container .button.wp-picker-clear {
     color: #ca3b6f;
     font-family: FontAwesome;
     font-size: 1.4em;
+}
+.quantity {position: relative;}
+.quantity .parsley-errors-list {
+    position: absolute !important;
+    display: block !important;
+    right: 0 !important;
+    line-height: 18px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background-color: transparent !important;
+    list-style: none !important;
+    z-index: 2 !important;
+    clear: both !important;
+    opacity: 0;
+    white-space: nowrap;
+}
+.quantity .parsley-errors-list li {
+    margin: 0 !important;
+    padding: 1px 6px 2px !important;
+    line-height: 16px;
+    background-color: transparent!important;
+    color: #f75555 !important;
+    font-size: 12px !important;
 }

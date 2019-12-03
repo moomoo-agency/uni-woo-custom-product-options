@@ -1,5 +1,5 @@
-if (typeof _$ == 'undefined') {
-	function _$(elementId) { return document.getElementById(elementId); }
+if (typeof _$1 == 'undefined') {
+	function _$1(elementId) { return document.getElementById(elementId); }
 }
 
 /**
@@ -810,7 +810,7 @@ EditableGrid.prototype.attachToHTMLTable = function(_table, _columns)
 	}
 
 	// get pointers to table components
-	this.table = typeof _table == 'string' ? _$(_table) : _table ;
+	this.table = typeof _table == 'string' ? _$1(_table) : _table ;
 	if (!this.table) console.error("Invalid table given: " + _table);
 	this.tHead = this.table.tHead;
 	this.tBody = this.table.tBodies[0];
@@ -1174,7 +1174,7 @@ EditableGrid.prototype.getRow = function(rowIndex)
 {
 	if (rowIndex < 0) return this.tHead.rows[rowIndex + this.nbHeaderRows];
 	if (typeof this.data[rowIndex] == 'undefined') { console.error("[getRow] Invalid row index " + rowIndex); return null; }
-	return _$(this._getRowDOMId(this.data[rowIndex].id));
+	return _$1(this._getRowDOMId(this.data[rowIndex].id));
 };
 
 /**
@@ -1253,7 +1253,7 @@ EditableGrid.prototype.remove = function(rowIndex)
 	var _data = this.dataUnfiltered == null ? this.data : this.dataUnfiltered; 
 
 	// delete row from DOM (needed for attach mode)
-	var tr = _$(this._getRowDOMId(rowId));
+	var tr = _$1(this._getRowDOMId(rowId));
 	if (tr != null) this.tBody.removeChild(tr);
 
 	// update originalRowIndex
@@ -1690,7 +1690,7 @@ EditableGrid.prototype._rendergrid = function(containerid, className, tableid)
 		else {
 
 			if (!containerid) return console.error("Container ID not specified (renderGrid not called yet ?)");
-			if (!_$(containerid)) return console.error("Unable to get element [" + containerid + "]");
+			if (!_$1(containerid)) return console.error("Unable to get element [" + containerid + "]");
 
 			currentContainerid = containerid;
 			currentClassName = className;
@@ -1709,8 +1709,8 @@ EditableGrid.prototype._rendergrid = function(containerid, className, tableid)
 			this.table = document.createElement("table");
 			table.className = className || "editablegrid";          
 			if (typeof tableid != "undefined") table.id = tableid;
-			while (_$(containerid).hasChildNodes()) _$(containerid).removeChild(_$(containerid).firstChild);
-			_$(containerid).appendChild(table);
+			while (_$1(containerid).hasChildNodes()) _$1(containerid).removeChild(_$1(containerid).firstChild);
+			_$1(containerid).appendChild(table);
 
 			// create header
 			if (caption) {
@@ -1746,9 +1746,9 @@ EditableGrid.prototype._rendergrid = function(containerid, className, tableid)
 			}
 
 			// attach handler on click or double click 
-			_$(containerid).editablegrid = this;
-			if (doubleclick) _$(containerid).ondblclick = function(e) { this.editablegrid.mouseClicked(e); };
-			else _$(containerid).onclick = function(e) { this.editablegrid.mouseClicked(e); }; 
+			_$1(containerid).editablegrid = this;
+			if (doubleclick) _$1(containerid).ondblclick = function(e) { this.editablegrid.mouseClicked(e); };
+			else _$1(containerid).onclick = function(e) { this.editablegrid.mouseClicked(e); }; 
 		}
 
 		// callback

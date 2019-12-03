@@ -22,7 +22,7 @@ class Uni_Cpo_Setting_Cpo_Range_To extends Uni_Cpo_Setting implements Uni_Cpo_Se
 			'is_tooltip'        => true,
 			'desc_tip'          => __( 'Default value on the right', 'uni-cpo' ),
 			'custom_attributes' => array(
-				'data-parsley-pattern' => '/^(\d+(?:[\.]\d{0,4})?)$/',
+				'data-parsley-pattern' => '/^(-?\d+(?:[\.]\d{0,4})?)$/',
 			),
 			'value'             => '{{- data }}'
 		);

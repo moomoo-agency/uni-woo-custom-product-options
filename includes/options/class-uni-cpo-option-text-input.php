@@ -228,6 +228,10 @@ class Uni_Cpo_Option_Text_Input extends Uni_Cpo_Option implements Uni_Cpo_Option
 			$attributes       = uni_cpo_field_attributes_modifier( $extra_validation, $attributes );
 		}
 
+		if ( $context !== 'cart' ) {
+			$attributes = array();
+		}
+
 		ob_start();
 		?>
         <div class="cpo-cart-item-option-wrapper uni-node-<?php echo esc_attr( $id ) ?> <?php if ( 'order' === $context ) { echo esc_attr( "uni-admin-order-item-option-wrapper" ); } ?>">
@@ -624,6 +628,7 @@ class Uni_Cpo_Option_Text_Input extends Uni_Cpo_Option implements Uni_Cpo_Option
 			$input_css_class[]           = 'uni-cpo-excluded-field';
 		}
 
+		$wrapper_attributes = apply_filters( 'uni_wrapper_attributes_for_option', $wrapper_attributes, $slug, $id );
 		$default_value = ( ! empty( $post_data ) && ! empty( $slug ) && ! empty( $post_data[$slug] ) )
 			? $post_data[$slug]
             : $cpo_general_main['cpo_def_val'];

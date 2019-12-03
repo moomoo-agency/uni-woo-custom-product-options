@@ -58,6 +58,17 @@ UniCpo = {
                 } else {
                     this.productFormEl.attr('data-parsley-focus', 'none');
                 }
+
+                if (jQuery('.qty').length > 0) {
+                    var el = jQuery('.qty')[0];
+                    if (R.isEmpty(el.min)) {
+                        jQuery('.qty').removeAttr('min');
+                    }
+                    if (R.isEmpty(el.max)) {
+                        jQuery('.qty').removeAttr('max');
+                    }
+                    jQuery('.qty').attr('data-parsley-trigger', 'change focusout submit');
+                }
                 if (this.addToCartAjax && this.addToCartBtnEl.length > 0) {
                     this.addToCartBtnEl.attr('type', 'button');
                     this.addToCartBtnEl.addClass('uni_cpo_ajax_add_to_cart');
@@ -344,6 +355,9 @@ UniCpo = {
                 cpoObj.collectData(true);
             }
         });
+        
+/* Premium Code Stripped by Freemius */
+
     },
     bindOnResetRadioBtnClick: function bindOnResetRadioBtnClick() {
         
@@ -522,7 +536,7 @@ UniCpo = {
                     fields[el.name] = $el.val();
                     fields[el.name + '_latlng'] = $latlng.val();
                 } else {
-                    if (!cpoObj.isNumber($el.val())) {
+                    if (cpoObj.isNumber($el.val())) {
                         var val = $el.val().replace(/,/, '.');
                         $el.val(val);
                         fields[el.name] = $el.val();
@@ -563,6 +577,10 @@ UniCpo = {
             }
         });
 
+        
+/* Premium Code Stripped by Freemius */
+
+
         if (isForConditional) {
             var cpoFields = jQuery(document.body).triggerHandler('uni_cpo_options_data_for_conditional', [fields]);
             if (typeof cpoFields !== 'undefined') {
@@ -602,10 +620,11 @@ UniCpo = {
     },
     formSubmission: function formSubmission() {
         var cpoObj = this;
+        var excluded = '[disabled], .uni-cpo-excluded-field';
 
         // validates the form
         cpoObj.productFormEl.parsley({
-            excluded: '[disabled], .qty, .uni-cpo-excluded-field'
+            excluded: excluded
         }).validate();
 
         if (cpoObj.productFormEl.parsley().isValid()) {
@@ -966,7 +985,6 @@ UniCpo = {
         var d1 = Date.parse(start);
         var d2 = Date.parse(end);
         var dTarget = Date.parse(target);
-        console.log('is', dTarget >= d1 && dTarget <= d2);
         return dTarget >= d1 && dTarget <= d2;
     }
 };
@@ -1017,6 +1035,62 @@ window.Parsley.addValidator('mimeType', {
     requirementType: 'string',
     messages: {
         en: unicpo_i18n.mime_type
+    }
+});
+
+window.Parsley.addValidator('greaterorequalthan', {
+    requirementType: 'string',
+
+    validateNumber: function validateNumber(value, requirement) {
+        var comp_value = jQuery(requirement).val();
+        return value >= comp_value;
+    },
+
+
+    messages: {
+        en: 'This value should be greater or equal than %s'
+    }
+});
+
+window.Parsley.addValidator('greaterthan', {
+    requirementType: 'string',
+
+    validateNumber: function validateNumber(value, requirement) {
+        var comp_value = jQuery(requirement).val();
+        return value > comp_value;
+    },
+
+
+    messages: {
+        en: 'This value should be greater than %s'
+    }
+});
+
+window.Parsley.addValidator('lessorequalthan', {
+    requirementType: 'string',
+
+    validateNumber: function validateNumber(value, requirement) {
+        var comp_value = jQuery(requirement).val();
+        return value <= comp_value;
+    },
+
+
+    messages: {
+        en: 'This value should be less or equal than %s'
+    }
+});
+
+window.Parsley.addValidator('lessthan', {
+    requirementType: 'string',
+
+    validateNumber: function validateNumber(value, requirement) {
+        var comp_value = jQuery(requirement).val();
+        return value < comp_value;
+    },
+
+
+    messages: {
+        en: 'This value should be less than %s'
     }
 });
 

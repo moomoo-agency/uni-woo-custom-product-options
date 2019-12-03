@@ -54,7 +54,9 @@ class Uni_Cpo_Setting_Cpo_Radio_Options extends Uni_Cpo_Setting implements  Uni_
                             </div>
                         </div>
 
-                        <div class="uni-select-option-options-wrapper">
+                        <div class="uni-select-option-options-wrapper <?php 
+        echo  $this->setting_key ;
+        ?>">
 
                             <div class="uni-select-option-options-template uni-select-option-options-row">
                                 <div class="uni-select-option-move-wrapper">
@@ -62,7 +64,17 @@ class Uni_Cpo_Setting_Cpo_Radio_Options extends Uni_Cpo_Setting implements  Uni_
                                 </div>
                                 <div class="uni-select-option-content-wrapper uni-clear">
                                     <div class="uni-select-option-content-field-wrapper uni-make-default-suboption uni-clear">
-										<?php 
+                                        {{ if ( typeof Builderius._optionTypes['uni_cpo_'+Builderius._option_slug] !== 'undefined' &&  Builderius._optionTypes['uni_cpo_'+Builderius._option_slug] === 'checkbox' ) { }}
+                                            <?php 
+        echo  $this->generate_checkbox_html( $this->setting_key . '[<%row-count%>][def]', array(
+            'no_init_class' => true,
+            'label'         => __( 'Make default?', 'uni-cpo' ),
+            'class'         => array( 'uni-make-default-checkbox' ),
+            'js_var'        => '[]',
+        ) ) ;
+        ?>
+                                        {{ } else { }}
+                                            <?php 
         echo  $this->generate_radio_html( $this->setting_key . '[<%row-count%>][def]', array(
             'no_init_class' => true,
             'options'       => array(
@@ -72,6 +84,7 @@ class Uni_Cpo_Setting_Cpo_Radio_Options extends Uni_Cpo_Setting implements  Uni_
             'js_var'        => '1',
         ) ) ;
         ?>
+                                        {{ } }}
                                     </div>
                                     <div class="uni-select-option-content-field-wrapper uni-exclude-suboption uni-clear">
 		                                <?php 
@@ -249,7 +262,16 @@ class Uni_Cpo_Setting_Cpo_Radio_Options extends Uni_Cpo_Setting implements  Uni_
                                 </div>
                                 <div class="uni-select-option-content-wrapper uni-clear">
                                     <div class="uni-select-option-content-field-wrapper uni-make-default-suboption uni-clear">
-										<?php 
+                                        {{ if ( typeof Builderius._optionTypes['uni_cpo_'+Builderius._option_slug] !== 'undefined' &&  Builderius._optionTypes['uni_cpo_'+Builderius._option_slug] === 'checkbox' ) { }}
+                                        <?php 
+        echo  $this->generate_checkbox_html( $this->setting_key . '[{{- i }}][def]', array(
+            'label'  => __( 'Make default?', 'uni-cpo' ),
+            'class'  => array( 'uni-make-default-checkbox' ),
+            'js_var' => 'def',
+        ) ) ;
+        ?>
+                                        {{ } else { }}
+                                            <?php 
         echo  $this->generate_radio_html( $this->setting_key . '[{{- i }}][def]', array(
             'options' => array(
             'checked' => __( 'Make default?', 'uni-cpo' ),
@@ -258,6 +280,7 @@ class Uni_Cpo_Setting_Cpo_Radio_Options extends Uni_Cpo_Setting implements  Uni_
             'js_var'  => 'def',
         ) ) ;
         ?>
+                                        {{ } }}
                                     </div>
                                     <div class="uni-select-option-content-field-wrapper uni-exclude-suboption uni-clear">
 		                                <?php 

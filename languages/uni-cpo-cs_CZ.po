@@ -1,0 +1,3626 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR MooMoo Web Studio
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Uni CPO 3.1.4\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-11-02 16:36+0100\n"
+"PO-Revision-Date: 2019-11-02 09:28+0100\n"
+"Language-Team: MooMoo <sales@moomoo.agency>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n>=2 && n<=4 ? 1 : 2);\n"
+"X-Generator: Poedit 2.2.4\n"
+"X-Poedit-KeywordsList: __;_e;esc_html__;esc_html_e;esc_attr__;esc_attr_e\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Last-Translator: \n"
+"Language: cs_CZ\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: _old\n"
+"X-Poedit-SearchPathExcluded-1: node_modules\n"
+
+#: class-uni-cpo.php:75 class-uni-cpo.php:85
+msgid "Cheatin&#8217; huh?"
+msgstr "Podvádíš&#8217; co?"
+
+#: class-uni-cpo.php:520
+#: includes/options/class-uni-cpo-option-file-upload.php:163
+msgid "No file uploaded"
+msgstr "Nebyl nahrán žádný soubor"
+
+#: includes/abstracts/abstract-uni-cpo-setting.php:554
+#: includes/class-uni-cpo-templates.php:781
+#: includes/class-uni-cpo-templates.php:1453
+#: includes/class-uni-cpo-templates.php:1518
+msgid "Add/Change attachment"
+msgstr "Přidat či změnit přílohu"
+
+#: includes/abstracts/abstract-uni-cpo-setting.php:563
+#: includes/class-uni-cpo-templates.php:790
+#: includes/class-uni-cpo-templates.php:1459
+#: includes/class-uni-cpo-templates.php:1524
+msgid "Remove attachment"
+msgstr "Odebrat přílohu"
+
+#: includes/admin/class-uni-cpo-admin-pointers.php:56
+msgid "Product name"
+msgstr "Jméno produktu"
+
+#: includes/admin/class-uni-cpo-admin-pointers.php:57
+msgid ""
+"It is not directly related to Uni CPO, but always remember adding product "
+"name."
+msgstr ""
+"Není přímo spojena s UNI CPO, ale vždy  pamatujte na přidání názvu produktu."
+
+#: includes/admin/class-uni-cpo-admin-pointers.php:69
+msgid "Product type"
+msgstr "Typ produktu"
+
+#: includes/admin/class-uni-cpo-admin-pointers.php:70
+msgid ""
+"You should choose \"simple\" or \"simple subscription\". Uni CPO does not "
+"support other types!"
+msgstr ""
+"Měli byste zvolit \"jednoduché\" nebo \"jednoduché předplatné\". UNI CPO "
+"nepodporuje jiné typy!"
+
+#: includes/admin/class-uni-cpo-admin-pointers.php:85
+msgid "Prices"
+msgstr "Ceny"
+
+#: includes/admin/class-uni-cpo-admin-pointers.php:86
+msgid ""
+"Next you need to give your product a price otherwise it will be considered "
+"as free and Uni CPO visual form builder will not be shown."
+msgstr ""
+"Dále musíte produktu zadat cenu, jinak bude považován za bezplatný a nebude "
+"se zobrazovat tvůrce vizuálních formulářů Uni CPO."
+
+#: includes/admin/class-uni-cpo-admin-pointers.php:97
+msgid "Create/save a product"
+msgstr "Vytvořit/uložit produkt"
+
+#: includes/admin/class-uni-cpo-admin-pointers.php:98
+msgid ""
+"Hit the \"Publish\" button to save changes. You may save the product as "
+"draft as well."
+msgstr ""
+"Stisknutím tlačítka „Publikovat“ uložíte změny. Produkt můžete také uložit "
+"jako koncept."
+
+#: includes/admin/class-uni-cpo-admin-pointers.php:109
+msgid "Start configuring the product"
+msgstr "Zahajte konfiguraci produktu"
+
+#: includes/admin/class-uni-cpo-admin-pointers.php:110
+msgid ""
+"Open \"CPO Form builder\" tab and click \"Go to builder\" to start "
+"configuring your product"
+msgstr ""
+"Otevřete kartu \"Tvůrce formulářů CPO\" a kliknutím na tlačítko Přejít  "
+"začněte konfigurovat svůj produkt"
+
+#: includes/admin/class-uni-cpo-admin-pointers.php:155
+msgid "Dismiss"
+msgstr "Zrušit"
+
+#: includes/admin/class-uni-cpo-admin-pointers.php:156
+msgid "Next"
+msgstr "Další"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:55
+#: includes/admin/class-uni-cpo-plugin-settings.php:56
+msgid "Uni CPO Settings"
+msgstr "Uni CPO Nastavení"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:71
+#: includes/class-uni-cpo-frontend-scripts.php:674
+msgid "Settings"
+msgstr "Nastavení"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:84
+msgid "Standard"
+msgstr "Standartní"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:89
+msgid "Add product to the cart via AJAX"
+msgstr "Přidej product do košíku prostřednictvím  AJAX"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:90
+msgid ""
+"This option enables adding to cart via AJAX for all the products which use "
+"custom options and price calculation."
+msgstr ""
+"Tato možnost umožňuje přidat do košíku prostřednictvím AJAX všechny "
+"produkty, které používají vlastní možnosti a kalkulaci ceny."
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:96
+msgid "Custom selector (id/class) for a product price html tag"
+msgstr "Vlastní selektor (id / class) pro ceny produktu html"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:97
+msgid ""
+"By default, the selector for a product price html tag is \".summary.entry-"
+"summary .price > .amount, .summary.entry-summary .price ins .amount\". "
+"However, the actual html markup of this block depends on the theme and you "
+"may need to define yours custom selector."
+msgstr ""
+"By default, the selector for a product price html tag is \".summary.entry-"
+"summary .price > .amount, .summary.entry-summary .price ins .amount\". "
+"However, the actual html markup of this block depends on the theme and you "
+"may need to define yours custom selector."
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:100
+#: includes/admin/class-uni-cpo-plugin-settings.php:108
+#: includes/admin/class-uni-cpo-plugin-settings.php:124
+msgid "CSS selector"
+msgstr "CSS selector"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:104
+msgid "Custom selector (id/class) for a product image wrapper html tag"
+msgstr "Custom selector (id/class) for a product image wrapper html tag"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:105
+msgid ""
+"By default, the selector for a product image wrapper html tag on a single "
+"product page is \"figure.woocommerce-product-gallery__wrapper\". However, "
+"the actual html markup of the image block depends on the theme and you may "
+"need to define yours custom selector. Reminder: this selector is for element "
+"that wraps the main image, not the image (\"img\" tag) itself!"
+msgstr ""
+"By default, the selector for a product image wrapper html tag on a single "
+"product page is \"figure.woocommerce-product-gallery__wrapper\". However, "
+"the actual html markup of the image block depends on the theme and you may "
+"need to define yours custom selector. Reminder: this selector is for element "
+"that wraps the main image, not the image (\"img\" tag) itself!"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:112
+msgid "Image size that is used for single product main image"
+msgstr ""
+"Velikost obrázku, která se používá, jako hlavní obrázek jednoduchého produktu"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:113
+msgid ""
+"By default, this is \"woocommerce_single\". However the actual thumbnail "
+"size used depends on the theme and you may need to choose the correct one. "
+"This setting works in conjuction with the previous one and it is important "
+"to choose proper image size, so it will be used whenever a customer selects "
+"new option in a dropdown option or image select option with an image added "
+"to this chosen option."
+msgstr ""
+"By default, this is \"woocommerce_single\". However the actual thumbnail "
+"size used depends on the theme and you may need to choose the correct one. "
+"This setting works in conjuction with the previous one and it is important "
+"to choose proper image size, so it will be used whenever a customer selects "
+"new option in a dropdown option or image select option with an image added "
+"to this chosen option."
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:120
+msgid "Custom selector (id/class) for a product thumbnails wrapper html tag"
+msgstr "Custom selector (id/class) for a product thumbnails wrapper html tag"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:121
+msgid ""
+"By default, the selector for a product thumbnails wrapper html tag on a "
+"single product page is \"ol.flex-control-thumbs\". However, the actual html "
+"markup of the thumbnails block depends on the theme and you may need to "
+"define yours custom selector."
+msgstr ""
+"By default, the selector for a product thumbnails wrapper html tag on a "
+"single product page is \"ol.flex-control-thumbs\". However, the actual html "
+"markup of the thumbnails block depends on the theme and you may need to "
+"define yours custom selector."
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:128
+msgid "Display weight in the cart"
+msgstr "Zobrazit váhu produktu v košíku"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:129
+msgid "This option enables displaying product weight in the cart."
+msgstr "Tato možnost umožňuje zobrazení hmotnosti produktu v košíku."
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:135
+msgid "Display dimensions in the cart"
+msgstr "Zobrazit rozměry v košíku"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:136
+msgid "This option enables displaying product dimensions in the cart."
+msgstr "Tato možnost umožňuje zobrazení rozměrů produktu v košíku."
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:142
+msgid "Style for range sliders"
+msgstr "Styl pro posuvníky rozsahu"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:143
+msgid ""
+"Default style is \"HTML 5\". This style will be applied for all range slider "
+"option instances in the store."
+msgstr ""
+"Výchozí styl je „HTML 5“. Tento styl bude použit pro všechny volby posuvníku "
+"rozsahu v obchodě."
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:146
+msgid "Flat"
+msgstr "Plochý"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:147
+msgid "Modern"
+msgstr "Moderní"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:148
+msgid "HTML5"
+msgstr "HTML5"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:149
+msgid "Nice"
+msgstr "Hezký"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:150
+msgid "Simple"
+msgstr "Jednoduchý"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:156
+msgid "Google Map API Key"
+msgstr "Google Map API Key"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:157
+msgid "Add Google Map API key in order to use Google Map option"
+msgstr "Add Google Map API key in order to use Google Map option"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:166
+msgid "File upload settings"
+msgstr "Nastavení nahrávání souborů"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:171
+#: includes/settings/class-uni-cpo-setting-cpo-max-filesize.php:21
+msgid "Upload max file size (Mb)"
+msgstr "Maximální velikost nahrávaného souboru (Mb)"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:172
+msgid ""
+"Global option: max file size that is allowed to be uploaded through File "
+"Upload option. Default is 2Mb."
+msgstr ""
+"Maximální velikost souboru, která může být nahrána pomocí možnosti Nahrát "
+"soubor. Výchozí hodnota je 2 MB."
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:175
+msgid "2"
+msgstr "2"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:179
+#: includes/settings/class-uni-cpo-setting-cpo-mime-types.php:21
+msgid "Allowed mime types"
+msgstr "Povolené typy mime"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:180
+msgid ""
+"Global option: a comma separated list of allowed mime types as extension "
+"names. Default is: \"jpg,zip\". Important: file types defined here still "
+"must comply with allowed MIME types by WP itself. More info here: https://"
+"codex.wordpress.org/Function_Reference/get_allowed_mime_types"
+msgstr ""
+"Global option: a comma separated list of allowed mime types as extension "
+"names. Default is: \"jpg,zip\". Important: file types defined here still "
+"must comply with allowed MIME types by WP itself. More info here: https://"
+"codex.wordpress.org/Function_Reference/get_allowed_mime_types"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:183
+msgid "jpg,zip"
+msgstr "jpg,zip"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:187
+msgid "Files storage"
+msgstr "Úložiště souborů"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:188
+msgid "\"Local\" is set by default"
+msgstr "\"Local\" je nastaveno jako výchozí nastavení"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:191
+msgid "Local"
+msgstr "Local"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:192
+msgid "Dropbox"
+msgstr "Dropbox"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:198
+msgid "Enables custom local folder for file uploads"
+msgstr "Povoluje vlastní lokální složku pro nahrávání souborů"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:199
+msgid ""
+"By default, all the files are handled by the standard WP functions and are "
+"stored in the same as any regular attachments. This setting is called to "
+"separate file uploads via the plugin's File Upload option from regular "
+"attachments and store them in different folder with custom folders "
+"structure. This custom folder is still in \"Uploads\" folder."
+msgstr ""
+"Ve výchozím nastavení jsou všechny soubory zpracovávány standardními "
+"funkcemi WP a jsou uloženy ve stejném formátu jako jakékoli běžné přílohy. "
+"Toto nastavení je vyvoláno pro oddělené nahrání souborů pomocí možnosti "
+"\"Nastavení Nahrávání souborů\"  od běžných příloh a ukládá je do jiné "
+"složky s vlastní strukturou složek. Tato vlastní složka je stále ve složce "
+"„Nahrávání“."
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:206
+msgid "Define custom folders structure for file uploads"
+msgstr "Definujte strukturu vlastních složek pro nahrávání souborů"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:207
+msgid ""
+"This setting works only if a custom local folder is enabled. The path always "
+"starts in the standard \"uploads\" folder. {{{POST_ID}}} and {{{DATE}}} "
+"variables may be used folders structure scheme."
+msgstr ""
+"This setting works only if a custom local folder is enabled. The path always "
+"starts in the standard \"uploads\" folder. {{{POST_ID}}} and {{{DATE}}} "
+"variables may be used folders structure scheme."
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:210
+msgid "cpo-uploads/{{{POST_ID}}}/{{{DATE}}}"
+msgstr "cpo-uploads/{{{POST_ID}}}/{{{DATE}}}"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:215
+msgid "Dropbox Access Token"
+msgstr "Dropbox Access Token"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:216
+msgid ""
+"This access token makes it possible to upload files uploaded by customers to "
+"a separate folder in your Dropbox account. Attention: current limitation is "
+"150 mb file! So, if you choose \"dropbox\" as storage option, make sure that "
+"your file uploads are limited to 150 mb!"
+msgstr ""
+"This access token makes it possible to upload files uploaded by customers to "
+"a separate folder in your Dropbox account. Attention: current limitation is "
+"150 mb file! So, if you choose \"dropbox\" as storage option, make sure that "
+"your file uploads are limited to 150 mb!"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:226
+msgid "Free sample functionality"
+msgstr "Free sample functionality"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:231
+msgid "Enable \"Free sample\" functionality"
+msgstr "Enable \"Free sample\" functionality"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:232
+msgid ""
+"Enables so called \"Free Sample\" functionality (adding to cart free "
+"products (zero price)) and limits the total number of free products (if set)."
+msgstr ""
+"Enables so called \"Free Sample\" functionality (adding to cart free "
+"products (zero price)) and limits the total number of free products (if set)."
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:238
+msgid "\"Free sample\" products limit"
+msgstr "\"Free sample\" products limit"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:239
+msgid ""
+"Sets the maximum total number of free products which can be added to a "
+"single order. Set to \"0\" or leave it empty to allow unlimited samples."
+msgstr ""
+"Nastavuje maximální celkový počet produktů zdarma, které lze přidat k jedné "
+"objednávce. Chcete-li povolit neomezené množství vzorků, nastavte hodnotu "
+"„0“ nebo ji nechte prázdnou."
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:242
+msgid "5"
+msgstr "5"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:409
+msgid "Upload an image"
+msgstr "Nahraj obrázek"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:409
+msgid "Use image"
+msgstr "Použij obrázek"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:409
+msgid "Upload new image"
+msgstr "Nahraj nový obrázek"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:410
+msgid "Remove image"
+msgstr "Odeber obrázek"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:466
+msgid "Uni CPO Plugin Settings"
+msgstr "Uni CPO Plugin Nastavení"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:469
+msgid "Uni CPO product basic setup tutorial"
+msgstr "Uni CPO Průvodce základním nastavením produktů"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:476
+msgid "All"
+msgstr "Vše"
+
+#: includes/admin/class-uni-cpo-plugin-settings.php:498
+msgid "Save Settings"
+msgstr "Ulož nastavení"
+
+#: includes/admin/uni-cpo-admin-functions.php:22
+msgid "CPO Form Builder"
+msgstr "CPO Form Builder"
+
+#: includes/admin/uni-cpo-admin-functions.php:38
+msgid "go to the builder"
+msgstr "go to the builder"
+
+#: includes/admin/uni-cpo-admin-functions.php:246
+msgid "Add/edit CPO options"
+msgstr "Přidej/uprav CPO možnosti"
+
+#: includes/admin/uni-cpo-admin-functions.php:270
+#: includes/uni-cpo-core-functions.php:1057
+msgid "Update"
+msgstr "Update"
+
+#: includes/admin/uni-cpo-admin-functions.php:294
+#: includes/uni-cpo-functions.php:201
+msgid "(Sample)"
+msgstr "(Sample)"
+
+#: includes/class-uni-cpo-ajax.php:128 includes/class-uni-cpo-ajax.php:186
+#: includes/class-uni-cpo-ajax.php:208 includes/class-uni-cpo-ajax.php:310
+#: includes/class-uni-cpo-ajax.php:339 includes/class-uni-cpo-ajax.php:370
+#: includes/class-uni-cpo-ajax.php:410 includes/class-uni-cpo-ajax.php:463
+#: includes/class-uni-cpo-ajax.php:490 includes/class-uni-cpo-ajax.php:519
+#: includes/class-uni-cpo-ajax.php:549 includes/class-uni-cpo-ajax.php:580
+#: includes/class-uni-cpo-ajax.php:607 includes/class-uni-cpo-ajax.php:637
+#: includes/class-uni-cpo-ajax.php:684 includes/class-uni-cpo-ajax.php:1508
+#: includes/class-uni-cpo-ajax.php:1584
+msgid "Insufficient permissions for this operation"
+msgstr "Nedostatečná oprávnění pro tuto operaci"
+
+#: includes/class-uni-cpo-ajax.php:171
+msgid "The data was not saved. Maybe, there is nothing to save?"
+msgstr "Data nebyla uložena. Možná není nic k uložení?"
+
+#: includes/class-uni-cpo-ajax.php:193
+msgid "Hm-m... Something went wrong."
+msgstr "Hm-m... Něco se pokazilo."
+
+#: includes/class-uni-cpo-ajax.php:218
+msgid "Invalid model type"
+msgstr "Neplatný typ modelu"
+
+#: includes/class-uni-cpo-ajax.php:222
+msgid "Invalid builder model object type"
+msgstr "Invalid builder model object type"
+
+#: includes/class-uni-cpo-ajax.php:240
+msgid "Invalid model"
+msgstr "Neplatný typ"
+
+#: includes/class-uni-cpo-ajax.php:265
+msgid "Something went srong"
+msgstr "Něco se pokazilo"
+
+#: includes/class-uni-cpo-ajax.php:316 includes/class-uni-cpo-ajax.php:690
+msgid "Type is not specified"
+msgstr "Typ není zadán"
+
+#: includes/class-uni-cpo-ajax.php:324 includes/class-uni-cpo-ajax.php:706
+msgid "No modules"
+msgstr "Žádné moduly"
+
+#: includes/class-uni-cpo-ajax.php:376 includes/class-uni-cpo-ajax.php:416
+msgid "Product ID is not specified"
+msgstr "Product ID není zadán"
+
+#: includes/class-uni-cpo-ajax.php:393
+msgid "No similar products"
+msgstr "Žádné podobné produkty"
+
+#: includes/class-uni-cpo-ajax.php:420
+msgid "Target product ID is not specified"
+msgstr "Cílový product ID není zadán"
+
+#: includes/class-uni-cpo-ajax.php:427
+#, php-format
+msgid "Product creation failed, could not find original product: %s"
+msgstr "Certifikace produktu selhala, original product nebyl nalezen: %s"
+
+#: includes/class-uni-cpo-ajax.php:434
+#, php-format
+msgid "Product creation failed, could not find targeted product: %s"
+msgstr "Certifikace produktu selhala, cílový product nebyl nalezen: %s"
+
+#: includes/class-uni-cpo-ajax.php:445
+msgid "Error"
+msgstr "Chyba"
+
+#: includes/class-uni-cpo-ajax.php:641
+msgid "No files added"
+msgstr "Nebyl přidán žádný soubor"
+
+#: includes/class-uni-cpo-ajax.php:658
+msgid "Only CSV files are allowed"
+msgstr "Povolené jsou pouze CSV soubory"
+
+#: includes/class-uni-cpo-ajax.php:667 includes/class-uni-cpo-ajax.php:960
+#: includes/class-uni-cpo-ajax.php:1420 includes/class-uni-cpo-ajax.php:1731
+#: includes/class-uni-cpo-ajax.php:1827
+msgid "Something went wrong"
+msgstr "Něco se pokazilo"
+
+#: includes/class-uni-cpo-ajax.php:694
+msgid "Target post is not chosen"
+msgstr "Cílový příspěvek není vybrán"
+
+#: includes/class-uni-cpo-ajax.php:698
+msgid "Sync method is not chosen"
+msgstr "Metoda synchronizace není vybrána"
+
+#: includes/class-uni-cpo-ajax.php:725
+msgid "No post ID specified"
+msgstr "Nebylo zadáno žádné ID příspěvku"
+
+#: includes/class-uni-cpo-ajax.php:729
+msgid "No file name specified"
+msgstr "Nebyl zadán žádný název souboru"
+
+#: includes/class-uni-cpo-ajax.php:733
+msgid "No option variable specified"
+msgstr "Nebyla zadána žádná proměnná"
+
+#: includes/class-uni-cpo-ajax.php:737
+msgid "Failed to upload file(s)."
+msgstr "Nahrání souborů se nezdařilo."
+
+#: includes/class-uni-cpo-ajax.php:741
+msgid "No dropbox token set. Abort operation."
+msgstr "Není nastaven žádný token schránky Dropbox. Operace zrušena."
+
+#: includes/class-uni-cpo-ajax.php:750
+msgid "The temp uploading dir cannot be created."
+msgstr "The temp uploading dir cannot be created."
+
+#: includes/class-uni-cpo-ajax.php:769 includes/class-uni-cpo-ajax.php:778
+msgid "Failed to open input stream."
+msgstr "Failed to open input stream."
+
+#: includes/class-uni-cpo-ajax.php:797 includes/class-uni-cpo-ajax.php:1763
+msgid "Sorry, this file type is not permitted for security reasons."
+msgstr "Litujeme, tento typ souboru není z bezpečnostních důvodů povolen."
+
+#: includes/class-uni-cpo-ajax.php:812
+msgid "The uploading dir cannot be created."
+msgstr "The uploading dir cannot be created."
+
+#: includes/class-uni-cpo-ajax.php:820
+msgid "An error occurred during uploading. Please, contact admin of the site."
+msgstr "Během nahrávání došlo k chybě.  Obraťte se prosím na správce webu."
+
+#: includes/class-uni-cpo-ajax.php:831
+msgid "The uploaded file could not be moved."
+msgstr "Nahraný soubor nemůže být přesunut."
+
+#: includes/class-uni-cpo-ajax.php:875
+msgid "File is valid, and was successfully uploaded."
+msgstr "Soubor je platný a byl úspěšně nahrán."
+
+#: includes/class-uni-cpo-ajax.php:909
+msgid "Still uploading..."
+msgstr "Still uploading..."
+
+#: includes/class-uni-cpo-ajax.php:929
+msgid "Not enough data"
+msgstr "Not enough data"
+
+#: includes/class-uni-cpo-ajax.php:958
+msgid "File successfully deleted"
+msgstr "Soubor byl úspěšně vymazán"
+
+#: includes/class-uni-cpo-ajax.php:1058 includes/class-uni-cpo-ajax.php:1692
+#: includes/class-uni-cpo-ajax.php:1753
+msgid "Product ID is not set"
+msgstr "Product ID není nastaveno"
+
+#: includes/class-uni-cpo-ajax.php:1312
+msgid "Price calculation is disabled in settings"
+msgstr "Kalkulace ceny je v nastavení zakázána"
+
+#: includes/class-uni-cpo-ajax.php:1463
+#, php-format
+msgid "You cannot add another \"%s\" to your cart."
+msgstr "Nemůžeš přidat další \"%s\" do košíku."
+
+#: includes/class-uni-cpo-ajax.php:1471
+#: includes/uni-cpo-core-functions.php:1556
+#, php-format
+msgid "The total number of samples in the cart is limited to %d"
+msgstr "Celkový počet vzorků v košíku je omezen na %d"
+
+#: includes/class-uni-cpo-ajax.php:1569
+msgid "No options available"
+msgstr "Nejsou k dispozici žádné možnosti"
+
+#: includes/class-uni-cpo-ajax.php:1696
+msgid "Email is not set"
+msgstr "Email není nastaven"
+
+#: includes/class-uni-cpo-ajax.php:1718
+msgid "File cannot be saved"
+msgstr "Soubor nemůže být uložen"
+
+#: includes/class-uni-cpo-ajax.php:1721
+#, php-format
+msgid "[%s] Export request for product #%d"
+msgstr "[%s] Export request for product #%d"
+
+#: includes/class-uni-cpo-ajax.php:1722
+#, php-format
+msgid ""
+"A .txt file with encoded info of settings for product #%d is attached to "
+"this email. The info contains the builder content as well as all the product "
+"settings added via CPO plugin for this product. Use this file to re-import "
+"the settings elsewhere."
+msgstr ""
+"A .txt file with encoded info of settings for product #%d is attached to "
+"this email. The info contains the builder content as well as all the product "
+"settings added via CPO plugin for this product. Use this file to re-import "
+"the settings elsewhere."
+
+#: includes/class-uni-cpo-ajax.php:1775
+msgid "File cannot be read"
+msgstr "Soubor nelze přečíst"
+
+#: includes/class-uni-cpo-frontend-scripts.php:219
+#: includes/class-uni-cpo-frontend-scripts.php:228
+msgid "This value seems to be invalid."
+msgstr "Tato hodnota se zdá být neplatná."
+
+#: includes/class-uni-cpo-frontend-scripts.php:220
+msgid "This value should be a valid email."
+msgstr "Tato hodnota by měla být platným e-mailem."
+
+#: includes/class-uni-cpo-frontend-scripts.php:221
+msgid "This value should be a valid url."
+msgstr "Tato hodnota by měla být platným e-mailemurl."
+
+#: includes/class-uni-cpo-frontend-scripts.php:222
+msgid "This value should be a valid number."
+msgstr "Tato hodnota by měla být platným číslem."
+
+#: includes/class-uni-cpo-frontend-scripts.php:223
+msgid "This value should be digits."
+msgstr "Tato hodnota by měla být číslice."
+
+#: includes/class-uni-cpo-frontend-scripts.php:224
+msgid "This value should be alphanumeric."
+msgstr "Tato hodnota by měla být alfanumerická."
+
+#: includes/class-uni-cpo-frontend-scripts.php:225
+msgid "This value should be a valid integer."
+msgstr "Tato hodnota by měla být platné celé číslo."
+
+#: includes/class-uni-cpo-frontend-scripts.php:226
+msgid "This value should not be blank."
+msgstr "Tato hodnota by neměla být prázdná."
+
+#: includes/class-uni-cpo-frontend-scripts.php:227
+msgid "This value is required."
+msgstr "Tato hodnota je povinná."
+
+#: includes/class-uni-cpo-frontend-scripts.php:229
+#, php-format
+msgid "This value should be greater than or equal to %s."
+msgstr "Tato hodnota by měla být větší nebo rovna %s."
+
+#: includes/class-uni-cpo-frontend-scripts.php:230
+#, php-format
+msgid "This value should be lower than or equal to %s."
+msgstr "Tato hodnota by měla být nižší nebo rovna %s."
+
+#: includes/class-uni-cpo-frontend-scripts.php:231
+#, php-format
+msgid "This value should be between %s and %s."
+msgstr "Tato hodnota by měla být mezi %s a %s."
+
+#: includes/class-uni-cpo-frontend-scripts.php:232
+#, php-format
+msgid "This value is too short. It should have %s characters or more."
+msgstr "Tato hodnota je příliš krátká. Měla by mít %s znaků a více."
+
+#: includes/class-uni-cpo-frontend-scripts.php:233
+#, php-format
+msgid "This value is too long. It should have %s characters or fewer."
+msgstr "Tato hodnota je příliš dlouhá. Měla by mít %s znaků nebo méně."
+
+#: includes/class-uni-cpo-frontend-scripts.php:234
+#, php-format
+msgid ""
+"This value length is invalid. It should be between %s and %s characters long."
+msgstr "Tato hodnota je neplatná. Měla by být mezi %s a %s znaky."
+
+#: includes/class-uni-cpo-frontend-scripts.php:235
+#, php-format
+msgid "You must select at least %s choices."
+msgstr "Musíte vybrat minimálně %s voleb."
+
+#: includes/class-uni-cpo-frontend-scripts.php:236
+#, php-format
+msgid "You must select %s choices or fewer."
+msgstr "Musíte vybrat %s voleb nebo méně."
+
+#: includes/class-uni-cpo-frontend-scripts.php:237
+#, php-format
+msgid "You must select between %s and %s choices."
+msgstr "Musíte vybrat mezi %s a %s volbami."
+
+#: includes/class-uni-cpo-frontend-scripts.php:238
+msgid "This value should be the same."
+msgstr "Tato hodnota by měla být stejná."
+
+#: includes/class-uni-cpo-frontend-scripts.php:239
+msgid "This value should be a valid date (YYYY-MM-DD)."
+msgstr "Tato hodnota musí být platné datum (YYYY-MM-DD)."
+
+#: includes/class-uni-cpo-frontend-scripts.php:240
+#, php-format
+msgid "This value is too short. It should have %s words or more."
+msgstr "Tato hodnota je příliš krátká. Měl by obsahovat  %s slov nebo více."
+
+#: includes/class-uni-cpo-frontend-scripts.php:241
+#, php-format
+msgid "This value is too long. It should have %s words or fewer."
+msgstr "Tato hodnota je příliš dlouhá. Měla by obsahovat % s slov nebo méně."
+
+#: includes/class-uni-cpo-frontend-scripts.php:242
+#, php-format
+msgid ""
+"This value length is invalid. It should be between %s and %s words long."
+msgstr "Tato hodnota je neplatná. Měla by být mezi %s  a %s  slovy."
+
+#: includes/class-uni-cpo-frontend-scripts.php:243
+msgid "This value should be greater."
+msgstr "Tato hodnota by měla být větší."
+
+#: includes/class-uni-cpo-frontend-scripts.php:244
+msgid "This value should be greater or equal."
+msgstr "Tato hodnota by měla být větší nebo stejná."
+
+#: includes/class-uni-cpo-frontend-scripts.php:245
+msgid "This value should be less."
+msgstr "Tato hodnota by měla být menší."
+
+#: includes/class-uni-cpo-frontend-scripts.php:246
+msgid "This value should be less or equal."
+msgstr "Tato hodnota by měla být menší nebo rovná."
+
+#: includes/class-uni-cpo-frontend-scripts.php:247
+msgid "Must be unique!"
+msgstr "Musí být jedinečná!"
+
+#: includes/class-uni-cpo-frontend-scripts.php:252
+msgid "Sun"
+msgstr "Ne"
+
+#: includes/class-uni-cpo-frontend-scripts.php:253
+msgid "Mon"
+msgstr "Po"
+
+#: includes/class-uni-cpo-frontend-scripts.php:254
+msgid "Tue"
+msgstr "Út"
+
+#: includes/class-uni-cpo-frontend-scripts.php:255
+msgid "Wed"
+msgstr "Stř"
+
+#: includes/class-uni-cpo-frontend-scripts.php:256
+msgid "Thu"
+msgstr "Čt"
+
+#: includes/class-uni-cpo-frontend-scripts.php:257
+msgid "Fri"
+msgstr "Pá"
+
+#: includes/class-uni-cpo-frontend-scripts.php:258
+msgid "Sat"
+msgstr "So"
+
+#: includes/class-uni-cpo-frontend-scripts.php:261
+msgid "Sunday"
+msgstr "Neděle"
+
+#: includes/class-uni-cpo-frontend-scripts.php:262
+msgid "Monday"
+msgstr "Pondělí"
+
+#: includes/class-uni-cpo-frontend-scripts.php:263
+msgid "Tuesday"
+msgstr "Úterý"
+
+#: includes/class-uni-cpo-frontend-scripts.php:264
+msgid "Wednesday"
+msgstr "Středa"
+
+#: includes/class-uni-cpo-frontend-scripts.php:265
+msgid "Thursday"
+msgstr "Čtvrtek"
+
+#: includes/class-uni-cpo-frontend-scripts.php:266
+msgid "Friday"
+msgstr "Pátek"
+
+#: includes/class-uni-cpo-frontend-scripts.php:267
+msgid "Saturday"
+msgstr "Sobota"
+
+#: includes/class-uni-cpo-frontend-scripts.php:272
+msgid "Jan"
+msgstr "Led"
+
+#: includes/class-uni-cpo-frontend-scripts.php:273
+msgid "Feb"
+msgstr "Ún"
+
+#: includes/class-uni-cpo-frontend-scripts.php:274
+msgid "Mar"
+msgstr "Bře"
+
+#: includes/class-uni-cpo-frontend-scripts.php:275
+msgid "Apr"
+msgstr "Dub"
+
+#: includes/class-uni-cpo-frontend-scripts.php:276
+#: includes/class-uni-cpo-frontend-scripts.php:290
+msgid "May"
+msgstr "Kvě"
+
+#: includes/class-uni-cpo-frontend-scripts.php:277
+msgid "Jun"
+msgstr "Čvn"
+
+#: includes/class-uni-cpo-frontend-scripts.php:278
+msgid "Jul"
+msgstr "Čvc"
+
+#: includes/class-uni-cpo-frontend-scripts.php:279
+msgid "Aug"
+msgstr "Srp"
+
+#: includes/class-uni-cpo-frontend-scripts.php:280
+msgid "Sep"
+msgstr "Zář"
+
+#: includes/class-uni-cpo-frontend-scripts.php:281
+msgid "Oct"
+msgstr "Řij"
+
+#: includes/class-uni-cpo-frontend-scripts.php:282
+msgid "Nov"
+msgstr "Lis"
+
+#: includes/class-uni-cpo-frontend-scripts.php:283
+msgid "Dec"
+msgstr "Pro"
+
+#: includes/class-uni-cpo-frontend-scripts.php:286
+msgid "January"
+msgstr "Leden"
+
+#: includes/class-uni-cpo-frontend-scripts.php:287
+msgid "February"
+msgstr "Únor"
+
+#: includes/class-uni-cpo-frontend-scripts.php:288
+msgid "March"
+msgstr "Březen"
+
+#: includes/class-uni-cpo-frontend-scripts.php:289
+msgid "April"
+msgstr "Duben"
+
+#: includes/class-uni-cpo-frontend-scripts.php:291
+msgid "June"
+msgstr "Červen"
+
+#: includes/class-uni-cpo-frontend-scripts.php:292
+msgid "July"
+msgstr "Červenec"
+
+#: includes/class-uni-cpo-frontend-scripts.php:293
+msgid "August"
+msgstr "Srpen"
+
+#: includes/class-uni-cpo-frontend-scripts.php:294
+msgid "September"
+msgstr "Září"
+
+#: includes/class-uni-cpo-frontend-scripts.php:295
+msgid "October"
+msgstr "Říjen"
+
+#: includes/class-uni-cpo-frontend-scripts.php:296
+msgid "November"
+msgstr "Listopad"
+
+#: includes/class-uni-cpo-frontend-scripts.php:297
+msgid "December"
+msgstr "Prosinec"
+
+#: includes/class-uni-cpo-frontend-scripts.php:300
+msgid "Scroll to increment"
+msgstr "Scroll to increment"
+
+#: includes/class-uni-cpo-frontend-scripts.php:301
+msgid "Click to toggle"
+msgstr "Click to toggle"
+
+#: includes/class-uni-cpo-frontend-scripts.php:617
+msgid "Smart Search"
+msgstr "Chytré Hledání"
+
+#: includes/class-uni-cpo-frontend-scripts.php:620
+msgid "Basic Modules"
+msgstr "Základní moduly"
+
+#: includes/class-uni-cpo-frontend-scripts.php:621
+msgid "Options"
+msgstr "Možnosti"
+
+#: includes/class-uni-cpo-frontend-scripts.php:626
+msgid "General"
+msgstr "Všeobecné"
+
+#: includes/class-uni-cpo-frontend-scripts.php:630
+msgid "Style"
+msgstr "Styl"
+
+#: includes/class-uni-cpo-frontend-scripts.php:634
+msgid "Advanced"
+msgstr "Pokročilé"
+
+#: includes/class-uni-cpo-frontend-scripts.php:638
+msgid "Main"
+msgstr "Hlavní"
+
+#: includes/class-uni-cpo-frontend-scripts.php:642
+msgid "Suboptions"
+msgstr "Podvolby"
+
+#: includes/class-uni-cpo-frontend-scripts.php:646
+#: includes/options/class-uni-cpo-option-matrix.php:38
+msgid "Matrix"
+msgstr "Matrix"
+
+#: includes/class-uni-cpo-frontend-scripts.php:650
+#: includes/class-uni-cpo-templates.php:1051
+msgid "Rules"
+msgstr "Pravidla"
+
+#: includes/class-uni-cpo-frontend-scripts.php:654
+msgid "Conditional"
+msgstr "Podmínky"
+
+#: includes/class-uni-cpo-frontend-scripts.php:658
+msgid "Validation"
+msgstr "Validace"
+
+#: includes/class-uni-cpo-frontend-scripts.php:663
+msgid "Delete"
+msgstr "Smazat"
+
+#: includes/class-uni-cpo-frontend-scripts.php:664
+msgid "Save"
+msgstr "Uložit"
+
+#: includes/class-uni-cpo-frontend-scripts.php:665
+#: includes/settings/class-uni-cpo-setting-sync.php:21
+msgid "Sync"
+msgstr "Synchronizovat"
+
+#: includes/class-uni-cpo-frontend-scripts.php:666
+#: includes/class-uni-cpo-templates.php:889
+#: includes/class-uni-cpo-templates.php:1177
+#: includes/class-uni-cpo-templates.php:1349
+#: includes/class-uni-cpo-templates.php:1550
+#: includes/class-uni-cpo-templates.php:1743
+#: includes/class-uni-cpo-templates.php:1923
+#: includes/uni-cpo-core-functions.php:1089
+msgid "Cancel"
+msgstr "Zrušit"
+
+#: includes/class-uni-cpo-frontend-scripts.php:667
+msgid "Suggestion"
+msgstr "Návrh"
+
+#: includes/class-uni-cpo-frontend-scripts.php:670
+#: includes/modules/class-uni-cpo-module-row.php:29
+msgid "Row"
+msgstr "Řádek"
+
+#: includes/class-uni-cpo-frontend-scripts.php:671
+#: includes/modules/class-uni-cpo-module-column.php:29
+msgid "Column"
+msgstr "Sloupec"
+
+#: includes/class-uni-cpo-frontend-scripts.php:672
+msgid "Module"
+msgstr "Modul"
+
+#: includes/class-uni-cpo-frontend-scripts.php:673
+msgid "Move Row"
+msgstr "Přesunout řádek"
+
+#: includes/class-uni-cpo-frontend-scripts.php:675
+#: includes/class-uni-cpo-templates.php:821
+#: includes/class-uni-cpo-templates.php:822
+#: includes/settings/class-uni-cpo-setting-sync.php:61
+#: includes/uni-cpo-functions.php:319
+msgid "Duplicate"
+msgstr "Kopie"
+
+#: includes/class-uni-cpo-frontend-scripts.php:676
+#: includes/options/class-uni-cpo-option-file-upload.php:174
+msgid "Remove"
+msgstr "Odstranit"
+
+#: includes/class-uni-cpo-frontend-scripts.php:678
+msgid "Upload"
+msgstr "Nahrát"
+
+#: includes/class-uni-cpo-frontend-scripts.php:679
+#: includes/options/class-uni-cpo-option-file-upload.php:526
+msgid "Select file"
+msgstr "Vyber soubor"
+
+#: includes/class-uni-cpo-frontend-scripts.php:680
+msgid "Please add suboptions"
+msgstr "Prosím zadejte podvolbu"
+
+#: includes/class-uni-cpo-frontend-scripts.php:681
+msgid "2nd var/1st var"
+msgstr "2nd var/1st var"
+
+#: includes/class-uni-cpo-frontend-scripts.php:682
+#: includes/settings/class-uni-cpo-setting-sync.php:79
+msgid "- None -"
+msgstr "- None -"
+
+#: includes/class-uni-cpo-frontend-scripts.php:684
+msgid "Pro Version Feature"
+msgstr "Funkce dostupná v PRO verzi"
+
+#: includes/class-uni-cpo-frontend-scripts.php:686
+msgid "No cart form found! Check WooCommerce hooks integration with your theme"
+msgstr ""
+"No cart form found! Check WooCommerce hooks integration with your theme"
+
+#: includes/class-uni-cpo-frontend-scripts.php:687
+msgid "Too many cart forms found! Uni CPO works on single product page only!"
+msgstr "Too many cart forms found! Uni CPO works on single product page only!"
+
+#: includes/class-uni-cpo-frontend-scripts.php:688
+msgid "Regular price is not set. Price is required (even \"1\" works)!"
+msgstr "Regular price is not set. Price is required (even \"1\" works)!"
+
+#: includes/class-uni-cpo-frontend-scripts.php:689
+msgid "It seems that price tag selector is wrong, please update!"
+msgstr "It seems that price tag selector is wrong, please update!"
+
+#: includes/class-uni-cpo-frontend-scripts.php:690
+msgid "It seems that image tag selector is wrong, please update!"
+msgstr "It seems that image tag selector is wrong, please update!"
+
+#: includes/class-uni-cpo-frontend-scripts.php:725
+#: includes/class-uni-cpo-frontend-scripts.php:910
+msgid "Clear"
+msgstr "Odstranit"
+
+#: includes/class-uni-cpo-frontend-scripts.php:726
+#: includes/class-uni-cpo-frontend-scripts.php:911
+#: includes/settings/class-uni-cpo-setting-font-family.php:24
+#: includes/settings/class-uni-cpo-setting-font-style.php:24
+msgid "Default"
+msgstr "Základní"
+
+#: includes/class-uni-cpo-frontend-scripts.php:727
+#: includes/class-uni-cpo-frontend-scripts.php:912
+msgid "Select Color"
+msgstr "Zvol barvu"
+
+#: includes/class-uni-cpo-frontend-scripts.php:728
+#: includes/class-uni-cpo-frontend-scripts.php:913
+msgid "Current Color"
+msgstr "Současná barva"
+
+#: includes/class-uni-cpo-frontend-scripts.php:873
+msgid "Calculating"
+msgstr "Počítám"
+
+#: includes/class-uni-cpo-frontend-scripts.php:874
+#, php-format
+msgid "This file should not be larger than %s Kb"
+msgstr "Tento soubor by neměl být větší než %s Kb"
+
+#: includes/class-uni-cpo-frontend-scripts.php:875
+msgid "File of this type is not allowed"
+msgstr "Soubor tohoto typu není povolen"
+
+#: includes/class-uni-cpo-frontend-scripts.php:876
+msgid "The product has been added successfully!"
+msgstr "Produkt byl úspěšně přidán!"
+
+#: includes/class-uni-cpo-post-types.php:57
+#: includes/class-uni-cpo-post-types.php:58
+msgid "Builderius Module"
+msgstr "Builderius Module"
+
+#: includes/class-uni-cpo-post-types.php:59
+msgid "New Builderius Module"
+msgstr "Nový Builderius modul"
+
+#: includes/class-uni-cpo-post-types.php:60
+msgid "Add Builderius Module"
+msgstr "Přidej Builderius modul"
+
+#: includes/class-uni-cpo-post-types.php:61
+msgid "Edit Builderius Module"
+msgstr "Uprav Builderius modul"
+
+#: includes/class-uni-cpo-post-types.php:62
+msgid "All Builderius Modules"
+msgstr "Všechny Builderius moduly"
+
+#: includes/class-uni-cpo-post-types.php:63
+msgid "View Builderius Module"
+msgstr "Zobraz Builderius modul"
+
+#: includes/class-uni-cpo-post-types.php:64
+msgid "Search Builderius Modules"
+msgstr "Hledej Builderius modul"
+
+#: includes/class-uni-cpo-post-types.php:65
+msgid "Builderius Modules not found"
+msgstr "Builderius modul nebyl nalezen"
+
+#: includes/class-uni-cpo-post-types.php:66
+msgid "Builderius Modules not found in cart"
+msgstr "Builderius modul nebyl v košíku nalezen"
+
+#: includes/class-uni-cpo-post-types.php:67
+msgid "Parent Builderius Module"
+msgstr "Parent Builderius modul"
+
+#: includes/class-uni-cpo-post-types.php:68
+msgid "Builderius Modules"
+msgstr "Builderius moduly"
+
+#: includes/class-uni-cpo-post-types.php:101
+#: includes/class-uni-cpo-post-types.php:102
+msgid "CPO option"
+msgstr "CPO volba"
+
+#: includes/class-uni-cpo-post-types.php:103
+msgid "New CPO option"
+msgstr "Nová CPO volba"
+
+#: includes/class-uni-cpo-post-types.php:104
+msgid "Add CPO option"
+msgstr "Přidej CPO volbu"
+
+#: includes/class-uni-cpo-post-types.php:105
+msgid "Edit CPO option"
+msgstr "Upravit CPO volbu"
+
+#: includes/class-uni-cpo-post-types.php:106
+msgid "All CPO options"
+msgstr "Všechny CPO volby"
+
+#: includes/class-uni-cpo-post-types.php:107
+msgid "View CPO option"
+msgstr "Zobraz CPO volby"
+
+#: includes/class-uni-cpo-post-types.php:108
+msgid "Search CPO options"
+msgstr "Hledej CPO volby"
+
+#: includes/class-uni-cpo-post-types.php:109
+msgid "CPO options not found"
+msgstr "CPO volby nebyly nalezeny"
+
+#: includes/class-uni-cpo-post-types.php:110
+msgid "CPO options not found in cart"
+msgstr "CPO volby nebyly v košíku nalezeny"
+
+#: includes/class-uni-cpo-post-types.php:111
+msgid "Parent CPO option"
+msgstr "Parent CPO volby"
+
+#: includes/class-uni-cpo-post-types.php:112
+msgid "CPO options"
+msgstr "CPO volby"
+
+#: includes/class-uni-cpo-product.php:50
+msgid "CPO builder"
+msgstr "CPO builder"
+
+#: includes/class-uni-cpo-product.php:84
+msgid "Go to CPO builder"
+msgstr "Běž na CPO builder"
+
+#: includes/class-uni-cpo-product.php:85
+msgid "CPO Builder"
+msgstr "CPO Builder"
+
+#: includes/class-uni-cpo-product.php:817
+msgid "Product does not exist or not chosen"
+msgstr "Produkt neexistuje nebo není vybrán"
+
+#: includes/class-uni-cpo-product.php:954
+msgid "No context set. The data was not saved."
+msgstr "Nebyl nastaven žádný kontext. Data nebyla uložena."
+
+#: includes/class-uni-cpo-templates.php:54
+msgid "Day/night mode"
+msgstr "Denní/noční mód"
+
+#: includes/class-uni-cpo-templates.php:59
+msgid "Left/right panel position"
+msgstr "Poloha panelu levý/pravý"
+
+#: includes/class-uni-cpo-templates.php:65
+msgid "View saved content"
+msgstr "Zobraz uložený obsah"
+
+#: includes/class-uni-cpo-templates.php:70
+msgid "History of saved content"
+msgstr "Historie uloženého obsahu"
+
+#: includes/class-uni-cpo-templates.php:93
+msgid "Product general settings"
+msgstr "Všeobecné nastavení produktu"
+
+#: includes/class-uni-cpo-templates.php:98
+msgid "Delete content"
+msgstr "Vymaž obsah"
+
+#: includes/class-uni-cpo-templates.php:104
+msgid "Non option variables"
+msgstr "Proměnné bez možností"
+
+#: includes/class-uni-cpo-templates.php:110
+#: includes/class-uni-cpo-templates.php:137
+msgid "Formula and conditional logic"
+msgstr "Vzorec a podmíněná logika"
+
+#: includes/class-uni-cpo-templates.php:117
+msgid "Weight conditional logic"
+msgstr "Váha a podmíněná logika"
+
+#: includes/class-uni-cpo-templates.php:121
+msgid "Dimensions settings"
+msgstr "Nastavení rozměrů"
+
+#: includes/class-uni-cpo-templates.php:125
+msgid "Image conditional logic"
+msgstr "Obrázky a podmíněná logika"
+
+#: includes/class-uni-cpo-templates.php:130
+msgid "Save content"
+msgstr "Ulož obsah"
+
+#: includes/class-uni-cpo-templates.php:141
+#: includes/class-uni-cpo-templates.php:914
+msgid "Cart discounts"
+msgstr "Sleva v košíku"
+
+#: includes/class-uni-cpo-templates.php:218
+msgid "Autosave"
+msgstr "Automatické uložení"
+
+#: includes/class-uni-cpo-templates.php:309
+msgid ""
+"Saving updates the builder content. Checking this will allow to save to DB "
+"as well."
+msgstr ""
+"Ukládám změny v builder obsahu. Zaškrtnutím povolíte také uložit změny do DB."
+
+#: includes/class-uni-cpo-templates.php:313
+msgid "Save to DB?"
+msgstr "Uložit do DB?"
+
+#: includes/class-uni-cpo-templates.php:340
+#: includes/class-uni-cpo-templates.php:348
+#: includes/class-uni-cpo-templates.php:922
+msgid "General Settings"
+msgstr "Všeobecné nastavení"
+
+#: includes/class-uni-cpo-templates.php:354
+msgid "Price Settings"
+msgstr "Nastavení ceny"
+
+#: includes/class-uni-cpo-templates.php:363
+msgid "Image Related Settings"
+msgstr "Nastavení týkající se obrázků"
+
+#: includes/class-uni-cpo-templates.php:369
+msgid "Import/Export"
+msgstr "Import/Export"
+
+#: includes/class-uni-cpo-templates.php:389
+#: includes/class-uni-cpo-templates.php:410
+#: includes/class-uni-cpo-templates.php:434
+#: includes/class-uni-cpo-templates.php:458
+#: includes/class-uni-cpo-templates.php:479
+#: includes/class-uni-cpo-templates.php:500
+#: includes/class-uni-cpo-templates.php:521
+#: includes/class-uni-cpo-templates.php:561
+#: includes/class-uni-cpo-templates.php:581
+#: includes/class-uni-cpo-templates.php:734
+#: includes/class-uni-cpo-templates.php:755
+#: includes/class-uni-cpo-templates.php:965
+#: includes/class-uni-cpo-templates.php:987
+#: includes/class-uni-cpo-templates.php:1231
+#: includes/class-uni-cpo-templates.php:1390
+#: includes/class-uni-cpo-templates.php:1600
+#: includes/class-uni-cpo-templates.php:1620
+#: includes/class-uni-cpo-templates.php:1793
+#: includes/class-uni-cpo-templates.php:1833
+#: includes/class-uni-cpo-templates.php:1867
+#: includes/class-uni-cpo-templates.php:1901
+#: includes/class-uni-cpo-templates.php:1971
+#: includes/class-uni-cpo-templates.php:1991
+msgid "on"
+msgstr "zap"
+
+#: includes/class-uni-cpo-templates.php:390
+#: includes/class-uni-cpo-templates.php:411
+#: includes/class-uni-cpo-templates.php:435
+#: includes/class-uni-cpo-templates.php:459
+#: includes/class-uni-cpo-templates.php:480
+#: includes/class-uni-cpo-templates.php:501
+#: includes/class-uni-cpo-templates.php:522
+#: includes/class-uni-cpo-templates.php:562
+#: includes/class-uni-cpo-templates.php:582
+#: includes/class-uni-cpo-templates.php:735
+#: includes/class-uni-cpo-templates.php:756
+#: includes/class-uni-cpo-templates.php:966
+#: includes/class-uni-cpo-templates.php:988
+#: includes/class-uni-cpo-templates.php:1232
+#: includes/class-uni-cpo-templates.php:1391
+#: includes/class-uni-cpo-templates.php:1601
+#: includes/class-uni-cpo-templates.php:1621
+#: includes/class-uni-cpo-templates.php:1794
+#: includes/class-uni-cpo-templates.php:1834
+#: includes/class-uni-cpo-templates.php:1868
+#: includes/class-uni-cpo-templates.php:1902
+#: includes/class-uni-cpo-templates.php:1972
+#: includes/class-uni-cpo-templates.php:1992
+msgid "off"
+msgstr "vyp"
+
+#: includes/class-uni-cpo-templates.php:393
+msgid "Display custom options on the product page?"
+msgstr "Zobrazit vlastní možnosti na stránce produktu?"
+
+#: includes/class-uni-cpo-templates.php:395
+msgid ""
+"This is the main option of the plugin. By choosing \"off\" you are entirely "
+"disabling the work of the plugin for this product. The plugin still may work "
+"for other your products, however."
+msgstr ""
+"Toto je hlavní možnost pluginu. Výběrem možnosti „vypnuto“ zcela "
+"deaktivujete práci pluginu pro tento produkt. Plugin však může fungovat i "
+"pro ostatní vaše produkty."
+
+#: includes/class-uni-cpo-templates.php:414
+msgid "Enable price calculation based on custom options?"
+msgstr "Povolit kalkulaci ceny na základě vlastních možností?"
+
+#: includes/class-uni-cpo-templates.php:416
+msgid ""
+"Sometimes you just need to display custom options without using their values "
+"in a math formula as well as calculate the product price. Then just the "
+"custom options added to this product will be used only as an additional "
+"information in an order meta."
+msgstr ""
+"Někdy stačí zobrazit vlastní možnosti bez použití jejich hodnot v "
+"matematickém vzorci a vypočítat cenu produktu. Poté budou pouze vlastní "
+"možnosti přidané k tomuto produktu použity jako doplňující informace v meta "
+"objednávce."
+
+#: includes/class-uni-cpo-templates.php:418
+msgid ""
+"Important: this option will work only if you enable displaying of custom "
+"options!"
+msgstr ""
+"Důležité: Tato možnost bude fungovat, pouze pokud povolíte zobrazování "
+"vlastních možností!"
+
+#: includes/class-uni-cpo-templates.php:439
+msgid ""
+"Use a special \"calculate\" button instead of instant price calculation?"
+msgstr "Použijte místo okamžitého výpočtu ceny speciální tlačítko „spočítat“?"
+
+#: includes/class-uni-cpo-templates.php:442
+msgid ""
+"Enable this option if you want to use \"calculate\" button and perform "
+"calculation on click on this button instead of instant price calculation "
+"after any options chosen/value defined."
+msgstr ""
+"Povolte tuto možnost, pokud chcete použít tlačítko „vypočítat“ a provést "
+"výpočet kliknutím na toto tlačítko místo okamžitého výpočtu ceny po "
+"definovaných možnostech / hodnotách."
+
+#: includes/class-uni-cpo-templates.php:462
+msgid "Enable duplication of this product in the cart?"
+msgstr "Povolit duplicitu tohoto produktu v košíku?"
+
+#: includes/class-uni-cpo-templates.php:464
+msgid ""
+"Cart item of this product can be duplicated in the cart if this option is "
+"enabled."
+msgstr ""
+"Položka v košíku tohoto produktu může být v košíku duplikována, pokud je "
+"tato možnost povolena."
+
+#: includes/class-uni-cpo-templates.php:483
+msgid "Enable inline editing of this product in the cart?"
+msgstr "Povolit inline editaci tohoto produktu v košíku?"
+
+#: includes/class-uni-cpo-templates.php:485
+msgid ""
+"Cart item of this product will be possible to edit inline in the cart if "
+"this option is enabled. Inline editing mode means that form fields will be "
+"shown directly in the cart. Do not forget to enable inline editing for all "
+"or some options as it also works on per option basis!"
+msgstr ""
+"Pokud je tato možnost aktivována, bude možné položku košíku tohoto produktu "
+"upravit přímo v košíku. Režim inline editace znamená, že pole formuláře "
+"budou zobrazena přímo v košíku. Nezapomeňte povolit inline úpravy pro "
+"všechny nebo některé možnosti, protože také funguje na základě jednotlivých "
+"možností!"
+
+#: includes/class-uni-cpo-templates.php:504
+msgid ""
+"Enable editing of this product in the cart by returning to product page?"
+msgstr "Povolit úpravy tohoto produktu v košíku návratem na stránku produktu?"
+
+#: includes/class-uni-cpo-templates.php:506
+msgid ""
+"Cart item of this product will be possible to edit in the cart in \"full\" "
+"edit mode if this option is enabled. It means that a customer will be "
+"redirected to the product page where options' values will be pre-filled with "
+"those from the cart item. A customer will be redirected to the cart after "
+"clicking both \"Cancel\" and \"Update\" buttons. The related cart item "
+"options' values will be updated if \"Update\" button will be clicked."
+msgstr ""
+"Položku košíku u tohoto produktu bude možné editovat v košíku v režimu \"plné"
+"\" úpravy, pokud je tato možnost povolena. To znamená, že zákazník bude "
+"přesměrován na stránku produktu, kde budou hodnoty voleb předem vyplněny "
+"hodnotami z položky košíku. Zákazník bude přesměrován do košíku po kliknutí "
+"na tlačítka „Storno“ a „Aktualizovat“. Hodnoty možností souvisejících "
+"položek košíku budou aktualizovány po kliknutí na tlačítko „Aktualizovat“."
+
+#: includes/class-uni-cpo-templates.php:525
+msgid "Enable \"silent validation\" mode?"
+msgstr "Povolit režim „tichého ověření“?"
+
+#: includes/class-uni-cpo-templates.php:527
+msgid ""
+"Removes validation error messages for all the required fields, but still "
+"correctly validates them; useful for preventing \"this field is required\" "
+"messages spam in the form field."
+msgstr ""
+"Odebere chybové zprávy o ověření pro všechna povinná pole, ale stále je "
+"správně ověří; užitečné pro zamezení spamu „toto pole je vyžadováno“ v poli "
+"formuláře."
+
+#: includes/class-uni-cpo-templates.php:533
+msgid "Custom quantity field"
+msgstr "Pole vlastní množství"
+
+#: includes/class-uni-cpo-templates.php:536
+msgid ""
+"By default it is a standard WC qty field. But it also can be any Text Input "
+"based custom option. Important: WC original \"sold individually\" setting "
+"must be enabled so this setting could work!"
+msgstr ""
+"Standardně se jedná o standardní WC qty pole. Může to však být také jakákoli "
+"vlastní možnost založená na zadávání textu. Důležité: Původní nastavení WC "
+"„prodává se samostatně“ musí být povoleno, aby toto nastavení mohlo fungovat!"
+
+#: includes/class-uni-cpo-templates.php:541
+#: includes/class-uni-cpo-templates.php:1040
+msgid "WC qty field"
+msgstr "WC qty pole"
+
+#: includes/class-uni-cpo-templates.php:565
+msgid "Sold individually?"
+msgstr "Prodáváte samostatně?"
+
+#: includes/class-uni-cpo-templates.php:567
+msgid ""
+"Uni CPO uses WC original \"sold individually\" setting for hiding WC qty "
+"field only. Still, we need a possibility to restrict adding the same product "
+"twice to the cart even for Uni CPO enabled products. This is exactly what "
+"this setting does!"
+msgstr ""
+"Uni CPO používá WC originální nastavení „prodává se samostatně“ pouze pro "
+"skrytí WC pro qty pole. Stále však potřebujeme možnost omezit přidání "
+"stejného produktu do košíku dvakrát, a to i u produktů podporujících Uni "
+"CPO. Toto je přesně toto nastavení!"
+
+#: includes/class-uni-cpo-templates.php:585
+msgid "Reset form button?"
+msgstr "Tlačítko reset formuláře?"
+
+#: includes/class-uni-cpo-templates.php:587
+msgid "Enable this option if you want to show \"Reset all form\" button"
+msgstr ""
+"Tuto možnost povolte, pokud chcete zobrazit tlačítko „Obnovit celý formulář“"
+
+#: includes/class-uni-cpo-templates.php:595
+msgid "Minimal price"
+msgstr "Minimální cena"
+
+#: includes/class-uni-cpo-templates.php:598
+msgid ""
+"Set minimal possible price for the product regardless the calculated value "
+"by using the product custom formula."
+msgstr ""
+"Nastavte minimální možnou cenu produktu bez ohledu na vypočtenou hodnotu "
+"pomocí vlastního vzorce produktu."
+
+#: includes/class-uni-cpo-templates.php:600
+msgid ""
+" Important: you still have to define a regular product price under General "
+"tab! Otherwise, this product will be considered as free."
+msgstr ""
+" Důležité: stále musíte definovat běžnou cenu produktu na kartě Obecné! V "
+"opačném případě bude tento produkt považován za bezplatný."
+
+#: includes/class-uni-cpo-templates.php:614
+msgid "Maximum price"
+msgstr "Maximální cena"
+
+#: includes/class-uni-cpo-templates.php:617
+msgid ""
+"Set maximum possible price for the product. The calculated price will be "
+"compared with this value and ordering of the product will be disabled if the "
+"calculated price is bigger than this value. If \"Text to display when "
+"ordering is disabled\" setting is not empty, its value will be displayed in "
+"this case."
+msgstr ""
+"Nastavte maximální možnou cenu za produkt. Vypočítaná cena bude porovnána s "
+"touto hodnotou a objednávka produktu bude deaktivována, pokud bude "
+"vypočítaná cena větší než tato hodnota. Pokud nastavení „Text, který se má "
+"zobrazit při zakázaném řazení“, není prázdné, bude v tomto případě zobrazena "
+"jeho hodnota."
+
+#: includes/class-uni-cpo-templates.php:630
+msgid "Text to display when ordering is disabled"
+msgstr "Text, který se zobrazí, když je zakázáno objednávání"
+
+#: includes/class-uni-cpo-templates.php:633
+msgid ""
+"Every time you use a special word \"disable\" instead of actual formula, the "
+"product becomes disabled for ordering and the text below is displayed just "
+"under the product price. Leave it empty to disable the setting."
+msgstr ""
+"Pokaždé, když místo skutečného vzorce použijete speciální slovo „zakázat“, "
+"produkt se z důvodu objednání deaktivuje a níže uvedený text se zobrazí "
+"těsně pod cenou produktu. Chcete-li nastavení deaktivovat, nechte jej "
+"prázdné."
+
+#: includes/class-uni-cpo-templates.php:644
+msgid "Price suffix"
+msgstr "Přípona ceny"
+
+#: includes/class-uni-cpo-templates.php:647
+msgid ""
+"Custom price tag suffix. If set, will be shown ONLY if the product ordering "
+"is disabled for any reason."
+msgstr ""
+"Přípona vlastní cenovky. Pokud je nastaveno, zobrazí se POUZE, pokud je "
+"objednávka produktu z jakéhokoli důvodu zakázána."
+
+#: includes/class-uni-cpo-templates.php:659
+msgid "Price postfix"
+msgstr "Cenový postfix"
+
+#: includes/class-uni-cpo-templates.php:662
+msgid "Custom price tag postfix. If set, will be shown in any case."
+msgstr ""
+"Vlastní cenový postfix. Pokud je nastavena, zobrazí se v každém případě."
+
+#: includes/class-uni-cpo-templates.php:674
+msgid "Starting price"
+msgstr "Cena od"
+
+#: includes/class-uni-cpo-templates.php:677
+msgid ""
+"Displays a starting price (marketing price) instead of \"0.00\" if any of "
+"required options is empty. Leave empty to disable the setting."
+msgstr ""
+"Zobrazí cenu od (tržní cenu) místo „0,00“ jestliže jakákoli požadovaná volba "
+"je prázdná. Chcete-li nastavení deaktivovat, ponechte prázdné."
+
+#: includes/class-uni-cpo-templates.php:690
+msgid "Price template for archives"
+msgstr "Cenová šablona pro archivy"
+
+#: includes/class-uni-cpo-templates.php:705
+msgid "Price template for archives during active sale"
+msgstr "Cenová šablona pro archivy během aktivního prodeje"
+
+#: includes/class-uni-cpo-templates.php:708
+msgid ""
+"This the same as above, but this template will be chosen only during active "
+"sales campaign for this product."
+msgstr ""
+"Stejné jako výše, ale tato šablona bude vybrána pouze během aktivní prodejní "
+"kampaně pro tento produkt."
+
+#: includes/class-uni-cpo-templates.php:738
+msgid "Enable Colorify?"
+msgstr "Povolit Colorify?"
+
+#: includes/class-uni-cpo-templates.php:740
+msgid ""
+"Enables \"Colorify\" functionality. Important: product image must be set "
+"(either alone or with product gallery images)."
+msgstr ""
+"Aktivuje funkci „Colorify“. Důležité: Obrázek produktu musí být nastaven "
+"(samostatně nebo s obrázky z galerie produktů)."
+
+#: includes/class-uni-cpo-templates.php:759
+msgid "Enable Imagify?"
+msgstr "Povolit Imagify?"
+
+#: includes/class-uni-cpo-templates.php:761
+msgid ""
+"Enables \"Imagify\" functionality. Important: it does not work when Colorify "
+"is enabled! You have to use either Colorify or Imagify. Important: product "
+"image must be set (either alone or with product gallery images)."
+msgstr ""
+"Umožňuje funkci „Imagify“. Důležité: nefunguje, je-li povolena funkce "
+"Colorify! Musíte použít Colorify nebo Imagify. Důležité: Obrázek produktu "
+"musí být nastaven (samostatně nebo s obrázky z galerie produktů)."
+
+#: includes/class-uni-cpo-templates.php:767
+msgid "Base image for Imagify"
+msgstr "Základní obrázek pro Imagify"
+
+#: includes/class-uni-cpo-templates.php:770
+msgid ""
+"Adds a base image (the static one that will be placed below all other "
+"\"images-layers\") to be used for Imagify"
+msgstr ""
+"Přidá základní obrázek (statický, který bude umístěn pod všechny ostatní "
+"„obrazové vrstvy“), který bude použit pro Imagify"
+
+#: includes/class-uni-cpo-templates.php:807
+msgid "Duplicate from another product"
+msgstr "Duplikovat z jiného produktu"
+
+#: includes/class-uni-cpo-templates.php:813
+#: includes/settings/class-uni-cpo-setting-sync.php:72
+msgid "Fetch data"
+msgstr "Načíst data"
+
+#: includes/class-uni-cpo-templates.php:816
+msgid "-None-"
+msgstr "-None-"
+
+#: includes/class-uni-cpo-templates.php:826
+#: includes/class-uni-cpo-templates.php:856
+#: includes/class-uni-cpo-templates.php:2249
+#: includes/class-uni-cpo-templates.php:2527
+#: includes/settings/class-uni-cpo-setting-cpo-matrix-data.php:106
+msgid "Import"
+msgstr "Import"
+
+#: includes/class-uni-cpo-templates.php:837
+msgid "remove pid attribute values from all the modules"
+msgstr "odeberte hodnoty atributů pid ze všech modulů"
+
+#: includes/class-uni-cpo-templates.php:850
+#: includes/class-uni-cpo-templates.php:2244
+#: includes/class-uni-cpo-templates.php:2522
+#: includes/settings/class-uni-cpo-setting-cpo-matrix-data.php:101
+msgid "Choose a file"
+msgstr "Vyberte soubor"
+
+#: includes/class-uni-cpo-templates.php:860
+#: includes/class-uni-cpo-templates.php:878
+msgid "Export"
+msgstr "Export"
+
+#: includes/class-uni-cpo-templates.php:865
+msgid "Email"
+msgstr "Email"
+
+#: includes/class-uni-cpo-templates.php:875
+msgid "Your email"
+msgstr "Váš email"
+
+#: includes/class-uni-cpo-templates.php:891
+#: includes/class-uni-cpo-templates.php:1179
+#: includes/class-uni-cpo-templates.php:1351
+#: includes/class-uni-cpo-templates.php:1552
+#: includes/class-uni-cpo-templates.php:1745
+#: includes/class-uni-cpo-templates.php:1925
+#: includes/settings/class-uni-cpo-setting-sync.php:89
+msgid "Submit"
+msgstr "Odeslat"
+
+#: includes/class-uni-cpo-templates.php:928
+msgid "Role Based Discounts"
+msgstr "Slevy založené na rolích"
+
+#: includes/class-uni-cpo-templates.php:934
+msgid "Quantity Based Discounts"
+msgstr "Množstevní slevy"
+
+#: includes/class-uni-cpo-templates.php:942
+msgid "Cart discounts strategy"
+msgstr "Strategie slev košíku"
+
+#: includes/class-uni-cpo-templates.php:945
+msgid "Choose how to apply different types of cart discounts"
+msgstr "Vyberte si, jak použít různé typy slev košíku"
+
+#: includes/class-uni-cpo-templates.php:948
+msgid "Use the highest discount only"
+msgstr "Používejte pouze nejvyšší slevu"
+
+#: includes/class-uni-cpo-templates.php:949
+msgid "Combine all applicable discounts"
+msgstr "Kombinujte všechny aplikované slevy"
+
+#: includes/class-uni-cpo-templates.php:969
+msgid "Enable role based cart discounts?"
+msgstr "Povolit slevy na košíku založené na rolích?"
+
+#: includes/class-uni-cpo-templates.php:971
+msgid ""
+"This setting enables/disables cart discounts functionality based on a user "
+"role."
+msgstr ""
+"Toto nastavení povoluje / zakazuje funkčnost slev vozíku na základě role "
+"uživatele."
+
+#: includes/class-uni-cpo-templates.php:991
+msgid "Enable quantity based cart discounts?"
+msgstr "Povolit množstevní slevy v košíku?"
+
+#: includes/class-uni-cpo-templates.php:993
+msgid ""
+"This setting enables/disables cart discounts functionality based on the "
+"quantity of ordered items."
+msgstr ""
+"Toto nastavení umožňuje / zakazuje funkci slev košíku na základě množství "
+"objednaných položek."
+
+#: includes/class-uni-cpo-templates.php:1007
+msgid "Type and value of discount for"
+msgstr "Druh a hodnota slevy pro"
+
+#: includes/class-uni-cpo-templates.php:1015
+#: includes/class-uni-cpo-templates.php:1092
+#: includes/class-uni-cpo-templates.php:1145
+msgid "Percentage"
+msgstr "Procentuální"
+
+#: includes/class-uni-cpo-templates.php:1016
+#: includes/class-uni-cpo-templates.php:1093
+#: includes/class-uni-cpo-templates.php:1146
+#: includes/settings/class-uni-cpo-setting-background-image.php:140
+#: includes/settings/class-uni-cpo-setting-content-width.php:24
+msgid "Fixed"
+msgstr "Fixní"
+
+#: includes/class-uni-cpo-templates.php:1032
+msgid "Choose a qty field to check for qty discounts based on."
+msgstr "Vyberte pole množství pro kontrolu množství slevy."
+
+#: includes/class-uni-cpo-templates.php:1035
+msgid ""
+"It may be standard WC qty field or any custom option that serves as qty "
+"field. We do not recommend using the option chosen here in your price "
+"calculation formula, still it is possible. Always double check ;)"
+msgstr ""
+"Může to být standardní WC qty pole nebo jakákoli vlastní volba, která slouží "
+"jako qty pole. Nedoporučujeme používat možnost vybranou zde ve vzorci pro "
+"výpočet ceny, přesto je to možné. Vždy dvakrát zkontrolujte;)"
+
+#: includes/class-uni-cpo-templates.php:1057
+#: includes/class-uni-cpo-templates.php:1270
+#: includes/class-uni-cpo-templates.php:1404
+#: includes/class-uni-cpo-templates.php:1659
+#: includes/class-uni-cpo-templates.php:2044
+#: includes/settings/class-uni-cpo-setting-cpo-date-rules.php:51
+#: includes/settings/class-uni-cpo-setting-cpo-sc-scheme.php:50
+#: includes/settings/class-uni-cpo-setting-cpo-vc-scheme.php:47
+msgid "Add Rule"
+msgstr "Přidat pravidlo"
+
+#: includes/class-uni-cpo-templates.php:1058
+#: includes/class-uni-cpo-templates.php:1271
+#: includes/class-uni-cpo-templates.php:1405
+#: includes/class-uni-cpo-templates.php:1660
+#: includes/class-uni-cpo-templates.php:2045
+#: includes/settings/class-uni-cpo-setting-cpo-date-rules.php:52
+#: includes/settings/class-uni-cpo-setting-cpo-sc-scheme.php:51
+#: includes/settings/class-uni-cpo-setting-cpo-vc-scheme.php:48
+msgid "Remove All"
+msgstr "Odebrat všechny"
+
+#: includes/class-uni-cpo-templates.php:1070
+#: includes/class-uni-cpo-templates.php:1123
+msgid "Min. qty"
+msgstr "Min. množství"
+
+#: includes/class-uni-cpo-templates.php:1079
+#: includes/class-uni-cpo-templates.php:1132
+msgid "Max. qty"
+msgstr "Max. množství"
+
+#: includes/class-uni-cpo-templates.php:1088
+#: includes/class-uni-cpo-templates.php:1141
+#: includes/settings/class-uni-cpo-setting-background-type.php:21
+#: includes/settings/class-uni-cpo-setting-divider-style.php:21
+msgid "Type"
+msgstr "Typ"
+
+#: includes/class-uni-cpo-templates.php:1096
+#: includes/class-uni-cpo-templates.php:1149
+msgid "Discount"
+msgstr "Sleva"
+
+#: includes/class-uni-cpo-templates.php:1209
+msgid "Main Formula & Formulas Conditional Logic"
+msgstr "Hlavní vzorec a podmíněná logika vzorců"
+
+#: includes/class-uni-cpo-templates.php:1215
+msgid "Formula"
+msgstr "Vzorec"
+
+#: includes/class-uni-cpo-templates.php:1217
+msgid ""
+"This is a simple formula for your product. It will be applied if no rules "
+"are added or none of them are match."
+msgstr ""
+"Toto je jednoduchý vzorec pro váš produkt. Použije se, pokud nejsou přidána "
+"žádná pravidla nebo pokud se žádné z nich neshoduje."
+
+#: includes/class-uni-cpo-templates.php:1235
+#: includes/class-uni-cpo-templates.php:1624
+msgid "Conditional Logic"
+msgstr "Podmíněná logika"
+
+#: includes/class-uni-cpo-templates.php:1237
+msgid ""
+"It is also possible to use Formula Conditional Rules feature. First, enable "
+"it here and add some rules then."
+msgstr ""
+"Je také možné použít funkci vzorce s podmíněnými pravidly. Nejprve to "
+"povolte zde a poté přidejte některá pravidla."
+
+#: includes/class-uni-cpo-templates.php:1243
+msgid "Main formula"
+msgstr "Hlavní vzorec"
+
+#: includes/class-uni-cpo-templates.php:1252
+#: includes/class-uni-cpo-templates.php:1641
+#: includes/class-uni-cpo-templates.php:2000
+msgid "Available variables:"
+msgstr "Dostupné proměnné:"
+
+#: includes/class-uni-cpo-templates.php:1266
+#: includes/class-uni-cpo-templates.php:1400
+#: includes/class-uni-cpo-templates.php:1655
+msgid "Controls:"
+msgstr "Ovládání:"
+
+#: includes/class-uni-cpo-templates.php:1287
+#: includes/class-uni-cpo-templates.php:1320
+#: includes/class-uni-cpo-templates.php:1421
+#: includes/class-uni-cpo-templates.php:1486
+#: includes/class-uni-cpo-templates.php:1677
+#: includes/class-uni-cpo-templates.php:1712
+#: includes/settings/class-uni-cpo-setting-cpo-date-rules.php:69
+#: includes/settings/class-uni-cpo-setting-cpo-date-rules.php:103
+#: includes/settings/class-uni-cpo-setting-cpo-fc-scheme.php:42
+#: includes/settings/class-uni-cpo-setting-cpo-sc-scheme.php:68
+#: includes/settings/class-uni-cpo-setting-cpo-sc-scheme.php:116
+#: includes/settings/class-uni-cpo-setting-cpo-vc-scheme.php:65
+#: includes/settings/class-uni-cpo-setting-cpo-vc-scheme.php:99
+msgid "Fetch the rule"
+msgstr "Načíst pravidlo"
+
+#: includes/class-uni-cpo-templates.php:1374
+#: includes/class-uni-cpo-templates.php:1394
+msgid "Image Conditional Logic"
+msgstr "Logická podmínka obrazků"
+
+#: includes/class-uni-cpo-templates.php:1396
+msgid ""
+"It is possible to change the main image of product item based on the values "
+"of custom options."
+msgstr ""
+"Je možné změnit hlavní obrázek položky produktu na základě hodnot vlastních "
+"možností."
+
+#: includes/class-uni-cpo-templates.php:1429
+#: includes/class-uni-cpo-templates.php:1494
+#: includes/modules/class-uni-cpo-module-image.php:29
+#: includes/settings/class-uni-cpo-setting-background-image.php:40
+#: includes/settings/class-uni-cpo-setting-background-type.php:28
+#: includes/settings/class-uni-cpo-setting-cpo-mode-checkbox.php:24
+#: includes/settings/class-uni-cpo-setting-cpo-mode-radio.php:25
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:185
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:375
+#: includes/settings/class-uni-cpo-setting-image.php:21
+msgid "Image"
+msgstr "Obrázek"
+
+#: includes/class-uni-cpo-templates.php:1430
+#: includes/class-uni-cpo-templates.php:1495
+msgid ""
+"Is used as a suboption image as well as can be used as the one that replaces "
+"the main product image"
+msgstr ""
+"Používá se jako podvolba obrázku a může být také použit jako ten, který "
+"nahrazuje image hlavního produktu"
+
+#: includes/class-uni-cpo-templates.php:1584
+#: includes/class-uni-cpo-templates.php:1604
+msgid "Weight Calculation"
+msgstr "Výpočet hmotnosti"
+
+#: includes/class-uni-cpo-templates.php:1606
+msgid ""
+"It is possible to calculate the weight of the ordered product item based on "
+"the values of custom options and a custom maths formula."
+msgstr ""
+"Hmotnost objednané položky produktu je možné vypočítat na základě hodnot "
+"vlastních možností a vlastního matematického vzorce."
+
+#: includes/class-uni-cpo-templates.php:1626
+msgid "It is also possible to use Weight Formula Conditional Rules feature."
+msgstr "Je také možné použít funkci Podmíněná pravidla pro výpočet hmotnosti."
+
+#: includes/class-uni-cpo-templates.php:1632
+msgid "Main formula for weight"
+msgstr "Hlavní vzorec pro hmotnost"
+
+#: includes/class-uni-cpo-templates.php:1777
+msgid "Dimensions Settings"
+msgstr "Nastavení rozměrů"
+
+#: includes/class-uni-cpo-templates.php:1797
+msgid "Dimensions Calculation"
+msgstr "Výpočet rozměrů"
+
+#: includes/class-uni-cpo-templates.php:1799
+msgid ""
+"It is possible to enable setting ordered product dimensions dynamically "
+"based on chosen custom options"
+msgstr ""
+"Je možné povolit dynamické nastavení objednaných rozměrů produktu na základě "
+"zvolených vlastních možností"
+
+#: includes/class-uni-cpo-templates.php:1805
+msgid "Measurement unit"
+msgstr "Měrná jednotka"
+
+#: includes/class-uni-cpo-templates.php:1807
+#, php-format
+msgid ""
+"The following measurement unit is being used in your store: %s (according to "
+"the WC settings). The same unit will be used by your shipping plugin (if you "
+"use any)."
+msgstr ""
+"Následující měrná jednotka:% s je používaná ve vašem obchodě(podle nastavení "
+"WC). Stejnou jednotku bude používat váš přepravní plugin (pokud používáte)."
+
+#: includes/class-uni-cpo-templates.php:1809
+msgid ""
+"Additionally, you may use this setting if you want to let you customers to "
+"choose an input measurement unit dynamically. Select the option which "
+"handles this. The values of the options responsible for width, height and "
+"length will be automatically converted FROM the unit chosen in this option "
+"TO the measurement unit of your store before are being sent both to shipping "
+"plugin and used in price calculation."
+msgstr ""
+"Toto nastavení můžete navíc použít, pokud chcete zákazníkům umožnit "
+"dynamicky zvolit vstupní jednotku měření. Vyberte možnost, která to zvládne. "
+"Hodnoty možností odpovědných za šířku, výšku a délku budou automaticky "
+"převedeny z jednotky vybrané v této možnosti na měrnou jednotku vašeho "
+"obchodu, než budou odeslány do přepravního pluginu a použity při výpočtu "
+"ceny."
+
+#: includes/class-uni-cpo-templates.php:1812
+#: includes/class-uni-cpo-templates.php:1843
+#: includes/class-uni-cpo-templates.php:1877
+#: includes/class-uni-cpo-templates.php:1911
+msgid "- Not selected -"
+msgstr "- Not selected -"
+
+#: includes/class-uni-cpo-templates.php:1820
+msgid "Length"
+msgstr "Délka"
+
+#: includes/class-uni-cpo-templates.php:1837
+msgid "Convert length automatically?"
+msgstr "Převést délku automaticky?"
+
+#: includes/class-uni-cpo-templates.php:1840
+msgid "Select the option which value will be used as product length."
+msgstr "Vyberte možnost, která hodnota bude použita jako délka produktu."
+
+#: includes/class-uni-cpo-templates.php:1854
+#: includes/settings/class-uni-cpo-setting-width-px.php:21
+#: includes/settings/class-uni-cpo-setting-width.php:21
+msgid "Width"
+msgstr "Šířka"
+
+#: includes/class-uni-cpo-templates.php:1871
+msgid "Convert width automatically?"
+msgstr "Převést šířku automaticky?"
+
+#: includes/class-uni-cpo-templates.php:1874
+msgid "Select the option which value will be used as product width."
+msgstr "Vyberte možnost, která hodnota bude použita jako šířka produktu."
+
+#: includes/class-uni-cpo-templates.php:1888
+#: includes/settings/class-uni-cpo-setting-height-px.php:21
+#: includes/settings/class-uni-cpo-setting-height.php:21
+msgid "Height"
+msgstr "Výška"
+
+#: includes/class-uni-cpo-templates.php:1905
+msgid "Convert height automatically?"
+msgstr "Převést výšku automaticky?"
+
+#: includes/class-uni-cpo-templates.php:1908
+msgid "Select the option which value will be used as product height."
+msgstr "Vyberte možnost, která hodnota bude použita jako výška produktu."
+
+#: includes/class-uni-cpo-templates.php:1956
+#: includes/class-uni-cpo-templates.php:1975
+msgid "Non Option Variables"
+msgstr "Proměnné bez možností"
+
+#: includes/class-uni-cpo-templates.php:1976
+msgid "NOVs are variables without direct connection to any options."
+msgstr "NOVs jsou proměnné bez přímého napojení na jakékoli možnosti."
+
+#: includes/class-uni-cpo-templates.php:1995
+msgid "Wholesale"
+msgstr "Velkoobchod"
+
+#: includes/class-uni-cpo-templates.php:1996
+msgid ""
+"Enabling this functionality will make it possible to set different value/"
+"formula on per user role basis"
+msgstr ""
+"Povolení této funkce umožní nastavit různé hodnoty / vzorce na základě role "
+"uživatele"
+
+#: includes/class-uni-cpo-templates.php:2039
+msgid "Controls"
+msgstr "Ovládání"
+
+#: includes/class-uni-cpo-templates.php:2073
+#: includes/class-uni-cpo-templates.php:2309
+msgid "Matrix?"
+msgstr "Matrice?"
+
+#: includes/class-uni-cpo-templates.php:2087
+#: includes/class-uni-cpo-templates.php:2324
+msgid "Convert unit?"
+msgstr "Převést jednotku?"
+
+#: includes/class-uni-cpo-templates.php:2098
+#: includes/class-uni-cpo-templates.php:2336
+msgid "to"
+msgstr "do"
+
+#: includes/class-uni-cpo-templates.php:2103
+#: includes/class-uni-cpo-templates.php:2342
+msgid "WC default unit"
+msgstr "WC výchozí jednotka"
+
+#: includes/class-uni-cpo-templates.php:2104
+#: includes/class-uni-cpo-templates.php:2343
+msgid "mm"
+msgstr "mm"
+
+#: includes/class-uni-cpo-templates.php:2105
+#: includes/class-uni-cpo-templates.php:2344
+msgid "cm"
+msgstr "cm"
+
+#: includes/class-uni-cpo-templates.php:2106
+#: includes/class-uni-cpo-templates.php:2345
+msgid "m"
+msgstr "m"
+
+#: includes/class-uni-cpo-templates.php:2107
+#: includes/class-uni-cpo-templates.php:2346
+msgid "in"
+msgstr "in"
+
+#: includes/class-uni-cpo-templates.php:2108
+#: includes/class-uni-cpo-templates.php:2347
+msgid "ft"
+msgstr "ft"
+
+#: includes/class-uni-cpo-templates.php:2109
+#: includes/class-uni-cpo-templates.php:2348
+msgid "yd"
+msgstr "yd"
+
+#: includes/class-uni-cpo-templates.php:2116
+#: includes/class-uni-cpo-templates.php:2355
+msgid "Display in cart?"
+msgstr "Zobrazit v košíku?"
+
+#: includes/class-uni-cpo-templates.php:2128
+#: includes/class-uni-cpo-templates.php:2368
+msgid "Name"
+msgstr "Jméno"
+
+#: includes/class-uni-cpo-templates.php:2234
+#: includes/class-uni-cpo-templates.php:2512
+#: includes/settings/class-uni-cpo-setting-cpo-matrix-data.php:91
+msgid "Generate"
+msgstr "Generovat"
+
+#: includes/data-stores/class-uni-cpo-data-store.php:54
+#: includes/data-stores/class-uni-cpo-data-store.php:60
+#: includes/data-stores/class-uni-cpo-data-store.php:66
+msgid "Invalid data store."
+msgstr "Neplatné úložiště dat."
+
+#: includes/data-stores/class-uni-cpo-option-data-store-cpt.php:84
+msgid "Invalid option."
+msgstr "Neplatná možnost."
+
+#: includes/modules/class-uni-cpo-module-button.php:29
+msgid "Button"
+msgstr "Tlačítko"
+
+#: includes/modules/class-uni-cpo-module-button.php:42
+msgid "Click here"
+msgstr "Klikněte zde"
+
+#: includes/modules/class-uni-cpo-module-image.php:142
+msgid "Please add image to this module!"
+msgstr "Přidejte obrázek k tomuto modulu!"
+
+#: includes/modules/class-uni-cpo-module-text.php:29
+msgid "Paragraph"
+msgstr "Odstavec"
+
+#: includes/modules/class-uni-cpo-module-text.php:42
+msgid "Some text here"
+msgstr "Nějaký text zde"
+
+#: includes/options/class-uni-cpo-option-checkbox.php:38
+msgid "Checkbox Inputs"
+msgstr "Zaškrtávací políčka Vstupy"
+
+#: includes/options/class-uni-cpo-option-checkbox.php:771
+#: includes/options/class-uni-cpo-option-radio.php:789
+msgid "Please add suboptions to this option!"
+msgstr "Přidejte k této možnosti podmožnosti!"
+
+#: includes/options/class-uni-cpo-option-datepicker.php:38
+msgid "Date picker"
+msgstr "Výběr data"
+
+#: includes/options/class-uni-cpo-option-dynamic-notice.php:36
+msgid "Dynamic Notice"
+msgstr "Dynamické upozornění"
+
+#: includes/options/class-uni-cpo-option-extra-cart-button.php:36
+msgid "Extra Cart Button"
+msgstr "Tlačítko Extra košík"
+
+#: includes/options/class-uni-cpo-option-extra-cart-button.php:197
+msgid "Add to cart"
+msgstr "Přidat do košíku"
+
+#: includes/options/class-uni-cpo-option-file-upload.php:36
+msgid "File Upload"
+msgstr "Nahrát soubor"
+
+#: includes/options/class-uni-cpo-option-file-upload.php:169
+msgid "Add/Edit file"
+msgstr "Přidej/uprav soubor"
+
+#: includes/options/class-uni-cpo-option-file-upload.php:189
+msgid ""
+"Local storage setting is set to \"Dropbox\", so it is not possible to add/"
+"edit files from here"
+msgstr ""
+"Nastavení místního úložiště je nastaveno na „Dropbox“, takže odtud není "
+"možné přidávat / upravovat soubory"
+
+#: includes/options/class-uni-cpo-option-google-map.php:36
+msgid "Google Map"
+msgstr "Google Map"
+
+#: includes/options/class-uni-cpo-option-google-map.php:316
+msgid "Google map is unavailable in the builder mode"
+msgstr "Mapa Google není v režimu builder k dispozici"
+
+#: includes/options/class-uni-cpo-option-radio.php:38
+msgid "Radio Inputs"
+msgstr "Radio Inputs"
+
+#: includes/options/class-uni-cpo-option-radio.php:199
+#: includes/options/class-uni-cpo-option-radio.php:225
+#: includes/options/class-uni-cpo-option-select.php:220
+#: includes/options/class-uni-cpo-option-select.php:246
+#: includes/options/class-uni-cpo-option-select.php:495
+#: includes/options/class-uni-cpo-option-select.php:628
+msgid "Please select..."
+msgstr "Prosím vyberte..."
+
+#: includes/options/class-uni-cpo-option-radio.php:928
+msgid "Please add image to suboption"
+msgstr "Přidejte obrázek k podmožnosti"
+
+#: includes/options/class-uni-cpo-option-range-slider.php:36
+msgid "Range Slider"
+msgstr "Posuvník rozsahu"
+
+#: includes/options/class-uni-cpo-option-select.php:39
+msgid "Select"
+msgstr "Vyber"
+
+#: includes/options/class-uni-cpo-option-text-area.php:36
+msgid "Text Area"
+msgstr "Oblast textu"
+
+#: includes/options/class-uni-cpo-option-text-input.php:36
+msgid "Text Input"
+msgstr "Zadávání textu"
+
+#: includes/settings/class-uni-cpo-setting-align.php:21
+msgid "Align"
+msgstr "Zarovnat"
+
+#: includes/settings/class-uni-cpo-setting-background-color.php:21
+#: includes/settings/class-uni-cpo-setting-background-type.php:27
+#: includes/settings/class-uni-cpo-setting-color.php:21
+msgid "Color"
+msgstr "Barva"
+
+#: includes/settings/class-uni-cpo-setting-background-hover-color.php:21
+#: includes/settings/class-uni-cpo-setting-color-hover.php:21
+msgid "Hover Color"
+msgstr "Hover Barva"
+
+#: includes/settings/class-uni-cpo-setting-background-image.php:72
+#: includes/settings/class-uni-cpo-setting-background-image.php:83
+msgid "Repeat"
+msgstr "Opakovat"
+
+#: includes/settings/class-uni-cpo-setting-background-image.php:82
+#: includes/settings/class-uni-cpo-setting-background-image.php:163
+#: includes/settings/class-uni-cpo-setting-background-type.php:26
+#: includes/settings/class-uni-cpo-setting-border-bottom.php:45
+#: includes/settings/class-uni-cpo-setting-border-left.php:45
+#: includes/settings/class-uni-cpo-setting-border-right.php:45
+#: includes/settings/class-uni-cpo-setting-border-top.php:45
+#: includes/settings/class-uni-cpo-setting-float.php:25
+#: includes/settings/class-uni-cpo-setting-font-weight.php:24
+#: includes/settings/class-uni-cpo-setting-sync.php:59
+msgid "None"
+msgstr "None"
+
+#: includes/settings/class-uni-cpo-setting-background-image.php:84
+msgid "Repeat-X"
+msgstr "Opakujte-X"
+
+#: includes/settings/class-uni-cpo-setting-background-image.php:85
+msgid "Repeat-Y"
+msgstr "Opakujte-Y"
+
+#: includes/settings/class-uni-cpo-setting-background-image.php:98
+msgid "Position"
+msgstr "Pozice"
+
+#: includes/settings/class-uni-cpo-setting-background-image.php:108
+msgid "Center Top"
+msgstr "Center Top"
+
+#: includes/settings/class-uni-cpo-setting-background-image.php:109
+msgid "Center Center"
+msgstr "Center Center"
+
+#: includes/settings/class-uni-cpo-setting-background-image.php:110
+msgid "Center Bottom"
+msgstr "Center Bottom"
+
+#: includes/settings/class-uni-cpo-setting-background-image.php:111
+msgid "Left Top"
+msgstr "Left Top"
+
+#: includes/settings/class-uni-cpo-setting-background-image.php:112
+msgid "Left Center"
+msgstr "Left Center"
+
+#: includes/settings/class-uni-cpo-setting-background-image.php:113
+msgid "Left Bottom"
+msgstr "Left Bottom"
+
+#: includes/settings/class-uni-cpo-setting-background-image.php:114
+msgid "Right Top"
+msgstr "Right Top"
+
+#: includes/settings/class-uni-cpo-setting-background-image.php:115
+msgid "Right Center"
+msgstr "Right Center"
+
+#: includes/settings/class-uni-cpo-setting-background-image.php:116
+msgid "Right Bottom"
+msgstr "Right Bottom"
+
+#: includes/settings/class-uni-cpo-setting-background-image.php:129
+msgid "Attachment"
+msgstr "Příloha"
+
+#: includes/settings/class-uni-cpo-setting-background-image.php:139
+msgid "Scroll"
+msgstr "Scroll"
+
+#: includes/settings/class-uni-cpo-setting-background-image.php:153
+msgid "Size"
+msgstr "Velikost"
+
+#: includes/settings/class-uni-cpo-setting-background-image.php:164
+msgid "Contain"
+msgstr "Obsahuje"
+
+#: includes/settings/class-uni-cpo-setting-background-image.php:165
+msgid "Cover"
+msgstr "Zakrýt"
+
+#: includes/settings/class-uni-cpo-setting-border-bottom.php:21
+#: includes/settings/class-uni-cpo-setting-vertical-align.php:26
+msgid "Bottom"
+msgstr "Dno"
+
+#: includes/settings/class-uni-cpo-setting-border-bottom.php:46
+#: includes/settings/class-uni-cpo-setting-border-left.php:46
+#: includes/settings/class-uni-cpo-setting-border-right.php:46
+#: includes/settings/class-uni-cpo-setting-border-top.php:46
+#: includes/settings/class-uni-cpo-setting-divider-style.php:24
+msgid "Solid"
+msgstr "Plný"
+
+#: includes/settings/class-uni-cpo-setting-border-bottom.php:47
+#: includes/settings/class-uni-cpo-setting-border-left.php:47
+#: includes/settings/class-uni-cpo-setting-border-right.php:47
+#: includes/settings/class-uni-cpo-setting-border-top.php:47
+#: includes/settings/class-uni-cpo-setting-divider-style.php:25
+msgid "Dashed"
+msgstr "Čárkovaný"
+
+#: includes/settings/class-uni-cpo-setting-border-bottom.php:48
+#: includes/settings/class-uni-cpo-setting-border-left.php:48
+#: includes/settings/class-uni-cpo-setting-border-right.php:48
+#: includes/settings/class-uni-cpo-setting-border-top.php:48
+#: includes/settings/class-uni-cpo-setting-divider-style.php:26
+msgid "Dotted"
+msgstr "Tečkovaný"
+
+#: includes/settings/class-uni-cpo-setting-border-bottom.php:49
+#: includes/settings/class-uni-cpo-setting-border-left.php:49
+#: includes/settings/class-uni-cpo-setting-border-right.php:49
+#: includes/settings/class-uni-cpo-setting-border-top.php:49
+#: includes/settings/class-uni-cpo-setting-cpo-range-type.php:28
+#: includes/settings/class-uni-cpo-setting-divider-style.php:27
+msgid "Double"
+msgstr "Dvojitý"
+
+#: includes/settings/class-uni-cpo-setting-border-left.php:21
+#: includes/settings/class-uni-cpo-setting-float.php:23
+msgid "Left"
+msgstr "Levý"
+
+#: includes/settings/class-uni-cpo-setting-border-right.php:21
+#: includes/settings/class-uni-cpo-setting-float.php:24
+msgid "Right"
+msgstr "Pravý"
+
+#: includes/settings/class-uni-cpo-setting-border-top.php:21
+#: includes/settings/class-uni-cpo-setting-vertical-align.php:24
+msgid "Top"
+msgstr "Nahoře"
+
+#: includes/settings/class-uni-cpo-setting-class-name.php:21
+msgid "Class"
+msgstr "Class"
+
+#: includes/settings/class-uni-cpo-setting-color-active.php:21
+msgid "Active Color"
+msgstr "Aktivní barva"
+
+#: includes/settings/class-uni-cpo-setting-color-bottom.php:21
+msgid "Color Bottom"
+msgstr "Podkladová barva"
+
+#: includes/settings/class-uni-cpo-setting-color-from.php:21
+msgid "From"
+msgstr "Od"
+
+#: includes/settings/class-uni-cpo-setting-color-to.php:21
+msgid "To"
+msgstr "Do"
+
+#: includes/settings/class-uni-cpo-setting-color-top.php:21
+msgid "Color Top"
+msgstr "Vrchní barva"
+
+#: includes/settings/class-uni-cpo-setting-content-width.php:21
+msgid "Content Width"
+msgstr "Šířka obsahu"
+
+#: includes/settings/class-uni-cpo-setting-content-width.php:25
+msgid "Full Width"
+msgstr "Plná šířka"
+
+#: includes/settings/class-uni-cpo-setting-content.php:21
+msgid "Content"
+msgstr "Obsah"
+
+#: includes/settings/class-uni-cpo-setting-cpo-addtocart-mode.php:21
+msgid "Mode"
+msgstr "Režim"
+
+#: includes/settings/class-uni-cpo-setting-cpo-addtocart-mode.php:23
+msgid ""
+"Choose between using like a regular \"add to cart\" button or specifically "
+"for \"free sample\" functionality (marks cart item as \"sample\")."
+msgstr ""
+"Vyberte si mezi běžným tlačítkem „přidat do košíku“ nebo speciálně pro "
+"funkci „zdarma vzorek“ (označí položku košíku jako „vzorek“)."
+
+#: includes/settings/class-uni-cpo-setting-cpo-addtocart-mode.php:25
+msgid "Regular"
+msgstr "Pravidelný"
+
+#: includes/settings/class-uni-cpo-setting-cpo-addtocart-mode.php:26
+msgid "\"Free sample\""
+msgstr "\"Vzorek zdarma\""
+
+#: includes/settings/class-uni-cpo-setting-cpo-custom-values.php:21
+msgid "Custom values"
+msgstr "Vlastní hodnoty"
+
+#: includes/settings/class-uni-cpo-setting-cpo-custom-values.php:24
+msgid ""
+"A list of comma separated custom values. You must to add at least two "
+"values. Also you can't add comma as last char"
+msgstr ""
+"Seznam vlastních hodnot oddělených čárkami. Musíte přidat alespoň dvě "
+"hodnoty. Jako poslední znak také nemůžete přidat čárku"
+
+#: includes/settings/class-uni-cpo-setting-cpo-custom-values.php:25
+#: includes/settings/class-uni-cpo-setting-cpo-date-rules.php:25
+#: includes/settings/class-uni-cpo-setting-cpo-date-type.php:25
+#: includes/settings/class-uni-cpo-setting-cpo-day-night.php:25
+#: includes/settings/class-uni-cpo-setting-cpo-enable-cartedit.php:25
+#: includes/settings/class-uni-cpo-setting-cpo-order-label.php:25
+#: includes/settings/class-uni-cpo-setting-cpo-order-visibility.php:25
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:25
+#: includes/settings/class-uni-cpo-setting-cpo-range-type.php:25
+#: includes/settings/class-uni-cpo-setting-cpo-rate.php:26
+#: includes/settings/class-uni-cpo-setting-cpo-select-options.php:25
+#: includes/settings/class-uni-cpo-setting-cpo-slug.php:26
+msgid "Important to save to DB if modified"
+msgstr "Důležité je uložit do DB, pokud je změněno"
+
+#: includes/settings/class-uni-cpo-setting-cpo-date-conjunction.php:21
+msgid "Conjunction"
+msgstr "Spojení"
+
+#: includes/settings/class-uni-cpo-setting-cpo-date-conjunction.php:23
+msgid "Customizing the conjunction. Please use this template {#YOUR_SYMBOLS#}"
+msgstr "Přizpůsobení spojení. Použijte tuto šablonu {# TVUJ_SYMBOL #}"
+
+#: includes/settings/class-uni-cpo-setting-cpo-date-max.php:21
+msgid "Maximum date"
+msgstr "Maximální datum"
+
+#: includes/settings/class-uni-cpo-setting-cpo-date-max.php:23
+msgid "Add the maximum/latest date (inclusively) allowed for selection"
+msgstr "Přidejte maximální / poslední datum (včetně) povolené pro výběr"
+
+#: includes/settings/class-uni-cpo-setting-cpo-date-min.php:21
+msgid "Minimum date"
+msgstr "Minimální datum"
+
+#: includes/settings/class-uni-cpo-setting-cpo-date-min.php:23
+msgid "Add the minimum/earliest date (inclusively) allowed for selection"
+msgstr "Přidejte minimální / nejčasnější datum (včetně) povolené pro výběr"
+
+#: includes/settings/class-uni-cpo-setting-cpo-date-rules.php:21
+msgid "Dates based rules"
+msgstr "Pravidla založená na datech"
+
+#: includes/settings/class-uni-cpo-setting-cpo-date-rules.php:24
+msgid ""
+"These rules work in addition to \"Price/Rate\" setting and actually extend "
+"this setting far beyond, make it possible to apply different values based on "
+"dates/dates ranges chosen."
+msgstr ""
+"Tato pravidla fungují vedle nastavení „Cena / sazba“ a toto nastavení ve "
+"skutečnosti rozšiřují mnohem dále, umožňují použít různé hodnoty na základě "
+"zvolených datových / datových rozsahů."
+
+#: includes/settings/class-uni-cpo-setting-cpo-date-type.php:21
+#: includes/settings/class-uni-cpo-setting-cpo-type.php:21
+msgid "Type of field"
+msgstr "Typ pole"
+
+#: includes/settings/class-uni-cpo-setting-cpo-date-type.php:24
+msgid "Choose between \"single\", \"range\" and \"multiple\" datepicker"
+msgstr ""
+"Vyberte si mezi „jednorázovým“, „rozsahem“ a „vícenásobným“ datepickerem"
+
+#: includes/settings/class-uni-cpo-setting-cpo-date-type.php:27
+#: includes/settings/class-uni-cpo-setting-cpo-range-type.php:27
+#: includes/settings/class-uni-cpo-setting-cpo-upload-mode.php:25
+msgid "Single"
+msgstr "Jednorázový"
+
+#: includes/settings/class-uni-cpo-setting-cpo-date-type.php:28
+msgid "Range"
+msgstr "Rozsah"
+
+#: includes/settings/class-uni-cpo-setting-cpo-date-type.php:29
+#: includes/settings/class-uni-cpo-setting-cpo-upload-mode.php:26
+msgid "Multiple"
+msgstr "Vícenásobný"
+
+#: includes/settings/class-uni-cpo-setting-cpo-day-night.php:21
+msgid "Days/Nights mode"
+msgstr "Dny/Noci mód"
+
+#: includes/settings/class-uni-cpo-setting-cpo-day-night.php:24
+msgid "Choose between counting days or nights"
+msgstr "Vyberte si mezi počítáním dnů nebo nocí"
+
+#: includes/settings/class-uni-cpo-setting-cpo-day-night.php:27
+msgid "Nights"
+msgstr "Noci"
+
+#: includes/settings/class-uni-cpo-setting-cpo-day-night.php:28
+msgid "Days"
+msgstr "Dny"
+
+#: includes/settings/class-uni-cpo-setting-cpo-def-val.php:21
+msgid "Default (initial) value"
+msgstr "Výchozí (počáteční) hodnota"
+
+#: includes/settings/class-uni-cpo-setting-cpo-def-val.php:23
+msgid "Add the default value for this field"
+msgstr "Přidejte do tohoto pole výchozí hodnotu"
+
+#: includes/settings/class-uni-cpo-setting-cpo-disabled-dates.php:21
+msgid "Disabled dates"
+msgstr "Vypnuté datumy"
+
+#: includes/settings/class-uni-cpo-setting-cpo-disabled-dates.php:23
+msgid "Comma separated list of disabled dates"
+msgstr "Seznam zakázaných dat oddělených čárkami"
+
+#: includes/settings/class-uni-cpo-setting-cpo-disabled-dates.php:26
+msgid "Select date(s)..."
+msgstr "Vybrat data ..."
+
+#: includes/settings/class-uni-cpo-setting-cpo-enable-cartedit.php:21
+msgid "Enable inline editing in cart?"
+msgstr "Povolit inline editaci v košíku?"
+
+#: includes/settings/class-uni-cpo-setting-cpo-enable-cartedit.php:24
+msgid ""
+"Enables/disables a possibility to edit this option inline in the cart. Such "
+"possibility must also be enabled globally for this product."
+msgstr ""
+"Povoluje / zakazuje možnost úpravy této volby vložené do košíku. Tato "
+"možnost musí být pro tento produkt rovněž povolena globálně."
+
+#: includes/settings/class-uni-cpo-setting-cpo-enable-cartedit.php:27
+#: includes/settings/class-uni-cpo-setting-cpo-is-changeimage.php:25
+#: includes/settings/class-uni-cpo-setting-cpo-is-datepicker-disabled.php:25
+#: includes/settings/class-uni-cpo-setting-cpo-is-fc.php:25
+#: includes/settings/class-uni-cpo-setting-cpo-is-imagify.php:25
+#: includes/settings/class-uni-cpo-setting-cpo-is-required.php:25
+#: includes/settings/class-uni-cpo-setting-cpo-is-resetbutton.php:28
+#: includes/settings/class-uni-cpo-setting-cpo-is-sc.php:25
+#: includes/settings/class-uni-cpo-setting-cpo-is-timepicker.php:25
+#: includes/settings/class-uni-cpo-setting-cpo-is-tooltip.php:25
+#: includes/settings/class-uni-cpo-setting-cpo-is-vc.php:25
+#: includes/settings/class-uni-cpo-setting-cpo-order-visibility.php:27
+#: includes/settings/class-uni-cpo-setting-cpo-range-grid.php:25
+#: includes/settings/class-uni-cpo-setting-cpo-range-input.php:25
+#: includes/settings/class-uni-cpo-setting-cpo-timepicker-type.php:25
+#: includes/settings/class-uni-cpo-setting-rel.php:24
+msgid "No"
+msgstr "Ne"
+
+#: includes/settings/class-uni-cpo-setting-cpo-enable-cartedit.php:28
+#: includes/settings/class-uni-cpo-setting-cpo-is-changeimage.php:26
+#: includes/settings/class-uni-cpo-setting-cpo-is-datepicker-disabled.php:26
+#: includes/settings/class-uni-cpo-setting-cpo-is-fc.php:26
+#: includes/settings/class-uni-cpo-setting-cpo-is-imagify.php:26
+#: includes/settings/class-uni-cpo-setting-cpo-is-required.php:26
+#: includes/settings/class-uni-cpo-setting-cpo-is-resetbutton.php:29
+#: includes/settings/class-uni-cpo-setting-cpo-is-sc.php:26
+#: includes/settings/class-uni-cpo-setting-cpo-is-timepicker.php:26
+#: includes/settings/class-uni-cpo-setting-cpo-is-tooltip.php:26
+#: includes/settings/class-uni-cpo-setting-cpo-is-vc.php:26
+#: includes/settings/class-uni-cpo-setting-cpo-order-visibility.php:28
+#: includes/settings/class-uni-cpo-setting-cpo-range-grid.php:26
+#: includes/settings/class-uni-cpo-setting-cpo-range-input.php:26
+#: includes/settings/class-uni-cpo-setting-cpo-timepicker-type.php:26
+#: includes/settings/class-uni-cpo-setting-rel.php:25
+msgid "Yes"
+msgstr "Ano"
+
+#: includes/settings/class-uni-cpo-setting-cpo-encoded-image.php:21
+msgid "Base64 Encoded Image"
+msgstr "Base64 Encoded Image"
+
+#: includes/settings/class-uni-cpo-setting-cpo-encoded-image.php:23
+msgid ""
+"The code of encoded image. Is used for Colorify functionality. You can use "
+"b64.io web service to perform the encoding."
+msgstr ""
+"Kód zakódovaného obrazu. Používá se pro funkci Colorify. K provedení "
+"kódování můžete použít webovou službu b64.io."
+
+#: includes/settings/class-uni-cpo-setting-cpo-fc-default.php:21
+#: includes/settings/class-uni-cpo-setting-cpo-sc-default.php:21
+msgid "Show or hide by default?"
+msgstr "Zobrazit nebo skrýt ve výchozím nastavení?"
+
+#: includes/settings/class-uni-cpo-setting-cpo-fc-default.php:23
+msgid ""
+"Choose whether this option should be shown or hidden at the beginning,\n"
+"                so its state will be changed to the opposite once the "
+"condition is met."
+msgstr ""
+"Zvolte, zda má být tato možnost na začátku zobrazena nebo skrytá,\n"
+"                jakmile je podmínka splněna, její stav se změní na opačný."
+
+#: includes/settings/class-uni-cpo-setting-cpo-fc-default.php:26
+#: includes/settings/class-uni-cpo-setting-cpo-sc-default.php:26
+msgid "Hide"
+msgstr "Skrýt"
+
+#: includes/settings/class-uni-cpo-setting-cpo-fc-default.php:27
+#: includes/settings/class-uni-cpo-setting-cpo-sc-default.php:27
+msgid "Show"
+msgstr "Zobrazit"
+
+#: includes/settings/class-uni-cpo-setting-cpo-fc-scheme.php:21
+msgid "Field conditional logic builder"
+msgstr "Builder logických podmíněných polí"
+
+#: includes/settings/class-uni-cpo-setting-cpo-geom-checkbox.php:21
+msgid "Style of checkbox input"
+msgstr "Styl zaškrtávacího pole"
+
+#: includes/settings/class-uni-cpo-setting-cpo-geom-checkbox.php:23
+#: includes/settings/class-uni-cpo-setting-cpo-geom-radio.php:23
+msgid "Square"
+msgstr "Čtverec"
+
+#: includes/settings/class-uni-cpo-setting-cpo-geom-checkbox.php:24
+#: includes/settings/class-uni-cpo-setting-cpo-geom-radio.php:24
+msgid "Circle"
+msgstr "Kruh"
+
+#: includes/settings/class-uni-cpo-setting-cpo-geom-radio.php:21
+msgid "Style of radio input"
+msgstr "Styl rádiového vstupu"
+
+#: includes/settings/class-uni-cpo-setting-cpo-is-changeimage.php:21
+msgid "Enable image changing?"
+msgstr "Povolit změnu obrázku?"
+
+#: includes/settings/class-uni-cpo-setting-cpo-is-changeimage.php:23
+msgid ""
+"Enables the functionality of changing of the product main image upon "
+"selection in this option"
+msgstr "Umožňuje výběr hlavního obrázku produktu po výběru v této možnosti"
+
+#: includes/settings/class-uni-cpo-setting-cpo-is-datepicker-disabled.php:21
+msgid "Disable Calendar?"
+msgstr "Zakázat kalendář?"
+
+#: includes/settings/class-uni-cpo-setting-cpo-is-datepicker-disabled.php:23
+msgid "Enables/disables datepicker functionality."
+msgstr "Povolit / zakázat funkčnost výběru datumu."
+
+#: includes/settings/class-uni-cpo-setting-cpo-is-fc.php:21
+#: includes/settings/class-uni-cpo-setting-cpo-is-sc.php:21
+msgid "Enable conditional logic?"
+msgstr "Povolit podmíněnou logiku?"
+
+#: includes/settings/class-uni-cpo-setting-cpo-is-fc.php:23
+#: includes/settings/class-uni-cpo-setting-cpo-is-sc.php:23
+msgid "Enables conditional logic for displaying or hiding this module."
+msgstr "Povoluje podmíněnou logiku pro zobrazení nebo skrytí tohoto modulu."
+
+#: includes/settings/class-uni-cpo-setting-cpo-is-imagify.php:21
+msgid "Use for Imagify?"
+msgstr "Použít pro Imagify?"
+
+#: includes/settings/class-uni-cpo-setting-cpo-is-imagify.php:23
+msgid "Enables using this option in Imagify functionality."
+msgstr "Umožňuje použití této možnosti ve funkci Imagify."
+
+#: includes/settings/class-uni-cpo-setting-cpo-is-required.php:21
+msgid "Required?"
+msgstr "Požadované?"
+
+#: includes/settings/class-uni-cpo-setting-cpo-is-required.php:23
+msgid "Choose whether the user must fill out this field or not."
+msgstr "Zvolte, zda uživatel musí vyplnit toto pole nebo ne."
+
+#: includes/settings/class-uni-cpo-setting-cpo-is-resetbutton.php:21
+msgid "Enable reset button?"
+msgstr "Povolit resetovací tlačítko?"
+
+#: includes/settings/class-uni-cpo-setting-cpo-is-resetbutton.php:23
+msgid "Enabling reset button for this option"
+msgstr "Povolení tlačítka reset pro tuto možnost"
+
+#: includes/settings/class-uni-cpo-setting-cpo-is-timepicker.php:21
+msgid "Enable Timepicker?"
+msgstr "Povolit Timepicker?"
+
+#: includes/settings/class-uni-cpo-setting-cpo-is-timepicker.php:23
+msgid "Enables/disables timepicker functionality."
+msgstr "Povolit / zakázat funkčnost timepickeru."
+
+#: includes/settings/class-uni-cpo-setting-cpo-is-tooltip.php:21
+msgid "Enable tooltip?"
+msgstr "Povolit popisek?"
+
+#: includes/settings/class-uni-cpo-setting-cpo-is-tooltip.php:23
+msgid "Enables/disables displaying of the tooltip"
+msgstr "Povolit / zakázat zobrazování popisku"
+
+#: includes/settings/class-uni-cpo-setting-cpo-is-vc.php:21
+msgid "Enable validation logic?"
+msgstr "Povolit ověřovací logiku?"
+
+#: includes/settings/class-uni-cpo-setting-cpo-is-vc.php:23
+msgid "Enables validation conditional logic for this option."
+msgstr "Povolit pro tuto možnost podmíněnou logiku ověření."
+
+#: includes/settings/class-uni-cpo-setting-cpo-label-tag.php:21
+msgid "Type of tag for label"
+msgstr "Typ značky pro štítek"
+
+#: includes/settings/class-uni-cpo-setting-cpo-label.php:21
+msgid "Label text"
+msgstr "Text popisku"
+
+#: includes/settings/class-uni-cpo-setting-cpo-label.php:23
+msgid ""
+"Custom text that will be used for this field as its title on the product "
+"page and as the cart/order item's option's title. Leave it blank and there "
+"will not be a title for this field and the option's slug will be used as a "
+"title for cart / order item"
+msgstr ""
+"Vlastní text, který bude použit pro toto pole jako jeho název na stránce "
+"produktu a jako název volby položky košíku / objednávky. Ponechte pole "
+"prázdné a pro toto pole nebude nadpis a option's slug bude použit jako "
+"nadpis pro položku košíku / objednávky"
+
+#: includes/settings/class-uni-cpo-setting-cpo-map-center.php:21
+msgid "Map center coordinates"
+msgstr "Souřadnice středu mapy"
+
+#: includes/settings/class-uni-cpo-setting-cpo-map-center.php:23
+msgid "Add coordinates for the center of the map"
+msgstr "Přidejte souřadnice do středu mapy"
+
+#: includes/settings/class-uni-cpo-setting-cpo-map-zoom.php:21
+msgid "Map zoom level"
+msgstr "Úroveň zvětšení mapy"
+
+#: includes/settings/class-uni-cpo-setting-cpo-map-zoom.php:23
+msgid "Add zoom level for the map"
+msgstr "Přidejte úroveň zvětšení mapy"
+
+#: includes/settings/class-uni-cpo-setting-cpo-matrix-data.php:21
+msgid "Matrix data"
+msgstr "Matrix data"
+
+#: includes/settings/class-uni-cpo-setting-cpo-matrix-data.php:42
+msgid "# in cols"
+msgstr "# in cols"
+
+#: includes/settings/class-uni-cpo-setting-cpo-matrix-data.php:43
+msgid "Values in columns. Syntax: \"slug : Name|slug2 : Name2\""
+msgstr "Hodnoty ve sloupcích. Syntaxe: \"slug: Name | slug2: Name2\""
+
+#: includes/settings/class-uni-cpo-setting-cpo-matrix-data.php:56
+msgid "# in rows"
+msgstr "# in rows"
+
+#: includes/settings/class-uni-cpo-setting-cpo-matrix-data.php:57
+msgid "Values in rows. Syntax: \"slug : Name|slug2 : Name2\""
+msgstr "Hodnoty v řádcích. Syntaxe: \"slug: Name | slug2: Name2\""
+
+#: includes/settings/class-uni-cpo-setting-cpo-matrix-data.php:70
+msgid "Template"
+msgstr "Šablona"
+
+#: includes/settings/class-uni-cpo-setting-cpo-matrix-data.php:71
+msgid ""
+"Custom template to output Matrix value. Use &#123;&#123;&#123;row&#125;&#125;"
+"&#125; and &#123;&#123;&#123;col&#125;&#125;&#125; to get names of the row "
+"and the column chosen."
+msgstr ""
+"Vlastní šablona pro výstup hodnoty Matrix. Použijte řádky & # 123; & # 123; "
+"& # 123; & # 125; & # 125; & # 125; a # 123; & # 123; & # 123; col & # 125; "
+"& # 125; & # 125; získat názvy řádků a vybraných sloupců."
+
+#: includes/settings/class-uni-cpo-setting-cpo-max-chars.php:21
+msgid "Max. number of characters"
+msgstr "Max. počet znaků"
+
+#: includes/settings/class-uni-cpo-setting-cpo-max-chars.php:23
+msgid "Add the maximum allowed number of characters for this field."
+msgstr "Přidejte do tohoto pole maximální povolený počet znaků."
+
+#: includes/settings/class-uni-cpo-setting-cpo-max-filesize.php:23
+msgid "This setting overrides similar global setting for this option only."
+msgstr ""
+"Toto nastavení přepíše podobné globální nastavení pouze pro tuto možnost."
+
+#: includes/settings/class-uni-cpo-setting-cpo-max-val.php:21
+msgid "Maximum value"
+msgstr "Maximální hodnota"
+
+#: includes/settings/class-uni-cpo-setting-cpo-max-val.php:23
+msgid ""
+"Add the maximum allowed value for this field. Only integer or float number."
+msgstr ""
+"Přidejte maximální povolenou hodnotu pro toto pole. Pouze celé číslo nebo "
+"plovoucí číslo."
+
+#: includes/settings/class-uni-cpo-setting-cpo-mime-types.php:23
+msgid ""
+"A comma separated list of allowed mime types. This setting overrides similar "
+"global setting for this option only."
+msgstr ""
+"Seznam povolených typů mime odděluje čárkami. Toto nastavení přepíše podobné "
+"globální nastavení pouze pro tuto možnost."
+
+#: includes/settings/class-uni-cpo-setting-cpo-min-chars.php:21
+msgid "Min. number of characters"
+msgstr "Min. počet znaků"
+
+#: includes/settings/class-uni-cpo-setting-cpo-min-chars.php:23
+msgid "Add the minimum allowed number of characters for this field."
+msgstr "Přidejte minimální povolený počet znaků pro toto pole."
+
+#: includes/settings/class-uni-cpo-setting-cpo-min-val.php:21
+msgid "Minimum value"
+msgstr "Minimální hodnota"
+
+#: includes/settings/class-uni-cpo-setting-cpo-min-val.php:23
+msgid ""
+"Add the minimum allowed value for this field. Only integer or float number."
+msgstr ""
+"Přidejte minimální povolenou hodnotu pro toto pole. Pouze celé číslo nebo "
+"plovoucí číslo."
+
+#: includes/settings/class-uni-cpo-setting-cpo-minute-step.php:21
+msgid "Minute increment"
+msgstr "Minutový přírůstek"
+
+#: includes/settings/class-uni-cpo-setting-cpo-minute-step.php:23
+msgid "Adjusts the step for the minute input"
+msgstr "Adjusts the step for the minute input"
+
+#: includes/settings/class-uni-cpo-setting-cpo-mode-checkbox.php:21
+msgid "Type of checkbox input"
+msgstr "Typ vstupu zaškrtávacího políčka"
+
+#: includes/settings/class-uni-cpo-setting-cpo-mode-checkbox.php:23
+#: includes/settings/class-uni-cpo-setting-cpo-mode-radio.php:24
+#: includes/settings/class-uni-cpo-setting-cpo-mode-radio.php:36
+#: includes/settings/class-uni-cpo-setting-cpo-tooltip-type.php:26
+msgid "Classic"
+msgstr "Klasický"
+
+#: includes/settings/class-uni-cpo-setting-cpo-mode-checkbox.php:25
+#: includes/settings/class-uni-cpo-setting-cpo-mode-radio.php:26
+msgid "Colour"
+msgstr "Barva"
+
+#: includes/settings/class-uni-cpo-setting-cpo-mode-checkbox.php:26
+#: includes/settings/class-uni-cpo-setting-cpo-mode-radio.php:27
+msgid "Text"
+msgstr "Text"
+
+#: includes/settings/class-uni-cpo-setting-cpo-mode-radio.php:22
+#: includes/settings/class-uni-cpo-setting-cpo-mode-radio.php:34
+msgid "Type of radio input"
+msgstr "Typ rádiového vstupu"
+
+#: includes/settings/class-uni-cpo-setting-cpo-notice-text.php:21
+msgid "Notice text"
+msgstr "Text upozornění"
+
+#: includes/settings/class-uni-cpo-setting-cpo-notice-text.php:23
+msgid "Custom text for this field. Simple HTML tags can be used here."
+msgstr "Vlastní text pro toto pole. Zde lze použít jednoduché značky HTML."
+
+#: includes/settings/class-uni-cpo-setting-cpo-notice-text.php:50
+msgid "Available variables"
+msgstr "Dostupné proměnné"
+
+#: includes/settings/class-uni-cpo-setting-cpo-order-label.php:21
+msgid "Label text in cart/order meta"
+msgstr "Text popisku v košíku / objednávce meta"
+
+#: includes/settings/class-uni-cpo-setting-cpo-order-label.php:24
+msgid ""
+"Custom text that will be used as a title for this option in cart/order item "
+"meta"
+msgstr ""
+"Vlastní text, který bude použit jako název této možnosti v meta košíku / "
+"objednávce"
+
+#: includes/settings/class-uni-cpo-setting-cpo-order-visibility.php:21
+msgid "Hide meta in cart/order details?"
+msgstr "Skrýt meta v detailech košíku / objednávky?"
+
+#: includes/settings/class-uni-cpo-setting-cpo-order-visibility.php:24
+msgid "Hides this option related meta in cart/order details."
+msgstr "Skryje tato meta související s podrobnostmi o košíku / objednávce."
+
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:21
+#: includes/settings/class-uni-cpo-setting-cpo-select-options.php:21
+msgid "Sub options"
+msgstr "Dílčí možnosti"
+
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:23
+msgid ""
+"Add some sub options for this option and, please, keep unique slugs for "
+"them. These slugs might be used in a formula conditional rules (e.g. when "
+"you use operators \"equal\", \"not equal\" etc)."
+msgstr ""
+"Přidejte pro tuto možnost několik dílčích možností a uchovejte pro ně "
+"jedinečné lugs. Tyto slugs mohou být použity ve vzorcových podmíněných "
+"pravidlech (např. Když použijete operátory „rovné“, „nerovné“ atd.)."
+
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:46
+#: includes/settings/class-uni-cpo-setting-cpo-select-options.php:48
+msgid "Add"
+msgstr "Přidat"
+
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:64
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:258
+#: includes/settings/class-uni-cpo-setting-cpo-select-options.php:66
+#: includes/settings/class-uni-cpo-setting-cpo-select-options.php:168
+msgid "Make default?"
+msgstr "Nastavit jako výchozí?"
+
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:78
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:271
+#: includes/settings/class-uni-cpo-setting-cpo-select-options.php:80
+#: includes/settings/class-uni-cpo-setting-cpo-select-options.php:181
+msgid "Exclude?"
+msgstr "Vyloučit?"
+
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:88
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:281
+msgid "Label"
+msgstr "Popisek"
+
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:107
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:300
+#: includes/settings/class-uni-cpo-setting-cpo-select-options.php:109
+#: includes/settings/class-uni-cpo-setting-cpo-select-options.php:210
+msgid "Value"
+msgstr "Hodnota"
+
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:126
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:319
+msgid "Price / Rate (optional)"
+msgstr "Cena / Hodnota (volitelné)"
+
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:144
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:337
+msgid "CSS Class (optional)"
+msgstr "CSS Class (optional)"
+
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:157
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:348
+msgid "Description (optional)"
+msgstr "Popis (volitelný)"
+
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:170
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:360
+msgid "Colour (optional)"
+msgstr "Barva (volitelná)"
+
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:186
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:376
+msgid ""
+"Optional! Is used as a suboption image as well as can be used as the one "
+"that replaces the main product image"
+msgstr ""
+"Volitelný! Používá se jako suboption image a může být také použit jako ten, "
+"který nahrazuje image hlavního produktu"
+
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:211
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:401
+msgid "Alt Image"
+msgstr "Alt Image"
+
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:212
+#: includes/settings/class-uni-cpo-setting-cpo-radio-options.php:402
+msgid "Optional! Is used ONLY as the one that replaces the main product image"
+msgstr ""
+"Volitelný! Používá se POUZE jako ten, který nahrazuje hlavní obrázek produktu"
+
+#: includes/settings/class-uni-cpo-setting-cpo-range-from.php:21
+msgid "Default from"
+msgstr "Výchozí od"
+
+#: includes/settings/class-uni-cpo-setting-cpo-range-from.php:23
+msgid "Default value on the left"
+msgstr "Výchozí hodnota vlevo"
+
+#: includes/settings/class-uni-cpo-setting-cpo-range-grid.php:21
+msgid "Enable grid?"
+msgstr "Povolit mřížku?"
+
+#: includes/settings/class-uni-cpo-setting-cpo-range-grid.php:23
+msgid "Enables/disables displaying of the numbered grid"
+msgstr "Povoluje / zakazuje zobrazování číslované mřížky"
+
+#: includes/settings/class-uni-cpo-setting-cpo-range-input.php:21
+msgid "Show input?"
+msgstr "Zobrazit vstup?"
+
+#: includes/settings/class-uni-cpo-setting-cpo-range-input.php:23
+msgid "Enables/disables displaying of the text input"
+msgstr "Zapíná / vypíná zobrazování textu"
+
+#: includes/settings/class-uni-cpo-setting-cpo-range-postfix.php:21
+msgid "Postfix"
+msgstr "Postfix"
+
+#: includes/settings/class-uni-cpo-setting-cpo-range-prefix.php:21
+msgid "Prefix"
+msgstr "Prefix"
+
+#: includes/settings/class-uni-cpo-setting-cpo-range-to.php:21
+msgid "Default to"
+msgstr "Výchozí do"
+
+#: includes/settings/class-uni-cpo-setting-cpo-range-to.php:23
+msgid "Default value on the right"
+msgstr "Výchozí hodnota vpravo"
+
+#: includes/settings/class-uni-cpo-setting-cpo-range-type.php:21
+msgid "Type of range slider"
+msgstr "Typ posuvníku rozsahu"
+
+#: includes/settings/class-uni-cpo-setting-cpo-range-type.php:24
+msgid "Choose the type of range slider"
+msgstr "Vyberte typ posuvníku rozsahu"
+
+#: includes/settings/class-uni-cpo-setting-cpo-rate.php:21
+#: includes/settings/class-uni-cpo-setting-cpo-select-options.php:128
+#: includes/settings/class-uni-cpo-setting-cpo-select-options.php:229
+msgid "Price / Rate"
+msgstr "Cena / Sazba"
+
+#: includes/settings/class-uni-cpo-setting-cpo-rate.php:24
+msgid ""
+"Enter the price (or rate) for this field. This value can be used in a "
+"formula. \n"
+"                Or leave it blank if you need just an information added by "
+"the user."
+msgstr ""
+"Zadejte cenu (nebo sazbu) pro toto pole. Tuto hodnotu lze použít ve vzorci.\n"
+"                Nebo ji nechte prázdnou, pokud potřebujete pouze informace "
+"přidané uživatelem."
+
+#: includes/settings/class-uni-cpo-setting-cpo-resetbutton-text.php:21
+msgid "Reset button text"
+msgstr "Resetování textu tlačítka"
+
+#: includes/settings/class-uni-cpo-setting-cpo-resetbutton-text.php:23
+msgid "Custom text for reset button"
+msgstr "Vlastní text pro tlačítko reset"
+
+#: includes/settings/class-uni-cpo-setting-cpo-samples-mode.php:21
+msgid "\"Free sample\" Mode"
+msgstr "Režim „vzorek zdarma“"
+
+#: includes/settings/class-uni-cpo-setting-cpo-samples-mode.php:23
+msgid ""
+"Choose between adding \"sample\" with calculated price or set its price to "
+"zero regarding price calculation rules."
+msgstr ""
+"Vyberte si mezi přidáním „vzorku“ s vypočtenou cenou nebo nastavením jeho "
+"ceny na nulu, pokud jde o pravidla pro výpočet ceny."
+
+#: includes/settings/class-uni-cpo-setting-cpo-samples-mode.php:25
+msgid "Calc price"
+msgstr "Vypočítat cenu"
+
+#: includes/settings/class-uni-cpo-setting-cpo-samples-mode.php:26
+msgid "Zero price"
+msgstr "Nulová cena"
+
+#: includes/settings/class-uni-cpo-setting-cpo-sc-default.php:23
+msgid ""
+"Choose whether these suboptions should be shown or hidden at the beginning,\n"
+"                so its state will be changed to the opposite once the "
+"condition is met."
+msgstr ""
+"Zvolte, zda mají být tyto suboptions zobrazeny nebo skryty na začátku,\n"
+"                jakmile je podmínka splněna, její stav se změní na opačný."
+
+#: includes/settings/class-uni-cpo-setting-cpo-sc-scheme.php:21
+msgid "Suboptions conditional rules"
+msgstr "Podmíněná pravidla pro suboption"
+
+#: includes/settings/class-uni-cpo-setting-cpo-sc-scheme.php:23
+msgid "Conditionally displaying suboptions"
+msgstr "Podmíněně se zobrazují suboptions"
+
+#: includes/settings/class-uni-cpo-setting-cpo-sc-scheme.php:88
+#: includes/settings/class-uni-cpo-setting-cpo-sc-scheme.php:138
+msgid ""
+"It seems this option is not saved to DB/does not have slug/suboptions yet"
+msgstr ""
+"Zdá se, že tato volba není uložena do DB / zatím nemá slug / suboptions"
+
+#: includes/settings/class-uni-cpo-setting-cpo-select-options.php:23
+msgid ""
+"Add some sub options for select and, please, keep unique slugs for them. "
+"These slugs might be used in a formula conditional rules (e.g. when you use "
+"operators \"equal\", \"not equal\" etc)."
+msgstr ""
+"Přidejte několik dílčích možností pro výběr a, prosím, uchovejte pro ně "
+"jedinečné slugs. Tyto slugs mohou být použity ve vzorcových podmíněných "
+"pravidlech (např. Když použijete operátory „rovné“, „nerovné“ atd.)."
+
+#: includes/settings/class-uni-cpo-setting-cpo-select-options.php:90
+#: includes/settings/class-uni-cpo-setting-cpo-select-options.php:191
+msgid "Title"
+msgstr "Nadpis"
+
+#: includes/settings/class-uni-cpo-setting-cpo-slug.php:21
+msgid "Field slug"
+msgstr "Slug pole"
+
+#: includes/settings/class-uni-cpo-setting-cpo-slug.php:25
+msgid ""
+"Enter a unique slug name for this field (only lowercase latin letters, "
+"digits and underscore!). This will be used as a name of the formula variable "
+"connected with this field!"
+msgstr ""
+"Do tohoto pole zadejte jedinečný název slug (pouze malá písmena latinky, "
+"číslice a podtržítko!). Toto bude použito jako jméno proměnné vzorce spojené "
+"s tímto polem!"
+
+#: includes/settings/class-uni-cpo-setting-cpo-step-val.php:21
+msgid "Step value"
+msgstr "Kroková hodnota"
+
+#: includes/settings/class-uni-cpo-setting-cpo-step-val.php:23
+msgid "Add the step value for this field. Only integer or float number."
+msgstr ""
+"Přidejte hodnotu kroku pro toto pole. Pouze celé číslo nebo plovoucí číslo."
+
+#: includes/settings/class-uni-cpo-setting-cpo-time-max.php:21
+msgid "Maximum time"
+msgstr "Maximální čas"
+
+#: includes/settings/class-uni-cpo-setting-cpo-time-max.php:23
+msgid ""
+"Add the maximum/latest time (inclusively) allowed for selection. You can use "
+"only 24-h format. For example: 09:00 or 19:00."
+msgstr ""
+"Přidejte maximální / poslední čas (včetně) povolený pro výběr. Můžete použít "
+"pouze formát 24 hodin. Například: 09:00 nebo 19:00."
+
+#: includes/settings/class-uni-cpo-setting-cpo-time-min.php:21
+msgid "Minimum time"
+msgstr "Minimální čas"
+
+#: includes/settings/class-uni-cpo-setting-cpo-time-min.php:23
+msgid ""
+"Add the minimum/earliest time (inclusively) allowed for selection. You can "
+"use only 24-h format. For example: 09:00 or 19:00."
+msgstr ""
+"Přidejte minimální / nejčasnější čas (včetně) povolený pro výběr. Můžete "
+"použít pouze formát 24 hodin. Například: 09:00 nebo 19:00."
+
+#: includes/settings/class-uni-cpo-setting-cpo-timepicker-type.php:21
+msgid "24-hour Time Picker?"
+msgstr "24-hodin Time Picker?"
+
+#: includes/settings/class-uni-cpo-setting-cpo-timepicker-type.php:23
+msgid "Enables/disables calendar functionality."
+msgstr "Povoluje / zakazuje funkčnost kalendáře."
+
+#: includes/settings/class-uni-cpo-setting-cpo-tooltip-class.php:21
+msgid "Class name"
+msgstr "Class name"
+
+#: includes/settings/class-uni-cpo-setting-cpo-tooltip-class.php:23
+msgid "Extra selector from Popup Maker"
+msgstr "Extra selektor od Popup Maker"
+
+#: includes/settings/class-uni-cpo-setting-cpo-tooltip-image.php:21
+msgid "Tooltip Image"
+msgstr "Tooltip Image"
+
+#: includes/settings/class-uni-cpo-setting-cpo-tooltip-type.php:21
+msgid "Type of tooltip"
+msgstr "Typ tooltipu"
+
+#: includes/settings/class-uni-cpo-setting-cpo-tooltip-type.php:27
+msgid "Lightbox"
+msgstr "Lightbox"
+
+#: includes/settings/class-uni-cpo-setting-cpo-tooltip-type.php:28
+msgid "Popup Maker"
+msgstr "Popup Maker"
+
+#: includes/settings/class-uni-cpo-setting-cpo-tooltip.php:21
+msgid "Text for tooltip"
+msgstr "Text pro tooltip"
+
+#: includes/settings/class-uni-cpo-setting-cpo-tooltip.php:23
+msgid "Custom text that will be used in tooltip."
+msgstr "Vlastní text, který bude použit v popisu."
+
+#: includes/settings/class-uni-cpo-setting-cpo-type.php:23
+msgid ""
+"Choose the type based on type of data you are expecting from users. For "
+"instance, \n"
+"                if you expect some text or don't mind about type of data at "
+"all, choose type \"string\"."
+msgstr ""
+"Vyberte typ na základě typu dat, která od uživatelů očekáváte. Například,\n"
+"                Pokud očekáváte nějaký text nebo vám vůbec nevadí typ dat, "
+"zvolte typ „řetězec“."
+
+#: includes/settings/class-uni-cpo-setting-cpo-type.php:26
+msgid "String"
+msgstr "Řetězec"
+
+#: includes/settings/class-uni-cpo-setting-cpo-type.php:27
+msgid "Integer"
+msgstr "Integer"
+
+#: includes/settings/class-uni-cpo-setting-cpo-type.php:28
+msgid "Decimals"
+msgstr "Desetinná čísla"
+
+#: includes/settings/class-uni-cpo-setting-cpo-upload-mode.php:21
+msgid "Uploading mode"
+msgstr "Režim nahrávání"
+
+#: includes/settings/class-uni-cpo-setting-cpo-upload-mode.php:23
+msgid ""
+"Choose whether it will be possible to upload only one file per option or "
+"many."
+msgstr ""
+"Vyberte, zda bude možné nahrát pouze jeden soubor na jednu nebo více "
+"možností."
+
+#: includes/settings/class-uni-cpo-setting-cpo-validation-msg.php:21
+msgid "Custom validation messages"
+msgstr "Vlastní ověřovací zprávy"
+
+#: includes/settings/class-uni-cpo-setting-cpo-validation-msg.php:23
+msgid ""
+"Enables an opportunity to set custom validation message for certain "
+"validation event. In case of the last field the format is: \"data-parsley-"
+"`constraint`-message=\"my msg\""
+msgstr ""
+"Umožňuje nastavit vlastní zprávu o ověření pro určitou událost ověření. V "
+"případě posledního pole je formát: \"data-parsley-`constraint`-message =\" "
+"my msg \""
+
+#: includes/settings/class-uni-cpo-setting-cpo-validation-msg.php:46
+msgid "when is required"
+msgstr "kdy je třeba"
+
+#: includes/settings/class-uni-cpo-setting-cpo-validation-msg.php:56
+msgid "when type is invalid"
+msgstr "když je typ neplatný"
+
+#: includes/settings/class-uni-cpo-setting-cpo-validation-msg.php:66
+msgid "for any custom validation"
+msgstr "pro jakékoli vlastní ověření"
+
+#: includes/settings/class-uni-cpo-setting-cpo-vc-extra.php:21
+msgid "Extra validation rules"
+msgstr "Extra validační pravidla"
+
+#: includes/settings/class-uni-cpo-setting-cpo-vc-extra.php:23
+msgid "Add new validation rules for this option"
+msgstr "Přidejte nová ověřovací pravidla pro tuto možnost"
+
+#: includes/settings/class-uni-cpo-setting-cpo-vc-scheme.php:21
+msgid "Conditional validation scheme"
+msgstr "Schéma podmíněného ověřování"
+
+#: includes/settings/class-uni-cpo-setting-float.php:21
+msgid "Float"
+msgstr "Float"
+
+#: includes/settings/class-uni-cpo-setting-font-family.php:21
+msgid "Font Family"
+msgstr "Font Family"
+
+#: includes/settings/class-uni-cpo-setting-font-family.php:25
+msgid "Helvetica"
+msgstr "Helvetica"
+
+#: includes/settings/class-uni-cpo-setting-font-family.php:26
+msgid "Verdana"
+msgstr "Verdana"
+
+#: includes/settings/class-uni-cpo-setting-font-family.php:27
+msgid "Arial"
+msgstr "Arial"
+
+#: includes/settings/class-uni-cpo-setting-font-family.php:28
+msgid "Georgia"
+msgstr "Georgia"
+
+#: includes/settings/class-uni-cpo-setting-font-family.php:29
+msgid "Courier"
+msgstr "Courier"
+
+#: includes/settings/class-uni-cpo-setting-font-size-desc.php:21
+#: includes/settings/class-uni-cpo-setting-font-size-label.php:21
+#: includes/settings/class-uni-cpo-setting-font-size-px.php:21
+#: includes/settings/class-uni-cpo-setting-font-size.php:21
+msgid "Font Size"
+msgstr "Font Size"
+
+#: includes/settings/class-uni-cpo-setting-font-style.php:21
+msgid "Font Style"
+msgstr "Font Style"
+
+#: includes/settings/class-uni-cpo-setting-font-style.php:25
+msgid "Normal"
+msgstr "Normal"
+
+#: includes/settings/class-uni-cpo-setting-font-style.php:26
+msgid "Italic"
+msgstr "Italic"
+
+#: includes/settings/class-uni-cpo-setting-font-weight.php:21
+msgid "Font Weight"
+msgstr "Font Weight"
+
+#: includes/settings/class-uni-cpo-setting-font-weight.php:25
+msgid "Light 300"
+msgstr "Light 300"
+
+#: includes/settings/class-uni-cpo-setting-font-weight.php:26
+msgid "Normal 400"
+msgstr "Normal 400"
+
+#: includes/settings/class-uni-cpo-setting-font-weight.php:27
+msgid "Semi-Bold 600"
+msgstr "Semi-Bold 600"
+
+#: includes/settings/class-uni-cpo-setting-font-weight.php:28
+msgid "Bold 700"
+msgstr "Bold 700"
+
+#: includes/settings/class-uni-cpo-setting-font-weight.php:29
+msgid "Extra-Bold 800"
+msgstr "Extra-Bold 800"
+
+#: includes/settings/class-uni-cpo-setting-gap-px.php:21
+msgid "Space Between"
+msgstr "Space Between"
+
+#: includes/settings/class-uni-cpo-setting-height-type.php:21
+msgid "Height Type"
+msgstr "Height Type"
+
+#: includes/settings/class-uni-cpo-setting-height-type.php:26
+#: includes/settings/class-uni-cpo-setting-width-type.php:27
+msgid "Auto"
+msgstr "Auto"
+
+#: includes/settings/class-uni-cpo-setting-height-type.php:27
+msgid "Full Height"
+msgstr "Full Height"
+
+#: includes/settings/class-uni-cpo-setting-height-type.php:28
+#: includes/settings/class-uni-cpo-setting-width-type.php:28
+msgid "Custom"
+msgstr "Custom"
+
+#: includes/settings/class-uni-cpo-setting-href.php:21
+msgid "URL"
+msgstr "URL"
+
+#: includes/settings/class-uni-cpo-setting-id-name.php:21
+msgid "ID"
+msgstr "ID"
+
+#: includes/settings/class-uni-cpo-setting-letter-spacing.php:21
+msgid "Letter Spacing"
+msgstr "Letter Spacing"
+
+#: includes/settings/class-uni-cpo-setting-line-height.php:21
+msgid "Line Height"
+msgstr "Line Height"
+
+#: includes/settings/class-uni-cpo-setting-margin.php:22
+msgid "Margins"
+msgstr "Okraje"
+
+#: includes/settings/class-uni-cpo-setting-offset-px.php:21
+msgid "Offset"
+msgstr "Odsazení"
+
+#: includes/settings/class-uni-cpo-setting-padding.php:22
+msgid "Paddings"
+msgstr "Paddings"
+
+#: includes/settings/class-uni-cpo-setting-radius.php:21
+msgid "Radius"
+msgstr "Radius"
+
+#: includes/settings/class-uni-cpo-setting-rel.php:21
+msgid "Link No Follow"
+msgstr "Link No Follow"
+
+#: includes/settings/class-uni-cpo-setting-sync.php:43
+msgid "Synced, ID#{{- data.pid }}"
+msgstr "Synced, ID#{{- data.pid }}"
+
+#: includes/settings/class-uni-cpo-setting-sync.php:47
+msgid "Unsync"
+msgstr "Unsync"
+
+#: includes/settings/class-uni-cpo-setting-sync.php:51
+msgid "Not synced"
+msgstr "Not synced"
+
+#: includes/settings/class-uni-cpo-setting-sync.php:60
+msgid "Connect"
+msgstr "Connect"
+
+#: includes/settings/class-uni-cpo-setting-sync.php:88
+msgid "Save data"
+msgstr "Save data"
+
+#: includes/settings/class-uni-cpo-setting-target.php:21
+msgid "Link Target"
+msgstr "Link Target"
+
+#: includes/settings/class-uni-cpo-setting-target.php:24
+msgid "New Window"
+msgstr "Nové okno"
+
+#: includes/settings/class-uni-cpo-setting-target.php:25
+msgid "Same Window"
+msgstr "Stejné okno"
+
+#: includes/settings/class-uni-cpo-setting-text-align-label.php:21
+#: includes/settings/class-uni-cpo-setting-text-align.php:21
+msgid "Text Align"
+msgstr "Zarovnání textu"
+
+#: includes/settings/class-uni-cpo-setting-vertical-align.php:21
+msgid "Vertical Align"
+msgstr "Vertical zarovnání"
+
+#: includes/settings/class-uni-cpo-setting-vertical-align.php:25
+msgid "Center"
+msgstr "Center"
+
+#: includes/settings/class-uni-cpo-setting-width-type.php:21
+msgid "Width Type"
+msgstr "Width Type"
+
+#: includes/uni-cpo-core-functions.php:949
+#, php-format
+msgid "%1$s(Saved %2$s%%!)%3$s"
+msgstr "%1$s(Saved %2$s%%!)%3$s"
+
+#: includes/uni-cpo-core-functions.php:952
+msgid "%1$s(Saved %2$s%!)%3$s"
+msgstr "%1$s(Saved %2$s%!)%3$s"
+
+#: includes/uni-cpo-core-functions.php:1040
+msgid "Select options"
+msgstr "Vyberte možnosti"
+
+#: includes/uni-cpo-core-functions.php:1108
+msgid "Calculate"
+msgstr "Vypočítat"
+
+#: includes/uni-cpo-core-functions.php:1125
+msgid "Reset form"
+msgstr "Resetovat formulář"
+
+#: includes/uni-cpo-core-functions.php:1556
+msgid "View cart"
+msgstr "Prohlédnout košík"
+
+#: includes/uni-cpo-core-functions.php:2079
+msgid "Item"
+msgstr "Položka"
+
+#: includes/uni-cpo-core-functions.php:2081
+#, php-format
+msgid "%s duplicated."
+msgstr "%s duplicated."
+
+#: includes/uni-cpo-core-functions.php:2305
+msgid "Add/Edit CPO option(s)"
+msgstr "Přidej/uprav CPO možnosti"
+
+#: includes/uni-cpo-functions.php:324
+msgid "Edit"
+msgstr "Upravit"
+
+#: includes/uni-cpo-functions.php:329
+msgid "Edit (inline)"
+msgstr "Upravit (inline)"
+
+#: uni-cpo.php:171
+#, php-format
+msgid "Uni CPO requires PHP version %s+. It is activated but NOT FUNCTIONAL!"
+msgstr "Uni CPO vyžaduje PHP verzi% s +. Je aktivován, ale NENÍ FUNKČNÍ!"
+
+#: uni-cpo.php:183
+#, php-format
+msgid ""
+"Uni CPO requires WordPress version %s+. It is activated but NOT FUNCTIONAL!"
+msgstr "Uni CPO vyžaduje verzi WordPress% s +. Je aktivován, ale NENÍ FUNKČNÍ!"
+
+#: uni-cpo.php:195
+#, php-format
+msgid ""
+"Uni CPO requires WooCommerce version %s+. It is activated but NOT FUNCTIONAL"
+msgstr ""
+"Uni CPO requires WooCommerce version %s+. It is activated but NOT FUNCTIONAL"

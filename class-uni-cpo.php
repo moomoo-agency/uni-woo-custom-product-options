@@ -13,7 +13,7 @@ final class Uni_Cpo
      *
      * @var string
      */
-    public  $version = '4.5.2' ;
+    public  $version = '4.6.8' ;
     /**
      * The single instance of the class.
      *
@@ -510,6 +510,21 @@ final class Uni_Cpo
                 UNI_CPO_VERSION,
                 'all'
             );
+        } elseif ( in_array( $screen_id, array( 'woocommerce_page_uni-cpo-import-export', 'woocommerce_page_uni-cpo-settings' ) ) ) {
+            wp_enqueue_style(
+                'uni-cpo-styles-settings',
+                $this->plugin_url() . '/assets/css/admin-settings.css',
+                false,
+                UNI_CPO_VERSION,
+                'all'
+            );
+            wp_register_script(
+                'uni-cpo-scripts-settings',
+                $this->plugin_url() . '/assets/js/admin-settings.js',
+                array( 'jquery' ),
+                UNI_CPO_VERSION
+            );
+            wp_enqueue_script( 'uni-cpo-scripts-settings' );
         } elseif ( in_array( $screen_id, array( 'woocommerce_page_uni-cpo-settings' ) ) ) {
             wp_enqueue_style( 'farbtastic' );
             wp_enqueue_script( 'farbtastic' );
@@ -572,6 +587,7 @@ final class Uni_Cpo
             'product_image_size'           => 'woocommerce_single',
             'product_thumbnails_container' => 'ol.flex-control-thumbs',
             'gmap_api_key'                 => '',
+            'csv_delimiter'                => ';',
             'display_weight_in_cart'       => '',
             'display_dimensions_in_cart'   => '',
             'range_slider_style'           => 'html5',

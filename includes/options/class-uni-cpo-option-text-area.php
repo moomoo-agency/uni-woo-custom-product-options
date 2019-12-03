@@ -529,6 +529,7 @@ class Uni_Cpo_Option_Text_Area extends Uni_Cpo_Option implements Uni_Cpo_Option_
 			$input_css_class[]           = 'uni-cpo-excluded-field';
 		}
 
+		$wrapper_attributes = apply_filters( 'uni_wrapper_attributes_for_option', $wrapper_attributes, $slug, $id );
 		$default_value = ( ! empty( $post_data ) && ! empty( $slug ) && ! empty( $post_data[$slug] ) )
 			? $post_data[$slug]
 			: $cpo_general_main['cpo_def_val'];

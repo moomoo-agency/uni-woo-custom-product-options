@@ -796,6 +796,12 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
         }
         
         $default_value = ( !empty($post_data) && !empty($slug) && !empty($post_data[$slug]) ? $post_data[$slug] : '' );
+        $wrapper_attributes = apply_filters(
+            'uni_wrapper_attributes_for_option',
+            $wrapper_attributes,
+            $slug,
+            $id
+        );
         $suboption_classes_default = array( 'uni-cpo-option-label', 'uni-cpo-radio-option-label' );
         ?>
     <div
@@ -879,6 +885,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
         
         ?>
 		<?php 
+        $selected_chosen = false;
         foreach ( $suboptions as $suboption ) {
             if ( isset( $suboption['excl'] ) && !empty($suboption['excl']) ) {
                 continue;
@@ -891,10 +898,16 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
             }
             array_push( $suboption_classes, 'uni-node-' . $id . '-cpo-option-label-' . $suboption['slug'] );
             
-            if ( !empty($default_value) && $suboption['slug'] === $default_value ) {
+            if ( !$selected_chosen && !empty($default_value) && $suboption['slug'] === $default_value ) {
                 $attributes_new['checked'] = 'checked';
-            } elseif ( $suboption['def'] === 'checked' ) {
-                $attributes_new['checked'] = 'checked';
+                $selected_chosen = true;
+            } else {
+                
+                if ( !$selected_chosen && empty($default_value) && $suboption['def'] === 'checked' ) {
+                    $attributes_new['checked'] = 'checked';
+                    $selected_chosen = true;
+                }
+            
             }
             
             ?>
