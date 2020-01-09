@@ -1094,7 +1094,7 @@ add_filter(
     'woocommerce_add_cart_item_data',
     'uni_cpo_add_cart_item_data',
     10,
-    4
+    2
 );
 add_filter(
     'woocommerce_get_cart_item_from_session',
@@ -1130,15 +1130,27 @@ add_action(
     4
 );
 // adds custom option data to the cart
-function uni_cpo_add_cart_item_data(
-    $cart_item_data,
-    $product_id,
-    $variation_id,
-    $quantity = null
-)
+function uni_cpo_add_cart_item_data( $cart_item_data, $product_id )
 {
     try {
         $product_data = Uni_Cpo_Product::get_product_data_by_id( $product_id );
+        // YITH bundle products compatibility start
+        
+        if ( 'on' !== $product_data['settings_data']['cpo_enable'] ) {
+            $product = wc_get_product( $product_id );
+            $add_cart_item_data_check = $product->is_type( 'yith_bundle' ) && (!isset( $cart_item_data['cartstamp'] ) || !isset( $cart_item_data['bundled_items'] ));
+            $add_cart_item_data_check = apply_filters(
+                'yith_wcpb_add_cart_item_data_check',
+                $add_cart_item_data_check,
+                $cart_item_data,
+                $product_id
+            );
+            if ( !$add_cart_item_data_check ) {
+                return $cart_item_data;
+            }
+        }
+        
+        // YITH bundle products compatibility end
         $qty_field_slug = $product_data['settings_data']['qty_field'];
         
         if ( !empty($cart_item_data) ) {
@@ -1151,6 +1163,7 @@ function uni_cpo_add_cart_item_data(
         
         
         if ( 'on' === $product_data['settings_data']['cpo_enable'] ) {
+            print_r( $product_data['settings_data']['cpo_enable'] );
             $cart_item_data['_cpo_calc_option'] = ( 'on' === $product_data['settings_data']['calc_enable'] ? true : false );
             $cart_item_data['_cpo_cart_item_id'] = ( !empty($form_data['cpo_cart_item_id']) ? $form_data['cpo_cart_item_id'] : '' );
             $cart_item_data['_cpo_product_image'] = ( !empty($form_data['cpo_product_image']) ? $form_data['cpo_product_image'] : '' );

@@ -444,8 +444,8 @@ final class Uni_Cpo_Product {
                             }
 
 							$output = '$(document.body).on(\'change\', \'[id*="' . $newField . '-field"]\', function (){' . "\n";
-							$output .= 'let fields = window.UniCpo.collectData(false);' . "\n";
 							$output .= 'const interval = setInterval(function () {' . "\n";
+                            $output .= 'let fields = window.UniCpo.collectData(false);' . "\n";
 							$output .= 'change_main_image_func(fields);' . "\n";
 							$output .= 'clearInterval(interval);' . "\n";
 							$output .= '}, "'.$field.'".includes("_from") ? 0 : "'.$field.'".includes("_to") ? 0 : 200);' . "\n";
@@ -459,7 +459,7 @@ final class Uni_Cpo_Product {
                         });
 
                         function change_main_image_func (formData) {
-							<?php echo $final_statement; ?>
+                            <?php echo $final_statement; ?>
                         }
                     });
 				</script>

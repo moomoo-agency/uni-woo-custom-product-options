@@ -2,7 +2,7 @@
 Contributors: moomooagency, mrpsiho, andriimatenka, freemius
 Tags: custom options, extra options, product visual builder, woocommerce plugins, price calculation, maths formula, conditional logic, wholesale
 Requires at least: 4.8
-Tested up to: 5.3.0
+Tested up to: 5.3.1
 Requires PHP: 7.0
 WC requires at least: 3.5.0
 WC tested up to: 3.8.1
@@ -99,6 +99,15 @@ A: We wouldn't recommend to do this yet. First, this version is so called 'lite'
 7. screenshot-7.png
 
 == Changelog ==
+
+= 4.6.11 =
+* Fixed: a bug in "Imagify" functionality for mobile devices
+* Fixed: a warning appearing in the cart related to pitchprint integration code
+
+= 4.6.10 =
+* Fixed: a bug when pitchprint cart item's preview was not displaying
+* Fixed: a bug in "Image Conditional Logic" functionality
+* Improved: now files of added to cart items are cleared from the form on the product page
 
 = 4.6.8 =
 * Fixed: a bug in NOV matrix functionality
