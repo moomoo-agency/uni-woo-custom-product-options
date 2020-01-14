@@ -2,7 +2,7 @@
 Contributors: moomooagency, mrpsiho, andriimatenka, freemius
 Tags: custom options, extra options, product visual builder, woocommerce plugins, price calculation, maths formula, conditional logic, wholesale
 Requires at least: 4.8
-Tested up to: 5.3.1
+Tested up to: 5.3.2
 Requires PHP: 7.0
 WC requires at least: 3.5.0
 WC tested up to: 3.8.1
@@ -99,6 +99,9 @@ A: We wouldn't recommend to do this yet. First, this version is so called 'lite'
 7. screenshot-7.png
 
 == Changelog ==
+
+= 4.6.12 =
+* Fixed: a bug related to 'order again' pro functionality
 
 = 4.6.11 =
 * Fixed: a bug in "Imagify" functionality for mobile devices

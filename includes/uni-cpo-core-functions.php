@@ -1153,17 +1153,14 @@ function uni_cpo_add_cart_item_data( $cart_item_data, $product_id )
         // YITH bundle products compatibility end
         $qty_field_slug = $product_data['settings_data']['qty_field'];
         
-        if ( !empty($cart_item_data) ) {
-            // is used when 'order again' has been initiated
-            $form_data = $cart_item_data;
-            $cart_item_data = array();
+        if ( isset( $_POST['action'] ) && $_POST['action'] === 'uni_cpo_add_to_cart' ) {
+            $form_data = wc_clean( $_POST['data'] );
         } else {
             $form_data = wc_clean( $_POST );
         }
         
         
         if ( 'on' === $product_data['settings_data']['cpo_enable'] ) {
-            print_r( $product_data['settings_data']['cpo_enable'] );
             $cart_item_data['_cpo_calc_option'] = ( 'on' === $product_data['settings_data']['calc_enable'] ? true : false );
             $cart_item_data['_cpo_cart_item_id'] = ( !empty($form_data['cpo_cart_item_id']) ? $form_data['cpo_cart_item_id'] : '' );
             $cart_item_data['_cpo_product_image'] = ( !empty($form_data['cpo_product_image']) ? $form_data['cpo_product_image'] : '' );
@@ -1499,44 +1496,63 @@ add_filter(
     'woocommerce_order_again_cart_item_data',
     'uni_cpo_woocommerce_order_again_cart_item_data',
     10,
-    2
+    3
 );
-function uni_cpo_woocommerce_order_again_cart_item_data( $cart_item_meta, $item )
+function uni_cpo_woocommerce_order_again_cart_item_data( $cart_item_meta, $item, $order )
 {
-    return uni_cpo_re_add_cpo_item_data( $cart_item_meta, $item->get_meta_data() );
+    $product_id = $item->get_product_id();
+    $product_data = Uni_Cpo_Product::get_product_data_by_id( $product_id );
+    return uni_cpo_re_add_cpo_item_data( $cart_item_meta, $item->get_meta_data(), $product_data );
 }
 
 //
-function uni_cpo_re_add_cpo_item_data( $item_data, $raw_data )
+function uni_cpo_re_add_cpo_item_data( $item_data, $raw_data, $product_data )
 {
-    $item_data['cpo_cart_item_id'] = current_time( 'timestamp' );
-    $item_data['cpo_product_image'] = ( isset( $raw_data['_cpo_product_image'] ) ? $raw_data['_cpo_product_image'] : '' );
-    unset( $item_data['cpo_price'] );
-    if ( is_array( $raw_data ) ) {
-        foreach ( $raw_data as $k => $v ) {
-            
-            if ( is_array( $v ) ) {
+    
+    if ( 'on' === $product_data['settings_data']['cpo_enable'] ) {
+        $item_data['_cpo_calc_option'] = ( 'on' === $product_data['settings_data']['calc_enable'] ? true : false );
+        $item_data['cpo_cart_item_id'] = current_time( 'timestamp' );
+        $item_data['cpo_product_image'] = ( isset( $raw_data['_cpo_product_image'] ) ? $raw_data['_cpo_product_image'] : '' );
+        unset( $item_data['cpo_price'] );
+        if ( is_array( $raw_data ) ) {
+            foreach ( $raw_data as $k => $v ) {
                 
-                if ( false !== strpos( $k, '_cpo' ) ) {
-                    $meta_key_new = ltrim( $k, '_' );
-                    $item_data[$meta_key_new] = $v;
+                if ( is_array( $v ) ) {
+                    
+                    if ( false !== strpos( $k, '_cpo' ) ) {
+                        $meta_key_new = ltrim( $k, '_' );
+                        
+                        if ( false !== strpos( $k, 'uni_cpo' ) ) {
+                            $item_data['_cpo_data'][$meta_key_new] = $v;
+                        } else {
+                            $item_data[$meta_key_new] = $v;
+                        }
+                    
+                    }
+                
+                } elseif ( is_a( $v, 'WC_Meta_Data' ) ) {
+                    $meta_data = $v->get_data();
+                    
+                    if ( false !== strpos( $meta_data['key'], '_cpo' ) ) {
+                        $meta_key_new = ltrim( $meta_data['key'], '_' );
+                        
+                        if ( false !== strpos( $meta_data['key'], 'uni_cpo' ) ) {
+                            $item_data['_cpo_data'][$meta_key_new] = $meta_data['value'];
+                        } else {
+                            $item_data[$meta_key_new] = $meta_data['value'];
+                        }
+                    
+                    }
+                    
+                    if ( '_uni_custom_item_image' === $meta_data['key'] ) {
+                        $item_data['cpo_product_image'] = $meta_data['value'];
+                    }
                 }
             
-            } elseif ( is_a( $v, 'WC_Meta_Data' ) ) {
-                $meta_data = $v->get_data();
-                
-                if ( false !== strpos( $meta_data['key'], '_cpo' ) ) {
-                    $meta_key_new = ltrim( $meta_data['key'], '_' );
-                    $item_data[$meta_key_new] = $meta_data['value'];
-                }
-                
-                if ( '_uni_custom_item_image' === $meta_data['key'] ) {
-                    $item_data['cpo_product_image'] = $meta_data['value'];
-                }
             }
-        
         }
     }
+    
     return $item_data;
 }
 
