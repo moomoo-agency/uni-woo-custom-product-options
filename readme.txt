@@ -100,6 +100,9 @@ A: We wouldn't recommend to do this yet. First, this version is so called 'lite'
 
 == Changelog ==
 
+= 4.6.13 =
+* Fixed: a bug when it was not possible to edit custom options in wp admin dashboard when editing an order
+
 = 4.6.12 =
 * Fixed: a bug related to 'order again' pro functionality
 

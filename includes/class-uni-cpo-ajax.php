@@ -816,7 +816,7 @@ class Uni_Cpo_Ajax
             $order_item_id = absint( $_POST['order_item_id'] );
             $product_data = Uni_Cpo_Product::get_product_data_by_id( $product_id );
             $item = new WC_Order_Item_Product( $order_item_id );
-            $form_data = uni_cpo_re_add_cpo_item_data( array(), $item->get_meta_data() );
+            $form_data = uni_cpo_re_add_cpo_item_data( array(), $item->get_meta_data(), $product_data );
             $form_field = '';
             $options_array = array();
             $filtered_form_data = array_filter( $form_data, function ( $k ) use( $form_data ) {
