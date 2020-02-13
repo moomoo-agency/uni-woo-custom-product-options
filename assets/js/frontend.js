@@ -1146,6 +1146,13 @@ var uniData = function uniData(data) {
 
             return '';
         },
+        getCartLabel: function getCartLabel(prop) {
+            if (typeof unicpoAllOptions[prop] !== 'undefined' && typeof unicpoAllOptions[prop]['cartLabel'] !== 'undefined') {
+                return unicpoAllOptions[prop]['cartLabel'];
+            }
+
+            return '';
+        },
         getSuboptionLabel: function getSuboptionLabel(prop) {
             if (typeof unicpoAllOptions[prop] !== 'undefined' && typeof unicpoAllOptions[prop].suboptions[this[prop]] !== 'undefined') {
                 return unicpoAllOptions[prop].suboptions[this[prop]]['label'];

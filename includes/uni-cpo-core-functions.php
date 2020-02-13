@@ -1574,6 +1574,7 @@ function uni_cpo_get_options_data_for_frontend( $product_id )
                                 if ( !empty($module['settings']['cpo_general']['main']['cpo_slug']) ) {
                                     $slug = UniCpo()->get_var_slug() . $module['settings']['cpo_general']['main']['cpo_slug'];
                                     $label = ( isset( $module['settings']['cpo_general']['advanced']['cpo_label'] ) ? __( $module['settings']['cpo_general']['advanced']['cpo_label'] ) : '' );
+                                    $cartlabel = ( isset( $module['settings']['cpo_general']['advanced']['cpo_order_label'] ) ? __( $module['settings']['cpo_general']['advanced']['cpo_order_label'] ) : '' );
                                     $suboptions = ( isset( $module['settings']['cpo_suboptions']['data']['cpo_radio_options'] ) ? $module['settings']['cpo_suboptions']['data']['cpo_radio_options'] : (( isset( $module['settings']['cpo_suboptions']['data']['cpo_select_options'] ) ? $module['settings']['cpo_suboptions']['data']['cpo_select_options'] : array() )) );
                                     $suboptions_formatted = array();
                                     $colorify_data = array();
@@ -1604,6 +1605,7 @@ function uni_cpo_get_options_data_for_frontend( $product_id )
                                     }
                                     $options_data[$slug] = array(
                                         'label'      => $label,
+                                        'cartLabel'  => $cartlabel,
                                         'suboptions' => $suboptions_formatted,
                                         'colorify'   => $colorify_data,
                                         'is_imagify' => $is_imagify,

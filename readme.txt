@@ -100,6 +100,11 @@ A: We wouldn't recommend to do this yet. First, this version is so called 'lite'
 
 == Changelog ==
 
+= 4.6.14 =
+* Added: new util method getCartLabel; it can be used in Dynamic Notice, gets cart/order label of the
+option instead of regular label
+* Fixed: an issue when Image Conditional Logic data was not saving on copying/duplicating the product
+
 = 4.6.13 =
 * Fixed: a bug when it was not possible to edit custom options in wp admin dashboard when editing an order
 

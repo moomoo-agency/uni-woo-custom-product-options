@@ -862,7 +862,7 @@ final class Uni_Cpo_Product {
 				update_post_meta( $product->get_id(), '_cpo_main_formula', $data['formula_data']['main_formula'] );
 
 				update_post_meta( $product->get_id(), '_cpo_image_enable', $data['image_data']['image_enable'] );
-				update_post_meta( $product->get_id(), '_cpo_image_scheme', $data['weight_data']['image_scheme'] );
+				update_post_meta( $product->get_id(), '_cpo_image_scheme', $data['image_data']['image_scheme'] );
 
 				update_post_meta( $product->get_id(), '_cpo_weight_enable', $data['weight_data']['weight_enable'] );
 				update_post_meta( $product->get_id(), '_cpo_weight_rules_enable', $data['weight_data']['weight_rules_enable'] );
