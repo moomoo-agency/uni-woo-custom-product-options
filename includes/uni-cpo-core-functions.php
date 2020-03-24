@@ -959,32 +959,40 @@ function uni_cpo_display_custom_price_on_archives( $price, $product )
     
     }
     
-    if ( 'on' === $product_data['settings_data']['cpo_enable'] && 'on' === $product_data['settings_data']['calc_enable'] && (is_single() && $product_id !== $wp_query->queried_object_id || is_page() && $product_id !== $product_post_id || is_tax() || is_archive() || is_single() && !is_singular( 'product' ) && isset( $wp_query->queried_object->post_content ) && !has_shortcode( $wp_query->queried_object->post_content, 'product_page' )) ) {
-        $raw_regular_price = $product->get_regular_price( 'edit' );
-        $raw_sale_price = $product->get_sale_price( 'edit' );
-        $display_regular_price = apply_filters( 'uni_cpo_price_regular_archive', wc_get_price_to_display( $product, array(
-            'price' => $raw_regular_price,
-        ) ), $product );
-        $display_sale_price = apply_filters( 'uni_cpo_price_sale_archive', wc_get_price_to_display( $product, array(
-            'price' => $raw_sale_price,
-        ) ), $product );
-        $starting_price = 0;
-        $is_using_archive_tmpl = false;
-        $price = wc_get_price_to_display( $product );
-        $starting_price = ( !empty($product_data['settings_data']['min_price']) ? floatval( $product_data['settings_data']['min_price'] ) : $price );
-        $starting_price = apply_filters( 'uni_cpo_price_starting_archive', $starting_price, $product );
-        $price = uni_cpo_price( $starting_price );
-        
-        if ( $product->is_taxable() && $starting_price && !($is_using_archive_tmpl && $product->is_on_sale()) ) {
-            $tax_suffix = $product->get_price_suffix( $starting_price );
-            $price = $price . $tax_suffix;
-        }
-        
+    if ( 'on' === $product_data['settings_data']['cpo_enable'] && 'on' === $product_data['settings_data']['calc_enable'] && (is_single() && $product_id !== $wp_query->queried_object_id || is_page() && $product_id !== $product_post_id || is_tax() || is_archive() || is_single() && !is_singular( 'product' ) && isset( $wp_query->queried_object->post_content ) && !has_shortcode( $wp_query->queried_object->post_content, 'product_page' ) || is_main_query() && !in_the_loop()) ) {
+        $price = uni_cpo_get_proper_price_for_archive( $product );
         return $price;
     } else {
         return $price;
     }
 
+}
+
+function uni_cpo_get_proper_price_for_archive( $product )
+{
+    $product_id = intval( $product->get_id() );
+    $product_data = Uni_Cpo_Product::get_product_data_by_id( $product_id );
+    $raw_regular_price = $product->get_regular_price( 'edit' );
+    $raw_sale_price = $product->get_sale_price( 'edit' );
+    $display_regular_price = apply_filters( 'uni_cpo_price_regular_archive', wc_get_price_to_display( $product, array(
+        'price' => $raw_regular_price,
+    ) ), $product );
+    $display_sale_price = apply_filters( 'uni_cpo_price_sale_archive', wc_get_price_to_display( $product, array(
+        'price' => $raw_sale_price,
+    ) ), $product );
+    $starting_price = 0;
+    $is_using_archive_tmpl = false;
+    $price = wc_get_price_to_display( $product );
+    $starting_price = ( !empty($product_data['settings_data']['min_price']) ? floatval( $product_data['settings_data']['min_price'] ) : $price );
+    $starting_price = apply_filters( 'uni_cpo_price_starting_archive', $starting_price, $product );
+    $price = uni_cpo_price( $starting_price );
+    
+    if ( $product->is_taxable() && $starting_price && !($is_using_archive_tmpl && $product->is_on_sale()) ) {
+        $tax_suffix = $product->get_price_suffix( $starting_price );
+        $price = $price . $tax_suffix;
+    }
+    
+    return $price;
 }
 
 //
@@ -1155,6 +1163,9 @@ function uni_cpo_add_cart_item_data( $cart_item_data, $product_id )
         
         if ( isset( $_POST['action'] ) && $_POST['action'] === 'uni_cpo_add_to_cart' ) {
             $form_data = wc_clean( $_POST['data'] );
+        } elseif ( isset( $cart_item_data['cpo_data'] ) ) {
+            // duplicating or ordering again
+            $form_data = $cart_item_data;
         } else {
             $form_data = wc_clean( $_POST );
         }
@@ -1167,6 +1178,7 @@ function uni_cpo_add_cart_item_data( $cart_item_data, $product_id )
             if ( !empty($form_data['cpo_product_layered_image']) ) {
                 $cart_item_data['_cpo_product_image'] = uni_cpo_upload_base64_image( $form_data['cpo_product_layered_image'], 'product_' . $form_data['cpo_product_id'] . '_image_' . time() );
             }
+            $cart_item_data['_cpo_data'] = ( isset( $form_data['cpo_data'] ) ? $form_data['cpo_data'] : $form_data );
             // values to be unset
             $unset_values = apply_filters(
                 'uni_cpo_add_to_cart_values_to_be_unset',
@@ -1174,9 +1186,13 @@ function uni_cpo_add_cart_item_data( $cart_item_data, $product_id )
                 'cpo_cart_item_id',
                 'cpo_product_id',
                 'add-to-cart',
+                'cpo_data',
+                // without slash
+                'cpo_nov',
+                // without slash
                 'cpo_product_image',
                 'cpo_product_layered_image',
-                'quantity'
+                'quantity',
             ),
                 $cart_item_data,
                 $product_id
@@ -1186,10 +1202,11 @@ function uni_cpo_add_cart_item_data( $cart_item_data, $product_id )
                     if ( isset( $form_data[$v] ) ) {
                         unset( $form_data[$v] );
                     }
+                    if ( isset( $cart_item_data[$v] ) ) {
+                        unset( $cart_item_data[$v] );
+                    }
                 }
             }
-            // it is isset when ordering again has been initiated
-            $cart_item_data['_cpo_data'] = ( isset( $form_data['cpo_data'] ) ? $form_data['cpo_data'] : $form_data );
             
             if ( true === boolval( $cart_item_data['_cpo_calc_option'] ) ) {
                 
@@ -1282,6 +1299,8 @@ function uni_cpo_get_item_data( $item_data, $cart_item )
     if ( !empty($cart_item['_cpo_data']) ) {
         // saves an information about chosen options and their values in cart meta
         $form_data = $cart_item['_cpo_data'];
+        $formatted_vars = array();
+        $variables = array();
         $filtered_form_data = array_filter( $form_data, function ( $k ) use( $form_data ) {
             return false !== strpos( $k, UniCpo()->get_var_slug() ) && !empty($form_data[$k]);
         }, ARRAY_FILTER_USE_KEY );
@@ -1506,7 +1525,12 @@ function uni_cpo_woocommerce_order_again_cart_item_data( $cart_item_meta, $item,
 }
 
 //
-function uni_cpo_re_add_cpo_item_data( $item_data, $raw_data, $product_data )
+function uni_cpo_re_add_cpo_item_data(
+    $item_data,
+    $raw_data,
+    $product_data,
+    $is_duplicate = false
+)
 {
     
     if ( 'on' === $product_data['settings_data']['cpo_enable'] ) {
@@ -1557,19 +1581,37 @@ function uni_cpo_re_add_cpo_item_data( $item_data, $raw_data, $product_data )
 }
 
 //
-function uni_cpo_get_options_data_for_frontend( $product_id )
+function uni_cpo_get_options_data_for_frontend( $product_id, $variables = array(), $formatted_vars = array() )
 {
     
-    if ( is_singular( 'product' ) ) {
+    if ( is_singular( 'product' ) || wp_doing_ajax() ) {
         $product_data = Uni_Cpo_Product::get_product_data_by_id( $product_id );
         $content = $product_data['content'];
         $options_data = array();
         if ( is_array( $content ) && !empty($content) ) {
-            array_walk( $content, function ( $row, $row_key ) use( &$options_data ) {
+            array_walk( $content, function ( $row, $row_key ) use(
+                &$options_data,
+                $variables,
+                $formatted_vars,
+                $product_data
+            ) {
                 if ( is_array( $row['columns'] ) && !empty($row['columns']) ) {
-                    array_walk( $row['columns'], function ( $column, $column_key ) use( &$options_data, $row_key ) {
+                    array_walk( $row['columns'], function ( $column, $column_key ) use(
+                        &$options_data,
+                        $row_key,
+                        $variables,
+                        $formatted_vars,
+                        $product_data
+                    ) {
                         if ( is_array( $column['modules'] ) && !empty($column['modules']) ) {
-                            array_walk( $column['modules'], function ( $module ) use( &$options_data, $row_key, $column_key ) {
+                            array_walk( $column['modules'], function ( $module ) use(
+                                &$options_data,
+                                $row_key,
+                                $column_key,
+                                $variables,
+                                $formatted_vars,
+                                $product_data
+                            ) {
                                 
                                 if ( !empty($module['settings']['cpo_general']['main']['cpo_slug']) ) {
                                     $slug = UniCpo()->get_var_slug() . $module['settings']['cpo_general']['main']['cpo_slug'];
@@ -1584,6 +1626,7 @@ function uni_cpo_get_options_data_for_frontend( $product_id )
                                             
                                             if ( !empty($suboption['label']) && !empty($suboption['slug']) ) {
                                                 $suboptions_formatted[$suboption['slug']]['label'] = __( $suboption['label'] );
+                                                $suboptions_formatted[$suboption['slug']]['rate'] = floatVal( $suboption['rate'] );
                                                 
                                                 if ( !empty($suboption['attach_id']) || !empty($suboption['attach_id_r']) ) {
                                                     $replacement_attach_id = ( !empty($suboption['attach_id_r']) ? $suboption['attach_id_r'] : $suboption['attach_id'] );
@@ -1604,11 +1647,13 @@ function uni_cpo_get_options_data_for_frontend( $product_id )
                                         );
                                     }
                                     $options_data[$slug] = array(
-                                        'label'      => $label,
-                                        'cartLabel'  => $cartlabel,
-                                        'suboptions' => $suboptions_formatted,
-                                        'colorify'   => $colorify_data,
-                                        'is_imagify' => $is_imagify,
+                                        'type'             => $module['type'],
+                                        'label'            => $label,
+                                        'cartLabel'        => $cartlabel,
+                                        'suboptions'       => $suboptions_formatted,
+                                        'colorify'         => $colorify_data,
+                                        'is_imagify'       => $is_imagify,
+                                        'is_dynamic_label' => true,
                                     );
                                 }
                             
@@ -1621,4 +1666,33 @@ function uni_cpo_get_options_data_for_frontend( $product_id )
         return $options_data;
     }
 
+}
+
+function uni_cpo_replace_curly(
+    $string,
+    $formatted_vars,
+    $product_data,
+    $variables = array()
+)
+{
+    preg_match_all( '/{{{(\\w+)}}}/', $string, $matches );
+    foreach ( $matches[0] as $index => $var_name ) {
+        $stripped_var_name = trim( $var_name, '{{{' );
+        $stripped_var_name = trim( $stripped_var_name, '}}}' );
+        if ( !empty($variables) ) {
+            $variables = uni_cpo_process_formula_with_non_option_vars( $variables, $product_data, $formatted_vars );
+        }
+        $stripped_variables = array();
+        foreach ( $variables as $key => $value ) {
+            $stripped_variables[trim( $key, '{}' )] = $value;
+        }
+        
+        if ( isset( $stripped_variables[$stripped_var_name] ) ) {
+            $string = str_replace( $var_name, $stripped_variables[$stripped_var_name], $string );
+        } else {
+            $string = str_replace( $var_name, '', $string );
+        }
+    
+    }
+    return $string;
 }

@@ -4,8 +4,8 @@ Tags: custom options, extra options, product visual builder, woocommerce plugins
 Requires at least: 4.8
 Tested up to: 5.3.2
 Requires PHP: 7.0
-WC requires at least: 3.5.0
-WC tested up to: 3.8.1
+WC requires at least: 3.7.0
+WC tested up to: 4.0.1
 Stable tag: trunk
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -99,6 +99,20 @@ A: We wouldn't recommend to do this yet. First, this version is so called 'lite'
 7. screenshot-7.png
 
 == Changelog ==
+
+= 4.7.3 =
+* Fixed: disappearing of tooltip icons next to option's labels
+
+= 4.7.2 =
+* Fixed: duplicating cart item functionality
+
+= 4.7.1 =
+* Fixed: issue related to checkboxes labels disappearing
+
+= 4.7.0 =
+* Added: a possibility to configure dynamic options' and suboptions' labels
+* Fixed: a bug in "Imagify" functionality for Classic/Colour/Text types of Radio Input option
+* Checked for compatibility with WC 3.9
 
 = 4.6.14 =
 * Added: new util method getCartLabel; it can be used in Dynamic Notice, gets cart/order label of the

@@ -600,6 +600,7 @@ class Uni_Cpo_Ajax
             $options_eval_result = array();
             $formatted_vars = array();
             $nice_names_vars = array();
+            $all_options_data = array();
             $is_free_sample = false;
             $price_vars['quantity'] = ( !empty($form_data['quantity']) ? absint( $form_data['quantity'] ) : 1 );
             $currency = get_woocommerce_currency();
@@ -702,7 +703,13 @@ class Uni_Cpo_Ajax
                             $price_display_suffix = $product->get_price_suffix( $price_calculated, 1 );
                         }
                         
-                        $price_vars['price'] = apply_filters( 'uni_cpo_ajax_calculation_price_tag_filter', uni_cpo_price( $price_display ), $price_display );
+                        $price_vars['price'] = apply_filters(
+                            'uni_cpo_ajax_calculation_price_tag_filter',
+                            uni_cpo_price( $price_display ),
+                            $price_display,
+                            $formatted_vars,
+                            $product_id
+                        );
                         $price_vars['raw_price'] = $price_calculated;
                         $price_vars['raw_total'] = $price_vars['raw_price'] * $price_vars['quantity'];
                         $price_vars['total'] = uni_cpo_price( $price_vars['raw_total'] );
@@ -744,9 +751,20 @@ class Uni_Cpo_Ajax
                         if ( $is_calc_disabled ) {
                             // ordering is disabled
                             $price_display = 0;
-                            $price_vars['price'] = apply_filters( 'uni_cpo_ajax_calculation_price_tag_disabled_filter', uni_cpo_price( $price_display ), $price_display );
-                            $extra_data = array(
+                            $price_vars['price'] = apply_filters(
+                                'uni_cpo_ajax_calculation_price_tag_disabled_filter',
+                                uni_cpo_price( $price_display ),
+                                $price_display,
+                                $formatted_vars,
+                                $product_id
+                            );
+                            $extra_data = apply_filters(
+                                'uni_cpo_ajax_calculation_price_extra_data_filter',
+                                array(
                                 'order_product' => 'disabled',
+                            ),
+                                $formatted_vars,
+                                $product_id
                             );
                         }
                     
@@ -754,8 +772,19 @@ class Uni_Cpo_Ajax
                     
                     $result['formatted_vars'] = $formatted_vars;
                     $result['nice_names_vars'] = $nice_names_vars;
-                    $result['price_vars'] = $price_vars;
-                    $result['extra_data'] = $extra_data;
+                    $result['price_vars'] = apply_filters(
+                        'uni_cpo_ajax_calculation_price_vars_filter',
+                        $price_vars,
+                        $formatted_vars,
+                        $product_id
+                    );
+                    $result['extra_data'] = apply_filters(
+                        'uni_cpo_ajax_calculation_price_extra_data_filter',
+                        $extra_data,
+                        $formatted_vars,
+                        $product_id
+                    );
+                    $result['all_options_data'] = $all_options_data;
                     wp_send_json_success( $result );
                 } else {
                     $price_display = 0;

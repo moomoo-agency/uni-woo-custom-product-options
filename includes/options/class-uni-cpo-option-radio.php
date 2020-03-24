@@ -201,7 +201,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
         }
         ?>">
             <label><?php 
-        esc_html_e( uni_cpo_sanitize_label( $this->cpo_order_label() ) );
+        esc_html_e( uni_cpo_get_proper_option_label_sp( uni_cpo_sanitize_label( $this->cpo_order_label() ) ) );
         ?></label>
 			<?php 
         
@@ -244,7 +244,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
 							<?php 
                 echo  $selected ;
                 ?>><?php 
-                esc_html_e( $suboption['label'] );
+                esc_html_e( uni_cpo_get_proper_option_label_sp( $suboption['label'] ) );
                 ?></option>
 					<?php 
             }
@@ -288,7 +288,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
 							<?php 
                 echo  $selected ;
                 ?>><?php 
-                esc_html_e( $suboption['label'] );
+                esc_html_e( uni_cpo_get_proper_option_label_sp( $suboption['label'] ) );
                 ?></option>
 					<?php 
             }
@@ -843,7 +843,7 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
             }
             ?>">
 			<?php 
-            esc_html_e( $cpo_general_advanced['cpo_label'] );
+            esc_html_e( uni_cpo_get_proper_option_label_sp( $cpo_general_advanced['cpo_label'] ) );
             ?>
 			<?php 
             
@@ -947,13 +947,16 @@ class Uni_Cpo_Option_Radio extends Uni_Cpo_Option implements  Uni_Cpo_Option_Int
             switch ( $cpo_mode_radio ) {
                 case 'classic':
                     ?>
-					<span class="uni-cpo-option-label__radio"></span>
+					<span class="uni-cpo-option-label__radio"
+                          data-image="<?php 
+                    echo  esc_attr( $data_image ) ;
+                    ?>"></span>
 	                <span class="uni-cpo-option-label__text"
 	                      data-image="<?php 
                     echo  esc_attr( $data_image ) ;
                     ?>">
                         <?php 
-                    esc_html_e( $suboption['label'] );
+                    esc_html_e( uni_cpo_get_proper_option_label_sp( $suboption['label'] ) );
                     ?>
                         <?php 
                     

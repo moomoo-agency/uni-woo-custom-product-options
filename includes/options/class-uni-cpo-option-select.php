@@ -212,7 +212,7 @@ class Uni_Cpo_Option_Select extends Uni_Cpo_Option implements Uni_Cpo_Option_Int
                 class="cpo-cart-item-option-wrapper uni-node-<?php echo esc_attr( $id ) ?> <?php if ( 'order' === $context ) {
 					echo esc_attr( "uni-admin-order-item-option-wrapper" );
 				} ?>">
-            <label><?php esc_html_e( uni_cpo_sanitize_label( $this->cpo_order_label() ) ) ?></label>
+            <label><?php esc_html_e( uni_cpo_get_proper_option_label_sp( uni_cpo_sanitize_label( $this->cpo_order_label() ) ) ) ?></label>
 			<?php if ( 'order' === $context || ( 'cart' === $context && $is_cart_edit ) ) { ?>
                 <select
                         class="<?php echo implode( ' ', array_map( function ( $el ) {
@@ -236,7 +236,7 @@ class Uni_Cpo_Option_Select extends Uni_Cpo_Option implements Uni_Cpo_Option_Int
 						?>
                         <option
                                 value="<?php echo esc_attr( $suboption['slug'] ); ?>"
-							<?php echo $selected; ?>><?php esc_html_e( $suboption['label'] ); ?></option>
+							<?php echo $selected; ?>><?php esc_html_e( uni_cpo_get_proper_option_label_sp( $suboption['label'] ) ); ?></option>
 					<?php endforeach; ?>
                 </select>
 			<?php } else { ?>
@@ -262,7 +262,7 @@ class Uni_Cpo_Option_Select extends Uni_Cpo_Option implements Uni_Cpo_Option_Int
 						?>
                         <option
                                 value="<?php echo esc_attr( $suboption['slug'] ); ?>"
-							<?php echo $selected; ?>><?php esc_html_e( $suboption['label'] ); ?></option>
+							<?php echo $selected; ?>><?php esc_html_e( uni_cpo_get_proper_option_label_sp( $suboption['label'] ) ); ?></option>
 					<?php endforeach; ?>
                 </select>
                 <input
@@ -611,7 +611,7 @@ class Uni_Cpo_Option_Select extends Uni_Cpo_Option implements Uni_Cpo_Option_Int
 		<?php
 		if ( ! empty( $cpo_general_advanced['cpo_label'] ) ) { ?>
             <<?php echo esc_attr( $cpo_label_tag ); ?> class="uni-cpo-module-<?php echo esc_attr( $type ); ?>-label <?php if ( $is_required ) { ?> uni_cpo_field_required <?php } ?>">
-			<?php esc_html_e( $cpo_general_advanced['cpo_label'] ); ?>
+			<?php esc_html_e( uni_cpo_get_proper_option_label_sp( $cpo_general_advanced['cpo_label'] ) ); ?>
 			<?php if ( $is_tooltip && $cpo_general_advanced['cpo_tooltip'] !== '' && $cpo_tooltip_type === 'classic' ) { ?>
                 <span
                         class="uni-cpo-tooltip"
@@ -653,7 +653,7 @@ class Uni_Cpo_Option_Select extends Uni_Cpo_Option implements Uni_Cpo_Option_Int
                 <option
                         value="<?php echo esc_attr( $suboption['slug'] ); ?>"
 					<?php echo esc_attr( $selected ); ?>>
-					<?php esc_html_e( $suboption['label'] ); ?>
+					<?php esc_html_e( uni_cpo_get_proper_option_label_sp( $suboption['label'] ) ); ?>
                 </option>
 			<?php endforeach; ?>
         </select>

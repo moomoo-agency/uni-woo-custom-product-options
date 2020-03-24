@@ -33,17 +33,19 @@ add_action( 'woocommerce_product_data_panels', 'uni_cpo_add_custom_settings_tab_
 function uni_cpo_add_custom_settings_tab_content()
 {
     ?>
-	<div id="uni_cpo_settings_data" class="panel woocommerce_options_panel">
-		<a
-				href="<?php 
+    <div
+            id="uni_cpo_settings_data"
+            class="panel woocommerce_options_panel">
+        <a
+                href="<?php 
     echo  esc_url( Uni_Cpo_Product::get_edit_url() ) ;
     ?>"
-				target="_blank">
+                target="_blank">
 			<?php 
     esc_html_e( 'go to the builder', 'uni-cpo' );
     ?>
-		</a>
-	</div>
+        </a>
+    </div>
 	<?php 
 }
 
@@ -61,6 +63,9 @@ function uni_cpo_order_formatted_meta_data( $formatted_meta, $item )
             return $formatted_meta;
         }
         $item_meta_data = $item->get_meta_data();
+        $formatted_vars = array();
+        $variables = array();
+        $options_eval_result = array();
         $filtered_form_data = array();
         array_walk( $item_meta_data, function ( $v ) use( &$filtered_form_data ) {
             $meta_data = $v->get_data();
@@ -76,7 +81,14 @@ function uni_cpo_order_formatted_meta_data( $formatted_meta, $item )
             '_uni_item_height',
             '_uni_item_length'
         ), $item );
-        array_walk( $item_meta_data, function ( $v ) use( &$formatted_meta, $filtered_form_data, $excluded_order_item_meta_keys ) {
+        array_walk( $item_meta_data, function ( $v ) use(
+            &$formatted_meta,
+            $filtered_form_data,
+            $excluded_order_item_meta_keys,
+            $product_data,
+            $formatted_vars,
+            $variables
+        ) {
             $meta_data = $v->get_data();
             
             if ( in_array( $meta_data['key'], $excluded_order_item_meta_keys ) ) {
@@ -172,47 +184,71 @@ function uni_cpo_order_edit_options_modal()
     
     if ( 'shop_order' === $screen->post_type ) {
         ?>
-		<script type="text/template" id="tmpl-uni-cpo-modal-add-options">
-			<div class="wc-backbone-modal">
-				<div class="wc-backbone-modal-content">
-					<section class="wc-backbone-modal-main" role="main">
-						<header class="wc-backbone-modal-header">
-							<h1><?php 
+        <script
+                type="text/template"
+                id="tmpl-uni-cpo-modal-add-options">
+            <div class="wc-backbone-modal">
+                <div class="wc-backbone-modal-content">
+                    <section
+                            class="wc-backbone-modal-main"
+                            role="main">
+                        <header class="wc-backbone-modal-header">
+                            <h1><?php 
         _e( 'Add/edit CPO options', 'uni-cpo' );
         ?></h1>
-							<button class="modal-close modal-close-link dashicons dashicons-no-alt">
-								<span class="screen-reader-text">Close modal panel</span>
-							</button>
-						</header>
-						<article id="cpo-order-edit-options-wrapper">
-							<form action="" method="post">
-								<input type="hidden" id="cpo-order-product-id" name="product_id"
-								       value="{{{data.pid}}}"/>
-								<input type="hidden" id="cpo-order-security" name="security"
-								       value="{{{data.security}}}"/>
-								<input type="hidden" name="action" value="uni_cpo_order_item_update"/>
-								<input type="hidden" id="cpo-order-item-id" name="order_item_id"
-								       value="{{{data.order_item_id}}}"/>
-								<input type="hidden" name="order_id"
-								       value="{{{woocommerce_admin_meta_boxes.post_id}}}"/>
-							</form>
+                            <button class="modal-close modal-close-link dashicons dashicons-no-alt">
+                                <span class="screen-reader-text">Close modal panel</span>
+                            </button>
+                        </header>
+                        <article id="cpo-order-edit-options-wrapper">
+                            <form
+                                    action=""
+                                    method="post">
+                                <input
+                                        type="hidden"
+                                        id="cpo-order-product-id"
+                                        name="product_id"
+                                        value="{{{data.pid}}}"/>
+                                <input
+                                        type="hidden"
+                                        id="cpo-order-security"
+                                        name="security"
+                                        value="{{{data.security}}}"/>
+                                <input
+                                        type="hidden"
+                                        name="action"
+                                        value="uni_cpo_order_item_update"/>
+                                <input
+                                        type="hidden"
+                                        id="cpo-order-item-id"
+                                        name="order_item_id"
+                                        value="{{{data.order_item_id}}}"/>
+                                <input
+                                        type="hidden"
+                                        name="order_id"
+                                        value="{{{woocommerce_admin_meta_boxes.post_id}}}"/>
+                            </form>
 
-							<form id="cpo-item-options-form" action="" method="post">
-							</form>
-						</article>
-						<footer>
-							<div class="inner">
-								<button id="btn-ok"
-								        class="button button-primary button-large"><?php 
+                            <form
+                                    id="cpo-item-options-form"
+                                    action=""
+                                    method="post">
+                            </form>
+                        </article>
+                        <footer>
+                            <div class="inner">
+                                <button
+                                        id="btn-ok"
+                                        class="button button-primary button-large"><?php 
         _e( 'Update', 'uni-cpo' );
         ?></button>
-							</div>
-						</footer>
-					</section>
-				</div>
-			</div>
-			<div class="wc-backbone-modal-backdrop modal-close"></div>
-		</script>
+                            </div>
+                        </footer>
+                    </section>
+                </div>
+            </div>
+            <div class="wc-backbone-modal-backdrop modal-close"></div>
+        </script>
 		<?php 
     }
 
