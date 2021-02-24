@@ -951,10 +951,12 @@ class Uni_Cpo_Ajax
                 $item->set_subtotal( $item_price );
                 $item_total = $item_qty * $item_price;
                 $item->set_total( $item_total );
-                $item->calculate_taxes();
+                $item->calculate_taxes($order->get_tax_location());
                 $item->save();
             }
             
+            $order_taxes = $order->get_taxes();
+
             ob_start();
             include wp_normalize_path( WP_PLUGIN_DIR . '/woocommerce/includes/admin/meta-boxes/views/html-order-item.php' );
             $html = ob_get_clean();
